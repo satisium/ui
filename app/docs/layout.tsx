@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { source } from "@/lib/source"
 
 import { SpatialLayout } from "@/components/layout/spatial-layout"
 
@@ -11,5 +12,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return <SpatialLayout>{children}</SpatialLayout>
+  const tree = source.pageTree
+
+  return <SpatialLayout tree={tree}>{children}</SpatialLayout>
 }
