@@ -2,47 +2,50 @@
 "use client"
 
 import type * as PageTree from "fumadocs-core/page-tree"
+import { motion } from "motion/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion } from "motion/react"
-import { useSidebarStore } from "@/store/use-sidebar-store"
 
-// We create a custom type intersection to safely consume our injected badge
+// Custom type for our injected metadata
 type CustomPageNode = PageTree.Item & { badge?: string }
 
 export function SidebarContent({ tree }: { tree: PageTree.Root }) {
   return (
-    <div className="flex h-full w-full flex-col pb-20 text-sidebar-primary-foreground">
-      {/* Brand Header */}
-      <div className="mb-12 flex items-center justify-between pl-2">
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sidebar-primary-foreground/20 shadow-inner">
-            <span className="text-xl">☺</span>
+    <div className="flex h-full w-full flex-col bg-background pb-20 text-foreground">
+      {/* 
+        Brand Header 
+        Using a 1.125 gap multiplier for vertical rhythm. 
+      */}
+      <div className="mb-10 flex items-center justify-between pt-2 pl-2">
+        <Link href="/" className="group flex items-center gap-3">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-muted/50 shadow-sm transition-colors group-hover:border-primary/50">
+            <span className="text-lg">☺</span>
           </div>
-          <span className="font-display text-lg font-semibold tracking-tight">
-            emblemo UI
-          </span>
-        </div>
+          <span className="font-display">SATIS UI </span>
+        </Link>
       </div>
 
-      {/* Recursive Navigation Tree */}
-      <div className="flex flex-col gap-0.5">
+      {/* 
+        Navigation Tree 
+        gap-[4.5px] represents the 1.125 ratio (4px * 1.125)
+      */}
+      <nav className="flex flex-col gap-[4.5px] pr-4">
         {tree.children.map((node, i) => (
           <motion.div
-            key={node.$id}
-            initial={{ opacity: 0, x: -10 }}
+            key={node.type === "separator" ? `sep-${i}` : node.$id || node.$id}
+            initial={{ opacity: 0, x: -8 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{
-              delay: 0.1 + i * 0.05,
+              delay: i * 0.04,
               type: "spring",
-              stiffness: 350,
-              damping: 30,
+              stiffness: 400,
+              damping: 35,
             }}
           >
             <TreeNode node={node} depth={0} />
           </motion.div>
         ))}
-      </div>
+      </nav>
     </div>
   )
 }
@@ -52,48 +55,41 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
 // --------------------------------------------------------
 function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
   const pathname = usePathname()
-  const { closeSidebar } = useSidebarStore()
 
-  // 1. SEPARATOR NODE (e.g., from meta.json "---")
+  // 1. SEPARATOR (The Visual Break)
   if (node.type === "separator") {
     return (
-      <div className="my-6 pl-2">
-        <div className="h-px w-full bg-sidebar-primary-foreground/10" />
-        <span className="mt-3 block text-[0.65rem] font-bold tracking-widest text-sidebar-primary-foreground/40 uppercase">
-          {node.name || "Overview"}
-        </span>
+      <div className="my-4 flex items-center px-2">
+        <div className="h-[1px] w-full bg-border/60" />
       </div>
     )
   }
 
-  // 2. PAGE NODE (The clickable links)
+  // 2. PAGE NODE (The Nav Link)
   if (node.type === "page") {
-    // Exact match for active state
     const isActive = pathname === node.url
-
-    // Cast the node to our custom type to access the injected badge securely
     const customNode = node as CustomPageNode
     const badgeText = customNode.badge
 
     return (
       <Link
         href={node.url}
-        onClick={closeSidebar} // Seamless UX: Layout gracefully slides back on click
-        className={`group relative flex items-center justify-between rounded-md px-3 py-2 transition-all duration-200 ease-out-expo ${
+        aria-current={isActive ? "page" : undefined}
+        className={`group relative flex items-center justify-between rounded-md px-3 py-1.5 transition-all duration-200 ${
           isActive
-            ? "bg-sidebar-primary-foreground/10 font-semibold text-sidebar-primary-foreground"
-            : "font-medium text-sidebar-primary-foreground/60 hover:bg-sidebar-primary-foreground/5 hover:text-sidebar-primary-foreground"
+            ? "bg-secondary font-medium text-foreground"
+            : "text-muted-foreground hover:bg-muted hover:text-foreground"
         }`}
       >
-        <span className="text-sm tracking-wide">{node.name}</span>
+        <span className="text-sm tracking-tight">{node.name}</span>
 
-        {/* THE INJECTED MINIMAL BADGE */}
+        {/* Minimalist Injected Badge */}
         {badgeText && (
           <span
-            className={`ml-3 rounded px-1.5 py-0.5 text-[0.55rem] font-bold tracking-[0.1em] uppercase transition-colors duration-200 ${
+            className={`ml-2 rounded-[4px] px-1.5 py-0.5 text-[10px] font-bold tracking-widest uppercase transition-all duration-300 ${
               isActive
-                ? "bg-primary/20 text-primary" // Vibrant glow if active
-                : "bg-sidebar-primary-foreground/10 text-sidebar-primary-foreground/40 group-hover:bg-sidebar-primary-foreground/20 group-hover:text-sidebar-primary-foreground/80"
+                ? "bg-primary text-primary-foreground shadow-[0_0_10px_rgba(var(--primary),0.3)]"
+                : "border border-border bg-muted text-muted-foreground group-hover:border-muted-foreground/30"
             }`}
           >
             {badgeText}
@@ -103,29 +99,23 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
     )
   }
 
-  // 3. FOLDER NODE (The Nested Categories with "Ruler" styling)
+  // 3. FOLDER NODE (The Nested Category)
   if (node.type === "folder") {
     return (
-      <div className="mt-4 flex flex-col">
-        {/* Folder Title */}
-        <span className="mb-2 px-3 text-[0.7rem] font-bold tracking-wider text-sidebar-primary-foreground/50 uppercase">
+      <div className="mt-4 flex flex-col gap-[4.5px]">
+        {/* Category Header */}
+        <span className="mb-1 pl-3 text-[10px] font-bold tracking-[0.15em] text-muted-foreground/60 uppercase">
           {node.name}
         </span>
 
-        {/* The Nested "Ruler" Border Canvas */}
-        <div className="relative ml-4 flex flex-col gap-0.5 pl-3">
-          {/* The Mathematical Tick/Ruler Line */}
-          <div
-            className="absolute top-1 bottom-1 left-0 w-[1px] bg-sidebar-primary-foreground/10"
-            style={{
-              // Subtle tick marks via repeating gradient for that design-engineer feel
-              backgroundImage:
-                "repeating-linear-gradient(to bottom, transparent, transparent 19px, rgba(255,255,255,0.15) 19px, rgba(255,255,255,0.15) 20px)",
-            }}
-          />
-
+        {/* Nested Content with the "Ruler" line */}
+        <div className="relative ml-4 flex flex-col gap-[4.5px] pl-2">
           {node.children.map((child) => (
-            <TreeNode key={child.$id} node={child} depth={depth + 1} />
+            <TreeNode
+              key={child.type === "page" ? child.url : child.$id}
+              node={child}
+              depth={depth + 1}
+            />
           ))}
         </div>
       </div>

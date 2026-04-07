@@ -26,7 +26,7 @@ export const source = loader({
             // Notice we swapped the hardcoded colors for your Shadcn CSS variables
             // to maintain the seamless, premium design system.
             node.name = (
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-3">
                 <span>{node.name}</span>
 
                 {/* Render intent-driven dots based on the badge type */}
@@ -39,7 +39,7 @@ export const source = loader({
                 ) : (
                   // The "Updated" or other state: A quiet, static structural dot
                   <span
-                    className="size-1.5 rounded-full bg-sidebar-primary-foreground/40"
+                    className="size-1.5 rounded-full bg-blue-500"
                     title={meta.badge}
                   />
                 )}
