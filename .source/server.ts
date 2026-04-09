@@ -1,7 +1,7 @@
 // @ts-nocheck
 import * as __fd_glob_7 from "../content/docs/components/complex/spotlight-card.mdx?collection=docs"
-import * as __fd_glob_6 from "../content/docs/components/button.mdx?collection=docs"
-import * as __fd_glob_5 from "../content/docs/getting-started/installation.mdx?collection=docs"
+import * as __fd_glob_6 from "../content/docs/getting-started/installation.mdx?collection=docs"
+import * as __fd_glob_5 from "../content/docs/components/button.mdx?collection=docs"
 import * as __fd_glob_4 from "../content/docs/index.mdx?collection=docs"
 import { default as __fd_glob_3 } from "../content/docs/components/complex/meta.json?collection=docs"
 import { default as __fd_glob_2 } from "../content/docs/getting-started/meta.json?collection=docs"
@@ -15,4 +15,4 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
   }
 }>({"doc":{"passthroughs":["extractedReferences"]}});
 
-export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "components/meta.json": __fd_glob_1, "getting-started/meta.json": __fd_glob_2, "components/complex/meta.json": __fd_glob_3, }, {"index.mdx": __fd_glob_4, "getting-started/installation.mdx": __fd_glob_5, "components/button.mdx": __fd_glob_6, "components/complex/spotlight-card.mdx": __fd_glob_7, });
+export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "components/meta.json": __fd_glob_1, "getting-started/meta.json": __fd_glob_2, "components/complex/meta.json": __fd_glob_3, }, {"index.mdx": __fd_glob_4, "components/button.mdx": __fd_glob_5, "getting-started/installation.mdx": __fd_glob_6, "components/complex/spotlight-card.mdx": __fd_glob_7, });

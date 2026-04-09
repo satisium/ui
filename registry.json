@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "satis-ui",
+  "homepage": "https://satis.ui",
+  "items":[
+    {
+      "name": "spotlight-card",
+      "type": "registry:ui",
+      "title": "Spotlight Card",
+      "description": "A card with a cursor-following radial glow.",
+      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
+      "files":[
+        {
+          "path": "registry/default/ui/spotlight-card.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "spotlight-card-demo",
+      "type": "registry:example",
+      "title": "Basic Spotlight Demo",
+      "registryDependencies": ["spotlight-card"],
+      "files":[
+        {
+          "path": "registry/default/demos/spotlight-card-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}
