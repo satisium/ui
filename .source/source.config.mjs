@@ -18,6 +18,7 @@ var docs = defineDocs({
         github: z.string().url().optional().describe("Source code URL"),
         api: z.string().url().optional().describe("API Reference URL")
       }).optional(),
+      registryKeys: z.array(z.string()).optional().describe("Keys mapping to our registry demos"),
       // Tech stack flags
       stack: z.array(z.string()).optional().describe("e.g., ['framer-motion', 'tailwind']")
     })

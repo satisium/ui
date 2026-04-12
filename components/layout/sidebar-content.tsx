@@ -11,7 +11,7 @@ type CustomPageNode = PageTree.Item & { badge?: string }
 
 export function SidebarContent({ tree }: { tree: PageTree.Root }) {
   return (
-    <div className="flex h-full w-full flex-col bg-background pb-20 text-foreground">
+    <div className="flex h-full w-full flex-col pb-20">
       {/* 
         Brand Header 
         Using a 1.125 gap multiplier for vertical rhythm. 
@@ -75,9 +75,9 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
       <Link
         href={node.url}
         aria-current={isActive ? "page" : undefined}
-        className={`group relative flex items-center justify-between rounded-md px-3 py-1.5 transition-all duration-200 ${
+        className={`group relative flex items-center justify-between rounded-sm px-3 py-1.5 transition-all duration-200 ${
           isActive
-            ? "bg-secondary font-medium text-foreground"
+            ? "bg-foreground font-medium text-background"
             : "text-muted-foreground hover:bg-muted hover:text-foreground"
         }`}
       >

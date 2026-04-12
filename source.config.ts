@@ -27,6 +27,10 @@ export const docs = defineDocs({
           api: z.string().url().optional().describe("API Reference URL"),
         })
         .optional(),
+      registryKeys: z
+        .array(z.string())
+        .optional()
+        .describe("Keys mapping to our registry demos"),
 
       // Tech stack flags
       stack: z

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spotlight-card",
+  "title": "Spotlight Card",
+  "description": "A card with a cursor-following radial glow.",
+  "dependencies": [
+    "framer-motion",
+    "clsx",
+    "tailwind-merge"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/spotlight-card.tsx",
+      "content": "\"use client\"\n\nimport React, { useRef, MouseEvent } from \"react\"\nimport { motion, useMotionTemplate, useMotionValue } from \"motion/react\"\nimport { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\n// Standard Shadcn utility (usually in lib/utils.ts)\nfunction cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n\nexport interface SpotlightCardProps extends React.HTMLAttributes<HTMLDivElement> {\n  glowColor?: string\n  glowRadius?: number\n}\n\nexport function SpotlightCard({\n  children,\n  className,\n  glowColor = \"rgba(255, 255, 255, 0.08)\", // Subtle white glow for dark mode\n  glowRadius = 300,\n  ...props\n}: SpotlightCardProps) {\n  const containerRef = useRef<HTMLDivElement>(null)\n  const mouseX = useMotionValue(-glowRadius) // Start safely off-screen\n  const mouseY = useMotionValue(-glowRadius)\n\n  function handleMouseMove({ clientX, clientY }: MouseEvent<HTMLDivElement>) {\n    if (!containerRef.current) return\n    const { left, top } = containerRef.current.getBoundingClientRect()\n    // Calculate mouse position relative to the card\n    mouseX.set(clientX - left)\n    mouseY.set(clientY - top)\n  }\n\n  return (\n    <div\n      ref={containerRef}\n      onMouseMove={handleMouseMove}\n      className={cn(\n        \"group relative overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-shadow duration-300 hover:shadow-md\",\n        className\n      )}\n      {...props}\n    >\n      {/* The Dynamic Spotlight Overlay */}\n      <motion.div\n        className=\"pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100\"\n        style={{\n          background: useMotionTemplate`\n            radial-gradient(\n              ${glowRadius}px circle at ${mouseX}px ${mouseY}px,\n              ${glowColor},\n              transparent 80%\n            )\n          `,\n        }}\n      />\n      {/* The Content */}\n      <div className=\"relative z-10 h-full w-full\">{children}</div>\n    </div>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

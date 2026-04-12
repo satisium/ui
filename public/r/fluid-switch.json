@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fluid-switch",
+  "title": "Fluid Switch",
+  "description": "A tactile switch with spring physics.",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "registry/ui/fluid-switch.tsx",
+      "content": "// registry/ui/fluid-switch.tsx\n\"use client\"\n\nimport * as React from \"react\"\nimport { motion } from \"motion/react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface FluidSwitchProps extends Omit<\n  React.ButtonHTMLAttributes<HTMLButtonElement>,\n  \"onChange\"\n> {\n  checked: boolean\n  onCheckedChange: (checked: boolean) => void\n}\n\nexport const FluidSwitch = React.forwardRef<\n  HTMLButtonElement,\n  FluidSwitchProps\n>(({ checked, onCheckedChange, className, disabled, ...props }, ref) => {\n  return (\n    <button\n      type=\"button\"\n      role=\"switch\"\n      aria-checked={checked}\n      disabled={disabled}\n      ref={ref}\n      onClick={() => onCheckedChange(!checked)}\n      className={cn(\n        \"relative flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50\",\n        checked ? \"bg-primary\" : \"bg-input\",\n        className\n      )}\n      {...props}\n    >\n      <motion.div\n        layout\n        initial={false}\n        transition={{ type: \"spring\", stiffness: 500, damping: 30, mass: 1 }}\n        className={cn(\n          \"pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0\",\n          checked ? \"ml-5\" : \"ml-0\"\n        )}\n      >\n        <motion.div\n          className=\"h-full w-full rounded-full bg-transparent\"\n          whileTap={{ scale: disabled ? 1 : 0.85 }}\n        />\n      </motion.div>\n    </button>\n  )\n})\n\nFluidSwitch.displayName = \"FluidSwitch\"\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

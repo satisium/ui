@@ -1,4 +1,4 @@
 {
   "title": "UI Primitives",
-  "pages": ["button", "complex"]
+  "pages": ["button", "complex", "fluid-switch"]
 }

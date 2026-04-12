@@ -1,6 +1,6 @@
 "use client"
 
-import { SpotlightCard } from "@/registry/default/ui/spotlight-card"
+import { SpotlightCard } from "@/registry/ui/spotlight-card"
 
 export default function SpotlightCardDemo({
   glowColor = "rgba(255, 255, 255, 0.1)",
