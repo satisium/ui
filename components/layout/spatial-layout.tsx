@@ -1,12 +1,11 @@
 // components/layout/spatial-layout.tsx
 "use client"
 
-import { useEffect } from "react"
 import { useSidebarStore } from "@/store/use-sidebar-store"
 import type * as PageTree from "fumadocs-core/page-tree"
 import { motion } from "motion/react"
+import { useEffect } from "react"
 import { SidebarContent } from "./sidebar-content"
-import { cn } from "@/lib/utils"
 
 export function SpatialLayout({
   children,
@@ -40,44 +39,50 @@ export function SpatialLayout({
   }, [toggleSidebar])
 
   return (
-    // The background acts as the "Frame" or "Shell" color
     <div className="relative h-screen w-full overflow-hidden bg-muted">
-      {/* SIDEBAR: Behind the main content */}
-      <div className="absolute inset-y-0 left-0 flex w-[320px] flex-col justify-center p-8">
+      {/* 
+        FIX 1: Added `z-0`. 
+        This strictly traps the z-10 elements inside SidebarContent so they 
+        can no longer bleed out and pierce the main content.
+      */}
+      <div className="absolute inset-y-0 left-0 z-0 flex w-[320px] flex-col justify-center p-8">
         <SidebarContent tree={tree} />
       </div>
 
-      {/* MAIN CONTENT: Slides and shrinks to reveal the sidebar/shell */}
+      {/* 
+        FIX 2: Added `inset-0` and `z-10`.
+        `inset-0` perfectly anchors it to all 4 corners instead of just h/w full.
+        `z-10` guarantees the main screen acts as a solid plate above the z-0 sidebar.
+      */}
       <motion.div
         initial={false}
         animate={{
           x: isOpen ? 320 : 0,
-          scale: isOpen ? 0.95 : 1, // Shrinking gives the "inset padding" effect!
+          scale: isOpen ? 0.95 : 1,
+          // FIX 3: Moved borderRadius inside `animate`.
+          // Framer Motion will now smoothly transition the corners instead of snapping instantly.
+          borderRadius: isOpen ? 32 : 0,
         }}
         transition={{
           type: "spring",
           bounce: 0.1,
           duration: 0.6,
         }}
-        // origin-left ensures it scales away from the sidebar
-        className="absolute h-full w-full origin-left overflow-hidden bg-background shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
-        style={{
-          borderRadius: isOpen ? "32px" : "0px", // Smoothly rounds the corners
-        }}
+        className="absolute inset-0 z-10 origin-left overflow-hidden bg-background shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
       >
         {/* Toggle Button / Handle */}
         <button
           onClick={toggleSidebar}
-          className="absolute top-20 left-0 z-20 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-colors hover:bg-foreground/80 focus-visible:outline-none"
+          className="absolute top-20 left-0 z-20 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground text-background shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:w-14 hover:bg-primary focus-visible:outline-none dark:hover:text-foreground"
           aria-label="Toggle Sidebar"
           title="Toggle Sidebar (M)"
         >
-          <span className="rotate-180 text-[0.65rem] font-bold tracking-[0.2em] text-background uppercase [writing-mode:vertical-rl]">
+          <span className="rotate-180 text-[0.65rem] font-bold tracking-[0.2em] uppercase [writing-mode:vertical-rl]">
             Menu
           </span>
         </button>
 
-        {/* Scrollable Area (Main content width remains exactly the same inside!) */}
+        {/* Scrollable Area */}
         <div className="relative no-scrollbar h-full w-full overflow-y-auto scroll-smooth">
           {children}
         </div>

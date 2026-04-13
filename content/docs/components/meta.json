@@ -1,4 +1,5 @@
 {
   "title": "UI Primitives",
-  "pages": ["button", "complex", "fluid-switch"]
+  "pages": ["button", "spotlight-card", "fluid-switch"],
+  "icon": "Component"
 }
