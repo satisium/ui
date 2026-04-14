@@ -91,7 +91,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
         {isActive && (
           <motion.div
             layoutId="sidebar-active-indicator"
-            className="absolute inset-0 rounded-md border border-border/50 bg-background shadow-sm"
+            className="absolute inset-0 rounded-md border border-border/50 bg-foreground shadow-sm"
             transition={{
               type: "spring",
               stiffness: 350,
@@ -120,7 +120,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           <span
             className={`text-[13px] transition-colors ${
               isActive
-                ? "font-medium text-foreground"
+                ? "font-medium text-background"
                 : "font-medium text-muted-foreground group-hover:text-foreground"
             }`}
           >

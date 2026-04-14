@@ -13,6 +13,7 @@ import {
   type DemoData,
 } from "@/components/previewer/component-preview"
 import { registry } from "@/registry/index"
+import { cn } from "@/lib/utils"
 
 // 1. Static Params & Metadata
 export async function generateStaticParams() {
@@ -116,7 +117,14 @@ export default async function Page(props: {
         <header className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-start gap-3">
             {page.data.badge && (
-              <span className="rounded-full bg-primary/10 px-3 py-1 text-[0.7rem] font-bold tracking-wider text-primary uppercase">
+              <span
+                className={cn(
+                  "rounded-full px-3 py-1 text-[0.7rem] font-bold tracking-wider uppercase",
+                  page.data.badge === "New"
+                    ? "bg-primary/10 text-primary"
+                    : "bg-blue-500/10 text-blue-500"
+                )}
+              >
                 {page.data.badge}
               </span>
             )}

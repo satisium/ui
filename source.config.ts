@@ -6,20 +6,16 @@ import { z } from "zod"
 export const docs = defineDocs({
   dir: "content/docs",
   docs: {
-    // We extend the default schema to include UI Library specific frontmatter
     schema: pageSchema.extend({
       component: z
         .boolean()
         .default(false)
         .describe("Is this a UI component page?"),
-      status: z
-        .enum(["new", "updated", "deprecated", "beta", "stable"])
-        .optional(),
+      status: z.enum(["new", "updated", "deprecated", "beta"]).optional(),
       badge: z.string().optional().describe("E.g., 'New', 'Updated'"),
       author: z.string().optional(),
       date: z.string().optional(),
 
-      // External references crucial for UI libraries
       links: z
         .object({
           preview: z.string().url().optional().describe("Live preview URL"),
@@ -27,12 +23,12 @@ export const docs = defineDocs({
           api: z.string().url().optional().describe("API Reference URL"),
         })
         .optional(),
+
       registryKeys: z
         .array(z.string())
         .optional()
         .describe("Keys mapping to our registry demos"),
 
-      // Tech stack flags
       stack: z
         .array(z.string())
         .optional()

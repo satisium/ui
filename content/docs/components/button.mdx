@@ -103,9 +103,3 @@ Used for hero call-to-actions to demand user attention.
 ```tsx
 <MagneticButton strength={80}>Aggressive</MagneticButton>
 ```
-
-## Best Practices
-
-1. **Don't Overuse:** Avoid putting multiple magnetic elements close to each other; it can make the interface feel "unstable."
-2. **Accessibility:** Always ensure the button remains keyboard navigable. The magnetic effect should only be tied to pointer events, never focus events, to avoid disorienting screen-reader users.
-3. **Mobile Considerations:** Magnetism requires a hovering cursor. On touch devices, this component should gracefully degrade to a standard scale-up tap interaction.

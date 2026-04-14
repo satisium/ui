@@ -2,9 +2,9 @@
 "use client"
 
 import { useScrollSpy } from "@/hooks/use-scroll-spy"
-import { motion, AnimatePresence } from "motion/react"
+import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
 import Link from "next/link"
-import { useMemo } from "react"
+import { useEffect, useMemo } from "react"
 
 export type TOCItemType = {
   title: React.ReactNode
@@ -15,10 +15,10 @@ export type TOCItemType = {
 // --------------------------------------------------------
 // STRICT GEOMETRY ENGINE
 // --------------------------------------------------------
-const ITEM_HEIGHT = 32 // Strict 32px height per item
-const INDENT_WIDTH = 16 // How far each nested level indents
-const X_OFFSET = 8 // Initial padding from the left edge
-const CORNER_RADIUS = 8 // The exact 'border-radius' of the line bends
+const ITEM_HEIGHT = 32
+const INDENT_WIDTH = 16
+const X_OFFSET = 8
+const CORNER_RADIUS = 8
 
 export function TableOfContents({ items }: { items: TOCItemType[] }) {
   const headingIds = items.map((item) => item.url.substring(1))
@@ -26,7 +26,7 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
 
   const minDepth = items.length > 0 ? Math.min(...items.map((i) => i.depth)) : 0
 
-  // 1. Calculate Coordinates, Circuit Path, and Strict Path Lengths
+  // 1. Calculate Coordinates and Path Lengths
   const { points, pathD, nodeLengths, totalLength, totalHeight } =
     useMemo(() => {
       if (!items || items.length === 0) {
@@ -58,17 +58,13 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
           const prev = pts[i - 1]
 
           if (pt.x === prev.x) {
-            // Same depth: straight vertical line down
             d += `L ${pt.x} ${pt.y} `
             currentLength += Math.abs(pt.y - prev.y)
           } else {
-            // Depth change: Circuit-board step with exact border-radius
             const midY = (prev.y + pt.y) / 2
             const dir = pt.x > prev.x ? 1 : -1
             const diffX = Math.abs(pt.x - prev.x)
             const diffY = Math.abs(pt.y - prev.y)
-
-            // Ensure radius isn't larger than the available physical space
             const r = Math.min(CORNER_RADIUS, diffX / 2, diffY / 2)
 
             d += `L ${prev.x} ${midY - r} `
@@ -77,7 +73,6 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
             d += `Q ${pt.x} ${midY}, ${pt.x} ${midY + r} `
             d += `L ${pt.x} ${pt.y} `
 
-            // Calculate exact physical length of the bends and straight lines
             const straightY = diffY / 2 - r
             const straightX = diffX - 2 * r
             const arcLength = (Math.PI * r) / 2
@@ -97,7 +92,7 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
       }
     }, [items, minDepth])
 
-  // 2. Identify Active bounds
+  // 2. Identify the Nodes
   const activeIndex = Math.max(
     0,
     points.findIndex((p) => p.url.substring(1) === activeId)
@@ -111,15 +106,49 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
     }
   }
 
-  // 3. Calculate exact path percentages for Framer Motion
-  const startLength = totalLength > 0 ? nodeLengths[parentIndex] : 0
-  const endLength = totalLength > 0 ? nodeLengths[activeIndex] : 0
+  // 3. Liquid Elasticity Physics Engine
+  const targetStartRatio =
+    totalLength > 0 ? nodeLengths[parentIndex] / totalLength : 0
+  const targetEndRatio =
+    totalLength > 0 ? nodeLengths[activeIndex] / totalLength : 0
 
-  // pathLength is the percentage of the line to draw
-  const pathLengthRatio =
-    totalLength > 0 ? (endLength - startLength) / totalLength : 0
-  // pathOffset is the percentage of where the line should start
-  const pathOffsetRatio = totalLength > 0 ? startLength / totalLength : 0
+  const motionStart = useMotionValue(targetStartRatio)
+  const motionEnd = useMotionValue(targetEndRatio)
+
+  // Asymmetric Springs: Head moves faster, Tail drags slightly slower creating a stretch
+  const springStart = useSpring(motionStart, { stiffness: 250, damping: 30 })
+  const springEnd = useSpring(motionEnd, { stiffness: 350, damping: 35 })
+
+  useEffect(() => {
+    motionStart.set(targetStartRatio)
+    motionEnd.set(targetEndRatio)
+  }, [targetStartRatio, targetEndRatio, motionStart, motionEnd])
+
+  // Derive Native SVG Dashes instead of relying on Framer Motion's prop intercepts
+  const wireOffsetRatio = useTransform(() =>
+    Math.min(springStart.get(), springEnd.get())
+  )
+  const wireLengthRatio = useTransform(() =>
+    Math.max(Math.abs(springEnd.get() - springStart.get()), 0)
+  )
+
+  // Map the ratios strictly to physical pixels based on total path length
+  const safeLength = Math.max(totalLength, 1) // Prevent division/rendering errors on initial load
+
+  // The line bridging the two dots
+  const wireDashArray = useTransform(
+    wireLengthRatio,
+    (l) => `${l * safeLength} ${safeLength}`
+  )
+  const wireDashOffset = useTransform(
+    wireOffsetRatio,
+    (o) => `-${o * safeLength}`
+  )
+
+  // The perfect traveling dots (0.01px dash length + strokeLinecap="round" = geometric circle)
+  const dotDashArray = `0.01 ${safeLength}`
+  const tailDashOffset = useTransform(springStart, (o) => `-${o * safeLength}`)
+  const headDashOffset = useTransform(springEnd, (o) => `-${o * safeLength}`)
 
   if (!items || items.length === 0) return null
 
@@ -131,13 +160,12 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
 
       <div className="relative">
         {/* 
-          BASE LAYER: The structural, muted circuit track
+          BASE LAYER: Structural Track
         */}
         <svg
           className="pointer-events-none absolute inset-y-0 left-0 w-20 text-muted-foreground/20"
           style={{ height: totalHeight }}
         >
-          {/* Continuous rounded-step line */}
           <path
             d={pathD}
             stroke="currentColor"
@@ -146,7 +174,6 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
             strokeLinecap="round"
             strokeLinejoin="round"
           />
-          {/* Base structural dots */}
           {points
             .filter((p) => p.isParent)
             .map((pt, i) => (
@@ -161,62 +188,51 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
         </svg>
 
         {/* 
-          ACTIVE LAYER: The flowing wire & pulsating dots 
+          KINETIC LIQUID LAYER
         */}
         <svg
           className="pointer-events-none absolute inset-y-0 left-0 w-20 text-primary"
           style={{ height: totalHeight }}
         >
-          {/* 
-            The Wire. 
-            Because we animate pathLength and pathOffset, Framer Motion forces 
-            the stroke to physically travel along the SVG bends. Zero diagonal flying.
-          */}
+          {/* THE STRETCHING WIRE */}
           <motion.path
             d={pathD}
             stroke="currentColor"
             strokeWidth="1.5"
             fill="none"
-            strokeLinecap="round" // Gives the wire soft, dot-like endings when moving
+            strokeLinecap="round"
             strokeLinejoin="round"
-            initial={false}
-            animate={{
-              pathLength: pathLengthRatio,
-              pathOffset: pathOffsetRatio,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 350,
-              damping: 35,
-              mass: 0.8,
+            style={{
+              strokeDasharray: wireDashArray,
+              strokeDashoffset: wireDashOffset,
             }}
           />
 
-          {/* 
-            The Static Glow Dots.
-            Instead of flying diagonally, the wire "delivers" the light. 
-            When the wire reaches the node, the glowing dot fades in smoothly.
-          */}
-          {points.map((pt) => {
-            const isActive = activeIndex === pt.index
-            const isParentOfActive = parentIndex === pt.index
+          {/* THE TRAVELING TAIL DOT (Anchor) */}
+          <motion.path
+            d={pathD}
+            stroke="currentColor"
+            strokeWidth="5" // Thickness creates the 5px dot radius
+            fill="none"
+            strokeLinecap="round"
+            style={{
+              strokeDasharray: dotDashArray,
+              strokeDashoffset: tailDashOffset,
+            }}
+          />
 
-            if (!isActive && !isParentOfActive) return null
-
-            return (
-              <motion.circle
-                key={`active-dot-${pt.url}`}
-                cx={pt.x}
-                cy={pt.y}
-                r={3.5}
-                fill="currentColor"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.5 }}
-                transition={{ duration: 0.3 }}
-              />
-            )
-          })}
+          {/* THE TRAVELING HEAD DOT (Active) */}
+          <motion.path
+            d={pathD}
+            stroke="currentColor"
+            strokeWidth="5"
+            fill="none"
+            strokeLinecap="round"
+            style={{
+              strokeDasharray: dotDashArray,
+              strokeDashoffset: headDashOffset,
+            }}
+          />
         </svg>
 
         {/* 
@@ -236,7 +252,7 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
                 <span
                   className={`truncate text-[13px] transition-colors duration-300 ${
                     isActive
-                      ? "font-medium text-primary"
+                      ? "font-medium text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
