@@ -12,6 +12,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { cn } from "@/lib/utils"
 import {
   Code2,
   ExternalLink,
@@ -23,11 +24,8 @@ import {
   Tablet,
 } from "lucide-react"
 import { Button } from "../ui/button"
-import { Separator } from "../ui/separator"
 import { DemoData } from "./component-preview"
 import { ViewportMode } from "./resizable-playground"
-import { cn } from "@/lib/utils"
-// --- SUB-COMPONENT: COMBINED TOOLBAR ---
 interface ToolbarProps {
   demos: DemoData[]
   activeDemoIndex: number
@@ -59,13 +57,12 @@ export function PreviewToolbar({
 }: ToolbarProps) {
   return (
     <div className="absolute bottom-4 left-4 z-50 sm:bottom-6 sm:left-6">
-      <div className="flex flex-row items-center justify-center gap-2 rounded-sm bg-muted p-1 drop-shadow-2xl">
-        {/* Component Selector */}
+      <div className="flex flex-row items-center justify-center gap-2 rounded-sm bg-muted/50 p-1 drop-shadow-2xl">
         <Select
           value={activeDemoIndex.toString()}
           onValueChange={(val) => setActiveDemoIndex(parseInt(val))}
         >
-          <SelectTrigger className="h-9 w-[130px] rounded-sm border-none bg-background shadow-none hover:bg-muted/50 focus:ring-0 sm:w-[160px]">
+          <SelectTrigger className="h-9 w-32.5 rounded-sm border-none bg-background shadow-none hover:bg-muted/50 focus:ring-0 sm:w-40">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -77,7 +74,6 @@ export function PreviewToolbar({
           </SelectContent>
         </Select>
 
-        {/* Viewport Toggles (Hidden on Mobile) */}
         <div className="hidden h-9 items-center rounded-sm bg-background sm:flex">
           <Tooltip>
             <TooltipTrigger asChild>
@@ -122,7 +118,6 @@ export function PreviewToolbar({
           </Tooltip>
         </div>
 
-        {/* Action Buttons */}
         <div className="flex items-center gap-1">
           <Tooltip>
             <TooltipTrigger asChild>

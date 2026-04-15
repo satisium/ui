@@ -56,14 +56,16 @@ export default async function Page(props: {
     for (const key of page.data.registryKeys) {
       const item = pageRegistry[key]
       if (item) {
-        const rawString = await item.getUsageCode()
+        // 👇 FIXED: Call getFiles() instead of the old getUsageCode()
+        const files = await item.getFiles()
         const Comp = item.component
 
         resolvedDemos.push({
           key,
           name: item.name,
           component: <Comp />,
-          rawString,
+          // 👇 FIXED: Pass files object instead of rawString
+          files,
           installCommand: item.installCommand,
         })
       }

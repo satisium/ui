@@ -1,10 +1,12 @@
+import { CodeFile } from "@/components/code-block"
 import dynamic from "next/dynamic"
 
 export interface RegistryItem {
   name: string
   component: React.ComponentType
   installCommand: string
-  getUsageCode: () => Promise<string>
+
+  getFiles: () => Promise<Record<string, CodeFile | string>>
 }
 
 export const registry: Record<string, RegistryItem> = {
@@ -15,11 +17,18 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.FluidSwitchDemo
       )
     ),
-    installCommand:
-      "npx shadcn@latest add https://satis-ui.com/r/fluid-switch.json",
-    getUsageCode: async () => {
+    installCommand: "https://satis-ui.com/r/fluid-switch.json",
+    getFiles: async () => {
+      // Dynamically import the raw strings to keep bundle size small
       const mod = await import("@/registry/strings/fluid-switch")
-      return mod.fluidSwitchDemoString
+
+      return {
+        // The key acts as the filename in the CodeBlock tree sidebar
+        "fluid-switch-demo.tsx": {
+          code: mod.fluidSwitchDemoString,
+          language: "tsx", // Optional: CodeBlock infers this from the extension
+        },
+      }
     },
   },
   "fluid-switch-labeled": {
@@ -29,11 +38,16 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.FluidSwitchLabeled
       )
     ),
-    installCommand:
-      "npx shadcn@latest add https://satis-ui.com/r/fluid-switch.json",
-    getUsageCode: async () => {
+    installCommand: "https://satis-ui.com/r/fluid-switch.json",
+    getFiles: async () => {
       const mod = await import("@/registry/strings/fluid-switch")
-      return mod.fluidSwitchLabeledString
+
+      return {
+        "fluid-switch-labeled.tsx": {
+          code: mod.fluidSwitchLabeledString,
+          language: "tsx",
+        },
+      }
     },
   },
 }

@@ -1,4 +1,3 @@
-// components/layout/sidebar-content.tsx
 "use client"
 
 import type * as PageTree from "fumadocs-core/page-tree"
@@ -10,17 +9,12 @@ type CustomPageNode = PageTree.Item & { badge?: string }
 
 export function SidebarContent({ tree }: { tree: PageTree.Root }) {
   return (
-    // 1. Sidebar is now strictly bg-muted per your requirement
-    <div className="flex h-full w-full flex-col bg-muted pb-20 font-sans">
-      {/* 
-        Brand Header - Shadcn Standard
-      */}
+    <div className="flex h-full w-full flex-col pb-20 font-sans">
       <div className="mb-6 flex items-center px-4 pt-6">
         <Link
           href="/"
           className="group flex w-full items-center gap-3 outline-none"
         >
-          {/* Using standard Shadcn bg-background, border, and shadow-sm */}
           <div className="flex size-7 items-center justify-center rounded-md border border-border bg-background shadow-sm transition-colors group-hover:border-primary/50">
             <span className="text-sm text-foreground">☺</span>
           </div>
@@ -30,7 +24,6 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
         </Link>
       </div>
 
-      {/* Navigation Tree */}
       <LayoutGroup>
         <nav className="flex flex-col gap-1 px-2">
           {tree.children.map((node, i) => (
@@ -54,13 +47,9 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
   )
 }
 
-// --------------------------------------------------------
-// RECURSIVE NODE RENDERER
-// --------------------------------------------------------
 function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
   const pathname = usePathname()
 
-  // 1. SEPARATOR
   if (node.type === "separator") {
     return (
       <div className="mt-6 mb-2 px-3">
@@ -71,7 +60,6 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
     )
   }
 
-  // 2. PAGE NODE (The Nav Link)
   if (node.type === "page") {
     const isActive = pathname === node.url
     const customNode = node as CustomPageNode
@@ -83,11 +71,6 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
         aria-current={isActive ? "page" : undefined}
         className="group relative flex items-center justify-between rounded-md px-3 py-2 outline-none"
       >
-        {/* 
-          FLUID ACTIVE BACKGROUND
-          Instead of colored tints, we use bg-background to make the active 
-          item elegantly "pop" out from the bg-muted sidebar parent.
-        */}
         {isActive && (
           <motion.div
             layoutId="sidebar-active-indicator"
@@ -100,7 +83,6 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           />
         )}
 
-        {/* Hover background for inactive items */}
         {!isActive && (
           <div className="absolute inset-0 rounded-md transition-colors group-hover:bg-accent/50" />
         )}
@@ -128,7 +110,6 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           </span>
         </div>
 
-        {/* Shadcn-Compatible Badge */}
         {badgeText && (
           <span
             className={`relative z-10 ml-2 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${
@@ -144,11 +125,9 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
     )
   }
 
-  // 3. FOLDER NODE (The Nested Category)
   if (node.type === "folder") {
     return (
       <div className="mt-3 flex flex-col">
-        {/* Category Header */}
         <div className="flex items-center gap-2 px-3 py-1.5">
           {node.icon && (
             <span className="text-muted-foreground [&_svg]:size-3.5">
@@ -160,10 +139,8 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           </span>
         </div>
 
-        {/* Nested Content with elegant standard border indentation guide */}
         <div className="relative mt-1 flex flex-col gap-0.5">
-          {/* Strictly using border-border for the guide line */}
-          <div className="absolute top-0 bottom-0 left-[18px] w-[1px] bg-foreground/20" />
+          <div className="absolute top-0 bottom-0 left-4.5 w-px bg-foreground/20" />
 
           <div className="ml-5 flex flex-col gap-0.5 pl-1">
             {node.children.map((child) => (

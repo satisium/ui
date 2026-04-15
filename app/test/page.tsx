@@ -31,7 +31,7 @@ export default function SatisUIDemoPage() {
           </div>
 
           {/* CLI Command Example */}
-          <CommandBlock cli="satis-ui add button" />
+          <CommandBlock cli="satis-ui add button" title="fluid-switch" />
 
           <p className="mt-4 text-muted-foreground">
             Or manually install the required dependencies:
@@ -87,7 +87,7 @@ export default function Home() {
           </div>
 
           <CodeBlock
-            maxHeight="400px" // Triggers the sleek expand/collapse gradient
+            height="600px" // Triggers the sleek expand/collapse gradient
             files={{
               "src/components/ui/button.tsx": {
                 language: "tsx",

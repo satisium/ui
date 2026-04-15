@@ -64,13 +64,13 @@ export function CommandBlock({
     if (cli) {
       switch (manager) {
         case "npm":
-          return `npx ${cli}`
+          return `npx shadcn@latest add ${cli}`
         case "yarn":
-          return `yarn dlx ${cli}`
+          return `yarn dlx shadcn@latest add ${cli}`
         case "pnpm":
-          return `pnpm dlx ${cli}`
+          return `pnpm dlx shadcn@latest add ${cli}`
         case "bun":
-          return `bunx ${cli}`
+          return `bunx shadcn@latest add ${cli}`
       }
     }
     return "echo 'No command specified'"
@@ -89,8 +89,7 @@ export function CommandBlock({
   return (
     <div
       className={cn(
-        // Chrome Bezel: Swapped to bg-muted/50
-        "w-full max-w-3xl rounded-3xl border border-border/50 bg-muted/50 p-2 shadow-sm",
+        "w-full max-w-3xl rounded-3xl border border-border/50 bg-muted/50 p-1.5 shadow-sm",
         className
       )}
     >
@@ -103,7 +102,6 @@ export function CommandBlock({
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              // Button: Swapped to bg-background with shadow
               className="flex items-center gap-1.5 rounded-lg border border-border/50 bg-background px-2.5 py-1.5 text-xs font-medium text-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               <SelectedIcon className="h-3.5 w-3.5" />
@@ -158,7 +156,6 @@ export function CommandBlock({
 
           <button
             onClick={handleCopy}
-            // Button: Swapped to bg-background with shadow
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-border/50 bg-background text-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground"
           >
             <AnimatePresence mode="wait">
@@ -186,7 +183,6 @@ export function CommandBlock({
         </div>
       </div>
 
-      {/* Inner Canvas: Swapped to pure bg-background with shadow-sm */}
       <div className="relative flex h-12 items-center overflow-hidden rounded-2xl border border-border/50 bg-background px-4 shadow-sm">
         <AnimatePresence mode="popLayout">
           <motion.code

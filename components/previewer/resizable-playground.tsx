@@ -38,7 +38,7 @@ export function ResizablePlayground({
       const containerRect = containerRef.current.getBoundingClientRect()
       const newWidth = Math.max(320, e.clientX - containerRect.left)
       setPreviewWidth(newWidth)
-      setViewportMode("custom") // Reverts toolbar toggle states to 'off'
+      setViewportMode("custom")
     }
 
     const handlePointerUp = () => {
@@ -62,16 +62,15 @@ export function ResizablePlayground({
       ref={containerRef}
     >
       <motion.div
-        initial={false} // <-- THE FIX: Disables the mount animation jump
+        initial={false}
         animate={{ width: previewWidth }}
         transition={{
           type: "spring",
           bounce: 0,
           duration: isDragging ? 0 : 0.4,
         }}
-        className="pointer-events-auto relative flex h-full max-w-full flex-col overflow-hidden rounded-3xl border-r border-border bg-background"
+        className="pointer-events-auto relative flex h-full max-w-full flex-col overflow-hidden rounded-3xl border-r border-muted/50 bg-background"
       >
-        {/* Component Stage bound to reloadKey to force remount */}
         <div
           key={reloadKey}
           className="flex h-full w-full items-center justify-center overflow-auto p-8 pb-20"
@@ -79,10 +78,9 @@ export function ResizablePlayground({
           {demos[activeDemoIndex]?.component}
         </div>
 
-        {/* Right-Edge Drag Handle */}
         <div
           onPointerDown={handlePointerDown}
-          className="group absolute top-0 right-0 z-50 flex h-full w-4 -translate-x-[50%] cursor-col-resize items-center justify-center transition-colors group-hover:bg-muted/50"
+          className="group absolute top-0 right-0 z-50 flex h-full w-4 -translate-x-[50%] cursor-col-resize items-center justify-center transition-colors"
         >
           <div
             className={`flex h-[40%] w-1.5 items-center justify-center rounded-full shadow-sm transition-colors ${

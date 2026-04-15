@@ -1,3 +1,5 @@
+// src/components/code-block.tsx
+
 "use client"
 
 import { Check, ChevronRight, Copy, Folder, PanelLeft } from "lucide-react"
@@ -263,7 +265,7 @@ const SidebarFolder = ({
 export function CodeBlock({
   files,
   defaultFile,
-  height = "450px",
+  height,
   className,
 }: CodeBlockProps) {
   const { resolvedTheme } = useTheme()
@@ -277,7 +279,19 @@ export function CodeBlock({
 
   const initialActive =
     defaultFile && files[defaultFile] ? defaultFile : fileKeys[0]
-  const [activeFile, setActiveFile] = useState(initialActive)
+
+  // ✨ FIX: Safe derived state pattern
+  // If the previous activeFileState doesn't exist in the new files prop, gracefully fallback
+  const [activeFileState, setActiveFileState] = useState(initialActive)
+  const activeFile = files[activeFileState] ? activeFileState : initialActive
+
+  // ✨ FIX: Self-correcting state sync
+  useEffect(() => {
+    if (activeFileState !== activeFile) {
+      setActiveFileState(activeFile)
+    }
+  }, [activeFileState, activeFile])
+
   const [copied, setCopied] = useState(false)
 
   // Dual-State Architecture for SSR safety
@@ -297,7 +311,7 @@ export function CodeBlock({
 
   // Centralized File Selection Handler
   const handleSelectFile = (path: string) => {
-    setActiveFile(path)
+    setActiveFileState(path)
     setIsMobileSidebarOpen(false) // Auto-close drawer on mobile when file is selected
   }
 
@@ -368,31 +382,36 @@ export function CodeBlock({
   if (!mounted) {
     return (
       <div
-        className="w-full animate-pulse rounded-3xl border border-border/50 bg-muted/50 p-2 shadow-sm"
-        style={{ height }}
+        className={cn(
+          "w-full animate-pulse rounded-3xl border border-border/50 bg-muted/50 p-2 shadow-sm",
+          !height && "h-full"
+        )}
+        style={height ? { height } : undefined}
       />
     )
   }
 
-  const activeRawCode =
-    typeof files[activeFile] === "string"
+  // ✨ FIX: Bulletproof property parsing.
+  // If files[activeFile] happens to evaluate to undefined during a split-second React tick, this defaults to "" instead of crashing.
+  const activeRawCode = !files[activeFile]
+    ? ""
+    : typeof files[activeFile] === "string"
       ? files[activeFile]
       : (files[activeFile] as CodeFile).code
 
   return (
     <div
-      style={{ height }}
+      style={height ? { height } : undefined}
       className={cn(
-        "relative flex w-full flex-col overflow-hidden rounded-3xl border border-border/50 bg-muted/50 p-2 shadow-sm",
+        "relative flex w-full flex-col overflow-hidden rounded-3xl border border-border/50 bg-muted/50 p-1.5 shadow-sm",
+        !height && "h-full",
         className
       )}
     >
-      {/* Header Toolbar */}
       <div className="flex items-center justify-between px-3 pt-1 pb-2">
         <div className="flex items-center gap-3 overflow-hidden">
           {isMultiFile && (
             <>
-              {/* Desktop Toggle Button */}
               <button
                 onClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
                 className="hidden h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-background hover:text-foreground hover:shadow-sm md:flex"
@@ -400,7 +419,6 @@ export function CodeBlock({
                 <PanelLeft className="h-4 w-4" />
               </button>
 
-              {/* Mobile Toggle Button */}
               <button
                 onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
                 className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-background hover:text-foreground hover:shadow-sm md:hidden"
@@ -446,9 +464,7 @@ export function CodeBlock({
         </button>
       </div>
 
-      {/* Main Split Layout */}
       <div className="relative flex min-h-0 flex-1 items-start overflow-hidden">
-        {/* Desktop Sidebar (Slide Inline) */}
         <motion.div
           initial={false}
           animate={{
@@ -462,7 +478,6 @@ export function CodeBlock({
           )}
         >
           <div className={`h-full w-full pr-3 pb-2 ${scrollbarClasses}`}>
-            {/* Unique layoutIdPrefix for Desktop to prevent Framer Motion glitches */}
             <SidebarTree
               nodes={tree}
               activeFile={activeFile}
@@ -472,11 +487,9 @@ export function CodeBlock({
           </div>
         </motion.div>
 
-        {/* Mobile Sidebar (Slide Over Drawer) */}
         <AnimatePresence>
           {isMobileSidebarOpen && isMultiFile && (
             <>
-              {/* Backdrop Blur */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -486,7 +499,6 @@ export function CodeBlock({
                 className="absolute inset-0 z-30 rounded-2xl bg-background/40 backdrop-blur-sm md:hidden"
               />
 
-              {/* Sliding Drawer Panel */}
               <motion.div
                 initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
@@ -495,7 +507,6 @@ export function CodeBlock({
                 className="absolute inset-y-0 left-0 z-40 w-full rounded-2xl border-r border-border/50 bg-muted/95 py-2 shadow-2xl backdrop-blur-3xl md:hidden"
               >
                 <div className={`h-full w-full pr-3 ${scrollbarClasses}`}>
-                  {/* Unique layoutIdPrefix for Mobile to prevent Framer Motion glitches */}
                   <SidebarTree
                     nodes={tree}
                     activeFile={activeFile}
@@ -508,12 +519,11 @@ export function CodeBlock({
           )}
         </AnimatePresence>
 
-        {/* INNER CANVAS: Scrollable Code Engine */}
         <div
           ref={scrollRef}
-          className={`relative z-20 flex h-full min-w-0 flex-1 flex-col rounded-2xl border border-border/50 bg-background shadow-sm ${scrollbarClasses}`}
+          className={`relative z-0 flex h-full min-w-0 flex-1 flex-col rounded-2xl border border-border/50 bg-background shadow-sm ${scrollbarClasses}`}
         >
-          <div className="[&_pre]:bg-transparent[&_pre]:p-0 w-full p-4 font-mono text-sm leading-relaxed [&_pre]:m-0 [&_pre]:wrap-break-word [&_pre]:whitespace-pre-wrap">
+          <div className="[&_pre]:bg-transparent[&_pre]:p-0 leading-relaxed[&_pre]:m-0 w-full p-4 font-mono text-sm [&_pre]:wrap-break-word [&_pre]:whitespace-pre-wrap">
             {highlightedFiles[activeFile] ? (
               <div
                 dangerouslySetInnerHTML={{

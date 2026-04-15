@@ -1,4 +1,3 @@
-// components/layout/spatial-layout.tsx
 "use client"
 
 import { useSidebarStore } from "@/store/use-sidebar-store"
@@ -39,28 +38,16 @@ export function SpatialLayout({
   }, [toggleSidebar])
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-muted">
-      {/* 
-        FIX 1: Added `z-0`. 
-        This strictly traps the z-10 elements inside SidebarContent so they 
-        can no longer bleed out and pierce the main content.
-      */}
+    <div className="relative h-screen w-full overflow-hidden bg-muted/50">
       <div className="absolute inset-y-0 left-0 z-0 flex w-[320px] flex-col justify-center p-8">
         <SidebarContent tree={tree} />
       </div>
 
-      {/* 
-        FIX 2: Added `inset-0` and `z-10`.
-        `inset-0` perfectly anchors it to all 4 corners instead of just h/w full.
-        `z-10` guarantees the main screen acts as a solid plate above the z-0 sidebar.
-      */}
       <motion.div
         initial={false}
         animate={{
           x: isOpen ? 320 : 0,
           scale: isOpen ? 0.95 : 1,
-          // FIX 3: Moved borderRadius inside `animate`.
-          // Framer Motion will now smoothly transition the corners instead of snapping instantly.
           borderRadius: isOpen ? 32 : 0,
         }}
         transition={{
@@ -70,7 +57,6 @@ export function SpatialLayout({
         }}
         className="absolute inset-0 z-10 origin-left overflow-hidden bg-background shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
       >
-        {/* Toggle Button / Handle */}
         <button
           onClick={toggleSidebar}
           className="absolute top-20 left-0 z-20 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground text-background shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:w-14 hover:bg-primary focus-visible:outline-none dark:hover:text-foreground"
@@ -82,7 +68,6 @@ export function SpatialLayout({
           </span>
         </button>
 
-        {/* Scrollable Area */}
         <div className="relative no-scrollbar h-full w-full overflow-y-auto scroll-smooth">
           {children}
         </div>

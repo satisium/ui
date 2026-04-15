@@ -7,6 +7,6 @@ const create = browser<typeof Config, import("fumadocs-mdx/runtime/types").Inter
   }
 }>();
 const browserCollections = {
-  docs: create.doc("docs", {"index.mdx": () => import("../content/docs/index.mdx?collection=docs"), "getting-started/installation.mdx": () => import("../content/docs/getting-started/installation.mdx?collection=docs"), "components/button.mdx": () => import("../content/docs/components/button.mdx?collection=docs"), "components/fluid-switch.mdx": () => import("../content/docs/components/fluid-switch.mdx?collection=docs"), "components/spotlight-card.mdx": () => import("../content/docs/components/spotlight-card.mdx?collection=docs"), }),
+  docs: create.doc("docs", {"index.mdx": () => import("../content/docs/index.mdx?collection=docs"), "components/button.mdx": () => import("../content/docs/components/button.mdx?collection=docs"), "components/fluid-switch.mdx": () => import("../content/docs/components/fluid-switch.mdx?collection=docs"), "components/spotlight-card.mdx": () => import("../content/docs/components/spotlight-card.mdx?collection=docs"), "getting-started/installation.mdx": () => import("../content/docs/getting-started/installation.mdx?collection=docs"), }),
 };
 export default browserCollections;
