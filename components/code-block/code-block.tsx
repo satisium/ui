@@ -297,12 +297,12 @@ export function CodeBlock({
           }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className={cn(
-            "z-10 hidden h-full w-60 shrink-0 overflow-x-hidden overflow-y-auto md:block",
+            "z-10 hidden h-full w-60 shrink-0 overflow-auto md:block",
             scrollbarClasses,
             (!isDesktopSidebarOpen || !isMultiFile) && "pointer-events-none"
           )}
         >
-          <div className="h-full w-full pr-3 pb-2">
+          <div className="h-full min-w-max pr-3 pb-2">
             <SidebarTree
               nodes={tree}
               activeFile={activeFile}
@@ -329,11 +329,11 @@ export function CodeBlock({
                 exit={{ x: "-100%" }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 className={cn(
-                  "absolute inset-y-0 left-0 z-40 w-full overflow-x-hidden overflow-y-auto rounded-2xl border-r border-border/50 bg-muted/95 py-2 shadow-2xl backdrop-blur-3xl md:hidden",
+                  "absolute inset-y-0 left-0 z-40 w-full overflow-auto rounded-2xl border-r border-border/50 bg-muted/95 py-2 shadow-2xl backdrop-blur-3xl md:hidden",
                   scrollbarClasses
                 )}
               >
-                <div className="h-full w-full pr-3">
+                <div className="h-full min-w-max pr-3">
                   <SidebarTree
                     nodes={tree}
                     activeFile={activeFile}

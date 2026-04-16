@@ -1,12 +1,12 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { AnimatePresence, motion } from "motion/react"
-import { DefaultFileIcon, ReactIcon, TSIcon } from "../icons"
-import { useState } from "react"
 import { ChevronRight, Folder } from "lucide-react"
-import { FolderNode, TreeNode } from "./types"
+import { AnimatePresence, motion } from "motion/react"
+import { useState } from "react"
 import { BASE_PADDING, DEPTH_OFFSET } from "./constants"
+import { DefaultFileIcon, ReactIcon, TSIcon } from "../icons"
+import { FolderNode, TreeNode } from "./types"
 
 export interface SidebarProps {
   nodes: TreeNode[]
@@ -50,6 +50,7 @@ export const getIconForFile = (filename: string, isActive: boolean) => {
       )
   }
 }
+
 export const SidebarTree = ({
   nodes,
   depth = 0,
@@ -57,7 +58,7 @@ export const SidebarTree = ({
   onSelectFile,
   layoutIdPrefix,
 }: SidebarProps) => (
-  <div className="flex w-full flex-col">
+  <div className="flex w-full min-w-max flex-col pr-3">
     {nodes.map((node) => {
       if (node.type === "folder") {
         return (
@@ -96,7 +97,12 @@ export const SidebarTree = ({
             <div className="relative z-10 flex items-center gap-2">
               <div className="h-3.5 w-3.5 shrink-0" />
               {getIconForFile(node.name, isActive)}
-              <span className={cn("truncate", isActive && "text-background")}>
+              <span
+                className={cn(
+                  "whitespace-nowrap",
+                  isActive && "text-background"
+                )}
+              >
                 {node.name}
               </span>
             </div>
@@ -124,7 +130,7 @@ const SidebarFolder = ({
   const [isOpen, setIsOpen] = useState(isChildActive)
 
   return (
-    <div className="relative flex w-full flex-col">
+    <div className="relative flex w-full min-w-max flex-col">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={cn(
@@ -142,7 +148,7 @@ const SidebarFolder = ({
               )}
             />
             <Folder className="h-4 w-4 shrink-0" />
-            <span className="truncate">{node.name}</span>
+            <span className="whitespace-nowrap">{node.name}</span>
           </div>
         </span>
       </button>
@@ -154,7 +160,7 @@ const SidebarFolder = ({
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="relative overflow-hidden"
+            className="relative flex w-full min-w-max flex-col overflow-hidden"
           >
             <div
               className="absolute top-0 bottom-0 w-px bg-border/50"
