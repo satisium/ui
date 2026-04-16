@@ -4,10 +4,11 @@ import { motion } from "motion/react"
 import React, { useEffect, useRef, useState } from "react"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { CodeBlock, CodeFile } from "../code-block"
+import { CodeBlock } from "../code-block/code-block"
 import { CommandBlock } from "../command-block"
 import { PreviewToolbar } from "./preview-toolbar"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
+import { CodeFile } from "../code-block/types"
 
 export interface DemoData {
   key: string
@@ -137,7 +138,7 @@ export function ComponentPreviewer({
           </div>
 
           <motion.div
-            className="absolute top-0 left-0 z-10 flex h-full overflow-hidden rounded-xl border-8 border-muted/50 bg-background shadow-2xl shadow-black/20"
+            className="absolute top-0 left-0 z-10 flex h-full overflow-hidden rounded-xl border-8 border-muted/50 bg-muted/50"
             initial={false}
             animate={{
               width: isCodeOpen && isDesktop ? "calc(100% - 600px)" : "100%",
@@ -148,7 +149,7 @@ export function ComponentPreviewer({
             }}
             transition={{ type: "spring", bounce: 0, duration: 0.5 }}
           >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#414146_1.5px,transparent_1.5px)] bg-size-[24px_24px] opacity-50 dark:opacity-20" />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#414146_1.5px,transparent_1.5px)] bg-size-[24px_24px] opacity-50 dark:opacity-50" />
 
             <ResizablePlayground
               demos={demos}

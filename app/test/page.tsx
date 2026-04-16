@@ -1,20 +1,24 @@
 "use client"
 
-import { CodeBlock } from "@/components/code-block"
+import { CodeBlock } from "@/components/code-block/code-block"
 import { CommandBlock } from "@/components/command-block"
 
 export default function SatisUIDemoPage() {
   return (
     <div className="min-h-screen bg-background p-8 font-sans text-foreground md:p-24">
-      <div className="mx-auto max-w-4xl space-y-16">
+      <div className="mx-auto max-w-4xl space-y-24">
         {/* --- Header --- */}
         <header className="space-y-4">
+          <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+            v2.0 Architecture
+          </div>
           <h1 className="font-display text-display-sm tracking-tight md:text-display">
-            Button Component
+            Code Block Engine
           </h1>
           <p className="max-w-2xl text-lg text-muted-foreground">
-            Displays a button or a component that looks like a button. Features
-            Apple-style micro-interactions and intent-driven design.
+            A developer-first, interactive syntax highlighter. Features focus
+            modes, visual diffing, terminal emulation, and seamless IDE-like
+            file trees.
           </p>
         </header>
 
@@ -22,175 +26,413 @@ export default function SatisUIDemoPage() {
         <section className="space-y-6">
           <div className="space-y-2">
             <h2 className="font-heading text-h4 tracking-tight">
-              1. Installation
+              1. Installation & CLI
             </h2>
             <p className="text-muted-foreground">
-              Run the following CLI command to add the button to your project.
-              Notice how changing the package manager updates globally.
+              Dedicated terminal blocks for installation instructions. Supports
+              package manager toggling.
             </p>
           </div>
 
-          {/* CLI Command Example */}
           <CommandBlock cli="satis-ui add button" title="fluid-switch" />
-
-          <p className="mt-4 text-muted-foreground">
-            Or manually install the required dependencies:
-          </p>
-
-          {/* Package Command Example */}
           <CommandBlock pkg="framer-motion lucide-react clsx tailwind-merge" />
         </section>
 
-        {/* --- Section 2: Code Block (Single File Demo) --- */}
+        {/* --- Section 2: Visual Diffing (Add/Remove) --- */}
         <section className="space-y-6">
           <div className="space-y-2">
             <h2 className="font-heading text-h4 tracking-tight">
-              2. Usage (Single File)
+              2. Visual Diffing (Step-by-Step)
             </h2>
             <p className="text-muted-foreground">
-              When passing only one file, the sidebar elegantly disappears to
-              reduce cognitive load.
+              Perfect for tutorials. Show exactly what lines to add or remove
+              using{" "}
+              <code className="rounded bg-primary/10 px-1 py-0.5 text-primary">
+                addLines
+              </code>{" "}
+              and{" "}
+              <code className="rounded bg-destructive/10 px-1 py-0.5 text-destructive">
+                removeLines
+              </code>
+              .
             </p>
           </div>
 
           <CodeBlock
             files={{
-              "app/page.tsx": {
-                language: "tsx",
-                code: `import { Button } from "@/components/ui/button";
-
-export default function Home() {
-  return (
-    <main className="flex min-h-screen items-center justify-center">
-      <Button variant="default" size="lg">
-        Click me
-      </Button>
-    </main>
-  );
+              "middleware.ts": {
+                language: "typescript",
+                code: `import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+ 
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get('auth-token')
+  
+  if (!token) {
+    return NextResponse.rewrite(new URL('/login', request.url))
+    return NextResponse.redirect(new URL('/auth/login', request.url))
+  }
 }`,
+                removeLines: [8],
+                addLines: [9],
               },
             }}
           />
         </section>
 
-        {/* --- Section 3: Code Block (Multi-File / IDE Demo) --- */}
+        {/* --- Section 3: Focus Mode & Context Highlighting --- */}
         <section className="space-y-6">
           <div className="space-y-2">
             <h2 className="font-heading text-h4 tracking-tight">
-              3. Manual Architecture (IDE Mode)
+              3. Focus Mode & Highlighting
             </h2>
             <p className="text-muted-foreground">
-              A deeply nested structure parses automatically. Notice the smooth
-              height morphing, the smart folder collapse, and the active pill
-              layout animations.
+              Reduce cognitive load by dimming boilerplate code. Pass{" "}
+              <code className="rounded bg-primary/10 px-1 py-0.5 text-primary">
+                focusOnly: true
+              </code>{" "}
+              to blur everything except your{" "}
+              <code className="rounded bg-primary/10 px-1 py-0.5 text-primary">
+                highlightLines
+              </code>
+              . Hover over the blurred text to reveal it.
             </p>
           </div>
 
           <CodeBlock
-            height="600px" // Triggers the sleek expand/collapse gradient
             files={{
-              "src/components/ui/button.tsx": {
-                language: "tsx",
-                code: `import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
-
-const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
-        outline: "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default: "h-9 px-4 py-2",
-        sm: "h-8 rounded-md px-3 text-xs",
-        lg: "h-10 rounded-md px-8",
-        icon: "h-9 w-9",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
-
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
-}
-
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Button.displayName = "Button"
-
-export { Button, buttonVariants }`,
-              },
-              "src/lib/utils.ts": {
+              "app/api/route.ts": {
                 language: "typescript",
-                code: `import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+                code: `import { headers } from 'next/headers'
+import { NextResponse } from 'next/server'
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+export async function GET(request: Request) {
+  const headersList = headers()
+  const referer = headersList.get('referer')
+
+  // This is the important part we want to focus on:
+  const ip = headersList.get('x-forwarded-for') || 'Unknown IP'
+  const userAgent = headersList.get('user-agent')
+
+  return NextResponse.json({ 
+    ip, 
+    userAgent, 
+    referer 
+  })
 }`,
+                highlightLines: [8, 9, 10],
+                focusOnly: true,
               },
+            }}
+          />
+        </section>
+
+        {/* --- Section 4: Terminal Emulation Mode --- */}
+        <section className="space-y-6">
+          <div className="space-y-2">
+            <h2 className="font-heading text-h4 tracking-tight">
+              4. Terminal Emulation Mode
+            </h2>
+            <p className="text-muted-foreground">
+              When the language is set to{" "}
+              <code className="rounded bg-primary/10 px-1 py-0.5 text-primary">
+                bash
+              </code>{" "}
+              or{" "}
+              <code className="rounded bg-primary/10 px-1 py-0.5 text-primary">
+                sh
+              </code>
+              , line numbers are replaced with an un-copyable{" "}
+              <code className="rounded bg-primary/10 px-1 py-0.5 text-primary">
+                $
+              </code>{" "}
+              prompt.
+            </p>
+          </div>
+
+          <CodeBlock
+            files={{
+              "deploy.sh": {
+                language: "bash",
+                code: `# Build the Next.js application
+npm run build
+
+# Deploy to Vercel production environment
+vercel deploy --prod
+
+# Output success
+echo "Deployment successful! URL copied to clipboard."`,
+              },
+            }}
+          />
+        </section>
+
+        {/* --- Section 5: Expand / Collapse (Large Files) --- */}
+        <section className="space-y-6">
+          <div className="space-y-2">
+            <h2 className="font-heading text-h4 tracking-tight">
+              5. Expandable Blocks
+            </h2>
+            <p className="text-muted-foreground">
+              Prevent massive configuration files from taking up the entire
+              screen. Set{" "}
+              <code className="rounded bg-primary/10 px-1 py-0.5 text-primary">
+                expandable={`{true}`}
+              </code>{" "}
+              to activate the glass-morphic "Show more" overlay.
+            </p>
+          </div>
+
+          <CodeBlock
+            expandable={true}
+            files={{
               "tailwind.config.ts": {
                 language: "typescript",
                 code: `import type { Config } from "tailwindcss"
 
 const config = {
-  darkMode:["class"],
+  darkMode: ["class"],
   content:[
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+  prefix: "",
   theme: {
-    extend: {},
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
 export default config`,
               },
+            }}
+          />
+        </section>
+
+        {/* --- Section 6: IDE / Multi-File Mode --- */}
+        <section className="space-y-6">
+          <div className="space-y-2">
+            <h2 className="font-heading text-h4 tracking-tight">
+              6. IDE File Tree Engine
+            </h2>
+            <p className="text-muted-foreground">
+              Pass multiple paths to automatically render an interactive, nested
+              sidebar. Includes responsive mobile sheets and layout animations.
+            </p>
+          </div>
+
+          <CodeBlock
+            height={"600px"}
+            files={{
+              "hooks/use-media-query.ts": {
+                language: "typescript",
+                code: `import * as React from "react"
+
+export function useMediaQuery(query: string) {
+  const [value, setValue] = React.useState(false)
+
+  React.useEffect(() => {
+    function onChange(event: MediaQueryListEvent) {
+      setValue(event.matches)
+    }
+
+    const result = matchMedia(query)
+    result.addEventListener("change", onChange)
+    setValue(result.matches)
+
+    return () => result.removeEventListener("change", onChange)
+  }, [query])
+
+  return value
+}`,
+              },
+              "components/ui/dialog.tsx": {
+                language: "tsx",
+                highlightLines: [4, 5],
+                code: `import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
+const DialogPortal = DialogPrimitive.Portal
+const DialogClose = DialogPrimitive.Close
+
+// ... rest of the component`,
+              },
+              "components/ui/dialoga.tsx": {
+                language: "tsx",
+                highlightLines: [4, 5],
+                code: `import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
+const DialogPortal = DialogPrimitive.Portal
+const DialogClose = DialogPrimitive.Close
+
+// ... rest of the component`,
+              },
+              "components/ui/a/dialogb.tsx": {
+                language: "tsx",
+                highlightLines: [4, 5],
+                code: `import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
+const DialogPortal = DialogPrimitive.Portal
+const DialogClose = DialogPrimitive.Close
+
+// ... rest of the component`,
+              },
+              "components/ui/dialogc.tsx": {
+                language: "tsx",
+                highlightLines: [4, 5],
+                code: `import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
+const DialogPortal = DialogPrimitive.Portal
+const DialogClose = DialogPrimitive.Close
+
+// ... rest of the component`,
+              },
+              "components/ab/dialoga.tsx": {
+                language: "tsx",
+                highlightLines: [4, 5],
+                code: `import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
+const DialogPortal = DialogPrimitive.Portal
+const DialogClose = DialogPrimitive.Close
+
+// ... rest of the component`,
+              },
+              "components/ui/index.ts": {
+                language: "typescript",
+                code: `export * from "./button"
+export * from "./dialog"
+export * from "./input"
+export * from "./label"`,
+              },
               "package.json": {
                 language: "json",
+                addLines: [6],
                 code: `{
-  "name": "satis-ui",
-  "version": "1.0.0",
-  "description": "Awwwards tier UI components",
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
+  "name": "project",
+  "version": "0.1.0",
   "dependencies": {
-    "framer-motion": "^11.0.0",
-    "lucide-react": "^0.300.0",
-    "shiki": "^1.0.0",
-    "zustand": "^4.5.0"
+    "react": "^18",
+    "lucide-react": "latest",
+    "@radix-ui/react-dialog": "^1.0.5"
   }
 }`,
+              },
+              "components/ad/dialogaaaaaaaaaaaaaaaaaaa.tsx": {
+                language: "tsx",
+                highlightLines: [4, 5],
+                code: `import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
+const DialogPortal = DialogPrimitive.Portal
+const DialogClose = DialogPrimitive.Close
+
+// ... rest of the component`,
+              },
+              "components/ac/dialoga.tsx": {
+                language: "tsx",
+                highlightLines: [4, 5],
+                code: `import * as React from "react"
+import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
+import { useMediaQuery } from "@/hooks/use-media-query"
+import { cn } from "@/lib/utils"
+
+const Dialog = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
+const DialogPortal = DialogPrimitive.Portal
+const DialogClose = DialogPrimitive.Close
+
+// ... rest of the component`,
               },
             }}
           />

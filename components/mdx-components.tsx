@@ -1,6 +1,8 @@
-import * as React from "react"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
+import Link from "next/link"
+import * as React from "react"
+import { CodeBlock } from "./code-block/code-block"
+import { CommandBlock } from "./command-block"
 
 export const defaultMdxComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -120,5 +122,6 @@ export const defaultMdxComponents = {
       {...props}
     />
   ),
-  // You can easily add <Callout>, <Tabs>, etc. here in the future!
+  CodeBlock,
+  CommandBlock,
 }
