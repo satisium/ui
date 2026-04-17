@@ -11,7 +11,8 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "registry:internal": "node scripts/build-registry.mjs",
-    "registry:public": "npx shadcn build"
+    "registry:public": "npx shadcn build",
+    "make:doc": "node scripts/create-doc.mjs"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.1.1",

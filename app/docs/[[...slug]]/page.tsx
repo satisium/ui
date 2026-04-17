@@ -33,6 +33,24 @@ export async function generateMetadata(props: {
 }
 
 // --------------------------------------------------------
+// HELPER: SEMANTIC BADGE STYLES
+// --------------------------------------------------------
+function getBadgeStyle(badge: string) {
+  switch (badge.toLowerCase()) {
+    case "new":
+      return "border-emerald-500/20 bg-emerald-500/10 text-emerald-500"
+    case "updated":
+      return "border-blue-500/20 bg-blue-500/10 text-blue-500"
+    case "beta":
+      return "border-amber-500/20 bg-amber-500/10 text-amber-500"
+    case "deprecated":
+      return "border-rose-500/20 bg-rose-500/10 text-rose-500"
+    default:
+      return "border-border bg-muted text-muted-foreground"
+  }
+}
+
+// --------------------------------------------------------
 // MAIN PAGE COMPONENT
 // --------------------------------------------------------
 export default async function Page(props: {
@@ -56,7 +74,6 @@ export default async function Page(props: {
     for (const key of page.data.registryKeys) {
       const item = pageRegistry[key]
       if (item) {
-        // 👇 FIXED: Call getFiles() instead of the old getUsageCode()
         const files = await item.getFiles()
         const Comp = item.component
 
@@ -64,7 +81,6 @@ export default async function Page(props: {
           key,
           name: item.name,
           component: <Comp />,
-          // 👇 FIXED: Pass files object instead of rawString
           files,
           installCommand: item.installCommand,
         })
@@ -73,7 +89,7 @@ export default async function Page(props: {
   }
 
   // ------------------------------------------------------
-  // 2. FETCH GITHUB LAST MODIFIED (RESTORED EXACTLY)
+  // 2. FETCH GITHUB LAST MODIFIED
   // ------------------------------------------------------
   let lastModifiedTime: string | null = null
 
@@ -101,6 +117,11 @@ export default async function Page(props: {
     lastModifiedTime = "Apr 7, 2026"
   }
 
+  // Helper flags for taxonomy
+  const hasCategories = page.data.category && page.data.category.length > 0
+  const hasSubcategories =
+    page.data.subcategory && page.data.subcategory.length > 0
+
   return (
     <div className="flex w-full animate-in flex-col duration-700 ease-out-expo fade-in">
       {/* 100dvh HERO PREVIEWER */}
@@ -116,28 +137,51 @@ export default async function Page(props: {
       )}
 
       <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
-        <header className="flex flex-col gap-4">
-          <div className="flex flex-wrap items-center justify-start gap-3">
-            {page.data.badge && (
-              <span
-                className={cn(
-                  "rounded-full px-3 py-1 text-[0.7rem] font-bold tracking-wider uppercase",
-                  page.data.badge === "New"
-                    ? "bg-primary/10 text-primary"
-                    : "bg-blue-500/10 text-blue-500"
-                )}
-              >
-                {page.data.badge}
-              </span>
-            )}
-            {page.data.component && (
-              <span className="rounded-full border border-border px-3 py-1 text-[0.7rem] font-bold tracking-wider text-muted-foreground uppercase">
-                Component API
-              </span>
-            )}
+        {/* REFINED HEADER: Clean, Hierarchical, Intent-Driven */}
+        <header className="flex flex-col gap-6">
+          {/* 1. SEO Taxonomy / Breadcrumbs */}
+          {(hasCategories || hasSubcategories) && (
+            <nav className="flex flex-wrap items-center gap-2">
+              {page.data.category?.map((cat) => (
+                <Link href={`/docs/components/${cat}`} key={cat}>
+                  <span className="inline-flex cursor-pointer items-center rounded-md bg-muted/50 px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
+                    {cat.replace("-", " ")}
+                  </span>
+                </Link>
+              ))}
+
+              {hasCategories && hasSubcategories && (
+                <span className="mx-1 text-muted-foreground/40">/</span>
+              )}
+
+              {page.data.subcategory?.map((sub) => (
+                <Link
+                  href={
+                    hasCategories
+                      ? `/docs/components/${page.data.category?.[0]}/${sub}`
+                      : `/docs/components/all/${sub}`
+                  }
+                  key={sub}
+                >
+                  <span className="inline-flex cursor-pointer items-center rounded-md border border-primary/20 bg-primary/5 px-2.5 py-1 text-xs font-medium tracking-wide text-primary capitalize transition-all hover:bg-primary hover:text-primary-foreground">
+                    {sub.replace("-", " ")}
+                  </span>
+                </Link>
+              ))}
+            </nav>
+          )}
+
+          {/* 2. Title & Description */}
+          <div className="flex flex-col gap-4">
+            <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-display-sm">
+              {page.data.title}
+            </h1>
+            <p className="max-w-2xl font-body text-lg leading-relaxed text-muted-foreground">
+              {page.data.description}
+            </p>
             {lastModifiedTime && (
-              <div className="flex items-center justify-end gap-2 text-muted-foreground">
-                <span className="font-mono text-[0.65rem] tracking-widest uppercase">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span className="font-mono text-[0.65rem] font-semibold tracking-widest text-muted-foreground/70 uppercase">
                   Last Modified:
                 </span>
                 <span className="font-mono text-[0.75rem] font-medium text-foreground">
@@ -147,37 +191,34 @@ export default async function Page(props: {
             )}
           </div>
 
-          <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-display-sm">
-            {page.data.title}
-          </h1>
-
-          <p className="max-w-2xl font-body text-lg leading-relaxed text-muted-foreground">
-            {page.data.description}
-          </p>
-
-          {page.data.stack && page.data.stack.length > 0 && (
-            <div className="mt-6 flex items-center gap-3">
-              <span className="font-mono text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-                Tech Stack //
-              </span>
-              <div className="flex gap-2">
-                {page.data.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-md bg-muted px-2.5 py-1 font-mono text-[0.75rem] font-medium text-secondary-foreground"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+          {/* 3. Metadata Row (Badges, Last Modified, Type) */}
+          <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
+            <div className="flex flex-row flex-wrap gap-4 text-center">
+              {page.data.badge && (
+                <span
+                  className={cn(
+                    "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[0.7rem] font-bold tracking-widest uppercase",
+                    getBadgeStyle(page.data.badge)
+                  )}
+                >
+                  {page.data.badge}
+                </span>
+              )}
+              {page.data.component && (
+                <span className="inline-flex items-center rounded-full border border-border bg-background px-2.5 py-0.5 text-[0.7rem] font-bold tracking-widest text-muted-foreground uppercase shadow-sm">
+                  Component API
+                </span>
+              )}
             </div>
-          )}
+          </div>
         </header>
 
+        {/* MDX CONTENT & LAYOUT */}
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32">
           <div className="w-full min-w-0 pb-32">
             <MDX components={defaultMdxComponents} />
 
+            {/* Pagination */}
             <div className="mt-24 flex flex-col gap-8 border-t border-border/50 pt-10">
               <nav
                 aria-label="Pagination"

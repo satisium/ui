@@ -1,5 +1,5 @@
 {
   "title": "UI Primitives",
-  "pages": ["button", "spotlight-card", "fluid-switch"],
+  "pages": ["button", "spotlight-card", "fluid-switch", "aurora-hero", "ao"],
   "icon": "Component"
 }

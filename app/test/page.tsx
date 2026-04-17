@@ -35,7 +35,7 @@ export default function SatisUIDemoPage() {
           </div>
 
           <CommandBlock cli="satis-ui add button" title="fluid-switch" />
-          <CommandBlock pkg="framer-motion lucide-react clsx tailwind-merge" />
+          <CommandBlock pkg="motion lucide-react clsx tailwind-merge" />
         </section>
 
         {/* --- Section 2: Visual Diffing (Add/Remove) --- */}

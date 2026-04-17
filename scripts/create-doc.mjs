@@ -1,0 +1,116 @@
+// scripts/create-doc.mjs
+import fs from "node:fs"
+import path from "node:path"
+import { fileURLToPath } from "node:url"
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const rootDir = path.join(__dirname, "..")
+
+// 1. Get the CLI arguments
+const args = process.argv.slice(2)
+if (args.length === 0) {
+  console.error("❌ Error: Please provide a relative file path.")
+  console.info("💡 Example: npm run make:doc overlays/magic-modal")
+  process.exit(1)
+}
+
+const inputPath = args[0]
+
+// 2. Parse paths and names
+// e.g., "overlays/magic-modal" -> dir: "overlays", name: "magic-modal"
+const isMdx = inputPath.endsWith(".mdx")
+const cleanPath = isMdx ? inputPath : `${inputPath}.mdx`
+const fullPath = path.join(rootDir, "content/docs", cleanPath)
+
+const filename = path.basename(cleanPath, ".mdx") // "magic-modal"
+const folderName = path.dirname(cleanPath) // "overlays"
+
+// Convert "magic-modal" to "Magic Modal"
+const title = filename
+  .split("-")
+  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+  .join(" ")
+
+// Try to map the folder to your schema categories (fallback to 'application')
+const validCategories = [
+  "marketing",
+  "navigation",
+  "overlays",
+  "data-display",
+  "forms",
+  "feedback",
+  "interactions",
+  "layout",
+]
+const category = validCategories.includes(folderName) ? folderName : "marketing"
+
+// 3. The MDX Template
+const mdxTemplate = `---
+title: ${title}
+description: A tasteful and carefully crafted ${title.toLowerCase()} component.
+component: true
+badge: new
+category: 
+  - ${category}
+subcategory: 
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/your-username/satis-ui/tree/main/components/${filename}
+  preview: https://satis-ui.com/preview/${filename}
+registryKeys:
+  - fluid-switch-demo
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+    <CommandBlock cli="satis-ui add button" title="fluid-switch" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+    <CommandBlock pkg="motion lucide-react clsx tailwind-merge" />
+</div>
+
+**2. Add Source Code**
+
+import { fluidSwitchFile } from "@/registry/strings/fluid-switch"
+
+<div className="mt-6">
+  <CodeBlock files={fluidSwitchFile} height="600px" />
+</div>
+
+## Props
+
+| Prop | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| **\`propName\`** | \`type\` | \`default\` | Describe the prop intent here. |
+
+## Inspiration and Credits
+
+Tastefully crafted with inspiration from [Creator Name](https://twitter.com/creator).
+`
+
+// 4. Create directories if they don't exist
+const targetDir = path.dirname(fullPath)
+if (!fs.existsSync(targetDir)) {
+  fs.mkdirSync(targetDir, { recursive: true })
+}
+
+// 5. Write the file
+if (fs.existsSync(fullPath)) {
+  console.error(`⚠️  Warning: File already exists at ${fullPath}`)
+  process.exit(1)
+}
+
+fs.writeFileSync(fullPath, mdxTemplate, "utf8")
+
+console.log(`✅ Success! Created new documentation file:`)
+console.log(`📄 ${fullPath}`)
+console.log(`\nHappy coding! 🎨`)
