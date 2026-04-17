@@ -1,4 +1,4 @@
-import { CodeFile } from "@/components/code-block/code-block"
+import { CodeFile } from "@/components/code-block/types"
 import dynamic from "next/dynamic"
 
 export interface RegistryItem {

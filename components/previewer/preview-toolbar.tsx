@@ -13,7 +13,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
+import { motion } from "motion/react"
 import {
+  ChevronDown,
   Code2,
   ExternalLink,
   FileText,
@@ -23,9 +25,24 @@ import {
   Smartphone,
   Tablet,
 } from "lucide-react"
+import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
-import { DemoData } from "./component-preview"
-import { ViewportMode } from "./resizable-playground"
+
+export type AnchorPosition =
+  | "top-left"
+  | "top-center"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-center"
+  | "bottom-right"
+
+interface DemoData {
+  key: string
+  name: string
+}
+
+export type ViewportMode = "desktop" | "tablet" | "mobile"
+
 interface ToolbarProps {
   demos: DemoData[]
   activeDemoIndex: number
@@ -33,12 +50,41 @@ interface ToolbarProps {
   isCodeOpen: boolean
   setIsCodeOpen: (v: boolean) => void
   viewportMode: ViewportMode
-  onViewportChange: (mode: "desktop" | "tablet" | "mobile") => void
+  onViewportChange: (mode: ViewportMode) => void
   onReload: () => void
   onScrollToSource: () => void
   githubUrl?: string
   previewUrl?: string
   hasSourceCodeId: boolean
+  anchor?: AnchorPosition
+  gridCols?: number
+  collapsedRows?: number
+  hotkeys?: {
+    desktop?: string
+    tablet?: string
+    mobile?: string
+    code?: string
+    reload?: string
+    scroll?: string
+  }
+}
+
+const anchorClasses: Record<AnchorPosition, string> = {
+  "top-left": "top-4 left-4 sm:top-6 sm:left-6",
+  "top-center": "top-4 left-1/2 -translate-x-1/2 sm:top-6",
+  "top-right": "top-4 right-4 sm:top-6 sm:right-6",
+  "bottom-left": "bottom-4 left-4 sm:bottom-6 sm:left-6",
+  "bottom-center": "bottom-4 left-1/2 -translate-x-1/2 sm:bottom-6",
+  "bottom-right": "bottom-4 right-4 sm:bottom-6 sm:right-6",
+}
+
+const originClasses: Record<AnchorPosition, string> = {
+  "top-left": "top left",
+  "top-center": "top center",
+  "top-right": "top right",
+  "bottom-left": "bottom left",
+  "bottom-center": "bottom center",
+  "bottom-right": "bottom right",
 }
 
 export function PreviewToolbar({
@@ -54,159 +100,303 @@ export function PreviewToolbar({
   githubUrl,
   previewUrl,
   hasSourceCodeId,
+  anchor = "bottom-left",
+  gridCols = 2,
+  collapsedRows = 1,
+  hotkeys = {
+    desktop: "1",
+    tablet: "2",
+    mobile: "3",
+    code: "c",
+    reload: "r",
+    scroll: "s",
+  },
 }: ToolbarProps) {
-  return (
-    <div className="absolute bottom-4 left-4 z-50 sm:bottom-6 sm:left-6">
-      <div className="flex flex-row items-center justify-center gap-2 rounded-sm bg-muted p-1 drop-shadow-2xl">
-        <Select
-          value={activeDemoIndex.toString()}
-          onValueChange={(val) => setActiveDemoIndex(parseInt(val))}
+  const [isExpanded, setIsExpanded] = useState(false)
+
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      const activeElement = document.activeElement
+      const isInput =
+        activeElement?.tagName === "INPUT" ||
+        activeElement?.tagName === "TEXTAREA"
+
+      if (isInput) return
+
+      const key = e.key.toLowerCase()
+
+      if (key === hotkeys.desktop) onViewportChange("desktop")
+      if (key === hotkeys.tablet) onViewportChange("tablet")
+      if (key === hotkeys.mobile) onViewportChange("mobile")
+      if (key === hotkeys.code) setIsCodeOpen(!isCodeOpen)
+      if (key === hotkeys.reload) onReload()
+      if (key === hotkeys.scroll && hasSourceCodeId) onScrollToSource()
+    },
+    [
+      hotkeys,
+      onViewportChange,
+      setIsCodeOpen,
+      isCodeOpen,
+      onReload,
+      onScrollToSource,
+      hasSourceCodeId,
+    ]
+  )
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [handleKeyDown])
+
+  const actions = [
+    {
+      id: "reload",
+      icon: <RefreshCcw className="h-4 w-4" />,
+      label: "Reload Animation",
+      hotkey: hotkeys.reload?.toUpperCase(),
+      onClick: onReload,
+      show: true,
+      active: false,
+    },
+    {
+      id: "code",
+      icon: <Code2 className="h-4 w-4" />,
+      label: "Toggle Code",
+      hotkey: hotkeys.code?.toUpperCase(),
+      onClick: () => setIsCodeOpen(!isCodeOpen),
+      show: true,
+      active: isCodeOpen,
+    },
+    {
+      id: "scroll",
+      icon: <FileText className="h-4 w-4" />,
+      label: "Scroll to Source",
+      hotkey: hotkeys.scroll?.toUpperCase(),
+      onClick: onScrollToSource,
+      show: hasSourceCodeId,
+      active: false,
+    },
+    {
+      id: "github",
+      icon: <GitBranch className="h-4 w-4" />,
+      label: "View GitHub",
+      onClick: () => window.open(githubUrl, "_blank", "noopener,noreferrer"),
+      show: !!githubUrl,
+      active: false,
+    },
+    {
+      id: "preview",
+      icon: <ExternalLink className="h-4 w-4" />,
+      label: "Open Isolated",
+      onClick: () => window.open(previewUrl, "_blank", "noopener,noreferrer"),
+      show: !!previewUrl,
+      active: false,
+    },
+  ].filter((a) => a.show)
+
+  const isAnchoredBottom = anchor.startsWith("bottom")
+  const tooltipSide = isAnchoredBottom ? "top" : "bottom"
+  const flexDirClass = isAnchoredBottom ? "flex-col-reverse" : "flex-col"
+
+  const baseActionCount = gridCols * collapsedRows
+  const baseActions = actions.slice(0, baseActionCount)
+  const extraActions = actions.slice(baseActionCount)
+  const hasMoreActions = extraActions.length > 0
+
+  const chevronRotation = isExpanded
+    ? isAnchoredBottom
+      ? 0
+      : 180
+    : isAnchoredBottom
+      ? 180
+      : 0
+
+  const renderAction = (
+    action: (typeof actions)[0],
+    isHidden: boolean = false
+  ) => (
+    <Tooltip key={action.id}>
+      <TooltipTrigger asChild>
+        <Button
+          tabIndex={isHidden ? -1 : 0}
+          variant={action.active ? "secondary" : "ghost"}
+          size="icon"
+          className={cn(
+            "h-9 w-full rounded-sm bg-muted transition-colors hover:bg-muted/50",
+            action.active ? "bg-background shadow-sm hover:bg-background" : ""
+          )}
+          style={{ pointerEvents: isHidden ? "none" : "auto" }}
+          onClick={action.onClick}
         >
-          <SelectTrigger className="h-9 w-32.5 rounded-sm border-none bg-background shadow-none hover:bg-muted focus:ring-0 sm:w-40">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {demos.map((demo, idx) => (
-              <SelectItem key={demo.key} value={idx.toString()}>
-                {demo.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+          {action.icon}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent side={tooltipSide} className="flex items-center gap-2">
+        <span>{action.label}</span>
+        {action.hotkey && (
+          <kbd className="rounded-sm border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+            {action.hotkey}
+          </kbd>
+        )}
+      </TooltipContent>
+    </Tooltip>
+  )
 
-        <div className="hidden h-9 items-center rounded-sm bg-background sm:flex">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant={viewportMode === "desktop" ? "secondary" : "ghost"}
-                size="icon"
-                className="h-9 w-9 rounded-sm"
-                onClick={() => onViewportChange("desktop")}
-              >
-                <Monitor className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="top">Desktop</TooltipContent>
-          </Tooltip>
+  return (
+    <motion.div
+      layout
+      className={cn(
+        "absolute z-50 rounded-3xl border bg-muted p-2 drop-shadow-2xl",
+        anchorClasses[anchor]
+      )}
+      style={{ transformOrigin: originClasses[anchor] }}
+      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+    >
+      <div className={cn("flex gap-2", flexDirClass)}>
+        <div className="flex flex-col gap-2 rounded-2xl border bg-background p-2">
+          <motion.div
+            layout
+            className="relative z-20 flex h-10 items-center justify-between gap-1 rounded-sm bg-muted p-1"
+          >
+            {[
+              { id: "desktop", icon: Monitor, hotkey: hotkeys.desktop },
+              { id: "tablet", icon: Tablet, hotkey: hotkeys.tablet },
+              { id: "mobile", icon: Smartphone, hotkey: hotkeys.mobile },
+            ].map((mode) => {
+              const Icon = mode.icon
+              const isActive = viewportMode === mode.id
+              return (
+                <Tooltip key={mode.id}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className={cn(
+                        "relative h-8 flex-1 rounded-sm transition-colors hover:bg-transparent",
+                        isActive
+                          ? "text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                      )}
+                      onClick={() => onViewportChange(mode.id as ViewportMode)}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeViewport"
+                          className="absolute inset-0 rounded-sm bg-background shadow-sm"
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                      <Icon className="relative z-10 h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent
+                    side={tooltipSide}
+                    className="flex items-center gap-2"
+                  >
+                    <span className="capitalize">{mode.id}</span>
+                    {mode.hotkey && (
+                      <kbd className="rounded border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+                        {mode.hotkey.toUpperCase()}
+                      </kbd>
+                    )}
+                  </TooltipContent>
+                </Tooltip>
+              )
+            })}
+          </motion.div>
+          <motion.div layout className="relative z-30 flex items-center gap-2">
+            <Select
+              value={activeDemoIndex.toString()}
+              onValueChange={(val) => setActiveDemoIndex(parseInt(val))}
+            >
+              <SelectTrigger className="h-9 min-w-15 rounded-sm border-none bg-muted focus:ring-0">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {demos.map((demo, idx) => (
+                  <SelectItem key={demo.key} value={idx.toString()}>
+                    {demo.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant={viewportMode === "tablet" ? "secondary" : "ghost"}
-                size="icon"
-                className="h-9 w-9 rounded-sm"
-                onClick={() => onViewportChange("tablet")}
-              >
-                <Tablet className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="top">Tablet</TooltipContent>
-          </Tooltip>
-
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant={viewportMode === "mobile" ? "secondary" : "ghost"}
-                size="icon"
-                className="h-9 w-9 rounded-sm"
-                onClick={() => onViewportChange("mobile")}
-              >
-                <Smartphone className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="top">Mobile</TooltipContent>
-          </Tooltip>
-        </div>
-
-        <div className="flex items-center gap-1">
-          <Tooltip>
-            <TooltipTrigger asChild>
+            {hasMoreActions && (
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-9 w-9 rounded-lg"
-                onClick={onReload}
+                className="h-9 w-9 rounded-sm bg-muted transition-colors hover:bg-muted/50"
+                onClick={() => setIsExpanded(!isExpanded)}
               >
-                <RefreshCcw className="h-4 w-4" />
+                <motion.div
+                  initial={false}
+                  animate={{ rotate: chevronRotation }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                >
+                  <ChevronDown className="h-4 w-4" />
+                </motion.div>
               </Button>
-            </TooltipTrigger>
-            <TooltipContent side="top">Reload Animation</TooltipContent>
-          </Tooltip>
-
-          {hasSourceCodeId && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-9 w-9 rounded-lg"
-                  onClick={onScrollToSource}
-                >
-                  <FileText className="h-4 w-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="top">Scroll to Source</TooltipContent>
-            </Tooltip>
-          )}
-
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant={"ghost"}
-                size="icon"
-                className={cn(
-                  "rounded-sn h-9 w-9",
-                  isCodeOpen ? "bg-background" : ""
-                )}
-                onClick={() => setIsCodeOpen(!isCodeOpen)}
-              >
-                <Code2 className="h-4 w-4" />
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="top">Toggle Code</TooltipContent>
-          </Tooltip>
-
-          {githubUrl && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="hidden h-9 w-9 rounded-sm sm:inline-flex"
-                  asChild
-                >
-                  <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                    <GitBranch className="h-4 w-4" />
-                  </a>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="top">View GitHub</TooltipContent>
-            </Tooltip>
-          )}
-
-          {previewUrl && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="hidden h-9 w-9 rounded-sm sm:inline-flex"
-                  asChild
-                >
-                  <a
-                    href={previewUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                  </a>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="top">Open Isolated</TooltipContent>
-            </Tooltip>
-          )}
+            )}
+          </motion.div>
         </div>
+
+        <motion.div
+          layout
+          className="relative z-10 flex flex-col gap-1 rounded-2xl border bg-background p-2"
+        >
+          <div
+            className="relative z-20 grid gap-1"
+            style={{
+              gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`,
+            }}
+          >
+            {baseActions.map((a) => renderAction(a, false))}
+          </div>
+
+          <motion.div
+            initial={false}
+            animate={{
+              height: isExpanded && hasMoreActions ? "auto" : 0,
+              opacity: isExpanded && hasMoreActions ? 1 : 0,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 400,
+              damping: 30,
+              mass: 0.8,
+            }}
+            className="relative z-10 overflow-hidden"
+          >
+            <motion.div
+              initial={false}
+              animate={{
+                y:
+                  isExpanded && hasMoreActions
+                    ? 0
+                    : isAnchoredBottom
+                      ? 40
+                      : -40,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 30,
+                mass: 0.8,
+              }}
+              className="grid gap-1"
+              style={{
+                gridTemplateColumns: `repeat(${gridCols}, minmax(0, 1fr))`,
+              }}
+            >
+              {extraActions.map((a) => renderAction(a, !isExpanded))}
+            </motion.div>
+          </motion.div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }
