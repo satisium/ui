@@ -57,12 +57,12 @@ export function PreviewToolbar({
 }: ToolbarProps) {
   return (
     <div className="absolute bottom-4 left-4 z-50 sm:bottom-6 sm:left-6">
-      <div className="flex flex-row items-center justify-center gap-2 rounded-sm bg-muted/50 p-1 drop-shadow-2xl">
+      <div className="flex flex-row items-center justify-center gap-2 rounded-sm bg-muted p-1 drop-shadow-2xl">
         <Select
           value={activeDemoIndex.toString()}
           onValueChange={(val) => setActiveDemoIndex(parseInt(val))}
         >
-          <SelectTrigger className="h-9 w-32.5 rounded-sm border-none bg-background shadow-none hover:bg-muted/50 focus:ring-0 sm:w-40">
+          <SelectTrigger className="h-9 w-32.5 rounded-sm border-none bg-background shadow-none hover:bg-muted focus:ring-0 sm:w-40">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

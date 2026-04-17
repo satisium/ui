@@ -69,7 +69,7 @@ export function ResizablePlayground({
           bounce: 0,
           duration: isDragging ? 0 : 0.4,
         }}
-        className="pointer-events-auto relative flex h-full max-w-full flex-col overflow-hidden rounded-3xl border-r border-muted/50 bg-background"
+        className="pointer-events-auto relative flex h-full max-w-full flex-col overflow-hidden rounded-3xl border-r border-muted bg-background drop-shadow-2xl"
       >
         <div
           key={reloadKey}

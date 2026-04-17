@@ -38,14 +38,16 @@ function usePersistentState<T>(key: string, initialValue: T) {
     }
   }, [key])
 
-  const setValue = (value: T) => {
-    setState(value)
-    if (typeof window !== "undefined") {
-      try {
-        window.localStorage.setItem(key, JSON.stringify(value))
-      } catch (e) {
-        console.error("Failed to write to localStorage", e)
+  const setValue = (value: T | ((val: T) => T)) => {
+    try {
+      // Allow value to be a function so we have the same API as useState
+      const valueToStore = value instanceof Function ? value(state) : value
+      setState(valueToStore)
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(key, JSON.stringify(valueToStore))
       }
+    } catch (e) {
+      console.error("Failed to write to localStorage", e)
     }
   }
 
@@ -88,8 +90,15 @@ export function ComponentPreviewer({
     false
   )
 
-  const [previewWidth, setPreviewWidth] = useState<number | string>("100%")
-  const [viewportMode, setViewportMode] = useState<ViewportMode>("desktop")
+  // Use persistent state for both width and viewport mode
+  const [previewWidth, setPreviewWidth] = usePersistentState<number | string>(
+    "satis-preview-width",
+    "100%"
+  )
+  const [viewportMode, setViewportMode] = usePersistentState<ViewportMode>(
+    "satis-viewport-mode",
+    "desktop"
+  )
   const [reloadKey, setReloadKey] = useState<number>(0)
 
   useEffect(() => setMounted(true), [])
@@ -116,7 +125,7 @@ export function ComponentPreviewer({
   }
 
   if (!mounted)
-    return <div className="h-screen w-screen animate-pulse bg-muted/50" />
+    return <div className="h-screen w-screen animate-pulse bg-muted" />
 
   if (!activeDemo) return null
 
@@ -138,7 +147,7 @@ export function ComponentPreviewer({
           </div>
 
           <motion.div
-            className="absolute top-0 left-0 z-10 flex h-full overflow-hidden rounded-xl border-8 border-muted/50 bg-muted/50"
+            className="absolute top-0 left-0 z-10 flex h-full overflow-hidden rounded-xl border-8 border-muted bg-muted shadow-[inset_0_0_60px_rgba(0,0,0,0.1)]"
             initial={false}
             animate={{
               width: isCodeOpen && isDesktop ? "calc(100% - 600px)" : "100%",

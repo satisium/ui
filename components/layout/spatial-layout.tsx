@@ -38,7 +38,7 @@ export function SpatialLayout({
   }, [toggleSidebar])
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-muted/50">
+    <div className="relative h-screen w-full overflow-hidden bg-muted">
       <div className="absolute inset-y-0 left-0 z-0 flex w-[320px] flex-col justify-center p-8">
         <SidebarContent tree={tree} />
       </div>

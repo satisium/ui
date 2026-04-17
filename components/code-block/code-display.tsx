@@ -68,7 +68,7 @@ export function CodeDisplay({
             "[&_span.line::before]:select-none",
             "[&_span.line:empty::before]:content-none",
           ],
-          "[&_span.is-highlighted]:border-r-2 [&_span.is-highlighted]:border-r-primary [&_span.is-highlighted]:bg-muted/50",
+          "[&_span.is-highlighted]:border-r-2 [&_span.is-highlighted]:border-r-primary [&_span.is-highlighted]:bg-muted",
           "[&_span.is-added]:border-l-green-500 [&_span.is-added]:bg-green-500/15",
           "[&_span.is-added::before]:!text-green-500",
           "[&_span.is-added::before]:[content:'++_'counter(line)]",

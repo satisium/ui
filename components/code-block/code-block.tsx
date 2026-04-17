@@ -180,7 +180,7 @@ export function CodeBlock({
     return (
       <div
         className={cn(
-          "w-full animate-pulse rounded-3xl border border-border/50 bg-muted/50 p-2 shadow-sm",
+          "w-full animate-pulse rounded-3xl border border-border/50 bg-muted p-2 shadow-sm",
           !height && "h-full"
         )}
         style={height ? { height } : undefined}
@@ -205,7 +205,7 @@ export function CodeBlock({
     <div
       style={height ? { height } : undefined}
       className={cn(
-        "relative flex w-full flex-col overflow-hidden rounded-3xl bg-muted/50 p-2 transition-all duration-300",
+        "relative flex w-full flex-col overflow-hidden rounded-3xl bg-muted p-2 transition-all duration-300",
         !height && "h-full",
         className
       )}
@@ -361,7 +361,7 @@ export function CodeBlock({
             <div className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 flex h-32 flex-col items-center justify-end bg-gradient-to-t from-background to-transparent pb-4">
               <button
                 onClick={() => setIsExpanded(true)}
-                className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-muted/50 px-4 py-1.5 text-xs font-medium text-muted-foreground drop-shadow-2xl backdrop-blur-md transition-colors hover:bg-accent hover:text-foreground"
+                className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground drop-shadow-2xl backdrop-blur-md transition-colors hover:bg-accent hover:text-foreground"
               >
                 <span>Show more</span>
                 <ChevronDown className="h-3.5 w-3.5" />
@@ -379,7 +379,7 @@ export function CodeBlock({
               >
                 <button
                   onClick={handleCollapse}
-                  className="flex items-center gap-1.5 rounded-full bg-muted/50 px-4 py-1.5 text-xs font-medium text-muted-foreground drop-shadow-2xl backdrop-blur-md transition-colors hover:bg-accent hover:text-foreground"
+                  className="flex items-center gap-1.5 rounded-full bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground drop-shadow-2xl backdrop-blur-md transition-colors hover:bg-accent hover:text-foreground"
                 >
                   <ChevronUp className="h-3.5 w-3.5" />
                   <span>Collapse</span>

@@ -140,9 +140,7 @@ export function CommandBlock({
   }
 
   return (
-    <div
-      className={cn("w-full max-w-3xl rounded-3xl bg-muted/50 p-2", className)}
-    >
+    <div className={cn("w-full max-w-3xl rounded-3xl bg-muted p-2", className)}>
       <div className="flex items-center justify-between px-3 pt-1 pb-2">
         <span className="text-sm font-medium text-muted-foreground">
           {title}
