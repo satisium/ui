@@ -1,10 +1,16 @@
-// components/layout/table-of-contents.tsx
+// components/layout/toc.tsx
 "use client"
 
 import { useScrollSpy } from "@/hooks/use-scroll-spy"
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
+import { animate, motion, useMotionValue, useTransform } from "motion/react"
 import Link from "next/link"
-import { useEffect, useMemo } from "react"
+import { useEffect, useMemo, useState } from "react"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export type TOCItemType = {
   title: React.ReactNode
@@ -13,16 +19,22 @@ export type TOCItemType = {
 }
 
 // --------------------------------------------------------
-// STRICT GEOMETRY ENGINE
+// STRICT GEOMETRY & TIMING ENGINE
 // --------------------------------------------------------
 const ITEM_HEIGHT = 32
 const INDENT_WIDTH = 16
 const X_OFFSET = 8
 const CORNER_RADIUS = 8
 
+// 👇 TIMING CONSTANTS (IN SECONDS) 👇
+const ACTIVE_DURATION = 0.6 // How fast the active line snaps to the new section
+const HOVER_DURATION = 0.3 // How fast the magnetic hover dot follows the mouse
+const LIQUID_STRETCH_DELAY = 0.9 // How far behind the "tail" drags to create elasticity
+
 export function TableOfContents({ items }: { items: TOCItemType[] }) {
   const headingIds = items.map((item) => item.url.substring(1))
-  const activeId = useScrollSpy(headingIds)
+  const { activeId, setClickId } = useScrollSpy(headingIds)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   const minDepth = items.length > 0 ? Math.min(...items.map((i) => i.depth)) : 0
 
@@ -106,7 +118,7 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
     }
   }
 
-  // 3. Liquid Elasticity Physics Engine
+  // 3. Liquid Elasticity Physics Engine (Upgraded to Duration Control)
   const targetStartRatio =
     totalLength > 0 ? nodeLengths[parentIndex] / totalLength : 0
   const targetEndRatio =
@@ -115,53 +127,63 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
   const motionStart = useMotionValue(targetStartRatio)
   const motionEnd = useMotionValue(targetEndRatio)
 
-  // Asymmetric Springs: Head moves faster, Tail drags slightly slower creating a stretch
-  const springStart = useSpring(motionStart, { stiffness: 250, damping: 30 })
-  const springEnd = useSpring(motionEnd, { stiffness: 350, damping: 35 })
-
   useEffect(() => {
-    motionStart.set(targetStartRatio)
-    motionEnd.set(targetEndRatio)
+    // The Head (Active Dot) moves exactly at the defined duration
+    const animEnd = animate(motionEnd, targetEndRatio, {
+      type: "spring",
+      bounce: 0, // 0 bounce + spring type = perfectly smooth easing
+      duration: ACTIVE_DURATION,
+    })
+
+    // The Tail (Parent Dot) drags slightly behind, creating the stretch
+    const animStart = animate(motionStart, targetStartRatio, {
+      type: "spring",
+      bounce: 0,
+      duration: ACTIVE_DURATION + LIQUID_STRETCH_DELAY,
+    })
+
+    // Cleanup animations if component unmounts or user scrolls insanely fast
+    return () => {
+      animEnd.stop()
+      animStart.stop()
+    }
   }, [targetStartRatio, targetEndRatio, motionStart, motionEnd])
 
-  // Derive Native SVG Dashes instead of relying on Framer Motion's prop intercepts
   const wireOffsetRatio = useTransform(() =>
-    Math.min(springStart.get(), springEnd.get())
+    Math.min(motionStart.get(), motionEnd.get())
   )
   const wireLengthRatio = useTransform(() =>
-    Math.max(Math.abs(springEnd.get() - springStart.get()), 0)
+    Math.max(Math.abs(motionEnd.get() - motionStart.get()), 0)
   )
 
-  // Map the ratios strictly to physical pixels based on total path length
-  const safeLength = Math.max(totalLength, 1) // Prevent division/rendering errors on initial load
+  const safeLength = Math.max(totalLength, 1)
 
-  // The line bridging the two dots
   const wireDashArray = useTransform(
     wireLengthRatio,
-    (l) => `${l * safeLength} ${safeLength}`
+    (l) => `${l * safeLength} ${safeLength * 2}`
   )
   const wireDashOffset = useTransform(
     wireOffsetRatio,
     (o) => `-${o * safeLength}`
   )
 
-  // The perfect traveling dots (0.01px dash length + strokeLinecap="round" = geometric circle)
-  const dotDashArray = `0.01 ${safeLength}`
-  const tailDashOffset = useTransform(springStart, (o) => `-${o * safeLength}`)
-  const headDashOffset = useTransform(springEnd, (o) => `-${o * safeLength}`)
+  const dotDashArray = `0.01 ${safeLength * 2}`
+  const tailDashOffset = useTransform(motionStart, (o) => `-${o * safeLength}`)
+  const headDashOffset = useTransform(motionEnd, (o) => `-${o * safeLength}`)
 
   if (!items || items.length === 0) return null
 
   return (
-    <nav className="flex flex-col gap-6" aria-label="Table of Contents">
+    <nav
+      className="pb-20[mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)] flex flex-col gap-6"
+      aria-label="Table of Contents"
+    >
       <span className="font-mono text-[0.65rem] font-bold tracking-widest text-muted-foreground uppercase">
         On this page
       </span>
 
       <div className="relative">
-        {/* 
-          BASE LAYER: Structural Track
-        */}
+        {/* BASE LAYER: Structural Track */}
         <svg
           className="pointer-events-none absolute inset-y-0 left-0 w-20 text-muted-foreground/20"
           style={{ height: totalHeight }}
@@ -181,20 +203,46 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
                 key={`base-dot-${i}`}
                 cx={pt.x}
                 cy={pt.y}
-                r={2.5}
+                r={3.5}
                 fill="currentColor"
               />
             ))}
         </svg>
 
-        {/* 
-          KINETIC LIQUID LAYER
-        */}
+        {/* MAGNETIC HOVER LAYER */}
         <svg
           className="pointer-events-none absolute inset-y-0 left-0 w-20 text-primary"
           style={{ height: totalHeight }}
         >
-          {/* THE STRETCHING WIRE */}
+          <motion.circle
+            initial={false}
+            animate={{
+              cx:
+                hoveredIndex !== null
+                  ? points[hoveredIndex]?.x
+                  : points[activeIndex]?.x || X_OFFSET,
+              cy:
+                hoveredIndex !== null
+                  ? points[hoveredIndex]?.y
+                  : points[activeIndex]?.y || ITEM_HEIGHT / 2,
+              opacity:
+                hoveredIndex !== null && hoveredIndex !== activeIndex ? 0.3 : 0,
+            }}
+            r={3.5}
+            fill="currentColor"
+            transition={{
+              type: "spring",
+              bounce: 0,
+              duration: HOVER_DURATION, // Uses the new global duration constant
+            }}
+          />
+        </svg>
+
+        {/* KINETIC LIQUID LAYER */}
+        <svg
+          className="pointer-events-none absolute inset-y-0 left-0 w-20 text-primary"
+          style={{ height: totalHeight }}
+        >
           <motion.path
             d={pathD}
             stroke="currentColor"
@@ -207,12 +255,10 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
               strokeDashoffset: wireDashOffset,
             }}
           />
-
-          {/* THE TRAVELING TAIL DOT (Anchor) */}
           <motion.path
             d={pathD}
             stroke="currentColor"
-            strokeWidth="5" // Thickness creates the 5px dot radius
+            strokeWidth="5"
             fill="none"
             strokeLinecap="round"
             style={{
@@ -220,8 +266,6 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
               strokeDashoffset: tailDashOffset,
             }}
           />
-
-          {/* THE TRAVELING HEAD DOT (Active) */}
           <motion.path
             d={pathD}
             stroke="currentColor"
@@ -235,32 +279,42 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
           />
         </svg>
 
-        {/* 
-          TEXT LAYER
-        */}
+        {/* TEXT LAYER */}
         <div className="relative flex w-full flex-col">
-          {points.map((pt) => {
-            const isActive = activeIndex === pt.index
+          <TooltipProvider delayDuration={400}>
+            {points.map((pt) => {
+              const isActive = activeIndex === pt.index
 
-            return (
-              <Link
-                key={pt.url}
-                href={pt.url}
-                className="group relative flex h-8 w-full items-center outline-none"
-                style={{ paddingLeft: pt.x + 16 }}
-              >
-                <span
-                  className={`truncate text-[13px] transition-colors duration-300 ${
-                    isActive
-                      ? "font-medium text-foreground"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {pt.title}
-                </span>
-              </Link>
-            )
-          })}
+              return (
+                <Tooltip key={pt.url}>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={pt.url}
+                      onClick={() => setClickId(pt.url.substring(1))}
+                      onMouseEnter={() => setHoveredIndex(pt.index)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                      className="group relative flex h-8 w-full items-center rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background"
+                      style={{ paddingLeft: pt.x + 16 }}
+                    >
+                      <span
+                        className={`truncate text-[13px] transition-colors duration-300 ${
+                          isActive
+                            ? "font-medium text-foreground"
+                            : "text-muted-foreground group-hover:text-foreground"
+                        }`}
+                      >
+                        {pt.title}
+                      </span>
+                    </Link>
+                  </TooltipTrigger>
+
+                  <TooltipContent side="left" className="font-medium">
+                    {pt.title}
+                  </TooltipContent>
+                </Tooltip>
+              )
+            })}
+          </TooltipProvider>
         </div>
       </div>
     </nav>
