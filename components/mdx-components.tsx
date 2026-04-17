@@ -98,7 +98,7 @@ export const defaultMdxComponents = {
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
       className={cn(
-        "relative rounded-md bg-muted px-[0.4rem] py-[0.2rem] font-mono text-sm font-medium text-secondary-foreground",
+        "relative rounded-md bg-muted px-[0.6rem] py-[0.2rem] font-mono text-sm font-medium text-primary/80",
         className
       )}
       {...props}
