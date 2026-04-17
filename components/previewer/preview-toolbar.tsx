@@ -13,7 +13,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
-import { motion } from "motion/react"
 import {
   ChevronDown,
   Code2,
@@ -25,8 +24,10 @@ import {
   Smartphone,
   Tablet,
 } from "lucide-react"
+import { motion } from "motion/react"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
+import { ViewportMode } from "./resizable-playground"
 
 export type AnchorPosition =
   | "top-left"
@@ -40,8 +41,6 @@ interface DemoData {
   key: string
   name: string
 }
-
-export type ViewportMode = "desktop" | "tablet" | "mobile"
 
 interface ToolbarProps {
   demos: DemoData[]
@@ -246,7 +245,7 @@ export function PreviewToolbar({
     <motion.div
       layout
       className={cn(
-        "absolute z-50 rounded-3xl border bg-muted p-2 drop-shadow-2xl",
+        "absolute z-10 rounded-3xl border bg-muted p-2 drop-shadow-2xl",
         anchorClasses[anchor]
       )}
       style={{ transformOrigin: originClasses[anchor] }}

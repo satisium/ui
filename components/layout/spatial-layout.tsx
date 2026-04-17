@@ -59,7 +59,7 @@ export function SpatialLayout({
       >
         <button
           onClick={toggleSidebar}
-          className="absolute top-20 left-0 z-20 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground text-background shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:w-14 hover:bg-primary focus-visible:outline-none dark:hover:text-foreground"
+          className="absolute top-20 left-0 z-50 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground text-background shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:w-14 hover:bg-primary focus-visible:outline-none dark:hover:text-foreground"
           aria-label="Toggle Sidebar"
           title="Toggle Sidebar (M)"
         >

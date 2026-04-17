@@ -5,10 +5,10 @@ import React, { useEffect, useRef, useState } from "react"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { CodeBlock } from "../code-block/code-block"
+import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
 import { PreviewToolbar } from "./preview-toolbar"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
-import { CodeFile } from "../code-block/types"
 
 export interface DemoData {
   key: string
@@ -70,7 +70,6 @@ export function useMediaQuery(query: string) {
 }
 
 export function ComponentPreviewer({
-  title,
   demos,
   githubUrl,
   previewUrl,
@@ -105,7 +104,7 @@ export function ComponentPreviewer({
 
   const activeDemo = demos[activeDemoIndex] || demos[0]
 
-  const handleViewportChange = (mode: "desktop" | "tablet" | "mobile") => {
+  const handleViewportChange = (mode: ViewportMode) => {
     setViewportMode(mode)
     if (mode === "desktop") setPreviewWidth("100%")
     if (mode === "tablet") setPreviewWidth(768)
@@ -139,8 +138,11 @@ export function ComponentPreviewer({
           <div className="pointer-events-auto absolute top-0 right-0 flex h-full w-full flex-col rounded-2xl rounded-l-3xl lg:w-[600px]">
             <div
               key={activeDemo.key}
-              className="flex h-full flex-col gap-6 overflow-hidden px-3"
+              className="flex h-full flex-col gap-3 overflow-hidden px-3 pt-3"
             >
+              <h2>
+                <span className="px-3">Install this demo</span>
+              </h2>
               <CommandBlock cli={activeDemo.installCommand} />
               <CodeBlock files={activeDemo.files} className="min-h-0 flex-1" />
             </div>
