@@ -17,7 +17,7 @@ export const defaultMdxComponents = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "mt-12 mb-6 scroll-m-20 border-b border-border/50 pb-2 font-heading text-h2 font-semibold tracking-tight text-foreground",
+        "mt-12 mb-6 scroll-m-20 pb-2 font-heading text-h2 font-semibold tracking-tight text-foreground",
         className
       )}
       {...props}
@@ -117,6 +117,69 @@ export const defaultMdxComponents = {
     <blockquote
       className={cn(
         "mt-6 border-l-2 border-primary pl-6 text-muted-foreground italic",
+        className
+      )}
+      {...props}
+    />
+  ),
+  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+    <div className="my-6 w-full overflow-x-auto rounded-3xl bg-muted p-2">
+      <table
+        className={cn(
+          "w-full border-separate border-spacing-0 text-left text-sm text-muted-foreground",
+          className
+        )}
+        {...props}
+      />
+    </div>
+  ),
+
+  thead: ({
+    className,
+    ...props
+  }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead className={cn("", className)} {...props} />
+  ),
+
+  tbody: ({
+    className,
+    ...props
+  }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <tbody
+      className={cn(
+        "[&_td]:bg-background",
+
+        "[&_tr:first-child_td:first-child]:rounded-tl-2xl",
+        "[&_tr:first-child_td:last-child]:rounded-tr-2xl",
+        "[&_tr:last-child_td:first-child]:rounded-bl-2xl",
+        "[&_tr:last-child_td:last-child]:rounded-br-2xl",
+
+        "[&_tr:hover_td]:bg-muted",
+
+        className
+      )}
+      {...props}
+    />
+  ),
+
+  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr className={cn("group transition-colors", className)} {...props} />
+  ),
+
+  th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <th
+      className={cn(
+        "text-foreground[&:has([align=center])]:text-center px-4 pt-1 pb-3 align-bottom font-medium [&:has([align=right])]:text-right",
+        className
+      )}
+      {...props}
+    />
+  ),
+
+  td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <td
+      className={cn(
+        "duration-200[&:has([align=center])]:text-center p-4 align-middle leading-relaxed transition-colors [&:has([align=right])]:text-right",
         className
       )}
       {...props}

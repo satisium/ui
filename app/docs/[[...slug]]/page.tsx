@@ -115,7 +115,7 @@ export default async function Page(props: {
         </section>
       )}
 
-      <article className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32">
+      <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
         <header className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-start gap-3">
             {page.data.badge && (
