@@ -144,14 +144,14 @@ export default async function Page(props: {
             <nav className="flex flex-wrap items-center gap-2">
               {page.data.category?.map((cat) => (
                 <Link href={`/docs/components/${cat}`} key={cat}>
-                  <span className="inline-flex cursor-pointer items-center rounded-md bg-muted/50 px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
+                  <span className="inline-flex cursor-pointer items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
                     {cat.replace("-", " ")}
                   </span>
                 </Link>
               ))}
 
               {hasCategories && hasSubcategories && (
-                <span className="mx-1 text-muted-foreground/40">/</span>
+                <span className="mx-1 text-muted-foreground/40">|</span>
               )}
 
               {page.data.subcategory?.map((sub) => (
