@@ -1,4 +1,5 @@
 {
-  "title": "Foundation",
-  "pages": ["installation", "architecture", "theming"]
+  "title": "Getting Started",
+  "pages": ["introduction", "setup", "how-to-use", "changelog", "theming"],
+  "icon": "HandMetal"
 }

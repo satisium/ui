@@ -204,11 +204,6 @@ export default async function Page(props: {
                   {page.data.badge}
                 </span>
               )}
-              {page.data.component && (
-                <span className="inline-flex items-center rounded-full border border-border bg-background px-2.5 py-0.5 text-[0.7rem] font-bold tracking-widest text-muted-foreground uppercase shadow-sm">
-                  Component API
-                </span>
-              )}
             </div>
           </div>
         </header>

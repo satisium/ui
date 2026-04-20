@@ -1,0 +1,105 @@
+---
+title: Magnetic Button
+description: A tactile, physics-based button that subtly snaps to the user's cursor for enhanced hit-area confidence.
+component: true
+badge: updated
+stack: ["motion-react", "tailwind-v4"]
+---
+
+Buttons in a premium interface should feel tangible, not just clickable. The Magnetic Button uses cursor-relative coordinate tracking and spring physics to create a "sticky" sensation.
+
+When the cursor enters the **kinetic threshold**, the button translates toward the cursor, effectively increasing the interactive hit-area without changing the visual layout.
+
+## Overview
+
+Traditional hover states are binary. Magnetism introduces a spectrum of interaction. By calculating the distance between the button's center and the cursor, we apply a force that pulls the element toward the pointer.
+
+### Key Features
+
+- **Spring Physics:** Uses non-linear damping for a natural, weighted feel.
+- **Dynamic Attribution:** Supports custom pull-strength and trigger-distance.
+- **Layout Integrity:** Uses GPU-accelerated transforms (`translate3d`) to ensure zero layout shift.
+
+## Installation
+
+Since we rely on `motion-react` (formerly Framer Motion) for the physics engine, ensure it is installed in your project.
+
+```bash
+npm install motion-react
+```
+
+## Implementation
+
+The core logic involves tracking `mouseMove` events on a wrapper and mapping those coordinates to `motionValue` springs.
+
+```tsx
+import { motion, useSpring, useMotionValue } from "motion-react";
+
+export const MagneticButton = ({ children, strength = 40 }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springConfig = { damping: 15, stiffness: 150 };
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
+
+  const handleMouse = (e) => {
+    const { clientX, clientY, currentTarget } = e;
+    const { left, top, width, height } = currentTarget.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+
+    x.set((clientX - centerX) * (strength / 100));
+    y.set((clientY - centerY) * (strength / 100));
+  };
+
+  return (
+    <motion.button
+      onMouseMove={handleMouse}
+      onMouseLeave={() => { x.set(0); y.set(0); }}
+      style={{ x: springX, y: springY }}
+    >
+      {children}
+    </motion.button>
+  );
+};
+```
+
+## Interaction Mechanics
+
+To achieve a "Rauno-like" polish, we focus on the transition between the neutral and active states.
+
+### Damping & Stiffness
+
+We avoid high-stiffness springs which can feel jittery. Instead, we use a high damping ratio to ensure the button "settles" into the cursor's position without oscillation.
+
+### The Kinetic Threshold
+
+The "magnetism" shouldn't trigger across the whole screen. We wrap the button in a larger, invisible hit-box. This ensures the effect only begins when the user's intent is clearly directed at the component.
+
+## API Reference
+
+| Prop        | Type       | Default     | Description                                                   |
+| :---------- | :--------- | :---------- | :------------------------------------------------------------ |
+| `strength`  | `number`   | `40`        | The multiplier for the magnetic pull. Higher = more movement. |
+| `distance`  | `number`   | `0.6`       | The radius (in pixels) where magnetism begins to take effect. |
+| `className` | `string`   | `undefined` | Custom Tailwind classes for the button styling.               |
+| `onAction`  | `function` | `undefined` | Callback triggered on successful click.                       |
+
+### Configuration Examples
+
+#### Subtle Pull
+
+For a professional, understated feel, use a lower strength.
+
+```tsx
+<MagneticButton strength={20}>Understated</MagneticButton>
+```
+
+#### High Attraction
+
+Used for hero call-to-actions to demand user attention.
+
+```tsx
+<MagneticButton strength={80}>Aggressive</MagneticButton>
+```

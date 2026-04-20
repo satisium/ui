@@ -9,6 +9,7 @@ import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
 import { PreviewToolbar } from "./preview-toolbar"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
+import { Terminal } from "lucide-react"
 
 export interface DemoData {
   key: string
@@ -140,9 +141,19 @@ export function ComponentPreviewer({
               key={activeDemo.key}
               className="flex h-full flex-col gap-3 overflow-hidden px-3 pt-3"
             >
-              <h2>
-                <span className="px-3">Install this demo</span>
-              </h2>
+              <div className="mb-1 flex flex-col gap-1.5 px-1 pt-2">
+                <h2 className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-foreground">
+                  <Terminal className="size-4 text-muted-foreground" />
+                  <span>Installation</span>
+                </h2>
+                <p className="text-[13px] leading-relaxed text-muted-foreground">
+                  Run the command below to add the{" "}
+                  <span className="inline-flex items-center rounded-md border border-border/50 bg-muted/50 px-1.5 py-0.5 text-xs font-medium text-foreground">
+                    {activeDemo.name}
+                  </span>{" "}
+                  demo to your project. Switch variants via the bottom toolbar.
+                </p>
+              </div>
               <CommandBlock cli={activeDemo.installCommand} />
               <CodeBlock files={activeDemo.files} className="min-h-0 flex-1" />
             </div>
