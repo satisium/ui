@@ -2,7 +2,6 @@
 
 import { CodeBlock } from "@/components/code-block/code-block"
 import { CommandBlock } from "@/components/command-block"
-import DiagonalHeroSection from "@/registry/demos/gliding-card/demo-three"
 import HeroSection from "@/registry/demos/gliding-card/demo-two"
 
 export default function SatisUIDemoPage() {

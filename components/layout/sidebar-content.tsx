@@ -166,20 +166,20 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
       <Link
         href={node.url}
         aria-current={isActive ? "page" : undefined}
-        className="group relative flex items-center justify-between gap-3 rounded-md px-3 py-2 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+        className="group relative flex items-center justify-between gap-3 rounded-md px-3 py-0.5 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
       >
         {/* Active State Background Indicator (Shared LayoutID for seamless animation) */}
         {isActive && (
           <motion.div
             layoutId="sidebar-active-indicator"
-            className="absolute inset-0 rounded-sm bg-foreground drop-shadow-2xl"
+            className="absolute -inset-1 rounded-sm bg-foreground drop-shadow-2xl"
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
           />
         )}
 
         {/* Hover Background Indicator */}
         {!isActive && (
-          <div className="absolute inset-0 rounded-md transition-colors group-hover:bg-background" />
+          <div className="absolute -inset-0.5 -z-10 rounded-md transition-colors group-hover:bg-background" />
         )}
 
         {/* Content */}
