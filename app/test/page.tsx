@@ -2,13 +2,15 @@
 
 import { CodeBlock } from "@/components/code-block/code-block"
 import { CommandBlock } from "@/components/command-block"
+import DiagonalHeroSection from "@/registry/demos/gliding-card/demo-three"
+import HeroSection from "@/registry/demos/gliding-card/demo-two"
 
 export default function SatisUIDemoPage() {
   return (
-    <div className="min-h-screen bg-background p-8 font-sans text-foreground md:p-24">
-      <div className="mx-auto max-w-4xl space-y-24">
+    <div className="min-h-screen bg-background font-sans text-foreground">
+      <div className="mx-auto w-full space-y-24">
         {/* --- Header --- */}
-        <header className="space-y-4">
+        {/* <header className="space-y-4">
           <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
             v2.0 Architecture
           </div>
@@ -20,10 +22,11 @@ export default function SatisUIDemoPage() {
             modes, visual diffing, terminal emulation, and seamless IDE-like
             file trees.
           </p>
-        </header>
+        </header> */}
 
         {/* --- Section 1: Command Block Demo --- */}
         <section className="space-y-6">
+          <HeroSection />
           <div className="space-y-2">
             <h2 className="font-heading text-h4 tracking-tight">
               1. Installation & CLI
