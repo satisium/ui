@@ -143,7 +143,7 @@ export default async function Page(props: {
           {(hasCategories || hasSubcategories) && (
             <nav className="flex flex-wrap items-center gap-2">
               {page.data.category?.map((cat) => (
-                <Link href={`/docs/components/${cat}`} key={cat}>
+                <Link href={`/categories/${cat}`} key={cat}>
                   <span className="inline-flex cursor-pointer items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
                     {cat.replace("-", " ")}
                   </span>
@@ -158,8 +158,8 @@ export default async function Page(props: {
                 <Link
                   href={
                     hasCategories
-                      ? `/docs/components/${page.data.category?.[0]}/${sub}`
-                      : `/docs/components/all/${sub}`
+                      ? `/categories/${page.data.category?.[0]}/${sub}`
+                      : `/categories/${sub}`
                   }
                   key={sub}
                 >

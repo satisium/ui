@@ -1,87 +1,18 @@
-import { defineDocs, defineConfig } from "fumadocs-mdx/config"
 import { pageSchema } from "fumadocs-core/source/schema"
+import { defineConfig, defineDocs } from "fumadocs-mdx/config"
 import { z } from "zod"
-
-const CategoryEnum = z.enum([
-  "marketing",
-  "navigation",
-  "overlays",
-  "data-display",
-  "forms",
-  "feedback",
-  "interactions",
-  "layout",
-])
-
-const SubCategoryEnum = z.enum([
-  // marketing
-  "heroes",
-  "pricing",
-  "feature-sections",
-  "testimonials",
-  // navigation
-  "sidebars",
-  "navbars",
-  "breadcrumbs",
-  "tabs",
-  // overlays
-  "modals",
-  "dialogs",
-  "popovers",
-  "tooltips",
-  "drawers",
-  // data-display
-  "tables",
-  "lists",
-  "stats",
-  "avatars",
-  "cards",
-  // forms
-  "inputs",
-  "selects",
-  "toggles",
-  "sliders",
-  "multi-step",
-  // feedback
-  "toasts",
-  "alerts",
-  "skeletons",
-  "progress",
-  "empty-states",
-  // interactions
-  "hover-effects",
-  "micro-animations",
-  "magnetic-buttons",
-  // layout
-  "grids",
-  "masonry",
-  "split-panes",
-])
+import { CategoryEnum, SubCategoryEnum } from "./lib/utils"
 
 export const docs = defineDocs({
   dir: "content/docs",
   docs: {
     schema: pageSchema.extend({
-      component: z
-        .boolean()
-        .default(false)
-        .describe("Is this a UI component page?"),
-
+      component: z.boolean().default(false),
       badge: z.enum(["new", "updated", "beta", "deprecated"]).optional(),
-
-      category: z
-        .array(CategoryEnum)
-        .optional()
-        .describe("Primary SEO bucket (e.g., ['marketing'])"),
-
-      subcategory: z
-        .array(SubCategoryEnum)
-        .optional()
-        .describe("Specific UI pattern (e.g., ['heroes', 'interactions'])"),
-
+      category: z.array(CategoryEnum).optional(),
+      subcategory: z.array(SubCategoryEnum).optional(),
       author: z.string().optional(),
       date: z.string().optional(),
-
       links: z
         .object({
           preview: z.string().url().optional(),
@@ -89,11 +20,13 @@ export const docs = defineDocs({
           api: z.string().url().optional(),
         })
         .optional(),
-
-      registryKeys: z
-        .array(z.string())
-        .optional()
-        .describe("Keys mapping to our registry demos"),
+      registryKeys: z.array(z.string()).optional(),
+      media: z
+        .object({
+          image: z.string(),
+          video: z.string().optional(),
+        })
+        .optional(),
     }),
   },
 })

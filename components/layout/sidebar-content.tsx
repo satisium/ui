@@ -172,7 +172,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
         {isActive && (
           <motion.div
             layoutId="sidebar-active-indicator"
-            className="absolute -inset-1 rounded-sm bg-foreground drop-shadow-2xl"
+            className="absolute -inset-1 rounded-sm bg-foreground drop-shadow-2xl dark:-inset-0.5"
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
           />
         )}
