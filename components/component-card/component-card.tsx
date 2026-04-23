@@ -45,12 +45,12 @@ export function PremiumComponentCard({
   return (
     <Link href={url} className="block w-full ring-0 outline-none">
       <div
-        className="group flex h-80 flex-col gap-2 overflow-hidden rounded-3xl bg-muted p-2 transition-transform duration-(--duration-normal) ease-out-expo active:scale-[0.98]"
+        className="group flex h-full flex-col gap-2 overflow-hidden rounded-3xl bg-muted p-2 transition-transform duration-(--duration-normal) ease-out-expo active:scale-[0.98]"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {/* Media Frame */}
-        <div className="relative h-50 w-full shrink-0 overflow-hidden rounded-2xl bg-background">
+        <div className="relative h-60 w-full shrink-0 overflow-hidden rounded-2xl bg-background">
           {media?.image ? (
             <Image
               src={media.image}
@@ -78,7 +78,7 @@ export function PremiumComponentCard({
           )}
         </div>
 
-        <div className="flex flex-1 flex-col justify-start gap-1 px-2 pt-3.5 pb-1">
+        <div className="flex flex-1 flex-col justify-start gap-1 px-3 py-3.5">
           <div className="flex w-full items-center gap-2">
             {/* Title */}
             <h3

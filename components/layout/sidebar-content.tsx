@@ -71,7 +71,7 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
           href="/"
           className="group flex w-full items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-muted focus-visible:outline-none"
         >
-          <div className="flex size-7 flex-shrink-0 items-center justify-center rounded-md border border-border bg-background transition-colors group-hover:border-primary/50">
+          <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-border bg-background transition-colors group-hover:border-primary/50">
             <span className="text-sm text-foreground">☺</span>
           </div>
           <span className="truncate text-[13px] font-semibold tracking-tight text-foreground">
@@ -91,7 +91,7 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: isScrolledTop ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="pointer-events-none absolute top-0 right-0 left-0 z-20 h-24 rounded-2xl border bg-muted [mask-image:linear-gradient(to_bottom,black,transparent)] backdrop-blur-sm [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]"
+          className="pointer-events-none absolute top-0 right-0 left-0 z-20 h-24 rounded-2xl border bg-muted mask-[linear-gradient(to_bottom,black,transparent)] backdrop-blur-sm [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]"
         />
 
         {/* Scroll Container */}
@@ -127,7 +127,7 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: isScrolledBottom ? 1 : 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="pointer-events-none absolute right-0 bottom-0 left-0 z-20 h-24 rounded-2xl border bg-muted [mask-image:linear-gradient(to_top,black,transparent)] backdrop-blur-sm [-webkit-mask-image:linear-gradient(to_top,black,transparent)]"
+          className="pointer-events-none absolute right-0 bottom-0 left-0 z-20 h-24 rounded-2xl border bg-muted mask-[linear-gradient(to_bottom,black,transparent)] backdrop-blur-sm [-webkit-mask-image:linear-gradient(to_top,black,transparent)]"
         />
       </div>
 
@@ -186,7 +186,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
         <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2.5">
           {node.icon && (
             <span
-              className={`flex flex-shrink-0 items-center justify-center transition-colors [&_svg]:size-4 ${
+              className={`flex shrink-0 items-center justify-center transition-colors [&_svg]:size-4 ${
                 isActive
                   ? "text-background"
                   : "text-muted-foreground group-hover:text-foreground"
@@ -209,7 +209,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
         {/* Optional Custom Badge */}
         {badgeText && (
           <span
-            className={`relative z-10 ml-auto flex-shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${
+            className={`relative z-10 ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${
               isActive
                 ? "bg-primary text-primary-foreground"
                 : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"
@@ -252,7 +252,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
             <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2">
               {node.icon && (
                 <span
-                  className={`flex flex-shrink-0 transition-colors [&_svg]:size-3.5 ${
+                  className={`flex shrink-0 transition-colors [&_svg]:size-3.5 ${
                     isIndexActive
                       ? "text-background"
                       : "text-muted-foreground group-hover:text-foreground"
@@ -275,7 +275,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
             {/* Badges for Folder Index Pages */}
             {indexPage.badge && (
               <span
-                className={`relative z-10 ml-auto flex-shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${
+                className={`relative z-10 ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${
                   isIndexActive
                     ? "bg-primary text-primary-foreground"
                     : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"
@@ -289,7 +289,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           /* Render static structural header for folders without index.mdx */
           <div className="flex min-w-0 items-center gap-2 px-3 py-1.5">
             {node.icon && (
-              <span className="flex-shrink-0 text-muted-foreground [&_svg]:size-3.5">
+              <span className="shrink-0 text-muted-foreground [&_svg]:size-3.5">
                 {node.icon}
               </span>
             )}

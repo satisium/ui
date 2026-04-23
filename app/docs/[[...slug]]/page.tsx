@@ -7,7 +7,6 @@ import { findNeighbour } from "fumadocs-core/page-tree"
 import { getGithubLastEdit } from "fumadocs-core/content/github"
 import { defaultMdxComponents } from "@/components/mdx-components"
 import { TableOfContents } from "@/components/layout/toc"
-
 import {
   ComponentPreviewer,
   type DemoData,
@@ -15,7 +14,6 @@ import {
 import { registry } from "@/registry/index"
 import { cn } from "@/lib/utils"
 
-// 1. Static Params & Metadata
 export async function generateStaticParams() {
   return source.generateParams()
 }
@@ -32,9 +30,6 @@ export async function generateMetadata(props: {
   }
 }
 
-// --------------------------------------------------------
-// HELPER: SEMANTIC BADGE STYLES
-// --------------------------------------------------------
 function getBadgeStyle(badge: string) {
   switch (badge.toLowerCase()) {
     case "new":
@@ -50,9 +45,6 @@ function getBadgeStyle(badge: string) {
   }
 }
 
-// --------------------------------------------------------
-// MAIN PAGE COMPONENT
-// --------------------------------------------------------
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>
 }) {
@@ -64,9 +56,6 @@ export default async function Page(props: {
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
 
-  // ------------------------------------------------------
-  // 1. ASYNC REGISTRY RESOLUTION
-  // ------------------------------------------------------
   const resolvedDemos: DemoData[] = []
   const pageRegistry = registry ?? {}
 
@@ -88,9 +77,6 @@ export default async function Page(props: {
     }
   }
 
-  // ------------------------------------------------------
-  // 2. FETCH GITHUB LAST MODIFIED
-  // ------------------------------------------------------
   let lastModifiedTime: string | null = null
 
   if (process.env.NODE_ENV !== "development") {
@@ -117,14 +103,12 @@ export default async function Page(props: {
     lastModifiedTime = "Apr 7, 2026"
   }
 
-  // Helper flags for taxonomy
   const hasCategories = page.data.category && page.data.category.length > 0
   const hasSubcategories =
     page.data.subcategory && page.data.subcategory.length > 0
 
   return (
     <div className="flex w-full animate-in flex-col duration-700 ease-out-expo fade-in">
-      {/* 100dvh HERO PREVIEWER */}
       {resolvedDemos.length > 0 && (
         <section className="h-screen w-full">
           <ComponentPreviewer
@@ -137,9 +121,7 @@ export default async function Page(props: {
       )}
 
       <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
-        {/* REFINED HEADER: Clean, Hierarchical, Intent-Driven */}
         <header className="flex flex-col gap-6">
-          {/* 1. SEO Taxonomy / Breadcrumbs */}
           {(hasCategories || hasSubcategories) && (
             <nav className="flex flex-wrap items-center gap-2">
               {page.data.category?.map((cat) => (
@@ -171,27 +153,20 @@ export default async function Page(props: {
             </nav>
           )}
 
-          {/* 2. Title & Description */}
           <div className="flex flex-col gap-4">
-            <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-display-sm">
-              {page.data.title}
-            </h1>
-            <p className="max-w-2xl font-body text-lg leading-relaxed text-muted-foreground">
+            {/* Directly utilizing your globals.css text-display-sm utility */}
+            <h1 className="capitalize">{page.data.title}</h1>
+            <p className="max-w-4xl text-muted-foreground">
               {page.data.description}
             </p>
             {lastModifiedTime && (
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="font-mono text-[0.65rem] font-semibold tracking-widest text-muted-foreground/70 uppercase">
-                  Last Modified:
-                </span>
-                <span className="font-mono text-[0.75rem] font-medium text-foreground">
-                  {lastModifiedTime}
-                </span>
+              <div className="mt-2 flex items-center gap-2 text-muted-foreground">
+                <span className="text-caption">Last Modified:</span>
+                <span className="text-caption">{lastModifiedTime}</span>
               </div>
             )}
           </div>
 
-          {/* 3. Metadata Row (Badges, Last Modified, Type) */}
           <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
             <div className="flex flex-row flex-wrap gap-4 text-center">
               {page.data.badge && (
@@ -208,12 +183,10 @@ export default async function Page(props: {
           </div>
         </header>
 
-        {/* MDX CONTENT & LAYOUT */}
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32">
           <div className="w-full min-w-0 pb-32">
             <MDX components={defaultMdxComponents} />
 
-            {/* Pagination */}
             <div className="mt-24 flex flex-col gap-8 border-t border-border/50 pt-10">
               <nav
                 aria-label="Pagination"
@@ -227,7 +200,7 @@ export default async function Page(props: {
                     <span className="font-mono text-[0.65rem] font-bold tracking-widest text-muted-foreground uppercase transition-colors group-hover:text-foreground">
                       Previous
                     </span>
-                    <span className="flex items-center gap-2 font-heading text-lg font-medium text-foreground transition-colors group-hover:text-primary">
+                    <span className="flex items-center gap-2 font-heading font-bold text-foreground transition-colors group-hover:text-primary">
                       {neighbours.previous.name}
                     </span>
                   </Link>
@@ -243,7 +216,7 @@ export default async function Page(props: {
                     <span className="font-mono text-[0.65rem] font-bold tracking-widest text-muted-foreground uppercase transition-colors group-hover:text-foreground">
                       Next
                     </span>
-                    <span className="flex items-center gap-2 font-heading text-lg font-medium text-foreground transition-colors group-hover:text-primary">
+                    <span className="flex items-center gap-2 font-heading font-bold text-foreground transition-colors group-hover:text-primary">
                       {neighbours.next.name}
                     </span>
                   </Link>

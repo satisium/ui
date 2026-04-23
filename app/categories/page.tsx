@@ -19,24 +19,22 @@ export default function AllCategoriesPage() {
           <Link
             key={category}
             href={`/categories/${category}`}
-            // 1. OUTER TRAY: No borders, subtle background, larger radius
             className="group flex flex-col rounded-3xl bg-muted p-2 transition-all duration-500"
           >
-            {/* 2. INNER CARD: Elevated surface, pure background, tracks hover scale */}
             <div className="flex flex-col justify-between rounded-2xl bg-background p-6 transition-transform duration-500">
               <div className="flex items-center justify-between">
-                <h2 className="font-heading text-xl font-bold tracking-tight text-foreground capitalize transition-colors group-hover:text-primary">
+                {/* Notice the use of <h3>. It inherits font, tracking, weight natively. We just clamp size. */}
+                <h3 className="text-xl text-foreground capitalize transition-colors group-hover:text-primary">
                   {category.replace("-", " ")}
-                </h2>
+                </h3>
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-muted/50 font-mono text-[0.65rem] font-bold text-muted-foreground transition-colors group-hover:bg-primary/10 group-hover:text-primary">
                   {subcategories.length}
                 </span>
               </div>
             </div>
 
-            {/* 3. META FOOTER: Converted from bullet list to seamless typography flow */}
             <div className="px-6 py-4">
-              <p className="line-clamp-2 font-body text-sm leading-relaxed text-muted-foreground/70 transition-colors group-hover:text-muted-foreground">
+              <p className="line-clamp-2 text-sm text-muted-foreground/70 transition-colors group-hover:text-muted-foreground">
                 {subcategories
                   .map((sub) =>
                     sub

@@ -36,20 +36,21 @@ export default async function CategoryPage(props: {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-8 py-24 lg:py-32">
       <CategoryHero title={category} count={pages.length} />
+
       <div className="mx-auto mt-16 flex w-full flex-col gap-24 md:gap-32">
         {Object.entries(grouped).map(([subcat, items]) => (
           <section key={subcat} className="flex flex-col gap-10">
             <header className="flex flex-col gap-3">
               <div className="flex items-end justify-between">
-                <div className="flex gap-2">
+                <div className="flex items-baseline gap-3">
                   <Link
                     href={`/categories/${category}/${subcat}`}
-                    className="font-heading text-2xl font-bold tracking-tight text-foreground capitalize transition-colors duration-300 hover:text-primary"
+                    className="text-foreground transition-colors duration-300 hover:text-primary"
                   >
-                    {subcat.replace("-", " ")}
+                    <h2 className="capitalize">{subcat.replace("-", " ")}</h2>
                   </Link>
                   <p className="font-mono text-[0.7rem] font-bold tracking-widest text-muted-foreground uppercase">
-                    {items.length}{" "}
+                    {items.length}
                   </p>
                 </div>
               </div>

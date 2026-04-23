@@ -5,51 +5,86 @@ import { CodeBlock } from "./code-block/code-block"
 import { CommandBlock } from "./command-block"
 
 export const defaultMdxComponents = {
+  // Headings remain pure to globals.css (they need tight leading because they are short)
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
-      className={cn(
-        "mt-2 scroll-m-20 font-heading text-4xl font-bold tracking-tight text-foreground md:text-5xl",
-        className
-      )}
+      className={cn("mt-2 scroll-m-20 text-foreground", className)}
       {...props}
     />
   ),
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
-      className={cn(
-        "mt-12 mb-6 scroll-m-20 pb-2 font-heading text-h2 font-semibold tracking-tight text-foreground",
-        className
-      )}
+      className={cn("mt-12 mb-6 scroll-m-20 pb-2 text-foreground", className)}
       {...props}
     />
   ),
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
-      className={cn(
-        "mt-8 mb-4 scroll-m-20 font-heading text-h3 font-semibold tracking-tight text-foreground",
-        className
-      )}
+      className={cn("mt-8 mb-4 scroll-m-20 text-foreground", className)}
       {...props}
     />
   ),
   h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4
-      className={cn(
-        "mt-8 mb-4 scroll-m-20 font-heading text-h4 font-semibold tracking-tight text-foreground",
-        className
-      )}
+      className={cn("mt-8 mb-4 scroll-m-20 text-foreground", className)}
       {...props}
     />
   ),
+
+  // ==========================================
+  // THE PROSE FIX: Relaxed Leading (Line Height)
+  // ==========================================
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
       className={cn(
-        "font-body text-base leading-relaxed text-muted-foreground [&:not(:first-child)]:mt-6",
+        // Added `leading-7` (1.75 line-height).
+        // This is the golden ratio for long-form reading at text-base (16px).
+        // It provides the exact breathing room the eye needs for the "Return Sweep".
+        "leading-7 text-muted-foreground not-first:mt-6",
         className
       )}
       {...props}
     />
   ),
+  ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+    <ul
+      className={cn(
+        "my-6 ml-6 list-disc text-muted-foreground marker:text-primary",
+        className
+      )}
+      {...props}
+    />
+  ),
+  ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
+    <ol
+      className={cn("my-6 ml-6 list-decimal text-muted-foreground", className)}
+      {...props}
+    />
+  ),
+  li: ({ className, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
+    <li
+      className={cn(
+        // Added `leading-7` to lists as well, preventing bullet points from clumping
+        "mt-2 leading-7",
+        className
+      )}
+      {...props}
+    />
+  ),
+  blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+    <blockquote
+      className={cn(
+        // Added `leading-7` here too for reading consistency
+        "mt-6 border-l-2 border-primary pl-6 leading-7 text-muted-foreground italic",
+        className
+      )}
+      {...props}
+    />
+  ),
+
+  // ==========================================
+  // EVERYTHING BELOW REMAINS UNCHANGED
+  // ==========================================
   a: ({
     className,
     href,
@@ -71,29 +106,8 @@ export const defaultMdxComponents = {
       />
     )
   },
-  ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul
-      className={cn(
-        "my-6 ml-6 list-disc text-muted-foreground marker:text-primary",
-        className
-      )}
-      {...props}
-    />
-  ),
-  ol: ({ className, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol
-      className={cn("my-6 ml-6 list-decimal text-muted-foreground", className)}
-      {...props}
-    />
-  ),
-  li: ({ className, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
-    <li className={cn("mt-2 font-body text-base", className)} {...props} />
-  ),
   strong: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <strong
-      className={cn("font-semibold text-foreground", className)}
-      {...props}
-    />
+    <strong className={cn("font-bold text-foreground", className)} {...props} />
   ),
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <code
@@ -113,15 +127,6 @@ export const defaultMdxComponents = {
       {...props}
     />
   ),
-  blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
-    <blockquote
-      className={cn(
-        "mt-6 border-l-2 border-primary pl-6 text-muted-foreground italic",
-        className
-      )}
-      {...props}
-    />
-  ),
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-x-auto rounded-3xl bg-muted p-2">
       <table
@@ -133,14 +138,12 @@ export const defaultMdxComponents = {
       />
     </div>
   ),
-
   thead: ({
     className,
     ...props
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <thead className={cn("", className)} {...props} />
   ),
-
   tbody: ({
     className,
     ...props
@@ -148,38 +151,32 @@ export const defaultMdxComponents = {
     <tbody
       className={cn(
         "[&_td]:bg-background",
-
         "[&_tr:first-child_td:first-child]:rounded-tl-2xl",
         "[&_tr:first-child_td:last-child]:rounded-tr-2xl",
         "[&_tr:last-child_td:first-child]:rounded-bl-2xl",
         "[&_tr:last-child_td:last-child]:rounded-br-2xl",
-
         "[&_tr:hover_td]:bg-muted",
-
         className
       )}
       {...props}
     />
   ),
-
   tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
     <tr className={cn("group transition-colors", className)} {...props} />
   ),
-
   th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <th
       className={cn(
-        "text-foreground[&:has([align=center])]:text-center px-4 pt-1 pb-3 align-bottom font-medium [&:has([align=right])]:text-right",
+        "px-4 pt-1 pb-3 align-bottom font-medium text-foreground [&:has([align=center])]:text-center [&:has([align=right])]:text-right",
         className
       )}
       {...props}
     />
   ),
-
   td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
     <td
       className={cn(
-        "duration-200[&:has([align=center])]:text-center p-4 align-middle leading-relaxed transition-colors [&:has([align=right])]:text-right",
+        "p-4 align-middle leading-relaxed transition-colors duration-200 [&:has([align=center])]:text-center [&:has([align=right])]:text-right",
         className
       )}
       {...props}

@@ -3,10 +3,8 @@ import { CategoryHero } from "@/components/component-card/category-hero"
 import { PremiumComponentCard } from "@/components/component-card/component-card"
 import { queryContent } from "@/lib/content-query"
 import { TAXONOMY } from "@/lib/utils"
-
 import { notFound } from "next/navigation"
 
-// Generate paths for EVERY valid category + subcategory combination
 export function generateStaticParams() {
   const params: { category: string; subcategory: string }[] = []
 
@@ -25,21 +23,22 @@ export default async function SubCategoryPage(props: {
   const params = await props.params
   const { category, subcategory } = params
 
-  // 1. Validation check: Does this subcategory legally belong to this category?
-  const validSubcategories = TAXONOMY[category as keyof typeof TAXONOMY]
+  const validSubcategories = TAXONOMY[category as keyof typeof TAXONOMY] as
+    | readonly string[]
+    | undefined
+
   if (!validSubcategories || !validSubcategories.includes(subcategory)) {
     return notFound()
   }
 
-  // 2. Query exactly what we need
   const { pages } = queryContent({
     category: category,
     subcategory: subcategory,
-    groupBySubcategory: false, // We don't need to group, this entire page IS the group
+    groupBySubcategory: false,
   })
 
-  // 3. Dynamic Title (e.g., "Marketing / Pricing")
   const pageTitle = `${category}  >  ${subcategory}`
+
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-8 py-24 lg:py-32">
       <CategoryHero title={pageTitle} count={pages.length} />
