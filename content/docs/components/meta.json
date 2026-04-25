@@ -1,5 +1,11 @@
 {
   "title": "Components",
-  "pages": ["button", "spotlight-card", "fluid-switch", "aurora-hero", "ao"],
+  "pages": [
+    "magnetic-button",
+    "spotlight-card",
+    "fluid-switch",
+    "aurora-hero",
+    "ao"
+  ],
   "icon": "Component"
 }

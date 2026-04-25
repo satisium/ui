@@ -1,0 +1,573 @@
+// components/layout/command-menu.tsx
+"use client"
+
+import { TAXONOMY } from "@/lib/utils"
+import type * as PageTree from "fumadocs-core/page-tree"
+import {
+  ArrowRight,
+  Command as CommandIcon,
+  Component,
+  CornerDownLeft,
+  FileText,
+  FolderDot,
+  GitBranch,
+  Hash,
+  History,
+  Laptop,
+  Layers,
+  LayoutGrid,
+  LayoutTemplate,
+  Link as LinkIcon,
+  Loader2,
+  MonitorPlay,
+  Moon,
+  Search,
+  Sun,
+  Text,
+} from "lucide-react"
+import { useTheme } from "next-themes"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
+
+type ApiSearchResult = {
+  id: string
+  title?: string
+  description?: string
+  url: string
+  type: "page" | "heading" | "text"
+  content: string
+}
+
+type StaticItem = {
+  id: string
+  title: React.ReactNode
+  searchString: string
+  subtitle?: string
+  group: string
+  icon: React.ReactNode
+  url?: string
+  action?: () => void
+  aliases?: string[]
+  shortcut?: string
+}
+
+function getContextualIcon(name: string) {
+  const lower = name.toLowerCase()
+  if (lower.includes("component"))
+    return <Component className="mr-3 size-4 text-primary/80" />
+  if (lower.includes("block"))
+    return <LayoutGrid className="mr-3 size-4 text-emerald-500/80" />
+  if (lower.includes("template"))
+    return <LayoutTemplate className="mr-3 size-4 text-blue-500/80" />
+  if (lower.includes("category"))
+    return <Layers className="mr-3 size-4 text-amber-500/80" />
+  return <FolderDot className="mr-3 size-4 text-muted-foreground" />
+}
+
+export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
+  const router = useRouter()
+  const { setTheme } = useTheme()
+  const [open, setOpen] = React.useState(false)
+  const [query, setQuery] = React.useState("")
+  const [apiResults, setApiResults] = React.useState<ApiSearchResult[]>([])
+  const [isLoading, setIsLoading] = React.useState(false)
+  const [activeValue, setActiveValue] = React.useState("")
+  const [modifier, setModifier] = React.useState<"none" | "meta" | "shift">(
+    "none"
+  )
+  const [recentIds, setRecentIds] = React.useState<string[]>([])
+
+  React.useEffect(() => {
+    const stored = localStorage.getItem("satis-recent-searches")
+    if (stored) setRecentIds(JSON.parse(stored))
+  }, [])
+
+  const saveRecent = React.useCallback((id: string) => {
+    if (id.startsWith("action-") || id.startsWith("theme-")) return
+    setRecentIds((prev) => {
+      const next = [id, ...prev.filter((x) => x !== id)].slice(0, 5)
+      localStorage.setItem("satis-recent-searches", JSON.stringify(next))
+      return next
+    })
+  }, [])
+
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
+        if (
+          (e.target as HTMLElement).isContentEditable ||
+          e.target instanceof HTMLInputElement ||
+          e.target instanceof HTMLTextAreaElement
+        )
+          return
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.metaKey || e.ctrlKey) setModifier("meta")
+      else if (e.shiftKey) setModifier("shift")
+    }
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (!e.metaKey && !e.ctrlKey && !e.shiftKey) setModifier("none")
+    }
+    if (open) {
+      document.addEventListener("keydown", handleKeyDown)
+      document.addEventListener("keyup", handleKeyUp)
+    }
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown)
+      document.removeEventListener("keyup", handleKeyUp)
+      setModifier("none")
+    }
+  }, [open])
+
+  React.useEffect(() => {
+    if (!query) {
+      setApiResults([])
+      return
+    }
+    const timer = setTimeout(async () => {
+      setIsLoading(true)
+      try {
+        const res = await fetch(
+          `/api/search?query=${encodeURIComponent(query)}`
+        )
+        if (res.ok) setApiResults(await res.json())
+      } catch (error) {
+        console.error("Search failed", error)
+      } finally {
+        setIsLoading(false)
+      }
+    }, 200)
+    return () => clearTimeout(timer)
+  }, [query])
+
+  const staticItems = React.useMemo<StaticItem[]>(() => {
+    const items: StaticItem[] = []
+
+    if (docsTree) {
+      function traverseTree(
+        node: PageTree.Node,
+        currentGroup: string,
+        path: string[]
+      ) {
+        if (node.type === "page") {
+          // EXPLICIT CAST: Tell TypeScript this is 100% a Page item now
+          const pageNode = node as PageTree.Item
+
+          const safeNameStr =
+            typeof pageNode.name === "string"
+              ? pageNode.name
+              : pageNode.url
+                  .split("/")
+                  .filter(Boolean)
+                  .pop()
+                  ?.replace(/-/g, " ") || "Page"
+
+          items.push({
+            id: pageNode.url,
+            title: pageNode.name,
+            searchString: safeNameStr,
+            subtitle:
+              path.length > 0 ? `Docs ➔ ${path.join(" ➔ ")}` : "Documentation",
+            group: currentGroup,
+            url: pageNode.url,
+            icon: getContextualIcon(currentGroup),
+            aliases: [currentGroup.toLowerCase()],
+          })
+        } else if (node.type === "folder") {
+          // EXPLICIT CAST: Tell TypeScript this is 100% a Folder item now
+          const folderNode = node as PageTree.Folder
+
+          const safeNameStr =
+            typeof folderNode.name === "string" ? folderNode.name : "Folder"
+          const groupNameStr = safeNameStr
+          const newPath = [...path, groupNameStr]
+
+          if (folderNode.index) {
+            // Fumadocs stores the folder index as a PageTree.Item
+            const indexNode = folderNode.index as PageTree.Item
+
+            items.push({
+              id: indexNode.url,
+              title: folderNode.name ? `${safeNameStr} Overview` : "Overview",
+              searchString: `${safeNameStr} Overview`,
+              subtitle:
+                path.length > 0
+                  ? `Docs ➔ ${path.join(" ➔ ")}`
+                  : "Documentation",
+              group: groupNameStr,
+              url: indexNode.url,
+              icon: (
+                <MonitorPlay className="mr-3 size-4 text-muted-foreground" />
+              ),
+              aliases: ["index", "overview"],
+            })
+          }
+
+          folderNode.children.forEach((child) =>
+            traverseTree(child, groupNameStr, newPath)
+          )
+        }
+      }
+      docsTree.children.forEach((child) =>
+        traverseTree(child, "General Docs", [])
+      )
+    }
+
+    const categoryItems = Object.entries(TAXONOMY).map(
+      ([category, subcategories]) => {
+        const catName = category
+          .replace("-", " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase())
+        return {
+          id: `/categories/${category}`,
+          title: catName,
+          searchString: catName,
+          subtitle: `${subcategories.length} sub-categories`,
+          group: "Categories",
+          url: `/categories/${category}`,
+          icon: getContextualIcon("category"),
+          aliases: subcategories.map((s) => s.replace("-", " ")),
+        }
+      }
+    )
+
+    const systemItems: StaticItem[] = [
+      {
+        id: "action-copy-url",
+        title: "Copy Current URL",
+        searchString: "Copy Current URL",
+        group: "Actions",
+        subtitle: "System Utility",
+        icon: <LinkIcon className="mr-3 size-4 text-muted-foreground" />,
+        action: () => navigator.clipboard.writeText(window.location.href),
+        shortcut: "⇧ ↵",
+      },
+      {
+        id: "action-github",
+        title: "GitHub Repository",
+        searchString: "GitHub Repository",
+        group: "Actions",
+        url: "https://github.com/your-repo",
+        subtitle: "External Link",
+        icon: <GitBranch className="mr-3 size-4 text-muted-foreground" />,
+        shortcut: "⌘ ↵",
+      },
+      {
+        id: "theme-light",
+        title: "Light Theme",
+        searchString: "Light Theme",
+        group: "Theme",
+        icon: <Sun className="mr-3 size-4 text-muted-foreground" />,
+        action: () => setTheme("light"),
+        aliases: ["mode"],
+      },
+      {
+        id: "theme-dark",
+        title: "Dark Theme",
+        searchString: "Dark Theme",
+        group: "Theme",
+        icon: <Moon className="mr-3 size-4 text-muted-foreground" />,
+        action: () => setTheme("dark"),
+        aliases: ["mode"],
+      },
+      {
+        id: "theme-system",
+        title: "System Theme",
+        searchString: "System Theme",
+        group: "Theme",
+        icon: <Laptop className="mr-3 size-4 text-muted-foreground" />,
+        action: () => setTheme("system"),
+        aliases: ["mode"],
+      },
+    ]
+
+    return [...items, ...categoryItems, ...systemItems]
+  }, [docsTree, setTheme])
+
+  const handleSelect = React.useCallback(
+    (id: string, url?: string, action?: () => void) => {
+      saveRecent(id)
+      setOpen(false)
+      if (action) {
+        action()
+        return
+      }
+      if (url) {
+        if (modifier === "meta") window.open(url, "_blank")
+        else if (modifier === "shift")
+          navigator.clipboard.writeText(window.location.origin + url)
+        else router.push(url)
+      }
+      setQuery("")
+    },
+    [modifier, router, saveRecent]
+  )
+
+  const activeItemDetails = React.useMemo(() => {
+    const staticMatch = staticItems.find(
+      (i) => i.id.toLowerCase() === activeValue
+    )
+    if (staticMatch)
+      return { label: staticMatch.url || "Execute System Action" }
+    const apiMatch = apiResults.find((i) => i.id.toLowerCase() === activeValue)
+    if (apiMatch) return { label: apiMatch.url }
+    return { label: "Navigate & Discover" }
+  }, [activeValue, staticItems, apiResults])
+
+  const getApiIcon = (type: ApiSearchResult["type"]) => {
+    if (type === "heading")
+      return <Hash className="mr-3 size-4 text-muted-foreground" />
+    if (type === "text")
+      return <Text className="mr-3 size-4 text-muted-foreground" />
+    return <FileText className="mr-3 size-4 text-primary" />
+  }
+
+  const groupedStaticItems = staticItems.reduce(
+    (acc, item) => {
+      if (!acc[item.group]) acc[item.group] = []
+      acc[item.group].push(item)
+      return acc
+    },
+    {} as Record<string, StaticItem[]>
+  )
+
+  const recentStaticItems = recentIds
+    .map((id) => staticItems.find((item) => item.id === id))
+    .filter((item): item is StaticItem => item !== undefined)
+
+  return (
+    <>
+      <button
+        onClick={() => setOpen(true)}
+        className="group flex w-full items-center gap-2 rounded-sm bg-background px-3 py-3 text-sm font-medium text-muted-foreground transition-all duration-300 hover:border-border hover:bg-background/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+      >
+        <Search className="size-4" />
+        <span className="flex-1 text-left">Search Anything...</span>
+        <kbd className="pointer-events-none inline-flex h-5 items-center gap-1 rounded border border-border/50 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+          <span className="text-xs">⌘</span>K
+        </kbd>
+      </button>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="overflow-hidden rounded-3xl bg-muted p-1 sm:max-w-[640px]">
+          <DialogTitle className="sr-only">Command Menu</DialogTitle>
+          <Command
+            className="flex h-full w-full flex-col gap-2 bg-muted"
+            onValueChange={setActiveValue}
+            filter={(value, search) => {
+              const item = staticItems.find((i) => i.id === value)
+              if (!item) return 1
+              const searchLower = search.toLowerCase()
+              if (item.searchString.toLowerCase().includes(searchLower))
+                return 1
+              if (
+                item.aliases?.some((a) => a.toLowerCase().includes(searchLower))
+              )
+                return 1
+              return 0
+            }}
+          >
+            <CommandInput
+              placeholder="Search components, categories, or actions..."
+              value={query}
+              onValueChange={setQuery}
+              className="rounded-2xl border-none text-base focus:ring-0"
+            />
+            <div className="rounded-2xl bg-background p-2">
+              <CommandList className="max-h-[55vh] scroll-py-2">
+                <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
+                  {isLoading ? (
+                    <div className="flex flex-col items-center justify-center gap-2">
+                      <Loader2 className="size-5 animate-spin text-primary" />
+                      <span>Searching knowledge base...</span>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center gap-2">
+                      <Search className="size-6 text-muted-foreground/50" />
+                      <span>No results found.</span>
+                    </div>
+                  )}
+                </CommandEmpty>
+
+                {!query && recentStaticItems.length > 0 && (
+                  <CommandGroup heading="Recently Visited">
+                    {recentStaticItems.map((item) => (
+                      <CommandItem
+                        key={`recent-${item.id}`}
+                        value={item.id}
+                        onSelect={() =>
+                          handleSelect(item.id, item.url, item.action)
+                        }
+                        className="flex w-full items-center px-4 py-2.5 aria-selected:bg-secondary/40 aria-selected:text-primary"
+                      >
+                        <History className="mr-3 size-4 text-muted-foreground" />
+                        <div className="flex flex-col items-start gap-0.5">
+                          <span className="flex items-center gap-2 font-medium">
+                            {item.title}
+                          </span>
+                          {item.subtitle && (
+                            <span className="font-mono text-[10px] text-muted-foreground">
+                              {item.subtitle}
+                            </span>
+                          )}
+                        </div>
+                      </CommandItem>
+                    ))}
+                    <CommandSeparator className="my-2" />
+                  </CommandGroup>
+                )}
+
+                {/* THE FLAWLESS API RESULT RENDERING ENGINE */}
+                {apiResults.length > 0 && (
+                  <CommandGroup heading="Deep Search Results (Content)">
+                    {apiResults.map((result) => {
+                      // 1. Find the parent page to supply the missing title
+                      const baseUrl = result.url.split("#")[0]
+                      const parentPage = staticItems.find(
+                        (item) => item.url === baseUrl
+                      )
+
+                      let displayTitle = result.title || ""
+                      let displayContent = result.description || ""
+
+                      if (!displayTitle) {
+                        if (result.type === "page") {
+                          displayTitle = result.content
+                        } else if (result.type === "heading") {
+                          displayTitle = result.content
+                          displayContent = parentPage
+                            ? `In ${parentPage.searchString}`
+                            : ""
+                        } else {
+                          displayTitle = parentPage
+                            ? parentPage.searchString
+                            : "Snippet"
+                          displayContent = result.content
+                        }
+                      } else if (
+                        result.type === "text" ||
+                        result.type === "heading"
+                      ) {
+                        displayContent = result.content
+                      }
+
+                      // 2. Unescape `<mark>` tags so they render correctly, while keeping everything else safe
+                      const safeTitle = displayTitle
+                        .replace(/&lt;mark&gt;/gi, "<mark>")
+                        .replace(/&lt;\/mark&gt;/gi, "</mark>")
+
+                      const safeContent = displayContent
+                        .replace(/&lt;mark&gt;/gi, "<mark>")
+                        .replace(/&lt;\/mark&gt;/gi, "</mark>")
+
+                      return (
+                        <CommandItem
+                          key={result.id}
+                          value={result.id}
+                          onSelect={() => handleSelect(result.id, result.url)}
+                          className="flex flex-col items-start gap-1 px-4 py-3 aria-selected:bg-secondary/40 aria-selected:text-primary"
+                        >
+                          <div className="flex w-full items-center">
+                            {getApiIcon(result.type)}
+                            <span
+                              // Removed bg-transparent and fixed spacing.
+                              // Marks will now beautifully glow with --primary color.
+                              className="[&_mark]:rounded-sm[&_mark]:bg-primary/20 font-heading text-sm font-medium [&_mark]:px-1 [&_mark]:text-primary"
+                              dangerouslySetInnerHTML={{ __html: safeTitle }}
+                            />
+                          </div>
+                          {safeContent && (
+                            <span
+                              className="text-muted-foreground[&_mark]:rounded-sm [&_mark]:px-1[&_mark]:font-semibold ml-7 line-clamp-1 font-body text-xs [&_mark]:bg-primary/20 [&_mark]:text-primary"
+                              dangerouslySetInnerHTML={{ __html: safeContent }}
+                            />
+                          )}
+                        </CommandItem>
+                      )
+                    })}
+                  </CommandGroup>
+                )}
+
+                {Object.entries(groupedStaticItems).map(([group, items]) => (
+                  <CommandGroup key={group} heading={group}>
+                    {items.map((item) => (
+                      <CommandItem
+                        key={item.id}
+                        value={item.id}
+                        keywords={item.aliases}
+                        onSelect={() =>
+                          handleSelect(item.id, item.url, item.action)
+                        }
+                        className="flex w-full items-center px-4 py-2.5 aria-selected:bg-secondary/40 aria-selected:text-primary"
+                      >
+                        {item.icon}
+                        <div className="flex min-w-0 flex-col items-start gap-0.5">
+                          <span className="flex items-center gap-2 truncate font-medium">
+                            {item.title}
+                          </span>
+                          {item.subtitle && (
+                            <span className="truncate font-mono text-[10px] text-muted-foreground">
+                              {item.subtitle}
+                            </span>
+                          )}
+                        </div>
+                        {item.shortcut && (
+                          <span className="ml-auto font-mono text-[10px] tracking-widest text-muted-foreground">
+                            {item.shortcut}
+                          </span>
+                        )}
+                      </CommandItem>
+                    ))}
+                  </CommandGroup>
+                ))}
+              </CommandList>
+            </div>
+
+            <div className="flex items-center justify-between rounded-2xl bg-muted px-4 py-3 text-xs text-muted-foreground backdrop-blur-xl">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  {modifier === "meta" ? (
+                    <CommandIcon className="size-3.5 text-primary" />
+                  ) : modifier === "shift" ? (
+                    <ArrowRight className="size-3.5 -rotate-90 text-primary" />
+                  ) : (
+                    <CornerDownLeft className="size-3.5 text-foreground" />
+                  )}
+                </div>
+                <span className="font-medium text-foreground">
+                  {modifier === "meta"
+                    ? "Open in New Tab"
+                    : modifier === "shift"
+                      ? "Copy Target URL"
+                      : "Select"}
+                </span>
+              </div>
+              <span className="max-w-[50%] truncate font-mono text-[10px] tracking-wider text-muted-foreground/70">
+                {activeItemDetails.label}
+              </span>
+            </div>
+          </Command>
+        </DialogContent>
+      </Dialog>
+    </>
+  )
+}

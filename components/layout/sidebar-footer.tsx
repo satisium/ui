@@ -14,44 +14,29 @@ import {
 
 export const SidebarFooter = () => {
   return (
-    <div className="mt-auto flex-none flex-col rounded-3xl border bg-background p-2 drop-shadow-2xl">
-      <div className="flex items-center gap-2 rounded-2xl border bg-muted p-2">
-        <div className="flex-1">
-          <ThemeSwitcher />
-        </div>
-
-        <TooltipProvider delayDuration={100}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                href="https://x.com/iamsatish4564"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex size-10 flex-shrink-0 items-center justify-center rounded-sm bg-background text-muted-foreground backdrop-blur-md transition-all hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
-                aria-label="Connect with me on X"
-              >
-                <XLogo className="size-3.5 fill-current transition-transform duration-300 group-hover:scale-110" />
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="top" sideOffset={12} className="text-xs">
-              Connect with me on X
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+    <div className="flex w-full">
+      <div className="flex-1">
+        <ThemeSwitcher />
       </div>
 
-      <div className="mt-2 flex items-center justify-center gap-1.5 text-[11px] font-medium tracking-wide text-muted-foreground">
-        <span>Built with</span>
-        <Heart className="size-3 text-red-500" />
-        <span>by</span>
-        <Link
-          href={"https://satishkumar.xyz/"}
-          target="_blank"
-          className="text-primary hover:underline focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
-        >
-          Satishkumar
-        </Link>
-      </div>
+      <TooltipProvider delayDuration={100}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Link
+              href="https://x.com/iamsatish4564"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex size-10 flex-shrink-0 items-center justify-center rounded-sm bg-background text-muted-foreground backdrop-blur-md transition-all hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+              aria-label="Connect with me on X"
+            >
+              <XLogo className="size-3.5 fill-current transition-transform duration-300 group-hover:scale-110" />
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent side="top" sideOffset={12} className="text-xs">
+            Connect with me on X
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </div>
   )
 }

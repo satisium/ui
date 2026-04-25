@@ -15,6 +15,7 @@ import {
   Zap,
   LayoutTemplate,
 } from "lucide-react"
+import { source } from "@/lib/source"
 
 export const metadata: Metadata = {
   title: "Categories | SATIS UI",
@@ -90,5 +91,9 @@ export default function CategoryLayout({
 }>) {
   const categoryTree = generateCategoryTree()
 
-  return <SpatialLayout tree={categoryTree}>{children}</SpatialLayout>
+  return (
+    <SpatialLayout tree={categoryTree} docsTree={source.pageTree}>
+      {children}
+    </SpatialLayout>
+  )
 }

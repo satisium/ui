@@ -14,5 +14,9 @@ export default function RootLayout({
 }>) {
   const tree = source.pageTree
 
-  return <SpatialLayout tree={tree}>{children}</SpatialLayout>
+  return (
+    <SpatialLayout tree={tree} docsTree={tree}>
+      {children}
+    </SpatialLayout>
+  )
 }

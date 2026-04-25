@@ -9,9 +9,11 @@ import { SidebarContent } from "./sidebar-content"
 export function SpatialLayout({
   children,
   tree,
+  docsTree,
 }: {
   children: React.ReactNode
   tree: PageTree.Root
+  docsTree?: PageTree.Root
 }) {
   const { isOpen, toggleSidebar } = useSidebarStore()
 
@@ -47,7 +49,7 @@ export function SpatialLayout({
         its 100% height and allows its internal elements to manage scrollability.
       */}
       <div className="absolute inset-y-0 left-0 z-0 flex w-[320px] flex-col px-6 py-8">
-        <SidebarContent tree={tree} />
+        <SidebarContent tree={tree} docsTree={docsTree || tree} />
       </div>
 
       <motion.div
