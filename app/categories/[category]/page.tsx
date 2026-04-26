@@ -1,15 +1,46 @@
-// app/categories/[category]/page.tsx
 import { queryContent } from "@/lib/content-query"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { CategoryHero } from "@/components/component-card/category-hero"
 import { PremiumComponentCard } from "@/components/component-card/component-card"
 import { CATEGORIES } from "@/lib/utils"
+import { Metadata } from "next"
 
 export function generateStaticParams() {
   return CATEGORIES.map((category) => ({
     category,
   }))
+}
+
+export async function generateMetadata(props: {
+  params: Promise<{ category: string }>
+}): Promise<Metadata> {
+  const params = await props.params
+  const formattedCategory = params.category
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+
+  const title = `${formattedCategory} Components`
+  const description = `Browse beautifully crafted ${formattedCategory.toLowerCase()} components. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `https://satisui.xyz/categories/${params.category}`,
+    },
+    openGraph: {
+      title: `${title} | SATIS UI`,
+      description,
+      images: [`/api/og?title=${encodeURIComponent(title)}`],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | SATIS UI`,
+      description,
+      images: [`/api/og?title=${encodeURIComponent(title)}`],
+    },
+  }
 }
 
 export default async function CategoryPage(props: {

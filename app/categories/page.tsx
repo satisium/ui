@@ -1,7 +1,27 @@
-// app/categories/page.tsx
 import { CategoryHero } from "@/components/component-card/category-hero"
 import { TAXONOMY } from "@/lib/utils"
 import Link from "next/link"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Categories",
+  description:
+    "An organized taxonomy of interface elements, structural layouts, and interactive patterns. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+  alternates: {
+    canonical: "https://satisui.xyz/categories",
+  },
+  openGraph: {
+    title: "Categories | SATIS UI",
+    description:
+      "An organized taxonomy of interface elements, structural layouts, and interactive patterns.",
+    images: ["/api/og?title=Categories"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Categories | SATIS UI",
+    images: ["/api/og?title=Categories"],
+  },
+}
 
 export default function AllCategoriesPage() {
   const totalSubcategories = Object.values(TAXONOMY).flat().length
@@ -23,7 +43,6 @@ export default function AllCategoriesPage() {
           >
             <div className="flex flex-col justify-between rounded-2xl bg-background p-6 transition-transform duration-500">
               <div className="flex items-center justify-between">
-                {/* Notice the use of <h3>. It inherits font, tracking, weight natively. We just clamp size. */}
                 <h3 className="text-xl text-foreground capitalize transition-colors group-hover:text-primary">
                   {category.replace("-", " ")}
                 </h3>

@@ -10,28 +10,24 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 
-// 1. Display Font (Hero Sections)
 const fontDisplay = Antonio({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
 })
 
-// 2. Heading Font (h1-h6)
 const fontHeading = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-heading",
   display: "swap",
 })
 
-// 3. Body Font (p, small, caption & Shadcn default)
 const fontBody = Inter({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 })
 
-// 4. Code Font (code, pre)
 const fontCode = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
@@ -40,8 +36,26 @@ const fontCode = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "SATIS UI",
-  description: "Animated component library for design engineers.",
+  metadataBase: new URL("https://satisui.xyz"),
+  title: {
+    template: "%s | SATIS UI",
+    default: "SATIS UI | Animated component library for design engineers",
+  },
+  description:
+    "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "SATIS UI",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SATIS UI | Animated component library for design engineers",
+    creator: "@iamsatish4564",
+  },
 }
 
 export default function RootLayout({
@@ -61,6 +75,28 @@ export default function RootLayout({
         fontCode.variable
       )}
     >
+      <head>
+        <meta name="apple-mobile-web-app-title" content="Satis UI" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "SATIS UI",
+              alternateName: ["SatisUI", "Satis UI Library"],
+              url: "https://satisui.xyz",
+              potentialAction: {
+                "@type": "SearchAction",
+                target:
+                  "https://satisui.xyz/docs/search?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+      </head>
+
       <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
