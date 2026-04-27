@@ -1,11 +1,12 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { ChevronRight, Folder } from "lucide-react"
+import { ArrowRight01Icon, Folder01Icon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { AnimatePresence, motion } from "motion/react"
 import { useState } from "react"
-import { BASE_PADDING, DEPTH_OFFSET } from "./constants"
 import { DefaultFileIcon, ReactIcon, TSIcon } from "../icons"
+import { BASE_PADDING, DEPTH_OFFSET } from "./constants"
 import { FolderNode, TreeNode } from "./types"
 
 export interface SidebarProps {
@@ -141,13 +142,14 @@ const SidebarFolder = ({
         <span className="relative flex w-fit items-center gap-2 rounded-md px-2 py-1.5">
           <div className="absolute inset-0 z-0 rounded-md bg-background/50 opacity-0 transition-opacity group-hover:opacity-100" />
           <div className="relative z-10 flex items-center gap-2">
-            <ChevronRight
+            <HugeiconsIcon
+              icon={ArrowRight01Icon}
               className={cn(
                 "h-3.5 w-3.5 shrink-0 transition-transform duration-200",
                 isOpen && "rotate-90"
               )}
             />
-            <Folder className="h-4 w-4 shrink-0" />
+            <HugeiconsIcon icon={Folder01Icon} className="size-3.5 shrink-0" />
             <span className="whitespace-nowrap">{node.name}</span>
           </div>
         </span>

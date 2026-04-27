@@ -1,22 +1,23 @@
 "use client"
 
-import {
-  Check,
-  ChevronDown,
-  ChevronRight,
-  ChevronUp,
-  Copy,
-  PanelLeft,
-} from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import React, { useEffect, useId, useMemo, useRef, useState } from "react"
 import { createHighlighter, Highlighter } from "shiki"
 
 import { cn } from "@/lib/utils"
-import { getIconForFile, SidebarTree } from "./sidebar"
+import {
+  ArrowDown01Icon,
+  ArrowRight01Icon,
+  ArrowUp01Icon,
+  CheckmarkBadge03Icon,
+  Copy01Icon,
+  PanelLeftIcon,
+} from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { CodeDisplay } from "./code-display"
 import { scrollbarClasses } from "./constants"
+import { getIconForFile, SidebarTree } from "./sidebar"
 import { buildTree } from "./tree-utils"
 import { CodeBlockProps, CodeFile } from "./types"
 
@@ -218,13 +219,13 @@ export function CodeBlock({
                 onClick={() => setIsDesktopSidebarOpen(!isDesktopSidebarOpen)}
                 className="hidden h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-background hover:text-foreground hover:shadow-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:flex"
               >
-                <PanelLeft className="h-4 w-4" />
+                <HugeiconsIcon icon={PanelLeftIcon} className="h-4 w-4" />
               </button>
               <button
                 onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
                 className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-background hover:text-foreground hover:shadow-sm focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none md:hidden"
               >
-                <PanelLeft className="h-4 w-4" />
+                <HugeiconsIcon icon={PanelLeftIcon} className="h-4 w-4" />
               </button>
             </>
           )}
@@ -246,7 +247,10 @@ export function CodeBlock({
                       {part}
                     </span>
                     {idx < arr.length - 1 && (
-                      <ChevronRight className="h-3.5 w-3.5 text-border" />
+                      <HugeiconsIcon
+                        icon={ArrowRight01Icon}
+                        className="h-3.5 w-3.5 text-border"
+                      />
                     )}
                   </React.Fragment>
                 ))
@@ -272,7 +276,10 @@ export function CodeBlock({
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
               >
-                <Check className="h-3.5 w-3.5 text-green-500" />
+                <HugeiconsIcon
+                  icon={CheckmarkBadge03Icon}
+                  className="h-3.5 w-3.5 text-green-500"
+                />
               </motion.div>
             ) : (
               <motion.div
@@ -281,7 +288,7 @@ export function CodeBlock({
                 animate={{ scale: 1 }}
                 exit={{ scale: 0 }}
               >
-                <Copy className="h-3.5 w-3.5" />
+                <HugeiconsIcon icon={Copy01Icon} className="h-3.5 w-3.5" />
               </motion.div>
             )}
           </AnimatePresence>
@@ -364,7 +371,7 @@ export function CodeBlock({
                 className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground drop-shadow-2xl backdrop-blur-md transition-colors hover:bg-accent hover:text-foreground"
               >
                 <span>Show more</span>
-                <ChevronDown className="h-3.5 w-3.5" />
+                <HugeiconsIcon icon={ArrowDown01Icon} className="h-3.5 w-3.5" />
               </button>
             </div>
           )}
@@ -381,7 +388,7 @@ export function CodeBlock({
                   onClick={handleCollapse}
                   className="flex items-center gap-1.5 rounded-full bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground drop-shadow-2xl backdrop-blur-md transition-colors hover:bg-accent hover:text-foreground"
                 >
-                  <ChevronUp className="h-3.5 w-3.5" />
+                  <HugeiconsIcon icon={ArrowUp01Icon} className="h-3.5 w-3.5" />
                   <span>Collapse</span>
                 </button>
               </motion.div>

@@ -1,9 +1,8 @@
 "use client"
 
-import React from "react"
-import { motion } from "motion/react"
-import { ArrowRight, Compass } from "lucide-react"
 import ThreeDDriftingMarquee from "@/registry/ui/3d-drifting-marquee"
+import { ArrowRight } from "lucide-react"
+import { motion } from "motion/react"
 
 const images = [
   {

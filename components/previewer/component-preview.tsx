@@ -2,9 +2,10 @@
 
 import { motion } from "motion/react"
 import React, { useEffect, useRef, useState } from "react"
-import { ExternalLink, Lock, Terminal } from "lucide-react"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
+import { ComputerTerminal01Icon, LockPasswordIcon, Share04Icon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { CodeBlock } from "../code-block/code-block"
 import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
@@ -148,7 +149,10 @@ export function ComponentPreviewer({
             {isPaid || isMediaDemo ? (
               <div className="flex h-full flex-col items-center justify-center px-8 text-center">
                 <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-border/50 bg-background shadow-xl">
-                  <Lock className="h-8 w-8 text-foreground" />
+                  <HugeiconsIcon
+                    icon={LockPasswordIcon}
+                    className="h-8 w-8 text-foreground"
+                  />
                 </div>
                 <h3 className="mb-3 font-heading text-2xl font-bold tracking-tight text-foreground">
                   Pro Component
@@ -165,7 +169,10 @@ export function ComponentPreviewer({
                 >
                   <span className="relative z-10 flex items-center gap-2 font-bold tracking-wide">
                     Unlock with Pro
-                    <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <HugeiconsIcon
+                      icon={Share04Icon}
+                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                    />
                   </span>
                 </a>
               </div>
@@ -176,7 +183,10 @@ export function ComponentPreviewer({
               >
                 <div className="mb-1 flex flex-col gap-1.5 px-1 pt-2">
                   <h2 className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-foreground">
-                    <Terminal className="size-4 text-muted-foreground" />
+                    <HugeiconsIcon
+                      icon={ComputerTerminal01Icon}
+                      className="size-4 text-muted-foreground"
+                    />
                     <span>Installation</span>
                   </h2>
                   <p className="text-[13px] leading-relaxed text-muted-foreground">

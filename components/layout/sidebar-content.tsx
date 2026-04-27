@@ -6,9 +6,10 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 
-import { SidebarFooter } from "./sidebar-footer"
+import { FavouriteIcon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { CommandMenu } from "./command-menu"
-import { Heart } from "lucide-react"
+import { SidebarFooter } from "./sidebar-footer"
 
 /**
  * Extended Fumadocs PageTree Item to support custom metadata like badges.
@@ -140,14 +141,14 @@ export function SidebarContent({
       </div>
 
       {/* Fixed Footer: Theme Switcher, Social & Signature */}
-      <div className="flex flex-col gap-2 rounded-3xl border bg-background p-2">
+      <div className="flex flex-col gap-2 rounded-3xl border bg-background p-2 drop-shadow-2xl">
         <div className="flex w-full flex-col items-center gap-2 rounded-2xl border bg-muted p-2">
           <CommandMenu docsTree={docsTree} />
           <SidebarFooter />
         </div>
         <div className="mt-2 flex items-center justify-center gap-1.5 text-[11px] font-medium tracking-wide text-muted-foreground">
           <span>Built with</span>
-          <Heart className="size-3 text-red-500" />
+          <HugeiconsIcon icon={FavouriteIcon} className="size-5 text-red-500" />
           <span>by</span>
           <Link
             href={"https://satishkumar.xyz/"}
@@ -191,7 +192,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
       <Link
         href={node.url}
         aria-current={isActive ? "page" : undefined}
-        className="group relative flex items-center justify-between gap-3 rounded-md px-3 py-0.5 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+        className="group relative flex items-center justify-between gap-3 rounded-md px-4 py-0.5 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
       >
         {/* Active State Background Indicator (Shared LayoutID for seamless animation) */}
         {isActive && (
@@ -277,7 +278,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
             <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2">
               {node.icon && (
                 <span
-                  className={`flex shrink-0 transition-colors [&_svg]:size-3.5 ${
+                  className={`flex shrink-0 transition-colors [&_svg]:size-5 ${
                     isIndexActive
                       ? "text-background"
                       : "text-muted-foreground group-hover:text-foreground"
@@ -314,7 +315,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           /* Render static structural header for folders without index.mdx */
           <div className="flex min-w-0 items-center gap-2 px-3 py-1.5">
             {node.icon && (
-              <span className="shrink-0 text-muted-foreground [&_svg]:size-3.5">
+              <span className="shrink-0 font-bold text-muted-foreground [&_svg]:size-5">
                 {node.icon}
               </span>
             )}

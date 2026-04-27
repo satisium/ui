@@ -1,4 +1,5 @@
-import { ChevronsLeftRight } from "lucide-react"
+import { ChevronDoubleCloseIcon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { DemoData } from "./component-preview"
@@ -89,7 +90,10 @@ export function ResizablePlayground({
                 : "bg-foreground/20 group-hover:bg-foreground/50"
             }`}
           >
-            <ChevronsLeftRight className="h-3 w-3 text-background opacity-0 transition-opacity group-hover:opacity-100" />
+            <HugeiconsIcon
+              icon={ChevronDoubleCloseIcon}
+              className="size-3.5 text-background opacity-0 transition-opacity group-hover:opacity-100"
+            />
           </div>
         </div>
       </motion.div>

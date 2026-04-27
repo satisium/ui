@@ -14,16 +14,17 @@ import {
 } from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
 import {
-  ChevronDown,
-  Code2,
-  ExternalLink,
-  FileText,
-  GitBranch,
-  Monitor,
-  RefreshCcw,
-  Smartphone,
-  Tablet,
-} from "lucide-react"
+  ArrowDown01Icon,
+  File02Icon,
+  GithubIcon,
+  LaptopIcon,
+  Refresh03Icon,
+  Share04Icon,
+  SmartPhone01Icon,
+  SourceCodeIcon,
+  Tablet01Icon,
+} from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
@@ -150,7 +151,7 @@ export function PreviewToolbar({
   const actions = [
     {
       id: "reload",
-      icon: <RefreshCcw className="h-4 w-4" />,
+      icon: <HugeiconsIcon icon={Refresh03Icon} className="size-3.5" />,
       label: "Reload Animation",
       hotkey: hotkeys.reload?.toUpperCase(),
       onClick: onReload,
@@ -159,7 +160,7 @@ export function PreviewToolbar({
     },
     {
       id: "code",
-      icon: <Code2 className="h-4 w-4" />,
+      icon: <HugeiconsIcon icon={SourceCodeIcon} className="size-3.5" />,
       label: "Toggle Code",
       hotkey: hotkeys.code?.toUpperCase(),
       onClick: () => setIsCodeOpen(!isCodeOpen),
@@ -168,7 +169,7 @@ export function PreviewToolbar({
     },
     {
       id: "scroll",
-      icon: <FileText className="h-4 w-4" />,
+      icon: <HugeiconsIcon icon={File02Icon} className="size-3.5" />,
       label: "Scroll to Source",
       hotkey: hotkeys.scroll?.toUpperCase(),
       onClick: onScrollToSource,
@@ -177,7 +178,7 @@ export function PreviewToolbar({
     },
     {
       id: "github",
-      icon: <GitBranch className="h-4 w-4" />,
+      icon: <HugeiconsIcon icon={GithubIcon} className="size-3.5" />,
       label: "View GitHub",
       onClick: () => window.open(githubUrl, "_blank", "noopener,noreferrer"),
       show: !!githubUrl,
@@ -185,7 +186,7 @@ export function PreviewToolbar({
     },
     {
       id: "preview",
-      icon: <ExternalLink className="h-4 w-4" />,
+      icon: <HugeiconsIcon icon={Share04Icon} className="size-3.5" />,
       label: "Open Isolated",
       onClick: () => window.open(previewUrl, "_blank", "noopener,noreferrer"),
       show: !!previewUrl,
@@ -258,9 +259,9 @@ export function PreviewToolbar({
             className="relative z-20 flex h-10 items-center justify-between gap-1 rounded-sm bg-muted p-1"
           >
             {[
-              { id: "desktop", icon: Monitor, hotkey: hotkeys.desktop },
-              { id: "tablet", icon: Tablet, hotkey: hotkeys.tablet },
-              { id: "mobile", icon: Smartphone, hotkey: hotkeys.mobile },
+              { id: "desktop", icon: LaptopIcon, hotkey: hotkeys.desktop },
+              { id: "tablet", icon: Tablet01Icon, hotkey: hotkeys.tablet },
+              { id: "mobile", icon: SmartPhone01Icon, hotkey: hotkeys.mobile },
             ].map((mode) => {
               const Icon = mode.icon
               const isActive = viewportMode === mode.id
@@ -289,7 +290,10 @@ export function PreviewToolbar({
                           }}
                         />
                       )}
-                      <Icon className="relative z-10 h-4 w-4" />
+                      <HugeiconsIcon
+                        icon={Icon}
+                        className="relative z-10 size-3.5"
+                      />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent
@@ -336,7 +340,7 @@ export function PreviewToolbar({
                   animate={{ rotate: chevronRotation }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 >
-                  <ChevronDown className="h-4 w-4" />
+                  <HugeiconsIcon icon={ArrowDown01Icon} className="size-3.5" />
                 </motion.div>
               </Button>
             )}

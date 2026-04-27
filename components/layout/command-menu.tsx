@@ -3,28 +3,6 @@
 
 import { TAXONOMY } from "@/lib/utils"
 import type * as PageTree from "fumadocs-core/page-tree"
-import {
-  ArrowRight,
-  Command as CommandIcon,
-  Component,
-  CornerDownLeft,
-  FileText,
-  FolderDot,
-  GitBranch,
-  Hash,
-  History,
-  Laptop,
-  Layers,
-  LayoutGrid,
-  LayoutTemplate,
-  Link as LinkIcon,
-  Loader2,
-  MonitorPlay,
-  Moon,
-  Search,
-  Sun,
-  Text,
-} from "lucide-react"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
 import * as React from "react"
@@ -39,6 +17,29 @@ import {
   CommandSeparator,
 } from "@/components/ui/command"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
+import {
+  ArrowMoveDownLeftIcon,
+  ArrowRight01Icon,
+  Clock02Icon,
+  CommandIcon,
+  ComponentIcon,
+  File02Icon,
+  FolderCodeIcon,
+  Github01Icon,
+  GridViewIcon,
+  HashtagIcon,
+  LaptopIcon,
+  LaptopVideoIcon,
+  Layers01Icon,
+  Layout01Icon,
+  Link01Icon,
+  Loading03Icon,
+  MoonSlowWindIcon,
+  Search01Icon,
+  Sun02Icon,
+  TextAlignLeftIcon,
+} from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 
 type ApiSearchResult = {
   id: string
@@ -65,14 +66,39 @@ type StaticItem = {
 function getContextualIcon(name: string) {
   const lower = name.toLowerCase()
   if (lower.includes("component"))
-    return <Component className="mr-3 size-4 text-primary/80" />
+    return (
+      <HugeiconsIcon
+        icon={ComponentIcon}
+        className="mr-3 size-4 text-primary/80"
+      />
+    )
   if (lower.includes("block"))
-    return <LayoutGrid className="mr-3 size-4 text-emerald-500/80" />
+    return (
+      <HugeiconsIcon
+        icon={GridViewIcon}
+        className="mr-3 size-4 text-emerald-500/80"
+      />
+    )
   if (lower.includes("template"))
-    return <LayoutTemplate className="mr-3 size-4 text-blue-500/80" />
+    return (
+      <HugeiconsIcon
+        icon={Layout01Icon}
+        className="mr-3 size-4 text-blue-500/80"
+      />
+    )
   if (lower.includes("category"))
-    return <Layers className="mr-3 size-4 text-amber-500/80" />
-  return <FolderDot className="mr-3 size-4 text-muted-foreground" />
+    return (
+      <HugeiconsIcon
+        icon={Layers01Icon}
+        className="mr-3 size-4 text-amber-500/80"
+      />
+    )
+  return (
+    <HugeiconsIcon
+      icon={FolderCodeIcon}
+      className="mr-3 size-4 text-muted-foreground"
+    />
+  )
 }
 
 export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
@@ -216,7 +242,10 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
               group: groupNameStr,
               url: indexNode.url,
               icon: (
-                <MonitorPlay className="mr-3 size-4 text-muted-foreground" />
+                <HugeiconsIcon
+                  icon={LaptopVideoIcon}
+                  className="mr-3 size-4 text-muted-foreground"
+                />
               ),
               aliases: ["index", "overview"],
             })
@@ -257,7 +286,12 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         searchString: "Copy Current URL",
         group: "Actions",
         subtitle: "System Utility",
-        icon: <LinkIcon className="mr-3 size-4 text-muted-foreground" />,
+        icon: (
+          <HugeiconsIcon
+            icon={Link01Icon}
+            className="mr-3 size-4 text-muted-foreground"
+          />
+        ),
         action: () => navigator.clipboard.writeText(window.location.href),
         shortcut: "⇧ ↵",
       },
@@ -268,7 +302,12 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         group: "Actions",
         url: "https://github.com/your-repo",
         subtitle: "External Link",
-        icon: <GitBranch className="mr-3 size-4 text-muted-foreground" />,
+        icon: (
+          <HugeiconsIcon
+            icon={Github01Icon}
+            className="mr-3 size-4 text-muted-foreground"
+          />
+        ),
         shortcut: "⌘ ↵",
       },
       {
@@ -276,7 +315,12 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         title: "Light Theme",
         searchString: "Light Theme",
         group: "Theme",
-        icon: <Sun className="mr-3 size-4 text-muted-foreground" />,
+        icon: (
+          <HugeiconsIcon
+            icon={Sun02Icon}
+            className="mr-3 size-4 text-muted-foreground"
+          />
+        ),
         action: () => setTheme("light"),
         aliases: ["mode"],
       },
@@ -285,7 +329,12 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         title: "Dark Theme",
         searchString: "Dark Theme",
         group: "Theme",
-        icon: <Moon className="mr-3 size-4 text-muted-foreground" />,
+        icon: (
+          <HugeiconsIcon
+            icon={MoonSlowWindIcon}
+            className="mr-3 size-4 text-muted-foreground"
+          />
+        ),
         action: () => setTheme("dark"),
         aliases: ["mode"],
       },
@@ -294,7 +343,12 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         title: "System Theme",
         searchString: "System Theme",
         group: "Theme",
-        icon: <Laptop className="mr-3 size-4 text-muted-foreground" />,
+        icon: (
+          <HugeiconsIcon
+            icon={LaptopIcon}
+            className="mr-3 size-4 text-muted-foreground"
+          />
+        ),
         action: () => setTheme("system"),
         aliases: ["mode"],
       },
@@ -335,10 +389,22 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
 
   const getApiIcon = (type: ApiSearchResult["type"]) => {
     if (type === "heading")
-      return <Hash className="mr-3 size-4 text-muted-foreground" />
+      return (
+        <HugeiconsIcon
+          icon={HashtagIcon}
+          className="mr-3 size-4 text-muted-foreground"
+        />
+      )
     if (type === "text")
-      return <Text className="mr-3 size-4 text-muted-foreground" />
-    return <FileText className="mr-3 size-4 text-primary" />
+      return (
+        <HugeiconsIcon
+          icon={TextAlignLeftIcon}
+          className="mr-3 size-4 text-muted-foreground"
+        />
+      )
+    return (
+      <HugeiconsIcon icon={File02Icon} className="mr-3 size-4 text-primary" />
+    )
   }
 
   const groupedStaticItems = staticItems.reduce(
@@ -360,7 +426,7 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         onClick={() => setOpen(true)}
         className="group flex w-full items-center gap-2 rounded-sm bg-background px-3 py-3 text-sm font-medium text-muted-foreground transition-all duration-300 hover:border-border hover:bg-background/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
       >
-        <Search className="size-4" />
+        <HugeiconsIcon icon={Search01Icon} className="size-4" />
         <span className="flex-1 text-left">Search Anything...</span>
         <kbd className="pointer-events-none inline-flex h-5 items-center gap-1 rounded border border-border/50 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
           <span className="text-xs">⌘</span>K
@@ -397,12 +463,18 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
                 <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
                   {isLoading ? (
                     <div className="flex flex-col items-center justify-center gap-2">
-                      <Loader2 className="size-5 animate-spin text-primary" />
+                      <HugeiconsIcon
+                        icon={Loading03Icon}
+                        className="size-5 animate-spin text-primary"
+                      />
                       <span>Searching knowledge base...</span>
                     </div>
                   ) : (
                     <div className="flex flex-col items-center justify-center gap-2">
-                      <Search className="size-6 text-muted-foreground/50" />
+                      <HugeiconsIcon
+                        icon={Search01Icon}
+                        className="size-6 text-muted-foreground/50"
+                      />
                       <span>No results found.</span>
                     </div>
                   )}
@@ -419,7 +491,10 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
                         }
                         className="flex w-full items-center px-4 py-2.5 aria-selected:bg-secondary/40 aria-selected:text-primary"
                       >
-                        <History className="mr-3 size-4 text-muted-foreground" />
+                        <HugeiconsIcon
+                          icon={Clock02Icon}
+                          className="mr-3 size-4 text-muted-foreground"
+                        />
                         <div className="flex flex-col items-start gap-0.5">
                           <span className="flex items-center gap-2 font-medium">
                             {item.title}
@@ -546,11 +621,20 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5">
                   {modifier === "meta" ? (
-                    <CommandIcon className="size-3.5 text-primary" />
+                    <HugeiconsIcon
+                      icon={CommandIcon}
+                      className="size-3.5 text-primary"
+                    />
                   ) : modifier === "shift" ? (
-                    <ArrowRight className="size-3.5 -rotate-90 text-primary" />
+                    <HugeiconsIcon
+                      icon={ArrowRight01Icon}
+                      className="size-3.5 -rotate-90 text-primary"
+                    />
                   ) : (
-                    <CornerDownLeft className="size-3.5 text-foreground" />
+                    <HugeiconsIcon
+                      icon={ArrowMoveDownLeftIcon}
+                      className="size-3.5 text-foreground"
+                    />
                   )}
                 </div>
                 <span className="font-medium text-foreground">

@@ -1,35 +1,38 @@
 // app/categories/layout.tsx
 import { SpatialLayout } from "@/components/layout/spatial-layout"
-import type * as PageTree from "fumadocs-core/page-tree"
-import type { Metadata } from "next"
+import { source } from "@/lib/source"
 import { TAXONOMY } from "@/lib/utils"
 import {
-  ArrowLeft,
-  LayoutGrid,
-  Sparkles,
-  Compass,
-  Layers,
-  BarChart3,
-  TextCursorInput,
-  BellRing,
-  Zap,
-  LayoutTemplate,
-} from "lucide-react"
-import { source } from "@/lib/source"
+  ArrowLeft01Icon,
+  ChartLineData02Icon,
+  HotelBellIcon,
+  InputShortTextIcon,
+  Layers01Icon,
+  Layout01Icon,
+  LayoutTable02Icon,
+  NavigationIcon,
+  RotateLeft03Icon,
+  Store03Icon,
+} from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
+import type * as PageTree from "fumadocs-core/page-tree"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Categories | SATIS UI",
 }
 
 const CATEGORY_ICONS: Record<keyof typeof TAXONOMY, React.ReactNode> = {
-  marketing: <Sparkles className="size-4" />,
-  navigation: <Compass className="size-4" />,
-  overlays: <Layers className="size-4" />,
-  "data-display": <BarChart3 className="size-4" />,
-  forms: <TextCursorInput className="size-4" />,
-  feedback: <BellRing className="size-4" />,
-  interactions: <Zap className="size-4" />,
-  layout: <LayoutTemplate className="size-4" />,
+  marketing: <HugeiconsIcon icon={Store03Icon} className="size-5" />,
+  navigation: <HugeiconsIcon icon={NavigationIcon} className="size-5" />,
+  overlays: <HugeiconsIcon icon={Layers01Icon} className="size-5" />,
+  "data-display": (
+    <HugeiconsIcon icon={ChartLineData02Icon} className="size-5" />
+  ),
+  forms: <HugeiconsIcon icon={InputShortTextIcon} className="size-5" />,
+  feedback: <HugeiconsIcon icon={HotelBellIcon} className="size-5" />,
+  interactions: <HugeiconsIcon icon={RotateLeft03Icon} className="size-5" />,
+  layout: <HugeiconsIcon icon={LayoutTable02Icon} className="size-5" />,
 }
 
 function generateCategoryTree(): PageTree.Root {
@@ -68,7 +71,7 @@ function generateCategoryTree(): PageTree.Root {
         type: "page",
         name: "Back to Documentation",
         url: "/docs/components",
-        icon: <ArrowLeft className="size-4" />,
+        icon: <HugeiconsIcon icon={ArrowLeft01Icon} className="size-5" />,
       },
       {
         type: "separator",
@@ -77,7 +80,6 @@ function generateCategoryTree(): PageTree.Root {
         type: "page",
         name: "All Categories",
         url: "/categories",
-        icon: <LayoutGrid className="size-4" />,
       },
       ...categoryNodes,
     ],

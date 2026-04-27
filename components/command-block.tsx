@@ -1,11 +1,16 @@
 "use client"
 
-import { Check, ChevronDown, Copy } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
 import { PackageManager, usePackageManager } from "@/store"
+import {
+  ArrowDown01Icon,
+  CheckmarkBadge03Icon,
+  Copy01Icon,
+} from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { BunIcon, NpmIcon, PnpmIcon, YarnIcon } from "./icons"
 
 interface CommandBlockProps {
@@ -158,7 +163,8 @@ export function CommandBlock({
               <span className="hidden capitalize sm:inline-block">
                 {manager}
               </span>
-              <ChevronDown
+              <HugeiconsIcon
+                icon={ArrowDown01Icon}
                 className={cn(
                   "h-3.5 w-3.5 text-muted-foreground transition-transform duration-200",
                   isDropdownOpen && "rotate-180"
@@ -194,7 +200,10 @@ export function CommandBlock({
                         <Icon className="h-4 w-4 shrink-0" />
                         <span className="capitalize">{pm}</span>
                         {manager === pm && (
-                          <Check className="ml-auto h-3 w-3 shrink-0" />
+                          <HugeiconsIcon
+                            icon={CheckmarkBadge03Icon}
+                            className="ml-auto h-3 w-3 shrink-0"
+                          />
                         )}
                       </button>
                     )
@@ -218,7 +227,10 @@ export function CommandBlock({
                   animate={{ scale: 1 }}
                   exit={{ scale: 0 }}
                 >
-                  <Check className="h-3.5 w-3.5 text-green-500" />
+                  <HugeiconsIcon
+                    icon={CheckmarkBadge03Icon}
+                    className="h-3.5 w-3.5 text-green-500"
+                  />
                 </motion.div>
               ) : (
                 <motion.div
@@ -227,7 +239,7 @@ export function CommandBlock({
                   animate={{ scale: 1 }}
                   exit={{ scale: 0 }}
                 >
-                  <Copy className="h-3.5 w-3.5" />
+                  <HugeiconsIcon icon={Copy01Icon} className="size-3.5" />
                 </motion.div>
               )}
             </AnimatePresence>

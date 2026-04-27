@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button } from "../ui/button"
-import { Check, Copy } from "lucide-react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { CheckmarkBadge03Icon, Copy01Icon } from "@hugeicons/core-free-icons"
 
 export function CodeSnippet({
   text,
@@ -27,9 +28,15 @@ export function CodeSnippet({
           onClick={handleCopy}
         >
           {copied ? (
-            <Check className="h-3 w-3 text-green-500" />
+            <HugeiconsIcon
+              icon={CheckmarkBadge03Icon}
+              className="h-3 w-3 text-green-500"
+            />
           ) : (
-            <Copy className="h-3 w-3 text-muted-foreground" />
+            <HugeiconsIcon
+              icon={Copy01Icon}
+              className="h-3 w-3 text-muted-foreground"
+            />
           )}
         </Button>
       </div>
