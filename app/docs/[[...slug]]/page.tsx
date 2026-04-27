@@ -29,7 +29,7 @@ export async function generateMetadata(props: {
   const canonicalUrl = `https://satisui.xyz/docs/${slugPath}`
   const description =
     page.data.description ||
-    `Copy and paste the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.`
+    `Explore the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP.`
 
   return {
     title: page.data.title,
@@ -59,6 +59,9 @@ function getBadgeStyle(badge: string) {
       return "border-blue-500/20 bg-blue-500/10 text-blue-500"
     case "beta":
       return "border-amber-500/20 bg-amber-500/10 text-amber-500"
+    case "premium":
+    case "paid":
+      return "border-violet-500/20 bg-violet-500/10 text-violet-500"
     case "deprecated":
       return "border-rose-500/20 bg-rose-500/10 text-rose-500"
     default:
@@ -76,24 +79,42 @@ export default async function Page(props: {
 
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
+  const pageRegistry = registry ?? {}
+
+  const isPaid = !!(page.data as any).gumroad
+  const price = (page.data as any).price || "0.00"
+  const gumroadLink = (page.data as any).gumroad || ""
 
   const resolvedDemos: DemoData[] = []
-  const pageRegistry = registry ?? {}
 
   if (page.data.registryKeys && page.data.registryKeys.length > 0) {
     for (const key of page.data.registryKeys) {
       const item = pageRegistry[key]
       if (item) {
-        const files = await item.getFiles()
-        const Comp = item.component
+        const itemType = item.type || "react"
 
-        resolvedDemos.push({
-          key,
-          name: item.name,
-          component: <Comp />,
-          files,
-          installCommand: item.installCommand,
-        })
+        if (itemType === "video" || itemType === "image") {
+          resolvedDemos.push({
+            key,
+            type: itemType,
+            name: item.name,
+            mediaUrl: item.mediaUrl,
+            previewUrl: item.previewUrl,
+          })
+        } else {
+          const files = item.getFiles ? await item.getFiles() : {}
+          const Comp = item.component
+
+          resolvedDemos.push({
+            key,
+            type: "react",
+            name: item.name,
+            component: Comp ? <Comp /> : null,
+            files,
+            installCommand: item.installCommand || "",
+            previewUrl: item.previewUrl,
+          })
+        }
       }
     }
   }
@@ -152,14 +173,32 @@ export default async function Page(props: {
     itemListElement: breadcrumbItems,
   }
 
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareSourceCode",
-    name: `${page.data.title} Component`,
-    description: page.data.description,
-    programmingLanguage: "TypeScript",
-    codeSampleType: "UI Component",
-  }
+  const entitySchema = isPaid
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: `${page.data.title} Component`,
+        description: page.data.description,
+        brand: {
+          "@type": "Brand",
+          name: "SATIS UI",
+        },
+        offers: {
+          "@type": "Offer",
+          url: gumroadLink,
+          priceCurrency: "USD",
+          price: price,
+          availability: "https://schema.org/InStock",
+        },
+      }
+    : {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        name: `${page.data.title} Component`,
+        description: page.data.description,
+        programmingLanguage: "TypeScript",
+        codeSampleType: "UI Component",
+      }
 
   return (
     <>
@@ -169,7 +208,7 @@ export default async function Page(props: {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(entitySchema) }}
       />
 
       <div className="flex w-full animate-in flex-col duration-700 ease-out-expo fade-in">
@@ -180,6 +219,8 @@ export default async function Page(props: {
               demos={resolvedDemos}
               githubUrl={page.data.links?.github}
               previewUrl={page.data.links?.preview}
+              isPaid={isPaid}
+              gumroadUrl={gumroadLink}
             />
           </section>
         )}
@@ -218,7 +259,9 @@ export default async function Page(props: {
             )}
 
             <div className="flex flex-col gap-4">
-              <h1 className="capitalize">{page.data.title}</h1>
+              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <h1 className="capitalize">{page.data.title}</h1>
+              </div>
               <p className="max-w-4xl text-muted-foreground">
                 {page.data.description}
               </p>

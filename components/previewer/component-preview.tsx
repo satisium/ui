@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react"
 import React, { useEffect, useRef, useState } from "react"
+import { ExternalLink, Lock, Terminal } from "lucide-react"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { CodeBlock } from "../code-block/code-block"
@@ -9,14 +10,16 @@ import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
 import { PreviewToolbar } from "./preview-toolbar"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
-import { Terminal } from "lucide-react"
 
 export interface DemoData {
   key: string
   name: string
-  component: React.ReactNode
-  files: Record<string, CodeFile | string>
-  installCommand: string
+  type?: "react" | "video" | "image"
+  component?: React.ReactNode
+  files?: Record<string, CodeFile | string>
+  installCommand?: string
+  previewUrl?: string
+  mediaUrl?: string
 }
 
 interface PreviewerProps {
@@ -25,6 +28,8 @@ interface PreviewerProps {
   githubUrl?: string
   previewUrl?: string
   sourceCodeId?: string
+  isPaid?: boolean
+  gumroadUrl?: string
 }
 
 function usePersistentState<T>(key: string, initialValue: T) {
@@ -41,7 +46,6 @@ function usePersistentState<T>(key: string, initialValue: T) {
 
   const setValue = (value: T | ((val: T) => T)) => {
     try {
-      // Allow value to be a function so we have the same API as useState
       const valueToStore = value instanceof Function ? value(state) : value
       setState(valueToStore)
       if (typeof window !== "undefined") {
@@ -75,6 +79,8 @@ export function ComponentPreviewer({
   githubUrl,
   previewUrl,
   sourceCodeId,
+  isPaid = false,
+  gumroadUrl,
 }: PreviewerProps) {
   const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -90,7 +96,6 @@ export function ComponentPreviewer({
     false
   )
 
-  // Use persistent state for both width and viewport mode
   const [previewWidth, setPreviewWidth] = usePersistentState<number | string>(
     "satis-preview-width",
     "100%"
@@ -129,6 +134,9 @@ export function ComponentPreviewer({
 
   if (!activeDemo) return null
 
+  const activeType = activeDemo.type || "react"
+  const isMediaDemo = activeType === "video" || activeType === "image"
+
   return (
     <TooltipProvider delayDuration={150}>
       <div
@@ -137,26 +145,55 @@ export function ComponentPreviewer({
       >
         <div className="relative flex h-full w-full overflow-hidden rounded-3xl">
           <div className="pointer-events-auto absolute top-0 right-0 flex h-full w-full flex-col rounded-2xl rounded-l-3xl lg:w-[600px]">
-            <div
-              key={activeDemo.key}
-              className="flex h-full flex-col gap-3 overflow-hidden px-3 pt-3"
-            >
-              <div className="mb-1 flex flex-col gap-1.5 px-1 pt-2">
-                <h2 className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-foreground">
-                  <Terminal className="size-4 text-muted-foreground" />
-                  <span>Installation</span>
-                </h2>
-                <p className="text-[13px] leading-relaxed text-muted-foreground">
-                  Run the command below to add the{" "}
-                  <span className="inline-flex items-center rounded-md border border-border/50 bg-muted/50 px-1.5 py-0.5 text-xs font-medium text-foreground">
-                    {activeDemo.name}
-                  </span>{" "}
-                  demo to your project. Switch variants via the bottom toolbar.
+            {isPaid || isMediaDemo ? (
+              <div className="flex h-full flex-col items-center justify-center bg-muted/20 px-8 text-center">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-border/50 bg-background shadow-xl">
+                  <Lock className="h-8 w-8 text-foreground" />
+                </div>
+                <h3 className="mb-3 font-heading text-2xl font-bold tracking-tight text-foreground">
+                  Pro Component
+                </h3>
+                <p className="mb-8 max-w-[280px] text-[15px] leading-relaxed text-muted-foreground">
+                  Unlock this component and the entire SATIS UI library with the
+                  Pro Pack.
                 </p>
+                <a
+                  href={gumroadUrl || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 font-medium text-primary-foreground shadow-lg transition-all hover:scale-105 hover:shadow-[0_0_40px_8px_rgba(var(--primary),0.3)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                >
+                  <span className="relative z-10 flex items-center gap-2 font-bold tracking-wide">
+                    Unlock with Pro
+                    <ExternalLink className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </span>
+                </a>
               </div>
-              <CommandBlock cli={activeDemo.installCommand} />
-              <CodeBlock files={activeDemo.files} className="min-h-0 flex-1" />
-            </div>
+            ) : (
+              <div
+                key={activeDemo.key}
+                className="flex h-full flex-col gap-3 overflow-hidden px-3 pt-3"
+              >
+                <div className="mb-1 flex flex-col gap-1.5 px-1 pt-2">
+                  <h2 className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-foreground">
+                    <Terminal className="size-4 text-muted-foreground" />
+                    <span>Installation</span>
+                  </h2>
+                  <p className="text-[13px] leading-relaxed text-muted-foreground">
+                    Run the command below to add the{" "}
+                    <span className="inline-flex items-center rounded-md border border-border/50 bg-muted/50 px-1.5 py-0.5 text-xs font-medium text-foreground">
+                      {activeDemo.name}
+                    </span>{" "}
+                    demo to your project.
+                  </p>
+                </div>
+                <CommandBlock cli={activeDemo.installCommand || ""} />
+                <CodeBlock
+                  files={activeDemo.files || {}}
+                  className="min-h-0 flex-1"
+                />
+              </div>
+            )}
           </div>
 
           <motion.div
@@ -164,23 +201,46 @@ export function ComponentPreviewer({
             initial={false}
             animate={{
               width: isCodeOpen && isDesktop ? "calc(100% - 600px)" : "100%",
-
               x: isCodeOpen && !isDesktop ? "-100%" : "0%",
-
               opacity: isCodeOpen && !isDesktop ? 0 : 1,
             }}
             transition={{ type: "spring", bounce: 0, duration: 0.5 }}
           >
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#414146_1.5px,transparent_1.5px)] bg-size-[24px_24px] opacity-50 dark:opacity-50" />
 
-            <ResizablePlayground
-              demos={demos}
-              activeDemoIndex={activeDemoIndex}
-              previewWidth={previewWidth}
-              setPreviewWidth={setPreviewWidth}
-              setViewportMode={setViewportMode}
-              reloadKey={reloadKey}
-            />
+            {activeType === "video" && activeDemo.mediaUrl ? (
+              <div className="relative flex h-full w-full items-center justify-center p-4 sm:p-8 lg:p-12">
+                <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border/50 bg-background/50 shadow-2xl backdrop-blur-xl">
+                  <video
+                    src={activeDemo.mediaUrl}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            ) : activeType === "image" && activeDemo.mediaUrl ? (
+              <div className="relative flex h-full w-full items-center justify-center p-4 sm:p-8 lg:p-12">
+                <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border/50 bg-background/50 shadow-2xl backdrop-blur-xl">
+                  <img
+                    src={activeDemo.mediaUrl}
+                    alt={activeDemo.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </div>
+            ) : (
+              <ResizablePlayground
+                demos={demos}
+                activeDemoIndex={activeDemoIndex}
+                previewWidth={previewWidth}
+                setPreviewWidth={setPreviewWidth}
+                setViewportMode={setViewportMode}
+                reloadKey={reloadKey}
+              />
+            )}
           </motion.div>
 
           <PreviewToolbar
@@ -194,7 +254,7 @@ export function ComponentPreviewer({
             onReload={handleReload}
             onScrollToSource={handleScrollToSource}
             githubUrl={githubUrl}
-            previewUrl={previewUrl}
+            previewUrl={activeDemo.previewUrl || previewUrl}
             hasSourceCodeId={!!sourceCodeId}
           />
         </div>

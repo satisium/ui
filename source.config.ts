@@ -8,11 +8,15 @@ export const docs = defineDocs({
   docs: {
     schema: pageSchema.extend({
       component: z.boolean().default(false),
-      badge: z.enum(["new", "updated", "beta", "deprecated"]).optional(),
+      badge: z
+        .enum(["new", "updated", "beta", "premium", "deprecated"])
+        .optional(),
       category: z.array(CategoryEnum).optional(),
       subcategory: z.array(SubCategoryEnum).optional(),
       author: z.string().optional(),
       date: z.string().optional(),
+      gumroad: z.string().url().optional(),
+      price: z.string().optional(),
       links: z
         .object({
           preview: z.string().url().optional(),
