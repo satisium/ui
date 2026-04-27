@@ -358,7 +358,7 @@ export function CodeBlock({
           />
 
           {expandable && !isExpanded && (
-            <div className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 flex h-32 flex-col items-center justify-end bg-gradient-to-t from-background to-transparent pb-4">
+            <div className="pointer-events-none absolute right-0 bottom-0 left-0 z-10 flex h-32 flex-col items-center justify-end bg-linear-to-t from-background to-transparent pb-4">
               <button
                 onClick={() => setIsExpanded(true)}
                 className="pointer-events-auto flex items-center gap-1.5 rounded-full bg-muted px-4 py-1.5 text-xs font-medium text-muted-foreground drop-shadow-2xl backdrop-blur-md transition-colors hover:bg-accent hover:text-foreground"

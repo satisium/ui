@@ -146,7 +146,7 @@ export function ComponentPreviewer({
         <div className="relative flex h-full w-full overflow-hidden rounded-3xl">
           <div className="pointer-events-auto absolute top-0 right-0 flex h-full w-full flex-col rounded-2xl rounded-l-3xl lg:w-[600px]">
             {isPaid || isMediaDemo ? (
-              <div className="flex h-full flex-col items-center justify-center bg-muted/20 px-8 text-center">
+              <div className="flex h-full flex-col items-center justify-center px-8 text-center">
                 <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-border/50 bg-background shadow-xl">
                   <Lock className="h-8 w-8 text-foreground" />
                 </div>
@@ -209,8 +209,8 @@ export function ComponentPreviewer({
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#414146_1.5px,transparent_1.5px)] bg-size-[24px_24px] opacity-50 dark:opacity-50" />
 
             {activeType === "video" && activeDemo.mediaUrl ? (
-              <div className="relative flex h-full w-full items-center justify-center p-4 sm:p-8 lg:p-12">
-                <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border/50 bg-background/50 shadow-2xl backdrop-blur-xl">
+              <div className="relative flex h-full w-full items-center justify-center">
+                <div className="relative h-full w-full overflow-hidden rounded-2xl bg-background">
                   <video
                     src={activeDemo.mediaUrl}
                     autoPlay
@@ -222,8 +222,8 @@ export function ComponentPreviewer({
                 </div>
               </div>
             ) : activeType === "image" && activeDemo.mediaUrl ? (
-              <div className="relative flex h-full w-full items-center justify-center p-4 sm:p-8 lg:p-12">
-                <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border/50 bg-background/50 shadow-2xl backdrop-blur-xl">
+              <div className="relative flex h-full w-full items-center justify-center">
+                <div className="relative h-full w-full overflow-hidden rounded-2xl bg-background">
                   <img
                     src={activeDemo.mediaUrl}
                     alt={activeDemo.name}
