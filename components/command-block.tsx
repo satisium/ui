@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
+// ✨ ANALYTICS IMPORT
+import { trackEvent } from "@/lib/analytics"
 import { PackageManager, usePackageManager } from "@/store"
 import {
   ArrowDown01Icon,
@@ -99,10 +101,18 @@ export function CommandBlock({
 
   const commandString = getCommand()
 
+  // ✨ WE MODIFIED THIS FUNCTION
   const handleCopy = () => {
     navigator.clipboard.writeText(commandString)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+
+    // ✨ ANALYTICS: Track CLI command copying
+    trackEvent("cli_command_copied", {
+      command: commandString,
+      manager: manager,
+      package: pkg || cli || "unknown",
+    })
   }
 
   const SelectedIcon = PM_CONFIG[manager].icon
@@ -247,19 +257,16 @@ export function CommandBlock({
         </div>
       </div>
 
-      {/* ✨ FIX: Redesigned container to allow fluid horizontal scrolling without breaking layout animations */}
       <div
         className={cn(
           "relative flex min-h-[48px] items-center overflow-x-auto rounded-2xl bg-background px-4 py-3",
           scrollbarClasses
         )}
       >
-        {/* The un-selectable dollar prompt */}
         <span className="mr-3 shrink-0 font-mono text-[13px] leading-6 text-muted-foreground/50 select-none">
           $
         </span>
 
-        {/* We use mode="wait" so absolute positioning isn't forced, allowing horizontal scroll width to compute correctly */}
         <AnimatePresence mode="wait">
           <motion.code
             key={commandString}

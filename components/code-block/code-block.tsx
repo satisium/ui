@@ -6,6 +6,8 @@ import React, { useEffect, useId, useMemo, useRef, useState } from "react"
 import { createHighlighter, Highlighter } from "shiki"
 
 import { cn } from "@/lib/utils"
+// ✨ ANALYTICS IMPORT
+import { trackEvent } from "@/lib/analytics"
 import {
   ArrowDown01Icon,
   ArrowRight01Icon,
@@ -169,12 +171,32 @@ export function CodeBlock({
     }
   }, [filesHash, fileKeys, resolvedTheme, mounted])
 
+  // ✨ WE MODIFIED THIS FUNCTION
   const handleCopy = () => {
     const data = files[activeFile]
     const codeString = typeof data === "string" ? data : data.code
     navigator.clipboard.writeText(codeString)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
+
+    // Determine language to pass to analytics
+    const activeExt = activeFile.split(".").pop() || ""
+    const activeFileObj = files[activeFile]
+    const activeLang =
+      typeof activeFileObj === "string"
+        ? activeExt
+        : activeFileObj.language || activeExt
+
+    // ✨ ANALYTICS: Track manual code copying
+    // Tracks private stats in PostHog, and publicly increments the "web_copy" counter in Redis
+    trackEvent(
+      "code_copied",
+      {
+        file: activeFile,
+        language: activeLang,
+      },
+      "web_copy"
+    )
   }
 
   if (!mounted) {

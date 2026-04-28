@@ -12,6 +12,8 @@ import {
 } from "@/components/previewer/component-preview"
 import { registry } from "@/registry/index"
 import { cn } from "@/lib/utils"
+// ✨ ANALYTICS IMPORT
+import { DocTracker } from "@/components/doc-tracker"
 
 export async function generateStaticParams() {
   return source.generateParams()
@@ -202,6 +204,15 @@ export default async function Page(props: {
 
   return (
     <>
+      {/* ✨ ANALYTICS: Invisible DocTracker Component */}
+      <DocTracker
+        title={page.data.title}
+        category={page.data.category?.[0]}
+        badge={page.data.badge}
+        isPaid={isPaid}
+        price={price}
+      />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}

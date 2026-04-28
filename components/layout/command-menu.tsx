@@ -40,6 +40,7 @@ import {
   TextAlignLeftIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { trackEvent } from "@/lib/analytics"
 
 type ApiSearchResult = {
   id: string
@@ -175,7 +176,16 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         const res = await fetch(
           `/api/search?query=${encodeURIComponent(query)}`
         )
-        if (res.ok) setApiResults(await res.json())
+        if (res.ok) {
+          const data = await res.json()
+          setApiResults(data)
+
+          // ✨ ANALYTICS: Track Zero-Result Searches (The Roadmap Generator)
+          // If they typed something, got 0 results, and stopped typing... they want this feature!
+          if (data.length === 0) {
+            trackEvent("search_zero_results", { query: query.toLowerCase() })
+          }
+        }
       } catch (error) {
         console.error("Search failed", error)
       } finally {
@@ -361,6 +371,10 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
     (id: string, url?: string, action?: () => void) => {
       saveRecent(id)
       setOpen(false)
+
+      // ✨ ANALYTICS: Track what component they actually selected from search
+      trackEvent("search_result_clicked", { targetId: id, url: url })
+
       if (action) {
         action()
         return

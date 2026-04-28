@@ -9,6 +9,9 @@ import {
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+import { CSPostHogProvider } from "@/components/analytics-provider"
+import { Suspense } from "react"
+import PostHogPageView from "@/components/posthog-pageview"
 
 const fontDisplay = Antonio({
   subsets: ["latin"],
@@ -98,7 +101,12 @@ export default function RootLayout({
       </head>
 
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <CSPostHogProvider>
+          <Suspense fallback={null}>
+            <PostHogPageView />
+          </Suspense>
+          <ThemeProvider>{children}</ThemeProvider>
+        </CSPostHogProvider>
       </body>
     </html>
   )
