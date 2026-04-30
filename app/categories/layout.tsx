@@ -93,9 +93,5 @@ export default function CategoryLayout({
 }>) {
   const categoryTree = generateCategoryTree()
 
-  return (
-    <SpatialLayout tree={categoryTree} docsTree={source.pageTree}>
-      {children}
-    </SpatialLayout>
-  )
+  return <SpatialLayout tree={categoryTree}>{children}</SpatialLayout>
 }

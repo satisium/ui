@@ -293,7 +293,7 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
                       onClick={() => setClickId(pt.url.substring(1))}
                       onMouseEnter={() => setHoveredIndex(pt.index)}
                       onMouseLeave={() => setHoveredIndex(null)}
-                      className="group relative flex h-8 w-full items-center rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background"
+                      className="group relative flex h-8 w-full items-center rounded-[12px] outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 focus-visible:ring-offset-background"
                       style={{ paddingLeft: pt.x + 16 }}
                     >
                       <span

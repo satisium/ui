@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils"
 import { CSPostHogProvider } from "@/components/analytics-provider"
 import { Suspense } from "react"
 import PostHogPageView from "@/components/posthog-pageview"
+import { CommandMenuDialog } from "@/components/layout/command-menu"
+import { source } from "@/lib/source"
 
 const fontDisplay = Antonio({
   subsets: ["latin"],
@@ -105,7 +107,10 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <PostHogPageView />
           </Suspense>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            {children}
+            <CommandMenuDialog docsTree={source.pageTree} />
+          </ThemeProvider>
         </CSPostHogProvider>
       </body>
     </html>

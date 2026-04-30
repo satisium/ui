@@ -32,7 +32,7 @@ export const SidebarFooter = () => {
               href="https://x.com/iamsatish4564"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex size-10 flex-shrink-0 items-center justify-center rounded-sm bg-background text-muted-foreground backdrop-blur-md transition-all hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+              className="group flex size-10 flex-shrink-0 items-center justify-center rounded-[12px] bg-background text-muted-foreground backdrop-blur-md transition-all hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
               aria-label="Connect with me on X"
             >
               <HugeiconsIcon
@@ -78,7 +78,7 @@ function ThemeSwitcher() {
   ]
 
   return (
-    <div className="flex h-10 w-full items-center gap-1 rounded-sm bg-background p-1.5">
+    <div className="flex h-10 w-full items-center gap-1 rounded-[12px] bg-background p-1.5">
       {options.map((opt) => {
         const isActive = theme === opt.value
         return (

@@ -87,11 +87,11 @@ export const SidebarTree = ({
           )}
           style={{ paddingLeft: `${BASE_PADDING + depth * DEPTH_OFFSET}px` }}
         >
-          <span className="relative flex w-fit items-center gap-2 rounded-md px-2 py-1.5">
+          <span className="relative flex w-full items-center gap-2 rounded-md px-2 py-1.5">
             {isActive && (
               <motion.div
                 layoutId={`${layoutIdPrefix}-active-file`}
-                className="absolute inset-0 -inset-x-2 z-0 ml-5 rounded-md bg-foreground drop-shadow-2xl"
+                className="absolute inset-0 -inset-x-2 z-0 ml-5 rounded-[8px] bg-foreground drop-shadow-2xl"
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
             )}

@@ -219,7 +219,7 @@ export function PreviewToolBox({
           variant={action.active ? "secondary" : "ghost"}
           size="icon"
           className={cn(
-            "h-9 w-full rounded-sm bg-muted transition-colors hover:bg-muted/50",
+            "h-9 w-full rounded-[12px] bg-muted transition-colors hover:bg-muted/50",
             action.active ? "bg-background shadow-sm hover:bg-background" : ""
           )}
           style={{ pointerEvents: isHidden ? "none" : "auto" }}
@@ -231,7 +231,7 @@ export function PreviewToolBox({
       <TooltipContent side={tooltipSide} className="flex items-center gap-2">
         <span>{action.label}</span>
         {action.hotkey && (
-          <kbd className="rounded-sm border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+          <kbd className="rounded-[12px] border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
             {action.hotkey}
           </kbd>
         )}
@@ -253,7 +253,7 @@ export function PreviewToolBox({
         <div className="flex flex-col gap-2 rounded-2xl border bg-background p-2">
           <motion.div
             layout
-            className="relative z-20 flex h-10 items-center justify-between gap-1 rounded-sm bg-muted p-1"
+            className="relative z-20 flex h-10 items-center justify-between gap-1 rounded-[12px] bg-muted p-1"
           >
             {[
               { id: "desktop", icon: LaptopIcon, hotkey: hotkeys.desktop },
@@ -269,7 +269,7 @@ export function PreviewToolBox({
                       variant="ghost"
                       size="icon"
                       className={cn(
-                        "relative h-8 flex-1 rounded-sm transition-colors hover:bg-transparent",
+                        "relative h-8 flex-1 rounded-[12px] transition-colors hover:bg-transparent",
                         isActive
                           ? "text-foreground"
                           : "text-muted-foreground hover:text-foreground"
@@ -279,7 +279,7 @@ export function PreviewToolBox({
                       {isActive && (
                         <motion.div
                           layoutId="activeViewport"
-                          className="absolute inset-0 rounded-sm bg-background shadow-sm"
+                          className="absolute inset-0 rounded-[12px] bg-background shadow-sm"
                           transition={{
                             type: "spring",
                             stiffness: 400,
@@ -313,7 +313,7 @@ export function PreviewToolBox({
               value={activeDemoIndex.toString()}
               onValueChange={(val) => setActiveDemoIndex(parseInt(val))}
             >
-              <SelectTrigger className="h-9 min-w-15 rounded-sm border-none bg-muted focus:ring-0">
+              <SelectTrigger className="h-9 min-w-15 rounded-[12px] border-none bg-muted focus:ring-0">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -329,7 +329,7 @@ export function PreviewToolBox({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-9 w-9 rounded-sm bg-muted transition-colors hover:bg-muted/50"
+                className="h-9 w-9 rounded-[12px] bg-muted transition-colors hover:bg-muted/50"
                 onClick={() => setIsExpanded(!isExpanded)}
               >
                 <motion.div

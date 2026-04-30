@@ -8,8 +8,8 @@ import { useEffect, useRef, useState } from "react"
 
 import { FavouriteIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { CommandMenu } from "./command-menu"
 import { SidebarFooter } from "./sidebar-footer"
+import { CommandMenuTrigger } from "./command-menu"
 
 /**
  * Extended Fumadocs PageTree Item to support custom metadata like badges.
@@ -21,13 +21,7 @@ type CustomPageNode = PageTree.Item & { badge?: string }
  * Renders the main sidebar layout, including a scrollable navigation tree with
  * dynamic progressive blur overlays and a fixed footer.
  */
-export function SidebarContent({
-  tree,
-  docsTree,
-}: {
-  tree: PageTree.Root
-  docsTree: PageTree.Root
-}) {
+export function SidebarContent({ tree }: { tree: PageTree.Root }) {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   // Primitives used for scroll state to avoid React re-renders on every scroll tick.
@@ -143,7 +137,7 @@ export function SidebarContent({
       {/* Fixed Footer: Theme Switcher, Social & Signature */}
       <div className="flex flex-col gap-2 rounded-3xl border bg-background p-2 drop-shadow-2xl">
         <div className="flex w-full flex-col items-center gap-2 rounded-2xl border bg-muted p-2">
-          <CommandMenu docsTree={docsTree} />
+          <CommandMenuTrigger />
           <SidebarFooter />
         </div>
         <div className="mt-2 flex items-center justify-center gap-1.5 text-[11px] font-medium tracking-wide text-muted-foreground">
@@ -198,14 +192,14 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
         {isActive && (
           <motion.div
             layoutId="sidebar-active-indicator"
-            className="absolute -inset-1 rounded-sm bg-foreground drop-shadow-2xl dark:-inset-0.5"
+            className="absolute -inset-1 rounded-[8px] bg-foreground drop-shadow-2xl dark:-inset-0.5"
             transition={{ type: "spring", stiffness: 350, damping: 30 }}
           />
         )}
 
         {/* Hover Background Indicator */}
         {!isActive && (
-          <div className="absolute -inset-0.5 -z-10 rounded-md transition-colors group-hover:bg-background" />
+          <div className="absolute -inset-0.5 -z-10 rounded-[8px] transition-colors group-hover:bg-background" />
         )}
 
         {/* Content */}
@@ -266,7 +260,7 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
             {isIndexActive && (
               <motion.div
                 layoutId="sidebar-active-indicator"
-                className="absolute inset-0 rounded-sm bg-foreground drop-shadow-2xl"
+                className="absolute inset-0 rounded-[12px] bg-foreground drop-shadow-2xl"
                 transition={{ type: "spring", stiffness: 350, damping: 30 }}
               />
             )}

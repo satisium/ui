@@ -1,7 +1,8 @@
-// components/layout/command-menu.tsx
 "use client"
 
-import { TAXONOMY } from "@/lib/utils"
+import { TAXONOMY, cn } from "@/lib/utils" // Ensure you import cn
+import { trackEvent } from "@/lib/analytics"
+import { useCommandStore } from "@/store/use-command-store"
 import type * as PageTree from "fumadocs-core/page-tree"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
@@ -40,8 +41,8 @@ import {
   TextAlignLeftIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { trackEvent } from "@/lib/analytics"
 
+// ... (Keep all your existing type definitions and getContextualIcon here)
 type ApiSearchResult = {
   id: string
   title?: string
@@ -102,10 +103,71 @@ function getContextualIcon(name: string) {
   )
 }
 
-export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
+export interface CommandMenuTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: "default" | "icon"
+}
+
+/**
+ * 🌟 THE UNIVERSAL TRIGGER BUTTON
+ * A beautifully engineered, forward-ref button you can place absolutely anywhere.
+ */
+export const CommandMenuTrigger = React.forwardRef<
+  HTMLButtonElement,
+  CommandMenuTriggerProps
+>(({ className, variant = "default", onClick, ...props }, ref) => {
+  const { setIsOpen } = useCommandStore()
+
+  // Safely merge our click handler with any external onClick (like from TooltipTrigger)
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setIsOpen(true)
+    onClick?.(e) // Let Radix UI do its thing too!
+  }
+
+  if (variant === "icon") {
+    return (
+      <button
+        ref={ref}
+        aria-label="Open command menu"
+        className={cn(
+          "flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-background text-muted-foreground transition-all duration-300 hover:scale-105 hover:bg-muted/80 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none active:scale-95",
+          className
+        )}
+        onClick={handleClick}
+        {...props}
+      >
+        <HugeiconsIcon icon={Search01Icon} className="size-5" />
+      </button>
+    )
+  }
+
+  return (
+    <button
+      ref={ref}
+      className={cn(
+        "group flex w-full items-center gap-2 rounded-[12px] bg-background px-3 py-3 text-sm font-medium text-muted-foreground transition-all duration-300 hover:border-border hover:bg-background/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none",
+        className
+      )}
+      onClick={handleClick}
+      {...props}
+    >
+      <HugeiconsIcon icon={Search01Icon} className="size-4 shrink-0" />
+      <span className="flex-1 truncate text-left">Search Anything...</span>
+      <kbd className="pointer-events-none inline-flex h-5 shrink-0 items-center gap-1 rounded border border-border/50 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+        <span className="text-xs">⌘</span>K
+      </kbd>
+    </button>
+  )
+})
+CommandMenuTrigger.displayName = "CommandMenuTrigger"
+/**
+ * 🌟 THE GLOBAL DIALOG
+ * Mount this once in your app/layout.tsx. It silently listens for Cmd+K.
+ */
+export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
   const router = useRouter()
   const { setTheme } = useTheme()
-  const [open, setOpen] = React.useState(false)
+  const { isOpen, setIsOpen } = useCommandStore() // Centralized state
+
   const [query, setQuery] = React.useState("")
   const [apiResults, setApiResults] = React.useState<ApiSearchResult[]>([])
   const [isLoading, setIsLoading] = React.useState(false)
@@ -129,6 +191,7 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
     })
   }, [])
 
+  // 🌍 Global Keyboard Listener
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
@@ -139,12 +202,12 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         )
           return
         e.preventDefault()
-        setOpen((open) => !open)
+        setIsOpen(true) // Open from anywhere!
       }
     }
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
-  }, [])
+  }, [setIsOpen])
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -154,7 +217,7 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
     const handleKeyUp = (e: KeyboardEvent) => {
       if (!e.metaKey && !e.ctrlKey && !e.shiftKey) setModifier("none")
     }
-    if (open) {
+    if (isOpen) {
       document.addEventListener("keydown", handleKeyDown)
       document.addEventListener("keyup", handleKeyUp)
     }
@@ -163,7 +226,7 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
       document.removeEventListener("keyup", handleKeyUp)
       setModifier("none")
     }
-  }, [open])
+  }, [isOpen])
 
   React.useEffect(() => {
     if (!query) {
@@ -180,8 +243,6 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
           const data = await res.json()
           setApiResults(data)
 
-          // ✨ ANALYTICS: Track Zero-Result Searches (The Roadmap Generator)
-          // If they typed something, got 0 results, and stopped typing... they want this feature!
           if (data.length === 0) {
             trackEvent("search_zero_results", { query: query.toLowerCase() })
           }
@@ -195,6 +256,7 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
     return () => clearTimeout(timer)
   }, [query])
 
+  // ... (Keep the entire staticItems useMemo exact same as your code)
   const staticItems = React.useMemo<StaticItem[]>(() => {
     const items: StaticItem[] = []
 
@@ -205,9 +267,7 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
         path: string[]
       ) {
         if (node.type === "page") {
-          // EXPLICIT CAST: Tell TypeScript this is 100% a Page item now
           const pageNode = node as PageTree.Item
-
           const safeNameStr =
             typeof pageNode.name === "string"
               ? pageNode.name
@@ -229,18 +289,14 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
             aliases: [currentGroup.toLowerCase()],
           })
         } else if (node.type === "folder") {
-          // EXPLICIT CAST: Tell TypeScript this is 100% a Folder item now
           const folderNode = node as PageTree.Folder
-
           const safeNameStr =
             typeof folderNode.name === "string" ? folderNode.name : "Folder"
           const groupNameStr = safeNameStr
           const newPath = [...path, groupNameStr]
 
           if (folderNode.index) {
-            // Fumadocs stores the folder index as a PageTree.Item
             const indexNode = folderNode.index as PageTree.Item
-
             items.push({
               id: indexNode.url,
               title: folderNode.name ? `${safeNameStr} Overview` : "Overview",
@@ -260,7 +316,6 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
               aliases: ["index", "overview"],
             })
           }
-
           folderNode.children.forEach((child) =>
             traverseTree(child, groupNameStr, newPath)
           )
@@ -370,9 +425,8 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
   const handleSelect = React.useCallback(
     (id: string, url?: string, action?: () => void) => {
       saveRecent(id)
-      setOpen(false)
+      setIsOpen(false)
 
-      // ✨ ANALYTICS: Track what component they actually selected from search
       trackEvent("search_result_clicked", { targetId: id, url: url })
 
       if (action) {
@@ -387,7 +441,7 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
       }
       setQuery("")
     },
-    [modifier, router, saveRecent]
+    [modifier, router, saveRecent, setIsOpen]
   )
 
   const activeItemDetails = React.useMemo(() => {
@@ -435,237 +489,223 @@ export function CommandMenu({ docsTree }: { docsTree?: PageTree.Root }) {
     .filter((item): item is StaticItem => item !== undefined)
 
   return (
-    <>
-      <button
-        onClick={() => setOpen(true)}
-        className="group flex w-full items-center gap-2 rounded-sm bg-background px-3 py-3 text-sm font-medium text-muted-foreground transition-all duration-300 hover:border-border hover:bg-background/60 hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-      >
-        <HugeiconsIcon icon={Search01Icon} className="size-4" />
-        <span className="flex-1 text-left">Search Anything...</span>
-        <kbd className="pointer-events-none inline-flex h-5 items-center gap-1 rounded border border-border/50 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-          <span className="text-xs">⌘</span>K
-        </kbd>
-      </button>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="overflow-hidden rounded-3xl bg-muted p-1 sm:max-w-[640px]">
-          <DialogTitle className="sr-only">Command Menu</DialogTitle>
-          <Command
-            className="flex h-full w-full flex-col gap-2 bg-muted"
-            onValueChange={setActiveValue}
-            filter={(value, search) => {
-              const item = staticItems.find((i) => i.id === value)
-              if (!item) return 1
-              const searchLower = search.toLowerCase()
-              if (item.searchString.toLowerCase().includes(searchLower))
-                return 1
-              if (
-                item.aliases?.some((a) => a.toLowerCase().includes(searchLower))
-              )
-                return 1
-              return 0
-            }}
-          >
-            <CommandInput
-              placeholder="Search components, categories, or actions..."
-              value={query}
-              onValueChange={setQuery}
-              className="rounded-2xl border-none text-base focus:ring-0"
-            />
-            <div className="rounded-2xl bg-background p-2">
-              <CommandList className="max-h-[55vh] scroll-py-2">
-                <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
-                  {isLoading ? (
-                    <div className="flex flex-col items-center justify-center gap-2">
-                      <HugeiconsIcon
-                        icon={Loading03Icon}
-                        className="size-5 animate-spin text-primary"
-                      />
-                      <span>Searching knowledge base...</span>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center gap-2">
-                      <HugeiconsIcon
-                        icon={Search01Icon}
-                        className="size-6 text-muted-foreground/50"
-                      />
-                      <span>No results found.</span>
-                    </div>
-                  )}
-                </CommandEmpty>
-
-                {!query && recentStaticItems.length > 0 && (
-                  <CommandGroup heading="Recently Visited">
-                    {recentStaticItems.map((item) => (
-                      <CommandItem
-                        key={`recent-${item.id}`}
-                        value={item.id}
-                        onSelect={() =>
-                          handleSelect(item.id, item.url, item.action)
-                        }
-                        className="flex w-full items-center px-4 py-2.5 aria-selected:bg-secondary/40 aria-selected:text-primary"
-                      >
-                        <HugeiconsIcon
-                          icon={Clock02Icon}
-                          className="mr-3 size-4 text-muted-foreground"
-                        />
-                        <div className="flex flex-col items-start gap-0.5">
-                          <span className="flex items-center gap-2 font-medium">
-                            {item.title}
-                          </span>
-                          {item.subtitle && (
-                            <span className="font-mono text-[10px] text-muted-foreground">
-                              {item.subtitle}
-                            </span>
-                          )}
-                        </div>
-                      </CommandItem>
-                    ))}
-                    <CommandSeparator className="my-2" />
-                  </CommandGroup>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="overflow-hidden rounded-3xl bg-muted p-1 sm:max-w-[640px]">
+        <DialogTitle className="sr-only">Command Menu</DialogTitle>
+        <Command
+          className="flex h-full w-full flex-col gap-2 bg-muted"
+          onValueChange={setActiveValue}
+          filter={(value, search) => {
+            const item = staticItems.find((i) => i.id === value)
+            if (!item) return 1
+            const searchLower = search.toLowerCase()
+            if (item.searchString.toLowerCase().includes(searchLower)) return 1
+            if (
+              item.aliases?.some((a) => a.toLowerCase().includes(searchLower))
+            )
+              return 1
+            return 0
+          }}
+        >
+          <CommandInput
+            placeholder="Search components, categories, or actions..."
+            value={query}
+            onValueChange={setQuery}
+            className="rounded-2xl border-none text-base focus:ring-0"
+          />
+          <div className="rounded-2xl bg-background p-2">
+            <CommandList className="max-h-[55vh] scroll-py-2">
+              <CommandEmpty className="py-12 text-center text-sm text-muted-foreground">
+                {isLoading ? (
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <HugeiconsIcon
+                      icon={Loading03Icon}
+                      className="size-5 animate-spin text-primary"
+                    />
+                    <span>Searching knowledge base...</span>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center gap-2">
+                    <HugeiconsIcon
+                      icon={Search01Icon}
+                      className="size-6 text-muted-foreground/50"
+                    />
+                    <span>No results found.</span>
+                  </div>
                 )}
+              </CommandEmpty>
 
-                {/* THE FLAWLESS API RESULT RENDERING ENGINE */}
-                {apiResults.length > 0 && (
-                  <CommandGroup heading="Deep Search Results (Content)">
-                    {apiResults.map((result) => {
-                      // 1. Find the parent page to supply the missing title
-                      const baseUrl = result.url.split("#")[0]
-                      const parentPage = staticItems.find(
-                        (item) => item.url === baseUrl
-                      )
-
-                      let displayTitle = result.title || ""
-                      let displayContent = result.description || ""
-
-                      if (!displayTitle) {
-                        if (result.type === "page") {
-                          displayTitle = result.content
-                        } else if (result.type === "heading") {
-                          displayTitle = result.content
-                          displayContent = parentPage
-                            ? `In ${parentPage.searchString}`
-                            : ""
-                        } else {
-                          displayTitle = parentPage
-                            ? parentPage.searchString
-                            : "Snippet"
-                          displayContent = result.content
-                        }
-                      } else if (
-                        result.type === "text" ||
-                        result.type === "heading"
-                      ) {
-                        displayContent = result.content
+              {!query && recentStaticItems.length > 0 && (
+                <CommandGroup heading="Recently Visited">
+                  {recentStaticItems.map((item) => (
+                    <CommandItem
+                      key={`recent-${item.id}`}
+                      value={item.id}
+                      onSelect={() =>
+                        handleSelect(item.id, item.url, item.action)
                       }
-
-                      // 2. Unescape `<mark>` tags so they render correctly, while keeping everything else safe
-                      const safeTitle = displayTitle
-                        .replace(/&lt;mark&gt;/gi, "<mark>")
-                        .replace(/&lt;\/mark&gt;/gi, "</mark>")
-
-                      const safeContent = displayContent
-                        .replace(/&lt;mark&gt;/gi, "<mark>")
-                        .replace(/&lt;\/mark&gt;/gi, "</mark>")
-
-                      return (
-                        <CommandItem
-                          key={result.id}
-                          value={result.id}
-                          onSelect={() => handleSelect(result.id, result.url)}
-                          className="flex flex-col items-start gap-1 px-4 py-3 aria-selected:bg-secondary/40 aria-selected:text-primary"
-                        >
-                          <div className="flex w-full items-center">
-                            {getApiIcon(result.type)}
-                            <span
-                              // Removed bg-transparent and fixed spacing.
-                              // Marks will now beautifully glow with --primary color.
-                              className="[&_mark]:rounded-sm[&_mark]:bg-primary/20 font-heading text-sm font-medium [&_mark]:px-1 [&_mark]:text-primary"
-                              dangerouslySetInnerHTML={{ __html: safeTitle }}
-                            />
-                          </div>
-                          {safeContent && (
-                            <span
-                              className="text-muted-foreground[&_mark]:rounded-sm [&_mark]:px-1[&_mark]:font-semibold ml-7 line-clamp-1 font-body text-xs [&_mark]:bg-primary/20 [&_mark]:text-primary"
-                              dangerouslySetInnerHTML={{ __html: safeContent }}
-                            />
-                          )}
-                        </CommandItem>
-                      )
-                    })}
-                  </CommandGroup>
-                )}
-
-                {Object.entries(groupedStaticItems).map(([group, items]) => (
-                  <CommandGroup key={group} heading={group}>
-                    {items.map((item) => (
-                      <CommandItem
-                        key={item.id}
-                        value={item.id}
-                        keywords={item.aliases}
-                        onSelect={() =>
-                          handleSelect(item.id, item.url, item.action)
-                        }
-                        className="flex w-full items-center px-4 py-2.5 aria-selected:bg-secondary/40 aria-selected:text-primary"
-                      >
-                        {item.icon}
-                        <div className="flex min-w-0 flex-col items-start gap-0.5">
-                          <span className="flex items-center gap-2 truncate font-medium">
-                            {item.title}
-                          </span>
-                          {item.subtitle && (
-                            <span className="truncate font-mono text-[10px] text-muted-foreground">
-                              {item.subtitle}
-                            </span>
-                          )}
-                        </div>
-                        {item.shortcut && (
-                          <span className="ml-auto font-mono text-[10px] tracking-widest text-muted-foreground">
-                            {item.shortcut}
+                      className="flex w-full items-center px-4 py-2.5 aria-selected:bg-secondary/40 aria-selected:text-primary"
+                    >
+                      <HugeiconsIcon
+                        icon={Clock02Icon}
+                        className="mr-3 size-4 text-muted-foreground"
+                      />
+                      <div className="flex flex-col items-start gap-0.5">
+                        <span className="flex items-center gap-2 font-medium">
+                          {item.title}
+                        </span>
+                        {item.subtitle && (
+                          <span className="font-mono text-[10px] text-muted-foreground">
+                            {item.subtitle}
                           </span>
                         )}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                ))}
-              </CommandList>
-            </div>
+                      </div>
+                    </CommandItem>
+                  ))}
+                  <CommandSeparator className="my-2" />
+                </CommandGroup>
+              )}
 
-            <div className="flex items-center justify-between rounded-2xl bg-muted px-4 py-3 text-xs text-muted-foreground backdrop-blur-xl">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  {modifier === "meta" ? (
-                    <HugeiconsIcon
-                      icon={CommandIcon}
-                      className="size-3.5 text-primary"
-                    />
-                  ) : modifier === "shift" ? (
-                    <HugeiconsIcon
-                      icon={ArrowRight01Icon}
-                      className="size-3.5 -rotate-90 text-primary"
-                    />
-                  ) : (
-                    <HugeiconsIcon
-                      icon={ArrowMoveDownLeftIcon}
-                      className="size-3.5 text-foreground"
-                    />
-                  )}
-                </div>
-                <span className="font-medium text-foreground">
-                  {modifier === "meta"
-                    ? "Open in New Tab"
-                    : modifier === "shift"
-                      ? "Copy Target URL"
-                      : "Select"}
-                </span>
+              {/* THE FLAWLESS API RESULT RENDERING ENGINE */}
+              {apiResults.length > 0 && (
+                <CommandGroup heading="Deep Search Results (Content)">
+                  {apiResults.map((result) => {
+                    // 1. Find the parent page to supply the missing title
+                    const baseUrl = result.url.split("#")[0]
+                    const parentPage = staticItems.find(
+                      (item) => item.url === baseUrl
+                    )
+
+                    let displayTitle = result.title || ""
+                    let displayContent = result.description || ""
+
+                    if (!displayTitle) {
+                      if (result.type === "page") {
+                        displayTitle = result.content
+                      } else if (result.type === "heading") {
+                        displayTitle = result.content
+                        displayContent = parentPage
+                          ? `In ${parentPage.searchString}`
+                          : ""
+                      } else {
+                        displayTitle = parentPage
+                          ? parentPage.searchString
+                          : "Snippet"
+                        displayContent = result.content
+                      }
+                    } else if (
+                      result.type === "text" ||
+                      result.type === "heading"
+                    ) {
+                      displayContent = result.content
+                    }
+
+                    // 2. Unescape `<mark>` tags so they render correctly, while keeping everything else safe
+                    const safeTitle = displayTitle
+                      .replace(/&lt;mark&gt;/gi, "<mark>")
+                      .replace(/&lt;\/mark&gt;/gi, "</mark>")
+
+                    const safeContent = displayContent
+                      .replace(/&lt;mark&gt;/gi, "<mark>")
+                      .replace(/&lt;\/mark&gt;/gi, "</mark>")
+
+                    return (
+                      <CommandItem
+                        key={result.id}
+                        value={result.id}
+                        onSelect={() => handleSelect(result.id, result.url)}
+                        className="flex flex-col items-start gap-1 px-4 py-3 aria-selected:bg-secondary/40 aria-selected:text-primary"
+                      >
+                        <div className="flex w-full items-center">
+                          {getApiIcon(result.type)}
+                          <span
+                            // Removed bg-transparent and fixed spacing.
+                            // Marks will now beautifully glow with --primary color.
+                            className="[&_mark]:rounded-[12px][&_mark]:bg-primary/20 font-heading text-sm font-medium [&_mark]:px-1 [&_mark]:text-primary"
+                            dangerouslySetInnerHTML={{ __html: safeTitle }}
+                          />
+                        </div>
+                        {safeContent && (
+                          <span
+                            className="text-muted-foreground[&_mark]:rounded-[12px] [&_mark]:px-1[&_mark]:font-semibold ml-7 line-clamp-1 font-body text-xs [&_mark]:bg-primary/20 [&_mark]:text-primary"
+                            dangerouslySetInnerHTML={{ __html: safeContent }}
+                          />
+                        )}
+                      </CommandItem>
+                    )
+                  })}
+                </CommandGroup>
+              )}
+
+              {Object.entries(groupedStaticItems).map(([group, items]) => (
+                <CommandGroup key={group} heading={group}>
+                  {items.map((item) => (
+                    <CommandItem
+                      key={item.id}
+                      value={item.id}
+                      keywords={item.aliases}
+                      onSelect={() =>
+                        handleSelect(item.id, item.url, item.action)
+                      }
+                      className="flex w-full items-center px-4 py-2.5 aria-selected:bg-secondary/40 aria-selected:text-primary"
+                    >
+                      {item.icon}
+                      <div className="flex min-w-0 flex-col items-start gap-0.5">
+                        <span className="flex items-center gap-2 truncate font-medium">
+                          {item.title}
+                        </span>
+                        {item.subtitle && (
+                          <span className="truncate font-mono text-[10px] text-muted-foreground">
+                            {item.subtitle}
+                          </span>
+                        )}
+                      </div>
+                      {item.shortcut && (
+                        <span className="ml-auto font-mono text-[10px] tracking-widest text-muted-foreground">
+                          {item.shortcut}
+                        </span>
+                      )}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              ))}
+            </CommandList>
+          </div>
+
+          <div className="flex items-center justify-between rounded-2xl bg-muted px-4 py-3 text-xs text-muted-foreground backdrop-blur-xl">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5">
+                {modifier === "meta" ? (
+                  <HugeiconsIcon
+                    icon={CommandIcon}
+                    className="size-3.5 text-primary"
+                  />
+                ) : modifier === "shift" ? (
+                  <HugeiconsIcon
+                    icon={ArrowRight01Icon}
+                    className="size-3.5 -rotate-90 text-primary"
+                  />
+                ) : (
+                  <HugeiconsIcon
+                    icon={ArrowMoveDownLeftIcon}
+                    className="size-3.5 text-foreground"
+                  />
+                )}
               </div>
-              <span className="max-w-[50%] truncate font-mono text-[10px] tracking-wider text-muted-foreground/70">
-                {activeItemDetails.label}
+              <span className="font-medium text-foreground">
+                {modifier === "meta"
+                  ? "Open in New Tab"
+                  : modifier === "shift"
+                    ? "Copy Target URL"
+                    : "Select"}
               </span>
             </div>
-          </Command>
-        </DialogContent>
-      </Dialog>
-    </>
+            <span className="max-w-[50%] truncate font-mono text-[10px] tracking-wider text-muted-foreground/70">
+              {activeItemDetails.label}
+            </span>
+          </div>
+        </Command>
+      </DialogContent>
+    </Dialog>
   )
 }
