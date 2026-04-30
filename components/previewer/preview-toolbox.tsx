@@ -28,7 +28,9 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
+
 import { ViewportMode } from "./resizable-playground"
+import { DemoData } from "./component-preview"
 
 export type AnchorPosition =
   | "top-left"
@@ -37,11 +39,6 @@ export type AnchorPosition =
   | "bottom-left"
   | "bottom-center"
   | "bottom-right"
-
-interface DemoData {
-  key: string
-  name: string
-}
 
 interface ToolbarProps {
   demos: DemoData[]
@@ -87,7 +84,7 @@ const originClasses: Record<AnchorPosition, string> = {
   "bottom-right": "bottom right",
 }
 
-export function PreviewToolbar({
+export function PreviewToolBox({
   demos,
   activeDemoIndex,
   setActiveDemoIndex,

@@ -4,12 +4,16 @@ import { motion } from "motion/react"
 import React, { useEffect, useRef, useState } from "react"
 
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { ComputerTerminal01Icon, LockPasswordIcon, Share04Icon } from "@hugeicons/core-free-icons"
+import {
+  ComputerTerminal01Icon,
+  LockPasswordIcon,
+  Share04Icon,
+} from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { CodeBlock } from "../code-block/code-block"
 import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
-import { PreviewToolbar } from "./preview-toolbar"
+import { PreviewToolBox } from "./preview-toolbox"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
 
 export interface DemoData {
@@ -33,16 +37,29 @@ interface PreviewerProps {
   gumroadUrl?: string
 }
 
+/**
+ * Custom hook to safely sync state with localStorage.
+ * Improved to handle Next.js dynamic routing by resetting to initialValue
+ * if a new key is mounted but has no stored data.
+ */
 function usePersistentState<T>(key: string, initialValue: T) {
   const [state, setState] = useState<T>(initialValue)
 
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem(key)
-      if (stored) setState(JSON.parse(stored))
+      if (stored) {
+        setState(JSON.parse(stored))
+      } else {
+        // Reset state to initial value if the storage key changes
+        // and no data exists for the new key.
+        setState(initialValue)
+      }
     } catch (e) {
       console.error("Failed to read from localStorage", e)
+      setState(initialValue)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key])
 
   const setValue = (value: T | ((val: T) => T)) => {
@@ -76,6 +93,7 @@ export function useMediaQuery(query: string) {
 }
 
 export function ComponentPreviewer({
+  title,
   demos,
   githubUrl,
   previewUrl,
@@ -85,18 +103,22 @@ export function ComponentPreviewer({
 }: PreviewerProps) {
   const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-
   const isDesktop = useMediaQuery("(min-width: 1024px)")
 
+  // Create a safe, URL-friendly key to uniquely isolate this component's local storage
+  const componentKey =
+    title?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "default"
+
+  // Use unique key so Demo 3 on "Tabs" doesn't force Demo 3 on "Fluid Switch"
   const [activeDemoIndex, setActiveDemoIndex] = usePersistentState<number>(
-    "satis-active-demo",
+    `satis-active-demo-${componentKey}`,
     0
   )
+
   const [isCodeOpen, setIsCodeOpen] = usePersistentState<boolean>(
     "satis-code-open",
     false
   )
-
   const [previewWidth, setPreviewWidth] = usePersistentState<number | string>(
     "satis-preview-width",
     "100%"
@@ -109,7 +131,11 @@ export function ComponentPreviewer({
 
   useEffect(() => setMounted(true), [])
 
-  const activeDemo = demos[activeDemoIndex] || demos[0]
+  // Guard against stale indices out-of-bounds bounds
+  const safeActiveDemoIndex =
+    activeDemoIndex >= 0 && activeDemoIndex < demos.length ? activeDemoIndex : 0
+
+  const activeDemo = demos[safeActiveDemoIndex] || demos[0]
 
   const handleViewportChange = (mode: ViewportMode) => {
     setViewportMode(mode)
@@ -130,6 +156,7 @@ export function ComponentPreviewer({
     }
   }
 
+  // Prevent SSR hydration mismatches
   if (!mounted)
     return <div className="h-screen w-screen animate-pulse bg-muted" />
 
@@ -244,7 +271,7 @@ export function ComponentPreviewer({
             ) : (
               <ResizablePlayground
                 demos={demos}
-                activeDemoIndex={activeDemoIndex}
+                activeDemoIndex={safeActiveDemoIndex}
                 previewWidth={previewWidth}
                 setPreviewWidth={setPreviewWidth}
                 setViewportMode={setViewportMode}
@@ -253,9 +280,9 @@ export function ComponentPreviewer({
             )}
           </motion.div>
 
-          <PreviewToolbar
+          <PreviewToolBox
             demos={demos}
-            activeDemoIndex={activeDemoIndex}
+            activeDemoIndex={safeActiveDemoIndex}
             setActiveDemoIndex={setActiveDemoIndex}
             isCodeOpen={isCodeOpen}
             setIsCodeOpen={setIsCodeOpen}
