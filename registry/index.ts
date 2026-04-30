@@ -15,7 +15,7 @@ export const registry: Record<string, RegistryItem> = {
   "fluid-switch-demo": {
     name: "Demo 1",
     type: "react",
-    previewUrl: "https://preview.satisui.xyz/fluid-switch/demo-1", // Unique URL 1
+    previewUrl: "/preview/fluid-switch-demo", // Unique URL 1
 
     component: dynamic(() =>
       import("@/registry/demos/fluid-switch-demo").then(
@@ -39,7 +39,7 @@ export const registry: Record<string, RegistryItem> = {
   "fluid-switch-labeled": {
     name: "Demo 2",
     type: "react",
-    previewUrl: "https://preview.satisui.xyz/fluid-switch/demo-2", // Unique URL 1
+    previewUrl: "/preview/fluid-switch-labeled", // Unique URL 1
 
     component: dynamic(() =>
       import("@/registry/demos/fluid-switch-labeled").then(
