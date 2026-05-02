@@ -148,14 +148,19 @@ export function ComponentPreviewer({
 
   const handleScrollToSource = () => {
     if (sourceCodeId) {
-      const el = document.getElementById(sourceCodeId)
+      // 1. Remove '#' in case the prop was passed as "#my-id" instead of "my-id"
+      const cleanId = sourceCodeId.replace(/^#/, "")
+      const el = document.getElementById(cleanId)
+
       if (el) {
-        const y = el.getBoundingClientRect().top + window.scrollY - 100
-        window.scrollTo({ top: y, behavior: "smooth" })
+        // 2. Update the URL hash without triggering a sudden, jarring jump
+        window.history.pushState(null, "", `#${cleanId}`)
+
+        // 3. Smoothly scroll to the element, regardless of which parent div is the scroll container
+        el.scrollIntoView({ behavior: "smooth", block: "start" })
       }
     }
   }
-
   // Prevent SSR hydration mismatches
   if (!mounted)
     return <div className="h-screen w-screen animate-pulse bg-muted" />

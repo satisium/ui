@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils"
 import {
   ArrowDown01Icon,
-  File02Icon,
+  DocumentCodeIcon,
   GithubIcon,
   LaptopIcon,
   Refresh03Icon,
@@ -29,8 +29,8 @@ import { motion } from "motion/react"
 import { useCallback, useEffect, useState } from "react"
 import { Button } from "../ui/button"
 
-import { ViewportMode } from "./resizable-playground"
 import { DemoData } from "./component-preview"
+import { ViewportMode } from "./resizable-playground"
 
 export type AnchorPosition =
   | "top-left"
@@ -99,7 +99,7 @@ export function PreviewToolBox({
   hasSourceCodeId,
   anchor = "bottom-left",
   gridCols = 2,
-  collapsedRows = 1,
+  collapsedRows = 2,
   hotkeys = {
     desktop: "1",
     tablet: "2",
@@ -165,15 +165,6 @@ export function PreviewToolBox({
       active: isCodeOpen,
     },
     {
-      id: "scroll",
-      icon: <HugeiconsIcon icon={File02Icon} className="size-3.5" />,
-      label: "Scroll to Source",
-      hotkey: hotkeys.scroll?.toUpperCase(),
-      onClick: onScrollToSource,
-      show: hasSourceCodeId,
-      active: false,
-    },
-    {
       id: "github",
       icon: <HugeiconsIcon icon={GithubIcon} className="size-3.5" />,
       label: "View GitHub",
@@ -187,6 +178,15 @@ export function PreviewToolBox({
       label: "Open Isolated",
       onClick: () => window.open(previewUrl, "_blank", "noopener,noreferrer"),
       show: !!previewUrl,
+      active: false,
+    },
+    {
+      id: "scroll",
+      icon: <HugeiconsIcon icon={DocumentCodeIcon} className="size-3.5" />,
+      label: "Scroll to Source",
+      hotkey: hotkeys.scroll?.toUpperCase(),
+      onClick: onScrollToSource,
+      show: hasSourceCodeId,
       active: false,
     },
   ].filter((a) => a.show)

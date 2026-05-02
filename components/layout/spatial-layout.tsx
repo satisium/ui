@@ -27,7 +27,6 @@ export function SpatialLayout({
         return
       }
 
-      // Fixed: Ensure Cmd/Ctrl modifier isn't pressed to avoid hijacking browser shortcuts
       if (event.key.toLowerCase() === "m" && !event.metaKey && !event.ctrlKey) {
         event.preventDefault()
         toggleSidebar()
@@ -40,12 +39,6 @@ export function SpatialLayout({
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-muted">
-      {/* 
-        Fixed Layout Bounds:
-        Changed `justify-center` to standard top-alignment within an explicitly 
-        constrained padding box. This ensures the sidebar content correctly computes 
-        its 100% height and allows its internal elements to manage scrollability.
-      */}
       <div className="absolute inset-y-0 left-0 z-0 flex w-[320px] flex-col px-6 py-8">
         <SidebarContent tree={tree} />
       </div>
@@ -66,7 +59,6 @@ export function SpatialLayout({
       >
         <button
           onClick={toggleSidebar}
-          // Added correct focus ring behavior for spatial contrast bounds
           className="absolute top-20 left-0 z-50 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground text-background shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:w-14 hover:bg-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none dark:hover:text-foreground"
           aria-label="Toggle Sidebar"
           title="Toggle Sidebar (M)"
@@ -76,8 +68,25 @@ export function SpatialLayout({
           </span>
         </button>
 
-        <div className="relative no-scrollbar h-full w-full overflow-y-auto scroll-smooth">
-          {children}
+        {/* 🌟 IMPROVEMENT: Event Capture + Preserved Scrolling */}
+        <div
+          className={`relative no-scrollbar h-full w-full overflow-y-auto scroll-smooth ${
+            isOpen ? "cursor-pointer" : ""
+          }`}
+          onClickCapture={(e) => {
+            // Safely intercept clicks and prevent children from triggering
+            if (isOpen) {
+              e.preventDefault()
+              e.stopPropagation()
+              toggleSidebar()
+            }
+          }}
+        >
+          {/* Inner wrapper dynamically disables interaction with page elements when open
+              so users don't see false hover states on internal links. */}
+          <div className={isOpen ? "pointer-events-none select-none" : ""}>
+            {children}
+          </div>
         </div>
       </motion.div>
     </div>
