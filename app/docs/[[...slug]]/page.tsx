@@ -1,3 +1,5 @@
+import fs from "fs"
+import path from "path"
 import { source } from "@/lib/source"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
@@ -12,8 +14,8 @@ import {
 } from "@/components/previewer/component-preview"
 import { registry } from "@/registry/index"
 import { cn } from "@/lib/utils"
-// ✨ ANALYTICS IMPORT
 import { DocTracker } from "@/components/doc-tracker"
+import { CopyMdxButton } from "@/components/ui/copy-mdx-button"
 
 export async function generateStaticParams() {
   return source.generateParams()
@@ -78,6 +80,28 @@ export default async function Page(props: {
   const page = source.getPage(params.slug)
 
   if (!page) notFound()
+
+  let copyPayload = ""
+  try {
+    // 1. Calculate expected AI file path (public/llms/[folder]/[file].md)
+    // We replace the .mdx extension with .md for the LLM files
+    const relativePath = page.path.replace(/\.mdx?$/, ".md")
+    const aiFilePath = path.join(process.cwd(), "public/llms", relativePath)
+
+    // 2. Calculate the raw MDX fallback path (content/docs/[folder]/[file].mdx)
+    const rawMdxPath = path.join(process.cwd(), "content/docs", page.path)
+
+    // 3. Smart Priority: Try to serve the pure, code-injected AI Markdown first!
+    if (fs.existsSync(aiFilePath)) {
+      copyPayload = fs.readFileSync(aiFilePath, "utf-8")
+    }
+    // 4. Fallback: If no AI file exists, serve the raw Fumadocs MDX
+    else if (fs.existsSync(rawMdxPath)) {
+      copyPayload = fs.readFileSync(rawMdxPath, "utf-8")
+    }
+  } catch (error) {
+    console.error("Failed to read copy payload for:", page.path, error)
+  }
 
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
@@ -144,7 +168,7 @@ export default async function Page(props: {
       console.error("Failed to fetch last edit time:", error)
     }
   } else {
-    lastModifiedTime = "Apr 26, 2026"
+    lastModifiedTime = "May 2, 2026"
   }
 
   const hasCategories = page.data.category && page.data.category.length > 0
@@ -204,7 +228,6 @@ export default async function Page(props: {
 
   return (
     <>
-      {/* ✨ ANALYTICS: Invisible DocTracker Component */}
       <DocTracker
         title={page.data.title}
         category={page.data.category?.[0]}
@@ -230,6 +253,7 @@ export default async function Page(props: {
               demos={resolvedDemos}
               githubUrl={page.data.links?.github}
               previewUrl={page.data.links?.preview}
+              sourceCodeId="installation"
               isPaid={isPaid}
               gumroadUrl={gumroadLink}
             />
@@ -270,9 +294,23 @@ export default async function Page(props: {
             )}
 
             <div className="flex flex-col gap-4">
-              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+              {/* ✨ INJECTED COPY BUTTON HERE */}
+              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center-safe sm:justify-start">
                 <h1 className="capitalize">{page.data.title}</h1>
+                <div className="flex flex-row flex-wrap gap-4 text-center">
+                  {page.data.badge && (
+                    <span
+                      className={cn(
+                        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[0.7rem] font-bold tracking-widest uppercase",
+                        getBadgeStyle(page.data.badge)
+                      )}
+                    >
+                      {page.data.badge}
+                    </span>
+                  )}
+                </div>
               </div>
+
               <p className="max-w-4xl text-muted-foreground">
                 {page.data.description}
               </p>
@@ -285,22 +323,14 @@ export default async function Page(props: {
             </div>
 
             <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
-              <div className="flex flex-row flex-wrap gap-4 text-center">
-                {page.data.badge && (
-                  <span
-                    className={cn(
-                      "inline-flex items-center rounded-full border px-2.5 py-0.5 text-[0.7rem] font-bold tracking-widest uppercase",
-                      getBadgeStyle(page.data.badge)
-                    )}
-                  >
-                    {page.data.badge}
-                  </span>
-                )}
-              </div>
+              <CopyMdxButton rawMdx={copyPayload} />
             </div>
           </header>
 
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32">
+          <div
+            id="installation"
+            className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
+          >
             <div className="w-full min-w-0 pb-32">
               <MDX components={defaultMdxComponents} />
 

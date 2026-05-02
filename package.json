@@ -5,14 +5,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/build-llms.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "registry:internal": "node scripts/build-registry.mjs",
     "registry:public": "npx shadcn build",
-    "make:doc": "node scripts/create-doc.mjs"
+    "make:doc": "node scripts/create-doc.mjs",
+    "llm": "node scripts/build-llms.mjs"
   },
   "dependencies": {
     "@hugeicons/core-free-icons": "^4.1.1",

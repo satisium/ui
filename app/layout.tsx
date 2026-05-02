@@ -50,6 +50,7 @@ export const metadata: Metadata = {
     "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
   alternates: {
     canonical: "/",
+    types: { "text/markdown": "/llms.txt" },
   },
   openGraph: {
     type: "website",

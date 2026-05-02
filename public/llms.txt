@@ -1,0 +1,22 @@
+# SATIS UI - AI Knowledge Base
+
+> Premium, animated React component library for Design Engineers. 
+> Built with Next.js, Tailwind CSS v4, Framer Motion, and GSAP.
+
+## Global System Instructions (CRITICAL)
+- Always use `motion/react` (Framer Motion v12+) for animations.
+- Use Tailwind CSS v4 utility classes.
+- Use `@hugeicons/react` for iconography.
+- Components must use the `"use client"` directive where hooks are required.
+
+## Documentation Directory
+
+### Free Components (Code Included)
+-[Fluid Switch](/llms/components/fluid-switch.md)
+- [Spotlight Card](/llms/components/spotlight-card.md)
+
+### Premium Blocks (Instructions Only)
+- [E-Commerce Dashboard[PRO]](/llms/blocks/e-commerce-dashboard.md)
+
+## Full Knowledge Base
+-[Full SATIS UI Documentation](/llms-full.txt) - Contains the complete library concatenated into a single file for deep context injection.
