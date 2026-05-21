@@ -118,6 +118,7 @@ export default async function Page(props: {
       const item = pageRegistry[key]
       if (item) {
         const itemType = item.type || "react"
+        const renderMode = item.renderMode || "direct" // Defaults to direct
 
         if (itemType === "video" || itemType === "image") {
           resolvedDemos.push({
@@ -135,7 +136,10 @@ export default async function Page(props: {
             key,
             type: "react",
             name: item.name,
-            component: Comp ? <Comp /> : null,
+            renderMode,
+            embedUrl: renderMode === "iframe" ? `/embed/${key}` : undefined,
+            // ✨ CRITICAL PERF FIX: Do not execute component if rendering via iframe
+            component: renderMode === "direct" && Comp ? <Comp /> : null,
             files,
             installCommand: item.installCommand || "",
             previewUrl: item.previewUrl,
@@ -144,7 +148,6 @@ export default async function Page(props: {
       }
     }
   }
-
   let lastModifiedTime: string | null = null
 
   if (process.env.NODE_ENV !== "development") {

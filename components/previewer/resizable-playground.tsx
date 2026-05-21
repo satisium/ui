@@ -1,3 +1,5 @@
+"use client"
+
 import { ChevronDoubleCloseIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
@@ -57,6 +59,9 @@ export function ResizablePlayground({
     }
   }, [isDragging, setPreviewWidth, setViewportMode])
 
+  const activeDemo = demos[activeDemoIndex]
+  const isIframe = activeDemo?.renderMode === "iframe"
+
   return (
     <div
       className="pointer-events-none absolute inset-0 flex"
@@ -73,10 +78,24 @@ export function ResizablePlayground({
         className="pointer-events-auto relative flex h-full max-w-full flex-col overflow-hidden rounded-2xl bg-background drop-shadow-2xl"
       >
         <div
-          key={reloadKey}
-          className="flex h-full w-full items-center justify-center overflow-auto p-8 pb-20"
+          // Prevents the iframe tag from unmounting/remounting, preserving fast UX.
+          // Direct renders still rely on reloadKey to remount properly.
+          key={isIframe ? "iframe-wrapper" : reloadKey}
+          className={`flex h-full w-full items-center justify-center overflow-auto ${
+            isIframe ? "p-0" : "p-8 pb-20"
+          } ${isDragging ? "pointer-events-none select-none" : ""}`}
         >
-          {demos[activeDemoIndex]?.component}
+          {isIframe && activeDemo.embedUrl ? (
+            <iframe
+              id={`satis-iframe-${activeDemo.key}`}
+              src={activeDemo.embedUrl}
+              className="h-full w-full border-none bg-transparent"
+              title={activeDemo.name}
+              loading="lazy"
+            />
+          ) : (
+            activeDemo?.component
+          )}
         </div>
 
         <div

@@ -20,6 +20,8 @@ export interface DemoData {
   key: string
   name: string
   type?: "react" | "video" | "image"
+  renderMode?: "direct" | "iframe" // ✨ Tracks the execution strategy
+  embedUrl?: string // ✨ The dynamically generated iframe source URL
   component?: React.ReactNode
   files?: Record<string, CodeFile | string>
   installCommand?: string
@@ -37,11 +39,6 @@ interface PreviewerProps {
   gumroadUrl?: string
 }
 
-/**
- * Custom hook to safely sync state with localStorage.
- * Improved to handle Next.js dynamic routing by resetting to initialValue
- * if a new key is mounted but has no stored data.
- */
 function usePersistentState<T>(key: string, initialValue: T) {
   const [state, setState] = useState<T>(initialValue)
 
@@ -51,8 +48,6 @@ function usePersistentState<T>(key: string, initialValue: T) {
       if (stored) {
         setState(JSON.parse(stored))
       } else {
-        // Reset state to initial value if the storage key changes
-        // and no data exists for the new key.
         setState(initialValue)
       }
     } catch (e) {
@@ -83,7 +78,6 @@ export function useMediaQuery(query: string) {
   useEffect(() => {
     const media = window.matchMedia(query)
     setMatches(media.matches)
-
     const listener = (e: MediaQueryListEvent) => setMatches(e.matches)
     media.addEventListener("change", listener)
     return () => media.removeEventListener("change", listener)
@@ -105,11 +99,9 @@ export function ComponentPreviewer({
   const containerRef = useRef<HTMLDivElement>(null)
   const isDesktop = useMediaQuery("(min-width: 1024px)")
 
-  // Create a safe, URL-friendly key to uniquely isolate this component's local storage
   const componentKey =
     title?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "default"
 
-  // Use unique key so Demo 3 on "Tabs" doesn't force Demo 3 on "Fluid Switch"
   const [activeDemoIndex, setActiveDemoIndex] = usePersistentState<number>(
     `satis-active-demo-${componentKey}`,
     0
@@ -131,7 +123,6 @@ export function ComponentPreviewer({
 
   useEffect(() => setMounted(true), [])
 
-  // Guard against stale indices out-of-bounds bounds
   const safeActiveDemoIndex =
     activeDemoIndex >= 0 && activeDemoIndex < demos.length ? activeDemoIndex : 0
 
@@ -144,27 +135,42 @@ export function ComponentPreviewer({
     if (mode === "mobile") setPreviewWidth(375)
   }
 
-  const handleReload = () => setReloadKey((prev) => prev + 1)
+  /**
+   * Smart Reload Strategy:
+   * If iframe -> Pass message securely across origin to prevent network FOUC.
+   * If direct -> Increment local reloadKey to remount DOM instantly.
+   */
+  const handleReload = () => {
+    if (activeDemo.renderMode === "iframe") {
+      const iframe = document.getElementById(
+        `satis-iframe-${activeDemo.key}`
+      ) as HTMLIFrameElement
+
+      if (iframe?.contentWindow) {
+        iframe.contentWindow.postMessage(
+          { type: "SATIS_RELOAD_ANIMATION" },
+          "*"
+        )
+      }
+    } else {
+      setReloadKey((prev) => prev + 1)
+    }
+  }
 
   const handleScrollToSource = () => {
     if (sourceCodeId) {
-      // 1. Remove '#' in case the prop was passed as "#my-id" instead of "my-id"
       const cleanId = sourceCodeId.replace(/^#/, "")
       const el = document.getElementById(cleanId)
 
       if (el) {
-        // 2. Update the URL hash without triggering a sudden, jarring jump
         window.history.pushState(null, "", `#${cleanId}`)
-
-        // 3. Smoothly scroll to the element, regardless of which parent div is the scroll container
         el.scrollIntoView({ behavior: "smooth", block: "start" })
       }
     }
   }
-  // Prevent SSR hydration mismatches
+
   if (!mounted)
     return <div className="h-screen w-screen animate-pulse bg-muted" />
-
   if (!activeDemo) return null
 
   const activeType = activeDemo.type || "react"
@@ -252,26 +258,22 @@ export function ComponentPreviewer({
 
             {activeType === "video" && activeDemo.mediaUrl ? (
               <div className="relative flex h-full w-full items-center justify-center">
-                <div className="relative h-full w-full overflow-hidden rounded-2xl bg-background">
-                  <video
-                    src={activeDemo.mediaUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+                <video
+                  src={activeDemo.mediaUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full rounded-2xl bg-background object-cover"
+                />
               </div>
             ) : activeType === "image" && activeDemo.mediaUrl ? (
               <div className="relative flex h-full w-full items-center justify-center">
-                <div className="relative h-full w-full overflow-hidden rounded-2xl bg-background">
-                  <img
-                    src={activeDemo.mediaUrl}
-                    alt={activeDemo.name}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
+                <img
+                  src={activeDemo.mediaUrl}
+                  alt={activeDemo.name}
+                  className="h-full w-full rounded-2xl bg-background object-cover"
+                />
               </div>
             ) : (
               <ResizablePlayground

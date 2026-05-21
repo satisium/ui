@@ -1,13 +1,29 @@
 import { CodeFile } from "@/components/code-block/types"
 import dynamic from "next/dynamic"
 
+/**
+ * Defines a component available in the Satis UI registry.
+ */
 export interface RegistryItem {
+  /** The display name of the component demo */
   name: string
+  /** The asset type: React code, pre-recorded video, or static image */
   type?: "react" | "video" | "image"
+  /**
+   * ✨ HYBRID ARCHITECTURE FLAG ✨
+   * "direct" (Default) - Renders directly in the DOM. Fastest. Best for simple components.
+   * "iframe" - Renders via the /embed route. Best for responsive layouts requiring media queries.
+   */
+  renderMode?: "direct" | "iframe"
+  /** The dynamically imported React component */
   component?: React.ComponentType
+  /** The CLI command used to install this component */
   installCommand?: string
+  /** Function returning the raw source code strings */
   getFiles?: () => Promise<Record<string, CodeFile | string>>
+  /** URL to the isolated, standalone preview page */
   previewUrl?: string
+  /** URL to the media asset (if type is video or image) */
   mediaUrl?: string
 }
 
@@ -15,8 +31,8 @@ export const registry: Record<string, RegistryItem> = {
   "fluid-switch-demo": {
     name: "Demo 1",
     type: "react",
-    previewUrl: "/preview/fluid-switch-demo", // Unique URL 1
-
+    renderMode: "direct", // Simple component, render directly
+    previewUrl: "/preview/fluid-switch-demo",
     component: dynamic(() =>
       import("@/registry/demos/fluid-switch-demo").then(
         (m) => m.FluidSwitchDemo
@@ -24,14 +40,11 @@ export const registry: Record<string, RegistryItem> = {
     ),
     installCommand: "https://satis-ui.com/r/fluid-switch.json",
     getFiles: async () => {
-      // Dynamically import the raw strings to keep bundle size small
       const mod = await import("@/registry/strings/fluid-switch")
-
       return {
-        // The key acts as the filename in the CodeBlock tree sidebar
         "fluid-switch-demo.tsx": {
           code: mod.fluidSwitchDemoString,
-          language: "tsx", // Optional: CodeBlock infers this from the extension
+          language: "tsx",
         },
       }
     },
@@ -39,8 +52,8 @@ export const registry: Record<string, RegistryItem> = {
   "fluid-switch-labeled": {
     name: "Demo 2",
     type: "react",
-    previewUrl: "/preview/fluid-switch-labeled", // Unique URL 1
-
+    renderMode: "iframe", // ✨ Complex/Responsive layout, forces iframe embedding
+    previewUrl: "/preview/fluid-switch-labeled",
     component: dynamic(() =>
       import("@/registry/demos/fluid-switch-labeled").then(
         (m) => m.FluidSwitchLabeled
@@ -49,7 +62,6 @@ export const registry: Record<string, RegistryItem> = {
     installCommand: "https://satis-ui.com/r/fluid-switch.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/fluid-switch")
-
       return {
         "fluid-switch-labeled.tsx": {
           code: mod.fluidSwitchLabeledString,
@@ -58,6 +70,7 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  // Keep your existing media items unchanged...
   "dashboard-pro-desktop": {
     name: "Desktop Layout",
     type: "video",
