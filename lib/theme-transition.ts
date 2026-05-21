@@ -195,7 +195,7 @@ export function switchThemeWithTransition(
         keyframes = [
           {
             opacity: 0,
-            transform: "perspective(1000px) rotateX(-3deg) scale(0.98)",
+            transform: "perspective(1000px) rotateX(10deg) scale(0.98)",
           },
           {
             opacity: 1,

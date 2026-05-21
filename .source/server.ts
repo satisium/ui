@@ -21,8 +21,8 @@ import * as __fd_glob_7 from "../content/docs/blocks/button.mdx?collection=docs"
 import * as __fd_glob_6 from "../content/docs/blocks/aurora-hero.mdx?collection=docs"
 import * as __fd_glob_5 from "../content/docs/blocks/ao.mdx?collection=docs"
 import { default as __fd_glob_4 } from "../content/docs/templates/meta.json?collection=docs"
-import { default as __fd_glob_3 } from "../content/docs/components/meta.json?collection=docs"
-import { default as __fd_glob_2 } from "../content/docs/getting-started/meta.json?collection=docs"
+import { default as __fd_glob_3 } from "../content/docs/getting-started/meta.json?collection=docs"
+import { default as __fd_glob_2 } from "../content/docs/components/meta.json?collection=docs"
 import { default as __fd_glob_1 } from "../content/docs/blocks/meta.json?collection=docs"
 import { default as __fd_glob_0 } from "../content/docs/meta.json?collection=docs"
 import { server } from 'fumadocs-mdx/runtime/server';
@@ -33,4 +33,4 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
   }
 }>({"doc":{"passthroughs":["extractedReferences"]}});
 
-export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "blocks/meta.json": __fd_glob_1, "getting-started/meta.json": __fd_glob_2, "components/meta.json": __fd_glob_3, "templates/meta.json": __fd_glob_4, }, {"blocks/ao.mdx": __fd_glob_5, "blocks/aurora-hero.mdx": __fd_glob_6, "blocks/button.mdx": __fd_glob_7, "blocks/e-commerce-dashboard.mdx": __fd_glob_8, "blocks/fluid-switch.mdx": __fd_glob_9, "blocks/spotlight-card.mdx": __fd_glob_10, "components/ao.mdx": __fd_glob_11, "components/aurora-hero.mdx": __fd_glob_12, "components/fluid-switch.mdx": __fd_glob_13, "components/index.mdx": __fd_glob_14, "components/magnetic-button.mdx": __fd_glob_15, "components/spotlight-card.mdx": __fd_glob_16, "getting-started/changelog.mdx": __fd_glob_17, "getting-started/how-to-use.mdx": __fd_glob_18, "getting-started/introduction.mdx": __fd_glob_19, "getting-started/setup.mdx": __fd_glob_20, "templates/ao.mdx": __fd_glob_21, "templates/aurora-hero.mdx": __fd_glob_22, "templates/button.mdx": __fd_glob_23, "templates/fluid-switch.mdx": __fd_glob_24, "templates/spotlight-card.mdx": __fd_glob_25, });
+export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "blocks/meta.json": __fd_glob_1, "components/meta.json": __fd_glob_2, "getting-started/meta.json": __fd_glob_3, "templates/meta.json": __fd_glob_4, }, {"blocks/ao.mdx": __fd_glob_5, "blocks/aurora-hero.mdx": __fd_glob_6, "blocks/button.mdx": __fd_glob_7, "blocks/e-commerce-dashboard.mdx": __fd_glob_8, "blocks/fluid-switch.mdx": __fd_glob_9, "blocks/spotlight-card.mdx": __fd_glob_10, "components/ao.mdx": __fd_glob_11, "components/aurora-hero.mdx": __fd_glob_12, "components/fluid-switch.mdx": __fd_glob_13, "components/index.mdx": __fd_glob_14, "components/magnetic-button.mdx": __fd_glob_15, "components/spotlight-card.mdx": __fd_glob_16, "getting-started/changelog.mdx": __fd_glob_17, "getting-started/how-to-use.mdx": __fd_glob_18, "getting-started/introduction.mdx": __fd_glob_19, "getting-started/setup.mdx": __fd_glob_20, "templates/ao.mdx": __fd_glob_21, "templates/aurora-hero.mdx": __fd_glob_22, "templates/button.mdx": __fd_glob_23, "templates/fluid-switch.mdx": __fd_glob_24, "templates/spotlight-card.mdx": __fd_glob_25, });

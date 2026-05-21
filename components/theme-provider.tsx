@@ -63,7 +63,7 @@ function ThemeHotkey() {
       const newTheme = resolvedTheme === "dark" ? "light" : "dark"
 
       // ✨ Trigger the transition via Hotkey (Using Diagonal Sweep)
-      switchThemeWithTransition(setTheme, newTheme, event, "swipe-blur")
+      switchThemeWithTransition(setTheme, newTheme, event, "fade")
     }
 
     window.addEventListener("keydown", onKeyDown)
