@@ -17,6 +17,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip"
+import { switchThemeWithTransition } from "@/lib/theme-transition"
 
 export const SidebarFooter = () => {
   return (
@@ -33,7 +34,6 @@ export const SidebarFooter = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="group flex size-10 flex-shrink-0 items-center justify-center rounded-[12px] bg-background text-muted-foreground backdrop-blur-md transition-all hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
-              aria-label="Connect with me on X"
             >
               <HugeiconsIcon
                 icon={NewTwitterIcon}
@@ -50,24 +50,15 @@ export const SidebarFooter = () => {
   )
 }
 
-/**
- * ThemeSwitcher Component
- * Handles Next Themes toggling with a fluid framer-motion active indicator.
- * Utilizes a mounted check to prevent React hydration mismatch errors.
- */
 function ThemeSwitcher() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
-  // Avoid hydration mismatch by waiting until mounted to render the current theme state
   useEffect(() => setMounted(true), [])
 
   if (!mounted) {
     return (
-      <div
-        className="h-10 w-full rounded-full border border-border/50 bg-background/50"
-        aria-hidden="true"
-      />
+      <div className="h-10 w-full rounded-full border border-border/50 bg-background/50" />
     )
   }
 
@@ -77,6 +68,16 @@ function ThemeSwitcher() {
     { value: "dark", icon: MoonSlowWindIcon, label: "Dark" },
   ]
 
+  const handleThemeChange = (
+    e: React.MouseEvent<HTMLButtonElement>,
+    newTheme: string
+  ) => {
+    if (theme === newTheme) return
+
+    // ✨ Execute transition starting exactly from the user's mouse click
+    switchThemeWithTransition(setTheme, newTheme, e, "sweep-up")
+  }
+
   return (
     <div className="flex h-10 w-full items-center gap-1 rounded-[12px] bg-background p-1.5">
       {options.map((opt) => {
@@ -84,7 +85,7 @@ function ThemeSwitcher() {
         return (
           <button
             key={opt.value}
-            onClick={() => setTheme(opt.value)}
+            onClick={(e) => handleThemeChange(e, opt.value)}
             aria-label={`Switch to ${opt.label} theme`}
             aria-pressed={isActive}
             className={`relative flex h-full flex-1 items-center justify-center rounded-full transition-colors focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none ${
