@@ -15,13 +15,14 @@ import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
 import { PreviewToolBox } from "./preview-toolbox"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
+import { PreviewBackground } from "./preview-background" // ✨ IMPORTED
 
 export interface DemoData {
   key: string
   name: string
   type?: "react" | "video" | "image"
-  renderMode?: "direct" | "iframe" // ✨ Tracks the execution strategy
-  embedUrl?: string // ✨ The dynamically generated iframe source URL
+  renderMode?: "direct" | "iframe"
+  embedUrl?: string
   component?: React.ReactNode
   files?: Record<string, CodeFile | string>
   installCommand?: string
@@ -54,7 +55,6 @@ function usePersistentState<T>(key: string, initialValue: T) {
       console.error("Failed to read from localStorage", e)
       setState(initialValue)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key])
 
   const setValue = (value: T | ((val: T) => T)) => {
@@ -135,11 +135,6 @@ export function ComponentPreviewer({
     if (mode === "mobile") setPreviewWidth(375)
   }
 
-  /**
-   * Smart Reload Strategy:
-   * If iframe -> Pass message securely across origin to prevent network FOUC.
-   * If direct -> Increment local reloadKey to remount DOM instantly.
-   */
   const handleReload = () => {
     if (activeDemo.renderMode === "iframe") {
       const iframe = document.getElementById(
@@ -254,7 +249,8 @@ export function ComponentPreviewer({
             }}
             transition={{ type: "spring", bounce: 0, duration: 0.5 }}
           >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#414146_1.5px,transparent_1.5px)] bg-size-[24px_24px] opacity-50 dark:opacity-50" />
+            {/* ✨ NEW COMPONENT HERE ✨ */}
+            <PreviewBackground />
 
             {activeType === "video" && activeDemo.mediaUrl ? (
               <div className="relative flex h-full w-full items-center justify-center">

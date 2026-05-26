@@ -55,7 +55,9 @@ export function SpatialLayout({
           bounce: 0.1,
           duration: 0.6,
         }}
-        className="absolute inset-0 z-10 origin-left overflow-hidden bg-background shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+        // ✨ ADDED: group/spatial and data-sidebar-open
+        data-sidebar-open={isOpen}
+        className="group/spatial absolute inset-0 z-10 origin-left overflow-hidden bg-background shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
       >
         <button
           onClick={toggleSidebar}
@@ -82,8 +84,7 @@ export function SpatialLayout({
             }
           }}
         >
-          {/* Inner wrapper dynamically disables interaction with page elements when open
-              so users don't see false hover states on internal links. */}
+          {/* Inner wrapper dynamically disables interaction with standard React elements */}
           <div className={isOpen ? "pointer-events-none select-none" : ""}>
             {children}
           </div>

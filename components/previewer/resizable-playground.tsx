@@ -5,6 +5,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { DemoData } from "./component-preview"
+import { cn } from "@/lib/utils" // ✨ IMPORTED cn util
 
 export type ViewportMode = "desktop" | "tablet" | "mobile" | "custom"
 
@@ -78,20 +79,27 @@ export function ResizablePlayground({
         className="pointer-events-auto relative flex h-full max-w-full flex-col overflow-hidden rounded-2xl bg-background drop-shadow-2xl"
       >
         <div
-          // Prevents the iframe tag from unmounting/remounting, preserving fast UX.
-          // Direct renders still rely on reloadKey to remount properly.
           key={isIframe ? "iframe-wrapper" : reloadKey}
-          className={`flex h-full w-full items-center justify-center overflow-auto ${
-            isIframe ? "p-0" : "p-8 pb-20"
-          } ${isDragging ? "pointer-events-none select-none" : ""}`}
+          className={cn(
+            "flex h-full w-full items-center justify-center overflow-auto",
+            isIframe ? "p-0" : "p-8 pb-20",
+            // Only lock the parent wrapper if dragging a direct React render
+            isDragging && !isIframe && "pointer-events-none select-none"
+          )}
         >
           {isIframe && activeDemo.embedUrl ? (
             <iframe
               id={`satis-iframe-${activeDemo.key}`}
               src={activeDemo.embedUrl}
-              className="h-full w-full border-none bg-transparent"
               title={activeDemo.name}
               loading="lazy"
+              className={cn(
+                "h-full w-full border-none bg-transparent",
+                // ✨ 1. Disable when dragging so it doesn't steal the cursor mid-drag
+                isDragging && "pointer-events-none select-none",
+                // ✨ 2. Disable when the spatial layout sidebar is open
+                "group-data-[sidebar-open=true]/spatial:pointer-events-none"
+              )}
             />
           ) : (
             activeDemo?.component
