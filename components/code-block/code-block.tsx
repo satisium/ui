@@ -171,7 +171,6 @@ export function CodeBlock({
     }
   }, [filesHash, fileKeys, resolvedTheme, mounted])
 
-  // ✨ WE MODIFIED THIS FUNCTION
   const handleCopy = () => {
     const data = files[activeFile]
     const codeString = typeof data === "string" ? data : data.code
@@ -179,7 +178,6 @@ export function CodeBlock({
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
 
-    // Determine language to pass to analytics
     const activeExt = activeFile.split(".").pop() || ""
     const activeFileObj = files[activeFile]
     const activeLang =
@@ -187,8 +185,6 @@ export function CodeBlock({
         ? activeExt
         : activeFileObj.language || activeExt
 
-    // ✨ ANALYTICS: Track manual code copying
-    // Tracks private stats in PostHog, and publicly increments the "web_copy" counter in Redis
     trackEvent(
       "code_copied",
       {
@@ -204,7 +200,8 @@ export function CodeBlock({
       <div
         className={cn(
           "w-full animate-pulse rounded-3xl border border-border/50 bg-muted p-2 shadow-sm",
-          !height && "h-full"
+          !height && "h-full",
+          className // ✨ FIXED: Pass className so skeleton receives flex-1 and doesn't jump in height
         )}
         style={height ? { height } : undefined}
       />
@@ -290,7 +287,8 @@ export function CodeBlock({
           title="Copy code"
           className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-background text-foreground drop-shadow-2xl transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
         >
-          <AnimatePresence mode="wait">
+          {/* ✨ FIXED: initial={false} to stop scale animation on load */}
+          <AnimatePresence mode="wait" initial={false}>
             {copied ? (
               <motion.div
                 key="check"

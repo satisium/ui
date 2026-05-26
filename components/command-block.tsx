@@ -101,13 +101,11 @@ export function CommandBlock({
 
   const commandString = getCommand()
 
-  // ✨ WE MODIFIED THIS FUNCTION
   const handleCopy = () => {
     navigator.clipboard.writeText(commandString)
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
 
-    // ✨ ANALYTICS: Track CLI command copying
     trackEvent("cli_command_copied", {
       command: commandString,
       manager: manager,
@@ -117,11 +115,10 @@ export function CommandBlock({
 
   const SelectedIcon = PM_CONFIG[manager].icon
 
-  // ✨ Auto-Tokenizer Engine (Zero dependencies, perfectly highlights commands)
+  // ✨ Auto-Tokenizer Engine
   const renderHighlightedCommand = (cmd: string) => {
     const parts = cmd.split(" ")
     return parts.map((part, idx) => {
-      // Highlight executables (npm, pnpm, npx, etc.)
       if (idx === 0) {
         return (
           <span key={idx} className="font-semibold text-primary/80">
@@ -129,7 +126,6 @@ export function CommandBlock({
           </span>
         )
       }
-      // Highlight flags (-D, --save)
       if (part.startsWith("-")) {
         return (
           <span key={idx} className="text-muted-foreground/80">
@@ -137,7 +133,6 @@ export function CommandBlock({
           </span>
         )
       }
-      // Highlight subcommands (install, add, dlx)
       if (["install", "add", "remove", "dlx", "create"].includes(part)) {
         return (
           <span key={idx} className="text-muted-foreground">
@@ -145,7 +140,6 @@ export function CommandBlock({
           </span>
         )
       }
-      // Default color for package names
       return (
         <span key={idx} className="text-foreground">
           {part}{" "}
@@ -229,7 +223,8 @@ export function CommandBlock({
             aria-label="Copy command to clipboard"
             className="flex h-8 w-8 items-center justify-center rounded-lg bg-background text-foreground drop-shadow-2xl transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
-            <AnimatePresence mode="wait">
+            {/* ✨ FIXED: initial={false} to stop scale animation on load */}
+            <AnimatePresence mode="wait" initial={false}>
               {copied ? (
                 <motion.div
                   key="check"
@@ -267,7 +262,8 @@ export function CommandBlock({
           $
         </span>
 
-        <AnimatePresence mode="wait">
+        {/* ✨ FIXED: initial={false} to stop command string sliding up on load */}
+        <AnimatePresence mode="wait" initial={false}>
           <motion.code
             key={commandString}
             initial={{ y: 8, opacity: 0 }}

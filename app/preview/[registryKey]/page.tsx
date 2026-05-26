@@ -39,7 +39,7 @@ export default async function DynamicPreviewPage(props: {
         installCommand={item.installCommand}
       />
 
-      <div className="relative flex h-full w-full max-w-[1400px] items-center justify-center p-4 sm:p-8 md:p-12">
+      <div className="relative flex h-full w-full items-center justify-center p-4 sm:p-8 md:p-12">
         <ComponentToRender />
       </div>
     </main>

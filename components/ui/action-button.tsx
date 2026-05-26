@@ -75,7 +75,7 @@ export const ActionButton = React.forwardRef<
         )}
 
         {/* 🌟 The Snappy Scale Animation */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           {isSuccess && successLabel ? (
             <motion.div
               key="success"

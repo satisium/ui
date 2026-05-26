@@ -62,7 +62,7 @@ export function FullscreenToolbox({
 
   return (
     <TooltipProvider delayDuration={150}>
-      <div className="absolute bottom-6 left-6 z-50 flex items-center gap-1 rounded-[16px] border bg-muted p-1 drop-shadow-2xl sm:bottom-8 sm:left-8">
+      <div className="absolute bottom-6 left-6 z-50 flex items-center gap-1.5 rounded-[16px] border border-border bg-muted p-1.5 drop-shadow-2xl sm:bottom-8 sm:left-8">
         {/* 1. Go Back Button */}
         <Tooltip>
           <TooltipTrigger asChild>
