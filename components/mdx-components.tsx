@@ -4,8 +4,18 @@ import * as React from "react"
 import { CodeBlock } from "./code-block/code-block"
 import { CommandBlock } from "./command-block"
 
+// 1. Import your new Changelog Components
+import {
+  Changelog,
+  ChangelogEntry,
+  ChangelogHeader,
+  ChangelogContent,
+  ChangelogItem,
+  ChangelogImage,
+  ChangelogComponentList,
+} from "@/components/changelog"
+
 export const defaultMdxComponents = {
-  // Headings remain pure to globals.css (they need tight leading because they are short)
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn("mt-2 scroll-m-20 text-foreground", className)}
@@ -30,16 +40,9 @@ export const defaultMdxComponents = {
       {...props}
     />
   ),
-
-  // ==========================================
-  // THE PROSE FIX: Relaxed Leading (Line Height)
-  // ==========================================
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
       className={cn(
-        // Added `leading-7` (1.75 line-height).
-        // This is the golden ratio for long-form reading at text-base (16px).
-        // It provides the exact breathing room the eye needs for the "Return Sweep".
         "leading-7 text-muted-foreground not-first:mt-6",
         className
       )}
@@ -62,29 +65,17 @@ export const defaultMdxComponents = {
     />
   ),
   li: ({ className, ...props }: React.LiHTMLAttributes<HTMLLIElement>) => (
-    <li
-      className={cn(
-        // Added `leading-7` to lists as well, preventing bullet points from clumping
-        "mt-2 leading-7",
-        className
-      )}
-      {...props}
-    />
+    <li className={cn("mt-2 leading-7", className)} {...props} />
   ),
   blockquote: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <blockquote
       className={cn(
-        // Added `leading-7` here too for reading consistency
         "mt-6 border-l-2 border-primary pl-6 leading-7 text-muted-foreground italic",
         className
       )}
       {...props}
     />
   ),
-
-  // ==========================================
-  // EVERYTHING BELOW REMAINS UNCHANGED
-  // ==========================================
   a: ({
     className,
     href,
@@ -182,6 +173,15 @@ export const defaultMdxComponents = {
       {...props}
     />
   ),
+
+  // 2. Export them so Fumadocs can use them globally
   CodeBlock,
   CommandBlock,
+  Changelog,
+  ChangelogEntry,
+  ChangelogHeader,
+  ChangelogContent,
+  ChangelogItem,
+  ChangelogImage,
+  ChangelogComponentList,
 }

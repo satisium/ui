@@ -1,38 +1,410 @@
 ---
 title: Changelog
-description: All the changes documented.
+description: Latest updates, improvements, and fixes in Satis UI.
 ---
 
-## Install
+<Changelog>
 
-### CLI
+{/* Version 2.0.6 */}
 
-<div className="mt-6">
-  <CommandBlock cli="satis-ui add button" title="fluid-switch" />
-</div>
+<ChangelogEntry>
+  <ChangelogHeader date="Jan 30, 2026">
+    ## v2.0.6
+  </ChangelogHeader>
 
-### Manual
+  <ChangelogContent>
+    
+    ### New Component Introduced a dual-layer navigation bar with a magnetic ghost follower and fluid state transitions.
+    
+    <div className="mt-4 mb-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added Sliding Capsule Nav component.
+      </ChangelogItem>
+      <ChangelogComponentList
+        items={[
+          {
+            name: "Sliding Capsule Nav",
+            href: "/docs/components/sliding-capsule-nav",
+          },
+        ]}
+      />
+    </div>
+    
+  </ChangelogContent>
+</ChangelogEntry>
 
-**1. Install Dependencies**
+<ChangelogEntry>
+  <ChangelogHeader date="Jan 30, 2026">
+  ## v2.0.5
+  </ChangelogHeader>
 
-<div className="mt-6">
-  <CommandBlock pkg="motion lucide-react clsx tailwind-merge" />
-</div>
+  <ChangelogContent>
 
-**2. Add Source Code**
+    ### New Component Introduced a physics-based 3D infinite scroll component with drag interaction, scroll velocity acceleration, and cinematic entry animations.
 
-import { fluidSwitchFile } from "@/registry/strings/fluid-switch"
+    <div className="mt-4 mb-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 3D Drifting Marquee component.
+      </ChangelogItem>
+      <ChangelogComponentList
+        items={[
+          {
+            name: "3D Drifting Marquee",
+            href: "/docs/carousels/3d-drifting-marquee",
+          },
+        ]}
+      />
+    </div>
 
-<div className="mt-6">
-  <CodeBlock files={fluidSwitchFile} height="600px" />
-</div>
+  </ChangelogContent>
+</ChangelogEntry>
 
-## Props
+<ChangelogEntry>
+  <ChangelogHeader date="Jan 28, 2026">
+  ## v2.0.4
+  </ChangelogHeader>
+  
+  <ChangelogContent>
+    
+    ### New Component Introduced a dynamic horizontal scrolling component that reacts to page scroll velocity and user interaction.
+    
+    <div className="mt-4 mb-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added Drifting Marquee component.
+      </ChangelogItem>
+      <ChangelogComponentList
+        items={[
+          {
+            name: "Drifting Marquee",
+            href: "/docs/carousels/drifting-marquee",
+          },
+        ]}
+      />
+    </div>
 
-| Prop           | Type   | Default   | Description                    |
-| :------------- | :----- | :-------- | :----------------------------- |
-| **`propName`** | `type` | `default` | Describe the prop intent here. |
+  </ChangelogContent>
+</ChangelogEntry>
 
-## Inspiration and Credits
+<ChangelogEntry>
+  <ChangelogHeader date="Jan 25, 2026">
+  ## v2.0.3
+  </ChangelogHeader>
 
-Tastefully crafted with inspiration from [Creator Name](https://twitter.com/creator).
+  <ChangelogContent>
+
+    ### New Component Introduced a physics-based typography component for interactive headers.
+
+    <div className="mt-4 mb-4 space-y-3">
+      <ChangelogItem type="feature">Added Fluid Text component.</ChangelogItem>
+      <ChangelogComponentList
+        items={[
+          { name: "Fluid Text", href: "/docs/text-animations/fluid-text" },
+        ]}
+      />
+    </div>
+
+  </ChangelogContent>
+</ChangelogEntry>
+
+<ChangelogEntry>
+  <ChangelogHeader date="Jan 6, 2026">
+  ## v2.0.2
+  </ChangelogHeader>
+  
+  <ChangelogContent>
+
+    ### New Component Added a new text animation component for creative reveals.
+
+    <div className="mt-4 mb-4 space-y-3">
+      <ChangelogItem type="feature">Added Reveal Text component.</ChangelogItem>
+      <ChangelogComponentList
+        items={[
+          { name: "Reveal Text", href: "/docs/text-animations/reveal-text" },
+        ]}
+      />
+    </div>
+
+  </ChangelogContent>
+</ChangelogEntry>
+
+<ChangelogEntry>
+  <ChangelogHeader date="Jan 5, 2026">
+  ## v2.0.1
+  </ChangelogHeader>
+  
+  <ChangelogContent>
+    ### New Component Expanded the component library with a high-fidelity interaction component.
+    
+    <div className="mt-4 mb-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added Gliding Card component.
+      </ChangelogItem>
+      <ChangelogComponentList
+        items={[
+          { name: "Gliding Card", href: "/docs/components/gliding-card" },
+        ]}
+      />
+    </div>
+
+  </ChangelogContent>
+</ChangelogEntry>
+
+  <ChangelogEntry>
+    <ChangelogHeader date="Jan 4, 2026">
+      ## v2.0.0
+    </ChangelogHeader>
+    <ChangelogContent>
+    
+      ### Major Changes
+      
+      I have completely updated the look and feel of the library. Minimalistic design choices.
+      
+      <div className="space-y-3 mb-4 mt-4">
+        <ChangelogItem type="feature">Added CLI support for installing components.</ChangelogItem>
+      </div>
+
+      <div className="space-y-3 mb-4 mt-4">
+        <ChangelogItem type="feature">Added 15 new components. Below is the list of these components.</ChangelogItem>
+        <ChangelogComponentList
+          items={[
+            { name: 'Curtain Button', href: '/docs/buttons/curtain-button' },
+            { name: 'Micro Expander', href: '/docs/buttons/micro-expander' },
+            { name: 'Morph Button', href: '/docs/buttons/morph-button' },
+            { name: 'Prime Button', href: '/docs/buttons/prime-button' },
+            { name: 'Eclipse Button', href: '/docs/buttons/the-eclipse' },
+            { name: 'Focus Card', href: '/docs/cards/focus-card' },
+            { name: 'Fanned Card Stack', href: '/docs/carousels/fanned-card-stack' },
+            { name: 'Story Carousel', href: '/docs/carousels/story-carousel' },
+            { name: 'Thumb Progress Carousel', href: '/docs/carousels/thumb-progress-carousel' },
+            { name: 'Expanding Grids', href: '/docs/components/expanding-grids' },
+            { name: 'Proximity Image Row', href: '/docs/components/proximity-image-row' },
+            { name: 'Flipping Word Swap', href: '/docs/text-animations/flipping-word-swap' },
+            { name: 'Circular Gallery', href: '/docs/wheels/circular-gallery' },
+            { name: 'Pinned Card Fan', href: '/docs/wheels/pinned-card-fan' },
+            { name: 'Radial Scroll Gallery', href: '/docs/wheels/radial-scroll-gallery' },
+          ]}
+        />
+      </div>
+
+      <div className="space-y-3 mt-4">
+        <ChangelogItem type="improvement">Improved the design of the landing page and documentation.</ChangelogItem>
+        <ChangelogImage src="/changelog/landing-page.png" alt="Landing Page Preview" />
+        <ChangelogImage src="/changelog/documentation.png" alt="Documentation Preview" />
+      </div>
+    </ChangelogContent>
+
+  </ChangelogEntry>
+
+{/* Version 1.0.0 */}
+
+<ChangelogEntry>
+  <ChangelogHeader date="Sep 28, 2025">
+  ## v1.0.0
+  </ChangelogHeader>
+  <ChangelogContent>
+
+    ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+  </ChangelogContent>
+</ChangelogEntry>
+
+<ChangelogEntry>
+  <ChangelogHeader date="Sep 28, 2025">
+  ## v1.0.0
+  </ChangelogHeader>
+  <ChangelogContent>
+
+    ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+  </ChangelogContent>
+</ChangelogEntry>
+<ChangelogEntry>
+  <ChangelogHeader date="Sep 28, 2025">
+  ## v1.0.0
+  </ChangelogHeader>
+  <ChangelogContent>
+
+    ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+  </ChangelogContent>
+</ChangelogEntry>
+<ChangelogEntry>
+  <ChangelogHeader date="Sep 28, 2025">
+  ## v1.0.0
+  </ChangelogHeader>
+  <ChangelogContent>
+
+    ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+     ### Initial Release The first public release of our UI library.
+
+    <div className="mt-4 space-y-3">
+      <ChangelogItem type="feature">
+        Added 20 accessible components.
+      </ChangelogItem>
+      <ChangelogItem type="feature">
+        Dark mode support out of the box.
+      </ChangelogItem>
+    </div>
+
+  </ChangelogContent>
+</ChangelogEntry>
+
+</Changelog>
