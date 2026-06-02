@@ -1,6 +1,6 @@
 {
   "name": "ui",
-  "version": "3.0.0-beta.1",
+  "version": "3.0.0-beta.2",
   "type": "module",
   "private": true,
   "scripts": {
@@ -14,7 +14,9 @@
     "registry:public": "npx shadcn build",
     "make:doc": "node scripts/create-doc.mjs",
     "llm": "node scripts/build-llms.mjs",
-    "release": "changeset version && node scripts/sync-changelog.mjs"
+    "release": "changeset version",
+    "beta:enter": "changeset pre enter beta",
+    "beta:exit": "changeset pre exit"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
