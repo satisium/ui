@@ -1,6 +1,6 @@
 {
-  "name": "ui-satis",
-  "version": "0.0.1",
+  "name": "ui",
+  "version": "3.0.0-beta.1",
   "type": "module",
   "private": true,
   "scripts": {
@@ -13,7 +13,8 @@
     "registry:internal": "node scripts/build-registry.mjs",
     "registry:public": "npx shadcn build",
     "make:doc": "node scripts/create-doc.mjs",
-    "llm": "node scripts/build-llms.mjs"
+    "llm": "node scripts/build-llms.mjs",
+    "release": "changeset version && node scripts/sync-changelog.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -44,6 +45,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.0",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^25.5.0",
