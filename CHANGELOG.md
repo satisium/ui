@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.3
+
+### Minor Changes
+
+- toc ui updated to handle truncated text. Minor height change for clean UI.
+
 ## 3.0.0-beta.2
 
 ### Minor Changes
