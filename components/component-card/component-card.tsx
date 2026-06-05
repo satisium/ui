@@ -1,4 +1,3 @@
-// components/satis/premium-component-card.tsx
 "use client"
 
 import Link from "next/link"
@@ -6,7 +5,7 @@ import Image from "next/image"
 import { useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
 
-export interface PremiumCardProps {
+export interface CardProps {
   url: string
   title: string
   description?: string
@@ -17,13 +16,13 @@ export interface PremiumCardProps {
   }
 }
 
-export function PremiumComponentCard({
+export function ComponentCard({
   url,
   title,
   description,
   badge,
   media,
-}: PremiumCardProps) {
+}: CardProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
