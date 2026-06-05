@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.4
+
+### Minor Changes
+
+- add cloudinary and optimised component-card to save bandwidth and improve performance
+
 ## 3.0.0-beta.3
 
 ### Minor Changes
