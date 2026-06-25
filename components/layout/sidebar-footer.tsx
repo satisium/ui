@@ -75,7 +75,7 @@ function ThemeSwitcher() {
     if (theme === newTheme) return
 
     // ✨ Execute transition starting exactly from the user's mouse click
-    switchThemeWithTransition(setTheme, newTheme, e, "cursor")
+    switchThemeWithTransition(setTheme, newTheme, e, "fade")
   }
 
   return (
