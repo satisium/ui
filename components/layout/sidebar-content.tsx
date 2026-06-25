@@ -1,78 +1,275 @@
 "use client"
 
 import type * as PageTree from "fumadocs-core/page-tree"
-import { LayoutGroup, motion } from "motion/react"
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  useMotionValue,
+  useSpring,
+} from "motion/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
+import { createPortal } from "react-dom"
 
 import { FavouriteIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { SidebarFooter } from "./sidebar-footer"
 import { CommandMenuTrigger } from "./command-menu"
 
-/**
- * Extended Fumadocs PageTree Item to support custom metadata like badges.
- */
-type CustomPageNode = PageTree.Item & { badge?: string }
+// IMPORTANT: Adjust this path to wherever your fumadocs 'source' is exported from!
+import { source } from "@/lib/source"
 
 /**
- * SidebarContent Component
- * Renders the main sidebar layout, including a scrollable navigation tree with
- * dynamic progressive blur overlays and a fixed footer.
+ * Extended PageTree Item linking your exact Schema.
+ */
+type CustomPageNode = PageTree.Item & {
+  badge?: string
+  media?: { video?: string; [key: string]: any }
+}
+
+/**
+ * UTILITY: Cloudinary Auto-Thumbnail & Optimizer
+ */
+function getCloudinaryUrls(rawVideoUrl: string) {
+  if (!rawVideoUrl || !rawVideoUrl.includes("cloudinary.com/")) {
+    return { video: rawVideoUrl, poster: rawVideoUrl }
+  }
+  const parts = rawVideoUrl.split("/upload/")
+  if (parts.length !== 2) return { video: rawVideoUrl, poster: rawVideoUrl }
+
+  const base = parts[0]
+  const path = parts[1]
+  const pathWithoutExt = path.replace(/\.[^/.]+$/, "")
+  const posterPath = `${pathWithoutExt}.webp`
+
+  const poster = `${base}/upload/c_fill,w_600,h_380,f_auto,q_auto,so_auto/${posterPath}`
+  const video = `${base}/upload/c_fill,w_600,h_380,f_auto,q_auto,ac_none,vc_auto/${path}`
+
+  return { video, poster }
+}
+
+/**
+ * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
+ */
+function VideoLayer({ url }: { url: string }) {
+  const { video, poster } = getCloudinaryUrls(url)
+
+  return (
+    <div className="relative h-full w-full bg-black/20">
+      <img
+        src={poster}
+        alt="Component Preview Poster"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      <video
+        src={video}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+    </div>
+  )
+}
+
+/**
+ * COMPONENT: Liquid Tracking Preview Card (Center-Scale Overlap)
+ */
+function MediaPreviewCard({
+  node,
+  targetX,
+  targetY,
+}: {
+  node: CustomPageNode | null
+  targetX: any
+  targetY: any
+}) {
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  const springConfig = { damping: 30, stiffness: 350, mass: 0.4 }
+  const smoothX = useSpring(targetX, springConfig)
+  const smoothY = useSpring(targetY, springConfig)
+  const premiumEasing = [0.16, 1, 0.3, 1]
+
+  if (!mounted || typeof document === "undefined") return null
+
+  return createPortal(
+    <AnimatePresence>
+      {node && node.media?.video && (
+        <motion.div
+          key="outer-tracking-card"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
+          style={{ x: smoothX, y: smoothY }}
+          className="pointer-events-none fixed top-0 left-0 z-[9999] h-[175px] w-[280px] overflow-hidden rounded-[14px] bg-black/40 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-3xl"
+        >
+          <div className="absolute inset-0 z-20 rounded-[14px] border border-white/15" />
+
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={node.url}
+              initial={{ scale: 0, opacity: 1, zIndex: 10 }}
+              animate={{ scale: 1, opacity: 1, zIndex: 10 }}
+              exit={{
+                scale: 1,
+                zIndex: 0,
+                opacity: 0.99, // Keeps DOM node alive during exit
+              }}
+              transition={{ duration: 0.7, ease: premiumEasing }}
+              className="absolute inset-0 origin-center overflow-hidden rounded-[14px]"
+            >
+              <VideoLayer url={node.media.video} />
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  )
+}
+
+/**
+ * MAIN COMPONENT: SidebarContent
  */
 export function SidebarContent({ tree }: { tree: PageTree.Root }) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const pathname = usePathname()
 
-  // Primitives used for scroll state to avoid React re-renders on every scroll tick.
   const [isScrolledTop, setIsScrolledTop] = useState(false)
   const [isScrolledBottom, setIsScrolledBottom] = useState(false)
 
-  /**
-   * Evaluates the scroll position of the navigation container to conditionally
-   * display top/bottom progressive blur indicators.
-   */
+  // --- Hover Pill State ---
+  const [hoveredUrl, setHoveredUrl] = useState<string | null>(null)
+
+  // --- Liquid Hover Video Tracking State ---
+  const [previewNode, setPreviewNode] = useState<CustomPageNode | null>(null)
+  const hoverTimeout = useRef<NodeJS.Timeout | null>(null)
+  const leaveTimeout = useRef<NodeJS.Timeout | null>(null)
+
+  const targetX = useMotionValue(0)
+  const targetY = useMotionValue(0)
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (
+      typeof window !== "undefined" &&
+      !window.matchMedia("(hover: hover)").matches
+    )
+      return
+
+    const { clientX, clientY } = e
+    const cardWidth = 280
+    const cardHeight = 175
+    const gap = 24
+
+    let nextX = clientX + gap
+    let nextY = clientY + gap
+
+    if (nextX + cardWidth > window.innerWidth - 16)
+      nextX = clientX - gap - cardWidth
+    if (nextY + cardHeight > window.innerHeight - 16)
+      nextY = clientY - gap - cardHeight
+
+    targetX.set(nextX)
+    targetY.set(nextY)
+  }
+
+  const handleMouseEnterVideo = (node: CustomPageNode) => {
+    if (
+      typeof window !== "undefined" &&
+      !window.matchMedia("(hover: hover)").matches
+    )
+      return
+    const page = source.getPages().find((p) => p.url === node.url)
+    if (!page || !page.data.media || !page.data.media.video) return
+
+    if (leaveTimeout.current) clearTimeout(leaveTimeout.current)
+
+    const nodeWithMedia = { ...node, media: page.data.media }
+    hoverTimeout.current = setTimeout(() => setPreviewNode(nodeWithMedia), 300)
+  }
+
+  const handleMouseLeaveVideo = () => {
+    if (hoverTimeout.current) clearTimeout(hoverTimeout.current)
+    leaveTimeout.current = setTimeout(() => setPreviewNode(null), 150)
+  }
+
   const checkScroll = () => {
     if (!scrollRef.current) return
     const { scrollTop, scrollHeight, clientHeight } = scrollRef.current
-
     setIsScrolledTop(scrollTop > 0)
-    // -1px buffer accounts for high-DPI fractional pixel rounding discrepancies
     setIsScrolledBottom(Math.ceil(scrollTop + clientHeight) < scrollHeight - 1)
   }
 
   useEffect(() => {
     const el = scrollRef.current
     if (!el) return
-
-    // Initial check on mount
     checkScroll()
-
-    // React to container resizes (e.g., window resize changing container height)
-    const resizeObserver = new ResizeObserver(() => checkScroll())
-    resizeObserver.observe(el)
-
-    // React to layout animations (e.g., motion.div staggered loads changing content height)
-    const mutationObserver = new MutationObserver(() => checkScroll())
-    mutationObserver.observe(el, {
-      childList: true,
-      subtree: true,
-      attributes: true,
-    })
-
+    const ro = new ResizeObserver(() => checkScroll())
+    const mo = new MutationObserver(() => checkScroll())
+    ro.observe(el)
+    mo.observe(el, { childList: true, subtree: true, attributes: true })
     return () => {
-      resizeObserver.disconnect()
-      mutationObserver.disconnect()
+      ro.disconnect()
+      mo.disconnect()
     }
   }, [])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!scrollRef.current) return
+      const activeEl = scrollRef.current.querySelector(
+        '[data-active-item="true"]'
+      )
+      if (activeEl)
+        activeEl.scrollIntoView({ behavior: "smooth", block: "center" })
+    }, 100)
+    return () => clearTimeout(timer)
+  }, [pathname])
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      const container = scrollRef.current
+      if (!container) return
+      const links = Array.from(
+        container.querySelectorAll('[data-sidebar-link="true"]')
+      ) as HTMLElement[]
+      if (links.length === 0) return
+
+      const currentIndex = links.indexOf(document.activeElement as HTMLElement)
+      e.preventDefault()
+
+      if (e.key === "ArrowDown") {
+        const nextIndex =
+          currentIndex >= 0 ? (currentIndex + 1) % links.length : 0
+        links[nextIndex]?.focus()
+      } else if (e.key === "ArrowUp") {
+        const prevIndex = currentIndex > 0 ? currentIndex - 1 : links.length - 1
+        links[prevIndex]?.focus()
+      }
+    }
+  }
+
   return (
-    <div className="flex h-full w-full flex-col font-sans">
-      {/* Header Section */}
+    <div
+      className="flex h-full w-full flex-col font-sans"
+      onPointerMove={handlePointerMove}
+    >
+      <MediaPreviewCard
+        node={previewNode}
+        targetX={targetX}
+        targetY={targetY}
+      />
+
       <div className="mb-6 flex-none items-center px-4 pt-2">
         <Link
           href="/"
-          className="group flex w-full items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-muted focus-visible:outline-none"
+          className="group flex w-full items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
         >
           <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-border bg-background transition-colors group-hover:border-primary/50">
             <span className="text-sm text-foreground">☺</span>
@@ -83,28 +280,26 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
         </Link>
       </div>
 
-      {/* 
-        Scrollable Navigation Wrapper 
-        `min-h-0` is essential here to allow flex children to shrink and scroll properly 
-      */}
       <div className="relative mb-2 flex min-h-0 flex-1 flex-col overflow-hidden">
-        {/* Top Progressive Blur Overlay */}
         <motion.div
           aria-hidden="true"
           initial={{ opacity: 0 }}
           animate={{ opacity: isScrolledTop ? 1 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
           className="pointer-events-none absolute top-0 right-0 left-0 z-20 h-24 rounded-2xl border bg-muted mask-[linear-gradient(to_bottom,black,transparent)] backdrop-blur-sm [-webkit-mask-image:linear-gradient(to_bottom,black,transparent)]"
         />
 
-        {/* Scroll Container */}
         <div
           ref={scrollRef}
           onScroll={checkScroll}
+          onKeyDown={handleKeyDown}
           className="pb-4[-ms-overflow-style:none] flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           <LayoutGroup>
-            <nav className="flex flex-col gap-1 px-2">
+            {/* The global nav wrapper detects when the mouse completely leaves the menu to fade out the hover pill */}
+            <nav
+              className="flex flex-col gap-1 px-2"
+              onMouseLeave={() => setHoveredUrl(null)}
+            >
               {tree.children.map((node, i) => (
                 <motion.div
                   key={node.type === "page" ? node.url : `sidebar-node-${i}`}
@@ -117,24 +312,28 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
                     damping: 30,
                   }}
                 >
-                  <TreeNode node={node} depth={0} />
+                  <TreeNode
+                    node={node}
+                    depth={0}
+                    hoveredUrl={hoveredUrl}
+                    setHoveredUrl={setHoveredUrl}
+                    onMouseEnterVideo={handleMouseEnterVideo}
+                    onMouseLeaveVideo={handleMouseLeaveVideo}
+                  />
                 </motion.div>
               ))}
             </nav>
           </LayoutGroup>
         </div>
 
-        {/* Bottom Progressive Blur Overlay */}
         <motion.div
           aria-hidden="true"
           initial={{ opacity: 0 }}
           animate={{ opacity: isScrolledBottom ? 1 : 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
           className="pointer-events-none absolute right-0 bottom-0 left-0 z-20 h-24 rounded-2xl border bg-muted mask-[linear-gradient(to_bottom,black,transparent)] backdrop-blur-sm [-webkit-mask-image:linear-gradient(to_top,black,transparent)]"
         />
       </div>
 
-      {/* Fixed Footer: Theme Switcher, Social & Signature */}
       <div className="flex flex-col gap-2 rounded-3xl border bg-background p-2 drop-shadow-2xl">
         <div className="flex w-full flex-col items-center gap-2 rounded-2xl border bg-muted p-2">
           <CommandMenuTrigger />
@@ -147,7 +346,7 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
           <Link
             href={"https://satishkumar.xyz/"}
             target="_blank"
-            className="text-primary hover:underline focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+            className="text-primary hover:underline focus-visible:outline-none"
           >
             Satishkumar
           </Link>
@@ -159,13 +358,24 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
 
 /**
  * TreeNode Component
- * Recursively renders the page tree. Handles categories (separators),
- * standard pages, and folders (both interactive and static).
  */
-function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
+function TreeNode({
+  node,
+  depth,
+  hoveredUrl,
+  setHoveredUrl,
+  onMouseEnterVideo,
+  onMouseLeaveVideo,
+}: {
+  node: PageTree.Node
+  depth: number
+  hoveredUrl: string | null
+  setHoveredUrl: (url: string | null) => void
+  onMouseEnterVideo: (n: CustomPageNode) => void
+  onMouseLeaveVideo: () => void
+}) {
   const pathname = usePathname()
 
-  // 1. Render Separators (Section Headers)
   if (node.type === "separator") {
     return (
       <div className="mt-6 mb-2 px-3">
@@ -176,19 +386,24 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
     )
   }
 
-  // 2. Render Standard Pages
   if (node.type === "page") {
     const isActive = pathname === node.url
     const customNode = node as CustomPageNode
-    const badgeText = customNode.badge
 
     return (
       <Link
         href={node.url}
+        data-sidebar-link="true"
+        data-active-item={isActive ? "true" : undefined}
         aria-current={isActive ? "page" : undefined}
+        onMouseEnter={() => {
+          setHoveredUrl(node.url)
+          onMouseEnterVideo(customNode)
+        }}
+        onMouseLeave={onMouseLeaveVideo}
         className="group relative flex items-center justify-between gap-3 rounded-md px-4 py-0.5 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
       >
-        {/* Active State Background Indicator (Shared LayoutID for seamless animation) */}
+        {/* Persistent Active State Indicator */}
         {isActive && (
           <motion.div
             layoutId="sidebar-active-indicator"
@@ -197,64 +412,68 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           />
         )}
 
-        {/* Hover Background Indicator */}
-        {!isActive && (
-          <div className="absolute -inset-0.5 -z-10 rounded-[8px] transition-colors group-hover:bg-background" />
-        )}
+        {/* The Magic Liquid Hover Pill */}
+        <AnimatePresence>
+          {hoveredUrl === node.url && (
+            <motion.div
+              layoutId="sidebar-hover-indicator"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 350,
+                damping: 30,
+                mass: 0.8,
+              }}
+              className="absolute -inset-0.5 -z-10 rounded-[8px] bg-background"
+            />
+          )}
+        </AnimatePresence>
 
-        {/* Content */}
         <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2.5">
           {node.icon && (
             <span
-              className={`flex shrink-0 items-center justify-center transition-colors [&_svg]:size-4 ${
-                isActive
-                  ? "text-background"
-                  : "text-muted-foreground group-hover:text-foreground"
-              }`}
+              className={`flex shrink-0 items-center justify-center transition-colors [&_svg]:size-4 ${isActive ? "text-background" : "text-muted-foreground group-hover:text-foreground"}`}
             >
               {node.icon}
             </span>
           )}
           <span
-            className={`truncate text-[13px] transition-colors ${
-              isActive
-                ? "font-medium text-background"
-                : "font-medium text-muted-foreground group-hover:text-foreground"
-            }`}
+            className={`truncate text-[13px] transition-colors ${isActive ? "font-medium text-background" : "font-medium text-muted-foreground group-hover:text-foreground"}`}
           >
             {node.name}
           </span>
         </div>
 
-        {/* Optional Custom Badge */}
-        {badgeText && (
+        {customNode.badge && (
           <span
-            className={`relative z-10 ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${
-              isActive
-                ? "bg-primary text-primary-foreground"
-                : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"
-            }`}
+            className={`relative z-10 ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${isActive ? "bg-primary text-primary-foreground" : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"}`}
           >
-            {badgeText}
+            {customNode.badge}
           </span>
         )}
       </Link>
     )
   }
 
-  // 3. Render Folders
   if (node.type === "folder") {
-    // If a folder has an index.mdx, Fumadocs attaches it to `node.index`
     const indexPage = node.index as CustomPageNode | undefined
     const isIndexActive = indexPage ? pathname === indexPage.url : false
 
     return (
       <div className="mt-3 flex flex-col">
         {indexPage ? (
-          /* Render interactive folder link if an index.mdx page exists */
           <Link
             href={indexPage.url}
+            data-sidebar-link="true"
+            data-active-item={isIndexActive ? "true" : undefined}
             aria-current={isIndexActive ? "page" : undefined}
+            onMouseEnter={() => {
+              setHoveredUrl(indexPage.url)
+              onMouseEnterVideo(indexPage)
+            }}
+            onMouseLeave={onMouseLeaveVideo}
             className="group relative flex items-center justify-between gap-3 rounded-md px-3 py-1.5 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
           >
             {isIndexActive && (
@@ -265,48 +484,47 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
               />
             )}
 
-            {!isIndexActive && (
-              <div className="absolute inset-0 rounded-md transition-colors group-hover:bg-background" />
-            )}
+            <AnimatePresence>
+              {hoveredUrl === indexPage.url && (
+                <motion.div
+                  layoutId="sidebar-hover-indicator"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 350,
+                    damping: 30,
+                    mass: 0.8,
+                  }}
+                  className="absolute inset-0 -z-10 rounded-md bg-background"
+                />
+              )}
+            </AnimatePresence>
 
             <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2">
               {node.icon && (
                 <span
-                  className={`flex shrink-0 transition-colors [&_svg]:size-5 ${
-                    isIndexActive
-                      ? "text-background"
-                      : "text-muted-foreground group-hover:text-foreground"
-                  }`}
+                  className={`flex shrink-0 transition-colors [&_svg]:size-5 ${isIndexActive ? "text-background" : "text-muted-foreground group-hover:text-foreground"}`}
                 >
                   {node.icon}
                 </span>
               )}
               <span
-                className={`truncate text-[12px] font-semibold tracking-tight transition-colors ${
-                  isIndexActive
-                    ? "text-background"
-                    : "text-foreground/80 group-hover:text-foreground"
-                }`}
+                className={`truncate text-[12px] font-semibold tracking-tight transition-colors ${isIndexActive ? "text-background" : "text-foreground/80 group-hover:text-foreground"}`}
               >
                 {node.name}
               </span>
             </div>
-
-            {/* Badges for Folder Index Pages */}
             {indexPage.badge && (
               <span
-                className={`relative z-10 ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${
-                  isIndexActive
-                    ? "bg-primary text-primary-foreground"
-                    : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"
-                }`}
+                className={`relative z-10 ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${isIndexActive ? "bg-primary text-primary-foreground" : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"}`}
               >
                 {indexPage.badge}
               </span>
             )}
           </Link>
         ) : (
-          /* Render static structural header for folders without index.mdx */
           <div className="flex min-w-0 items-center gap-2 px-3 py-1.5">
             {node.icon && (
               <span className="shrink-0 font-bold text-muted-foreground [&_svg]:size-5">
@@ -319,7 +537,6 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
           </div>
         )}
 
-        {/* Render Folder Children */}
         <div className="relative mt-1 flex flex-col gap-0.5">
           <div className="ml-5 flex flex-col gap-0.5 pl-1">
             {node.children.map((child) => (
@@ -327,6 +544,10 @@ function TreeNode({ node, depth }: { node: PageTree.Node; depth: number }) {
                 key={child.type === "page" ? child.url : child.$id}
                 node={child}
                 depth={depth + 1}
+                hoveredUrl={hoveredUrl}
+                setHoveredUrl={setHoveredUrl}
+                onMouseEnterVideo={onMouseEnterVideo}
+                onMouseLeaveVideo={onMouseLeaveVideo}
               />
             ))}
           </div>
