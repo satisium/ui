@@ -24,6 +24,7 @@
 ### 3. Demos & Implementations 🎮
 
 - [ ] **Demo Files Added:** Proper demo variations (`demo-one.tsx`, `demo-two.tsx`) created in `registry/demos/`.
+- [ ] **Video and image Previews:** Added demo video and image previews to cloudinary and linked that to the mdx frontmatter.
 - [ ] **Code Strings:** Raw code strings export properly for the docs to read.
 - [ ] **Demo CLI Command:** The proper CLI command to install the _demo_ specifically is displayed.
 - [ ] **Preview Toolbar:** The demo viewer has working buttons for: `Copy Code`, `Open Isolated View`, and `View on GitHub`.

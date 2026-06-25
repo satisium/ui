@@ -30,26 +30,36 @@ type CustomPageNode = PageTree.Item & {
 }
 
 /**
- * UTILITY: Cloudinary Auto-Thumbnail & Optimizer
+ * UTILITY: Cloudinary Auto-Thumbnail & Credit Saver
+ * Aggressively optimized to keep 30k+ visitors well within the free tier.
  */
 function getCloudinaryUrls(rawVideoUrl: string) {
   if (!rawVideoUrl || !rawVideoUrl.includes("cloudinary.com/")) {
     return { video: rawVideoUrl, poster: rawVideoUrl }
   }
+
   const parts = rawVideoUrl.split("/upload/")
   if (parts.length !== 2) return { video: rawVideoUrl, poster: rawVideoUrl }
 
   const base = parts[0]
   const path = parts[1]
   const pathWithoutExt = path.replace(/\.[^/.]+$/, "")
-  const posterPath = `${pathWithoutExt}.webp`
 
-  const poster = `${base}/upload/c_fill,w_600,h_380,f_auto,q_auto,so_auto/${posterPath}`
-  const video = `${base}/upload/c_fill,w_600,h_380,f_auto,q_auto,ac_none,vc_auto/${path}`
+  // Check if we are in development mode to save transformation credits
+  const isDev = process.env.NODE_ENV === "development"
+
+  // Dev uses standard quality so we don't generate endless new transformations on HMR
+  // Prod uses ultra-aggressive Eco compression, 4-second cap, and 24fps
+  const quality = isDev ? "q_auto" : "q_auto:eco"
+
+  const videoParams = `c_fill,w_400,h_250,f_auto,${quality},ac_none,vc_auto,du_4,fps_24`
+  const posterParams = `c_fill,w_400,h_250,f_auto,${quality},so_auto`
+
+  const poster = `${base}/upload/${posterParams}/${pathWithoutExt}.webp`
+  const video = `${base}/upload/${videoParams}/${path}`
 
   return { video, poster }
 }
-
 /**
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
@@ -188,7 +198,7 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
     if (leaveTimeout.current) clearTimeout(leaveTimeout.current)
 
     const nodeWithMedia = { ...node, media: page.data.media }
-    hoverTimeout.current = setTimeout(() => setPreviewNode(nodeWithMedia), 300)
+    hoverTimeout.current = setTimeout(() => setPreviewNode(nodeWithMedia), 500)
   }
 
   const handleMouseLeaveVideo = () => {
