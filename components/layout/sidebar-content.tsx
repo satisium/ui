@@ -57,7 +57,7 @@ function VideoLayer({ url }: { url: string }) {
   const { video, poster } = getCloudinaryUrls(url)
 
   return (
-    <div className="relative h-full w-full bg-black/20">
+    <div className="relative h-full w-full">
       <img
         src={poster}
         alt="Component Preview Poster"
@@ -93,7 +93,6 @@ function MediaPreviewCard({
   const springConfig = { damping: 30, stiffness: 350, mass: 0.4 }
   const smoothX = useSpring(targetX, springConfig)
   const smoothY = useSpring(targetY, springConfig)
-  const premiumEasing = [0.16, 1, 0.3, 1]
 
   if (!mounted || typeof document === "undefined") return null
 
@@ -107,10 +106,8 @@ function MediaPreviewCard({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.15, ease: "easeOut" }}
           style={{ x: smoothX, y: smoothY }}
-          className="pointer-events-none fixed top-0 left-0 z-[9999] h-[175px] w-[280px] overflow-hidden rounded-[14px] bg-black/40 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-3xl"
+          className="pointer-events-none fixed top-0 left-0 z-[9999] h-[175px] w-[280px] overflow-hidden rounded-[14px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] backdrop-blur-3xl"
         >
-          <div className="absolute inset-0 z-20 rounded-[14px] border border-white/15" />
-
           <AnimatePresence initial={false}>
             <motion.div
               key={node.url}
@@ -121,7 +118,7 @@ function MediaPreviewCard({
                 zIndex: 0,
                 opacity: 0.99, // Keeps DOM node alive during exit
               }}
-              transition={{ duration: 0.7, ease: premiumEasing }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 origin-center overflow-hidden rounded-[14px]"
             >
               <VideoLayer url={node.media.video} />
