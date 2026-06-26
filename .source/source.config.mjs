@@ -43,8 +43,7 @@ var docs = defineDocs({
       price: z2.string().optional(),
       links: z2.object({
         preview: z2.string().url().optional(),
-        github: z2.string().url().optional(),
-        api: z2.string().url().optional()
+        github: z2.string().url().optional()
       }).optional(),
       registryKeys: z2.array(z2.string()).optional(),
       media: z2.object({

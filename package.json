@@ -10,7 +10,6 @@
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "registry:internal": "node scripts/build-registry.mjs",
     "registry:public": "npx shadcn build",
     "make:doc": "node scripts/create-doc.mjs",
     "llm": "node scripts/build-llms.mjs",

@@ -49,6 +49,7 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+
   "fluid-switch-labeled": {
     name: "Demo 2",
     type: "react",
@@ -83,10 +84,11 @@ export const registry: Record<string, RegistryItem> = {
     mediaUrl: "/images/dashboard-mobile-preview.webp",
     previewUrl: "https://preview.satisui.xyz/dashboard-pro/mobile",
   },
+
   "velocity-strips-image": {
     name: "Velocity Strips Image",
     type: "react",
-    renderMode: "iframe", // ✨ Forces iframe embedding
+    renderMode: "direct",
     previewUrl: "/preview/velocity-strips-image",
     component: dynamic(() =>
       import("@/registry/demos/components/velocity-strips/velocity-strips-image").then(
@@ -107,7 +109,7 @@ export const registry: Record<string, RegistryItem> = {
   "velocity-strips-video": {
     name: "Velocity Strips Video",
     type: "react",
-    renderMode: "iframe", // ✨ Forces iframe embedding
+    renderMode: "direct",
     previewUrl: "/preview/velocity-strips-video",
     component: dynamic(() =>
       import("@/registry/demos/components/velocity-strips/velocity-strips-video").then(

@@ -312,14 +312,6 @@ export default function VelocityStrips({
 }`
 
 export const velocityStripsFile = {
-  "velocity-strips-image.tsx": {
-    code: velocityStripsImageDemoString,
-    language: "tsx",
-  },
-  "velocity-strips-video.tsx": {
-    code: velocityStripsVideoDemoString,
-    language: "tsx",
-  },
   "velocity-strips.tsx": {
     code: velocityStripsString,
     language: "tsx",

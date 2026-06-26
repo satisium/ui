@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "velocity-strips-image",
+  "title": "Velocity Strips Image Demo",
+  "dependencies": [
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "velocity-strips"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/velocity-strips/velocity-strips-image.tsx",
+      "content": "\"use client\"\n\nimport VelocityStrips from \"@/registry/ui/velocity-strips\"\nimport { Loading02Icon } from \"@hugeicons/core-free-icons\"\nimport { HugeiconsIcon } from \"@hugeicons/react\"\n\nconst imageUrl =\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/2.jpg\"\n\nexport default function VelocityStripsImageDemo() {\n  return (\n    <main className=\"flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8\">\n      <div className=\"relative aspect-4/3 w-full max-w-5xl overflow-hidden sm:aspect-video\">\n        <VelocityStrips\n          mediaUrl={imageUrl}\n          mediaType=\"image\"\n          slices={20}\n          hoverRadius={0.4}\n          shiftMultiplier={0.8}\n          trackingSpeed={1.0}\n          imageZoom={1}\n          fallback={\n            <div className=\"flex flex-col items-center justify-center gap-2 text-muted-foreground\">\n              <HugeiconsIcon\n                icon={Loading02Icon}\n                className=\"h-6 w-6 animate-spin\"\n              />\n              <span className=\"text-sm font-medium tracking-wide\">\n                Loading media...\n              </span>\n            </div>\n          }\n        />\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
