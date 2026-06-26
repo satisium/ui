@@ -5,7 +5,9 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
 import { useCallback, useEffect, useRef, useState } from "react"
 import { DemoData } from "./component-preview"
-import { cn } from "@/lib/utils" // ✨ IMPORTED cn util
+import { cn } from "@/lib/utils"
+// ✨ IMPORT SHADCN SCROLL AREA
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 export type ViewportMode = "desktop" | "tablet" | "mobile" | "custom"
 
@@ -38,18 +40,15 @@ export function ResizablePlayground({
   useEffect(() => {
     const handlePointerMove = (e: PointerEvent) => {
       if (!isDragging || !containerRef.current) return
-
       const containerRect = containerRef.current.getBoundingClientRect()
       const newWidth = Math.max(320, e.clientX - containerRect.left)
       setPreviewWidth(newWidth)
       setViewportMode("custom")
     }
-
     const handlePointerUp = () => {
       setIsDragging(false)
       document.body.style.cursor = "default"
     }
-
     if (isDragging) {
       window.addEventListener("pointermove", handlePointerMove)
       window.addEventListener("pointerup", handlePointerUp)
@@ -76,39 +75,62 @@ export function ResizablePlayground({
           bounce: 0,
           duration: isDragging ? 0 : 0.4,
         }}
-        className="pointer-events-auto relative flex h-full max-w-full flex-col overflow-hidden rounded-2xl bg-background drop-shadow-2xl"
+        className="pointer-events-auto relative flex h-full max-w-full flex-row overflow-hidden rounded-2xl bg-background drop-shadow-2xl"
       >
-        <div
-          key={isIframe ? "iframe-wrapper" : reloadKey}
-          className={cn(
-            "flex h-full w-full items-center justify-center overflow-auto",
-            isIframe ? "p-0" : "p-8 pb-20",
-            // Only lock the parent wrapper if dragging a direct React render
-            isDragging && !isIframe && "pointer-events-none select-none"
-          )}
-        >
-          {isIframe && activeDemo.embedUrl ? (
-            <iframe
-              id={`satis-iframe-${activeDemo.key}`}
-              src={activeDemo.embedUrl}
-              title={activeDemo.name}
-              loading="lazy"
-              className={cn(
-                "h-full w-full border-none bg-transparent",
-                // ✨ 1. Disable when dragging so it doesn't steal the cursor mid-drag
-                isDragging && "pointer-events-none select-none",
-                // ✨ 2. Disable when the spatial layout sidebar is open
-                "group-data-[sidebar-open=true]/spatial:pointer-events-none"
-              )}
-            />
-          ) : (
-            activeDemo?.component
-          )}
-        </div>
+        {/* 
+          SCROLL AREA INTEGRATION:
+          We wrap ONLY the direct render mode in the ScrollArea. 
+          Iframes must be excluded because combining Radix Viewports with Iframes creates chaotic scroll-jacking.
+        */}
+        {isIframe ? (
+          <div
+            key="iframe-wrapper"
+            className={cn(
+              "flex h-full min-w-0 flex-1 flex-col p-0",
+              isDragging && "pointer-events-none select-none"
+            )}
+          >
+            {activeDemo.embedUrl && (
+              <iframe
+                id={`satis-iframe-${activeDemo.key}`}
+                src={activeDemo.embedUrl}
+                title={activeDemo.name}
+                loading="lazy"
+                className={cn(
+                  "h-full w-full border-none bg-transparent",
+                  isDragging && "pointer-events-none select-none",
+                  "group-data-[sidebar-open=true]/spatial:pointer-events-none"
+                )}
+              />
+            )}
+          </div>
+        ) : (
+          <ScrollArea
+            key={reloadKey}
+            className={cn(
+              "flex h-full min-w-0 flex-1 flex-col",
+              isDragging && "pointer-events-none select-none"
+            )}
+          >
+            {/* 
+              THE GRID TRICK INSIDE THE SCROLL AREA:
+              Shadcn ScrollArea DOES NOT fix the negative-space clipping bug on its own.
+              We still MUST use the grid trick inside the viewport to allow `h-[300vh]` items to scale safely!
+            */}
+            <div className="grid min-h-full min-w-full grid-cols-1 grid-rows-[minmax(100%,max-content)] p-8 pb-20">
+              <div className="flex h-full w-full flex-col items-center justify-center">
+                {activeDemo?.component}
+              </div>
+            </div>
+            {/* Force a beautiful, minimal vertical scrollbar overlay */}
+            <ScrollBar orientation="vertical" />
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        )}
 
         <div
           onPointerDown={handlePointerDown}
-          className="group absolute top-0 right-0 z-50 flex h-full w-4 -translate-x-[50%] cursor-col-resize items-center justify-center transition-colors"
+          className="group relative z-50 flex h-full w-4 shrink-0 cursor-col-resize items-center justify-center border-l border-border/40 bg-background transition-colors hover:bg-muted/30"
         >
           <div
             className={`flex h-[40%] w-1.5 items-center justify-center rounded-full shadow-sm transition-colors ${

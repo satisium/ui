@@ -31,7 +31,7 @@ type CustomPageNode = PageTree.Item & {
 
 /**
  * UTILITY: Cloudinary Auto-Thumbnail & Credit Saver
- * Aggressively optimized to keep 30k+ visitors well within the free tier.
+ * Aggressively optimized to keep high traffic within the free tier.
  */
 function getCloudinaryUrls(rawVideoUrl: string) {
   if (!rawVideoUrl || !rawVideoUrl.includes("cloudinary.com/")) {
@@ -48,18 +48,24 @@ function getCloudinaryUrls(rawVideoUrl: string) {
   // Check if we are in development mode to save transformation credits
   const isDev = process.env.NODE_ENV === "development"
 
-  // Dev uses standard quality so we don't generate endless new transformations on HMR
-  // Prod uses ultra-aggressive Eco compression, 4-second cap, and 24fps
-  const quality = isDev ? "q_auto" : "q_auto:eco"
+  // q_auto:low is the most aggressive compression before things look "glitchy"
+  const quality = isDev ? "q_auto" : "q_auto:low"
 
-  const videoParams = `c_fill,w_400,h_250,f_auto,${quality},ac_none,vc_auto,du_4,fps_24`
-  const posterParams = `c_fill,w_400,h_250,f_auto,${quality},so_auto`
+  // 1. Exact Dimensions: w_280,h_175 (matches your CSS card exactly, saving 51% pixels over w_400)
+  // 2. fps_15: UI components look perfectly fine at 15fps, cutting frame data by 37% vs 24fps
+  // 3. du_3: Cap the duration at 3 seconds (users only hover for 1-2 seconds anyway)
+  // 4. br_250k: Strictly limits the max bitrate so complex UI gradients don't bloat the file size
+  const videoParams = `c_fill,w_280,h_175,f_auto,${quality},ac_none,vc_auto,du_3,fps_15,br_250k`
+
+  // Also optimize the poster frame (fetch as blurry webp for instant loading)
+  const posterParams = `c_fill,w_280,h_175,f_auto,${quality},e_blur:100,so_auto`
 
   const poster = `${base}/upload/${posterParams}/${pathWithoutExt}.webp`
   const video = `${base}/upload/${videoParams}/${path}`
 
   return { video, poster }
 }
+
 /**
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
