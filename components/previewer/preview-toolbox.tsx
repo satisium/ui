@@ -98,7 +98,7 @@ export function PreviewToolBox({
   previewUrl,
   hasSourceCodeId,
   anchor = "bottom-left",
-  gridCols = 2,
+  gridCols = 3,
   collapsedRows = 1,
   hotkeys = {
     desktop: "1",
@@ -165,14 +165,6 @@ export function PreviewToolBox({
       active: isCodeOpen,
     },
     {
-      id: "github",
-      icon: <HugeiconsIcon icon={GithubIcon} className="size-[14px]" />,
-      label: "View GitHub",
-      onClick: () => window.open(githubUrl, "_blank", "noopener,noreferrer"),
-      show: !!githubUrl,
-      active: false,
-    },
-    {
       id: "preview",
       icon: <HugeiconsIcon icon={Share04Icon} className="size-[14px]" />,
       label: "Open Isolated",
@@ -180,6 +172,15 @@ export function PreviewToolBox({
       show: !!previewUrl,
       active: false,
     },
+    {
+      id: "github",
+      icon: <HugeiconsIcon icon={GithubIcon} className="size-[14px]" />,
+      label: "View GitHub",
+      onClick: () => window.open(githubUrl, "_blank", "noopener,noreferrer"),
+      show: !!githubUrl,
+      active: false,
+    },
+
     {
       id: "scroll",
       icon: <HugeiconsIcon icon={DocumentCodeIcon} className="size-[14px]" />,
