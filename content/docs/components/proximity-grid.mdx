@@ -1,0 +1,67 @@
+---
+title: Proximity Grid
+description: An interactive WebGL grid that zooms and rounds media cells dynamically based on cursor proximity.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/proximity-grid.mdx
+registryKeys:
+  - proximity-grid-image
+  - proximity-grid-video
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="proximity-grid" title="proximity-grid" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+Since this component leverages WebGL, you will need React Three Fiber and Three.js.
+
+<div className="mt-6">
+  <CommandBlock pkg="three @react-three/fiber @react-three/drei clsx tailwind-merge" />
+</div>
+
+_Note: The demos utilize `@hugeicons/react` and `@hugeicons/core-free-icons` for the loading fallback, but they are not strictly required for the core component._
+
+**2. Add Source Code**
+
+import { proximityGridFile } from "@/registry/strings/proximity-grid"
+
+<div className="mt-6">
+  <CodeBlock files={proximityGridFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                  | Type                 | Default     | Description                                                                  |
+| :-------------------- | :------------------- | :---------- | :--------------------------------------------------------------------------- |
+| **`mediaUrl`**        | `string`             | —           | The source URL of the media asset.                                           |
+| **`mediaType`**       | `"image" \| "video"` | `"image"`   | Defines the media type for correct texture processing.                       |
+| **`columns`**         | `number`             | `18`        | Number of vertical grid columns.                                             |
+| **`rows`**            | `number`             | `12`        | Number of horizontal grid rows.                                              |
+| **`hoverRadius`**     | `number`             | `4.0`       | How many cells outward the ripple effect reaches.                            |
+| **`imageZoom`**       | `number`             | `1.25`      | How much the image zooms in when the cell is hovered.                        |
+| **`cellRadius`**      | `number`             | `0.45`      | Max border radius of a cell when hovered (0.0 to 0.5 relative to cell size). |
+| **`mouseLerpSpeed`**  | `number`             | `2.5`       | Fluidity of the mouse tracking. Lower = heavier/slower drag.                 |
+| **`enterLeaveSpeed`** | `number`             | `1.5`       | Speed at which the effect fades in/out when entering/leaving the canvas.     |
+| **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.                |
+| **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.                         |
+
+## Inspiration and Credits
+
+WebGL shader and interaction physics tastefully crafted by the **Satis UI** team.

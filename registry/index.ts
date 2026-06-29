@@ -169,4 +169,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "proximity-grid-image": {
+    name: "Proximity Grid Image",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/proximity-grid-image",
+    component: dynamic(() =>
+      import("@/registry/demos/components/proximity-grid/proximity-grid-image").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add proximity-grid",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/proximity-grid")
+      return {
+        "proximity-grid-image.tsx": {
+          code: mod.proximityGridImageDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "proximity-grid-video": {
+    name: "Proximity Grid Video",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/proximity-grid-video",
+    component: dynamic(() =>
+      import("@/registry/demos/components/proximity-grid/proximity-grid-video").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add proximity-grid",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/proximity-grid")
+      return {
+        "proximity-grid-video.tsx": {
+          code: mod.proximityGridVideoDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
