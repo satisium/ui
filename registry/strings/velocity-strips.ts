@@ -148,12 +148,12 @@ interface StripsRendererProps extends Omit<
 
 const StripsRenderer = ({
   texture,
-  slices,
-  hoverRadius,
-  shiftMultiplier,
-  trackingSpeed,
-  imageZoom,
-  enterLeaveSpeed,
+  slices = 32,
+  hoverRadius = 0.35,
+  shiftMultiplier = 1.5,
+  trackingSpeed = 2.0,
+  imageZoom = 1.15,
+  enterLeaveSpeed = 1.5,
 }: StripsRendererProps) => {
   const materialRef = useRef<THREE.ShaderMaterial>(null)
   const { size, viewport } = useThree()
@@ -187,14 +187,17 @@ const StripsRenderer = ({
       u_hoverRadius: { value: hoverRadius },
       u_velocity: { value: 0.0 },
       u_imageZoom: { value: imageZoom },
-      u_resolution: { value: new THREE.Vector2(size.width, size.height) },
+      u_resolution: { value: new THREE.Vector2(1, 1) },
       u_imageRes: { value: new THREE.Vector2(width, height) },
       u_active: { value: 0.0 },
     }
-  }, [texture, slices, size, hoverRadius, imageZoom])
+  }, [texture]) // Removed reactive dependencies to prevent scroll-resizing resets
 
   useFrame((state, delta) => {
     if (!materialRef.current) return
+
+    // Cap delta to prevent lag spikes from causing mathematical overshoots
+    const dt = Math.min(delta, 0.1)
 
     targetMouse.current.set(
       state.pointer.x * 0.5 + 0.5,
@@ -203,14 +206,17 @@ const StripsRenderer = ({
 
     smoothMouse.current.lerp(
       targetMouse.current,
-      delta * (trackingSpeed || 2.0)
+      Math.min(dt * trackingSpeed, 1.0)
     )
-    targetVelocity.current =
-      (targetMouse.current.x - smoothMouse.current.x) * (shiftMultiplier || 1.5)
+    
+    // Calculate and clamp velocity to prevent texture edge bleeding
+    const rawVelocity = (targetMouse.current.x - smoothMouse.current.x) * shiftMultiplier
+    targetVelocity.current = THREE.MathUtils.clamp(rawVelocity, -0.4, 0.4)
+    
     smoothVelocity.current = THREE.MathUtils.lerp(
       smoothVelocity.current,
       targetVelocity.current,
-      delta * 4.0
+      Math.min(dt * 4.0, 1.0)
     )
 
     materialRef.current.uniforms.u_mouse.value.copy(smoothMouse.current)
@@ -219,16 +225,22 @@ const StripsRenderer = ({
     materialRef.current.uniforms.u_active.value = THREE.MathUtils.lerp(
       materialRef.current.uniforms.u_active.value,
       activeState.current,
-      delta * (enterLeaveSpeed || 1.5)
+      Math.min(dt * enterLeaveSpeed, 1.0)
     )
 
+    // Manually push reactive props to uniforms every frame
     materialRef.current.uniforms.u_resolution.value.set(size.width, size.height)
+    materialRef.current.uniforms.u_slices.value = slices
+    materialRef.current.uniforms.u_hoverRadius.value = hoverRadius
+    materialRef.current.uniforms.u_imageZoom.value = imageZoom
   })
 
   return (
     <mesh
       onPointerEnter={() => (activeState.current = 1)}
       onPointerLeave={() => (activeState.current = 0)}
+      onPointerCancel={() => (activeState.current = 0)}
+      onPointerOut={() => (activeState.current = 0)}
     >
       <planeGeometry args={[viewport.width, viewport.height]} />
       <shaderMaterial

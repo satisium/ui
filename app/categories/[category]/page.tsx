@@ -2,7 +2,7 @@ import { queryContent } from "@/lib/content-query"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { CategoryHero } from "@/components/component-card/category-hero"
-import { PremiumComponentCard } from "@/components/component-card/component-card"
+import { ComponentCard } from "@/components/component-card/component-card"
 import { CATEGORIES } from "@/lib/utils"
 import { Metadata } from "next"
 
@@ -89,7 +89,7 @@ export default async function CategoryPage(props: {
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {items.map((item) => (
-                <PremiumComponentCard
+                <ComponentCard
                   key={item.url}
                   url={item.url}
                   title={item.data.title}
