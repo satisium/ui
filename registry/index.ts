@@ -127,4 +127,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "velocity-grid-image": {
+    name: "Velocity Grid Image",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/velocity-grid-image",
+    component: dynamic(() =>
+      import("@/registry/demos/components/velocity-grid/velocity-grid-image").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add velocity-grid",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/velocity-grid")
+      return {
+        "velocity-grid-image.tsx": {
+          code: mod.velocityGridImageDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "velocity-grid-video": {
+    name: "Velocity Grid Video",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/velocity-grid-video",
+    component: dynamic(() =>
+      import("@/registry/demos/components/velocity-grid/velocity-grid-video").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add velocity-grid",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/velocity-grid")
+      return {
+        "velocity-grid-video.tsx": {
+          code: mod.velocityGridVideoDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

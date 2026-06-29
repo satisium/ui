@@ -85,6 +85,51 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "velocity-grid",
+      "type": "registry:ui",
+      "title": "Velocity Grid",
+      "description": "An interactive WebGL component with a 2D grid-based velocity distortion effect.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/velocity-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "velocity-grid-image",
+      "type": "registry:ui",
+      "title": "Velocity Grid Image Demo",
+      "registryDependencies": ["velocity-grid"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/velocity-grid/velocity-grid-image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "velocity-grid-video",
+      "type": "registry:ui",
+      "title": "Velocity Grid Video Demo",
+      "registryDependencies": ["velocity-grid"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/velocity-grid/velocity-grid-video.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
