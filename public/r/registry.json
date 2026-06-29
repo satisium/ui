@@ -130,6 +130,51 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "proximity-grid",
+      "type": "registry:ui",
+      "title": "Proximity Grid",
+      "description": "An interactive WebGL grid that zooms and rounds cells dynamically based on cursor proximity.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/proximity-grid.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "proximity-grid-image",
+      "type": "registry:ui",
+      "title": "Proximity Grid Image Demo",
+      "registryDependencies": ["proximity-grid"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/proximity-grid/proximity-grid-image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "proximity-grid-video",
+      "type": "registry:ui",
+      "title": "Proximity Grid Video Demo",
+      "registryDependencies": ["proximity-grid"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/proximity-grid/proximity-grid-video.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
