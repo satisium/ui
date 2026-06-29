@@ -17,76 +17,41 @@ import { FavouriteIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { SidebarFooter } from "./sidebar-footer"
 import { CommandMenuTrigger } from "./command-menu"
-
-// IMPORTANT: Adjust this path to wherever your fumadocs 'source' is exported from!
 import { source } from "@/lib/source"
+import { getCloudinaryUrl } from "@/lib/cloudinary" // ✨ Import the utility
 
-/**
- * Extended PageTree Item linking your exact Schema.
- */
 type CustomPageNode = PageTree.Item & {
   badge?: string
   media?: { video?: string; [key: string]: any }
 }
 
 /**
- * UTILITY: Cloudinary Auto-Thumbnail & Credit Saver
- * Aggressively optimized to keep high traffic within the free tier.
- */
-function getCloudinaryUrls(rawVideoUrl: string) {
-  if (!rawVideoUrl || !rawVideoUrl.includes("cloudinary.com/")) {
-    return { video: rawVideoUrl, poster: rawVideoUrl }
-  }
-
-  const parts = rawVideoUrl.split("/upload/")
-  if (parts.length !== 2) return { video: rawVideoUrl, poster: rawVideoUrl }
-
-  const base = parts[0]
-  const path = parts[1]
-  const pathWithoutExt = path.replace(/\.[^/.]+$/, "")
-
-  // Check if we are in development mode to save transformation credits
-  const isDev = process.env.NODE_ENV === "development"
-
-  // q_auto:low is the most aggressive compression before things look "glitchy"
-  const quality = isDev ? "q_auto" : "q_auto:low"
-
-  // 1. Exact Dimensions: w_280,h_175 (matches your CSS card exactly, saving 51% pixels over w_400)
-  // 2. fps_15: UI components look perfectly fine at 15fps, cutting frame data by 37% vs 24fps
-  // 3. du_3: Cap the duration at 3 seconds (users only hover for 1-2 seconds anyway)
-  // 4. br_250k: Strictly limits the max bitrate so complex UI gradients don't bloat the file size
-  const videoParams = `c_fill,w_280,h_175,f_auto,${quality},ac_none,vc_auto,du_3,fps_15,br_250k`
-
-  // Also optimize the poster frame (fetch as blurry webp for instant loading)
-  const posterParams = `c_fill,w_280,h_175,f_auto,${quality},e_blur:100,so_auto`
-
-  const poster = `${base}/upload/${posterParams}/${pathWithoutExt}.webp`
-  const video = `${base}/upload/${videoParams}/${path}`
-
-  return { video, poster }
-}
-
-/**
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
 function VideoLayer({ url }: { url: string }) {
-  const { video, poster } = getCloudinaryUrls(url)
+  // ✨ Instantly generate both thumbnail and video using the new global utility
+  const poster = getCloudinaryUrl(url, "preview", "image")
+  const video = getCloudinaryUrl(url, "preview", "video")
 
   return (
     <div className="relative h-full w-full">
-      <img
-        src={poster}
-        alt="Component Preview Poster"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <video
-        src={video}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      {poster && (
+        <img
+          src={poster}
+          alt="Component Preview Poster"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+      {video && (
+        <video
+          src={video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
     </div>
   )
 }
@@ -132,11 +97,12 @@ function MediaPreviewCard({
               exit={{
                 scale: 1,
                 zIndex: 0,
-                opacity: 0.99, // Keeps DOM node alive during exit
+                opacity: 0.99,
               }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 origin-center overflow-hidden rounded-[14px]"
             >
+              {/* Render the VideoLayer */}
               <VideoLayer url={node.media.video} />
             </motion.div>
           </AnimatePresence>
