@@ -1,5 +1,5 @@
 {
   "title": "Components",
-  "pages": ["velocity-strips", "velocity-grid"],
+  "pages": ["velocity-strips", "velocity-grid", "proximity-grid"],
   "icon": "ComponentIcon"
 }
