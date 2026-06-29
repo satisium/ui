@@ -31,11 +31,10 @@ export default async function DynamicPreviewPage(props: {
   }
 
   return (
-    <main className="relative flex min-h-screen w-screen items-center justify-center overflow-hidden bg-background font-sans antialiased selection:bg-primary/20">
+    <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-background font-sans antialiased selection:bg-primary/20">
       <FullscreenToolbox
         files={files}
         componentName={item.name}
-        // 👇 Pass the install command down
         installCommand={item.installCommand}
       />
 

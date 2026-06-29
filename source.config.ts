@@ -21,7 +21,6 @@ export const docs = defineDocs({
         .object({
           preview: z.string().url().optional(),
           github: z.string().url().optional(),
-          api: z.string().url().optional(),
         })
         .optional(),
       registryKeys: z.array(z.string()).optional(),

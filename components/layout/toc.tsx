@@ -227,12 +227,25 @@ export function TableOfContents({ items }: { items: TOCItemType[] }) {
 
   // 3. Auto-Scroll tracking
   useEffect(() => {
-    if (!scrollContainerRef.current) return
-    const activeElement = scrollContainerRef.current.querySelector(
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const activeElement = container.querySelector(
       `[data-index="${activeIndex}"]`
-    )
-    if (activeElement)
-      activeElement.scrollIntoView({ behavior: "smooth", block: "nearest" })
+    ) as HTMLElement
+
+    if (activeElement) {
+      // ✨ BULLETPROOF FIX: Calculate offset manually to scroll ONLY the TOC container
+      // This centers the active item in the sidebar without scrolling the whole page!
+      const offsetTop = activeElement.offsetTop
+      const containerHalfHeight = container.clientHeight / 2
+      const elementHalfHeight = activeElement.clientHeight / 2
+
+      container.scrollTo({
+        top: offsetTop - containerHalfHeight + elementHalfHeight,
+        behavior: "smooth",
+      })
+    }
   }, [activeIndex])
 
   // 4. Progressive Blur Scroll Math

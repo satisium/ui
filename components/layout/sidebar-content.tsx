@@ -17,70 +17,41 @@ import { FavouriteIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { SidebarFooter } from "./sidebar-footer"
 import { CommandMenuTrigger } from "./command-menu"
-
-// IMPORTANT: Adjust this path to wherever your fumadocs 'source' is exported from!
 import { source } from "@/lib/source"
+import { getCloudinaryUrl } from "@/lib/cloudinary" // ✨ Import the utility
 
-/**
- * Extended PageTree Item linking your exact Schema.
- */
 type CustomPageNode = PageTree.Item & {
   badge?: string
   media?: { video?: string; [key: string]: any }
 }
 
 /**
- * UTILITY: Cloudinary Auto-Thumbnail & Credit Saver
- * Aggressively optimized to keep 30k+ visitors well within the free tier.
- */
-function getCloudinaryUrls(rawVideoUrl: string) {
-  if (!rawVideoUrl || !rawVideoUrl.includes("cloudinary.com/")) {
-    return { video: rawVideoUrl, poster: rawVideoUrl }
-  }
-
-  const parts = rawVideoUrl.split("/upload/")
-  if (parts.length !== 2) return { video: rawVideoUrl, poster: rawVideoUrl }
-
-  const base = parts[0]
-  const path = parts[1]
-  const pathWithoutExt = path.replace(/\.[^/.]+$/, "")
-
-  // Check if we are in development mode to save transformation credits
-  const isDev = process.env.NODE_ENV === "development"
-
-  // Dev uses standard quality so we don't generate endless new transformations on HMR
-  // Prod uses ultra-aggressive Eco compression, 4-second cap, and 24fps
-  const quality = isDev ? "q_auto" : "q_auto:eco"
-
-  const videoParams = `c_fill,w_400,h_250,f_auto,${quality},ac_none,vc_auto,du_4,fps_24`
-  const posterParams = `c_fill,w_400,h_250,f_auto,${quality},so_auto`
-
-  const poster = `${base}/upload/${posterParams}/${pathWithoutExt}.webp`
-  const video = `${base}/upload/${videoParams}/${path}`
-
-  return { video, poster }
-}
-/**
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
 function VideoLayer({ url }: { url: string }) {
-  const { video, poster } = getCloudinaryUrls(url)
+  // ✨ Instantly generate both thumbnail and video using the new global utility
+  const poster = getCloudinaryUrl(url, "preview", "image")
+  const video = getCloudinaryUrl(url, "preview", "video")
 
   return (
     <div className="relative h-full w-full">
-      <img
-        src={poster}
-        alt="Component Preview Poster"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
-      <video
-        src={video}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      {poster && (
+        <img
+          src={poster}
+          alt="Component Preview Poster"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
+      {video && (
+        <video
+          src={video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
     </div>
   )
 }
@@ -126,11 +97,12 @@ function MediaPreviewCard({
               exit={{
                 scale: 1,
                 zIndex: 0,
-                opacity: 0.99, // Keeps DOM node alive during exit
+                opacity: 0.99,
               }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 origin-center overflow-hidden rounded-[14px]"
             >
+              {/* Render the VideoLayer */}
               <VideoLayer url={node.media.video} />
             </motion.div>
           </AnimatePresence>

@@ -40,6 +40,51 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "velocity-strips",
+      "type": "registry:ui",
+      "title": "Velocity Strips",
+      "description": "An interactive WebGL component with a fluid, velocity-based slice distortion effect.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/velocity-strips.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "velocity-strips-image",
+      "type": "registry:ui",
+      "title": "Velocity Strips Image Demo",
+      "registryDependencies": ["velocity-strips"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/velocity-strips/velocity-strips-image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "velocity-strips-video",
+      "type": "registry:ui",
+      "title": "Velocity Strips Video Demo",
+      "registryDependencies": ["velocity-strips"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/velocity-strips/velocity-strips-video.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

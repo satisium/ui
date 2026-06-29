@@ -98,8 +98,8 @@ export function PreviewToolBox({
   previewUrl,
   hasSourceCodeId,
   anchor = "bottom-left",
-  gridCols = 2,
-  collapsedRows = 2,
+  gridCols = 3,
+  collapsedRows = 1,
   hotkeys = {
     desktop: "1",
     tablet: "2",
@@ -148,7 +148,7 @@ export function PreviewToolBox({
   const actions = [
     {
       id: "reload",
-      icon: <HugeiconsIcon icon={Refresh03Icon} className="size-3.5" />,
+      icon: <HugeiconsIcon icon={Refresh03Icon} className="size-[14px]" />,
       label: "Reload Animation",
       hotkey: hotkeys.reload?.toUpperCase(),
       onClick: onReload,
@@ -157,7 +157,7 @@ export function PreviewToolBox({
     },
     {
       id: "code",
-      icon: <HugeiconsIcon icon={SourceCodeIcon} className="size-3.5" />,
+      icon: <HugeiconsIcon icon={SourceCodeIcon} className="size-[14px]" />,
       label: "Toggle Code",
       hotkey: hotkeys.code?.toUpperCase(),
       onClick: () => setIsCodeOpen(!isCodeOpen),
@@ -165,24 +165,25 @@ export function PreviewToolBox({
       active: isCodeOpen,
     },
     {
-      id: "github",
-      icon: <HugeiconsIcon icon={GithubIcon} className="size-3.5" />,
-      label: "View GitHub",
-      onClick: () => window.open(githubUrl, "_blank", "noopener,noreferrer"),
-      show: !!githubUrl,
-      active: false,
-    },
-    {
       id: "preview",
-      icon: <HugeiconsIcon icon={Share04Icon} className="size-3.5" />,
+      icon: <HugeiconsIcon icon={Share04Icon} className="size-[14px]" />,
       label: "Open Isolated",
       onClick: () => window.open(previewUrl, "_blank", "noopener,noreferrer"),
       show: !!previewUrl,
       active: false,
     },
     {
+      id: "github",
+      icon: <HugeiconsIcon icon={GithubIcon} className="size-[14px]" />,
+      label: "View GitHub",
+      onClick: () => window.open(githubUrl, "_blank", "noopener,noreferrer"),
+      show: !!githubUrl,
+      active: false,
+    },
+
+    {
       id: "scroll",
-      icon: <HugeiconsIcon icon={DocumentCodeIcon} className="size-3.5" />,
+      icon: <HugeiconsIcon icon={DocumentCodeIcon} className="size-[14px]" />,
       label: "Scroll to Source",
       hotkey: hotkeys.scroll?.toUpperCase(),
       onClick: onScrollToSource,
@@ -193,6 +194,7 @@ export function PreviewToolBox({
 
   const isAnchoredBottom = anchor.startsWith("bottom")
   const tooltipSide = isAnchoredBottom ? "top" : "bottom"
+  // Flip the layout direction based on top/bottom anchor so the expansion opens towards the center of the screen
   const flexDirClass = isAnchoredBottom ? "flex-col-reverse" : "flex-col"
 
   const baseActionCount = gridCols * collapsedRows
@@ -219,8 +221,8 @@ export function PreviewToolBox({
           variant={action.active ? "secondary" : "ghost"}
           size="icon"
           className={cn(
-            "h-9 w-full rounded-[12px] bg-muted transition-colors hover:bg-muted/50",
-            action.active ? "bg-background shadow-sm hover:bg-background" : ""
+            "h-8 w-full rounded-[10px] bg-muted transition-colors hover:bg-muted",
+            action.active ? "bg-background hover:bg-background" : ""
           )}
           style={{ pointerEvents: isHidden ? "none" : "auto" }}
           onClick={action.onClick}
@@ -229,9 +231,9 @@ export function PreviewToolBox({
         </Button>
       </TooltipTrigger>
       <TooltipContent side={tooltipSide} className="flex items-center gap-2">
-        <span>{action.label}</span>
+        <span className="text-xs">{action.label}</span>
         {action.hotkey && (
-          <kbd className="rounded-[12px] border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
+          <kbd className="rounded-[4px] border border-current/20 bg-current/10 px-1.5 py-0.5 text-[10px] font-medium opacity-80">
             {action.hotkey}
           </kbd>
         )}
@@ -243,17 +245,19 @@ export function PreviewToolBox({
     <motion.div
       layout
       className={cn(
-        "absolute z-10 rounded-3xl border bg-muted p-2 drop-shadow-2xl",
+        // ✨ Removed nested bulky padding, now a slim, highly-dense wrapper
+        "absolute z-10 rounded-2xl border border-border/40 bg-background p-1.5 drop-shadow-2xl",
         anchorClasses[anchor]
       )}
       style={{ transformOrigin: originClasses[anchor] }}
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
     >
-      <div className={cn("flex gap-2", flexDirClass)}>
-        <div className="flex flex-col gap-2 rounded-2xl border bg-background p-2">
+      <div className={cn("flex gap-1.5", flexDirClass)}>
+        {/* UPPER/LOWER MAIN CONTROLS (Viewport & Select) */}
+        <div className="flex flex-col gap-1.5 rounded-[12px] bg-muted/30 p-1">
           <motion.div
             layout
-            className="relative z-20 flex h-10 items-center justify-between gap-1 rounded-[12px] bg-muted p-1"
+            className="relative z-20 flex h-8 items-center justify-between gap-1 rounded-[10px] bg-muted/60 p-0.5"
           >
             {[
               { id: "desktop", icon: LaptopIcon, hotkey: hotkeys.desktop },
@@ -269,7 +273,7 @@ export function PreviewToolBox({
                       variant="ghost"
                       size="icon"
                       className={cn(
-                        "relative h-8 flex-1 rounded-[12px] transition-colors hover:bg-transparent",
+                        "relative h-7 flex-1 rounded-[8px] transition-colors hover:bg-transparent",
                         isActive
                           ? "text-foreground"
                           : "text-muted-foreground hover:text-foreground"
@@ -279,7 +283,7 @@ export function PreviewToolBox({
                       {isActive && (
                         <motion.div
                           layoutId="activeViewport"
-                          className="absolute inset-0 rounded-[12px] bg-background shadow-sm"
+                          className="absolute inset-0 rounded-[8px] bg-background"
                           transition={{
                             type: "spring",
                             stiffness: 400,
@@ -297,10 +301,10 @@ export function PreviewToolBox({
                     side={tooltipSide}
                     className="flex items-center gap-2"
                   >
-                    <span className="capitalize">{mode.id}</span>
+                    <span className="text-xs capitalize">{mode.id}</span>
                     {mode.hotkey && (
-                      <kbd className="rounded border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
-                        {mode.hotkey.toUpperCase()}
+                      <kbd className="rounded-[4px] border border-current/20 bg-current/10 px-1.5 py-0.5 text-[10px] font-medium uppercase opacity-80">
+                        {mode.hotkey}
                       </kbd>
                     )}
                   </TooltipContent>
@@ -308,17 +312,32 @@ export function PreviewToolBox({
               )
             })}
           </motion.div>
-          <motion.div layout className="relative z-30 flex items-center gap-2">
+
+          <motion.div
+            layout
+            className="relative z-30 flex items-center gap-1.5"
+          >
             <Select
               value={activeDemoIndex.toString()}
               onValueChange={(val) => setActiveDemoIndex(parseInt(val))}
             >
-              <SelectTrigger className="h-9 min-w-15 rounded-[12px] border-none bg-muted focus:ring-0">
+              <SelectTrigger
+                className={cn(
+                  "h-8 rounded-[10px] border-none bg-muted/60 text-xs font-medium focus:ring-0",
+                  // ✨ BULLETPROOF WIDTH FIX: Fixed width + truncation prevents layout shifts.
+                  // `[&>span]` targets the inner Radix text wrapper to ensure it clips properly.
+                  "w-[130px] sm:w-[150px] [&>span]:truncate [&>span]:pr-2"
+                )}
+              >
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
                 {demos.map((demo, idx) => (
-                  <SelectItem key={demo.key} value={idx.toString()}>
+                  <SelectItem
+                    key={demo.key}
+                    value={idx.toString()}
+                    className="text-xs"
+                  >
                     {demo.name}
                   </SelectItem>
                 ))}
@@ -329,7 +348,7 @@ export function PreviewToolBox({
               <Button
                 variant="ghost"
                 size="icon"
-                className="h-9 w-9 rounded-[12px] bg-muted transition-colors hover:bg-muted/50"
+                className="h-8 w-8 shrink-0 rounded-[10px] bg-muted/60 transition-colors hover:bg-muted"
                 onClick={() => setIsExpanded(!isExpanded)}
               >
                 <motion.div
@@ -337,16 +356,20 @@ export function PreviewToolBox({
                   animate={{ rotate: chevronRotation }}
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 >
-                  <HugeiconsIcon icon={ArrowDown01Icon} className="size-3.5" />
+                  <HugeiconsIcon
+                    icon={ArrowDown01Icon}
+                    className="size-3.5 text-muted-foreground"
+                  />
                 </motion.div>
               </Button>
             )}
           </motion.div>
         </div>
 
+        {/* ACTIONS GRID BLOCK */}
         <motion.div
           layout
-          className="relative z-10 flex flex-col gap-1 rounded-2xl border bg-background p-2"
+          className="relative z-10 flex flex-col gap-1 rounded-[12px] bg-muted/30 p-1"
         >
           <div
             className="relative z-20 grid gap-1"
@@ -378,8 +401,8 @@ export function PreviewToolBox({
                   isExpanded && hasMoreActions
                     ? 0
                     : isAnchoredBottom
-                      ? 40
-                      : -40,
+                      ? 20
+                      : -20,
               }}
               transition={{
                 type: "spring",

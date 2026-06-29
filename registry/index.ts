@@ -49,6 +49,7 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+
   "fluid-switch-labeled": {
     name: "Demo 2",
     type: "react",
@@ -82,5 +83,48 @@ export const registry: Record<string, RegistryItem> = {
     type: "image",
     mediaUrl: "/images/dashboard-mobile-preview.webp",
     previewUrl: "https://preview.satisui.xyz/dashboard-pro/mobile",
+  },
+
+  "velocity-strips-image": {
+    name: "Velocity Strips Image",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/velocity-strips-image",
+    component: dynamic(() =>
+      import("@/registry/demos/components/velocity-strips/velocity-strips-image").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add velocity-strips",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/velocity-strips")
+      return {
+        "velocity-strips-image.tsx": {
+          code: mod.velocityStripsImageDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "velocity-strips-video": {
+    name: "Velocity Strips Video",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/velocity-strips-video",
+    component: dynamic(() =>
+      import("@/registry/demos/components/velocity-strips/velocity-strips-video").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add velocity-strips",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/velocity-strips")
+      return {
+        "velocity-strips-video.tsx": {
+          code: mod.velocityStripsVideoDemoString,
+          language: "tsx",
+        },
+      }
+    },
   },
 }

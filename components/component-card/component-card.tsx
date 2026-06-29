@@ -4,6 +4,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
+import { getCloudinaryUrl } from "@/lib/cloudinary" // ✨ Import the utility
 
 export interface CardProps {
   url: string
@@ -11,7 +12,7 @@ export interface CardProps {
   description?: string
   badge?: "new" | "updated" | "beta" | "deprecated" | string
   media?: {
-    image: string
+    image?: string
     video?: string
   }
 }
@@ -26,25 +27,17 @@ export function ComponentCard({
   const videoRef = useRef<HTMLVideoElement>(null)
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
-  // OPTIMIZATION 1: Hover Intent Delay
   const handleMouseEnter = () => {
-    // Clear any existing timeout so they don't stack
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current)
-    }
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current)
 
-    // Wait 200ms before requesting video bandwidth
     hoverTimeoutRef.current = setTimeout(() => {
       if (videoRef.current && videoRef.current.paused) {
-        videoRef.current.play().catch(() => {
-          // Catch and swallow autoplay blocking errors silently
-        })
+        videoRef.current.play().catch(() => {})
       }
-    }, 200) // 200ms is the sweet spot for perceived performance vs intent
+    }, 200)
   }
 
   const handleMouseLeave = () => {
-    // If they left before 200ms, cancel the video request entirely!
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current)
       hoverTimeoutRef.current = null
@@ -56,17 +49,22 @@ export function ComponentCard({
     }
   }
 
-  // Cleanup timeout if component unmounts while hovered
   useEffect(() => {
     return () => {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current)
-      }
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current)
     }
   }, [])
 
   const badgeType = badge?.toLowerCase()
   const isDeprecated = badgeType === "deprecated"
+
+  // ✨ UNIVERSAL MEDIA RESOLUTION
+  // Use video to generate the image thumbnail if it exists, otherwise use image
+  const targetMedia = media?.video || media?.image
+  const optimizedImage = getCloudinaryUrl(targetMedia, "preview", "image")
+  const optimizedVideo = media?.video
+    ? getCloudinaryUrl(media.video, "preview", "video")
+    : null
 
   return (
     <Link href={url} className="block w-full ring-0 outline-none">
@@ -79,12 +77,11 @@ export function ComponentCard({
       >
         {/* Media Frame */}
         <div className="relative h-60 w-full shrink-0 overflow-hidden rounded-2xl border border-border/50 bg-background">
-          {media?.image ? (
+          {optimizedImage ? (
             <Image
-              src={media.image}
+              src={optimizedImage as string}
               alt={title}
               fill
-              // OPTIMIZATION 2: Bypass Vercel billing limits
               unoptimized={true}
               className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
             />
@@ -96,16 +93,16 @@ export function ComponentCard({
             </div>
           )}
 
-          {media?.video && (
+          {optimizedVideo && (
             <video
               ref={videoRef}
-              src={media.video}
+              src={optimizedVideo}
               muted
               loop
               playsInline
-              // OPTIMIZATION 3: Strictly enforce no-preload
               preload="none"
-              className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out-expo group-hover:opacity-100"
+              // ✨ GAP FIX: Synced duration, easing, and scale values perfectly with the Image component
+              className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-700 ease-out-expo group-hover:scale-105 group-hover:opacity-100"
             />
           )}
         </div>
