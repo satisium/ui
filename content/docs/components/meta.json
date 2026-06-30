@@ -5,7 +5,8 @@
     "velocity-grid",
     "proximity-grid",
     "liquid-marble",
-    "glass-slices"
+    "glass-slices",
+    "halftone-hero"
   ],
   "icon": "ComponentIcon"
 }

@@ -265,6 +265,32 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "halftone-hero",
+      "type": "registry:ui",
+      "title": "Halftone Hero",
+      "description": "An interactive Canvas 2D component that maps an image into physics-based vertical halftone strings.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/halftone-hero.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "halftone-hero-demo",
+      "type": "registry:ui",
+      "title": "Halftone Hero Demo",
+      "registryDependencies": ["halftone-hero"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/halftone-hero/halftone-hero-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
