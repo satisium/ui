@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.6
+
+### Minor Changes
+
+- added glass slices component
+
 ## 3.0.0-beta.5
 
 ### Minor Changes
