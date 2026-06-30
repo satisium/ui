@@ -6,7 +6,8 @@
     "proximity-grid",
     "liquid-marble",
     "glass-slices",
-    "halftone-hero"
+    "halftone-hero",
+    "halftone-horizontal"
   ],
   "icon": "ComponentIcon"
 }
