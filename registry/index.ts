@@ -253,4 +253,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "glass-slices-image": {
+    name: "Glass Slices Image",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/glass-slices-image",
+    component: dynamic(() =>
+      import("@/registry/demos/components/glass-slices/glass-slices-image").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add glass-slices",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/glass-slices")
+      return {
+        "glass-slices-image.tsx": {
+          code: mod.glassSlicesImageDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "glass-slices-video": {
+    name: "Glass Slices Video",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/glass-slices-video",
+    component: dynamic(() =>
+      import("@/registry/demos/components/glass-slices/glass-slices-video").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add glass-slices",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/glass-slices")
+      return {
+        "glass-slices-video.tsx": {
+          code: mod.glassSlicesVideoDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
