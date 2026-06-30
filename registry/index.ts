@@ -295,4 +295,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "halftone-hero-demo": {
+    name: "Halftone Hero Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/halftone-hero-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/halftone-hero/halftone-hero-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add halftone-hero",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/halftone-hero")
+      return {
+        "halftone-hero-demo.tsx": {
+          code: mod.halftoneHeroDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
