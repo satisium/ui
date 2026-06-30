@@ -291,6 +291,32 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "halftone-horizontal",
+      "type": "registry:ui",
+      "title": "Halftone Horizontal",
+      "description": "An interactive Canvas 2D component that maps an image into physics-based horizontal halftone strings.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/halftone-horizontal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "halftone-horizontal-demo",
+      "type": "registry:ui",
+      "title": "Halftone Horizontal Demo",
+      "registryDependencies": ["halftone-horizontal"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/halftone-horizontal/halftone-horizontal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
