@@ -220,6 +220,51 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "glass-slices",
+      "type": "registry:ui",
+      "title": "Glass Slices",
+      "description": "An interactive WebGL component splitting media into vertical glass slices that tilt and compress on hover.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/glass-slices.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "glass-slices-image",
+      "type": "registry:ui",
+      "title": "Glass Slices Image Demo",
+      "registryDependencies": ["glass-slices"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/glass-slices/glass-slices-image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "glass-slices-video",
+      "type": "registry:ui",
+      "title": "Glass Slices Video Demo",
+      "registryDependencies": ["glass-slices"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/glass-slices/glass-slices-video.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

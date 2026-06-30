@@ -4,7 +4,8 @@
     "velocity-strips",
     "velocity-grid",
     "proximity-grid",
-    "liquid-marble"
+    "liquid-marble",
+    "glass-slices"
   ],
   "icon": "ComponentIcon"
 }
