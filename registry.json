@@ -175,6 +175,51 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "liquid-marble",
+      "type": "registry:ui",
+      "title": "Liquid Marble",
+      "description": "An interactive WebGL component applying a fluid noise distortion that clears around the cursor.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/liquid-marble.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "liquid-marble-image",
+      "type": "registry:ui",
+      "title": "Liquid Marble Image Demo",
+      "registryDependencies": ["liquid-marble"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/liquid-marble/liquid-marble-image.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "liquid-marble-video",
+      "type": "registry:ui",
+      "title": "Liquid Marble Video Demo",
+      "registryDependencies": ["liquid-marble"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/liquid-marble/liquid-marble-video.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

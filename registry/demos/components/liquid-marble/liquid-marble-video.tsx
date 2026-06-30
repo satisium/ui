@@ -8,7 +8,7 @@ export default function LiquidMarbleVideoDemo() {
 
   return (
     <main className="flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8">
-      <div className="relative aspect-[4/3] w-full max-w-5xl overflow-hidden rounded-xl border sm:aspect-[16/9]">
+      <div className="relative aspect-[4/3] w-full max-w-5xl overflow-hidden sm:aspect-[16/9]">
         <LiquidMarble
           mediaUrl={videoUrl}
           mediaType="video"
