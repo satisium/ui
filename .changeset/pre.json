@@ -5,7 +5,11 @@
     "ui": "3.0.0-beta.1"
   },
   "changesets": [
+    "all-dodos-care",
     "curly-bars-push",
+    "dull-bats-mate",
+    "gold-trams-hope",
+    "happy-hoops-retire",
     "little-bugs-pull",
     "quick-clubs-peel"
   ]

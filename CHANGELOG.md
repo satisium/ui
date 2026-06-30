@@ -1,5 +1,14 @@
 # ui
 
+## 3.0.0-beta.5
+
+### Minor Changes
+
+- 18be44f: add velocity strip and velocity grid
+- 3707aaf: added liquid marble succesfully
+- 69042ba: refined and modified the sidebar to include preview videos, and magic hover pill.
+- 30b08b1: add proximity grid
+
 ## 3.0.0-beta.4
 
 ### Minor Changes
