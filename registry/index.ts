@@ -211,4 +211,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "liquid-marble-image": {
+    name: "Liquid Marble Image",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/liquid-marble-image",
+    component: dynamic(() =>
+      import("@/registry/demos/components/liquid-marble/liquid-marble-image").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add liquid-marble",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/liquid-marble")
+      return {
+        "liquid-marble-image.tsx": {
+          code: mod.liquidMarbleImageDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "liquid-marble-video": {
+    name: "Liquid Marble Video",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/liquid-marble-video",
+    component: dynamic(() =>
+      import("@/registry/demos/components/liquid-marble/liquid-marble-video").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add liquid-marble",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/liquid-marble")
+      return {
+        "liquid-marble-video.tsx": {
+          code: mod.liquidMarbleVideoDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
