@@ -1,5 +1,13 @@
 # ui
 
+## 3.0.0-beta.7
+
+### Minor Changes
+
+- 25c7f8a: add halftone horizontal to the library
+- added halftone horizontal component with demos etc. Complete
+- e23fb44: add halftone hero with demos and doc
+
 ## 3.0.0-beta.6
 
 ### Minor Changes
