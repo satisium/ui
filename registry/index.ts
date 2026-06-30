@@ -316,4 +316,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "halftone-horizontal-demo": {
+    name: "Halftone Horizontal Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/halftone-horizontal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/halftone-horizontal/halftone-horizontal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add halftone-horizontal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/halftone-horizontal")
+      return {
+        "halftone-horizontal-demo.tsx": {
+          code: mod.halftoneHorizontalDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
