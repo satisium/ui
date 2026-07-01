@@ -1,18 +1,19 @@
 // @ts-nocheck
-import * as __fd_glob_28 from "../content/docs/templates/spotlight-card.mdx?collection=docs"
-import * as __fd_glob_27 from "../content/docs/templates/fluid-switch.mdx?collection=docs"
-import * as __fd_glob_26 from "../content/docs/templates/button.mdx?collection=docs"
-import * as __fd_glob_25 from "../content/docs/templates/aurora-hero.mdx?collection=docs"
-import * as __fd_glob_24 from "../content/docs/templates/ao.mdx?collection=docs"
-import * as __fd_glob_23 from "../content/docs/getting-started/setup.mdx?collection=docs"
-import * as __fd_glob_22 from "../content/docs/getting-started/introduction.mdx?collection=docs"
-import * as __fd_glob_21 from "../content/docs/getting-started/how-to-use.mdx?collection=docs"
-import * as __fd_glob_20 from "../content/docs/getting-started/changelog.mdx?collection=docs"
-import * as __fd_glob_19 from "../content/docs/components/velocity-strips.mdx?collection=docs"
-import * as __fd_glob_18 from "../content/docs/components/velocity-grid.mdx?collection=docs"
-import * as __fd_glob_17 from "../content/docs/components/proximity-grid.mdx?collection=docs"
-import * as __fd_glob_16 from "../content/docs/components/liquid-marble.mdx?collection=docs"
-import * as __fd_glob_15 from "../content/docs/components/index.mdx?collection=docs"
+import * as __fd_glob_29 from "../content/docs/templates/spotlight-card.mdx?collection=docs"
+import * as __fd_glob_28 from "../content/docs/templates/fluid-switch.mdx?collection=docs"
+import * as __fd_glob_27 from "../content/docs/templates/button.mdx?collection=docs"
+import * as __fd_glob_26 from "../content/docs/templates/aurora-hero.mdx?collection=docs"
+import * as __fd_glob_25 from "../content/docs/templates/ao.mdx?collection=docs"
+import * as __fd_glob_24 from "../content/docs/getting-started/setup.mdx?collection=docs"
+import * as __fd_glob_23 from "../content/docs/getting-started/introduction.mdx?collection=docs"
+import * as __fd_glob_22 from "../content/docs/getting-started/how-to-use.mdx?collection=docs"
+import * as __fd_glob_21 from "../content/docs/getting-started/changelog.mdx?collection=docs"
+import * as __fd_glob_20 from "../content/docs/components/velocity-strips.mdx?collection=docs"
+import * as __fd_glob_19 from "../content/docs/components/velocity-grid.mdx?collection=docs"
+import * as __fd_glob_18 from "../content/docs/components/proximity-grid.mdx?collection=docs"
+import * as __fd_glob_17 from "../content/docs/components/liquid-marble.mdx?collection=docs"
+import * as __fd_glob_16 from "../content/docs/components/index.mdx?collection=docs"
+import * as __fd_glob_15 from "../content/docs/components/halftone-video-horizontal.mdx?collection=docs"
 import * as __fd_glob_14 from "../content/docs/components/halftone-video-hero.mdx?collection=docs"
 import * as __fd_glob_13 from "../content/docs/components/halftone-horizontal.mdx?collection=docs"
 import * as __fd_glob_12 from "../content/docs/components/halftone-hero.mdx?collection=docs"
@@ -36,4 +37,4 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
   }
 }>({"doc":{"passthroughs":["extractedReferences"]}});
 
-export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "blocks/meta.json": __fd_glob_1, "components/meta.json": __fd_glob_2, "getting-started/meta.json": __fd_glob_3, "templates/meta.json": __fd_glob_4, }, {"blocks/ao.mdx": __fd_glob_5, "blocks/aurora-hero.mdx": __fd_glob_6, "blocks/button.mdx": __fd_glob_7, "blocks/e-commerce-dashboard.mdx": __fd_glob_8, "blocks/fluid-switch.mdx": __fd_glob_9, "blocks/spotlight-card.mdx": __fd_glob_10, "components/glass-slices.mdx": __fd_glob_11, "components/halftone-hero.mdx": __fd_glob_12, "components/halftone-horizontal.mdx": __fd_glob_13, "components/halftone-video-hero.mdx": __fd_glob_14, "components/index.mdx": __fd_glob_15, "components/liquid-marble.mdx": __fd_glob_16, "components/proximity-grid.mdx": __fd_glob_17, "components/velocity-grid.mdx": __fd_glob_18, "components/velocity-strips.mdx": __fd_glob_19, "getting-started/changelog.mdx": __fd_glob_20, "getting-started/how-to-use.mdx": __fd_glob_21, "getting-started/introduction.mdx": __fd_glob_22, "getting-started/setup.mdx": __fd_glob_23, "templates/ao.mdx": __fd_glob_24, "templates/aurora-hero.mdx": __fd_glob_25, "templates/button.mdx": __fd_glob_26, "templates/fluid-switch.mdx": __fd_glob_27, "templates/spotlight-card.mdx": __fd_glob_28, });
+export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "blocks/meta.json": __fd_glob_1, "components/meta.json": __fd_glob_2, "getting-started/meta.json": __fd_glob_3, "templates/meta.json": __fd_glob_4, }, {"blocks/ao.mdx": __fd_glob_5, "blocks/aurora-hero.mdx": __fd_glob_6, "blocks/button.mdx": __fd_glob_7, "blocks/e-commerce-dashboard.mdx": __fd_glob_8, "blocks/fluid-switch.mdx": __fd_glob_9, "blocks/spotlight-card.mdx": __fd_glob_10, "components/glass-slices.mdx": __fd_glob_11, "components/halftone-hero.mdx": __fd_glob_12, "components/halftone-horizontal.mdx": __fd_glob_13, "components/halftone-video-hero.mdx": __fd_glob_14, "components/halftone-video-horizontal.mdx": __fd_glob_15, "components/index.mdx": __fd_glob_16, "components/liquid-marble.mdx": __fd_glob_17, "components/proximity-grid.mdx": __fd_glob_18, "components/velocity-grid.mdx": __fd_glob_19, "components/velocity-strips.mdx": __fd_glob_20, "getting-started/changelog.mdx": __fd_glob_21, "getting-started/how-to-use.mdx": __fd_glob_22, "getting-started/introduction.mdx": __fd_glob_23, "getting-started/setup.mdx": __fd_glob_24, "templates/ao.mdx": __fd_glob_25, "templates/aurora-hero.mdx": __fd_glob_26, "templates/button.mdx": __fd_glob_27, "templates/fluid-switch.mdx": __fd_glob_28, "templates/spotlight-card.mdx": __fd_glob_29, });
