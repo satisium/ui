@@ -1,7 +1,6 @@
 import BouquetTrail from "@/registry/ui/bouquet-trail"
 
 const floralElements = [
-  // 1. Plumeria
   <svg
     key="plumeria"
     viewBox="0 0 100 100"

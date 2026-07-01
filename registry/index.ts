@@ -379,4 +379,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "bouquet-trail-demo": {
+    name: "Bouquet Trail Demo",
+    type: "react",
+    renderMode: "iframe", // Use iframe to prevent it leaking out over documentation UI since it tracks window mouse
+    previewUrl: "/preview/bouquet-trail-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/bouquet-trail/bouquet-trail-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add bouquet-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/bouquet-trail")
+      return {
+        "bouquet-trail-demo.tsx": {
+          code: mod.bouquetTrailDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
