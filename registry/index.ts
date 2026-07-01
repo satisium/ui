@@ -400,4 +400,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "depth-trail-avatars-demo": {
+    name: "Depth Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe", // Iframe isolates the window-bound pointermove tracking
+    previewUrl: "/preview/depth-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/depth-trail/depth-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add depth-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/depth-trail")
+      return {
+        "depth-trail-avatars-demo.tsx": {
+          code: mod.depthTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "depth-trail-images-demo": {
+    name: "Depth Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/depth-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/depth-trail/depth-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add depth-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/depth-trail")
+      return {
+        "depth-trail-images-demo.tsx": {
+          code: mod.depthTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

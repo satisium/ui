@@ -394,6 +394,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "depth-trail",
+      "type": "registry:ui",
+      "title": "Depth Trail",
+      "description": "A cinematic mouse trail leveraging Z-depth, focal blur, parallax shifting, and atmospheric brightness to simulate a dense 3D space.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/depth-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "depth-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Depth Trail Avatars Demo",
+      "registryDependencies": ["depth-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/depth-trail/depth-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "depth-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Depth Trail Images Demo",
+      "registryDependencies": ["depth-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/depth-trail/depth-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
