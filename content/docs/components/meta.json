@@ -8,7 +8,8 @@
     "glass-slices",
     "halftone-hero",
     "halftone-horizontal",
-    "halftone-video-hero"
+    "halftone-video-hero",
+    "halftone-video-horizontal"
   ],
   "icon": "ComponentIcon"
 }
