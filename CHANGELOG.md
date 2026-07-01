@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.9
+
+### Minor Changes
+
+- added bouquet trail with demos and code strings
+
 ## 3.0.0-beta.8
 
 ### Minor Changes
