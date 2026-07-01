@@ -343,6 +343,32 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "halftone-video-horizontal",
+      "type": "registry:ui",
+      "title": "Halftone Video Horizontal",
+      "description": "A hyper-optimized dual-RAF Canvas 2D component rendering live video into physics-based horizontal halftone strings.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/halftone-video-horizontal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "halftone-video-horizontal-demo",
+      "type": "registry:ui",
+      "title": "Halftone Video Horizontal Demo",
+      "registryDependencies": ["halftone-video-horizontal"],
+      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "files": [
+        {
+          "path": "registry/demos/components/halftone-video-horizontal/halftone-video-horizontal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

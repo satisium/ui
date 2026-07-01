@@ -358,4 +358,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "halftone-video-horizontal-demo": {
+    name: "Halftone Video Horizontal Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/halftone-video-horizontal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/halftone-video-horizontal/halftone-video-horizontal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add halftone-video-horizontal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/halftone-video-horizontal")
+      return {
+        "halftone-video-horizontal-demo.tsx": {
+          code: mod.halftoneVideoHorizontalDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

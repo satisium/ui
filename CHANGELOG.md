@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.8
+
+### Minor Changes
+
+- added halftone video horizontal with demos and strings and docs
+
 ## 3.0.0-beta.7
 
 ### Minor Changes
