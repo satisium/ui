@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.10
+
+### Minor Changes
+
+- added depth trail component along with demos, strings docs etc. Succesfully added to the library
+
 ## 3.0.0-beta.9
 
 ### Minor Changes
