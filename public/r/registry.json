@@ -369,6 +369,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "bouquet-trail",
+      "type": "registry:ui",
+      "title": "Bouquet Trail",
+      "description": "A highly optimized, hardware-accelerated mouse trail component featuring SVG DOM pooling, bi-directional time scrubbing, and customizable spring physics.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/bouquet-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "bouquet-trail-demo",
+      "type": "registry:ui",
+      "title": "Bouquet Trail Demo",
+      "registryDependencies": ["bouquet-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/bouquet-trail/bouquet-trail-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
