@@ -1,0 +1,52 @@
+---
+title: Kaleidoscope Trail
+description: A geometrically mapped mouse trail that mirrors spawned elements around the center axis, creating mesmerizing, symmetrical kaleidoscope mandalas based on cursor position.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/kaleidoscope-trail.mdx
+registryKeys:
+  - kaleidoscope-trail-avatars-demo
+  - kaleidoscope-trail-images-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="kaleidoscope-trail" title="kaleidoscope-trail" />
+</div>
+
+### Manual
+
+**1. Add Source Code**
+
+import { kaleidoscopeTrailFile } from "@/registry/strings/kaleidoscope-trail"
+
+<div className="mt-6">
+  <CodeBlock files={kaleidoscopeTrailFile} height="600px" />
+</div>
+
+_Note: This component utilizes pure DOM manipulation and RequestAnimationFrame logic. No external libraries are required._
+
+## Props
+
+| Prop                | Type       | Default     | Description                                                               |
+| :------------------ | :--------- | :---------- | :------------------------------------------------------------------------ |
+| **`imageUrls`**     | `string[]` | `[]`        | Array of image URLs to randomly spawn.                                    |
+| **`distance`**      | `number`   | `40`        | Distance the pointer must move (in pixels) before spawning a new cluster. |
+| **`duration`**      | `number`   | `2000`      | The total lifespan of a spawned item in milliseconds.                     |
+| **`maxGroups`**     | `number`   | `12`        | Maximum number of clusters on screen before forcing the oldest to exit.   |
+| **`mirrors`**       | `number`   | `6`         | How many reflections to create around the center (e.g., 6 = Hexagon).     |
+| **`itemSize`**      | `number`   | `90`        | The base pixel size of the image cards.                                   |
+| **`className`**     | `string`   | `undefined` | Standard Tailwind classes for the fixed wrapper.                          |
+| **`itemClassName`** | `string`   | `""`        | Standard Tailwind classes applied to the individual image wrappers.       |
