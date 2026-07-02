@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.13
+
+### Minor Changes
+
+- added kaleidoscope trail core component along with demos, code strings, documentation etc
+
 ## 3.0.0-beta.12
 
 ### Minor Changes

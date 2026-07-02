@@ -526,4 +526,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "kaleidoscope-trail-avatars-demo": {
+    name: "Kaleidoscope Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/kaleidoscope-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add kaleidoscope-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/kaleidoscope-trail")
+      return {
+        "kaleidoscope-trail-avatars-demo.tsx": {
+          code: mod.kaleidoscopeTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "kaleidoscope-trail-images-demo": {
+    name: "Kaleidoscope Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/kaleidoscope-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add kaleidoscope-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/kaleidoscope-trail")
+      return {
+        "kaleidoscope-trail-images-demo.tsx": {
+          code: mod.kaleidoscopeTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

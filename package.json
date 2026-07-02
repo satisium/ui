@@ -1,6 +1,6 @@
 {
   "name": "ui",
-  "version": "3.0.0-beta.12",
+  "version": "3.0.0-beta.13",
   "type": "module",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "registry:public": "npx shadcn build",
+    "changeset": "npx changeset",
     "make:doc": "node scripts/create-doc.mjs",
     "llm": "node scripts/build-llms.mjs",
     "release": "changeset version",

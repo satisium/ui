@@ -505,6 +505,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "kaleidoscope-trail",
+      "type": "registry:ui",
+      "title": "Kaleidoscope Trail",
+      "description": "A geometrically mapped mouse trail that perfectly mirrors spawned elements around the center axis, creating mesmerizing kaleidoscope mandalas.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/kaleidoscope-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "kaleidoscope-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Kaleidoscope Trail Avatars Demo",
+      "registryDependencies": ["kaleidoscope-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "kaleidoscope-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Kaleidoscope Trail Images Demo",
+      "registryDependencies": ["kaleidoscope-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
