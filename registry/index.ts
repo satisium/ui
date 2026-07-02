@@ -568,4 +568,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "squircle-trail-avatars-demo": {
+    name: "Squircle Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/squircle-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/squircle-trail/squircle-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add squircle-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/squircle-trail")
+      return {
+        "squircle-trail-avatars-demo.tsx": {
+          code: mod.squircleTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "squircle-trail-images-demo": {
+    name: "Squircle Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/squircle-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/squircle-trail/squircle-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add squircle-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/squircle-trail")
+      return {
+        "squircle-trail-images-demo.tsx": {
+          code: mod.squircleTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
