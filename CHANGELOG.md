@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.14
+
+### Minor Changes
+
+- added squircle trail along with demos and code strings, also with proper docs registry
+
 ## 3.0.0-beta.13
 
 ### Minor Changes

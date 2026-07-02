@@ -1,0 +1,94 @@
+---
+title: Squircle Trail
+description: A snappy, hardware-accelerated mouse trail component that leaves behind rounded-square images with optional path-directional rotation.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/squircle-trail.mdx
+registryKeys:
+  - squircle-trail-avatars-demo
+  - squircle-trail-images-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/2.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="squircle-trail" title="squircle-trail" />
+</div>
+
+### Manual
+
+**1. Add Source Code**
+
+import { squircleTrailFile } from "@/registry/strings/squircle-trail"
+
+<div className="mt-6">
+  <CodeBlock files={squircleTrailFile} height="600px" />
+</div>
+
+_Note: This component utilizes pure DOM manipulation and RequestAnimationFrame logic. No external libraries are required._
+
+## Props
+
+| Prop                      | Type                | Default     | Description                                                            |
+| :------------------------ | :------------------ | :---------- | :--------------------------------------------------------------------- |
+| **`imageUrls`**           | `string[]`          | `[]`        | Array of image URLs to randomly spawn.                                 |
+| **`distance`**            | `number`            | `30`        | Distance the pointer must move (in pixels) before spawning a new item. |
+| **`duration`**            | `number`            | `1200`      | The total lifespan of a spawned item in milliseconds.                  |
+| **`maxItems`**            | `number`            | `7`         | Maximum items on screen before forcing the oldest to fade out.         |
+| **`itemSize`**            | `number`            | `120`       | The base pixel size of the image cards.                                |
+| **`rotationRange`**       | `number`            | `15`        | Maximum random rotation (in degrees) applied to the cards.             |
+| **`directionalRotation`** | `boolean \| number` | `false`     | When enabled, objects rotate to point along the mouse path curve.      |
+| **`className`**           | `string`            | `undefined` | Standard Tailwind classes for the fixed wrapper.                       |
+| **`itemClassName`**       | `string`            | `""`        | Standard Tailwind classes applied to the individual image wrappers.    |
+
+## Usage
+
+**File Path:** `app/page.tsx`
+
+```tsx
+"use client"
+
+import SquircleTrail from "@/components/ui/squircle-trail"
+
+// Optimized Cloudinary URLs (w_250) for fast sequential loading
+const trailImages = [
+  "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",
+  "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/17.jpg",
+  "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/18.jpg",
+  "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/19.jpg",
+]
+
+export default function ExamplePage() {
+  return (
+    <main className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-background">
+      <div className="pointer-events-none flex flex-col items-center gap-8 select-none">
+        <h1 className="text-[10vw] font-bold tracking-tighter text-muted md:text-[8vw]">
+          Squircles.
+        </h1>
+      </div>
+
+      <SquircleTrail
+        imageUrls={trailImages}
+        distance={30}
+        itemSize={120}
+        maxItems={7}
+        duration={1200}
+        rotationRange={15}
+        directionalRotation={false}
+        itemClassName="border-4 border-border"
+      />
+    </main>
+  )
+}
+```
