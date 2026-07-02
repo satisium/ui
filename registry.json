@@ -542,6 +542,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "squircle-trail",
+      "type": "registry:ui",
+      "title": "Squircle Trail",
+      "description": "A snappy, hardware-accelerated mouse trail component that leaves behind rounded-square images with optional path-directional rotation.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/squircle-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "squircle-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Squircle Trail Avatars Demo",
+      "registryDependencies": ["squircle-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/squircle-trail/squircle-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "squircle-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Squircle Trail Images Demo",
+      "registryDependencies": ["squircle-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/squircle-trail/squircle-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
