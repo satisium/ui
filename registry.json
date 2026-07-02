@@ -468,6 +468,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "wind-trail",
+      "type": "registry:ui",
+      "title": "Wind Trail",
+      "description": "An interactive mouse trail that maps spawned elements to an ambient wind physics engine, drifting items smoothly across the screen like autumn leaves.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/wind-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "wind-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Wind Trail Avatars Demo",
+      "registryDependencies": ["wind-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/wind-trail/wind-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "wind-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Wind Trail Images Demo",
+      "registryDependencies": ["wind-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/wind-trail/wind-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

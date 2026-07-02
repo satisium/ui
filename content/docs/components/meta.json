@@ -12,7 +12,8 @@
     "halftone-video-horizontal",
     "bouquet-trail",
     "depth-trail",
-    "scatter-trail"
+    "scatter-trail",
+    "wind-trail"
   ],
   "icon": "ComponentIcon"
 }
