@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.11
+
+### Minor Changes
+
+- added scatter trail along with demos, strings and clean documentation
+
 ## 3.0.0-beta.10
 
 ### Minor Changes
