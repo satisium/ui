@@ -431,6 +431,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "scatter-trail",
+      "type": "registry:ui",
+      "title": "Scatter Trail",
+      "description": "A physics-based mouse trail that calculates pointer velocity to dynamically throw, slide, and spin images across the screen.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/scatter-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "scatter-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Scatter Trail Avatars Demo",
+      "registryDependencies": ["scatter-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/scatter-trail/scatter-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "scatter-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Scatter Trail Images Demo",
+      "registryDependencies": ["scatter-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/scatter-trail/scatter-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
