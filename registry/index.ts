@@ -484,4 +484,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "wind-trail-avatars-demo": {
+    name: "Wind Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/wind-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/wind-trail/wind-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add wind-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/wind-trail")
+      return {
+        "wind-trail-avatars-demo.tsx": {
+          code: mod.windTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "wind-trail-images-demo": {
+    name: "Wind Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/wind-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/wind-trail/wind-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add wind-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/wind-trail")
+      return {
+        "wind-trail-images-demo.tsx": {
+          code: mod.windTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
