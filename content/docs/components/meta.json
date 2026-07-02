@@ -11,7 +11,8 @@
     "halftone-video-hero",
     "halftone-video-horizontal",
     "bouquet-trail",
-    "depth-trail"
+    "depth-trail",
+    "scatter-trail"
   ],
   "icon": "ComponentIcon"
 }

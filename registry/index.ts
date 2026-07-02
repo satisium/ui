@@ -442,4 +442,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "scatter-trail-avatars-demo": {
+    name: "Scatter Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe", // Iframe isolates the window-bound pointermove tracking
+    previewUrl: "/preview/scatter-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/scatter-trail/scatter-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add scatter-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/scatter-trail")
+      return {
+        "scatter-trail-avatars-demo.tsx": {
+          code: mod.scatterTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "scatter-trail-images-demo": {
+    name: "Scatter Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/scatter-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/scatter-trail/scatter-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add scatter-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/scatter-trail")
+      return {
+        "scatter-trail-images-demo.tsx": {
+          code: mod.scatterTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
