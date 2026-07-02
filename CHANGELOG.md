@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.12
+
+### Minor Changes
+
+- added wind trail core component along with demos, code strings and documentation
+
 ## 3.0.0-beta.11
 
 ### Minor Changes
