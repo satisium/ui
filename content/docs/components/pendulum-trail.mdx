@@ -1,0 +1,60 @@
+---
+title: Pendulum Trail
+description: An interactive mouse trail that maps spawned items to an invisible swinging pendulum axis, driven entirely by pointer velocity and physics length.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/pendulum-trail.mdx
+registryKeys:
+  - pendulum-trail-avatars-demo
+  - pendulum-trail-images-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="pendulum-trail" title="pendulum-trail" />
+</div>
+
+### Manual
+
+**1. Add Source Code**
+
+import { pendulumTrailFile } from "@/registry/strings/pendulum-trail"
+
+<div className="mt-6">
+  <CodeBlock files={pendulumTrailFile} height="600px" />
+</div>
+
+_Note: This component utilizes pure DOM manipulation and RequestAnimationFrame logic. No external libraries are required._
+
+## Performance Architecture
+
+Traditional React-based particle trails suffer from severe Garbage Collection (GC) spikes because React constantly mounts and unmounts nodes. The **Pendulum Trail** circumvents this by pre-allocating a fixed array of DOM references (`DOM_POOL_SIZE = maxItems * 3`).
+
+As the cursor moves, it accurately calculates the pixel-per-millisecond pointer velocity, maps it to a simulated pendulum arc, and strictly recycles the existing nodes using 3D hardware-accelerated transforms (`translate3d`), resulting in a flawless 60fps trail experience even on mobile devices.
+
+## Props
+
+| Prop                | Type       | Default     | Description                                                                 |
+| :------------------ | :--------- | :---------- | :-------------------------------------------------------------------------- |
+| **`imageUrls`**     | `string[]` | `[]`        | Array of image URLs to randomly spawn.                                      |
+| **`distance`**      | `number`   | `70`        | Distance the pointer must move (in pixels) before spawning a new item.      |
+| **`duration`**      | `number`   | `3000`      | The total lifespan of a spawned item in milliseconds.                       |
+| **`maxItems`**      | `number`   | `15`        | Maximum items on screen before forcing the oldest to gracefully shrink out. |
+| **`itemSize`**      | `number`   | `110`       | The base pixel width of the image cards.                                    |
+| **`windAngle`**     | `number`   | `10`        | Base horizontal wind angle pushing the cards.                               |
+| **`windSway`**      | `number`   | `5`         | The intensity of the sine-wave flutter applied by the wind.                 |
+| **`physicsLength`** | `number`   | `40`        | Length of the invisible string. Dictates the speed and arc of the swing.    |
+| **`className`**     | `string`   | `undefined` | Standard Tailwind classes for the fixed wrapper.                            |
+| **`itemClassName`** | `string`   | `""`        | Standard Tailwind classes applied to the individual image wrappers.         |

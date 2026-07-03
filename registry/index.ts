@@ -610,4 +610,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "pendulum-trail-avatars-demo": {
+    name: "Pendulum Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/pendulum-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/pendulum-trail/pendulum-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add pendulum-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/pendulum-trail")
+      return {
+        "pendulum-trail-avatars-demo.tsx": {
+          code: mod.pendulumTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "pendulum-trail-images-demo": {
+    name: "Pendulum Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/pendulum-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/pendulum-trail/pendulum-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add pendulum-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/pendulum-trail")
+      return {
+        "pendulum-trail-images-demo.tsx": {
+          code: mod.pendulumTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

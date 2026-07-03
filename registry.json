@@ -579,6 +579,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "pendulum-trail",
+      "type": "registry:ui",
+      "title": "Pendulum Trail",
+      "description": "An interactive mouse trail that maps spawned items to an invisible swinging pendulum axis, driven entirely by pointer velocity.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/pendulum-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pendulum-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Pendulum Trail Avatars Demo",
+      "registryDependencies": ["pendulum-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/pendulum-trail/pendulum-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "pendulum-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Pendulum Trail Images Demo",
+      "registryDependencies": ["pendulum-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/pendulum-trail/pendulum-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -1,19 +1,20 @@
 // @ts-nocheck
-import * as __fd_glob_35 from "../content/docs/templates/spotlight-card.mdx?collection=docs"
-import * as __fd_glob_34 from "../content/docs/templates/fluid-switch.mdx?collection=docs"
-import * as __fd_glob_33 from "../content/docs/templates/button.mdx?collection=docs"
-import * as __fd_glob_32 from "../content/docs/templates/aurora-hero.mdx?collection=docs"
-import * as __fd_glob_31 from "../content/docs/templates/ao.mdx?collection=docs"
-import * as __fd_glob_30 from "../content/docs/getting-started/setup.mdx?collection=docs"
-import * as __fd_glob_29 from "../content/docs/getting-started/introduction.mdx?collection=docs"
-import * as __fd_glob_28 from "../content/docs/getting-started/how-to-use.mdx?collection=docs"
-import * as __fd_glob_27 from "../content/docs/getting-started/changelog.mdx?collection=docs"
-import * as __fd_glob_26 from "../content/docs/components/wind-trail.mdx?collection=docs"
-import * as __fd_glob_25 from "../content/docs/components/velocity-strips.mdx?collection=docs"
-import * as __fd_glob_24 from "../content/docs/components/velocity-grid.mdx?collection=docs"
-import * as __fd_glob_23 from "../content/docs/components/squircle-trail.mdx?collection=docs"
-import * as __fd_glob_22 from "../content/docs/components/scatter-trail.mdx?collection=docs"
-import * as __fd_glob_21 from "../content/docs/components/proximity-grid.mdx?collection=docs"
+import * as __fd_glob_36 from "../content/docs/templates/spotlight-card.mdx?collection=docs"
+import * as __fd_glob_35 from "../content/docs/templates/fluid-switch.mdx?collection=docs"
+import * as __fd_glob_34 from "../content/docs/templates/button.mdx?collection=docs"
+import * as __fd_glob_33 from "../content/docs/templates/aurora-hero.mdx?collection=docs"
+import * as __fd_glob_32 from "../content/docs/templates/ao.mdx?collection=docs"
+import * as __fd_glob_31 from "../content/docs/getting-started/setup.mdx?collection=docs"
+import * as __fd_glob_30 from "../content/docs/getting-started/introduction.mdx?collection=docs"
+import * as __fd_glob_29 from "../content/docs/getting-started/how-to-use.mdx?collection=docs"
+import * as __fd_glob_28 from "../content/docs/getting-started/changelog.mdx?collection=docs"
+import * as __fd_glob_27 from "../content/docs/components/wind-trail.mdx?collection=docs"
+import * as __fd_glob_26 from "../content/docs/components/velocity-strips.mdx?collection=docs"
+import * as __fd_glob_25 from "../content/docs/components/velocity-grid.mdx?collection=docs"
+import * as __fd_glob_24 from "../content/docs/components/squircle-trail.mdx?collection=docs"
+import * as __fd_glob_23 from "../content/docs/components/scatter-trail.mdx?collection=docs"
+import * as __fd_glob_22 from "../content/docs/components/proximity-grid.mdx?collection=docs"
+import * as __fd_glob_21 from "../content/docs/components/pendulum-trail.mdx?collection=docs"
 import * as __fd_glob_20 from "../content/docs/components/liquid-marble.mdx?collection=docs"
 import * as __fd_glob_19 from "../content/docs/components/kaleidoscope-trail.mdx?collection=docs"
 import * as __fd_glob_18 from "../content/docs/components/index.mdx?collection=docs"
@@ -43,4 +44,4 @@ const create = server<typeof Config, import("fumadocs-mdx/runtime/types").Intern
   }
 }>({"doc":{"passthroughs":["extractedReferences"]}});
 
-export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "blocks/meta.json": __fd_glob_1, "components/meta.json": __fd_glob_2, "getting-started/meta.json": __fd_glob_3, "templates/meta.json": __fd_glob_4, }, {"blocks/ao.mdx": __fd_glob_5, "blocks/aurora-hero.mdx": __fd_glob_6, "blocks/button.mdx": __fd_glob_7, "blocks/e-commerce-dashboard.mdx": __fd_glob_8, "blocks/fluid-switch.mdx": __fd_glob_9, "blocks/spotlight-card.mdx": __fd_glob_10, "components/bouquet-trail.mdx": __fd_glob_11, "components/depth-trail.mdx": __fd_glob_12, "components/glass-slices.mdx": __fd_glob_13, "components/halftone-hero.mdx": __fd_glob_14, "components/halftone-horizontal.mdx": __fd_glob_15, "components/halftone-video-hero.mdx": __fd_glob_16, "components/halftone-video-horizontal.mdx": __fd_glob_17, "components/index.mdx": __fd_glob_18, "components/kaleidoscope-trail.mdx": __fd_glob_19, "components/liquid-marble.mdx": __fd_glob_20, "components/proximity-grid.mdx": __fd_glob_21, "components/scatter-trail.mdx": __fd_glob_22, "components/squircle-trail.mdx": __fd_glob_23, "components/velocity-grid.mdx": __fd_glob_24, "components/velocity-strips.mdx": __fd_glob_25, "components/wind-trail.mdx": __fd_glob_26, "getting-started/changelog.mdx": __fd_glob_27, "getting-started/how-to-use.mdx": __fd_glob_28, "getting-started/introduction.mdx": __fd_glob_29, "getting-started/setup.mdx": __fd_glob_30, "templates/ao.mdx": __fd_glob_31, "templates/aurora-hero.mdx": __fd_glob_32, "templates/button.mdx": __fd_glob_33, "templates/fluid-switch.mdx": __fd_glob_34, "templates/spotlight-card.mdx": __fd_glob_35, });
+export const docs = await create.docs("docs", "content/docs", {"meta.json": __fd_glob_0, "blocks/meta.json": __fd_glob_1, "components/meta.json": __fd_glob_2, "getting-started/meta.json": __fd_glob_3, "templates/meta.json": __fd_glob_4, }, {"blocks/ao.mdx": __fd_glob_5, "blocks/aurora-hero.mdx": __fd_glob_6, "blocks/button.mdx": __fd_glob_7, "blocks/e-commerce-dashboard.mdx": __fd_glob_8, "blocks/fluid-switch.mdx": __fd_glob_9, "blocks/spotlight-card.mdx": __fd_glob_10, "components/bouquet-trail.mdx": __fd_glob_11, "components/depth-trail.mdx": __fd_glob_12, "components/glass-slices.mdx": __fd_glob_13, "components/halftone-hero.mdx": __fd_glob_14, "components/halftone-horizontal.mdx": __fd_glob_15, "components/halftone-video-hero.mdx": __fd_glob_16, "components/halftone-video-horizontal.mdx": __fd_glob_17, "components/index.mdx": __fd_glob_18, "components/kaleidoscope-trail.mdx": __fd_glob_19, "components/liquid-marble.mdx": __fd_glob_20, "components/pendulum-trail.mdx": __fd_glob_21, "components/proximity-grid.mdx": __fd_glob_22, "components/scatter-trail.mdx": __fd_glob_23, "components/squircle-trail.mdx": __fd_glob_24, "components/velocity-grid.mdx": __fd_glob_25, "components/velocity-strips.mdx": __fd_glob_26, "components/wind-trail.mdx": __fd_glob_27, "getting-started/changelog.mdx": __fd_glob_28, "getting-started/how-to-use.mdx": __fd_glob_29, "getting-started/introduction.mdx": __fd_glob_30, "getting-started/setup.mdx": __fd_glob_31, "templates/ao.mdx": __fd_glob_32, "templates/aurora-hero.mdx": __fd_glob_33, "templates/button.mdx": __fd_glob_34, "templates/fluid-switch.mdx": __fd_glob_35, "templates/spotlight-card.mdx": __fd_glob_36, });

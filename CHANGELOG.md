@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.15
+
+### Minor Changes
+
+- added pendulum trail along with the complete docs, demos etc
+
 ## 3.0.0-beta.14
 
 ### Minor Changes
