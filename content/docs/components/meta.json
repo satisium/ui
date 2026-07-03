@@ -16,7 +16,8 @@
     "wind-trail",
     "kaleidoscope-trail",
     "squircle-trail",
-    "pendulum-trail"
+    "pendulum-trail",
+    "slinky-trail"
   ],
   "icon": "ComponentIcon"
 }

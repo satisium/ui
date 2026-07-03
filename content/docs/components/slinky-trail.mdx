@@ -1,0 +1,56 @@
+---
+title: Slinky Trail
+description: An interconnected, continuous spring-physics mouse trail that simulates a slinky or snake chasing the pointer.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/slinky-trail.mdx
+registryKeys:
+  - slinky-trail-avatars-demo
+  - slinky-trail-images-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/2.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="slinky-trail" title="slinky-trail" />
+</div>
+
+### Manual
+
+**1. Add Source Code**
+
+import { slinkyTrailFile } from "@/registry/strings/slinky-trail"
+
+<div className="mt-6">
+  <CodeBlock files={slinkyTrailFile} height="600px" />
+</div>
+
+_Note: This component utilizes pure DOM manipulation and RequestAnimationFrame logic. No external libraries are required._
+
+## Performance Architecture
+
+Unlike the other trails that spawn and recycle items based on a timeline, the **Slinky Trail** pre-allocates a continuous, fixed-length chain of nodes that are permanently active on screen.
+
+As the pointer moves, "Node 0" calculates a spring-physics lerp to chase the pointer, "Node 1" calculates a spring to chase "Node 0", and so on. This creates an uninterrupted chain reaction calculated and rendered cleanly on the GPU at 60fps.
+
+## Props
+
+| Prop                | Type       | Default     | Description                                                                          |
+| :------------------ | :--------- | :---------- | :----------------------------------------------------------------------------------- |
+| **`imageUrls`**     | `string[]` | `[]`        | Array of image URLs to render.                                                       |
+| **`maxItems`**      | `number`   | `12`        | Total number of cards in the continuous chain.                                       |
+| **`itemSize`**      | `number`   | `110`       | The base pixel size of the image cards.                                              |
+| **`stiffness`**     | `number`   | `0.3`       | How tight the spring is. Lower = looser/longer snake, Higher = tighter/shorter snake |
+| **`className`**     | `string`   | `undefined` | Standard Tailwind classes for the fixed wrapper.                                     |
+| **`itemClassName`** | `string`   | `""`        | Standard Tailwind classes applied to the individual image wrappers.                  |
