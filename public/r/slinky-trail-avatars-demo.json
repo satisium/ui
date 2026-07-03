@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slinky-trail-avatars-demo",
+  "title": "Slinky Trail Avatars Demo",
+  "registryDependencies": [
+    "slinky-trail"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/slinky-trail/slinky-trail-avatars-demo.tsx",
+      "content": "import SlinkyTrail from \"@/registry/ui/slinky-trail\"\n\nconst trailImages = [\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/16.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/17.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/18.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/19.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/20.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/21.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/22.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/23.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/24.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/25.png\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/26.png\",\n]\n\nexport default function SlinkyTrailAvatarsDemo() {\n  return (\n    <main className=\"relative flex h-screen w-full items-center justify-center overflow-hidden bg-background\">\n      <div className=\"pointer-events-none flex flex-col items-center gap-8 select-none\">\n        <h1 className=\"text-[10vw] font-bold tracking-tighter text-muted md:text-[8vw]\">\n          Slinky.\n        </h1>\n      </div>\n\n      <SlinkyTrail\n        imageUrls={trailImages}\n        maxItems={12}\n        itemSize={110}\n        stiffness={0.3}\n      />\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
