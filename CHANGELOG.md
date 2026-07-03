@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.16
+
+### Minor Changes
+
+- added slinky trail along with demos code strings, docs etc
+
 ## 3.0.0-beta.15
 
 ### Minor Changes
