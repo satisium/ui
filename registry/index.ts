@@ -652,4 +652,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "slinky-trail-avatars-demo": {
+    name: "Slinky Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/slinky-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/slinky-trail/slinky-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add slinky-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/slinky-trail")
+      return {
+        "slinky-trail-avatars-demo.tsx": {
+          code: mod.slinkyTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "slinky-trail-images-demo": {
+    name: "Slinky Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/slinky-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/slinky-trail/slinky-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add slinky-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/slinky-trail")
+      return {
+        "slinky-trail-images-demo.tsx": {
+          code: mod.slinkyTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
