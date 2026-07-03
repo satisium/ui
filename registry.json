@@ -616,6 +616,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "slinky-trail",
+      "type": "registry:ui",
+      "title": "Slinky Trail",
+      "description": "An interconnected, continuous spring-physics mouse trail that simulates a slinky or snake chasing the pointer.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/slinky-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "slinky-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Slinky Trail Avatars Demo",
+      "registryDependencies": ["slinky-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/slinky-trail/slinky-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "slinky-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Slinky Trail Images Demo",
+      "registryDependencies": ["slinky-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/slinky-trail/slinky-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

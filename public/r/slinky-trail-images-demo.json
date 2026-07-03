@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "slinky-trail-images-demo",
+  "title": "Slinky Trail Images Demo",
+  "registryDependencies": [
+    "slinky-trail"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/slinky-trail/slinky-trail-images-demo.tsx",
+      "content": "import SlinkyTrail from \"@/registry/ui/slinky-trail\"\n\nconst trailImages = [\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/17.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/18.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/19.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/20.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/21.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/22.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/23.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/24.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/25.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/26.jpg\",\n]\n\nexport default function SlinkyTrailImagesDemo() {\n  return (\n    <main className=\"relative flex h-screen w-full items-center justify-center overflow-hidden bg-background\">\n      <div className=\"pointer-events-none flex flex-col items-center gap-8 select-none\">\n        <h1 className=\"text-[10vw] font-bold tracking-tighter text-muted md:text-[8vw]\">\n          Slinky.\n        </h1>\n      </div>\n\n      <SlinkyTrail\n        imageUrls={trailImages}\n        maxItems={8} // Fewer items so it doesn't overly clutter the screen\n        itemSize={130}\n        stiffness={0.25} // Slightly looser spring\n        itemClassName=\"border-4 border-border rounded-sm\"\n      />\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
