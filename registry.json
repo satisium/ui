@@ -653,6 +653,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "velocity-trail",
+      "type": "registry:ui",
+      "title": "Velocity Trail",
+      "description": "An intense, kinetic mouse trail that calculates real-time pointer speed to deform, stretch, and squeeze items along their trajectory.",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/velocity-trail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "velocity-trail-avatars-demo",
+      "type": "registry:ui",
+      "title": "Velocity Trail Avatars Demo",
+      "registryDependencies": ["velocity-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/velocity-trail/velocity-trail-avatars-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "velocity-trail-images-demo",
+      "type": "registry:ui",
+      "title": "Velocity Trail Images Demo",
+      "registryDependencies": ["velocity-trail"],
+      "files": [
+        {
+          "path": "registry/demos/components/velocity-trail/velocity-trail-images-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

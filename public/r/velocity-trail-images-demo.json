@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "velocity-trail-images-demo",
+  "title": "Velocity Trail Images Demo",
+  "registryDependencies": [
+    "velocity-trail"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/velocity-trail/velocity-trail-images-demo.tsx",
+      "content": "import VelocityTrail from \"@/registry/ui/velocity-trail\"\n\nconst trailImages = [\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/17.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/18.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/19.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/20.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/21.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/22.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/23.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/24.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/25.jpg\",\n  \"https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/26.jpg\",\n]\n\nexport default function VelocityTrailImagesDemo() {\n  return (\n    <main className=\"relative flex h-screen w-full items-center justify-center overflow-hidden bg-background\">\n      <div className=\"pointer-events-none flex flex-col items-center gap-8 select-none\">\n        <h1 className=\"text-[10vw] font-bold tracking-tighter text-muted md:text-[8vw]\">\n          Velocity.\n        </h1>\n      </div>\n\n      <VelocityTrail\n        imageUrls={trailImages}\n        distance={40}\n        maxItems={15}\n        duration={800} // Short lifespan for a fast, kinetic feel\n        itemSize={96}\n        itemClassName=\"border-4 border-border rounded-8\"\n      />\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
