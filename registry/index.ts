@@ -694,4 +694,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "velocity-trail-avatars-demo": {
+    name: "Velocity Trail Avatars Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/velocity-trail-avatars-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/velocity-trail/velocity-trail-avatars-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add velocity-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/velocity-trail")
+      return {
+        "velocity-trail-avatars-demo.tsx": {
+          code: mod.velocityTrailAvatarsDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "velocity-trail-images-demo": {
+    name: "Velocity Trail Images Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/velocity-trail-images-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/velocity-trail/velocity-trail-images-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add velocity-trail",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/velocity-trail")
+      return {
+        "velocity-trail-images-demo.tsx": {
+          code: mod.velocityTrailImagesDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

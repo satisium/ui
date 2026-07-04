@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.17
+
+### Minor Changes
+
+- added velocity trail along with demos and strings and docs
+
 ## 3.0.0-beta.16
 
 ### Minor Changes
