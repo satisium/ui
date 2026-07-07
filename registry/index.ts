@@ -885,4 +885,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "flip-vertical-headline-demo": {
+    name: "Flip Vertical Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/flip-vertical-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/flip-vertical-reveal/flip-vertical-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add flip-vertical-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/flip-vertical-reveal")
+      return {
+        "flip-vertical-headline-demo.tsx": {
+          code: mod.flipVerticalHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "flip-vertical-paragraph-demo": {
+    name: "Flip Vertical Paragraph Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/flip-vertical-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/flip-vertical-reveal/flip-vertical-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add flip-vertical-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/flip-vertical-reveal")
+      return {
+        "flip-vertical-paragraph-demo.tsx": {
+          code: mod.flipVerticalParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
