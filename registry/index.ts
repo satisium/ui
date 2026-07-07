@@ -843,4 +843,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "flip-3d-headline-demo": {
+    name: "Flip 3D Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/flip-3d-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/flip-3d-reveal/flip-3d-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add flip-3d-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/flip-3d-reveal")
+      return {
+        "flip-3d-headline-demo.tsx": {
+          code: mod.flip3DHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "flip-3d-paragraph-demo": {
+    name: "Flip 3D Paragraph Demo",
+    type: "react",
+    renderMode: "iframe", // Scroll-driven layout needs iframe isolation
+    previewUrl: "/preview/flip-3d-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/flip-3d-reveal/flip-3d-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add flip-3d-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/flip-3d-reveal")
+      return {
+        "flip-3d-paragraph-demo.tsx": {
+          code: mod.flip3DParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
