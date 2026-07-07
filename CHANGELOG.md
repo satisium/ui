@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.19
+
+### Minor Changes
+
+- add elastic pop reveal along with demos, strings docs etc
+
 ## 3.0.0-beta.18
 
 ### Minor Changes
