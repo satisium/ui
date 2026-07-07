@@ -1,0 +1,59 @@
+---
+title: Elastic Pop Reveal
+description: A tactile, physics-based text reveal component. Splinters text into words or characters and scales them in with a highly customizable GSAP elastic spring effect, triggered on scroll.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/elastic-pop-reveal.mdx
+registryKeys:
+  - elastic-pop-headline-demo
+  - elastic-pop-paragraph-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="elastic-pop-reveal" title="elastic-pop-reveal" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { elasticPopRevealFile } from "@/registry/strings/elastic-pop-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={elasticPopRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop               | Type                | Default                 | Description                                                                   |
+| :----------------- | :------------------ | :---------------------- | :---------------------------------------------------------------------------- |
+| **`text`**         | `string`            | _Required_              | The full string of text to reveal. Automatically splits by word or character. |
+| **`as`**           | `React.ElementType` | `"div"`                 | The HTML tag to render as.                                                    |
+| **`splitBy`**      | `"word" \| "char"`  | `"word"`                | Whether to split and animate by word or individual character.                 |
+| **`startScale`**   | `number`            | `0.5`                   | Starting scale of the element before it pops in.                              |
+| **`startOpacity`** | `number`            | `0`                     | Starting opacity of the element.                                              |
+| **`delay`**        | `number`            | `0`                     | Delay before the animation begins (in seconds).                               |
+| **`ease`**         | `string`            | `"elastic.out(1, 0.4)"` | GSAP easing string configuring the spring's amplitude and frequency.          |
+| **`duration`**     | `number`            | `1.5`                   | The duration of the reveal. Elastic eases need extra time to oscillate.       |
+| **`stagger`**      | `number`            | `0.05`                  | The stagger delay between each word/char revealing.                           |
+| **`viewportOnce`** | `boolean`           | `true`                  | If true, plays once. If false, seamlessly reverses on scroll away.            |
+| **`triggerStart`** | `string`            | `"top 90%"`             | Viewport threshold for when the animation should start.                       |
