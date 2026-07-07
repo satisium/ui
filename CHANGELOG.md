@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.20
+
+### Minor Changes
+
+- added elastic typewriter component along with demos strings and docs
+
 ## 3.0.0-beta.19
 
 ### Minor Changes
