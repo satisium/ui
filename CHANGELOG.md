@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.22
+
+### Minor Changes
+
+- added flip vertical along with all the things needed
+
 ## 3.0.0-beta.21
 
 ### Minor Changes
