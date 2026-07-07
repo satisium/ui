@@ -1,0 +1,55 @@
+---
+title: Editorial Reveal
+description: A premium, Awwwards-level text reveal component. Uses GSAP and ScrollTrigger to create a sophisticated, staggered redaction-block reveal that triggers exactly when the text enters the viewport.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/editorial-reveal.mdx
+registryKeys:
+  - editorial-reveal-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="editorial-reveal" title="editorial-reveal" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { editorialRevealFile } from "@/registry/strings/editorial-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={editorialRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                  | Type                | Default           | Description                                                       |
+| :-------------------- | :------------------ | :---------------- | :---------------------------------------------------------------- |
+| **`text`**            | `string`            | _Required_        | The full string of text to reveal. Automatically splits by words. |
+| **`as`**              | `React.ElementType` | `"p"`             | The HTML tag to render as (e.g., `'h1'`, `'h2'`, `'p'`).          |
+| **`blockClassName`**  | `string`            | `"bg-foreground"` | Tailwind class for the redaction block color.                     |
+| **`triggerStart`**    | `string`            | `"top 85%"`       | Viewport threshold for when the animation should start.           |
+| **`duration`**        | `number`            | `0.5`             | The duration of the reveal for each individual block in seconds.  |
+| **`stagger`**         | `number`            | `0.015`           | The stagger delay between each word revealing in seconds.         |
+| **`ease`**            | `string`            | `"power3.in"`     | GSAP easing function for the scale animation.                     |
+| **`reverseOnScroll`** | `boolean`           | `true`            | Whether the blocks should close again when scrolling back up.     |

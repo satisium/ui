@@ -690,6 +690,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "editorial-reveal",
+      "type": "registry:ui",
+      "title": "Editorial Reveal",
+      "description": "A premium, Awwwards-level text reveal component driven by GSAP.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/editorial-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "editorial-reveal-demo",
+      "type": "registry:ui",
+      "title": "Editorial Reveal Demo",
+      "registryDependencies": ["editorial-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/editorial-reveal/editorial-reveal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

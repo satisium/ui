@@ -736,4 +736,27 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "editorial-reveal-demo": {
+    name: "Editorial Reveal Demo",
+    type: "react",
+    // We strictly use iframe here so the ScrollTrigger isolates to the preview window
+    // and doesn't rely on the main documentation page's scrollbar.
+    renderMode: "iframe",
+    previewUrl: "/preview/editorial-reveal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/editorial-reveal/editorial-reveal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add editorial-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/editorial-reveal")
+      return {
+        "editorial-reveal-demo.tsx": {
+          code: mod.editorialRevealDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
