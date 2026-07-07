@@ -826,6 +826,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "flip-vertical-reveal",
+      "type": "registry:ui",
+      "title": "Flip Vertical Reveal",
+      "description": "A 3D mechanical text reveal component simulating a split-flap display or falling dominoes.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/flip-vertical-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "flip-vertical-headline-demo",
+      "type": "registry:ui",
+      "title": "Flip Vertical Headline Demo",
+      "registryDependencies": ["flip-vertical-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/flip-vertical-reveal/flip-vertical-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "flip-vertical-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Flip Vertical Paragraph Demo",
+      "registryDependencies": ["flip-vertical-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/flip-vertical-reveal/flip-vertical-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
