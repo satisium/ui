@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.18
+
+### Minor Changes
+
+- added editorial reveal component along with demos, strings , CLI and docs
+
 ## 3.0.0-beta.17
 
 ### Minor Changes
