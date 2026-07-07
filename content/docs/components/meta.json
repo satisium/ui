@@ -18,7 +18,8 @@
     "squircle-trail",
     "pendulum-trail",
     "slinky-trail",
-    "velocity-trail"
+    "velocity-trail",
+    "editorial-reveal"
   ],
   "icon": "ComponentIcon"
 }
