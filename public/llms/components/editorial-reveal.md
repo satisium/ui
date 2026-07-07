@@ -25,7 +25,176 @@ npx satis-ui add editorial-reveal
 | `ease`            | `string`            | `"power3.in"`     | GSAP easing function for the scale animation.                     |
 | `reverseOnScroll` | `boolean`           | `true`            | Whether the blocks should close again when scrolling back up.     |
 
-## 3. Example Implementation
+## 3. Core Component Source
+
+**File Path:** `components/ui/editorial-reveal.tsx`
+
+```tsx
+"use client"
+
+import * as React from "react"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { cn } from "@/lib/utils"
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger)
+}
+
+export interface EditorialRevealProps extends React.HTMLAttributes<HTMLElement> {
+  text: string
+  as?: React.ElementType
+  blockClassName?: string
+  triggerStart?: string
+  duration?: number
+  stagger?: number
+  ease?: string
+  reverseOnScroll?: boolean
+}
+
+export const EditorialReveal = React.forwardRef<
+  HTMLElement,
+  EditorialRevealProps
+>(
+  (
+    {
+      text,
+      as = "p",
+      className,
+      blockClassName = "bg-foreground",
+      triggerStart = "top 85%",
+      duration = 0.5,
+      stagger = 0.015,
+      ease = "power3.in",
+      reverseOnScroll = true,
+      ...props
+    },
+    ref
+  ) => {
+    const containerRef = React.useRef<any>(null)
+
+    React.useImperativeHandle(ref, () => containerRef.current)
+
+    useGSAP(
+      () => {
+        if (!containerRef.current) return
+
+        const blockNodes = gsap.utils.toArray<HTMLElement>(
+          ".editorial-block",
+          containerRef.current
+        )
+        if (blockNodes.length === 0) return
+
+        const mm = gsap.matchMedia()
+
+        mm.add("(prefers-reduced-motion: no-preference)", () => {
+          ScrollTrigger.batch(blockNodes, {
+            start: triggerStart,
+            onEnter: (batch) =>
+              gsap.to(batch, {
+                scaleX: 0,
+                duration,
+                stagger,
+                ease,
+                overwrite: true,
+              }),
+            onLeaveBack: (batch) => {
+              if (reverseOnScroll) {
+                gsap.to(batch, {
+                  scaleX: 1,
+                  duration,
+                  stagger,
+                  ease,
+                  overwrite: true,
+                })
+              }
+            },
+          })
+        })
+
+        mm.add("(prefers-reduced-motion: reduce)", () => {
+          ScrollTrigger.batch(blockNodes, {
+            start: triggerStart,
+            onEnter: (batch) =>
+              gsap.to(batch, {
+                opacity: 0,
+                duration,
+                stagger,
+                ease: "none",
+                overwrite: true,
+              }),
+            onLeaveBack: (batch) => {
+              if (reverseOnScroll) {
+                gsap.to(batch, {
+                  opacity: 1,
+                  duration,
+                  stagger,
+                  ease: "none",
+                  overwrite: true,
+                })
+              }
+            },
+          })
+        })
+
+        return () => mm.revert()
+      },
+      {
+        scope: containerRef,
+        dependencies: [triggerStart, duration, stagger, ease, reverseOnScroll],
+      }
+    )
+
+    const ssrBlockStyles: React.CSSProperties = {
+      transform: "scaleX(1)",
+      transformOrigin: "right center",
+      willChange: "transform",
+    }
+
+    const words = text.split(/(\s+)/)
+    const Component = as as any
+
+    return (
+      <Component
+        ref={containerRef}
+        aria-label={text}
+        className={cn("relative m-0 whitespace-pre-wrap", className)}
+        {...props}
+      >
+        <span aria-hidden="true">
+          {words.map((word, i) => {
+            if (word.match(/\s+/)) {
+              return (
+                <span key={i} className="inline-block whitespace-pre">
+                  {word}
+                </span>
+              )
+            }
+
+            return (
+              <span key={i} className="relative inline-block">
+                <span>{word}</span>
+                <span
+                  className={cn(
+                    "editorial-block absolute -inset-x-[0.02em] inset-y-[0.05em] z-10",
+                    blockClassName
+                  )}
+                  style={ssrBlockStyles}
+                />
+              </span>
+            )
+          })}
+        </span>
+      </Component>
+    )
+  }
+)
+
+EditorialReveal.displayName = "EditorialReveal"
+```
+
+## 4. Example Implementation
 
 **File Path:** `app/page.tsx`
 
