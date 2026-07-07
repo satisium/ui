@@ -1,0 +1,56 @@
+---
+title: Elastic Typewriter
+description: A highly kinetic typewriter effect. A cursor glides across the text, while individual characters stretch, squeeze, skew, and elastic-snap into place to simulate mechanical physical tension.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/elastic-typewriter.mdx
+registryKeys:
+  - elastic-typewriter-headline-demo
+  - elastic-typewriter-paragraph-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="elastic-typewriter" title="elastic-typewriter" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { elasticTypewriterFile } from "@/registry/strings/elastic-typewriter"
+
+<div className="mt-6">
+  <CodeBlock files={elasticTypewriterFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                  | Type                | Default        | Description                                               |
+| :-------------------- | :------------------ | :------------- | :-------------------------------------------------------- |
+| **`text`**            | `string`            | _Required_     | The full string of text to type out. Supports wrapping.   |
+| **`as`**              | `React.ElementType` | `"h1"`         | The HTML tag to render as.                                |
+| **`cursorClassName`** | `string`            | `"bg-primary"` | Tailwind class for the blinking cursor.                   |
+| **`baseSpeed`**       | `number`            | `0.04`         | Speed of the cursor glide per character in seconds.       |
+| **`variance`**        | `number`            | `0.02`         | Human variance applied to the typing speed for realism.   |
+| **`delay`**           | `number`            | `0`            | Delay before the typewriter begins (in seconds).          |
+| **`viewportOnce`**    | `boolean`           | `true`         | Recommended to keep true to avoid reverse deletion loops. |
+| **`triggerStart`**    | `string`            | `"top 90%"`    | Viewport threshold for when the animation should start.   |

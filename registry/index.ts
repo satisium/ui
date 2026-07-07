@@ -801,4 +801,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "elastic-typewriter-headline-demo": {
+    name: "Elastic Typewriter Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/elastic-typewriter-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/elastic-typewriter/elastic-typewriter-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add elastic-typewriter",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/elastic-typewriter")
+      return {
+        "elastic-typewriter-headline-demo.tsx": {
+          code: mod.elasticTypewriterHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "elastic-typewriter-paragraph-demo": {
+    name: "Elastic Typewriter Paragraph Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/elastic-typewriter-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/elastic-typewriter/elastic-typewriter-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add elastic-typewriter",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/elastic-typewriter")
+      return {
+        "elastic-typewriter-paragraph-demo.tsx": {
+          code: mod.elasticTypewriterParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

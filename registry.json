@@ -752,6 +752,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "elastic-typewriter",
+      "type": "registry:ui",
+      "title": "Elastic Typewriter",
+      "description": "A highly kinetic typewriter effect. A cursor glides across the text, while individual characters snap into place using physical tension.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/elastic-typewriter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "elastic-typewriter-headline-demo",
+      "type": "registry:ui",
+      "title": "Elastic Typewriter Headline Demo",
+      "registryDependencies": ["elastic-typewriter"],
+      "files": [
+        {
+          "path": "registry/demos/components/elastic-typewriter/elastic-typewriter-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elastic-typewriter-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Elastic Typewriter Paragraph Demo",
+      "registryDependencies": ["elastic-typewriter"],
+      "files": [
+        {
+          "path": "registry/demos/components/elastic-typewriter/elastic-typewriter-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

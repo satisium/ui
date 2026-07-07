@@ -20,7 +20,8 @@
     "slinky-trail",
     "velocity-trail",
     "editorial-reveal",
-    "elastic-pop-reveal"
+    "elastic-pop-reveal",
+    "elastic-typewriter"
   ],
   "icon": "ComponentIcon"
 }
