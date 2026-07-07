@@ -715,6 +715,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "elastic-pop-reveal",
+      "type": "registry:ui",
+      "title": "Elastic Pop Reveal",
+      "description": "A tactile, physics-based text reveal component using a customizable GSAP elastic spring.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/elastic-pop-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "elastic-pop-headline-demo",
+      "type": "registry:ui",
+      "title": "Elastic Pop Headline Demo",
+      "registryDependencies": ["elastic-pop-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "elastic-pop-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Elastic Pop Paragraph Demo",
+      "registryDependencies": ["elastic-pop-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elastic-pop-headline-demo",
+  "title": "Elastic Pop Headline Demo",
+  "registryDependencies": [
+    "elastic-pop-reveal"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-headline-demo.tsx",
+      "content": "import { ElasticPopReveal } from \"@/registry/ui/elastic-pop-reveal\"\n\nexport default function ElasticPopHeadlineDemo() {\n  return (\n    <main className=\"flex min-h-screen w-full flex-col items-center justify-center bg-background text-foreground antialiased selection:bg-primary/20\">\n      <div className=\"max-w-4xl px-6 text-center\">\n        <ElasticPopReveal\n          as=\"h1\"\n          text=\"Fluid physics. Tactile typography.\"\n          className=\"text-5xl leading-[1.1] font-black tracking-tighter md:text-7xl lg:text-8xl\"\n          delay={0.1}\n          splitBy=\"char\"\n          startScale={0.5}\n          duration={1.8}\n          stagger={0.03}\n          ease=\"elastic.out(1.2, 0.3)\" // High amplitude, loose frequency for dramatic bounce\n          viewportOnce={true}\n        />\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
