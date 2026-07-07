@@ -789,6 +789,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "flip-3d-reveal",
+      "type": "registry:ui",
+      "title": "Flip 3D Reveal",
+      "description": "Characters or words rotate into view along the Y-axis, creating a Rolodex or split-flap display effect with a microscopic physics bounce.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/flip-3d-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "flip-3d-headline-demo",
+      "type": "registry:ui",
+      "title": "Flip 3D Headline Demo",
+      "registryDependencies": ["flip-3d-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/flip-3d-reveal/flip-3d-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "flip-3d-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Flip 3D Paragraph Demo",
+      "registryDependencies": ["flip-3d-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/flip-3d-reveal/flip-3d-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
