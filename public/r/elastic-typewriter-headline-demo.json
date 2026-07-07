@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elastic-typewriter-headline-demo",
+  "title": "Elastic Typewriter Headline Demo",
+  "registryDependencies": [
+    "elastic-typewriter"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/elastic-typewriter/elastic-typewriter-headline-demo.tsx",
+      "content": "import { ElasticTypewriter } from \"@/registry/ui/elastic-typewriter\"\n\nexport default function ElasticTypewriterHeadlineDemo() {\n  return (\n    <main className=\"flex min-h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground antialiased selection:bg-primary/20\">\n      <div className=\"max-w-4xl px-6 text-center\">\n        <ElasticTypewriter\n          as=\"h1\"\n          text=\"Tension & elasticity.\"\n          className=\"text-6xl leading-[1.1] font-bold tracking-tighter md:text-8xl\"\n          delay={0.4}\n          baseSpeed={0.05} // Slightly slower to emphasize the snap mechanics\n          variance={0.03}\n          cursorClassName=\"bg-primary\"\n        />\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
