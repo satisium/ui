@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.21
+
+### Minor Changes
+
+- added flip 3d reveal text component along with demos code strings and docs
+
 ## 3.0.0-beta.20
 
 ### Minor Changes

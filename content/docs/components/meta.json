@@ -21,7 +21,8 @@
     "velocity-trail",
     "editorial-reveal",
     "elastic-pop-reveal",
-    "elastic-typewriter"
+    "elastic-typewriter",
+    "flip-3d-reveal"
   ],
   "icon": "ComponentIcon"
 }

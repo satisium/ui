@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "flip-3d-headline-demo",
+  "title": "Flip 3D Headline Demo",
+  "registryDependencies": [
+    "flip-3d-reveal"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/flip-3d-reveal/flip-3d-headline-demo.tsx",
+      "content": "import { Flip3DReveal } from \"@/registry/ui/flip-3d-reveal\"\nexport default function Flip3DHeadlineDemo() {\n  return (\n    <main className=\"flex min-h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground antialiased selection:bg-primary/20\">\n      <div className=\"max-w-4xl px-6 text-center\">\n        <Flip3DReveal\n          as=\"h1\"\n          text=\"Spatial computing.\"\n          className=\"text-6xl leading-[1.1] font-medium tracking-tighter md:text-8xl\"\n          splitBy=\"char\"\n          delay={0.2}\n          duration={1}\n          stagger={0.04} // Rapid-fire mechanical stagger\n        />\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
