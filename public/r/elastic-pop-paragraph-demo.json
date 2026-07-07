@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elastic-pop-paragraph-demo",
+  "title": "Elastic Pop Paragraph Demo",
+  "registryDependencies": [
+    "elastic-pop-reveal"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-paragraph-demo.tsx",
+      "content": "import { ElasticPopReveal } from \"@/registry/ui/elastic-pop-reveal\"\n\nexport default function ElasticPopParagraphDemo() {\n  return (\n    <main className=\"relative min-h-[250vh] w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* Scroll indicator */}\n      <div className=\"absolute top-[25vh] flex w-full flex-col items-center gap-4 text-sm font-medium tracking-wide text-muted-foreground\">\n        <span className=\"tracking-widest uppercase\">Scroll to explore</span>\n        <div className=\"h-16 w-[1px] bg-border\" />\n      </div>\n\n      {/* The Reveal Container */}\n      <div className=\"flex w-full items-center justify-center px-6 pt-[90vh]\">\n        <div className=\"max-w-5xl text-left md:text-center\">\n          <ElasticPopReveal\n            as=\"h2\"\n            text=\"Meticulously crafted components for modern web applications. Elevate your interface with uncompromising performance, accessibility, and refined design.\"\n            className=\"text-3xl leading-[1.4] font-medium tracking-tight md:text-5xl lg:text-6xl\"\n            splitBy=\"word\" // Splitting by word ensures performance on long paragraphs\n            triggerStart=\"top 85%\"\n            startScale={0.8} // Subtler pop for body text\n            startOpacity={0}\n            duration={1.2}\n            stagger={0.02} // Fast flow for readability\n            ease=\"elastic.out(1, 0.5)\" // Tighter spring\n            viewportOnce={false} // Will seamlessly reverse and replay on scroll\n          />\n        </div>\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

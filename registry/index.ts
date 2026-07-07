@@ -759,4 +759,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "elastic-pop-headline-demo": {
+    name: "Elastic Pop Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/elastic-pop-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/elastic-pop-reveal/elastic-pop-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add elastic-pop-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/elastic-pop-reveal")
+      return {
+        "elastic-pop-headline-demo.tsx": {
+          code: mod.elasticPopHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "elastic-pop-paragraph-demo": {
+    name: "Elastic Pop Paragraph Demo",
+    type: "react",
+    renderMode: "iframe", // Scroll-driven demo needs iframe isolation
+    previewUrl: "/preview/elastic-pop-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/elastic-pop-reveal/elastic-pop-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add elastic-pop-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/elastic-pop-reveal")
+      return {
+        "elastic-pop-paragraph-demo.tsx": {
+          code: mod.elasticPopParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

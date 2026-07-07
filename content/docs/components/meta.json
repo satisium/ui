@@ -19,7 +19,8 @@
     "pendulum-trail",
     "slinky-trail",
     "velocity-trail",
-    "editorial-reveal"
+    "editorial-reveal",
+    "elastic-pop-reveal"
   ],
   "icon": "ComponentIcon"
 }
