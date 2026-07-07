@@ -22,7 +22,8 @@
     "editorial-reveal",
     "elastic-pop-reveal",
     "elastic-typewriter",
-    "flip-3d-reveal"
+    "flip-3d-reveal",
+    "flip-vertical-reveal"
   ],
   "icon": "ComponentIcon"
 }
