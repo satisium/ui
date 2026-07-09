@@ -27,7 +27,8 @@
     "fluid-ink-reveal",
     "blur-reveal",
     "fluid-typewriter",
-    "granular-dust-reveal"
+    "granular-dust-reveal",
+    "heat-mirage-reveal"
   ],
   "icon": "ComponentIcon"
 }
