@@ -23,7 +23,8 @@
     "elastic-pop-reveal",
     "elastic-typewriter",
     "flip-3d-reveal",
-    "flip-vertical-reveal"
+    "flip-vertical-reveal",
+    "fluid-ink-reveal"
   ],
   "icon": "ComponentIcon"
 }
