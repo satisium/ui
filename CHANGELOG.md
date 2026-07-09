@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.25
+
+### Minor Changes
+
+- added fluid typewriter
+
 ## 3.0.0-beta.24
 
 ### Minor Changes

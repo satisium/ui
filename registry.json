@@ -937,6 +937,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "fluid-typewriter",
+      "type": "registry:ui",
+      "title": "Fluid Typewriter",
+      "description": "A liquid-smooth typewriter effect. A glowing cursor seamlessly glides across the text, intelligently wrapping to new lines.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/fluid-typewriter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fluid-typewriter-headline-demo",
+      "type": "registry:ui",
+      "title": "Fluid Typewriter Headline Demo",
+      "registryDependencies": ["fluid-typewriter"],
+      "files": [
+        {
+          "path": "registry/demos/components/fluid-typewriter/fluid-typewriter-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "fluid-typewriter-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Fluid Typewriter Paragraph Demo",
+      "registryDependencies": ["fluid-typewriter"],
+      "files": [
+        {
+          "path": "registry/demos/components/fluid-typewriter/fluid-typewriter-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
