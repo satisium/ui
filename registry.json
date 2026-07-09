@@ -863,6 +863,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "fluid-ink-reveal",
+      "type": "registry:ui",
+      "title": "Fluid Ink Reveal",
+      "description": "A liquid text reveal component. Uses an SVG matrix to warp blurry elements into sharp liquid droplets.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/fluid-ink-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fluid-ink-headline-demo",
+      "type": "registry:ui",
+      "title": "Fluid Ink Headline Demo",
+      "registryDependencies": ["fluid-ink-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "fluid-ink-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Fluid Ink Paragraph Demo",
+      "registryDependencies": ["fluid-ink-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
