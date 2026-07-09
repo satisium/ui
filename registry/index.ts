@@ -969,4 +969,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "blur-reveal-headline-demo": {
+    name: "Blur Reveal Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/blur-reveal-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/blur-reveal/blur-reveal-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add blur-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/blur-reveal")
+      return {
+        "blur-reveal-headline-demo.tsx": {
+          code: mod.blurRevealHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "blur-reveal-paragraph-demo": {
+    name: "Blur Reveal Paragraph Demo",
+    type: "react",
+    renderMode: "iframe", // Isolated viewport scroll tracking
+    previewUrl: "/preview/blur-reveal-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/blur-reveal/blur-reveal-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add blur-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/blur-reveal")
+      return {
+        "blur-reveal-paragraph-demo.tsx": {
+          code: mod.blurRevealParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
