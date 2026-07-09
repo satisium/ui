@@ -1011,6 +1011,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "heat-mirage-reveal",
+      "type": "registry:ui",
+      "title": "Heat Mirage Reveal",
+      "description": "An atmospheric reveal component using an SVG displacement map to simulate thermal distortion.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/heat-mirage-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "heat-mirage-headline-demo",
+      "type": "registry:ui",
+      "title": "Heat Mirage Headline Demo",
+      "registryDependencies": ["heat-mirage-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/heat-mirage-reveal/heat-mirage-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "heat-mirage-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Heat Mirage Paragraph Demo",
+      "registryDependencies": ["heat-mirage-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/heat-mirage-reveal/heat-mirage-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

@@ -1095,4 +1095,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "heat-mirage-headline-demo": {
+    name: "Heat Mirage Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/heat-mirage-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/heat-mirage-reveal/heat-mirage-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add heat-mirage-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/heat-mirage-reveal")
+      return {
+        "heat-mirage-headline-demo.tsx": {
+          code: mod.heatMirageHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "heat-mirage-paragraph-demo": {
+    name: "Heat Mirage Paragraph Demo",
+    type: "react",
+    renderMode: "direct", // Since it uses the h-screen format, direct works perfectly
+    previewUrl: "/preview/heat-mirage-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/heat-mirage-reveal/heat-mirage-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add heat-mirage-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/heat-mirage-reveal")
+      return {
+        "heat-mirage-paragraph-demo.tsx": {
+          code: mod.heatMirageParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

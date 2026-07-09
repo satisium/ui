@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.27
+
+### Minor Changes
+
+- added heat mirage reveal component
+
 ## 3.0.0-beta.26
 
 ### Minor Changes
