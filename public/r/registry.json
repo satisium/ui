@@ -1048,6 +1048,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "liquid-mercury-reveal",
+      "type": "registry:ui",
+      "title": "Liquid Mercury Reveal",
+      "description": "An elastic, metallic text reveal component utilizing SVG matrix filtering.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/liquid-mercury-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "liquid-mercury-headline-demo",
+      "type": "registry:ui",
+      "title": "Liquid Mercury Headline Demo",
+      "registryDependencies": ["liquid-mercury-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/liquid-mercury-reveal/liquid-mercury-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

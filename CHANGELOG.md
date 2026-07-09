@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.28
+
+### Minor Changes
+
+- add liquid mercury reveal
+
 ## 3.0.0-beta.27
 
 ### Minor Changes

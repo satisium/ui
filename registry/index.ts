@@ -1137,4 +1137,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "liquid-mercury-headline-demo": {
+    name: "Liquid Mercury Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/liquid-mercury-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/liquid-mercury-reveal/liquid-mercury-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add liquid-mercury-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/liquid-mercury-reveal")
+      return {
+        "liquid-mercury-headline-demo.tsx": {
+          code: mod.liquidMercuryHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

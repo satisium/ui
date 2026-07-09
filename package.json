@@ -1,6 +1,6 @@
 {
   "name": "ui",
-  "version": "3.0.0-beta.27",
+  "version": "3.0.0-beta.28",
   "type": "module",
   "private": true,
   "scripts": {
