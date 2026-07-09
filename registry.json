@@ -900,6 +900,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "blur-reveal",
+      "type": "registry:ui",
+      "title": "Blur Reveal",
+      "description": "A cinematic, 3D text reveal component. Characters or words sweep in from an angled, blurry 3D perspective.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/blur-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "blur-reveal-headline-demo",
+      "type": "registry:ui",
+      "title": "Blur Reveal Headline Demo",
+      "registryDependencies": ["blur-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/blur-reveal/blur-reveal-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "blur-reveal-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Blur Reveal Paragraph Demo",
+      "registryDependencies": ["blur-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/blur-reveal/blur-reveal-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
