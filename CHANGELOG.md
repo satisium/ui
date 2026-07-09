@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.26
+
+### Minor Changes
+
+- added granular dust reveal
+
 ## 3.0.0-beta.25
 
 ### Minor Changes

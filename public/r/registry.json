@@ -974,6 +974,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "granular-dust-reveal",
+      "type": "registry:ui",
+      "title": "Granular Dust Reveal",
+      "description": "A cinematic text reveal component. Uses microscopic SVG fractal noise to shatter typography into granular sand.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/granular-dust-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "granular-dust-headline-demo",
+      "type": "registry:ui",
+      "title": "Granular Dust Headline Demo",
+      "registryDependencies": ["granular-dust-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/granular-dust-reveal/granular-dust-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "granular-dust-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Granular Dust Paragraph Demo",
+      "registryDependencies": ["granular-dust-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/granular-dust-reveal/granular-dust-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
