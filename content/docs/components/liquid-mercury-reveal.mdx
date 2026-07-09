@@ -1,0 +1,56 @@
+---
+title: Liquid Mercury Reveal
+description: An elastic, metallic text reveal component. Elements spawn from inside the previous element's mass, stretching a gooey liquid bridge that elastically snaps into sharp, crisp typography.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/liquid-mercury-reveal.mdx
+registryKeys:
+  - liquid-mercury-headline-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="liquid-mercury-reveal" title="liquid-mercury-reveal" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { liquidMercuryRevealFile } from "@/registry/strings/liquid-mercury-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={liquidMercuryRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop               | Type                | Default     | Description                                                        |
+| :----------------- | :------------------ | :---------- | :----------------------------------------------------------------- |
+| **`text`**         | `string`            | _Required_  | The full string of text to reveal.                                 |
+| **`as`**           | `React.ElementType` | `"h1"`      | The HTML tag to render as.                                         |
+| **`splitBy`**      | `"word" \| "char"`  | `"char"`    | Whether to split and animate by word or individual character.      |
+| **`duration`**     | `number`            | `2.5`       | Duration of the elastic snap for each element.                     |
+| **`delay`**        | `number`            | `0`         | Delay before the animation begins (in seconds).                    |
+| **`stagger`**      | `number`            | `0.05`      | The stagger delay between each element revealing.                  |
+| **`startingBlur`** | `number`            | `12`        | How heavily blurred/liquid the text is at the start.               |
+| **`viewportOnce`** | `boolean`           | `true`      | If true, plays once. If false, seamlessly reverses on scroll away. |
+| **`triggerStart`** | `string`            | `"top 85%"` | Viewport threshold for when the animation should start.            |
