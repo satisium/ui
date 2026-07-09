@@ -1011,4 +1011,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "fluid-typewriter-headline-demo": {
+    name: "Fluid Typewriter Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/fluid-typewriter-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/fluid-typewriter/fluid-typewriter-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add fluid-typewriter",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/fluid-typewriter")
+      return {
+        "fluid-typewriter-headline-demo.tsx": {
+          code: mod.fluidTypewriterHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "fluid-typewriter-paragraph-demo": {
+    name: "Fluid Typewriter Paragraph Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/fluid-typewriter-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/fluid-typewriter/fluid-typewriter-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add fluid-typewriter",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/fluid-typewriter")
+      return {
+        "fluid-typewriter-paragraph-demo.tsx": {
+          code: mod.fluidTypewriterParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
