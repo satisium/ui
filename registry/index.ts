@@ -1053,4 +1053,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "granular-dust-headline-demo": {
+    name: "Granular Dust Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/granular-dust-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/granular-dust-reveal/granular-dust-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add granular-dust-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/granular-dust-reveal")
+      return {
+        "granular-dust-headline-demo.tsx": {
+          code: mod.granularDustHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "granular-dust-paragraph-demo": {
+    name: "Granular Dust Paragraph Demo",
+    type: "react",
+    renderMode: "direct", // Direct is perfectly fine here since it's a clean 100vh layout
+    previewUrl: "/preview/granular-dust-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/granular-dust-reveal/granular-dust-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add granular-dust-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/granular-dust-reveal")
+      return {
+        "granular-dust-paragraph-demo.tsx": {
+          code: mod.granularDustParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
