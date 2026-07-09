@@ -25,7 +25,8 @@
     "flip-3d-reveal",
     "flip-vertical-reveal",
     "fluid-ink-reveal",
-    "blur-reveal"
+    "blur-reveal",
+    "fluid-typewriter"
   ],
   "icon": "ComponentIcon"
 }
