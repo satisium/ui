@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.23
+
+### Minor Changes
+
+- added fluid ink reveal
+
 ## 3.0.0-beta.22
 
 ### Minor Changes
