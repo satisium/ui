@@ -927,4 +927,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "fluid-ink-headline-demo": {
+    name: "Fluid Ink Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/fluid-ink-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/fluid-ink-reveal/fluid-ink-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add fluid-ink-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/fluid-ink-reveal")
+      return {
+        "fluid-ink-headline-demo.tsx": {
+          code: mod.fluidInkHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "fluid-ink-paragraph-demo": {
+    name: "Fluid Ink Paragraph Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/fluid-ink-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/fluid-ink-reveal/fluid-ink-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add fluid-ink-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/fluid-ink-reveal")
+      return {
+        "fluid-ink-paragraph-demo.tsx": {
+          code: mod.fluidInkParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
