@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.24
+
+### Minor Changes
+
+- added blur-reveal
+
 ## 3.0.0-beta.23
 
 ### Minor Changes
