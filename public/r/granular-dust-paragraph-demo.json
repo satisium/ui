@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "granular-dust-paragraph-demo",
+  "title": "Granular Dust Paragraph Demo",
+  "registryDependencies": [
+    "granular-dust-reveal"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/granular-dust-reveal/granular-dust-paragraph-demo.tsx",
+      "content": "import { GranularDustReveal } from \"@/registry/ui/granular-dust-reveal\"\nexport default function GranularDustParagraphDemo() {\n  return (\n    <main className=\"relative min-h-screen w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* The Reveal Container */}\n      <div className=\"flex h-full w-full items-center justify-center px-6\">\n        <div className=\"max-w-5xl text-left md:text-justify\">\n          <GranularDustReveal\n            as=\"h2\"\n            text=\"Why do we fall, sir? So that we can learn to pick ourselves up.\"\n            className=\"text-3xl leading-[1.4] font-medium tracking-tight md:text-5xl lg:text-6xl\"\n            splitBy=\"word\"\n            triggerStart=\"top 85%\"\n            startingDisplacement={60} // Softer static for paragraphs\n            duration={1.2}\n            stagger={0.03}\n            viewportOnce={false} // Effortlessly reverses when scrolling away\n          />\n        </div>\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
