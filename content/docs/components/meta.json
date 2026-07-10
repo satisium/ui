@@ -31,7 +31,8 @@
     "heat-mirage-reveal",
     "liquid-mercury-reveal",
     "magnetic-snap-reveal",
-    "manifesto-text-reveal"
+    "manifesto-text-reveal",
+    "masked-reveal"
   ],
   "icon": "ComponentIcon"
 }
