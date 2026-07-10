@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.29
+
+### Minor Changes
+
+- added magnetic-snap-reveal
+
 ## 3.0.0-beta.28
 
 ### Minor Changes
