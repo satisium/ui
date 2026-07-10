@@ -1,3 +1,11 @@
 {
-  "conventionalCommits.scopes": ["release", "docs", "style", "media"]
+  "conventionalCommits.scopes": [
+    "release",
+    "docs",
+    "style",
+    "media",
+    "component",
+    "registry",
+    "changeset"
+  ]
 }

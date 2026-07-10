@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.31
+
+### Minor Changes
+
+- added masked reveal
+
 ## 3.0.0-beta.30
 
 ### Minor Changes

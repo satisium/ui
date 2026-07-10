@@ -23,6 +23,7 @@ export default function MaskedRevealHeadlineDemo() {
 export const maskedRevealParagraphDemoString = `
 import { MaskedReveal } from "@/components/ui/masked-reveal"
 
+
 export default function MaskedRevealParagraphDemo() {
   return (
     <main className="relative w-full bg-background text-foreground antialiased selection:bg-primary/20">
