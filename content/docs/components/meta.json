@@ -29,7 +29,8 @@
     "fluid-typewriter",
     "granular-dust-reveal",
     "heat-mirage-reveal",
-    "liquid-mercury-reveal"
+    "liquid-mercury-reveal",
+    "magnetic-snap-reveal"
   ],
   "icon": "ComponentIcon"
 }

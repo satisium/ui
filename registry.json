@@ -1073,6 +1073,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "magnetic-snap-reveal",
+      "type": "registry:ui",
+      "title": "Magnetic Snap Reveal",
+      "description": "A kinetic text reveal component. Elements start in chaotic randomized coordinates and magnetically snap into their correct layout positions.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/magnetic-snap-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "magnetic-snap-demo",
+      "type": "registry:ui",
+      "title": "Magnetic Snap Demo",
+      "registryDependencies": ["magnetic-snap-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/magnetic-snap-reveal/magnetic-snap-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

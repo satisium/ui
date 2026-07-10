@@ -1158,4 +1158,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "magnetic-snap-demo": {
+    name: "Magnetic Snap Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/magnetic-snap-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/magnetic-snap-reveal/magnetic-snap-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add magnetic-snap-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/magnetic-snap-reveal")
+      return {
+        "magnetic-snap-demo.tsx": {
+          code: mod.magneticSnapDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
