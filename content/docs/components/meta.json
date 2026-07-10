@@ -30,7 +30,8 @@
     "granular-dust-reveal",
     "heat-mirage-reveal",
     "liquid-mercury-reveal",
-    "magnetic-snap-reveal"
+    "magnetic-snap-reveal",
+    "manifesto-text-reveal"
   ],
   "icon": "ComponentIcon"
 }
