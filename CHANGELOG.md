@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.30
+
+### Minor Changes
+
+- added manifesto text reveal
+
 ## 3.0.0-beta.29
 
 ### Minor Changes
