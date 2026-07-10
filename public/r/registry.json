@@ -1160,6 +1160,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "fold-reveal",
+      "type": "registry:ui",
+      "title": "Fold Reveal",
+      "description": "A structural text reveal component. Distinct lines of text hinge downward into view like a cascading staircase or folding paper.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/fold-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fold-reveal-demo",
+      "type": "registry:ui",
+      "title": "Fold Reveal Demo",
+      "registryDependencies": ["fold-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/fold-reveal/fold-reveal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
