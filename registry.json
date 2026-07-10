@@ -1123,6 +1123,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "masked-reveal",
+      "type": "registry:ui",
+      "title": "Masked Reveal",
+      "description": "A sophisticated text reveal that wraps elements in a hidden overflow mask and pushes them up into view.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/masked-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "masked-reveal-headline-demo",
+      "type": "registry:ui",
+      "title": "Masked Reveal Headline Demo",
+      "registryDependencies": ["masked-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/masked-reveal/masked-reveal-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "masked-reveal-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Masked Reveal Paragraph Demo",
+      "registryDependencies": ["masked-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/masked-reveal/masked-reveal-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

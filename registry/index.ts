@@ -1200,4 +1200,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "masked-reveal-headline-demo": {
+    name: "Masked Reveal Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/masked-reveal-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/masked-reveal/masked-reveal-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add masked-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/masked-reveal")
+      return {
+        "masked-reveal-headline-demo.tsx": {
+          code: mod.maskedRevealHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "masked-reveal-paragraph-demo": {
+    name: "Masked Reveal Paragraph Demo",
+    type: "react",
+    renderMode: "iframe", // Use iframe to protect scroll layout for multiline demo
+    previewUrl: "/preview/masked-reveal-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/masked-reveal/masked-reveal-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add masked-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/masked-reveal")
+      return {
+        "masked-reveal-paragraph-demo.tsx": {
+          code: mod.maskedRevealParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

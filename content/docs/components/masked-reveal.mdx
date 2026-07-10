@@ -1,0 +1,59 @@
+---
+title: Masked Reveal
+description: A sophisticated text reveal component. Wraps elements in a hidden overflow mask and pushes them up into view with a slight, elegant rotation, resembling premium agency typography.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/masked-reveal.mdx
+registryKeys:
+  - masked-reveal-headline-demo
+  - masked-reveal-paragraph-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="masked-reveal" title="masked-reveal" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { maskedRevealFile } from "@/registry/strings/masked-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={maskedRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                | Type                | Default      | Description                                                        |
+| :------------------ | :------------------ | :----------- | :----------------------------------------------------------------- |
+| **`text`**          | `string`            | _Required_   | The full string of text to reveal.                                 |
+| **`as`**            | `React.ElementType` | `"div"`      | The HTML tag to render as.                                         |
+| **`splitBy`**       | `"word" \| "char"`  | `"word"`     | Whether to split and animate by word or individual character.      |
+| **`startOffset`**   | `string \| number`  | `"100%"`     | The starting vertical offset. Can be percentage or pixel value.    |
+| **`startRotation`** | `number`            | `5`          | The starting rotation on the Z-axis.                               |
+| **`delay`**         | `number`            | `0`          | Delay before the animation begins (in seconds).                    |
+| **`duration`**      | `number`            | `1.2`        | Duration of the reveal for each element.                           |
+| **`stagger`**       | `number`            | `0.04`       | Stagger delay between each element.                                |
+| **`ease`**          | `string`            | `"expo.out"` | GSAP easing string.                                                |
+| **`viewportOnce`**  | `boolean`           | `true`       | If true, plays once. If false, seamlessly reverses on scroll away. |
+| **`triggerStart`**  | `string`            | `"top 90%"`  | Viewport threshold for when the animation should start.            |
