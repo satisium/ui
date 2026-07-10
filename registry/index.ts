@@ -1179,4 +1179,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "manifesto-text-reveal-demo": {
+    name: "Manifesto Text Reveal Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Pinning requires iframe to prevent breaking the main docs scrollbar
+    previewUrl: "/preview/manifesto-text-reveal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/manifesto-text-reveal/manifesto-text-reveal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add manifesto-text-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/manifesto-text-reveal")
+      return {
+        "manifesto-text-reveal-demo.tsx": {
+          code: mod.manifestoTextRevealDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
