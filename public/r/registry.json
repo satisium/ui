@@ -1098,6 +1098,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "manifesto-text-reveal",
+      "type": "registry:ui",
+      "title": "Manifesto Text Reveal",
+      "description": "A premium scrollytelling text component utilizing momentum scrubbing and DOM pinning.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/manifesto-text-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "manifesto-text-reveal-demo",
+      "type": "registry:ui",
+      "title": "Manifesto Text Reveal Demo",
+      "registryDependencies": ["manifesto-text-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/manifesto-text-reveal/manifesto-text-reveal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
