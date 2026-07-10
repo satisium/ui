@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.32
+
+### Minor Changes
+
+- added new fold reveal component
+
 ## 3.0.0-beta.31
 
 ### Minor Changes
