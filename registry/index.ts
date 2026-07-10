@@ -1242,4 +1242,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "fold-reveal-demo": {
+    name: "Fold Reveal Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/fold-reveal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/fold-reveal/fold-reveal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add fold-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/fold-reveal")
+      return {
+        "fold-reveal-demo.tsx": {
+          code: mod.foldRevealDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
