@@ -1185,6 +1185,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "pendulum-reveal",
+      "type": "registry:ui",
+      "title": "Pendulum Reveal",
+      "description": "A kinetic text reveal component. Elements drop down from a top hinge point, utilizing a heavy elastic ease to simulate a swinging pendulum.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/pendulum-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pendulum-reveal-demo",
+      "type": "registry:ui",
+      "title": "Pendulum Reveal Demo",
+      "registryDependencies": ["pendulum-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/pendulum-reveal/pendulum-reveal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
