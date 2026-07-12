@@ -1263,4 +1263,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "pendulum-reveal-demo": {
+    name: "Pendulum Reveal Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/pendulum-reveal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/pendulum-reveal/pendulum-reveal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add pendulum-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/pendulum-reveal")
+      return {
+        "pendulum-reveal-demo.tsx": {
+          code: mod.pendulumRevealDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
