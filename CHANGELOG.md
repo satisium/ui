@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.33
+
+### Minor Changes
+
+- added pendulum reveal
+
 ## 3.0.0-beta.32
 
 ### Minor Changes
