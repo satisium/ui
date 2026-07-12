@@ -33,7 +33,8 @@
     "magnetic-snap-reveal",
     "manifesto-text-reveal",
     "masked-reveal",
-    "fold-reveal"
+    "fold-reveal",
+    "pendulum-reveal"
   ],
   "icon": "ComponentIcon"
 }
