@@ -35,7 +35,8 @@
     "masked-reveal",
     "fold-reveal",
     "pendulum-reveal",
-    "piano-typewriter"
+    "piano-typewriter",
+    "multi-color-trail-reveal"
   ],
   "icon": "ComponentIcon"
 }
