@@ -1,0 +1,57 @@
+---
+title: Tumbler Roll Reveal
+description: A mechanical 3D text reveal component. Characters or words roll into place along an invisible 3D cylinder, mimicking the tactile snap of a combination lock or vintage split-flap display.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/tumbler-roll-reveal.mdx
+registryKeys:
+  - tumbler-roll-reveal-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="tumbler-roll-reveal" title="tumbler-roll-reveal" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { tumblerRollRevealFile } from "@/registry/strings/tumbler-roll-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={tumblerRollRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                 | Type                | Default     | Description                                                        |
+| :------------------- | :------------------ | :---------- | :----------------------------------------------------------------- |
+| **`text`**           | `string`            | _Required_  | The full string of text to reveal.                                 |
+| **`as`**             | `React.ElementType` | `"h1"`      | The HTML tag to render as.                                         |
+| **`splitBy`**        | `"word" \| "char"`  | `"char"`    | Whether to split and animate by word or individual character.      |
+| **`startAngle`**     | `number`            | `110`       | The starting rotation angle on the X-axis.                         |
+| **`cylinderRadius`** | `string`            | `"-0.8em"`  | The Z-axis pivot point. Creates the 3D cylinder illusion.          |
+| **`duration`**       | `number`            | `0.9`       | Duration of the snap animation per element.                        |
+| **`delay`**          | `number`            | `0`         | Delay before the animation begins (in seconds).                    |
+| **`stagger`**        | `number`            | `0.04`      | Stagger delay between each element rolling.                        |
+| **`viewportOnce`**   | `boolean`           | `true`      | If true, plays once. If false, seamlessly reverses on scroll away. |
+| **`triggerStart`**   | `string`            | `"top 90%"` | Viewport threshold for when the animation should start.            |
