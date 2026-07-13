@@ -1389,4 +1389,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "bottom-hinge-text-reveal-demo": {
+    name: "Bottom Hinge Text Reveal Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/bottom-hinge-text-reveal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/bottom-hinge-text-reveal/bottom-hinge-text-reveal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add bottom-hinge-text-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/bottom-hinge-text-reveal")
+      return {
+        "bottom-hinge-text-reveal-demo.tsx": {
+          code: mod.bottomHingeTextRevealDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

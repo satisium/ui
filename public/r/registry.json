@@ -1309,6 +1309,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "bottom-hinge-text-reveal",
+      "type": "registry:ui",
+      "title": "Bottom Hinge Text Reveal",
+      "description": "A high-impact 3D text reveal component. Elements start deep in the Z-axis and aggressively swing up and slam into place.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/bottom-hinge-text-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "bottom-hinge-text-reveal-demo",
+      "type": "registry:ui",
+      "title": "Bottom Hinge Text Reveal Demo",
+      "registryDependencies": ["bottom-hinge-text-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/bottom-hinge-text-reveal/bottom-hinge-text-reveal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

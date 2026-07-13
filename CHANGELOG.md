@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.37
+
+### Minor Changes
+
+- added bottom hinge text reveal component
+
 ## 3.0.0-beta.36
 
 ### Minor Changes
