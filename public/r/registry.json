@@ -1284,6 +1284,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "tumbler-roll-reveal",
+      "type": "registry:ui",
+      "title": "Tumbler Roll Reveal",
+      "description": "A mechanical 3D text reveal component. Characters or words roll into place along an invisible 3D cylinder, mimicking a vintage split-flap display.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/tumbler-roll-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tumbler-roll-reveal-demo",
+      "type": "registry:ui",
+      "title": "Tumbler Roll Reveal Demo",
+      "registryDependencies": ["tumbler-roll-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/tumbler-roll-reveal/tumbler-roll-reveal-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
