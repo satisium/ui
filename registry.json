@@ -1359,6 +1359,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "weightless-float-reveal",
+      "type": "registry:ui",
+      "title": "Weightless Float Reveal",
+      "description": "An ambient, zero-gravity text reveal component. Elements drift upwards into place from randomized depths and rotations.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/weightless-float-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "weightless-float-headline-demo",
+      "type": "registry:ui",
+      "title": "Weightless Float Headline Demo",
+      "registryDependencies": ["weightless-float-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/weightless-float-reveal/weightless-float-headline-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "weightless-float-paragraph-demo",
+      "type": "registry:ui",
+      "title": "Weightless Float Paragraph Demo",
+      "registryDependencies": ["weightless-float-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/weightless-float-reveal/weightless-float-paragraph-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

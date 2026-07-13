@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "weightless-float-paragraph-demo",
+  "title": "Weightless Float Paragraph Demo",
+  "registryDependencies": [
+    "weightless-float-reveal"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/weightless-float-reveal/weightless-float-paragraph-demo.tsx",
+      "content": "import { WeightlessFloatReveal } from \"@/registry/ui/weightless-float-reveal\" // Update path as needed\n\nexport default function WeightlessFloatParagraphDemo() {\n  return (\n    <main className=\"h-screen w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* The Reveal Container */}\n      <div className=\"flex h-full w-full items-center justify-center\">\n        <div className=\"max-w-5xl px-6 text-left md:text-justify\">\n          <WeightlessFloatReveal\n            as=\"h2\"\n            text=\"You wear your honour like a suit of armour, Stark. You think it keeps you safe, but all it does is weigh you down and make it hard for you to move.\"\n            className=\"text-3xl leading-[1.4] font-medium tracking-tight md:text-5xl lg:text-6xl\"\n            splitBy=\"word\" // Splitting by word keeps the paragraph legible while drifting\n            startYMin={20} // Subtler vertical drift for body text\n            startYMax={50}\n            startRotationMin={-3} // Very gentle tilt\n            startRotationMax={3}\n            duration={2.5}\n            stagger={0.04} // A faster stagger so the reading flow isn't interrupted\n            viewportOnce={false} // Will replay beautifully when scrolled in/out of view\n          />\n        </div>\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}
