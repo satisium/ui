@@ -1284,4 +1284,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "piano-typewriter-demo": {
+    name: "Piano Typewriter Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/piano-typewriter-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/piano-typewriter/piano-typewriter-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add piano-typewriter",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/piano-typewriter")
+      return {
+        "piano-typewriter-demo.tsx": {
+          code: mod.pianoTypewriterDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

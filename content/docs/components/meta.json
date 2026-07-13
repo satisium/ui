@@ -34,7 +34,8 @@
     "manifesto-text-reveal",
     "masked-reveal",
     "fold-reveal",
-    "pendulum-reveal"
+    "pendulum-reveal",
+    "piano-typewriter"
   ],
   "icon": "ComponentIcon"
 }

@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.34
+
+### Minor Changes
+
+- added piano typewriter along with demos and code strings and the complete ecosystem
+
 ## 3.0.0-beta.33
 
 ### Minor Changes

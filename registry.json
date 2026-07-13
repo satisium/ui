@@ -1210,6 +1210,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "piano-typewriter",
+      "type": "registry:ui",
+      "title": "Piano Typewriter",
+      "description": "A tactile, 3D typewriter effect. A cursor glides across the text while individual characters spring up from the Z-axis, mimicking mechanical keystrokes.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/piano-typewriter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "piano-typewriter-demo",
+      "type": "registry:ui",
+      "title": "Piano Typewriter Demo",
+      "registryDependencies": ["piano-typewriter"],
+      "files": [
+        {
+          "path": "registry/demos/components/piano-typewriter/piano-typewriter-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
