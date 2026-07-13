@@ -1410,4 +1410,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "velocity-brake-demo": {
+    name: "Velocity Brake Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/velocity-brake-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/velocity-brake-reveal/velocity-brake-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add velocity-brake-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/velocity-brake-reveal")
+      return {
+        "velocity-brake-demo.tsx": {
+          code: mod.velocityBrakeDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
