@@ -1368,4 +1368,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "tumbler-roll-reveal-demo": {
+    name: "Tumbler Roll Reveal Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/tumbler-roll-reveal-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/tumbler-roll-reveal/tumbler-roll-reveal-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add tumbler-roll-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/tumbler-roll-reveal")
+      return {
+        "tumbler-roll-reveal-demo.tsx": {
+          code: mod.tumblerRollRevealDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
