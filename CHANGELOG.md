@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.35
+
+### Minor Changes
+
+- added multi color trail reveal
+
 ## 3.0.0-beta.34
 
 ### Minor Changes
