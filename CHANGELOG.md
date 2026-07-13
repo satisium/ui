@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.39
+
+### Minor Changes
+
+- added weightless float reveal
+
 ## 3.0.0-beta.38
 
 ### Minor Changes
