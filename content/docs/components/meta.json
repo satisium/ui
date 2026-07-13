@@ -39,7 +39,8 @@
     "multi-color-trail-reveal",
     "tumbler-roll-reveal",
     "bottom-hinge-text-reveal",
-    "velocity-brake-reveal"
+    "velocity-brake-reveal",
+    "weightless-float-reveal"
   ],
   "icon": "ComponentIcon"
 }

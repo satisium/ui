@@ -1431,4 +1431,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "weightless-float-headline-demo": {
+    name: "Weightless Float Headline Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/weightless-float-headline-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/weightless-float-reveal/weightless-float-headline-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add weightless-float-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/weightless-float-reveal")
+      return {
+        "weightless-float-headline-demo.tsx": {
+          code: mod.weightlessFloatHeadlineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "weightless-float-paragraph-demo": {
+    name: "Weightless Float Paragraph Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/weightless-float-paragraph-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/weightless-float-reveal/weightless-float-paragraph-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add weightless-float-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/weightless-float-reveal")
+      return {
+        "weightless-float-paragraph-demo.tsx": {
+          code: mod.weightlessFloatParagraphDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
