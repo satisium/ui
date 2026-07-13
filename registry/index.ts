@@ -1305,4 +1305,67 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "multi-color-trail-char-demo": {
+    name: "Multi-Color Trail Char Demo",
+    type: "react",
+    renderMode: "iframe", // Pinning requires iframe to prevent breaking main doc scrolling
+    previewUrl: "/preview/multi-color-trail-char-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/multi-color-trail-reveal/multi-color-trail-char-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add multi-color-trail-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/multi-color-trail-reveal")
+      return {
+        "multi-color-trail-char-demo.tsx": {
+          code: mod.multiColorTrailCharDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "multi-color-trail-word-demo": {
+    name: "Multi-Color Trail Word Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/multi-color-trail-word-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/multi-color-trail-reveal/multi-color-trail-word-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add multi-color-trail-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/multi-color-trail-reveal")
+      return {
+        "multi-color-trail-word-demo.tsx": {
+          code: mod.multiColorTrailWordDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "multi-color-trail-line-demo": {
+    name: "Multi-Color Trail Line Demo",
+    type: "react",
+    renderMode: "iframe",
+    previewUrl: "/preview/multi-color-trail-line-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/multi-color-trail-reveal/multi-color-trail-line-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add multi-color-trail-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/multi-color-trail-reveal")
+      return {
+        "multi-color-trail-line-demo.tsx": {
+          code: mod.multiColorTrailLineDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
