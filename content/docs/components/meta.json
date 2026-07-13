@@ -36,7 +36,8 @@
     "fold-reveal",
     "pendulum-reveal",
     "piano-typewriter",
-    "multi-color-trail-reveal"
+    "multi-color-trail-reveal",
+    "tumbler-roll-reveal"
   ],
   "icon": "ComponentIcon"
 }
