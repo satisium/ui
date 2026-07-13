@@ -1334,6 +1334,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "velocity-brake-reveal",
+      "type": "registry:ui",
+      "title": "Velocity Brake Reveal",
+      "description": "A kinetic text reveal component that simulates high velocity and sudden deceleration using heavy skew and translation overshoots.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/velocity-brake-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "velocity-brake-demo",
+      "type": "registry:ui",
+      "title": "Velocity Brake Demo",
+      "registryDependencies": ["velocity-brake-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/velocity-brake-reveal/velocity-brake-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

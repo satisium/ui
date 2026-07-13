@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.38
+
+### Minor Changes
+
+- added velocity break reveal component
+
 ## 3.0.0-beta.37
 
 ### Minor Changes
