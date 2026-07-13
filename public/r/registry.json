@@ -1235,6 +1235,55 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "multi-color-trail-reveal",
+      "type": "registry:ui",
+      "title": "Multi-Color Trail Reveal",
+      "description": "A highly advanced scrollytelling component sweeping a cascading wave of colors across characters, words, or lines.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/multi-color-trail-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "multi-color-trail-char-demo",
+      "type": "registry:ui",
+      "title": "Multi-Color Trail Char Demo",
+      "registryDependencies": ["multi-color-trail-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-char-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "multi-color-trail-word-demo",
+      "type": "registry:ui",
+      "title": "Multi-Color Trail Word Demo",
+      "registryDependencies": ["multi-color-trail-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-word-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "multi-color-trail-line-demo",
+      "type": "registry:ui",
+      "title": "Multi-Color Trail Line Demo",
+      "registryDependencies": ["multi-color-trail-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-line-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

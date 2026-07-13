@@ -1,0 +1,62 @@
+---
+title: Multi-Color Trail Reveal
+description: A highly advanced scrollytelling component. Sweeps a cascading wave of colors across characters, words, or lines, utilizing strict clip-path physics and DOM pinning.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/multi-color-trail-reveal.mdx
+registryKeys:
+  - multi-color-trail-char-demo
+  - multi-color-trail-word-demo
+  - multi-color-trail-line-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    cli="multi-color-trail-reveal"
+    title="multi-color-trail-reveal"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { multiColorTrailRevealFile } from "@/registry/strings/multi-color-trail-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={multiColorTrailRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                 | Type                           | Default                                  | Description                                                                      |
+| :------------------- | :----------------------------- | :--------------------------------------- | :------------------------------------------------------------------------------- |
+| **`text`**           | `string`                       | _Required_                               | The full string of text to reveal. Use `\n` for line breaks if `splitBy="line"`. |
+| **`as`**             | `React.ElementType`            | `"p"`                                    | The HTML tag to render as.                                                       |
+| **`splitBy`**        | `"char" \| "word" \| "line"`   | `"char"`                                 | Granularity of the animation.                                                    |
+| **`edge`**           | `"hard" \| "liquid" \| "soft"` | `"soft"`                                 | The type of sweeping color effect.                                               |
+| **`trailColors`**    | `string[]`                     | `["text-primary/40", "text-primary/80"]` | Array of tailwind text colors to create the wave.                                |
+| **`finalClassName`** | `string`                       | `"text-foreground"`                      | The final solid text color after the wave passes.                                |
+| **`trailLength`**    | `number`                       | _Dynamic_                                | How many elements long the color wave is.                                        |
+| **`momentum`**       | `number \| boolean`            | `1.2`                                    | Amount of scroll inertia.                                                        |
+| **`pin`**            | `boolean`                      | `true`                                   | Whether to pin the container in place during the scroll reveal.                  |
+| **`triggerStart`**   | `string`                       | `"center center"`                        | ScrollTrigger start point.                                                       |
