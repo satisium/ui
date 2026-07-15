@@ -40,7 +40,8 @@
     "tumbler-roll-reveal",
     "bottom-hinge-text-reveal",
     "velocity-brake-reveal",
-    "weightless-float-reveal"
+    "weightless-float-reveal",
+    "wind-shear-reveal"
   ],
   "icon": "ComponentIcon"
 }
