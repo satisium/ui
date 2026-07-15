@@ -1470,6 +1470,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "concave-carousel",
+      "type": "registry:ui",
+      "title": "Concave Carousel",
+      "description": "A high-performance, physics-based infinite carousel. Items mathematically scale down as they reach the edges, creating a 3D curved visual effect.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/concave-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "concave-carousel-demo",
+      "type": "registry:ui",
+      "title": "Concave Carousel Demo",
+      "registryDependencies": ["concave-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/concave-carousel/concave-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
