@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.41
+
+### Minor Changes
+
+- added z axis reveal component
+
 ## 3.0.0-beta.40
 
 ### Minor Changes

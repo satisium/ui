@@ -41,7 +41,8 @@
     "bottom-hinge-text-reveal",
     "velocity-brake-reveal",
     "weightless-float-reveal",
-    "wind-shear-reveal"
+    "wind-shear-reveal",
+    "z-axis-reveal"
   ],
   "icon": "ComponentIcon"
 }

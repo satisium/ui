@@ -1,0 +1,57 @@
+---
+title: Z-Axis Reveal
+description: A cinematic deep-space text reveal component. Elements fly in from the Z-axis, scaling down and un-blurring into focus. Best used with DOM pinning to create immersive, Apple-style scrollytelling.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/z-axis-reveal.mdx
+registryKeys:
+  - z-axis-char-demo
+  - z-axis-word-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="z-axis-reveal" title="z-axis-reveal" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { zAxisRevealFile } from "@/registry/strings/z-axis-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={zAxisRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop               | Type                         | Default           | Description                                                     |
+| :----------------- | :--------------------------- | :---------------- | :-------------------------------------------------------------- |
+| **`text`**         | `string`                     | _Required_        | The full string of text to reveal.                              |
+| **`as`**           | `React.ElementType`          | `"h1"`            | The HTML tag to render as.                                      |
+| **`splitBy`**      | `"char" \| "word" \| "line"` | `"word"`          | Granularity of the animation.                                   |
+| **`momentum`**     | `number`                     | `1.5`             | The amount of inertia/lag applied to the scroll timeline.       |
+| **`startScale`**   | `number`                     | `3`               | How massive the text starts in the Z-axis.                      |
+| **`blur`**         | `boolean`                    | `true`            | Whether to apply a cinematic deep-space blur.                   |
+| **`pin`**          | `boolean`                    | `true`            | Locks the text in place while it flies in (scrollytelling).     |
+| **`triggerStart`** | `string`                     | `"center center"` | ScrollTrigger start point.                                      |
+| **`triggerEnd`**   | `string`                     | _Dynamic_         | Automatically calculates based on the length of the text block. |
