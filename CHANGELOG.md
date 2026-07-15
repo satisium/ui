@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.40
+
+### Minor Changes
+
+- Added wind shear reveal
+
 ## 3.0.0-beta.39
 
 ### Minor Changes
