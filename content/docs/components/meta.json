@@ -42,7 +42,8 @@
     "velocity-brake-reveal",
     "weightless-float-reveal",
     "wind-shear-reveal",
-    "z-axis-reveal"
+    "z-axis-reveal",
+    "concave-carousel"
   ],
   "icon": "ComponentIcon"
 }
