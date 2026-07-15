@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.42
+
+### Minor Changes
+
+- added concave carousel
+
 ## 3.0.0-beta.41
 
 ### Minor Changes
