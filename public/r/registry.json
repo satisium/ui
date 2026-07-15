@@ -1433,6 +1433,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "z-axis-reveal",
+      "type": "registry:ui",
+      "title": "Z-Axis Reveal",
+      "description": "A cinematic deep-space text reveal component. Elements fly in from the Z-axis, scaling down and un-blurring into focus.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/z-axis-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "z-axis-char-demo",
+      "type": "registry:ui",
+      "title": "Z-Axis Character Demo",
+      "registryDependencies": ["z-axis-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/z-axis-reveal/z-axis-char-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "z-axis-word-demo",
+      "type": "registry:ui",
+      "title": "Z-Axis Word Demo",
+      "registryDependencies": ["z-axis-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/z-axis-reveal/z-axis-word-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
