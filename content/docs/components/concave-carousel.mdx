@@ -1,0 +1,59 @@
+---
+title: Concave Carousel
+description: A high-performance, physics-based infinite carousel. Items mathematically scale down as they reach the edges, creating a 3D "concave" curved visual effect using strictly 2D DOM manipulation for maximum FPS.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/concave-carousel.mdx
+registryKeys:
+  - concave-carousel-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="concave-carousel" title="concave-carousel" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+```bash
+npm install gsap @gsap/react clsx tailwind-merge
+```
+
+**2. Add Source Code**
+
+import { concaveCarouselFile } from "@/registry/strings/concave-carousel"
+
+<div className="mt-6">
+  <CodeBlock files={concaveCarouselFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                   | Type                                 | Default        | Description                                                                                      |
+| :--------------------- | :----------------------------------- | :------------- | :----------------------------------------------------------------------------------------------- |
+| **`items`**            | `ConcaveCarouselItem[]`              | _Required_     | Array of image objects to display. Automatically duplicated to ensure an infinite loop.          |
+| **`visibleItems`**     | `number`                             | `3`            | Mobile-first default for visible items.                                                          |
+| **`maxHeight`**        | `number`                             | `250`          | Mobile-first default for the center item's max height in pixels.                                 |
+| **`minHeight`**        | `number`                             | `100`          | Mobile-first default for the outer items' min height in pixels.                                  |
+| **`breakpoints`**      | `Record<number, CarouselBreakpoint>` | `undefined`    | Tailwind-style min-width breakpoints for responsive sizing. e.g., `{ 640: { visibleItems: 5 } }` |
+| **`autoMove`**         | `boolean`                            | `false`        | Whether the carousel should move automatically.                                                  |
+| **`autoMoveType`**     | `"continuous" \| "step"`             | `"continuous"` | The type of auto-movement.                                                                       |
+| **`autoMoveSpeed`**    | `number`                             | `0.01`         | The velocity of the continuous auto-scroll.                                                      |
+| **`stepInterval`**     | `number`                             | `3000`         | The delay (in ms) between steps if autoMoveType is "step".                                       |
+| **`stepDuration`**     | `number`                             | `1`            | The duration (in seconds) of the snapping animation.                                             |
+| **`scrollMultiplier`** | `number`                             | `0.003`        | How aggressively the carousel responds to drag velocity.                                         |
+| **`friction`**         | `number`                             | `0.95`         | The physics friction applied to drag momentum.                                                   |
