@@ -1557,4 +1557,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "concave-carousel-demo": {
+    name: "Concave Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
+    previewUrl: "/preview/concave-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/concave-carousel/concave-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add concave-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/concave-carousel")
+      return {
+        "concave-carousel-demo.tsx": {
+          code: mod.concaveCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
