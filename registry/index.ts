@@ -1515,4 +1515,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "z-axis-char-demo": {
+    name: "Z-Axis Character Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Pinning requires iframe to prevent breaking the main docs scrollbar
+    previewUrl: "/preview/z-axis-char-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/z-axis-reveal/z-axis-char-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add z-axis-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/z-axis-reveal")
+      return {
+        "z-axis-char-demo.tsx": {
+          code: mod.zAxisCharDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "z-axis-word-demo": {
+    name: "Z-Axis Word Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Pinning requires iframe
+    previewUrl: "/preview/z-axis-word-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/z-axis-reveal/z-axis-word-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add z-axis-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/z-axis-reveal")
+      return {
+        "z-axis-word-demo.tsx": {
+          code: mod.zAxisWordDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
