@@ -1473,4 +1473,46 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "wind-shear-char-demo": {
+    name: "Wind Shear Character Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/wind-shear-char-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/wind-shear-reveal/wind-shear-char-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add wind-shear-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/wind-shear-reveal")
+      return {
+        "wind-shear-char-demo.tsx": {
+          code: mod.windShearCharDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
+  "wind-shear-word-demo": {
+    name: "Wind Shear Word Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/wind-shear-word-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/wind-shear-reveal/wind-shear-word-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add wind-shear-reveal",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/wind-shear-reveal")
+      return {
+        "wind-shear-word-demo.tsx": {
+          code: mod.windShearWordDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
