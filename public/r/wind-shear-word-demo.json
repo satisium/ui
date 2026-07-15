@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wind-shear-word-demo",
+  "title": "Wind Shear Word Demo",
+  "registryDependencies": [
+    "wind-shear-reveal"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/wind-shear-reveal/wind-shear-word-demo.tsx",
+      "content": "import { WindShearReveal } from \"@/registry/ui/wind-shear-reveal\"\nexport default function WindShearDemo() {\n  return (\n    <main className=\"flex h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground antialiased selection:bg-primary/20\">\n      <div className=\"px-6 text-center\">\n        <WindShearReveal\n          as=\"h1\"\n          text=\"Velocity meets friction.\"\n          className=\"text-5xl leading-[0.9] font-black tracking-tighter sm:text-7xl md:text-8xl lg:text-[8rem]\"\n          splitBy=\"word\" // Switching to \"char\" looks incredibly sleek on this short headline\n          delay={0.2}\n          duration={1.2}\n          stagger={0.2}\n          startingSkew={-35} // Slightly heavier lean to emphasize speed\n          viewportOnce={true}\n        />\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

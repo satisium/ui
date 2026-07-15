@@ -1396,6 +1396,43 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "wind-shear-reveal",
+      "type": "registry:ui",
+      "title": "Wind Shear Reveal",
+      "description": "A high-velocity text reveal component. Elements slide in while leaning heavily against simulated wind resistance, utilizing elastic friction to snap forward.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/wind-shear-reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "wind-shear-char-demo",
+      "type": "registry:ui",
+      "title": "Wind Shear Character Demo",
+      "registryDependencies": ["wind-shear-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/wind-shear-reveal/wind-shear-char-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "wind-shear-word-demo",
+      "type": "registry:ui",
+      "title": "Wind Shear Word Demo",
+      "registryDependencies": ["wind-shear-reveal"],
+      "files": [
+        {
+          "path": "registry/demos/components/wind-shear-reveal/wind-shear-word-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
