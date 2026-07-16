@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.46
+
+### Minor Changes
+
+- added exponential carousel
+
 ## 3.0.0-beta.45
 
 ### Minor Changes
