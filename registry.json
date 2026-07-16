@@ -1570,6 +1570,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "exponential-carousel",
+      "type": "registry:ui",
+      "title": "Exponential Carousel",
+      "description": "A high-performance, mathematics-driven infinite carousel. Uses integration calculus to mathematically pack items side-by-side along an exponential curve.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/exponential-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "exponential-carousel-demo",
+      "type": "registry:ui",
+      "title": "Exponential Carousel Demo",
+      "registryDependencies": ["exponential-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/exponential-carousel/exponential-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
