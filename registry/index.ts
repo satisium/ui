@@ -1641,4 +1641,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "exponential-carousel-demo": {
+    name: "Exponential Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
+    previewUrl: "/preview/exponential-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/exponential-carousel/exponential-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add exponential-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/exponential-carousel")
+      return {
+        "exponential-carousel-demo.tsx": {
+          code: mod.exponentialCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

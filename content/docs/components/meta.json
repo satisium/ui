@@ -46,7 +46,8 @@
     "concave-carousel",
     "ascent-carousel",
     "wave-carousel",
-    "convex-carousel"
+    "convex-carousel",
+    "exponential-carousel"
   ],
   "icon": "ComponentIcon"
 }
