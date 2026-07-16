@@ -44,7 +44,8 @@
     "wind-shear-reveal",
     "z-axis-reveal",
     "concave-carousel",
-    "ascent-carousel"
+    "ascent-carousel",
+    "wave-carousel"
   ],
   "icon": "ComponentIcon"
 }
