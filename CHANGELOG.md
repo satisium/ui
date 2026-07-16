@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.43
+
+### Minor Changes
+
+- added ascent carousel
+
 ## 3.0.0-beta.42
 
 ### Minor Changes
