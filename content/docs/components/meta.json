@@ -43,7 +43,8 @@
     "weightless-float-reveal",
     "wind-shear-reveal",
     "z-axis-reveal",
-    "concave-carousel"
+    "concave-carousel",
+    "ascent-carousel"
   ],
   "icon": "ComponentIcon"
 }

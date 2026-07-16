@@ -1495,6 +1495,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "ascent-carousel",
+      "type": "registry:ui",
+      "title": "Ascent Carousel",
+      "description": "A high-performance, exponential 3D-perspective carousel. Items mathematically scale down as they retreat to the right.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/ascent-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ascent-carousel-demo",
+      "type": "registry:ui",
+      "title": "Ascent Carousel Demo",
+      "registryDependencies": ["ascent-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/ascent-carousel/ascent-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
