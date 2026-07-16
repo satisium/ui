@@ -1578,4 +1578,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "ascent-carousel-demo": {
+    name: "Ascent Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
+    previewUrl: "/preview/ascent-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/ascent-carousel/ascent-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add ascent-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/ascent-carousel")
+      return {
+        "ascent-carousel-demo.tsx": {
+          code: mod.ascentCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
