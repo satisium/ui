@@ -1599,4 +1599,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "wave-carousel-demo": {
+    name: "Wave Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
+    previewUrl: "/preview/wave-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/wave-carousel/wave-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add wave-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/wave-carousel")
+      return {
+        "wave-carousel-demo.tsx": {
+          code: mod.waveCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
