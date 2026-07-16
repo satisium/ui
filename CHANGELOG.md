@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.44
+
+### Minor Changes
+
+- added wave carousel
+
 ## 3.0.0-beta.43
 
 ### Minor Changes

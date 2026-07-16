@@ -1520,6 +1520,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "wave-carousel",
+      "type": "registry:ui",
+      "title": "Wave Carousel",
+      "description": "A high-performance infinite carousel. Items mathematically scale up and down based on a cosine wave, creating a rolling hills visual effect.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/wave-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "wave-carousel-demo",
+      "type": "registry:ui",
+      "title": "Wave Carousel Demo",
+      "registryDependencies": ["wave-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/wave-carousel/wave-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
