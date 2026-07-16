@@ -1545,6 +1545,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "convex-carousel",
+      "type": "registry:ui",
+      "title": "Convex Carousel",
+      "description": "A physics-based infinite carousel utilizing an inverted parabola scaling function to create a 3D convex lens bulging effect.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/convex-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "convex-carousel-demo",
+      "type": "registry:ui",
+      "title": "Convex Carousel Demo",
+      "registryDependencies": ["convex-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/convex-carousel/convex-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

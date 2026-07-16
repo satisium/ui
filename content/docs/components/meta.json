@@ -45,7 +45,8 @@
     "z-axis-reveal",
     "concave-carousel",
     "ascent-carousel",
-    "wave-carousel"
+    "wave-carousel",
+    "convex-carousel"
   ],
   "icon": "ComponentIcon"
 }
