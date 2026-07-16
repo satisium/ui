@@ -1620,4 +1620,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "convex-carousel-demo": {
+    name: "Convex Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
+    previewUrl: "/preview/convex-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/convex-carousel/convex-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add convex-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/convex-carousel")
+      return {
+        "convex-carousel-demo.tsx": {
+          code: mod.convexCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
