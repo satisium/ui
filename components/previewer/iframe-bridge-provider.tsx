@@ -33,7 +33,7 @@ export function IframeBridgeProvider({
     // The key forces a React unmount/remount, perfectly resetting framer-motion/GSAP animations.
     <div
       key={reloadKey}
-      className="flex min-h-screen w-full items-center justify-center overflow-auto bg-background p-8 pb-20 font-sans text-foreground antialiased"
+      className="flex min-h-screen w-full items-center justify-center overflow-auto bg-background font-sans text-foreground antialiased"
     >
       {children}
     </div>
