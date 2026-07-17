@@ -1,5 +1,5 @@
 import { CategoryHero } from "@/components/component-card/category-hero"
-import { PremiumComponentCard } from "@/components/component-card/component-card"
+import { ComponentCard } from "@/components/component-card/component-card"
 import { queryContent } from "@/lib/content-query"
 import { TAXONOMY } from "@/lib/utils"
 import { notFound } from "next/navigation"
@@ -76,7 +76,7 @@ export default async function SubCategoryPage(props: {
 
       <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3">
         {pages.map((item) => (
-          <PremiumComponentCard
+          <ComponentCard
             key={item.url}
             url={item.url}
             title={item.data.title}

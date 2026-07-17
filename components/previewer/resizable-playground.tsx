@@ -75,7 +75,7 @@ export function ResizablePlayground({
           bounce: 0,
           duration: isDragging ? 0 : 0.4,
         }}
-        className="pointer-events-auto relative flex h-full max-w-full flex-row overflow-hidden rounded-2xl bg-background drop-shadow-2xl"
+        className="pointer-events-auto relative flex h-full max-w-full flex-row overflow-hidden rounded-2xl bg-muted drop-shadow-2xl"
       >
         {/* 
           SCROLL AREA INTEGRATION:
@@ -86,7 +86,7 @@ export function ResizablePlayground({
           <div
             key="iframe-wrapper"
             className={cn(
-              "flex h-full min-w-0 flex-1 flex-col p-0",
+              "flex h-full min-w-0 flex-1 flex-col overflow-hidden rounded-2xl p-0",
               isDragging && "pointer-events-none select-none"
             )}
           >
@@ -108,7 +108,7 @@ export function ResizablePlayground({
           <ScrollArea
             key={reloadKey}
             className={cn(
-              "flex h-full min-w-0 flex-1 flex-col",
+              "flex h-full min-w-0 flex-1 flex-col overflow-hidden rounded-2xl bg-muted",
               isDragging && "pointer-events-none select-none"
             )}
           >
@@ -130,7 +130,7 @@ export function ResizablePlayground({
 
         <div
           onPointerDown={handlePointerDown}
-          className="group relative z-50 flex h-full w-4 shrink-0 cursor-col-resize items-center justify-center border-l border-border/40 bg-background transition-colors hover:bg-muted/30"
+          className="group relative z-50 flex h-full w-4 shrink-0 cursor-col-resize items-center justify-center"
         >
           <div
             className={`flex h-[40%] w-1.5 items-center justify-center rounded-full shadow-sm transition-colors ${
