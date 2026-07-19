@@ -31,9 +31,9 @@
 
 ### 4. The JSON Registry & Engine ⚙️
 
-- [ ] Ran `npm run registry:internal`.
+- [ ] Ran `pnpm registry:public`.
 - [ ] Verified `public/r/` JSON files correctly map source code, dependencies, and demo paths.
-- [ ] Ran `npm run llm` and verified `llms.txt` and `public/llms/` are updated.
+- [ ] Ran `pnpm llm` and verified `llms.txt` and `public/llms/` are updated.
 
 ---
 

@@ -6,6 +6,7 @@
     "media",
     "component",
     "registry",
-    "changeset"
+    "changeset",
+    "github"
   ]
 }

@@ -15,7 +15,7 @@
 - [ ] The fix does not break any existing CLI registry paths.
 - [ ] Keyboard accessibility (`Tab` key, `focus-visible`) is intact.
 - [ ] If this changes the component's API/Props, I updated the MDX documentation.
-- [ ] I ran `npm run registry:internal` to ensure the JSON reflects the updated code.
+- [ ] I ran `pnpm registry:public` to ensure the JSON reflects the updated code.
 
 ## Before / After (Visual Fixes)
 

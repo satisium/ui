@@ -1,21 +1,45 @@
-# Next.js template
+# SATIS UI
 
-This is a Next.js template with shadcn/ui.
+[![CI](https://github.com/satis-ui/ui/actions/workflows/ci.yml/badge.svg)](https://github.com/satis-ui/ui/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/ui.svg)](https://www.npmjs.com/package/ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-## Adding components
+A high-end animated component library for React and Next.js. Built with Tailwind CSS v4, GSAP, Framer Motion, Three.js, and Radix UI.
 
-To add components to your app, run the following command:
+## ✨ Components
+
+Browse components at [UI](https://ui.satisstoodio.com).
+
+### Install a component
 
 ```bash
-npx shadcn@latest add button
+npx shadcn@latest add https://ui.satisstoodio.com/r/<component-name>.json
 ```
 
-This will place the ui components in the `components` directory.
+## 🚀 Quick Start
 
-## Using components
-
-To use the components in your app, import them as follows:
-
-```tsx
-import { Button } from "@/components/ui/button";
+```bash
+git clone https://github.com/satis-ui/ui.git
+cd ui
+pnpm install
+pnpm dev
 ```
+
+## 📦 Tech Stack
+
+- **Next.js 16** — React framework with App Router
+- **Tailwind CSS v4** — Utility-first styling
+- **GSAP + Motion** — Animation engines
+- **Three.js / R3F** — WebGL components
+- **Radix UI** — Accessible unstyled primitives
+- **shadcn/ui** — Registry-based component distribution
+- **Changesets** — Versioning & changelogs
+- **Fumadocs** — Documentation
+
+## 🤝 Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and [GITHUB_STRATEGY.md](./GITHUB_STRATEGY.md) for our complete open-source workflow.
+
+## 📄 License
+
+MIT — see [LICENSE](./LICENSE) for details.
