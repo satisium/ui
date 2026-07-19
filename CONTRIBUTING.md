@@ -49,7 +49,7 @@ Understanding the folder layout is essential. Every component touches multiple d
 ui/
 ├── .changeset/              # Changeset files for versioning
 ├── .github/
-│   ├── ISSUE_TEMPLATE/      # bug-report.yml, feature-request.yml
+│   ├── ISSUE_TEMPLATE/      # bug-report.yml, feature-request.yml, task-improvement.yml
 │   └── PULL_REQUEST_TEMPLATE/
 │       ├── bug-fix.md
 │       ├── component-addition.md
@@ -453,6 +453,23 @@ Select a template when creating a new issue.
 - If accepted → `status: in-progress` when someone opens a PR.
 - If declined → `wontfix` label with reasoning.
 
+#### Task / Improvement (`task-improvement.yml`)
+
+**When to use:** Requesting a change to **existing** code or docs — e.g., "update this UI to that", "make these tweaks", restyle a component, or adjust behavior that isn't broken and isn't a new feature.
+
+| Field | What to put |
+|-------|-------------|
+| **Title** | Auto-filled as `chore([scope]): brief description` — change `[scope]` to the affected area, e.g., `chore(components): tighten ascent-carousel spacing` |
+| **Affected Component / Area** | Which component, page, or file should change. |
+| **Current State** | What it looks/behaves like now. **Required.** |
+| **Desired State** | What it should look/behave like after the change. **Required.** |
+| **References / Mockups** | Screenshots, links, or media showing the target. |
+| **Additional Context** | Constraints, related issues, etc. |
+
+**What happens after you submit:**
+- GitHub auto-applies `type: improvement` and `enhancement` labels.
+- Maintainer triages and may convert to a `bug-fix` or `component-addition` PR if the scope grows.
+
 ---
 
 ## 8. Pull Request Templates
@@ -547,6 +564,10 @@ Is this a new component + demo + docs?
 
 Is this a bug fix in existing code?
   → YES → Use bug-fix.md
+  → NO ↓
+
+Is this a change to existing code/docs (restyle, tweak, "update X to Y") — not new, not broken?
+  → YES → Open a Task / Improvement issue
   → NO ↓
 
 Is this about Next.js, Tailwind, CI, registry engine, or site infra?
