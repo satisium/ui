@@ -7,7 +7,7 @@ export default function VelocityGridImageDemo() {
     "https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/2.jpg"
 
   return (
-    <main className="flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8">
+    <main className="flex h-screen w-full items-center justify-center bg-background">
       <div className="relative aspect-[4/3] w-full max-w-5xl overflow-hidden sm:aspect-[16/9]">
         <VelocityGrid
           mediaUrl={imageUrl}

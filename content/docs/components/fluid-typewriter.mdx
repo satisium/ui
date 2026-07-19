@@ -30,11 +30,12 @@ media:
 
 **1. Install Dependencies**
 
-```bash
-npm install gsap @gsap/react clsx tailwind-merge
-```
-
-```
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
 
 **2. Add Source Code**
 
@@ -57,5 +58,7 @@ import { fluidTypewriterFile } from "@/registry/strings/fluid-typewriter"
 | **`delay`**           | `number`            | `0`            | Delay before the typewriter begins (in seconds).          |
 | **`viewportOnce`**    | `boolean`           | `true`         | Recommended to keep true to avoid reverse-deletion loops. |
 | **`triggerStart`**    | `string`            | `"top 90%"`    | Viewport threshold for when the animation should start.   |
+
+```
 
 ```
