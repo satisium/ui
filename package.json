@@ -2,7 +2,7 @@
   "name": "ui",
   "version": "3.0.0-beta.46",
   "type": "module",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "node scripts/build-llms.mjs && next build",
