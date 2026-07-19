@@ -116,8 +116,10 @@ export function ResizablePlayground({
               THE GRID TRICK INSIDE THE SCROLL AREA:
               Shadcn ScrollArea DOES NOT fix the negative-space clipping bug on its own.
               We still MUST use the grid trick inside the viewport to allow `h-[300vh]` items to scale safely!
+              
+              ✨ FIX: Removed `p-8 pb-20` so everything is 100% fullscreen by default!
             */}
-            <div className="grid min-h-full min-w-full grid-cols-1 grid-rows-[minmax(100%,max-content)] p-8 pb-20">
+            <div className="grid min-h-full min-w-full grid-cols-1 grid-rows-[minmax(100%,max-content)]">
               <div className="flex h-full w-full flex-col items-center justify-center">
                 {activeDemo?.component}
               </div>

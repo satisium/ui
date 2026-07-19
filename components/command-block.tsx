@@ -11,6 +11,7 @@ import {
   ArrowDown01Icon,
   CheckmarkBadge03Icon,
   Copy01Icon,
+  ComputerTerminal01Icon, // ✨ IMPORT A FALLBACK ICON (or any generic icon you like)
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { BunIcon, NpmIcon, PnpmIcon, YarnIcon } from "./icons"
@@ -19,6 +20,7 @@ interface CommandBlockProps {
   title?: string
   pkg?: string
   cli?: string
+  command?: string // ✨ NEW: Accepts any raw command string
   commands?: Partial<Record<PackageManager, string>>
   className?: string
 }
@@ -45,10 +47,43 @@ const scrollbarClasses = cn(
   "hover:[&::-webkit-scrollbar-thumb]:bg-border/80"
 )
 
+// ✨ NEW: Auto-Translator Engine for generic npm commands
+function transformCommand(baseCmd: string, manager: PackageManager): string {
+  // If it's not an npm/npx command, leave it exactly as the user typed it (e.g., "git clone")
+  if (!baseCmd.startsWith("npm ") && !baseCmd.startsWith("npx ")) return baseCmd
+  if (manager === "npm") return baseCmd
+
+  // Handle npx translations
+  if (baseCmd.startsWith("npx ")) {
+    if (manager === "pnpm") return baseCmd.replace(/^npx /, "pnpm dlx ")
+    if (manager === "yarn") return baseCmd.replace(/^npx /, "yarn dlx ")
+    if (manager === "bun") return baseCmd.replace(/^npx /, "bunx ")
+  }
+
+  // Handle npm install translations
+  if (baseCmd.startsWith("npm install ") || baseCmd.startsWith("npm i ")) {
+    const rest = baseCmd.replace(/^npm (install|i) /, "")
+    if (manager === "pnpm") return `pnpm add ${rest}`
+    if (manager === "yarn") return `yarn add ${rest}`
+    if (manager === "bun") return `bun add ${rest}`
+  }
+
+  // Handle npm run translations
+  if (baseCmd.startsWith("npm run ")) {
+    const rest = baseCmd.replace(/^npm run /, "")
+    if (manager === "pnpm") return `pnpm ${rest}` // pnpm run is also fine, but pnpm <script> is standard
+    if (manager === "yarn") return `yarn ${rest}`
+    if (manager === "bun") return `bun run ${rest}`
+  }
+
+  return baseCmd
+}
+
 export function CommandBlock({
   title = "CLI Install",
   pkg,
   cli,
+  command,
   commands,
   className,
 }: CommandBlockProps) {
@@ -72,6 +107,8 @@ export function CommandBlock({
 
   const getCommand = () => {
     if (commands && commands[manager]) return commands[manager]!
+
+    // 1. Legacy support: Package Installs
     if (pkg) {
       switch (manager) {
         case "npm":
@@ -84,6 +121,8 @@ export function CommandBlock({
           return `bun add ${pkg}`
       }
     }
+
+    // 2. Legacy support: Component Installs
     if (cli) {
       switch (manager) {
         case "npm":
@@ -96,10 +135,23 @@ export function CommandBlock({
           return `bunx shadcn@latest add ${cli}`
       }
     }
+
+    // 3. ✨ NEW: Generic Command Parsing
+    if (command) {
+      return transformCommand(command, manager)
+    }
+
     return "echo 'No command specified'"
   }
 
   const commandString = getCommand()
+
+  // ✨ NEW: Smart Detection. Does this command actually use a package manager?
+  const isPMCommand =
+    !!pkg ||
+    !!cli ||
+    !!commands ||
+    /^(npm|npx|yarn|pnpm|bun|bunx)\b/.test(commandString)
 
   const handleCopy = () => {
     navigator.clipboard.writeText(commandString)
@@ -108,14 +160,14 @@ export function CommandBlock({
 
     trackEvent("cli_command_copied", {
       command: commandString,
-      manager: manager,
-      package: pkg || cli || "unknown",
+      manager: isPMCommand ? manager : "none",
+      package: pkg || cli || "custom",
     })
   }
 
   const SelectedIcon = PM_CONFIG[manager].icon
 
-  // ✨ Auto-Tokenizer Engine
+  // ✨ Auto-Tokenizer Engine updated slightly for generic bash commands
   const renderHighlightedCommand = (cmd: string) => {
     const parts = cmd.split(" ")
     return parts.map((part, idx) => {
@@ -133,7 +185,7 @@ export function CommandBlock({
           </span>
         )
       }
-      if (["install", "add", "remove", "dlx", "create"].includes(part)) {
+      if (["install", "add", "remove", "dlx", "create", "run"].includes(part)) {
         return (
           <span key={idx} className="text-muted-foreground">
             {part}{" "}
@@ -156,66 +208,78 @@ export function CommandBlock({
         </span>
 
         <div className="flex items-center gap-1.5">
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              aria-label="Select package manager"
-              aria-expanded={isDropdownOpen}
-              className="flex items-center gap-1.5 rounded-lg bg-background px-2.5 py-1.5 text-xs font-medium text-foreground drop-shadow-2xl transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-            >
-              <SelectedIcon className="h-3.5 w-3.5" />
-              <span className="hidden capitalize sm:inline-block">
-                {manager}
-              </span>
-              <HugeiconsIcon
-                icon={ArrowDown01Icon}
-                className={cn(
-                  "h-3.5 w-3.5 text-muted-foreground transition-transform duration-200",
-                  isDropdownOpen && "rotate-180"
-                )}
-              />
-            </button>
+          {/* ✨ CONDITIONAL RENDER: Only show dropdown if it's a PM command */}
+          {isPMCommand ? (
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                aria-label="Select package manager"
+                aria-expanded={isDropdownOpen}
+                className="flex items-center gap-1.5 rounded-lg bg-background px-2.5 py-1.5 text-xs font-medium text-foreground drop-shadow-2xl transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              >
+                <SelectedIcon className="h-3.5 w-3.5" />
+                <span className="hidden capitalize sm:inline-block">
+                  {manager}
+                </span>
+                <HugeiconsIcon
+                  icon={ArrowDown01Icon}
+                  className={cn(
+                    "h-3.5 w-3.5 text-muted-foreground transition-transform duration-200",
+                    isDropdownOpen && "rotate-180"
+                  )}
+                />
+              </button>
 
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 4, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 4, scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  className="absolute top-full right-0 z-50 mt-1.5 w-32 overflow-hidden rounded-md bg-popover/95 p-2 drop-shadow-2xl backdrop-blur-md"
-                >
-                  {(Object.keys(PM_CONFIG) as PackageManager[]).map((pm) => {
-                    const Icon = PM_CONFIG[pm].icon
-                    return (
-                      <button
-                        key={pm}
-                        onClick={() => {
-                          setManager(pm)
-                          setIsDropdownOpen(false)
-                        }}
-                        className={cn(
-                          "flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
-                          manager === pm
-                            ? "bg-accent font-medium text-accent-foreground"
-                            : "text-popover-foreground hover:bg-muted"
-                        )}
-                      >
-                        <Icon className="h-4 w-4 shrink-0" />
-                        <span className="capitalize">{pm}</span>
-                        {manager === pm && (
-                          <HugeiconsIcon
-                            icon={CheckmarkBadge03Icon}
-                            className="ml-auto h-3 w-3 shrink-0"
-                          />
-                        )}
-                      </button>
-                    )
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 4, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className="absolute top-full right-0 z-50 mt-1.5 w-32 overflow-hidden rounded-md bg-popover/95 p-2 drop-shadow-2xl backdrop-blur-md"
+                  >
+                    {(Object.keys(PM_CONFIG) as PackageManager[]).map((pm) => {
+                      const Icon = PM_CONFIG[pm].icon
+                      return (
+                        <button
+                          key={pm}
+                          onClick={() => {
+                            setManager(pm)
+                            setIsDropdownOpen(false)
+                          }}
+                          className={cn(
+                            "flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+                            manager === pm
+                              ? "bg-accent font-medium text-accent-foreground"
+                              : "text-popover-foreground hover:bg-muted"
+                          )}
+                        >
+                          <Icon className="h-4 w-4 shrink-0" />
+                          <span className="capitalize">{pm}</span>
+                          {manager === pm && (
+                            <HugeiconsIcon
+                              icon={CheckmarkBadge03Icon}
+                              className="ml-auto h-3 w-3 shrink-0"
+                            />
+                          )}
+                        </button>
+                      )
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            /* ✨ FALLBACK UI for non-PM commands (e.g., git clone) */
+            <div className="flex items-center gap-1.5 rounded-lg bg-background/50 px-2.5 py-1.5 text-xs font-medium text-muted-foreground">
+              <HugeiconsIcon
+                icon={ComputerTerminal01Icon}
+                className="h-3.5 w-3.5"
+              />
+              <span className="hidden sm:inline-block">Bash</span>
+            </div>
+          )}
 
           <button
             onClick={handleCopy}
@@ -223,7 +287,6 @@ export function CommandBlock({
             aria-label="Copy command to clipboard"
             className="flex h-8 w-8 items-center justify-center rounded-lg bg-background text-foreground drop-shadow-2xl transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
-            {/* ✨ FIXED: initial={false} to stop scale animation on load */}
             <AnimatePresence mode="wait" initial={false}>
               {copied ? (
                 <motion.div
@@ -262,7 +325,6 @@ export function CommandBlock({
           $
         </span>
 
-        {/* ✨ FIXED: initial={false} to stop command string sliding up on load */}
         <AnimatePresence mode="wait" initial={false}>
           <motion.code
             key={commandString}
