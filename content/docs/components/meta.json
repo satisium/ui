@@ -48,7 +48,8 @@
     "wave-carousel",
     "convex-carousel",
     "exponential-carousel",
-    "ember-burn"
+    "ember-burn",
+    "ferrofluid-drag"
   ],
   "icon": "ComponentIcon"
 }
