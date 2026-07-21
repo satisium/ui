@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.49
+
+### Minor Changes
+
+- added fluid disintegration
+
 ## 3.0.0-beta.48
 
 ### Minor Changes

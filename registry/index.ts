@@ -1704,4 +1704,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "fluid-disintegration-demo": {
+    name: "Fluid Disintegration Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/fluid-disintegration-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/fluid-disintegration/fluid-disintegration-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add fluid-disintegration",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/fluid-disintegration")
+      return {
+        "fluid-disintegration-demo.tsx": {
+          code: mod.fluidDisintegrationDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

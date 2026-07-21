@@ -1645,6 +1645,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "fluid-disintegration",
+      "type": "registry:ui",
+      "title": "Fluid Disintegration",
+      "description": "An interactive liquid image transition component. Fragments an image into an SVG grid mapped with a gooey color matrix.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/fluid-disintegration.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fluid-disintegration-demo",
+      "type": "registry:ui",
+      "title": "Fluid Disintegration Demo",
+      "registryDependencies": ["fluid-disintegration"],
+      "files": [
+        {
+          "path": "registry/demos/components/fluid-disintegration/fluid-disintegration-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
