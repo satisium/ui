@@ -1662,4 +1662,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "ember-burn-demo": {
+    name: "Ember Burn Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/ember-burn-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/ember-burn/ember-burn-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add ember-burn",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/ember-burn")
+      return {
+        "ember-burn-demo.tsx": {
+          code: mod.emberBurnDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

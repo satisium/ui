@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.47
+
+### Minor Changes
+
+- added ember burn image reveal component
+
 ## 3.0.0-beta.46
 
 ### Minor Changes
