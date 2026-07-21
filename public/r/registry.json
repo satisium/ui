@@ -1670,6 +1670,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "liquid-curtain",
+      "type": "registry:ui",
+      "title": "Liquid Curtain",
+      "description": "An interactive image transition component. Applies a heavily asymmetrical SVG Gooey filter to a grid of vertical strips that drip downward like thick paint on hover.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/liquid-curtain.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "liquid-curtain-demo",
+      "type": "registry:ui",
+      "title": "Liquid Curtain Demo",
+      "registryDependencies": ["liquid-curtain"],
+      "files": [
+        {
+          "path": "registry/demos/components/liquid-curtain/liquid-curtain-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

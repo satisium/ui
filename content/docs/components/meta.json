@@ -50,7 +50,8 @@
     "exponential-carousel",
     "ember-burn",
     "ferrofluid-drag",
-    "fluid-disintegration"
+    "fluid-disintegration",
+    "liquid-curtain"
   ],
   "icon": "ComponentIcon"
 }

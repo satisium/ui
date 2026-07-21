@@ -1725,4 +1725,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "liquid-curtain-demo": {
+    name: "Liquid Curtain Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/liquid-curtain-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/liquid-curtain/liquid-curtain-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add liquid-curtain",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/liquid-curtain")
+      return {
+        "liquid-curtain-demo.tsx": {
+          code: mod.liquidCurtainDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
