@@ -1,0 +1,59 @@
+---
+title: Fluid Disintegration
+description: An interactive liquid image transition component. Fragments an image into an SVG grid mapped with a gooey color matrix. On hover, the droplets calculate their proximity to the cursor and melt outward, revealing the content underneath.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/fluid-disintegration.mdx
+registryKeys:
+  - fluid-disintegration-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="fluid-disintegration" title="fluid-disintegration" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { fluidDisintegrationFile } from "@/registry/strings/fluid-disintegration"
+
+<div className="mt-6">
+  <CodeBlock files={fluidDisintegrationFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                   | Type              | Default        | Description                                                         |
+| :--------------------- | :---------------- | :------------- | :------------------------------------------------------------------ |
+| **`imageUrl`**         | `string`          | _Required_     | The URL of the image to disintegrate.                               |
+| **`children`**         | `React.ReactNode` | _Required_     | The content to reveal underneath the image.                         |
+| **`rows`**             | `number`          | `12`           | Number of rows in the fluid grid.                                   |
+| **`columns`**          | `number`          | `12`           | Number of columns in the fluid grid.                                |
+| **`duration`**         | `number`          | `0.8`          | Duration of the individual droplet animation.                       |
+| **`staggerAmount`**    | `number`          | `0.6`          | Total time allocated for the stagger wave to traverse the grid.     |
+| **`rotationRange`**    | `number`          | `45`           | Maximum randomized rotation applied to each droplet (in degrees).   |
+| **`translationRange`** | `number`          | `25`           | Maximum randomized translation applied to each droplet (in pixels). |
+| **`ease`**             | `string`          | `"sine.inOut"` | GSAP easing string.                                                 |
