@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.50
+
+### Minor Changes
+
+- added liquid curtain
+
 ## 3.0.0-beta.49
 
 ### Minor Changes
