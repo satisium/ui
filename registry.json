@@ -1595,6 +1595,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "ember-burn",
+      "type": "registry:ui",
+      "title": "Ember Burn",
+      "description": "An interactive image transition simulating a burning ember hole using complex SVG displacement maps and color matrices.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/ember-burn.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ember-burn-demo",
+      "type": "registry:ui",
+      "title": "Ember Burn Demo",
+      "registryDependencies": ["ember-burn"],
+      "files": [
+        {
+          "path": "registry/demos/components/ember-burn/ember-burn-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
