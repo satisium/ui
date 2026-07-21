@@ -1620,6 +1620,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "ferrofluid-drag",
+      "type": "registry:ui",
+      "title": "Ferrofluid Drag",
+      "description": "An interactive image transition. Applies a mathematical SVG Gooey filter to a grid of beads that violently tear outward like magnetic fluid.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/ferrofluid-drag.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "ferrofluid-drag-demo",
+      "type": "registry:ui",
+      "title": "Ferrofluid Drag Demo",
+      "registryDependencies": ["ferrofluid-drag"],
+      "files": [
+        {
+          "path": "registry/demos/components/ferrofluid-drag/ferrofluid-drag-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
