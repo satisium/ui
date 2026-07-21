@@ -47,7 +47,8 @@
     "ascent-carousel",
     "wave-carousel",
     "convex-carousel",
-    "exponential-carousel"
+    "exponential-carousel",
+    "ember-burn"
   ],
   "icon": "ComponentIcon"
 }

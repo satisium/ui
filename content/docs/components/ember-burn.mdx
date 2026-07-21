@@ -1,0 +1,55 @@
+---
+title: Ember Burn
+description: An interactive image transition component. Simulates a burning ember hole using complex SVG displacement maps and color matrices. The burn originates exactly from the mouse entry coordinates.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/ember-burn.mdx
+registryKeys:
+  - ember-burn-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="ember-burn" title="ember-burn" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { emberBurnFile } from "@/registry/strings/ember-burn"
+
+<div className="mt-6">
+  <CodeBlock files={emberBurnFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                  | Type              | Default          | Description                                                                   |
+| :-------------------- | :---------------- | :--------------- | :---------------------------------------------------------------------------- |
+| **`imageUrl`**        | `string`          | _Required_       | The URL of the image to burn away.                                            |
+| **`children`**        | `React.ReactNode` | _Required_       | The content to reveal underneath the image.                                   |
+| **`duration`**        | `number`          | `2.5`            | Duration of the burn animation.                                               |
+| **`maxDisplacement`** | `number`          | `400`            | The maximum displacement scale of the turbulence. Higher = more jagged edges. |
+| **`ease`**            | `string`          | `"power2.inOut"` | GSAP easing string.                                                           |
