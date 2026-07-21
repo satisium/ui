@@ -1,0 +1,56 @@
+---
+title: Liquid Curtain
+description: An interactive image transition component. Applies a heavily asymmetrical SVG Gooey filter to a grid of vertical strips. On hover, the strips calculate their proximity to the cursor and drip downward like thick paint or liquid, revealing the content underneath.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/liquid-curtain.mdx
+registryKeys:
+  - liquid-curtain-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="liquid-curtain" title="liquid-curtain" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { liquidCurtainFile } from "@/registry/strings/liquid-curtain"
+
+<div className="mt-6">
+  <CodeBlock files={liquidCurtainFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                | Type              | Default          | Description                                                        |
+| :------------------ | :---------------- | :--------------- | :----------------------------------------------------------------- |
+| **`imageUrl`**      | `string`          | _Required_       | The URL of the image to display on top.                            |
+| **`children`**      | `React.ReactNode` | _Required_       | The content to reveal underneath the image.                        |
+| **`columns`**       | `number`          | `18`             | Number of vertical strips/columns. Higher = stringier liquid.      |
+| **`duration`**      | `number`          | `1.2`            | Duration of the drip animation for each individual strip.          |
+| **`staggerAmount`** | `number`          | `0.6`            | Total time allocated for the stagger wave to traverse the columns. |
+| **`ease`**          | `string`          | `"power2.inOut"` | GSAP easing string.                                                |
