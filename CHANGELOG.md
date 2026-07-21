@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.48
+
+### Minor Changes
+
+- added ferrofluid drag component
+
 ## 3.0.0-beta.47
 
 ### Minor Changes

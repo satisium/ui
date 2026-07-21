@@ -1683,4 +1683,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "ferrofluid-drag-demo": {
+    name: "Ferrofluid Drag Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/ferrofluid-drag-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/ferrofluid-drag/ferrofluid-drag-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add ferrofluid-drag",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/ferrofluid-drag")
+      return {
+        "ferrofluid-drag-demo.tsx": {
+          code: mod.ferrofluidDragDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
