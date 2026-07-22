@@ -1767,4 +1767,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "dimensional-deck-demo": {
+    name: "Dimensional Deck Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates scroll capture so the main docs page remains unhindered
+    previewUrl: "/preview/dimensional-deck-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/dimensional-deck/dimensional-deck-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add dimensional-deck",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/dimensional-deck")
+      return {
+        "dimensional-deck-demo.tsx": {
+          code: mod.dimensionalDeckDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
