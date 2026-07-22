@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.51
+
+### Minor Changes
+
+- added mycelium network Image reveal component.
+
 ## 3.0.0-beta.50
 
 ### Minor Changes
