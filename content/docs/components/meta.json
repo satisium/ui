@@ -51,7 +51,8 @@
     "ember-burn",
     "ferrofluid-drag",
     "fluid-disintegration",
-    "liquid-curtain"
+    "liquid-curtain",
+    "mycelium-network"
   ],
   "icon": "ComponentIcon"
 }

@@ -1695,6 +1695,31 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "mycelium-network",
+      "type": "registry:ui",
+      "title": "Mycelium Network",
+      "description": "An interactive image transition. Connects an SVG grid of nodes and edges masked with a mathematical gooey filter that snaps and drifts apart on hover.",
+      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/ui/mycelium-network.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "mycelium-network-demo",
+      "type": "registry:ui",
+      "title": "Mycelium Network Demo",
+      "registryDependencies": ["mycelium-network"],
+      "files": [
+        {
+          "path": "registry/demos/components/mycelium-network/mycelium-network-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
