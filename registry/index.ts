@@ -1746,4 +1746,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "mycelium-network-demo": {
+    name: "Mycelium Network Demo",
+    type: "react",
+    renderMode: "direct",
+    previewUrl: "/preview/mycelium-network-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/mycelium-network/mycelium-network-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add mycelium-network",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/mycelium-network")
+      return {
+        "mycelium-network-demo.tsx": {
+          code: mod.myceliumNetworkDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
