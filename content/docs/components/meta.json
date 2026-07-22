@@ -53,7 +53,8 @@
     "fluid-disintegration",
     "liquid-curtain",
     "mycelium-network",
-    "dimensional-deck"
+    "dimensional-deck",
+    "dimensional-carousel"
   ],
   "icon": "ComponentIcon"
 }
