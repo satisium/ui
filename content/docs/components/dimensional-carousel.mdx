@@ -1,0 +1,59 @@
+---
+title: Dimensional Carousel
+description: A high-performance WebGL scroll component. Creates an immersive, 3D stacked cover-flow of images that respond fluidly to scroll momentum anywhere on the container, utilizing custom GLSL shaders for kinetic RGB splitting and aerodynamic bending.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/dimensional-carousel.mdx
+registryKeys:
+  - dimensional-carousel-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="dimensional-carousel" title="dimensional-carousel" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="three @react-three/fiber @react-three/drei gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { dimensionalCarouselFile } from "@/registry/strings/dimensional-carousel"
+
+<div className="mt-6">
+  <CodeBlock files={dimensionalCarouselFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                    | Type       | Default    | Description                                              |
+| :---------------------- | :--------- | :--------- | :------------------------------------------------------- |
+| **`images`**            | `string[]` | _Required_ | Array of image URLs to load into the deck.               |
+| **`cardWidthRatio`**    | `number`   | `0.35`     | Percentage of screen width the card occupies on desktop. |
+| **`cardAspectRatio`**   | `number`   | `1.4`      | Width-to-height ratio of the cards.                      |
+| **`scrollSensitivity`** | `number`   | `0.04`     | How heavily the scroll wheel affects movement.           |
+| **`lerpFactor`**        | `number`   | `0.08`     | How buttery smooth the momentum is (0.01 to 1).          |
+| **`bendMultiplier`**    | `number`   | `0.12`     | How much the cards bend physically when moving fast.     |
+| **`rgbSplitStrength`**  | `number`   | `0.005`    | The intensity of the kinetic RGB color splitting.        |
+| **`stackSpacing`**      | `number`   | `0.8`      | Space between cards in relation to viewport width.       |
+| **`tiltMultiplier`**    | `number`   | `0.08`     | How much cards tilt backwards as they stack.             |

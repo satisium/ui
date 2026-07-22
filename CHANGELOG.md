@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.53
+
+### Minor Changes
+
+- added dimensional carousel
+
 ## 3.0.0-beta.52
 
 ### Minor Changes
