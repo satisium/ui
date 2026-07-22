@@ -1788,4 +1788,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "dimensional-carousel-demo": {
+    name: "Dimensional Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates scroll capture so the main docs page remains unhindered
+    previewUrl: "/preview/dimensional-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/dimensional-carousel/dimensional-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add dimensional-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/dimensional-carousel")
+      return {
+        "dimensional-carousel-demo.tsx": {
+          code: mod.dimensionalCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
