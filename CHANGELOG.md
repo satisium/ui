@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.52
+
+### Minor Changes
+
+- added dimensional deck component
+
 ## 3.0.0-beta.51
 
 ### Minor Changes

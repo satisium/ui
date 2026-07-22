@@ -1720,6 +1720,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "dimensional-deck",
+      "type": "registry:ui",
+      "title": "Dimensional Deck",
+      "description": "A high-performance WebGL stacked deck of images that respond fluidly to scroll momentum with kinetic RGB splitting and aerodynamic bending.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/dimensional-deck.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dimensional-deck-demo",
+      "type": "registry:ui",
+      "title": "Dimensional Deck Demo",
+      "registryDependencies": ["dimensional-deck"],
+      "files": [
+        {
+          "path": "registry/demos/components/dimensional-deck/dimensional-deck-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

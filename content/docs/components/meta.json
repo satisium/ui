@@ -52,7 +52,8 @@
     "ferrofluid-drag",
     "fluid-disintegration",
     "liquid-curtain",
-    "mycelium-network"
+    "mycelium-network",
+    "dimensional-deck"
   ],
   "icon": "ComponentIcon"
 }
