@@ -1753,6 +1753,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "dimensional-carousel",
+      "type": "registry:ui",
+      "title": "Dimensional Carousel",
+      "description": "A high-performance WebGL cover-flow carousel that responds fluidly to horizontal scroll momentum.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/dimensional-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dimensional-carousel-demo",
+      "type": "registry:ui",
+      "title": "Dimensional Carousel Demo",
+      "registryDependencies": ["dimensional-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/dimensional-carousel/dimensional-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
