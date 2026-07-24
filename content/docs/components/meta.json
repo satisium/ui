@@ -59,7 +59,8 @@
     "flex-carousel",
     "depth-carousel",
     "cover-carousel",
-    "curved-carousel"
+    "curved-carousel",
+    "elastic-carousel"
   ],
   "icon": "ComponentIcon"
 }
