@@ -1786,6 +1786,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "panoramic-carousel",
+      "type": "registry:ui",
+      "title": "Panoramic Carousel",
+      "description": "A high-performance WebGL spatial carousel. Creates an immersive, 3D panoramic wrap of images that responds fluidly to scroll momentum.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/panoramic-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "panoramic-carousel-demo",
+      "type": "registry:ui",
+      "title": "Panoramic Carousel Demo",
+      "registryDependencies": ["panoramic-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/panoramic-carousel/panoramic-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
