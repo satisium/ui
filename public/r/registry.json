@@ -1885,6 +1885,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "cover-carousel",
+      "type": "registry:ui",
+      "title": "Cover Carousel",
+      "description": "A high-performance WebGL Cover Flow carousel. Renders an immersive stack of images using custom GLSL shaders for dynamic ambient occlusion, internal parallax, and SDF rounded corners.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/cover-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "cover-carousel-demo",
+      "type": "registry:ui",
+      "title": "Cover Carousel Demo",
+      "registryDependencies": ["cover-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/cover-carousel/cover-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

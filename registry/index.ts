@@ -1872,4 +1872,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "cover-carousel-demo": {
+    name: "Cover Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates scroll capture so the main docs page remains unhindered
+    previewUrl: "/preview/cover-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/cover-carousel/cover-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add cover-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/cover-carousel")
+      return {
+        "cover-carousel-demo.tsx": {
+          code: mod.coverCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

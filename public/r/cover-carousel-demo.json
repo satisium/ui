@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cover-carousel-demo",
+  "title": "Cover Carousel Demo",
+  "registryDependencies": [
+    "cover-carousel"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/cover-carousel/cover-carousel-demo.tsx",
+      "content": "\"use client\"\n\nimport { CoverCarousel } from \"@/registry/ui/cover-carousel\"\n\nexport default function CoverCarouselDemo() {\n  const images = Array.from({ length: 18 }).map(\n    (_, i) =>\n      `https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/${15 + i}.jpg`\n  )\n\n  return (\n    <main className=\"relative flex h-screen w-full items-center justify-center overflow-hidden bg-background\">\n      {/* \n        The Deck spans the entire screen absolutely, allowing the user to interact \n        from any point on the screen while the cards stay beautifully centered.\n      */}\n      <div className=\"absolute inset-0 z-0\">\n        <CoverCarousel\n          images={images}\n          parallaxIntensity={0.15} // Heavy internal texture slide\n          activeGapMultiplier={0.6} // Widens the gap on the active center card\n          stackGapMultiplier={0.12} // Tightens the overlapping stack\n          rotationMultiplier={1.0} // Aggressive 3D rotation on peripheral cards\n          dimmingFactor={0.7} // Darkens the background cards beautifully\n          shadowOpacity={0.4} // Lowers shadow density to blend in Light Mode\n          scrollSensitivity={0.004}\n        />\n      </div>\n\n      <div className=\"pointer-events-none absolute bottom-8 z-10 text-center select-none\">\n        <p className=\"text-xs font-semibold tracking-widest text-muted-foreground uppercase\">\n          Drag / Scroll\n        </p>\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

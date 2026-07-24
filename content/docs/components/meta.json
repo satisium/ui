@@ -57,7 +57,8 @@
     "dimensional-carousel",
     "panoramic-carousel",
     "flex-carousel",
-    "depth-carousel"
+    "depth-carousel",
+    "cover-carousel"
   ],
   "icon": "ComponentIcon"
 }

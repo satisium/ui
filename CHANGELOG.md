@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.57
+
+### Minor Changes
+
+- added cover carousel
+
 ## 3.0.0-beta.56
 
 ### Minor Changes

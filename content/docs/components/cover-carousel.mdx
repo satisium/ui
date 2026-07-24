@@ -1,0 +1,64 @@
+---
+title: Cover Carousel
+description: A highly sophisticated Cover Flow 3D carousel. Renders an immersive, hardware-accelerated stack of images using custom GLSL shaders for dynamic ambient occlusion, internal parallax, and SDF rounded corners.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/cover-carousel.mdx
+registryKeys:
+  - cover-carousel-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="cover-carousel" title="cover-carousel" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="three @react-three/fiber @react-three/drei gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { coverCarouselFile } from "@/registry/strings/cover-carousel"
+
+<div className="mt-6">
+  <CodeBlock files={coverCarouselFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                       | Type       | Default    | Description                                              |
+| :------------------------- | :--------- | :--------- | :------------------------------------------------------- |
+| **`images`**               | `string[]` | _Required_ | Array of image URLs to load into the deck.               |
+| **`cardWidthRatio`**       | `number`   | `0.35`     | Percentage of screen width the card occupies on desktop. |
+| **`cardAspectRatio`**      | `number`   | `1.4`      | Width-to-height ratio of the cards.                      |
+| **`scrollSensitivity`**    | `number`   | `0.003`    | How heavily the scroll wheel affects movement.           |
+| **`lerpFactor`**           | `number`   | `0.06`     | How buttery smooth the momentum is (0.01 to 1).          |
+| **`parallaxIntensity`**    | `number`   | `0.08`     | How much the image slides internally.                    |
+| **`activeGapMultiplier`**  | `number`   | `0.55`     | The gap between the center card and the adjacent cards.  |
+| **`stackGapMultiplier`**   | `number`   | `0.15`     | The gap between background overlapping cards.            |
+| **`maxZOffsetMultiplier`** | `number`   | `0.4`      | Pushes the background cards deep into the Z-axis.        |
+| **`rotationMultiplier`**   | `number`   | `0.8`      | The maximum Y-rotation of the cards as they slide away.  |
+| **`scaleMultiplier`**      | `number`   | `0.15`     | How much background cards scale down.                    |
+| **`dimmingFactor`**        | `number`   | `0.85`     | How much background cards darken (0.0 to 1.0).           |
+| **`cornerRadius`**         | `number`   | `0.04`     | SDF corner radius (0.0 to 0.5).                          |
+| **`shadowOpacity`**        | `number`   | `0.6`      | Opacity of the grounded shadow.                          |
