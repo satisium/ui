@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.59
+
+### Minor Changes
+
+- added elastic carousel
+
 ## 3.0.0-beta.58
 
 ### Minor Changes
