@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.56
+
+### Minor Changes
+
+- added depth-carousel
+
 ## 3.0.0-beta.55
 
 ### Minor Changes
