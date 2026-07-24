@@ -1852,6 +1852,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "depth-carousel",
+      "type": "registry:ui",
+      "title": "Depth Carousel",
+      "description": "A high-performance WebGL carousel featuring custom GLSL shaders for deep parallax windowing, SDF corners, and kinetic RGB splitting.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/depth-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "depth-carousel-demo",
+      "type": "registry:ui",
+      "title": "Depth Carousel Demo",
+      "registryDependencies": ["depth-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/depth-carousel/depth-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
