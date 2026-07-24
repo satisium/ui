@@ -44,7 +44,6 @@
     "wind-shear-reveal",
     "z-axis-reveal",
     "concave-carousel",
-
     "ascent-carousel",
     "wave-carousel",
     "convex-carousel",
@@ -57,7 +56,8 @@
     "dimensional-deck",
     "dimensional-carousel",
     "panoramic-carousel",
-    "flex-carousel"
+    "flex-carousel",
+    "depth-carousel"
   ],
   "icon": "ComponentIcon"
 }
