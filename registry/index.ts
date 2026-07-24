@@ -1893,4 +1893,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "curved-carousel-demo": {
+    name: "Curved Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates scroll capture so the main docs page remains unhindered
+    previewUrl: "/preview/curved-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/curved-carousel/curved-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add curved-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/curved-carousel")
+      return {
+        "curved-carousel-demo.tsx": {
+          code: mod.curvedCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
