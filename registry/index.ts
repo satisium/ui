@@ -1851,4 +1851,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "depth-carousel-demo": {
+    name: "Depth Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates scroll capture so the main docs page remains unhindered
+    previewUrl: "/preview/depth-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/depth-carousel/depth-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add depth-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/depth-carousel")
+      return {
+        "depth-carousel-demo.tsx": {
+          code: mod.depthCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
