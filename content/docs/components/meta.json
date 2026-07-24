@@ -54,7 +54,8 @@
     "liquid-curtain",
     "mycelium-network",
     "dimensional-deck",
-    "dimensional-carousel"
+    "dimensional-carousel",
+    "panoramic-carousel"
   ],
   "icon": "ComponentIcon"
 }

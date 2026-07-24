@@ -1809,4 +1809,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "panoramic-carousel-demo": {
+    name: "Panoramic Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
+    previewUrl: "/preview/panoramic-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/panoramic-carousel/panoramic-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add panoramic-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/panoramic-carousel")
+      return {
+        "panoramic-carousel-demo.tsx": {
+          code: mod.panoramicCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }

@@ -1,0 +1,66 @@
+---
+title: Panoramic Carousel
+description: A high-performance WebGL spatial carousel. Creates an immersive, 3D panoramic wrap of images that responds fluidly to scroll and touch momentum anywhere on the screen, featuring custom GLSL shaders for kinetic RGB splitting, aerodynamic flexing, and motion blur.
+component: true
+badge: new
+category:
+  - marketing
+subcategory:
+  - heroes
+author: SATIS UI
+links:
+  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/panoramic-carousel.mdx
+registryKeys:
+  - panoramic-carousel-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock cli="panoramic-carousel" title="panoramic-carousel" />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="three @react-three/fiber @react-three/drei gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { panoramicCarouselFile } from "@/registry/strings/panoramic-carousel"
+
+<div className="mt-6">
+  <CodeBlock files={panoramicCarouselFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                               | Type       | Default    | Description                                              |
+| :--------------------------------- | :--------- | :--------- | :------------------------------------------------------- |
+| **`images`**                       | `string[]` | _Required_ | Array of image URLs to load into the deck.               |
+| **`cardWidthRatio`**               | `number`   | `0.4`      | Percentage of screen width the card occupies on desktop. |
+| **`cardAspectRatio`**              | `number`   | `1.4`      | Width-to-height ratio of the cards.                      |
+| **`scrollSensitivity`**            | `number`   | `0.005`    | How heavily the scroll wheel affects movement.           |
+| **`lerpFactor`**                   | `number`   | `0.08`     | How buttery smooth the momentum is (0.01 to 1).          |
+| **`radiusMultiplier`**             | `number`   | `1.4`      | Distance from the camera to the cards.                   |
+| **`gapMultiplier`**                | `number`   | `1.1`      | Spacing between cards along the curve.                   |
+| **`depthMultiplier`**              | `number`   | `1.0`      | How deeply the curve pushes backward on the Z-axis.      |
+| **`baseFov`**                      | `number`   | `45`       | Base camera field of view.                               |
+| **`maxFovZoom`**                   | `number`   | `35`       | Maximum FOV zoom out when scrolling fast.                |
+| **`fovMultiplier`**                | `number`   | `1.2`      | How aggressively the camera zooms based on speed.        |
+| **`motionBlurIntensity`**          | `number`   | `0.003`    | Intensity of the 7-tap motion blur shader.               |
+| **`chromaticAberrationIntensity`** | `number`   | `0.005`    | Intensity of the RGB color split on scroll.              |
+| **`flexMultiplier`**               | `number`   | `0.15`     | How much the cards bow/bend aerodynamically.             |
+| **`cornerRadius`**                 | `number`   | `0.04`     | SDF calculated corner rounding.                          |
+| **`parallaxIntensity`**            | `number`   | `0.08`     | Parallax shift multiplier for the image inside the card. |

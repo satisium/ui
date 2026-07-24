@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.54
+
+### Minor Changes
+
+- added panoramic-carousel
+
 ## 3.0.0-beta.53
 
 ### Minor Changes
