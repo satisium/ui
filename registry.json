@@ -1951,6 +1951,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "elastic-carousel",
+      "type": "registry:ui",
+      "title": "Elastic Carousel",
+      "description": "A high-performance WebGL scroll component. Mathematically interpolates between a flat 2D gallery and an immersive 3D cylindrical carousel depending entirely on user swipe velocity.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/elastic-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "elastic-carousel-demo",
+      "type": "registry:ui",
+      "title": "Elastic Carousel Demo",
+      "registryDependencies": ["elastic-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/elastic-carousel/elastic-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

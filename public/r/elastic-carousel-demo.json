@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "elastic-carousel-demo",
+  "title": "Elastic Carousel Demo",
+  "registryDependencies": [
+    "elastic-carousel"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/elastic-carousel/elastic-carousel-demo.tsx",
+      "content": "\"use client\"\n\nimport { ElasticCarousel } from \"@/registry/ui/elastic-carousel\"\n\nexport default function ElasticCarouselDemo() {\n  const images = Array.from({ length: 18 }).map(\n    (_, i) =>\n      `https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/${15 + i}.jpg`\n  )\n\n  return (\n    <main className=\"relative flex h-screen w-full items-center justify-center overflow-hidden bg-background\">\n      <div className=\"absolute inset-0 z-0\">\n        <ElasticCarousel\n          images={images}\n          // --- Unified Base Layout ---\n          cardWidthRatio={0.35}\n          gapMultiplier={1.2}\n          radiusMultiplier={1.4}\n          // --- Unified Geometry ---\n          flexMultiplier={0.7} // Aggressively pulls into a 3D cylinder when swiped\n          // --- Unified Shaders ---\n          parallaxIntensity={0.6} // Satisfying internal window slide\n          chromaticAberrationIntensity={0.005} // Smooth kinetic color splitting\n          dimmingMultiplier={0.5} // Deep ambient shadows when curled\n          cornerRadius={0.04} // Modern rounded edges\n          scrollSensitivity={0.001}\n        />\n      </div>\n\n      <div className=\"pointer-events-none absolute bottom-8 z-10 text-center select-none\">\n        <p className=\"text-xs font-semibold tracking-widest text-muted-foreground uppercase\">\n          Flick Horizontally\n        </p>\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

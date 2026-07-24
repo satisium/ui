@@ -1914,4 +1914,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "elastic-carousel-demo": {
+    name: "Elastic Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates scroll capture so the main docs page remains unhindered
+    previewUrl: "/preview/elastic-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/elastic-carousel/elastic-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add elastic-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/elastic-carousel")
+      return {
+        "elastic-carousel-demo.tsx": {
+          code: mod.elasticCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
