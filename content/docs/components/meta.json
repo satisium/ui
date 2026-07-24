@@ -58,7 +58,8 @@
     "panoramic-carousel",
     "flex-carousel",
     "depth-carousel",
-    "cover-carousel"
+    "cover-carousel",
+    "curved-carousel"
   ],
   "icon": "ComponentIcon"
 }
