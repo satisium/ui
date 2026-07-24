@@ -1918,6 +1918,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "curved-carousel",
+      "type": "registry:ui",
+      "title": "Curved Carousel",
+      "description": "A high-performance WebGL cylindrical carousel that responds fluidly to scroll momentum with kinetic RGB splitting, parallax sliding, and aerodynamic bending.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/curved-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "curved-carousel-demo",
+      "type": "registry:ui",
+      "title": "Curved Carousel Demo",
+      "registryDependencies": ["curved-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/curved-carousel/curved-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }
