@@ -1,0 +1,470 @@
+# Depth Carousel Component Context
+
+**Description:** A high-performance WebGL coverflow carousel for Satis UI. Unites physics-based GSAP scroll tracking with custom GLSL shaders to provide flawless SDF corner rounding, internal parallax windowing, and kinetic RGB splitting. Features strict viewport clamping logic to ensure mobile responsiveness without breaking spatial rendering bounds.
+
+## 1. Installation
+
+To add this component to a project, run:
+
+```bash
+npx satis-ui add depth-carousel
+```
+
+**Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
+
+## 2. Props API
+
+| Prop                           | Type       | Default    | Description                |
+| :----------------------------- | :--------- | :--------- | :------------------------- |
+| `images`                       | `string[]` | _Required_ | Array of image URLs.       |
+| `cardWidthRatio`               | `number`   | `0.35`     | Screen width ratio.        |
+| `cardAspectRatio`              | `number`   | `1.4`      | Width/Height aspect ratio. |
+| `gapMultiplier`                | `number`   | `0.7`      | Background curve spread.   |
+| `activeGapMultiplier`          | `number`   | `0.25`     | Active center buffer.      |
+| `scrollSensitivity`            | `number`   | `0.003`    | Scroll input multiplier.   |
+| `lerpFactor`                   | `number`   | `0.06`     | Smooth momentum decay.     |
+| `depthMultiplier`              | `number`   | `0.25`     | Z-axis push multiplier.    |
+| `scaleMultiplier`              | `number`   | `0.15`     | Diminishing scale curve.   |
+| `rotationMultiplier`           | `number`   | `0.1`      | Inward tilt of cards.      |
+| `parallaxIntensity`            | `number`   | `0.08`     | Internal UV shift power.   |
+| `dimmingMultiplier`            | `number`   | `0.85`     | Background darkening.      |
+| `chromaticAberrationIntensity` | `number`   | `0.01`     | RGB split on scroll.       |
+| `cornerRadius`                 | `number`   | `0.03`     | SDF border rounding.       |
+| `shadowOpacity`                | `number`   | `0.6`      | Floor contact shadow.      |
+
+## 3. Core Component Source
+
+**File Path:** `components/ui/depth-carousel.tsx`
+
+```tsx
+"use client"
+
+import React, { useRef, useState, useMemo, useEffect } from "react"
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
+import { useTexture, ContactShadows } from "@react-three/drei"
+import * as THREE from "three"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+import { Observer } from "gsap/Observer"
+import { cn } from "@/lib/utils"
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(Observer)
+}
+
+export interface DepthCarouselProps extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  "children"
+> {
+  images: string[]
+  cardWidthRatio?: number
+  cardAspectRatio?: number
+  gapMultiplier?: number
+  activeGapMultiplier?: number
+  scrollSensitivity?: number
+  lerpFactor?: number
+  depthMultiplier?: number
+  scaleMultiplier?: number
+  rotationMultiplier?: number
+  parallaxIntensity?: number
+  chromaticAberrationIntensity?: number
+  dimmingMultiplier?: number
+  cornerRadius?: number
+  shadowOpacity?: number
+}
+
+interface ScrollState {
+  target: number
+  current: number
+  velocity: number
+  isDragging: boolean
+  min: number
+  max: number
+}
+
+const DepthVertexShader = `
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`
+
+const DepthFragmentShader = `
+precision mediump float;
+uniform sampler2D uTexture;
+uniform vec2 uResolution;
+uniform float uImageAspect;
+uniform float uActive;
+uniform float uVelocity;
+uniform float uParallax;
+uniform float uParallaxIntensity;
+uniform float uChromaticAberrationIntensity;
+uniform float uCornerRadius;
+uniform float uDimmingMultiplier;
+
+varying vec2 vUv;
+
+void main() {
+  float screenAspect = uResolution.x / uResolution.y;
+  vec2 scale = vec2(1.0);
+  if (screenAspect > uImageAspect) {
+    scale.y = uImageAspect / screenAspect;
+  } else {
+    scale.x = screenAspect / uImageAspect;
+  }
+
+  vec2 parallaxUv = (vUv - 0.5) * (scale * 0.85) + 0.5;
+  parallaxUv.x += clamp(uParallax, -1.0, 1.0) * uParallaxIntensity;
+
+  float split = abs(uVelocity) * uChromaticAberrationIntensity;
+  float r = texture2D(uTexture, parallaxUv + vec2(split, 0.0)).r;
+  float g = texture2D(uTexture, parallaxUv).g;
+  float b = texture2D(uTexture, parallaxUv - vec2(split, 0.0)).b;
+  vec3 texColor = vec3(r, g, b);
+
+  vec2 pos = vUv - 0.5;
+  vec2 pixelPos = pos * uResolution;
+  vec2 pixelSize = vec2(0.5) * uResolution;
+  float pixelRadius = uCornerRadius * min(uResolution.x, uResolution.y);
+
+  float dist = length(max(abs(pixelPos) - pixelSize + pixelRadius, 0.0)) - pixelRadius;
+  float alpha = 1.0 - smoothstep(0.0, 1.5, dist);
+
+  float dimBaseline = 1.0 - uDimmingMultiplier;
+  vec3 color = mix(texColor * dimBaseline, texColor, uActive);
+
+  gl_FragColor = vec4(color, alpha);
+}
+`
+
+function DepthScene({
+  images,
+  scrollState,
+  onReady,
+  cardWidthRatio,
+  cardAspectRatio,
+  lerpFactor,
+  gapMultiplier,
+  activeGapMultiplier,
+  depthMultiplier,
+  scaleMultiplier,
+  rotationMultiplier,
+  parallaxIntensity,
+  chromaticAberrationIntensity,
+  dimmingMultiplier,
+  cornerRadius,
+  shadowOpacity,
+}: DepthCarouselProps & {
+  scrollState: React.MutableRefObject<ScrollState>
+  onReady: () => void
+}) {
+  const textures = useTexture(images)
+  const { viewport } = useThree()
+  const groupRef = useRef<THREE.Group>(null)
+
+  const isMobile = viewport.width < 5
+  let itemWidth = isMobile
+    ? viewport.width * 0.65
+    : viewport.width * cardWidthRatio!
+  let itemHeight = itemWidth * cardAspectRatio!
+
+  const maxHeight = viewport.height * (isMobile ? 0.6 : 0.65)
+  if (itemHeight > maxHeight) {
+    itemHeight = maxHeight
+    itemWidth = itemHeight / cardAspectRatio!
+  }
+
+  const geometry = useMemo(
+    () => new THREE.PlaneGeometry(itemWidth, itemHeight, 1, 1),
+    [itemWidth, itemHeight]
+  )
+
+  const materials = useMemo(() => {
+    return textures.map((texture) => {
+      const img = texture.image as
+        | { width?: number; height?: number }
+        | null
+        | undefined
+      const imageAspect = img?.width && img?.height ? img.width / img.height : 1
+
+      return new THREE.ShaderMaterial({
+        vertexShader: DepthVertexShader,
+        fragmentShader: DepthFragmentShader,
+        uniforms: {
+          uTexture: { value: texture },
+          uVelocity: { value: 0 },
+          uResolution: { value: new THREE.Vector2(itemWidth, itemHeight) },
+          uImageAspect: { value: imageAspect },
+          uParallax: { value: 0 },
+          uActive: { value: 1.0 },
+          uParallaxIntensity: { value: parallaxIntensity },
+          uChromaticAberrationIntensity: {
+            value: chromaticAberrationIntensity,
+          },
+          uCornerRadius: { value: cornerRadius },
+          uDimmingMultiplier: { value: dimmingMultiplier },
+        },
+        transparent: true,
+        depthWrite: false,
+      })
+    })
+  }, [
+    textures,
+    itemWidth,
+    itemHeight,
+    parallaxIntensity,
+    chromaticAberrationIntensity,
+    cornerRadius,
+    dimmingMultiplier,
+  ])
+
+  useEffect(() => {
+    return () => {
+      geometry.dispose()
+      materials.forEach((m) => m.dispose())
+    }
+  }, [geometry, materials])
+
+  useEffect(() => {
+    scrollState.current.min = 0
+    scrollState.current.max = images.length - 1
+    requestAnimationFrame(() => onReady())
+  }, [images.length, scrollState, onReady])
+
+  useFrame((_, delta) => {
+    const state = scrollState.current
+    const dt = Math.min(delta, 0.1)
+
+    const prev = state.current
+
+    const diff = Math.abs(state.target - state.current)
+    const nearest = Math.round(state.target)
+
+    if (!state.isDragging && diff < 0.25) {
+      state.target = THREE.MathUtils.damp(state.target, nearest, 2, dt)
+    }
+
+    state.target = THREE.MathUtils.clamp(state.target, state.min, state.max)
+    state.current = THREE.MathUtils.damp(
+      state.current,
+      state.target,
+      lerpFactor! * 100,
+      dt
+    )
+
+    const rawVelocity = (state.current - prev) / dt
+    state.velocity = THREE.MathUtils.damp(state.velocity, rawVelocity, 5, dt)
+
+    if (groupRef.current) {
+      groupRef.current.children.forEach((mesh: any, i) => {
+        const material = materials[i]
+        if (!material) return
+
+        const dfc = i - state.current
+        const absDfc = Math.abs(dfc)
+
+        let xOffset =
+          Math.sign(dfc) * itemWidth * gapMultiplier! * Math.pow(absDfc, 0.8)
+
+        const activeBuffer =
+          Math.sign(dfc) *
+          Math.min(absDfc, 1.0) *
+          (itemWidth * activeGapMultiplier!)
+        xOffset += activeBuffer
+
+        const zOffset = -absDfc * (itemWidth * depthMultiplier!)
+        const scale = Math.max(1.0 - absDfc * scaleMultiplier!, 0.5)
+        const yRot = -dfc * rotationMultiplier!
+
+        mesh.position.set(xOffset, 0, zOffset)
+        mesh.rotation.set(0, yRot, 0)
+        mesh.scale.set(scale, scale, scale)
+
+        mesh.renderOrder = 1000 - absDfc * 10
+
+        material.uniforms.uVelocity.value = state.velocity
+        material.uniforms.uParallax.value = dfc
+        material.uniforms.uActive.value = Math.max(1.0 - absDfc * 0.6, 0.0)
+      })
+    }
+  })
+
+  return (
+    <group ref={groupRef}>
+      {textures.map((_, i) => (
+        <mesh key={i} geometry={geometry} material={materials[i]} />
+      ))}
+
+      {shadowOpacity! > 0 && (
+        <ContactShadows
+          position={[0, -itemHeight / 2 - 0.2, 0]}
+          opacity={shadowOpacity}
+          scale={20}
+          blur={2.5}
+          far={4}
+          color="#000000"
+        />
+      )}
+    </group>
+  )
+}
+
+export const DepthCarousel = React.forwardRef<
+  HTMLDivElement,
+  DepthCarouselProps
+>(
+  (
+    {
+      images,
+      className,
+      cardWidthRatio = 0.35,
+      cardAspectRatio = 1.4,
+      gapMultiplier = 0.7,
+      activeGapMultiplier = 0.25,
+      depthMultiplier = 0.25,
+      scaleMultiplier = 0.15,
+      rotationMultiplier = 0.1,
+      scrollSensitivity = 0.003,
+      lerpFactor = 0.06,
+      parallaxIntensity = 0.08,
+      chromaticAberrationIntensity = 0.01,
+      dimmingMultiplier = 0.85,
+      cornerRadius = 0.03,
+      shadowOpacity = 0.6,
+      ...props
+    },
+    ref
+  ) => {
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
+
+    const scrollState = useRef<ScrollState>({
+      target: 0,
+      current: 0,
+      velocity: 0,
+      isDragging: false,
+      min: 0,
+      max: 0,
+    })
+
+    useGSAP(
+      () => {
+        if (!containerRef.current) return
+
+        const observer = Observer.create({
+          target: containerRef.current,
+          type: "wheel,touch,pointer",
+          onPress: () => {
+            scrollState.current.isDragging = true
+          },
+          onRelease: () => {
+            scrollState.current.isDragging = false
+          },
+          onWheel: (e) => {
+            const delta = (e.deltaX || 0) + (e.deltaY || 0)
+            scrollState.current.target += delta * scrollSensitivity
+          },
+          onDrag: (e) => {
+            scrollState.current.target -= e.deltaX * scrollSensitivity
+          },
+          onStop: () => {
+            scrollState.current.isDragging = false
+          },
+        })
+
+        return () => observer.kill()
+      },
+      { scope: containerRef, dependencies: [scrollSensitivity] }
+    )
+
+    return (
+      <div
+        ref={containerRef}
+        className={cn(
+          "relative h-full w-full cursor-grab touch-none overflow-hidden bg-background text-foreground active:cursor-grabbing",
+          className
+        )}
+        {...props}
+      >
+        <div className="sr-only" aria-live="polite">
+          <p>
+            Interactive Premium Depth Carousel. Scroll or swipe to navigate.
+          </p>
+        </div>
+
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-background transition-opacity duration-1000",
+            isLoaded ? "opacity-0" : "opacity-100"
+          )}
+        />
+
+        <div
+          className="pointer-events-none absolute inset-0 z-0"
+          aria-hidden="true"
+        >
+          <Canvas
+            camera={{ position: [0, 0, 4.5], fov: 50 }}
+            dpr={[1, 1.5]}
+            gl={{ antialias: false, alpha: true }}
+          >
+            <React.Suspense fallback={null}>
+              <DepthScene
+                images={images}
+                scrollState={scrollState}
+                onReady={() => setIsLoaded(true)}
+                cardWidthRatio={cardWidthRatio}
+                cardAspectRatio={cardAspectRatio}
+                gapMultiplier={gapMultiplier}
+                activeGapMultiplier={activeGapMultiplier}
+                depthMultiplier={depthMultiplier}
+                scaleMultiplier={scaleMultiplier}
+                rotationMultiplier={rotationMultiplier}
+                lerpFactor={lerpFactor}
+                parallaxIntensity={parallaxIntensity}
+                chromaticAberrationIntensity={chromaticAberrationIntensity}
+                dimmingMultiplier={dimmingMultiplier}
+                cornerRadius={cornerRadius}
+                shadowOpacity={shadowOpacity}
+              />
+            </React.Suspense>
+          </Canvas>
+        </div>
+      </div>
+    )
+  }
+)
+
+DepthCarousel.displayName = "DepthCarousel"
+```
+
+## 4. Example Implementation
+
+**File Path:** `app/page.tsx`
+
+```tsx
+"use client"
+
+import { DepthCarousel } from "@/components/ui/depth-carousel"
+
+export default function ExamplePage() {
+  const images = [
+    "/image1.jpg",
+    "/image2.jpg",
+    "/image3.jpg"
+  ]
+
+  return (
+    <main className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-background">
+      <div className="absolute inset-0 z-0">
+        <DepthCarousel
+          images={images}
+        />
+      </div>
+    </main>
+  )
+}
+```
