@@ -44,6 +44,7 @@
     "wind-shear-reveal",
     "z-axis-reveal",
     "concave-carousel",
+
     "ascent-carousel",
     "wave-carousel",
     "convex-carousel",
@@ -55,7 +56,8 @@
     "mycelium-network",
     "dimensional-deck",
     "dimensional-carousel",
-    "panoramic-carousel"
+    "panoramic-carousel",
+    "flex-carousel"
   ],
   "icon": "ComponentIcon"
 }

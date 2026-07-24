@@ -1819,6 +1819,39 @@
           "type": "registry:component"
         }
       ]
+    },
+    {
+      "name": "flex-carousel",
+      "type": "registry:ui",
+      "title": "Flex Carousel",
+      "description": "A high-performance WebGL horizontal carousel. Integrates aerodynamic bending, kinetic RGB splitting, and smooth SDF corners on the GPU.",
+      "dependencies": [
+        "three",
+        "@react-three/fiber",
+        "@react-three/drei",
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "files": [
+        {
+          "path": "registry/ui/flex-carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "flex-carousel-demo",
+      "type": "registry:ui",
+      "title": "Flex Carousel Demo",
+      "registryDependencies": ["flex-carousel"],
+      "files": [
+        {
+          "path": "registry/demos/components/flex-carousel/flex-carousel-demo.tsx",
+          "type": "registry:component"
+        }
+      ]
     }
   ]
 }

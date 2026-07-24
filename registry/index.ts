@@ -1830,4 +1830,25 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
+  "flex-carousel-demo": {
+    name: "Flex Carousel Demo",
+    type: "react",
+    renderMode: "iframe", // CRITICAL: Isolates scroll capture so the main docs page remains unhindered
+    previewUrl: "/preview/flex-carousel-demo",
+    component: dynamic(() =>
+      import("@/registry/demos/components/flex-carousel/flex-carousel-demo").then(
+        (m) => m.default
+      )
+    ),
+    installCommand: "npx satis-ui add flex-carousel",
+    getFiles: async () => {
+      const mod = await import("@/registry/strings/flex-carousel")
+      return {
+        "flex-carousel-demo.tsx": {
+          code: mod.flexCarouselDemoString,
+          language: "tsx",
+        },
+      }
+    },
+  },
 }
