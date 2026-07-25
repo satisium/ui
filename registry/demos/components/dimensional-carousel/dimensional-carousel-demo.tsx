@@ -9,22 +9,35 @@ export default function DimensionalCarouselDemo() {
   )
 
   return (
-    <main className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background">
+    <main className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-background">
       {/* 
-        The Carousel spans the entire screen absolutely, allowing the user to interact 
-        from any point on the screen while the cards stay beautifully constrained in the center.
+        The Deck spans the entire screen absolutely, allowing the user to interact 
+        from any point on the canvas. 
       */}
       <div className="absolute inset-0 z-0">
         <DimensionalCarousel
           images={images}
-          bendMultiplier={0.05}
-          scrollSensitivity={0.02}
-          rgbSplitStrength={0.003}
+          // --- Unified Base Layout ---
+          cardWidthRatio={0.35}
+          gapMultiplier={0.8}
+          // --- Unified Geometry ---
+          stackGapMultiplier={0.15} // Slightly looser stacking on the left
+          depthMultiplier={1.0} // Pushes stacked cards deeper into the background
+          rotationMultiplier={0.1} // Sharper tilt as they stack
+          flexMultiplier={0.15} // Heavier aerodynamic curve when swiping
+          // --- Unified Shaders ---
+          parallaxIntensity={1.2} // Satisfying internal window slide
+          chromaticAberrationIntensity={0.008} // Pronounced kinetic color splitting
+          dimmingMultiplier={0.6} // Clean ambient occlusion shadow
+          cornerRadius={0.05} // Modern rounded edges
+          scrollSensitivity={0.01}
         />
       </div>
 
-      <div className="pointer-events-none absolute bottom-12 left-1/2 z-10 -translate-x-1/2 text-xs font-semibold tracking-[0.2em] text-muted-foreground/40 uppercase select-none">
-        Scroll / Swipe
+      <div className="pointer-events-none absolute bottom-8 z-10 text-center select-none">
+        <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+          Flick Horizontally
+        </p>
       </div>
     </main>
   )
