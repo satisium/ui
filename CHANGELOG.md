@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.60
+
+### Minor Changes
+
+- improved dimensional carousel. added parallax.
+
 ## 3.0.0-beta.59
 
 ### Minor Changes

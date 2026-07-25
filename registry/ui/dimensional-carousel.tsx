@@ -19,22 +19,40 @@ export interface DimensionalCarouselProps extends Omit<
 > {
   /** Array of image URLs to load into the deck */
   images: string[]
+
+  // --- Unified Base Layout ---
   /** Percentage of screen width the card occupies on desktop. @default 0.35 */
   cardWidthRatio?: number
-  /** Width-to-height ratio of the cards. @default 1.4 (Portrait) */
+  /** Width-to-height ratio of the cards. @default 1.4 */
   cardAspectRatio?: number
+  /** Space between incoming cards in relation to viewport width. @default 0.8 */
+  gapMultiplier?: number
+
+  // --- Unified Physics ---
   /** How heavily the scroll wheel affects movement. @default 0.04 */
   scrollSensitivity?: number
   /** How buttery smooth the momentum is (0.01 to 1). @default 0.08 */
   lerpFactor?: number
-  /** How much the cards bow/bend physically when moving fast. @default 0.12 */
-  bendMultiplier?: number
-  /** The intensity of the kinetic RGB color splitting. @default 0.005 */
-  rgbSplitStrength?: number
-  /** Space between cards in relation to viewport width. @default 0.8 */
-  stackSpacing?: number
+
+  // --- Unified Geometry ---
+  /** Distance between cards when stacked on the left. @default 0.1 */
+  stackGapMultiplier?: number
+  /** How deep into the Z-axis cards are pushed when stacked. @default 0.8 */
+  depthMultiplier?: number
   /** How much cards tilt horizontally as they stack on the left. @default 0.08 */
-  tiltMultiplier?: number
+  rotationMultiplier?: number
+  /** How aggressively the cards bow/bend physically when swiping fast. @default 0.12 */
+  flexMultiplier?: number
+
+  // --- Unified Shaders ---
+  /** Intensity of the internal texture slide. @default 0.1 */
+  parallaxIntensity?: number
+  /** Intensity of the color split on scroll. @default 0.005 */
+  chromaticAberrationIntensity?: number
+  /** How much the cards darken as they move to the back. @default 0.6 */
+  dimmingMultiplier?: number
+  /** SDF corner radius (0.0 to 0.5). @default 0.04 */
+  cornerRadius?: number
 }
 
 interface ScrollState {
@@ -46,15 +64,13 @@ interface ScrollState {
 }
 
 // --------------------------------------------------------
-// GLSL SHADERS (The Physics Engine)
+// GLSL SHADERS (Unified Variables)
 // --------------------------------------------------------
 
-const VertexShader = `
+const DimensionalVertexShader = `
 precision mediump float;
-
 uniform float uVelocity;
-uniform float uBendMultiplier;
-
+uniform float uFlexMultiplier; 
 varying vec2 vUv;
 
 void main() {
@@ -64,149 +80,67 @@ void main() {
   // Horizontal Aerodynamic Flex: Bends the card based on X-axis velocity
   float curve = sin(uv.x * 3.14159);
   
-  // Z-axis bowing (pulls the center of the card backward/forward)
-  pos.z -= curve * uVelocity * uBendMultiplier;
-  
-  // Slight X-axis compression to simulate physical strain
-  pos.x += curve * abs(uVelocity) * (uBendMultiplier * 0.4);
+  pos.z -= curve * uVelocity * uFlexMultiplier;
+  pos.x += curve * abs(uVelocity) * (uFlexMultiplier * 0.4);
 
   gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
 }
 `
 
-const FragmentShader = `
+const DimensionalFragmentShader = `
 precision mediump float;
-
 uniform sampler2D uTexture;
 uniform float uVelocity;
-uniform float uStackDepth;
+uniform float uStackDepth; 
 uniform vec2 uResolution;
 uniform float uImageAspect;
-uniform float uRgbSplitStrength;
+uniform float uChromaticAberrationIntensity; 
+uniform float uParallaxIntensity;
+uniform float uCornerRadius;
+uniform float uDimmingMultiplier; 
 
 varying vec2 vUv;
 
-vec2 getCoverUv(vec2 uv, vec2 resolution, float imageAspect) {
-  float screenAspect = resolution.x / resolution.y;
-  vec2 scale = vec2(1.0);
-  if (screenAspect > imageAspect) {
-    scale.y = imageAspect / screenAspect;
-  } else {
-    scale.x = screenAspect / imageAspect;
-  }
-  return (uv - 0.5) * scale + 0.5;
-}
-
 void main() {
-  vec2 coverUv = getCoverUv(vUv, uResolution, uImageAspect);
+  float screenAspect = uResolution.x / uResolution.y;
+  vec2 scale = vec2(1.0);
+  if (screenAspect > uImageAspect) {
+    scale.y = uImageAspect / screenAspect;
+  } else {
+    scale.x = screenAspect / uImageAspect;
+  }
   
-  // Kinetic RGB Split on the X-axis
-  float split = abs(uVelocity) * uRgbSplitStrength;
-  float r = texture2D(uTexture, coverUv + vec2(split, 0.0)).r;
-  float g = texture2D(uTexture, coverUv).g;
-  float b = texture2D(uTexture, coverUv - vec2(split, 0.0)).b;
-  
+  // Parallax Slide
+  vec2 parallaxUv = (vUv - 0.5) * (scale * 0.85) + 0.5;
+  parallaxUv.x += clamp(uStackDepth * 0.1, -1.0, 1.0) * uParallaxIntensity;
+
+  // Kinetic RGB Split
+  float split = abs(uVelocity) * uChromaticAberrationIntensity;
+  float r = texture2D(uTexture, parallaxUv + vec2(split, 0.0)).r;
+  float g = texture2D(uTexture, parallaxUv).g;
+  float b = texture2D(uTexture, parallaxUv - vec2(split, 0.0)).b;
   vec3 texColor = vec3(r, g, b);
 
-  // Dynamic Ambient Occlusion
-  float shadow = smoothstep(0.0, 4.0, uStackDepth) * 0.6; 
+  // Smooth SDF Corners
+  vec2 pos = vUv - 0.5;
+  vec2 pixelPos = pos * uResolution;
+  vec2 pixelSize = vec2(0.5) * uResolution;
+  float pixelRadius = uCornerRadius * min(uResolution.x, uResolution.y); 
+  float dist = length(max(abs(pixelPos) - pixelSize + pixelRadius, 0.0)) - pixelRadius;
+  float cornerAlpha = 1.0 - smoothstep(0.0, 1.5, dist);
+
+  // Dynamic Ambient Occlusion & Alpha Fading
+  float shadow = smoothstep(0.0, 4.0, uStackDepth) * uDimmingMultiplier; 
   vec3 darkenedColor = mix(texColor, vec3(0.0), shadow);
+  float fadeAlpha = 1.0 - smoothstep(3.0, 7.0, uStackDepth);
 
-  // Fade out completely when pushed too far back to the left
-  float alpha = 1.0 - smoothstep(3.0, 7.0, uStackDepth);
-
-  gl_FragColor = vec4(darkenedColor, alpha);
+  gl_FragColor = vec4(darkenedColor, cornerAlpha * fadeAlpha);
 }
 `
 
 // --------------------------------------------------------
 // REACT THREE FIBER SCENE
 // --------------------------------------------------------
-
-function CarouselItem({
-  texture,
-  index,
-  scrollState,
-  itemWidth,
-  itemHeight,
-  spacing,
-  bendMultiplier,
-  rgbSplitStrength,
-  tiltMultiplier,
-}: {
-  texture: THREE.Texture
-  index: number
-  scrollState: React.MutableRefObject<ScrollState>
-  itemWidth: number
-  itemHeight: number
-  spacing: number
-  bendMultiplier: number
-  rgbSplitStrength: number
-  tiltMultiplier: number
-}) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  const materialRef = useRef<THREE.ShaderMaterial>(null)
-
-  const img = texture.image as { width: number; height: number } | undefined
-  const imageAspect = img?.width && img?.height ? img.width / img.height : 1
-
-  const uniforms = useMemo(
-    () => ({
-      uTexture: { value: texture },
-      uVelocity: { value: 0 },
-      uStackDepth: { value: 0 },
-      uResolution: { value: new THREE.Vector2(itemWidth, itemHeight) },
-      uImageAspect: { value: imageAspect },
-      uBendMultiplier: { value: bendMultiplier },
-      uRgbSplitStrength: { value: rgbSplitStrength },
-    }),
-    [
-      texture,
-      itemWidth,
-      itemHeight,
-      imageAspect,
-      bendMultiplier,
-      rgbSplitStrength,
-    ]
-  )
-
-  useFrame(() => {
-    if (!meshRef.current || !materialRef.current) return
-
-    const state = scrollState.current
-    const relativeX = index * spacing - state.currentX
-
-    if (relativeX > 0) {
-      // PHASE 1: Arriving from the right
-      meshRef.current.position.x = relativeX
-      meshRef.current.position.z = 0
-      meshRef.current.rotation.y = 0
-      materialRef.current.uniforms.uStackDepth.value = 0
-    } else {
-      // PHASE 2: Friction Zone (Stacking on the left)
-      meshRef.current.position.x = relativeX * 0.1
-      meshRef.current.position.z = relativeX * 0.8
-      meshRef.current.rotation.y = relativeX * tiltMultiplier
-      materialRef.current.uniforms.uStackDepth.value = -relativeX
-    }
-
-    materialRef.current.uniforms.uVelocity.value = state.velocity
-  })
-
-  return (
-    <mesh ref={meshRef}>
-      <planeGeometry args={[itemWidth, itemHeight, 32, 32]} />
-      <shaderMaterial
-        ref={materialRef}
-        vertexShader={VertexShader}
-        fragmentShader={FragmentShader}
-        uniforms={uniforms}
-        transparent={true}
-        depthWrite={false}
-      />
-    </mesh>
-  )
-}
 
 function CarouselScene({
   images,
@@ -215,39 +149,95 @@ function CarouselScene({
   cardWidthRatio,
   cardAspectRatio,
   lerpFactor,
-  stackSpacing,
-  bendMultiplier,
-  rgbSplitStrength,
-  tiltMultiplier,
-}: {
-  images: string[]
+  gapMultiplier,
+  stackGapMultiplier,
+  depthMultiplier,
+  parallaxIntensity,
+  chromaticAberrationIntensity,
+  flexMultiplier,
+  rotationMultiplier,
+  dimmingMultiplier,
+  cornerRadius,
+  isReducedMotion,
+}: DimensionalCarouselProps & {
   scrollState: React.MutableRefObject<ScrollState>
   onReady: () => void
-  cardWidthRatio: number
-  cardAspectRatio: number
-  lerpFactor: number
-  stackSpacing: number
-  bendMultiplier: number
-  rgbSplitStrength: number
-  tiltMultiplier: number
+  isReducedMotion: boolean
 }) {
   const textures = useTexture(images)
   const { viewport } = useThree()
+  const groupRef = useRef<THREE.Group>(null)
 
-  // Dynamically clamp size so it remains beautifully constrained in the middle of the screen
   const isMobile = viewport.width < 5
   let itemWidth = isMobile
     ? viewport.width * 0.6
-    : viewport.width * cardWidthRatio
-  let itemHeight = itemWidth * cardAspectRatio
+    : viewport.width * cardWidthRatio!
+  let itemHeight = itemWidth * cardAspectRatio!
 
+  // Clamp height to ensure cards never clip out of the camera frustum vertically
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.5)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio
+    itemWidth = itemHeight / cardAspectRatio!
   }
 
-  const spacing = viewport.width * stackSpacing
+  const spacing = viewport.width * gapMultiplier!
+
+  const geometry = useMemo(
+    () => new THREE.PlaneGeometry(itemWidth, itemHeight, 32, 32),
+    [itemWidth, itemHeight]
+  )
+
+  const materials = useMemo(() => {
+    return textures.map((texture) => {
+      const img = texture.image as
+        | { width?: number; height?: number }
+        | null
+        | undefined
+      const imageAspect = img?.width && img?.height ? img.width / img.height : 1
+
+      return new THREE.ShaderMaterial({
+        vertexShader: DimensionalVertexShader,
+        fragmentShader: DimensionalFragmentShader,
+        uniforms: {
+          uTexture: { value: texture },
+          uVelocity: { value: 0 },
+          uStackDepth: { value: 0 },
+          uResolution: { value: new THREE.Vector2(itemWidth, itemHeight) },
+          uImageAspect: { value: imageAspect },
+          // WCAG Failsafes: Neutralize dizzying shader effects if requested
+          uFlexMultiplier: { value: isReducedMotion ? 0 : flexMultiplier },
+          uChromaticAberrationIntensity: {
+            value: isReducedMotion ? 0 : chromaticAberrationIntensity,
+          },
+          uParallaxIntensity: {
+            value: isReducedMotion ? 0 : parallaxIntensity,
+          },
+          uDimmingMultiplier: { value: dimmingMultiplier },
+          uCornerRadius: { value: cornerRadius },
+        },
+        transparent: true,
+        depthWrite: false, // Ensures alpha blending works perfectly without Z-glitches
+      })
+    })
+  }, [
+    textures,
+    itemWidth,
+    itemHeight,
+    flexMultiplier,
+    chromaticAberrationIntensity,
+    parallaxIntensity,
+    dimmingMultiplier,
+    cornerRadius,
+    isReducedMotion,
+  ])
+
+  useEffect(() => {
+    return () => {
+      geometry.dispose()
+      materials.forEach((m) => m.dispose())
+    }
+  }, [geometry, materials])
 
   useEffect(() => {
     scrollState.current.min = 0
@@ -255,42 +245,65 @@ function CarouselScene({
     requestAnimationFrame(() => onReady())
   }, [images.length, spacing, scrollState, onReady])
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     const state = scrollState.current
+    const dt = Math.min(delta, 0.1)
 
     state.targetX = THREE.MathUtils.clamp(state.targetX, state.min, state.max)
     const prevX = state.currentX
 
-    state.currentX = THREE.MathUtils.lerp(
+    state.currentX = THREE.MathUtils.damp(
       state.currentX,
       state.targetX,
-      lerpFactor
+      lerpFactor! * 100,
+      dt
     )
 
-    const rawVelocity = (state.currentX - prevX) * 15.0
-    state.velocity = THREE.MathUtils.lerp(state.velocity, rawVelocity, 0.15)
+    const rawVelocity = (state.currentX - prevX) / dt
+    state.velocity = THREE.MathUtils.damp(
+      state.velocity,
+      rawVelocity * 0.15,
+      5,
+      dt
+    )
+
+    if (groupRef.current) {
+      groupRef.current.children.forEach((mesh: THREE.Mesh | any, i) => {
+        const material = materials[i]
+        if (!material) return
+
+        const relativeX = i * spacing - state.currentX
+        let x, z, rotY
+        let stackDepth = 0
+
+        if (relativeX > 0) {
+          x = relativeX
+          z = 0
+          rotY = 0
+        } else {
+          x = relativeX * stackGapMultiplier!
+          z = relativeX * depthMultiplier!
+          rotY = relativeX * rotationMultiplier!
+          stackDepth = Math.abs(relativeX)
+        }
+
+        mesh.position.set(x, 0, z)
+        mesh.rotation.set(0, rotY, 0)
+
+        // Ensure proper alpha rendering order
+        mesh.renderOrder = 1000 - Math.abs(relativeX)
+
+        material.uniforms.uVelocity.value = state.velocity
+        material.uniforms.uStackDepth.value = stackDepth
+      })
+    }
   })
 
   return (
-    <group>
-      {/* Reverse the array mapping so the first item renders on top of the Z-stack */}
-      {[...textures].reverse().map((texture, reversedIndex) => {
-        const originalIndex = textures.length - 1 - reversedIndex
-        return (
-          <CarouselItem
-            key={originalIndex}
-            texture={texture}
-            index={originalIndex}
-            scrollState={scrollState}
-            itemWidth={itemWidth}
-            itemHeight={itemHeight}
-            spacing={spacing}
-            bendMultiplier={bendMultiplier}
-            rgbSplitStrength={rgbSplitStrength}
-            tiltMultiplier={tiltMultiplier}
-          />
-        )
-      })}
+    <group ref={groupRef}>
+      {textures.map((_, i) => (
+        <mesh key={i} geometry={geometry} material={materials[i]} />
+      ))}
     </group>
   )
 }
@@ -299,14 +312,6 @@ function CarouselScene({
 // WRAPPER COMPONENT
 // --------------------------------------------------------
 
-/**
- * DimensionalCarousel
- *
- * A high-performance WebGL scroll component for Satis UI.
- * Creates an immersive, 3D stacked cover-flow of images that respond fluidly to scroll
- * and touch momentum anywhere on the screen, utilizing custom GLSL shaders for
- * kinetic RGB splitting and aerodynamic bending.
- */
 export const DimensionalCarousel = React.forwardRef<
   HTMLDivElement,
   DimensionalCarouselProps
@@ -319,16 +324,22 @@ export const DimensionalCarousel = React.forwardRef<
       cardAspectRatio = 1.4,
       scrollSensitivity = 0.04,
       lerpFactor = 0.08,
-      bendMultiplier = 0.12,
-      rgbSplitStrength = 0.005,
-      stackSpacing = 0.8,
-      tiltMultiplier = 0.08,
+      gapMultiplier = 0.8,
+      stackGapMultiplier = 0.1,
+      depthMultiplier = 0.8,
+      parallaxIntensity = 0.1,
+      chromaticAberrationIntensity = 0.005,
+      flexMultiplier = 0.12,
+      rotationMultiplier = 0.08,
+      dimmingMultiplier = 0.6,
+      cornerRadius = 0.04,
       ...props
     },
     ref
   ) => {
     const containerRef = useRef<HTMLDivElement>(null)
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isReducedMotion, setIsReducedMotion] = useState(false)
 
     React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
 
@@ -340,19 +351,19 @@ export const DimensionalCarousel = React.forwardRef<
       max: 0,
     })
 
-    // Unified Global Observer
     useGSAP(
       () => {
         if (!containerRef.current) return
+
+        const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+        setIsReducedMotion(mediaQuery.matches)
 
         const observer = Observer.create({
           target: containerRef.current,
           type: "wheel,touch,pointer",
           onWheel: (e) => {
             const state = scrollState.current
-            // Standard scroll: Wheeling down/right moves carousel right
-            const delta =
-              Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY
+            const delta = (e.deltaX || 0) + (e.deltaY || 0)
             const isAtLeft = state.targetX <= state.min && delta < 0
             const isAtRight = state.targetX >= state.max && delta > 0
 
@@ -362,7 +373,7 @@ export const DimensionalCarousel = React.forwardRef<
           },
           onDrag: (e) => {
             const state = scrollState.current
-            // Drag logic: Swiping left (negative deltaX) should advance the carousel
+            // Dual-Axis support: Prioritize horizontal trackpad scroll, fallback to vertical mouse scroll
             const delta =
               Math.abs(e.deltaX) > Math.abs(e.deltaY) ? -e.deltaX : -e.deltaY
             const isAtLeft = state.targetX <= state.min && delta < 0
@@ -383,20 +394,18 @@ export const DimensionalCarousel = React.forwardRef<
       <div
         ref={containerRef}
         className={cn(
-          "relative h-full w-full cursor-grab touch-none overflow-hidden active:cursor-grabbing",
+          "relative h-full w-full cursor-grab touch-none overflow-hidden bg-background text-foreground active:cursor-grabbing",
           className
         )}
         {...props}
       >
-        {/* Screen Reader Access */}
         <div className="sr-only" aria-live="polite">
-          <p>Interactive 3D Image Carousel. Scroll or swipe to navigate.</p>
+          <p>Interactive 3D Carousel. Scroll or swipe to navigate.</p>
           {images.map((img, i) => (
             <img key={i} src={img} alt={`Slide ${i + 1}`} />
           ))}
         </div>
 
-        {/* Loading Cover */}
         <div
           className={cn(
             "pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-background transition-opacity duration-1000",
@@ -404,12 +413,15 @@ export const DimensionalCarousel = React.forwardRef<
           )}
         />
 
-        {/* 3D Canvas */}
         <div
           className="pointer-events-none absolute inset-0 z-0"
           aria-hidden="true"
         >
-          <Canvas camera={{ position: [0, 0, 5], fov: 45 }} dpr={[1, 2]}>
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 45 }}
+            dpr={[1, 1.5]}
+            gl={{ antialias: false, alpha: true }}
+          >
             <React.Suspense fallback={null}>
               <CarouselScene
                 images={images}
@@ -418,10 +430,16 @@ export const DimensionalCarousel = React.forwardRef<
                 cardWidthRatio={cardWidthRatio}
                 cardAspectRatio={cardAspectRatio}
                 lerpFactor={lerpFactor}
-                stackSpacing={stackSpacing}
-                bendMultiplier={bendMultiplier}
-                rgbSplitStrength={rgbSplitStrength}
-                tiltMultiplier={tiltMultiplier}
+                gapMultiplier={gapMultiplier}
+                stackGapMultiplier={stackGapMultiplier}
+                depthMultiplier={depthMultiplier}
+                parallaxIntensity={parallaxIntensity}
+                chromaticAberrationIntensity={chromaticAberrationIntensity}
+                flexMultiplier={flexMultiplier}
+                rotationMultiplier={rotationMultiplier}
+                dimmingMultiplier={dimmingMultiplier}
+                cornerRadius={cornerRadius}
+                isReducedMotion={isReducedMotion}
               />
             </React.Suspense>
           </Canvas>

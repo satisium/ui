@@ -1,6 +1,6 @@
 ---
 title: Dimensional Carousel
-description: A high-performance WebGL scroll component. Creates an immersive, 3D stacked cover-flow of images that respond fluidly to scroll momentum anywhere on the container, utilizing custom GLSL shaders for kinetic RGB splitting and aerodynamic bending.
+description: A high-performance WebGL horizontal carousel. Cards arriving from the right are flat, while cards passing the center seamlessly stack into a 3D Cover Flow layout. Features custom GLSL shaders for aerodynamic bending and kinetic RGB splitting based on swipe velocity.
 component: true
 badge: new
 category:
@@ -46,14 +46,19 @@ import { dimensionalCarouselFile } from "@/registry/strings/dimensional-carousel
 
 ## Props
 
-| Prop                    | Type       | Default    | Description                                              |
-| :---------------------- | :--------- | :--------- | :------------------------------------------------------- |
-| **`images`**            | `string[]` | _Required_ | Array of image URLs to load into the deck.               |
-| **`cardWidthRatio`**    | `number`   | `0.35`     | Percentage of screen width the card occupies on desktop. |
-| **`cardAspectRatio`**   | `number`   | `1.4`      | Width-to-height ratio of the cards.                      |
-| **`scrollSensitivity`** | `number`   | `0.04`     | How heavily the scroll wheel affects movement.           |
-| **`lerpFactor`**        | `number`   | `0.08`     | How buttery smooth the momentum is (0.01 to 1).          |
-| **`bendMultiplier`**    | `number`   | `0.12`     | How much the cards bend physically when moving fast.     |
-| **`rgbSplitStrength`**  | `number`   | `0.005`    | The intensity of the kinetic RGB color splitting.        |
-| **`stackSpacing`**      | `number`   | `0.8`      | Space between cards in relation to viewport width.       |
-| **`tiltMultiplier`**    | `number`   | `0.08`     | How much cards tilt backwards as they stack.             |
+| Prop                               | Type       | Default    | Description                                                  |
+| :--------------------------------- | :--------- | :--------- | :----------------------------------------------------------- |
+| **`images`**                       | `string[]` | _Required_ | Array of image URLs to load into the carousel.               |
+| **`cardWidthRatio`**               | `number`   | `0.35`     | Percentage of screen width the card occupies on desktop.     |
+| **`cardAspectRatio`**              | `number`   | `1.4`      | Width-to-height ratio of the cards.                          |
+| **`gapMultiplier`**                | `number`   | `0.8`      | Space between incoming flat cards.                           |
+| **`scrollSensitivity`**            | `number`   | `0.04`     | How heavily the scroll wheel/drag affects movement.          |
+| **`lerpFactor`**                   | `number`   | `0.08`     | How buttery smooth the momentum is (0.01 to 1).              |
+| **`stackGapMultiplier`**           | `number`   | `0.1`      | Distance between cards when stacked on the left.             |
+| **`depthMultiplier`**              | `number`   | `0.8`      | How deep into the Z-axis cards are pushed when stacked.      |
+| **`rotationMultiplier`**           | `number`   | `0.08`     | How much cards tilt horizontally as they stack.              |
+| **`flexMultiplier`**               | `number`   | `0.12`     | How aggressively the cards bow physically when swiping fast. |
+| **`parallaxIntensity`**            | `number`   | `0.1`      | Intensity of the internal texture slide.                     |
+| **`chromaticAberrationIntensity`** | `number`   | `0.005`    | Intensity of the color split on scroll.                      |
+| **`dimmingMultiplier`**            | `number`   | `0.6`      | How much the cards darken as they move to the back.          |
+| **`cornerRadius`**                 | `number`   | `0.04`     | SDF corner radius (0.0 to 0.5).                              |
