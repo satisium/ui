@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.61
+
+### Minor Changes
+
+- fixed/improved dimensional deck component with parallax and props.
+
 ## 3.0.0-beta.60
 
 ### Minor Changes
