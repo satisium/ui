@@ -9,24 +9,31 @@ export default function DimensionalDeckDemo() {
   )
 
   return (
-    <main className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-background">
-      {/* 
-        The Deck spans the entire screen absolutely, allowing the user to interact 
-        from any point on the screen while the cards stay centered.
-      */}
+    <main className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-background">
       <div className="absolute inset-0 z-0">
         <DimensionalDeck
           images={images}
-          // Overriding defaults for a more dramatic, physics-heavy feel
-          bendMultiplier={0.05}
-          scrollSensitivity={0.02}
-          rgbSplitStrength={0.003}
+          // --- Unified Base Layout ---
+          cardWidthRatio={0.5}
+          gapMultiplier={1.2}
+          // --- Unified Geometry ---
+          stackGapMultiplier={0.15}
+          depthMultiplier={1.0}
+          rotationMultiplier={0.1}
+          flexMultiplier={0.15}
+          // --- Unified Shaders ---
+          parallaxIntensity={1.2}
+          chromaticAberrationIntensity={0.008}
+          dimmingMultiplier={0.6}
+          cornerRadius={0.05}
+          scrollSensitivity={0.01}
         />
       </div>
 
-      {/* Ultra-minimal, unobtrusive scroll cue */}
-      <div className="pointer-events-none absolute bottom-12 left-1/2 z-10 -translate-x-1/2 text-xs font-semibold tracking-[0.2em] text-muted-foreground/40 uppercase select-none">
-        Scroll
+      <div className="pointer-events-none absolute bottom-8 z-10 text-center select-none">
+        <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+          Scroll Vertically
+        </p>
       </div>
     </main>
   )

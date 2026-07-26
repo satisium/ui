@@ -1,6 +1,6 @@
 ---
 title: Dimensional Deck
-description: A high-performance WebGL scroll component. Creates an immersive, 3D stacked deck of images that respond fluidly to scroll momentum anywhere on the container, utilizing custom GLSL shaders for kinetic RGB splitting and aerodynamic bending.
+description: A high-performance WebGL scroll component. Creates an immersive, 3D stacked deck of images that respond fluidly to vertical scroll momentum, utilizing custom GLSL shaders for kinetic RGB splitting and aerodynamic bending.
 component: true
 badge: new
 category:
@@ -46,14 +46,19 @@ import { dimensionalDeckFile } from "@/registry/strings/dimensional-deck"
 
 ## Props
 
-| Prop                    | Type       | Default    | Description                                              |
-| :---------------------- | :--------- | :--------- | :------------------------------------------------------- |
-| **`images`**            | `string[]` | _Required_ | Array of image URLs to load into the deck.               |
-| **`cardWidthRatio`**    | `number`   | `0.35`     | Percentage of screen width the card occupies on desktop. |
-| **`cardAspectRatio`**   | `number`   | `1.4`      | Width-to-height ratio of the cards.                      |
-| **`scrollSensitivity`** | `number`   | `0.04`     | How heavily the scroll wheel affects movement.           |
-| **`lerpFactor`**        | `number`   | `0.08`     | How buttery smooth the momentum is (0.01 to 1).          |
-| **`bendMultiplier`**    | `number`   | `0.15`     | How much the cards bend physically when moving fast.     |
-| **`rgbSplitStrength`**  | `number`   | `0.003`    | The intensity of the kinetic RGB color splitting.        |
-| **`stackSpacing`**      | `number`   | `1.2`      | Space between cards in relation to viewport height.      |
-| **`tiltMultiplier`**    | `number`   | `0.08`     | How much cards tilt backwards as they stack.             |
+| Prop                               | Type       | Default    | Description                                                             |
+| :--------------------------------- | :--------- | :--------- | :---------------------------------------------------------------------- |
+| **`images`**                       | `string[]` | _Required_ | Array of image URLs to load into the deck.                              |
+| **`cardWidthRatio`**               | `number`   | `0.35`     | Percentage of screen width the card occupies on desktop.                |
+| **`cardAspectRatio`**              | `number`   | `1.4`      | Width-to-height ratio of the cards.                                     |
+| **`gapMultiplier`**                | `number`   | `1.2`      | Vertical spacing distance between active cards.                         |
+| **`stackGapMultiplier`**           | `number`   | `0.1`      | How tightly the cards stack on top of each other at the friction point. |
+| **`depthMultiplier`**              | `number`   | `0.8`      | How deeply the cards push into the background Z-axis.                   |
+| **`flexMultiplier`**               | `number`   | `0.15`     | Aerodynamic paper bend physics when scrolling fast.                     |
+| **`rotationMultiplier`**           | `number`   | `0.08`     | The tilt angle when resting in the stack.                               |
+| **`scrollSensitivity`**            | `number`   | `0.04`     | How heavily the scroll wheel affects movement.                          |
+| **`lerpFactor`**                   | `number`   | `0.08`     | How buttery smooth the momentum is (0.01 to 1).                         |
+| **`parallaxIntensity`**            | `number`   | `0.1`      | Intensity of the internal texture slide.                                |
+| **`chromaticAberrationIntensity`** | `number`   | `0.005`    | Intensity of the kinetic color split on scroll.                         |
+| **`dimmingMultiplier`**            | `number`   | `0.6`      | How much the cards darken as they move to the back.                     |
+| **`cornerRadius`**                 | `number`   | `0.04`     | SDF corner radius (0.0 to 0.5).                                         |

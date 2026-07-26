@@ -1,5 +1,11 @@
 # ui
 
+## 3.0.0-beta.61
+
+### Minor Changes
+
+- updated/improved dimensional deck.
+
 ## 3.0.0-beta.60
 
 ### Minor Changes
