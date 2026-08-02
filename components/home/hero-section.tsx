@@ -192,7 +192,7 @@ export function HeroSection() {
               <div
                 id="hero-squircle"
                 ref={squircleRef}
-                className="absolute top-0 left-0 z-0 rounded-[0.5rem] bg-primary opacity-0 will-change-transform sm:rounded-[0.75rem]"
+                className="absolute top-0 left-0 z-0 rounded-[0.5rem] bg-primary opacity-0 drop-shadow-2xl will-change-transform sm:rounded-[0.75rem]"
               />
 
               <PianoTypewriter
@@ -238,11 +238,17 @@ export function HeroSection() {
               path="M0.734573 0.478027C43.1879 13.4972 93.6013 27.0589 83.5186 39.5357C67.068 52.5549 34.6972 35.7384 12.9399 33.0261C4.36469 31.9571 -20.4921 50.385 39.4733 76.9659C87.4456 98.2307 100.146 101.377 100.5 100.292"
               svgClassName="text-muted-foreground/40"
               textClassName="text-muted-foreground -rotate-24 text-xl"
-              textPosition="bottom-full right-full -mb-4 -mr-12 text-right"
+              textPosition="bottom-full right-full -mb-4 -mr-12 text-center"
             >
-              components, blocks
+              Components, blocks
               <br />
-              and templates
+              and templates built
+              <br />
+              for{" "}
+              <span className="text-2xl font-extrabold text-foreground">
+                SHADCN
+              </span>{" "}
+              env
             </Annotation>
 
             {/* 2. Bottom Center Annotation */}
@@ -256,7 +262,11 @@ export function HeroSection() {
               textClassName="text-muted-foreground -rotate-8 text-xl"
               textPosition="top-full right-full mt-2 mr-2 text-right"
             >
-              for SHADCN env
+              Over{" "}
+              <span className="text-3xl font-extrabold text-foreground">
+                25+{" "}
+              </span>
+              components
             </Annotation>
 
             {/* 3. Top Right Annotation */}
@@ -270,7 +280,7 @@ export function HeroSection() {
               textClassName="text-muted-foreground rotate-8 text-xl"
               textPosition="bottom-full left-full mb-1 -ml-8"
             >
-              open source
+              Open source
             </Annotation>
           </div>
         )}
