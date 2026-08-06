@@ -1,11 +1,8 @@
 import React from "react"
+import Image from "next/image" // Added for the GitHub SVG
 import { SatisiumLogo } from "@/components/satisium-logo"
 import { HugeiconsIcon } from "@hugeicons/react"
-import {
-  NewTwitterIcon, // X Icon
-  InstagramIcon,
-  GithubIcon,
-} from "@hugeicons/core-free-icons"
+import { NewTwitterIcon, InstagramIcon } from "@hugeicons/core-free-icons"
 import { InfiniteHaloRing } from "./footer-halo-ring"
 
 export function FooterSection() {
@@ -16,7 +13,14 @@ export function FooterSection() {
 
   return (
     <section className="relative h-screen w-full bg-muted p-3 min-[400px]:p-4 sm:p-5 lg:p-6">
-      <div className="relative flex h-full w-full flex-col justify-end overflow-hidden rounded-[2rem] bg-background text-foreground sm:rounded-[2.5rem]">
+      <div
+        // FIX 1: Added `transform-gpu` and `isolate` to force a strict hardware layer
+        className="relative isolate flex h-full w-full transform-gpu flex-col justify-end overflow-hidden rounded-[2rem] bg-background text-foreground sm:rounded-[2.5rem]"
+        style={{
+          // FIX 2: The ultimate hack for border-radius sub-pixel bleeding
+          WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+        }}
+      >
         {/* --- 1. THE ENGINE (Background) --- */}
         <div className="absolute inset-0 z-0">
           <InfiniteHaloRing
@@ -69,14 +73,14 @@ export function FooterSection() {
               Satisium UI
             </span>
           </div>
+
           {/* Right: Signature & Socials */}
-          {/* TODO Add proper links */}
           <div className="flex w-full items-center justify-center gap-4 sm:w-auto sm:justify-end sm:gap-6">
             {/* The Signature */}
             <span className="font-heading text-xs tracking-wide text-muted-foreground">
               Made by{" "}
               <a
-                href="https://yourportfolio.com" // Replace with your actual URL
+                href="https://x.com/iamsatish4564" // Replaced with your Twitter!
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-foreground transition-opacity hover:opacity-70"
@@ -101,12 +105,24 @@ export function FooterSection() {
               >
                 <HugeiconsIcon icon={InstagramIcon} size={18} />
               </a>
+
+              {/* UPDATED GITHUB LOGO */}
               <a
                 href="#"
                 aria-label="GitHub"
                 className="flex h-9 w-9 items-center justify-center rounded-2xl bg-foreground text-background transition-transform duration-300 hover:scale-105 active:scale-95 sm:h-10 sm:w-10 dark:bg-background dark:text-foreground"
               >
-                <HugeiconsIcon icon={GithubIcon} size={18} />
+                {/* 
+                  Because the button background is always dark, 
+                  we exclusively use the white SVG. 
+                */}
+                <Image
+                  src="/github-mark-white.svg"
+                  alt="GitHub"
+                  width={18}
+                  height={18}
+                  className="object-contain"
+                />
               </a>
             </div>
           </div>
