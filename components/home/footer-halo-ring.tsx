@@ -561,7 +561,7 @@ export const InfiniteHaloRing = React.forwardRef<
       <div
         ref={containerRef}
         className={cn(
-          "relative h-full w-full cursor-grab touch-pan-y overflow-hidden bg-none active:cursor-grabbing",
+          "relative h-full w-full cursor-grab touch-pan-y overflow-hidden bg-background active:cursor-grabbing",
           className
         )}
         {...props}
