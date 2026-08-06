@@ -1,12 +1,19 @@
 "use client"
 
-import React, { useRef, useState, useEffect } from "react"
-import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
-import { Menu } from "lucide-react"
-import { SatisiumLogo } from "@/components/satisium-logo"
+import gsap from "gsap"
+import React, { useRef, useState } from "react"
+
+import { Annotation } from "@/components/home/annotation"
+import {
+  DesktopGithubButton,
+  MobileMediaCard,
+} from "@/components/home/hero-footer-components"
 import { PianoTypewriter } from "@/components/home/piano-typewriter"
-import { Annotation } from "@/components/home/annotation" // Adjust path as needed
+import { VideoExploreButton } from "@/components/home/video-explore-button"
+import { SatisiumLogo } from "@/components/satisium-logo"
+import { CommandMenuTrigger } from "../layout/command-menu"
+import { MinimalThemeSwitcher } from "./minimal-theme-switcher"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -17,6 +24,7 @@ export function HeroSection() {
 
   const [isTypingComplete, setIsTypingComplete] = useState(false)
 
+  // (GSAP Math remains exactly the same!)
   const calculateMetrics = () => {
     if (!textWrapperRef.current || !squircleRef.current) return null
 
@@ -57,7 +65,6 @@ export function HeroSection() {
     const metrics = calculateMetrics()
     if (!metrics) return
 
-    // Pre-set squircle
     gsap.set(squircleRef.current, {
       ...metrics.squircleProps,
       scale: 0.5,
@@ -65,9 +72,8 @@ export function HeroSection() {
     })
 
     const tl = gsap.timeline()
-
-    // 1. The Morph
     const morphProxy = { progress: 0 }
+
     tl.to(morphProxy, {
       progress: 1,
       duration: 1.6,
@@ -80,7 +86,6 @@ export function HeroSection() {
       },
     })
 
-    // 2. The Staggered UI Glide-In
     tl.fromTo(
       headerRef.current,
       { opacity: 0, y: -20 },
@@ -94,7 +99,6 @@ export function HeroSection() {
       "-=1.0"
     )
 
-    // 3. THE REFINED SEQUENCE: Slide First, Then Pop
     tl.to(
       metrics.rightSideChars,
       {
@@ -105,18 +109,11 @@ export function HeroSection() {
       },
       "-=0.4"
     )
-
     tl.to(
       squircleRef.current,
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.5,
-        ease: "back.out(2)",
-      },
+      { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" },
       "-=0.2"
     )
-
     tl.to(
       [metrics.uChar, metrics.iChar],
       {
@@ -140,7 +137,6 @@ export function HeroSection() {
 
   return (
     <>
-      {/* Natively inject Caveat font for the annotations */}
       <style
         dangerouslySetInnerHTML={{
           __html: `@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap');`,
@@ -158,43 +154,43 @@ export function HeroSection() {
         }
       >
         <div
-          className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-background text-foreground"
+          // We keep this as flex-col h-full to manage the vertical distribution
+          className="relative flex h-full w-full flex-col overflow-hidden bg-background text-foreground"
           style={{
             borderRadius: "calc(var(--morph) * clamp(2rem, 4vw, 2.5rem))",
           }}
         >
-          {/* --- HEADER --- */}
+          {/* --- 1. HEADER (Fixed at top) --- */}
+          {/* Added shrink-0 so it never gets compressed */}
           <header
             ref={headerRef}
-            className="relative z-10 flex w-full items-start justify-between p-6 opacity-0 sm:p-8 md:p-10"
+            className="relative z-10 flex w-full shrink-0 items-start justify-between p-6 opacity-0 sm:p-8 md:p-10"
           >
             <div className="flex h-10 w-10 items-center justify-center sm:h-12 sm:w-12">
               <SatisiumLogo size="100%" />
             </div>
-            <button
-              aria-label="Open Menu"
-              className="group flex h-10 w-10 items-center justify-center rounded-full bg-transparent transition-colors hover:bg-muted sm:h-12 sm:w-12"
-            >
-              <Menu
-                className="h-5 w-5 text-foreground transition-transform group-hover:scale-95 sm:h-6 sm:w-6"
-                strokeWidth={1.5}
-              />
-            </button>
+            <div className="group flex items-center justify-between gap-2 rounded-full bg-transparent transition-colors">
+              <MinimalThemeSwitcher />
+              <CommandMenuTrigger variant="icon" />
+            </div>
           </header>
 
-          {/* --- CENTER ANCHOR --- */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4 text-center">
+          {/* --- 2. CENTER ANCHOR (Dynamically fills remaining space) --- */}
+          {/* 
+            REPLACED `absolute inset-0` with `flex-1 relative`. 
+            This forces the text to sit mathematically centered between the header and the footer, 
+            guaranteeing 0% overlap regardless of device height.
+          */}
+          <div className="relative z-0 flex flex-1 items-center justify-center px-4 text-center">
             <div
               ref={textWrapperRef}
               className="relative inline-block text-left"
             >
-              {/* THE TARGET: Given an ID so the annotations can lerp track it */}
               <div
                 id="hero-squircle"
                 ref={squircleRef}
                 className="absolute top-0 left-0 z-0 rounded-[0.5rem] bg-primary opacity-0 drop-shadow-2xl will-change-transform sm:rounded-[0.75rem]"
               />
-
               <PianoTypewriter
                 text="ui.satisium.com"
                 as="h1"
@@ -206,35 +202,34 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* --- FOOTER --- */}
+          {/* --- 3. RESPONSIVE FOOTER (Fixed at bottom) --- */}
+          {/* Added shrink-0 so the tall mobile card holds its ground */}
           <footer
             ref={footerRef}
-            className="relative z-10 flex w-full flex-col-reverse items-start justify-between gap-5 p-5 opacity-0 sm:flex-row sm:items-end sm:gap-6 sm:p-8 md:p-10"
+            className="relative z-10 flex w-full shrink-0 flex-col p-4 opacity-0 sm:p-6 md:p-10"
           >
-            <div className="flex w-full flex-row items-center justify-between sm:w-auto sm:flex-col sm:items-start sm:justify-end sm:space-y-1">
-              <h2 className="font-heading text-sm font-semibold tracking-wide text-foreground sm:text-base">
-                25+ components
-              </h2>
-              <p className="text-xs text-muted-foreground sm:text-sm">
-                Ever growing collection
-              </p>
+            {/* 📱 MOBILE VIEW (< 768px): The Cinematic Widget */}
+            <div className="flex w-full md:hidden">
+              <MobileMediaCard />
             </div>
-            <button className="inline-flex w-full items-center justify-center rounded-full bg-foreground px-6 py-4 font-heading text-sm font-medium text-background transition-transform duration-300 hover:scale-[1.02] focus:outline-none active:scale-[0.98] sm:w-auto sm:px-8">
-              Explore components
-            </button>
+
+            {/* 💻 DESKTOP VIEW (>= 768px): Left/Right Spread */}
+            <div className="hidden w-full items-end justify-between md:flex">
+              <DesktopGithubButton />
+              <VideoExploreButton />
+            </div>
           </footer>
         </div>
 
         {/* --- THE HAND-DRAWN ANNOTATIONS --- */}
-        {/* We only render them after typing is complete so their `delay` starts ticking perfectly in sync with the morph timeline */}
+        {/* Because these use fixed tracking targeting the #hero-squircle ID, they will naturally follow the text wrapper anywhere the flexbox puts it! */}
         {isTypingComplete && (
-          <div className="hidden md:block">
-            {/* 1. Top Left Annotation */}
+          <div className="hidden lg:block">
             <Annotation
               targetId="hero-squircle"
-              targetAnchor={{ x: -0.1, y: 0 }} // Points to the top-left of the squircle
-              svgAnchor={{ x: 1, y: 1 }} // Uses bottom-right of SVG to touch
-              delay={2600} // Waits for the GSAP morph and squircle pop to finish
+              targetAnchor={{ x: -0.1, y: 0 }}
+              svgAnchor={{ x: 1, y: 1 }}
+              delay={2600}
               path="M0.734573 0.478027C43.1879 13.4972 93.6013 27.0589 83.5186 39.5357C67.068 52.5549 34.6972 35.7384 12.9399 33.0261C4.36469 31.9571 -20.4921 50.385 39.4733 76.9659C87.4456 98.2307 100.146 101.377 100.5 100.292"
               svgClassName="text-muted-foreground/40"
               textClassName="text-muted-foreground -rotate-24 text-xl"
@@ -251,12 +246,11 @@ export function HeroSection() {
               env
             </Annotation>
 
-            {/* 2. Bottom Center Annotation */}
             <Annotation
               targetId="hero-squircle"
-              targetAnchor={{ x: 0.1, y: 1.1 }} // Points to the bottom-center
-              svgAnchor={{ x: 1, y: 0 }} // Uses top-right of SVG to touch
-              delay={3000} // Staggered slightly after the first one
+              targetAnchor={{ x: 0.1, y: 1.1 }}
+              svgAnchor={{ x: 1, y: 0 }}
+              delay={3000}
               path="M0.110596 100.068C32.9148 92.6213 52.2403 77.7336 58.8408 68.6851C64.6609 60.7064 80.0048 33.0468 39.264 34.6426C-1.47676 36.2383 24.9355 83.2422 46.1423 87.8341C80.5339 95.2809 95.3487 34.6426 100.111 0.0681152"
               svgClassName="text-muted-foreground/40"
               textClassName="text-muted-foreground -rotate-8 text-xl"
@@ -269,12 +263,11 @@ export function HeroSection() {
               components
             </Annotation>
 
-            {/* 3. Top Right Annotation */}
             <Annotation
               targetId="hero-squircle"
-              targetAnchor={{ x: 0.9, y: -0.1 }} // Points to the top-right
-              svgAnchor={{ x: 0, y: 1 }} // Uses bottom-left of SVG to touch
-              delay={3400} // The final flourish
+              targetAnchor={{ x: 0.9, y: -0.1 }}
+              svgAnchor={{ x: 0, y: 1 }}
+              delay={3400}
               path="M0.5 100.017C0.5 21.5168 102.954 74.0168 100.455 0.0168457"
               svgClassName="text-muted-foreground/40"
               textClassName="text-muted-foreground rotate-8 text-xl"
