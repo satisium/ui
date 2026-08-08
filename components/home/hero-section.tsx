@@ -14,6 +14,7 @@ import {
   DesktopGithubButton,
   MobileMediaCard,
 } from "@/components/home/hero-footer-components"
+import { Badge } from "@/components/ui/badge"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -21,6 +22,7 @@ export function HeroSection() {
   const footerRef = useRef<HTMLElement>(null)
   const textWrapperRef = useRef<HTMLDivElement>(null)
   const squircleRef = useRef<HTMLDivElement>(null)
+  const badgeRef = useRef<HTMLDivElement>(null)
 
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [isMorphComplete, setIsMorphComplete] = useState(false)
@@ -66,7 +68,7 @@ export function HeroSection() {
     const morphProxy = { progress: 0 }
 
     const tl = gsap.timeline({
-      onComplete: () => setIsMorphComplete(true), // Signal when frame morph is 100% settled
+      onComplete: () => setIsMorphComplete(true),
     })
 
     // 1. Morph background immediately using exact original math
@@ -101,12 +103,12 @@ export function HeroSection() {
   // TIMELINE 2: The Climax (Runs AFTER Typing AND Frame Morph complete)
   // ==========================================
   useGSAP(() => {
-    // PREVENT RACE CONDITION: Wait for BOTH typing AND frame morph to complete
     if (
       !isTypingComplete ||
       !isMorphComplete ||
       !sectionRef.current ||
-      !squircleRef.current
+      !squircleRef.current ||
+      !badgeRef.current
     )
       return
 
@@ -119,20 +121,30 @@ export function HeroSection() {
       opacity: 0,
     })
 
+    // Initial state for the badge (hidden and scaled down)
+    gsap.set(badgeRef.current, {
+      scale: 0.5,
+      opacity: 0,
+    })
+
     const tl = gsap.timeline()
 
-    // Slide the text and pop the squircle
-    tl.to(metrics.rightSideChars, {
+    // 1. Slide the text right AND slide the badge simultaneously
+    tl.to([...metrics.rightSideChars, badgeRef.current], {
       x: metrics.slideAmount,
       duration: 0.8,
       ease: "power3.inOut",
       force3D: true,
     })
+
+    // 2. Pop the squircle AND the badge at the exact same millisecond
     tl.to(
-      squircleRef.current,
+      [squircleRef.current, badgeRef.current],
       { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" },
       "-=0.4"
     )
+
+    // 3. Highlight the "ui" text
     tl.to(
       [metrics.uChar, metrics.iChar],
       {
@@ -147,7 +159,9 @@ export function HeroSection() {
       const newMetrics = calculateMetrics()
       if (!newMetrics) return
       gsap.set(squircleRef.current, { ...newMetrics.squircleProps })
-      gsap.set(newMetrics.rightSideChars, { x: newMetrics.slideAmount })
+      gsap.set([...newMetrics.rightSideChars, badgeRef.current], {
+        x: newMetrics.slideAmount,
+      })
     }
 
     window.addEventListener("resize", handleResize)
@@ -214,6 +228,21 @@ export function HeroSection() {
                 delay={0}
                 onComplete={() => setIsTypingComplete(true)}
               />
+
+              {/* --- SUPERSCRIPT BETA BADGE --- */}
+              <div
+                ref={badgeRef}
+                className="absolute top-0 left-full z-10 flex items-start opacity-0 will-change-transform"
+              >
+                {/* 
+                  PERFECT ALIGNMENT:
+                  - -ml-3 (mobile) and md:-ml-4 (desktop) pulls it tight against the "m".
+                  - mt-1.5 pushes it down slightly to align perfectly with the cap height. 
+                */}
+                <Badge className="mt-1.5 h-[18px] rounded-[5px] border-none bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground hover:bg-primary/90 md:mt-2">
+                  Beta
+                </Badge>
+              </div>
             </div>
           </div>
 
@@ -227,7 +256,7 @@ export function HeroSection() {
             </div>
             <div className="hidden w-full items-end justify-between md:flex">
               <DesktopGithubButton />
-              <VideoExploreButton />
+              <VideoExploreButton href="/docs/components" />
             </div>
           </footer>
         </div>

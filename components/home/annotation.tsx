@@ -9,7 +9,7 @@ export interface AnnotationProps {
   svgAnchor?: { x: number; y: number }
   size?: number
 
-  // Content (Now accepts custom JSX!)
+  // Content
   title?: React.ReactNode
   children?: React.ReactNode
 
@@ -17,20 +17,19 @@ export interface AnnotationProps {
   path: string
   drawFrom?: "start" | "end"
 
-  // Positioning & Tracking
+  // Positioning
   textPosition?: string
   svgRotation?: string
-  trackingLag?: number
 
-  // --- NEW: STYLING & CUSTOMIZATION PROPS ---
+  // --- STYLING & CUSTOMIZATION PROPS ---
   textClassName?: string
   svgClassName?: string
   strokeWidth?: number
   strokeColor?: string
 
-  // --- NEW: TIMING CONTROLS ---
-  delay?: number // How long before drawing starts (ms)
-  duration?: number // How long the line takes to draw (seconds)
+  // --- TIMING CONTROLS ---
+  delay?: number
+  duration?: number
 }
 
 export const Annotation: React.FC<AnnotationProps> = ({
@@ -44,57 +43,71 @@ export const Annotation: React.FC<AnnotationProps> = ({
   drawFrom = "start",
   textPosition = "bottom-full mb-2 left-0",
   svgRotation = "",
-  trackingLag = 1.2,
 
-  // Defaults for the new styling props
+  // Defaults for the styling props
   textClassName,
   svgClassName,
   strokeWidth = 1.5,
   strokeColor = "currentColor",
   delay = 1000,
-  duration = 1.2, // Default 1.2 seconds
+  duration = 1.2,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const pathRef = useRef<SVGPathElement>(null)
 
-  const targetPos = useRef({ x: 0, y: 0 })
-  const currentPos = useRef({ x: 0, y: 0 })
   const isInitialized = useRef(false)
 
   const [pathLength, setPathLength] = useState(0)
   const [step, setStep] = useState(0)
 
-  // 1. Hardware-Accelerated Viewport Tracking
+  // 1. Hardware-Accelerated Viewport Tracking (NATIVE SCROLL, ZERO LAG)
   useEffect(() => {
     let rafId: number
     const loop = () => {
       const el = document.getElementById(targetId)
-      if (el && containerRef.current) {
-        const rect = el.getBoundingClientRect()
-        const targetPxX = rect.left + rect.width * targetAnchor.x
-        const targetPxY = rect.top + rect.height * targetAnchor.y
+      const container = containerRef.current
 
-        targetPos.current.x = targetPxX - size * svgAnchor.x
-        targetPos.current.y = targetPxY - size * svgAnchor.y
+      if (el && container) {
+        const targetRect = el.getBoundingClientRect()
+
+        // Find the closest relative parent container
+        const parent = container.offsetParent as HTMLElement
+        const parentRect = parent
+          ? parent.getBoundingClientRect()
+          : { left: 0, top: 0 }
+
+        // Account for any borders on the parent container so math is pixel-perfect
+        const parentBorderLeft = parent
+          ? parseFloat(getComputedStyle(parent).borderLeftWidth) || 0
+          : 0
+        const parentBorderTop = parent
+          ? parseFloat(getComputedStyle(parent).borderTopWidth) || 0
+          : 0
+
+        // 1. Calculate Target's anchor point in the viewport
+        const targetPxX = targetRect.left + targetRect.width * targetAnchor.x
+        const targetPxY = targetRect.top + targetRect.height * targetAnchor.y
+
+        // 2. Subtract the parent's position from the target's position.
+        // Because scrolling moves BOTH the target and the parent equally,
+        // this calculation remains exactly the same during a scroll!
+        const finalX =
+          targetPxX - parentRect.left - parentBorderLeft - size * svgAnchor.x
+        const finalY =
+          targetPxY - parentRect.top - parentBorderTop - size * svgAnchor.y
+
+        // Apply immediately
+        container.style.transform = `translate3d(${finalX}px, ${finalY}px, 0)`
 
         if (!isInitialized.current) {
-          currentPos.current.x = targetPos.current.x
-          currentPos.current.y = targetPos.current.y
           isInitialized.current = true
         }
-
-        currentPos.current.x +=
-          (targetPos.current.x - currentPos.current.x) * trackingLag
-        currentPos.current.y +=
-          (targetPos.current.y - currentPos.current.y) * trackingLag
-
-        containerRef.current.style.transform = `translate3d(${currentPos.current.x}px, ${currentPos.current.y}px, 0)`
       }
       rafId = requestAnimationFrame(loop)
     }
     loop()
     return () => cancelAnimationFrame(rafId)
-  }, [targetId, targetAnchor, svgAnchor, size, trackingLag])
+  }, [targetId, targetAnchor, svgAnchor, size])
 
   // 2. Measure & Orchestrate Timeline
   useEffect(() => {
@@ -105,7 +118,6 @@ export const Annotation: React.FC<AnnotationProps> = ({
         setPathLength(length)
 
         setTimeout(() => setStep(1), delay)
-        // Dynamically calculate when text appears based on `duration`
         setTimeout(() => setStep(2), delay + duration * 1000)
       }
     }, 50)
@@ -116,7 +128,9 @@ export const Annotation: React.FC<AnnotationProps> = ({
     <div
       ref={containerRef}
       className={cn(
-        "pointer-events-none fixed top-0 left-0 z-10",
+        // CRITICAL CHANGE: 'fixed' changed to 'absolute'.
+        // This forces it to scroll naturally with the page instead of chasing it with JS.
+        "pointer-events-none absolute top-0 left-0 z-10",
         step === 0 && "opacity-0"
       )}
       style={{ width: size, height: size }}
@@ -125,16 +139,13 @@ export const Annotation: React.FC<AnnotationProps> = ({
       <div
         className={cn(
           "pointer-events-auto absolute min-w-[220px] transition-opacity ease-in-out",
-          // Default styling (Caveat, etc) can now be overridden by textClassName
           "font-['Caveat',_cursive] text-xl tracking-wide text-foreground",
           step >= 2 ? "opacity-100" : "opacity-0",
           textPosition,
           textClassName
         )}
-        // Match the text fade duration to the line draw duration for smooth UX
         style={{ transitionDuration: `${duration * 0.8}s` }}
       >
-        {/* Support both `title` string AND custom `children` */}
         {title}
         {children}
       </div>

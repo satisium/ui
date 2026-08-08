@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import Image from "next/image"
 import { SatisiumLogo } from "@/components/satisium-logo"
@@ -5,6 +7,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { NewTwitterIcon, InstagramIcon } from "@hugeicons/core-free-icons"
 import { InfiniteHaloRing } from "./footer-halo-ring"
 import { ExploreActionGroup } from "./explore-action-group"
+import { Badge } from "@/components/ui/badge" // <-- IMPORTED SHADCN BADGE
 
 export function FooterSection() {
   const images = Array.from({ length: 18 }).map(
@@ -12,40 +15,48 @@ export function FooterSection() {
       `https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_800/v1781471531/ui-v3/demos/images/${15 + i}.jpg`
   )
 
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
+
   return (
     // OUTER MOAT: Continues the frame from the rest of the site
-    <section className="relative h-screen w-full bg-muted px-3 pt-3 min-[400px]:px-4 sm:px-5 lg:px-6 min-[400px]:pt-4 sm:pt-5 lg:pt-6">
-      
+    <section className="relative h-screen w-full bg-muted px-3 pt-3 min-[400px]:px-4 min-[400px]:pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6">
       {/* INNER CANVAS: Zero borders, zero shadows. */}
       <div className="relative flex h-full w-full flex-col overflow-hidden rounded-t-[2rem] bg-background text-foreground sm:rounded-t-[2.5rem]">
-        
         {/* --- TOP 40%: THE QUIET ZONE --- */}
-        {/* We use padding (px-x) here so the ledge perfectly aligns with the cage below it */}
         <div className="relative flex w-full flex-[4] flex-col justify-end px-3 pb-4 min-[400px]:px-4 sm:px-5 lg:px-6">
-          
           {/* Centered CTA */}
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            {/* <button className="pointer-events-auto inline-flex items-center justify-center rounded-[16px] bg-foreground px-8 py-4 font-heading text-sm font-medium text-background ">
-              Explore components
-            </button> */}
             <ExploreActionGroup
-      exploreText="Explore components" 
-      repo="shadcn-ui/ui" 
-    />
+              exploreText="Explore components"
+              repo="shadcn-ui/ui"
+            />
           </div>
 
           {/* THE LEDGE: Branding & Socials */}
           <div className="relative z-10 flex w-full items-end justify-between">
-            
-            {/* Left: Branding */}
-            <div className="flex items-center gap-3 sm:gap-4">
+            {/* Left: Branding (Clickable Scroll-to-Top Button) */}
+            <button
+              onClick={scrollToTop}
+              className="group flex cursor-pointer items-center gap-3 transition-all duration-300 hover:opacity-80 focus-visible:outline-none active:scale-[0.98] sm:gap-4"
+              aria-label="Scroll to top"
+            >
               <div className="flex h-8 w-8 items-center justify-center sm:h-10 sm:w-10">
                 <SatisiumLogo size="100%" />
               </div>
-              <span className="font-heading text-lg font-bold tracking-tight text-foreground sm:text-xl">
-                Satisium UI
-              </span>
-            </div>
+
+              {/* TEXT + SUPERSCRIPT BADGE WRAPPER */}
+              <div className="flex items-start">
+                <span className="font-heading text-lg font-bold tracking-tight text-foreground sm:text-xl">
+                  Satisium UI
+                </span>
+                <Badge className="-mt-1 ml-1.5 h-[18px] rounded-[5px] border-none bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground hover:bg-primary/90">
+                  Beta
+                </Badge>
+              </div>
+            </button>
 
             {/* Right: Signature & Social Squircles */}
             <div className="flex items-center gap-4 sm:gap-6">
@@ -65,24 +76,22 @@ export function FooterSection() {
                 <a
                   href="#"
                   aria-label="X (Twitter)"
-                  // INTELLIGENT DARK MODE: bg-secondary relies purely on luminance contrast to define the shape. Zero borders.
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-transform duration-300 hover:scale-105 active:scale-95 dark:bg-secondary dark:text-foreground sm:h-11 sm:w-11"
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-11 sm:w-11 dark:bg-secondary dark:text-foreground"
                 >
                   <HugeiconsIcon icon={NewTwitterIcon} size={20} />
                 </a>
                 <a
                   href="#"
                   aria-label="Instagram"
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-transform duration-300 hover:scale-105 active:scale-95 dark:bg-secondary dark:text-foreground sm:h-11 sm:w-11"
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-11 sm:w-11 dark:bg-secondary dark:text-foreground"
                 >
                   <HugeiconsIcon icon={InstagramIcon} size={20} />
                 </a>
                 <a
                   href="#"
                   aria-label="GitHub"
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-transform duration-300 hover:scale-105 active:scale-95 dark:bg-secondary dark:text-foreground sm:h-11 sm:w-11"
+                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-11 sm:w-11 dark:bg-secondary dark:text-foreground"
                 >
-                  {/* Standard GitHub mark works flawlessly here because the squircle background is dark in both themes */}
                   <Image
                     src="/github-mark-white.svg"
                     alt="GitHub"
@@ -93,19 +102,15 @@ export function FooterSection() {
                 </a>
               </div>
             </div>
-
           </div>
         </div>
 
         {/* --- BOTTOM 60%: THE KINETIC CAGE --- */}
         <div className="relative w-full flex-[6] shrink-0 px-3 min-[400px]:px-4 sm:px-5 lg:px-6">
-          
-          <div 
-            // Flush bottom: rounded-t only. overflow-hidden of the parent handles the bottom curve perfectly.
-            className="relative h-full w-full overflow-hidden rounded-t-[1.5rem] bg-muted sm:rounded-t-[2rem] isolate transform-gpu"
-            style={{ WebkitMaskImage: "-webkit-radial-gradient(white, black)" }} 
+          <div
+            className="relative isolate h-full w-full transform-gpu overflow-hidden rounded-t-[1.5rem] bg-muted sm:rounded-t-[2rem]"
+            style={{ WebkitMaskImage: "-webkit-radial-gradient(white, black)" }}
           >
-            
             {/* The 3D Engine: Pure Viewport */}
             <div className="absolute inset-0 z-0">
               <InfiniteHaloRing
@@ -114,7 +119,6 @@ export function FooterSection() {
                 cardAspectRatio={1}
                 gapMultiplier={0.025}
                 columns={20}
-
                 rows={20}
                 staggerMultiplier={0.5}
                 floorY={-5.5}
@@ -135,12 +139,9 @@ export function FooterSection() {
                 cornerRadius={0.2}
                 borderWidth={0}
               />
-              
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   )

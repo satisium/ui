@@ -1,11 +1,12 @@
 "use client"
 
-import React, { ReactNode, useRef, useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
-import { motion } from "motion/react"
+import { ArrowUpRight01Icon, PlayIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { PlayIcon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
-import Image from "next/image" // Using Next/Image for optimized loading
+import { motion } from "motion/react"
+import Image from "next/image"
+import Link from "next/link"
+import { ReactNode, useEffect, useRef, useState } from "react"
 
 // ==========================================
 // DATA HOOK: Live GitHub Stars
@@ -54,11 +55,11 @@ export function DesktopGithubButton({
       rel="noopener noreferrer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="group flex h-[56px] items-center gap-2.5 px-2 transition-all focus-visible:outline-none"
+      // INCREASED GAP: Changed from gap-2.5 to gap-4 (16px) for premium breathing room
+      className="group flex h-[56px] items-center gap-4 px-2 transition-all focus-visible:outline-none"
     >
       {/* 
         OFFICIAL GITHUB ICON (Theme Aware) 
-        Uses opacity to mimic the muted-to-foreground color shift on hover.
       */}
       <div className="relative size-5 shrink-0 opacity-70 transition-opacity duration-300 group-hover:opacity-100">
         <Image
@@ -82,10 +83,30 @@ export function DesktopGithubButton({
           animate={{ y: isHovered ? -20 : 0 }}
           transition={{ type: "spring", bounce: 0, duration: 0.4 }}
         >
-          <span className="flex h-[20px] items-center font-sans text-sm leading-none font-semibold tracking-wide text-muted-foreground">
+          {/* DEFAULT STATE: Numbers + Gold Star */}
+          <span className="flex h-[20px] items-center gap-1.5 font-sans text-sm font-semibold tracking-wide text-muted-foreground transition-colors group-hover:text-foreground">
             {stars}
+            {/* 
+              GOLD STAR: 
+              - fill="currentColor" and text-yellow-500 creates the rich gold
+              -mt-[1px] corrects the font baseline optical illusion 
+            */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="-mt-[1px] size-3.5 text-yellow-500 drop-shadow-sm"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                clipRule="evenodd"
+              />
+            </svg>
           </span>
-          <span className="flex h-[20px] items-center gap-1 font-heading text-sm leading-none font-bold tracking-wide text-foreground">
+
+          {/* HOVER STATE: Text & Arrow */}
+          <span className="flex h-[20px] items-center gap-1 font-heading text-sm font-bold tracking-wide text-foreground">
             Star on GitHub
             <HugeiconsIcon icon={ArrowUpRight01Icon} className="size-3.5" />
           </span>
@@ -108,6 +129,7 @@ export interface MobileMediaCardProps {
   buttonRadius?: number
   videoSrc?: string
   exploreText?: ReactNode
+  exploreHref?: string
   repo?: string
   playIcon?: ReactNode
   containerClassName?: string
@@ -127,6 +149,7 @@ export function MobileMediaCard({
   buttonRadius = 16,
   videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4",
   exploreText = "Explore components",
+  exploreHref = "/components",
   repo = "shadcn-ui/ui",
   playIcon = (
     <HugeiconsIcon icon={PlayIcon} className="size-4 fill-white text-white" />
@@ -177,7 +200,8 @@ export function MobileMediaCard({
         )}
         style={{ height: buttonHeight, gap }}
       >
-        <button
+        <Link
+          href={exploreHref}
           className={cn(
             "flex h-full w-[60%] shrink-0 cursor-pointer items-center justify-center bg-foreground px-2 text-background transition-transform focus-visible:outline-none active:scale-95",
             exploreButtonClassName
@@ -187,21 +211,20 @@ export function MobileMediaCard({
           <span className="overflow-hidden font-heading text-[13px] font-medium tracking-wide text-ellipsis whitespace-nowrap">
             {exploreText}
           </span>
-        </button>
+        </Link>
 
         <a
           href={`https://github.com/${repo}`}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            "flex h-full flex-1 items-center justify-center gap-2 bg-transparent px-2 transition-transform focus-visible:outline-none active:scale-95",
+            // INCREASED GAP: Changed from gap-2 to gap-3 for mobile breathing room
+            "flex h-full flex-1 items-center justify-center gap-3 bg-transparent px-2 transition-transform focus-visible:outline-none active:scale-95",
             githubButtonClassName
           )}
           style={{ borderRadius: buttonRadius }}
         >
-          {/* 
-            OFFICIAL GITHUB ICON (Mobile version)
-          */}
+          {/* OFFICIAL GITHUB ICON */}
           <div className="relative size-4 shrink-0 opacity-70">
             <Image
               src="/github-mark.svg"
@@ -217,8 +240,21 @@ export function MobileMediaCard({
             />
           </div>
 
-          <span className="font-sans text-[13px] font-semibold tracking-wide text-muted-foreground">
+          {/* NUMBERS + GOLD STAR */}
+          <span className="flex items-center gap-1.5 font-sans text-[13px] font-semibold tracking-wide text-muted-foreground">
             {stars}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="-mt-[1px] size-3.5 text-yellow-500 drop-shadow-sm"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                clipRule="evenodd"
+              />
+            </svg>
           </span>
         </a>
       </div>

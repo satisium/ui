@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, ReactNode } from "react"
 import { motion, Spring } from "motion/react"
 import { Play } from "lucide-react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 
 export interface VideoExploreButtonProps {
@@ -33,6 +34,8 @@ export interface VideoExploreButtonProps {
   buttonText?: ReactNode
   /** Custom icon to overlay on the video (defaults to Lucide Play) */
   playIcon?: ReactNode
+  /** NEW: The destination URL for the button */
+  href?: string
 
   // --- STYLING (Tailwind classes) ---
   buttonClassName?: string
@@ -60,6 +63,7 @@ export function VideoExploreButton({
   videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4",
   buttonText = "Explore components",
   playIcon = <Play className="size-3 fill-white text-white" />,
+  href = "/components", // Default link destination
 
   buttonClassName,
   canvasClassName,
@@ -186,9 +190,10 @@ export function VideoExploreButton({
         Absolutely hammered to bottom-0 left-0. 
         It does not scale. It does not move. It dictates the entire layout.
       */}
-      <div
+      <Link
+        href={href}
         className={cn(
-          "absolute bottom-0 left-0 flex cursor-pointer items-center justify-center bg-foreground text-background",
+          "absolute bottom-0 left-0 flex cursor-pointer items-center justify-center bg-foreground text-background transition-transform focus-visible:outline-none active:scale-[0.98]",
           buttonClassName
         )}
         style={{
@@ -200,7 +205,7 @@ export function VideoExploreButton({
         <span className="font-heading text-sm font-medium tracking-wide">
           {buttonText}
         </span>
-      </div>
+      </Link>
     </div>
   )
 }

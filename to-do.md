@@ -5,15 +5,17 @@
 ## 🎨 0. Important
 
 - [ ] **Landing page links and buttons:** Check all the links.
-- [ ] **Make the app desktop only:** Add a condition to make the app apart from landing page desktop only.
+- [x] **Make the app desktop only:** Add a condition to make the app apart from landing page desktop only.
 - [ ] **ui.satisium.com:** VERY IMPORTANT.
 - [ ] **Important index pages:** Index pages for `doc/components` etc .
 - [ ] **Proper categories:** Add proper categories to the components.
 - [ ] **Demo videos:** Proper demo videos and hook them properly to the all place they are needed.
-- [ ] **Beta** Make the app beta.
+- [x] **Beta** Make the app beta.
 - [ ] **Delete some components:** Remove the suckers.
 - [ ] **Proper documentation:** Write doc pages, intro and all of these.
 - [ ] **Read me:** Proper read me file.
+- [ ] **The search:** Improve the search component by removing noise and adding some about shortcut info.
+- [ ] **Sidebar:** The side bar in docs needs proper badging etc.
 
 ## 🎨 1. UI, UX & Premium Polish
 
