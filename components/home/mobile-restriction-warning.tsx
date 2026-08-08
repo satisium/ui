@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "motion/react"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Alert01Icon, Cancel01Icon } from "@hugeicons/core-free-icons"
 
-export function MobileRestrictionWarning() {
+// 1. The inner logic that safely reads the URL parameters
+function WarningInner() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [isVisible, setIsVisible] = useState(false)
@@ -62,5 +63,14 @@ export function MobileRestrictionWarning() {
         </motion.div>
       )}
     </AnimatePresence>
+  )
+}
+
+// 2. The exported component wrapped in Suspense to protect your static page build
+export function MobileRestrictionWarning() {
+  return (
+    <Suspense fallback={null}>
+      <WarningInner />
+    </Suspense>
   )
 }
