@@ -45,8 +45,7 @@ const config = {
         destination: "https://us.i.posthog.com/decide",
       },
     ]
-  },  cacheComponents: true,
-
+  },
 }
 
 const withMDX = createMDX({})

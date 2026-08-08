@@ -17,10 +17,6 @@ import { cn } from "@/lib/utils"
 import { DocTracker } from "@/components/doc-tracker"
 import { CopyMdxButton } from "@/components/ui/copy-mdx-button"
 
-// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
-// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
-export const instant = false;
-
 export async function generateStaticParams() {
   return source.generateParams()
 }

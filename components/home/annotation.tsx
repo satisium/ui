@@ -44,7 +44,7 @@ export const Annotation: React.FC<AnnotationProps> = ({
   drawFrom = "start",
   textPosition = "bottom-full mb-2 left-0",
   svgRotation = "",
-  trackingLag = 1,
+  trackingLag = 1.2,
 
   // Defaults for the new styling props
   textClassName,

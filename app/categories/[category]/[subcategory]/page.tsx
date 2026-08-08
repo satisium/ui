@@ -5,10 +5,6 @@ import { TAXONOMY } from "@/lib/utils"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 
-// TODO: Cache Components adoption. Refactor this route so this opt-out can be removed.
-// See: https://nextjs.org/docs/app/guides/migrating-to-cache-components
-export const instant = false;
-
 export function generateStaticParams() {
   const params: { category: string; subcategory: string }[] = []
 
@@ -59,8 +55,7 @@ export default async function SubCategoryPage(props: {
   const { category, subcategory } = params
 
   const validSubcategories = TAXONOMY[category as keyof typeof TAXONOMY] as
-    | readonly string[]
-    | undefined
+    readonly string[] | undefined
 
   if (!validSubcategories || !validSubcategories.includes(subcategory)) {
     return notFound()
