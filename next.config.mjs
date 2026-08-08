@@ -46,7 +46,6 @@ const config = {
       },
     ]
   },
-  cacheComponents: true,
 }
 
 const withMDX = createMDX({})

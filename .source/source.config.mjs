@@ -34,6 +34,8 @@ var docs = defineDocs({
   docs: {
     schema: pageSchema.extend({
       component: z2.boolean().default(false),
+      hideToc: z2.boolean().default(false),
+      hideCopy: z2.boolean().default(false),
       badge: z2.enum(["new", "updated", "beta", "premium", "deprecated"]).optional(),
       category: z2.array(CategoryEnum).optional(),
       subcategory: z2.array(SubCategoryEnum).optional(),

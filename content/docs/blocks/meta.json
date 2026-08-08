@@ -1,12 +1,5 @@
 {
   "title": "Blocks",
-  "pages": [
-    "button",
-    "spotlight-card",
-    "fluid-switch",
-    "aurora-hero",
-    "ao",
-    "e-commerce-dashboard"
-  ],
+  "pages": [],
   "icon": "LayoutPanelTop"
 }

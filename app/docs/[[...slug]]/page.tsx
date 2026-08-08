@@ -325,14 +325,26 @@ export default async function Page(props: {
               )}
             </div>
 
-            <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
-              <CopyMdxButton rawMdx={copyPayload} />
-            </div>
+            {/* ✨ DYNAMIC RENDER: Hide the Copy Button if hideCopy is true */}
+            {!page.data.hideCopy && (
+              <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
+                <CopyMdxButton rawMdx={copyPayload} />
+              </div>
+            )}
           </header>
+
+          {/* ... existing header code ... */}
 
           <div
             id="installation"
-            className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
+            className={cn(
+              "grid items-start gap-12",
+
+              // ✨ FIXED: Removed mx-auto so it stays flush left with the header!
+              page.data.hideToc
+                ? "w-full max-w-4xl grid-cols-1"
+                : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
+            )}
           >
             <div className="w-full min-w-0 pb-32">
               <MDX components={defaultMdxComponents} />
@@ -377,9 +389,12 @@ export default async function Page(props: {
               </div>
             </div>
 
-            <aside className="sticky top-24 no-scrollbar hidden max-h-[calc(100vh-8rem)] overflow-y-auto lg:block">
-              <TableOfContents items={page.data.toc} />
-            </aside>
+            {/* Conditionally render the aside */}
+            {!page.data.hideToc && (
+              <aside className="sticky top-24 no-scrollbar hidden max-h-[calc(100vh-8rem)] overflow-y-auto lg:block">
+                <TableOfContents items={page.data.toc} />
+              </aside>
+            )}
           </div>
         </article>
       </div>

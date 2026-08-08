@@ -8,6 +8,8 @@ export const docs = defineDocs({
   docs: {
     schema: pageSchema.extend({
       component: z.boolean().default(false),
+      hideToc: z.boolean().default(false),
+      hideCopy: z.boolean().default(false),
       badge: z
         .enum(["new", "updated", "beta", "premium", "deprecated"])
         .optional(),
