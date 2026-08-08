@@ -32,7 +32,7 @@ export default function DimensionalDeckDemo() {
 
       <div className="pointer-events-none absolute bottom-8 z-10 text-center select-none">
         <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-          Scroll Vertically
+          Scroll / Drag Vertically Or Drag Horizontally
         </p>
       </div>
     </main>

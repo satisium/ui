@@ -4,7 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 export default function ProximityGridImageDemo() {
   const imageUrl =
-    "https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/2.jpg"
+    "https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/24.jpg"
 
   return (
     <main className="flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8">
