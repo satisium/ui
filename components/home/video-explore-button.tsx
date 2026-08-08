@@ -70,7 +70,7 @@ export function VideoExploreButton({
   videoContainerClassName,
 
   // Apple-style heavy spring for premium feel
-  springConfig = { type: "spring", bounce: 0.15, duration: 0.5 },
+  springConfig = { bounce: 0.15, duration: 0.5 },
   unhoverDelay = 500,
 }: VideoExploreButtonProps) {
   const [isHovered, setIsHovered] = useState(false)
