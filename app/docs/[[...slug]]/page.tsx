@@ -83,20 +83,13 @@ export default async function Page(props: {
 
   let copyPayload = ""
   try {
-    // 1. Calculate expected AI file path (public/llms/[folder]/[file].md)
-    // We replace the .mdx extension with .md for the LLM files
     const relativePath = page.path.replace(/\.mdx?$/, ".md")
     const aiFilePath = path.join(process.cwd(), "public/llms", relativePath)
-
-    // 2. Calculate the raw MDX fallback path (content/docs/[folder]/[file].mdx)
     const rawMdxPath = path.join(process.cwd(), "content/docs", page.path)
 
-    // 3. Smart Priority: Try to serve the pure, code-injected AI Markdown first!
     if (fs.existsSync(aiFilePath)) {
       copyPayload = fs.readFileSync(aiFilePath, "utf-8")
-    }
-    // 4. Fallback: If no AI file exists, serve the raw Fumadocs MDX
-    else if (fs.existsSync(rawMdxPath)) {
+    } else if (fs.existsSync(rawMdxPath)) {
       copyPayload = fs.readFileSync(rawMdxPath, "utf-8")
     }
   } catch (error) {
@@ -118,7 +111,7 @@ export default async function Page(props: {
       const item = pageRegistry[key]
       if (item) {
         const itemType = item.type || "react"
-        const renderMode = item.renderMode || "direct" // Defaults to direct
+        const renderMode = item.renderMode || "direct"
 
         if (itemType === "video" || itemType === "image") {
           resolvedDemos.push({
@@ -138,7 +131,6 @@ export default async function Page(props: {
             name: item.name,
             renderMode,
             embedUrl: renderMode === "iframe" ? `/embed/${key}` : undefined,
-            // ✨ CRITICAL PERF FIX: Do not execute component if rendering via iframe
             component: renderMode === "direct" && Comp ? <Comp /> : null,
             files,
             installCommand: item.installCommand || "",
@@ -297,7 +289,6 @@ export default async function Page(props: {
             )}
 
             <div className="flex flex-col gap-4">
-              {/* ✨ INJECTED COPY BUTTON HERE */}
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center-safe sm:justify-start">
                 <h1 className="capitalize">{page.data.title}</h1>
                 <div className="flex flex-row flex-wrap gap-4 text-center">
@@ -325,7 +316,7 @@ export default async function Page(props: {
               )}
             </div>
 
-            {/* ✨ DYNAMIC RENDER: Hide the Copy Button if hideCopy is true */}
+            {/* ✨ DYNAMIC COPY BUTTON RENDER */}
             {!page.data.hideCopy && (
               <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
                 <CopyMdxButton rawMdx={copyPayload} />
@@ -333,14 +324,11 @@ export default async function Page(props: {
             )}
           </header>
 
-          {/* ... existing header code ... */}
-
           <div
             id="installation"
             className={cn(
               "grid items-start gap-12",
-
-              // ✨ FIXED: Removed mx-auto so it stays flush left with the header!
+              // ✨ DYNAMIC LAYOUT: Flushed left (no mx-auto)
               page.data.hideToc
                 ? "w-full max-w-4xl grid-cols-1"
                 : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
@@ -389,7 +377,7 @@ export default async function Page(props: {
               </div>
             </div>
 
-            {/* Conditionally render the aside */}
+            {/* ✨ DYNAMIC TOC RENDER */}
             {!page.data.hideToc && (
               <aside className="sticky top-24 no-scrollbar hidden max-h-[calc(100vh-8rem)] overflow-y-auto lg:block">
                 <TableOfContents items={page.data.toc} />

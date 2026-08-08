@@ -12,72 +12,177 @@ export const source = loader({
   plugins: ({ typedPlugin }) => [
     typedPlugin({
       transformPageTree: {
+        // 1. TRANSFORM INDIVIDUAL PAGES
         file(node, file) {
           if (!file) return node
 
           const sourceFile = this.storage.read(file)
-          const meta = sourceFile?.data as { badge?: string } | undefined
+          const meta = sourceFile?.data as
+            { badge?: string; comingSoon?: boolean } | undefined
 
-          if (meta?.badge) {
-            const badgeType = meta.badge.toLowerCase()
+          // Extract only the primitive values to prevent Next.js Server Component crashes
+          const badgeVal = meta?.badge
+          const comingSoonVal = meta?.comingSoon
+
+          // Attach only the safe primitives
+          ;(node as any)._badge = badgeVal
+          ;(node as any)._comingSoon = comingSoonVal
+
+          const hasBadge = !!badgeVal
+          const isComingSoon = !!comingSoonVal
+
+          if (hasBadge || isComingSoon) {
+            const originalName = node.name
+            const badgeType = badgeVal?.toLowerCase()
             const isDeprecated = badgeType === "deprecated"
             const isPremium = badgeType === "premium" || badgeType === "paid"
 
             node.name = (
-              <span className="group flex items-center gap-2">
+              <span className="group flex min-w-0 items-center gap-2">
+                {/* Original Item Name */}
                 <span
                   className={cn(
-                    "transition-colors",
+                    "truncate transition-colors",
                     isDeprecated &&
                       "text-muted-foreground line-through opacity-60"
                   )}
                 >
-                  {node.name}
+                  {originalName}
                 </span>
 
-                <span className="relative flex shrink-0 items-center justify-center">
-                  {badgeType === "new" && (
-                    <>
-                      <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-500 opacity-60"></span>
-                      <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500"></span>
-                    </>
-                  )}
+                {/* ✨ INJECTED: Primary "SOON" Badge (Perfect readability & consistency) */}
+                {isComingSoon && (
+                  <span className="flex shrink-0 items-center justify-center rounded-[5px] bg-primary px-1.5 py-[1.5px] font-mono text-[9px] font-bold tracking-widest text-primary-foreground uppercase">
+                    SOON
+                  </span>
+                )}
 
-                  {badgeType === "updated" && (
-                    <span
-                      className="size-1.5 rounded-full bg-blue-500"
-                      title="Updated"
-                    />
-                  )}
-
-                  {badgeType === "beta" && (
-                    <span
-                      className="size-1.5 rounded-full bg-amber-500"
-                      title="Beta"
-                    />
-                  )}
-
-                  {badgeType === "deprecated" && (
-                    <span
-                      className="size-1.5 rounded-full bg-rose-500/50"
-                      title="Deprecated"
-                    />
-                  )}
-
-                  {isPremium && (
-                    <span
-                      className="flex items-center justify-center text-primary"
-                      title="Pro Component"
-                    >
-                      <HugeiconsIcon
-                        icon={CoinsDollarIcon}
-                        className="size-5"
+                {/* Suffix Badges */}
+                {hasBadge && (
+                  <span className="relative flex shrink-0 items-center justify-center">
+                    {badgeType === "new" && (
+                      <>
+                        <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-500 opacity-60"></span>
+                        <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500"></span>
+                      </>
+                    )}
+                    {badgeType === "updated" && (
+                      <span
+                        className="size-1.5 rounded-full bg-blue-500"
+                        title="Updated"
                       />
+                    )}
+                    {badgeType === "beta" && (
+                      <span
+                        className="size-1.5 rounded-full bg-amber-500"
+                        title="Beta"
+                      />
+                    )}
+                    {badgeType === "deprecated" && (
+                      <span
+                        className="size-1.5 rounded-full bg-rose-500/50"
+                        title="Deprecated"
+                      />
+                    )}
+                    {isPremium && (
+                      <span
+                        className="flex items-center justify-center text-primary"
+                        title="Pro Component"
+                      >
+                        <HugeiconsIcon
+                          icon={CoinsDollarIcon}
+                          className="size-5"
+                        />
+                      </span>
+                    )}
+                  </span>
+                )}
+              </span>
+            )
+          }
+
+          return node
+        },
+
+        // 2. TRANSFORM FOLDERS (Blocks & Templates)
+        folder(node) {
+          if (node.index) {
+            // Read the safe primitive values we attached in the file hook
+            const badgeVal = (node.index as any)._badge as string | undefined
+            const comingSoonVal = (node.index as any)._comingSoon as
+              boolean | undefined
+
+            const hasBadge = !!badgeVal
+            const isComingSoon = !!comingSoonVal
+
+            if (hasBadge || isComingSoon) {
+              const originalName = node.name
+              const badgeType = badgeVal?.toLowerCase()
+              const isDeprecated = badgeType === "deprecated"
+              const isPremium = badgeType === "premium" || badgeType === "paid"
+
+              node.name = (
+                <span className="group flex min-w-0 items-center gap-2">
+                  {/* Original Folder Name */}
+                  <span
+                    className={cn(
+                      "truncate transition-colors",
+                      isDeprecated &&
+                        "text-muted-foreground line-through opacity-60"
+                    )}
+                  >
+                    {originalName}
+                  </span>
+
+                  {/* ✨ INJECTED: Primary "SOON" Badge for Folders */}
+                  {isComingSoon && (
+                    <span className="flex shrink-0 items-center justify-center rounded-[5px] bg-primary px-1.5 py-[1.5px] font-mono text-[9px] font-bold tracking-widest text-primary-foreground uppercase">
+                      SOON
+                    </span>
+                  )}
+
+                  {hasBadge && (
+                    <span className="relative flex shrink-0 items-center justify-center">
+                      {badgeType === "new" && (
+                        <>
+                          <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-500 opacity-60"></span>
+                          <span className="relative inline-flex size-1.5 rounded-full bg-emerald-500"></span>
+                        </>
+                      )}
+                      {badgeType === "updated" && (
+                        <span
+                          className="size-1.5 rounded-full bg-blue-500"
+                          title="Updated"
+                        />
+                      )}
+                      {badgeType === "beta" && (
+                        <span
+                          className="size-1.5 rounded-full bg-amber-500"
+                          title="Beta"
+                        />
+                      )}
+                      {badgeType === "deprecated" && (
+                        <span
+                          className="size-1.5 rounded-full bg-rose-500/50"
+                          title="Deprecated"
+                        />
+                      )}
+                      {isPremium && (
+                        <span
+                          className="flex items-center justify-center text-primary"
+                          title="Pro Component"
+                        >
+                          <HugeiconsIcon
+                            icon={CoinsDollarIcon}
+                            className="size-5"
+                          />
+                        </span>
+                      )}
                     </span>
                   )}
                 </span>
-              </span>
-            )
+              )
+            }
           }
 
           return node
@@ -90,7 +195,6 @@ export const source = loader({
 
     let iconKey = iconString
 
-    // Smart DX Format: If user writes "coins-dollar" in MDX, convert it to "CoinsDollarIcon"
     if (!(iconKey in allHugeicons)) {
       const formatted =
         iconString
@@ -103,7 +207,6 @@ export const source = loader({
       }
     }
 
-    // Render the matching Hugeicon dynamically
     if (iconKey in allHugeicons) {
       const iconObj = allHugeicons[iconKey as keyof typeof allHugeicons]
       return createElement(HugeiconsIcon, { icon: iconObj as any })

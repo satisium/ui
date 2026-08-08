@@ -254,7 +254,7 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
           className="group flex w-full items-center gap-2.5 rounded-md transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
         >
           {/* Logo with hover lift */}
-          <div className="flex size-7 shrink-0 items-center justify-center transition-transform duration-300 group-hover:-translate-y-0.5">
+          <div className="flex size-7 shrink-0 items-center justify-center">
             <SatisiumLogo size="100%" />
           </div>
 

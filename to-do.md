@@ -17,6 +17,10 @@
 - [x] **The search:** Improve the search component by removing noise and adding some about shortcut info.
 - [x] **Sidebar:** The side bar in docs needs proper badging etc.
 - [ ] **Changelog:** Design proper changelog page.
+- [ ] **CLI:** VERY IMPORTANT Make CLI work flawlessly. CLI has errors and inconsistent.
+- [ ] **LLM Text:** Check LLM thingy.
+- [ ] **SEO and logo:** Update logos everywhere. SEO and all.
+- [ ] **Github satisium:** Github satis UI to satisium.
 
 ## 🎨 1. UI, UX & Premium Polish
 
