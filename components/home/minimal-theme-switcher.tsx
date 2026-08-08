@@ -124,7 +124,7 @@ export const MinimalThemeSwitcher = () => {
       {/* 3. THE KEYBOARD HINT */}
       <div className="relative z-10 ml-1 flex flex-shrink-0 items-center pr-1.5 pl-1">
         <span className="font-sans text-[11px] font-medium tracking-widest text-muted-foreground/40">
-          D
+          d
         </span>
       </div>
     </motion.div>

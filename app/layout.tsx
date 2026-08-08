@@ -14,6 +14,7 @@ import { Suspense } from "react"
 import PostHogPageView from "@/components/posthog-pageview"
 import { CommandMenuDialog } from "@/components/layout/command-menu"
 import { source } from "@/lib/source"
+import { ViewportBlocker } from "@/components/viewport-blocker"
 
 const fontDisplay = Antonio({
   subsets: ["latin"],
@@ -109,6 +110,8 @@ export default function RootLayout({
             <PostHogPageView />
           </Suspense>
           <ThemeProvider>
+            <ViewportBlocker />
+
             {children}
             <CommandMenuDialog docsTree={source.pageTree} />
           </ThemeProvider>

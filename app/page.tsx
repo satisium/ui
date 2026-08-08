@@ -1,6 +1,7 @@
 import { FooterSection } from "@/components/home/footer-section"
 import { HeroSection } from "@/components/home/hero-section"
 import { IntroSection } from "@/components/home/intro-section"
+import { MobileRestrictionWarning } from "@/components/home/mobile-restriction-warning"
 
 export default function LandingPage() {
   return (
@@ -10,6 +11,7 @@ export default function LandingPage() {
       <IntroSection />
 
       <FooterSection />
+      <MobileRestrictionWarning />
     </main>
   )
 }
