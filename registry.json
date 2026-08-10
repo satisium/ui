@@ -4,31 +4,6 @@
   "homepage": "https://ui.satisium.com",
   "items": [
     {
-      "name": "spotlight-card",
-      "type": "registry:ui",
-      "title": "Spotlight Card",
-      "description": "A card with a cursor-following radial glow.",
-      "dependencies": ["framer-motion", "clsx", "tailwind-merge"],
-      "files": [
-        {
-          "path": "registry/ui/spotlight-card.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "spotlight-card-demo",
-      "type": "registry:ui",
-      "title": "Basic Spotlight Demo",
-      "registryDependencies": ["spotlight-card"],
-      "files": [
-        {
-          "path": "registry/demos/spotlight-card-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "velocity-strips",
       "type": "registry:ui",
       "title": "Velocity Strips",
@@ -51,8 +26,13 @@
       "name": "velocity-strips-image",
       "type": "registry:ui",
       "title": "Velocity Strips Image Demo",
-      "registryDependencies": ["velocity-strips"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "velocity-strips"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/velocity-strips/velocity-strips-image.tsx",
@@ -64,8 +44,13 @@
       "name": "velocity-strips-video",
       "type": "registry:ui",
       "title": "Velocity Strips Video Demo",
-      "registryDependencies": ["velocity-strips"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "velocity-strips"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/velocity-strips/velocity-strips-video.tsx",
@@ -96,8 +81,13 @@
       "name": "velocity-grid-image",
       "type": "registry:ui",
       "title": "Velocity Grid Image Demo",
-      "registryDependencies": ["velocity-grid"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "velocity-grid"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/velocity-grid/velocity-grid-image.tsx",
@@ -109,8 +99,13 @@
       "name": "velocity-grid-video",
       "type": "registry:ui",
       "title": "Velocity Grid Video Demo",
-      "registryDependencies": ["velocity-grid"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "velocity-grid"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/velocity-grid/velocity-grid-video.tsx",
@@ -141,8 +136,13 @@
       "name": "proximity-grid-image",
       "type": "registry:ui",
       "title": "Proximity Grid Image Demo",
-      "registryDependencies": ["proximity-grid"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "proximity-grid"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/proximity-grid/proximity-grid-image.tsx",
@@ -154,8 +154,13 @@
       "name": "proximity-grid-video",
       "type": "registry:ui",
       "title": "Proximity Grid Video Demo",
-      "registryDependencies": ["proximity-grid"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "proximity-grid"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/proximity-grid/proximity-grid-video.tsx",
@@ -186,8 +191,13 @@
       "name": "liquid-marble-image",
       "type": "registry:ui",
       "title": "Liquid Marble Image Demo",
-      "registryDependencies": ["liquid-marble"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "liquid-marble"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/liquid-marble/liquid-marble-image.tsx",
@@ -199,8 +209,13 @@
       "name": "liquid-marble-video",
       "type": "registry:ui",
       "title": "Liquid Marble Video Demo",
-      "registryDependencies": ["liquid-marble"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "liquid-marble"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/liquid-marble/liquid-marble-video.tsx",
@@ -231,8 +246,13 @@
       "name": "glass-slices-image",
       "type": "registry:ui",
       "title": "Glass Slices Image Demo",
-      "registryDependencies": ["glass-slices"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "glass-slices"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/glass-slices/glass-slices-image.tsx",
@@ -244,140 +264,16 @@
       "name": "glass-slices-video",
       "type": "registry:ui",
       "title": "Glass Slices Video Demo",
-      "registryDependencies": ["glass-slices"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
+      "registryDependencies": [
+        "glass-slices"
+      ],
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
           "path": "registry/demos/components/glass-slices/glass-slices-video.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "halftone-hero",
-      "type": "registry:ui",
-      "title": "Halftone Hero",
-      "description": "An interactive Canvas 2D component that maps an image into physics-based vertical halftone strings.",
-      "dependencies": ["clsx", "tailwind-merge"],
-      "files": [
-        {
-          "path": "registry/ui/halftone-hero.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "halftone-hero-demo",
-      "type": "registry:ui",
-      "title": "Halftone Hero Demo",
-      "registryDependencies": ["halftone-hero"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
-      "files": [
-        {
-          "path": "registry/demos/components/halftone-hero/halftone-hero-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "halftone-horizontal",
-      "type": "registry:ui",
-      "title": "Halftone Horizontal",
-      "description": "An interactive Canvas 2D component that maps an image into physics-based horizontal halftone strings.",
-      "dependencies": ["clsx", "tailwind-merge"],
-      "files": [
-        {
-          "path": "registry/ui/halftone-horizontal.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "halftone-horizontal-demo",
-      "type": "registry:ui",
-      "title": "Halftone Horizontal Demo",
-      "registryDependencies": ["halftone-horizontal"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
-      "files": [
-        {
-          "path": "registry/demos/components/halftone-horizontal/halftone-horizontal-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "halftone-video-hero",
-      "type": "registry:ui",
-      "title": "Halftone Video Hero",
-      "description": "A hyper-optimized dual-RAF Canvas 2D component rendering live video into physics-based vertical halftone strings.",
-      "dependencies": ["clsx", "tailwind-merge"],
-      "files": [
-        {
-          "path": "registry/ui/halftone-video-hero.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "halftone-video-hero-demo",
-      "type": "registry:ui",
-      "title": "Halftone Video Hero Demo",
-      "registryDependencies": ["halftone-video-hero"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
-      "files": [
-        {
-          "path": "registry/demos/components/halftone-video-hero/halftone-video-hero-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "halftone-video-horizontal",
-      "type": "registry:ui",
-      "title": "Halftone Video Horizontal",
-      "description": "A hyper-optimized dual-RAF Canvas 2D component rendering live video into physics-based horizontal halftone strings.",
-      "dependencies": ["clsx", "tailwind-merge"],
-      "files": [
-        {
-          "path": "registry/ui/halftone-video-horizontal.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "halftone-video-horizontal-demo",
-      "type": "registry:ui",
-      "title": "Halftone Video Horizontal Demo",
-      "registryDependencies": ["halftone-video-horizontal"],
-      "dependencies": ["@hugeicons/react", "@hugeicons/core-free-icons"],
-      "files": [
-        {
-          "path": "registry/demos/components/halftone-video-horizontal/halftone-video-horizontal-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "bouquet-trail",
-      "type": "registry:ui",
-      "title": "Bouquet Trail",
-      "description": "A highly optimized, hardware-accelerated mouse trail component featuring SVG DOM pooling, bi-directional time scrubbing, and customizable spring physics.",
-      "dependencies": ["clsx", "tailwind-merge"],
-      "files": [
-        {
-          "path": "registry/ui/bouquet-trail.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "bouquet-trail-demo",
-      "type": "registry:ui",
-      "title": "Bouquet Trail Demo",
-      "registryDependencies": ["bouquet-trail"],
-      "files": [
-        {
-          "path": "registry/demos/components/bouquet-trail/bouquet-trail-demo.tsx",
           "type": "registry:component"
         }
       ]
@@ -387,7 +283,10 @@
       "type": "registry:ui",
       "title": "Depth Trail",
       "description": "A cinematic mouse trail leveraging Z-depth, focal blur, parallax shifting, and atmospheric brightness to simulate a dense 3D space.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/depth-trail.tsx",
@@ -399,7 +298,9 @@
       "name": "depth-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Depth Trail Avatars Demo",
-      "registryDependencies": ["depth-trail"],
+      "registryDependencies": [
+        "depth-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/depth-trail/depth-trail-avatars-demo.tsx",
@@ -411,7 +312,9 @@
       "name": "depth-trail-images-demo",
       "type": "registry:ui",
       "title": "Depth Trail Images Demo",
-      "registryDependencies": ["depth-trail"],
+      "registryDependencies": [
+        "depth-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/depth-trail/depth-trail-images-demo.tsx",
@@ -424,7 +327,10 @@
       "type": "registry:ui",
       "title": "Scatter Trail",
       "description": "A physics-based mouse trail that calculates pointer velocity to dynamically throw, slide, and spin images across the screen.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/scatter-trail.tsx",
@@ -436,7 +342,9 @@
       "name": "scatter-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Scatter Trail Avatars Demo",
-      "registryDependencies": ["scatter-trail"],
+      "registryDependencies": [
+        "scatter-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/scatter-trail/scatter-trail-avatars-demo.tsx",
@@ -448,7 +356,9 @@
       "name": "scatter-trail-images-demo",
       "type": "registry:ui",
       "title": "Scatter Trail Images Demo",
-      "registryDependencies": ["scatter-trail"],
+      "registryDependencies": [
+        "scatter-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/scatter-trail/scatter-trail-images-demo.tsx",
@@ -461,7 +371,10 @@
       "type": "registry:ui",
       "title": "Wind Trail",
       "description": "An interactive mouse trail that maps spawned elements to an ambient wind physics engine, drifting items smoothly across the screen like autumn leaves.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/wind-trail.tsx",
@@ -473,7 +386,9 @@
       "name": "wind-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Wind Trail Avatars Demo",
-      "registryDependencies": ["wind-trail"],
+      "registryDependencies": [
+        "wind-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/wind-trail/wind-trail-avatars-demo.tsx",
@@ -485,7 +400,9 @@
       "name": "wind-trail-images-demo",
       "type": "registry:ui",
       "title": "Wind Trail Images Demo",
-      "registryDependencies": ["wind-trail"],
+      "registryDependencies": [
+        "wind-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/wind-trail/wind-trail-images-demo.tsx",
@@ -498,7 +415,10 @@
       "type": "registry:ui",
       "title": "Kaleidoscope Trail",
       "description": "A geometrically mapped mouse trail that perfectly mirrors spawned elements around the center axis, creating mesmerizing kaleidoscope mandalas.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/kaleidoscope-trail.tsx",
@@ -510,7 +430,9 @@
       "name": "kaleidoscope-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Kaleidoscope Trail Avatars Demo",
-      "registryDependencies": ["kaleidoscope-trail"],
+      "registryDependencies": [
+        "kaleidoscope-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-avatars-demo.tsx",
@@ -522,7 +444,9 @@
       "name": "kaleidoscope-trail-images-demo",
       "type": "registry:ui",
       "title": "Kaleidoscope Trail Images Demo",
-      "registryDependencies": ["kaleidoscope-trail"],
+      "registryDependencies": [
+        "kaleidoscope-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-images-demo.tsx",
@@ -535,7 +459,10 @@
       "type": "registry:ui",
       "title": "Squircle Trail",
       "description": "A snappy, hardware-accelerated mouse trail component that leaves behind rounded-square images with optional path-directional rotation.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/squircle-trail.tsx",
@@ -547,7 +474,9 @@
       "name": "squircle-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Squircle Trail Avatars Demo",
-      "registryDependencies": ["squircle-trail"],
+      "registryDependencies": [
+        "squircle-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/squircle-trail/squircle-trail-avatars-demo.tsx",
@@ -559,7 +488,9 @@
       "name": "squircle-trail-images-demo",
       "type": "registry:ui",
       "title": "Squircle Trail Images Demo",
-      "registryDependencies": ["squircle-trail"],
+      "registryDependencies": [
+        "squircle-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/squircle-trail/squircle-trail-images-demo.tsx",
@@ -572,7 +503,10 @@
       "type": "registry:ui",
       "title": "Pendulum Trail",
       "description": "An interactive mouse trail that maps spawned items to an invisible swinging pendulum axis, driven entirely by pointer velocity.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/pendulum-trail.tsx",
@@ -584,7 +518,9 @@
       "name": "pendulum-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Pendulum Trail Avatars Demo",
-      "registryDependencies": ["pendulum-trail"],
+      "registryDependencies": [
+        "pendulum-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/pendulum-trail/pendulum-trail-avatars-demo.tsx",
@@ -596,7 +532,9 @@
       "name": "pendulum-trail-images-demo",
       "type": "registry:ui",
       "title": "Pendulum Trail Images Demo",
-      "registryDependencies": ["pendulum-trail"],
+      "registryDependencies": [
+        "pendulum-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/pendulum-trail/pendulum-trail-images-demo.tsx",
@@ -609,7 +547,10 @@
       "type": "registry:ui",
       "title": "Slinky Trail",
       "description": "An interconnected, continuous spring-physics mouse trail that simulates a slinky or snake chasing the pointer.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/slinky-trail.tsx",
@@ -621,7 +562,9 @@
       "name": "slinky-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Slinky Trail Avatars Demo",
-      "registryDependencies": ["slinky-trail"],
+      "registryDependencies": [
+        "slinky-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/slinky-trail/slinky-trail-avatars-demo.tsx",
@@ -633,7 +576,9 @@
       "name": "slinky-trail-images-demo",
       "type": "registry:ui",
       "title": "Slinky Trail Images Demo",
-      "registryDependencies": ["slinky-trail"],
+      "registryDependencies": [
+        "slinky-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/slinky-trail/slinky-trail-images-demo.tsx",
@@ -646,7 +591,10 @@
       "type": "registry:ui",
       "title": "Velocity Trail",
       "description": "An intense, kinetic mouse trail that calculates real-time pointer speed to deform, stretch, and squeeze items along their trajectory.",
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": [
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/velocity-trail.tsx",
@@ -658,7 +606,9 @@
       "name": "velocity-trail-avatars-demo",
       "type": "registry:ui",
       "title": "Velocity Trail Avatars Demo",
-      "registryDependencies": ["velocity-trail"],
+      "registryDependencies": [
+        "velocity-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/velocity-trail/velocity-trail-avatars-demo.tsx",
@@ -670,7 +620,9 @@
       "name": "velocity-trail-images-demo",
       "type": "registry:ui",
       "title": "Velocity Trail Images Demo",
-      "registryDependencies": ["velocity-trail"],
+      "registryDependencies": [
+        "velocity-trail"
+      ],
       "files": [
         {
           "path": "registry/demos/components/velocity-trail/velocity-trail-images-demo.tsx",
@@ -683,7 +635,12 @@
       "type": "registry:ui",
       "title": "Editorial Reveal",
       "description": "A premium, Awwwards-level text reveal component driven by GSAP.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/editorial-reveal.tsx",
@@ -695,7 +652,9 @@
       "name": "editorial-reveal-demo",
       "type": "registry:ui",
       "title": "Editorial Reveal Demo",
-      "registryDependencies": ["editorial-reveal"],
+      "registryDependencies": [
+        "editorial-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/editorial-reveal/editorial-reveal-demo.tsx",
@@ -708,7 +667,12 @@
       "type": "registry:ui",
       "title": "Elastic Pop Reveal",
       "description": "A tactile, physics-based text reveal component using a customizable GSAP elastic spring.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/elastic-pop-reveal.tsx",
@@ -720,7 +684,9 @@
       "name": "elastic-pop-headline-demo",
       "type": "registry:ui",
       "title": "Elastic Pop Headline Demo",
-      "registryDependencies": ["elastic-pop-reveal"],
+      "registryDependencies": [
+        "elastic-pop-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-headline-demo.tsx",
@@ -732,7 +698,9 @@
       "name": "elastic-pop-paragraph-demo",
       "type": "registry:ui",
       "title": "Elastic Pop Paragraph Demo",
-      "registryDependencies": ["elastic-pop-reveal"],
+      "registryDependencies": [
+        "elastic-pop-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-paragraph-demo.tsx",
@@ -745,7 +713,12 @@
       "type": "registry:ui",
       "title": "Elastic Typewriter",
       "description": "A highly kinetic typewriter effect. A cursor glides across the text, while individual characters snap into place using physical tension.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/elastic-typewriter.tsx",
@@ -757,7 +730,9 @@
       "name": "elastic-typewriter-headline-demo",
       "type": "registry:ui",
       "title": "Elastic Typewriter Headline Demo",
-      "registryDependencies": ["elastic-typewriter"],
+      "registryDependencies": [
+        "elastic-typewriter"
+      ],
       "files": [
         {
           "path": "registry/demos/components/elastic-typewriter/elastic-typewriter-headline-demo.tsx",
@@ -769,7 +744,9 @@
       "name": "elastic-typewriter-paragraph-demo",
       "type": "registry:ui",
       "title": "Elastic Typewriter Paragraph Demo",
-      "registryDependencies": ["elastic-typewriter"],
+      "registryDependencies": [
+        "elastic-typewriter"
+      ],
       "files": [
         {
           "path": "registry/demos/components/elastic-typewriter/elastic-typewriter-paragraph-demo.tsx",
@@ -782,7 +759,12 @@
       "type": "registry:ui",
       "title": "Flip 3D Reveal",
       "description": "Characters or words rotate into view along the Y-axis, creating a Rolodex or split-flap display effect with a microscopic physics bounce.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/flip-3d-reveal.tsx",
@@ -794,7 +776,9 @@
       "name": "flip-3d-headline-demo",
       "type": "registry:ui",
       "title": "Flip 3D Headline Demo",
-      "registryDependencies": ["flip-3d-reveal"],
+      "registryDependencies": [
+        "flip-3d-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/flip-3d-reveal/flip-3d-headline-demo.tsx",
@@ -806,7 +790,9 @@
       "name": "flip-3d-paragraph-demo",
       "type": "registry:ui",
       "title": "Flip 3D Paragraph Demo",
-      "registryDependencies": ["flip-3d-reveal"],
+      "registryDependencies": [
+        "flip-3d-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/flip-3d-reveal/flip-3d-paragraph-demo.tsx",
@@ -819,7 +805,12 @@
       "type": "registry:ui",
       "title": "Flip Vertical Reveal",
       "description": "A 3D mechanical text reveal component simulating a split-flap display or falling dominoes.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/flip-vertical-reveal.tsx",
@@ -831,7 +822,9 @@
       "name": "flip-vertical-headline-demo",
       "type": "registry:ui",
       "title": "Flip Vertical Headline Demo",
-      "registryDependencies": ["flip-vertical-reveal"],
+      "registryDependencies": [
+        "flip-vertical-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/flip-vertical-reveal/flip-vertical-headline-demo.tsx",
@@ -843,7 +836,9 @@
       "name": "flip-vertical-paragraph-demo",
       "type": "registry:ui",
       "title": "Flip Vertical Paragraph Demo",
-      "registryDependencies": ["flip-vertical-reveal"],
+      "registryDependencies": [
+        "flip-vertical-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/flip-vertical-reveal/flip-vertical-paragraph-demo.tsx",
@@ -856,7 +851,12 @@
       "type": "registry:ui",
       "title": "Fluid Ink Reveal",
       "description": "A liquid text reveal component. Uses an SVG matrix to warp blurry elements into sharp liquid droplets.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/fluid-ink-reveal.tsx",
@@ -868,7 +868,9 @@
       "name": "fluid-ink-headline-demo",
       "type": "registry:ui",
       "title": "Fluid Ink Headline Demo",
-      "registryDependencies": ["fluid-ink-reveal"],
+      "registryDependencies": [
+        "fluid-ink-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-headline-demo.tsx",
@@ -880,7 +882,9 @@
       "name": "fluid-ink-paragraph-demo",
       "type": "registry:ui",
       "title": "Fluid Ink Paragraph Demo",
-      "registryDependencies": ["fluid-ink-reveal"],
+      "registryDependencies": [
+        "fluid-ink-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-paragraph-demo.tsx",
@@ -893,7 +897,12 @@
       "type": "registry:ui",
       "title": "Blur Reveal",
       "description": "A cinematic, 3D text reveal component. Characters or words sweep in from an angled, blurry 3D perspective.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/blur-reveal.tsx",
@@ -905,7 +914,9 @@
       "name": "blur-reveal-headline-demo",
       "type": "registry:ui",
       "title": "Blur Reveal Headline Demo",
-      "registryDependencies": ["blur-reveal"],
+      "registryDependencies": [
+        "blur-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/blur-reveal/blur-reveal-headline-demo.tsx",
@@ -917,7 +928,9 @@
       "name": "blur-reveal-paragraph-demo",
       "type": "registry:ui",
       "title": "Blur Reveal Paragraph Demo",
-      "registryDependencies": ["blur-reveal"],
+      "registryDependencies": [
+        "blur-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/blur-reveal/blur-reveal-paragraph-demo.tsx",
@@ -930,7 +943,12 @@
       "type": "registry:ui",
       "title": "Fluid Typewriter",
       "description": "A liquid-smooth typewriter effect. A glowing cursor seamlessly glides across the text, intelligently wrapping to new lines.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/fluid-typewriter.tsx",
@@ -942,7 +960,9 @@
       "name": "fluid-typewriter-headline-demo",
       "type": "registry:ui",
       "title": "Fluid Typewriter Headline Demo",
-      "registryDependencies": ["fluid-typewriter"],
+      "registryDependencies": [
+        "fluid-typewriter"
+      ],
       "files": [
         {
           "path": "registry/demos/components/fluid-typewriter/fluid-typewriter-headline-demo.tsx",
@@ -954,7 +974,9 @@
       "name": "fluid-typewriter-paragraph-demo",
       "type": "registry:ui",
       "title": "Fluid Typewriter Paragraph Demo",
-      "registryDependencies": ["fluid-typewriter"],
+      "registryDependencies": [
+        "fluid-typewriter"
+      ],
       "files": [
         {
           "path": "registry/demos/components/fluid-typewriter/fluid-typewriter-paragraph-demo.tsx",
@@ -967,7 +989,12 @@
       "type": "registry:ui",
       "title": "Granular Dust Reveal",
       "description": "A cinematic text reveal component. Uses microscopic SVG fractal noise to shatter typography into granular sand.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/granular-dust-reveal.tsx",
@@ -979,7 +1006,9 @@
       "name": "granular-dust-headline-demo",
       "type": "registry:ui",
       "title": "Granular Dust Headline Demo",
-      "registryDependencies": ["granular-dust-reveal"],
+      "registryDependencies": [
+        "granular-dust-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/granular-dust-reveal/granular-dust-headline-demo.tsx",
@@ -991,7 +1020,9 @@
       "name": "granular-dust-paragraph-demo",
       "type": "registry:ui",
       "title": "Granular Dust Paragraph Demo",
-      "registryDependencies": ["granular-dust-reveal"],
+      "registryDependencies": [
+        "granular-dust-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/granular-dust-reveal/granular-dust-paragraph-demo.tsx",
@@ -1004,7 +1035,12 @@
       "type": "registry:ui",
       "title": "Heat Mirage Reveal",
       "description": "An atmospheric reveal component using an SVG displacement map to simulate thermal distortion.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/heat-mirage-reveal.tsx",
@@ -1016,7 +1052,9 @@
       "name": "heat-mirage-headline-demo",
       "type": "registry:ui",
       "title": "Heat Mirage Headline Demo",
-      "registryDependencies": ["heat-mirage-reveal"],
+      "registryDependencies": [
+        "heat-mirage-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/heat-mirage-reveal/heat-mirage-headline-demo.tsx",
@@ -1028,7 +1066,9 @@
       "name": "heat-mirage-paragraph-demo",
       "type": "registry:ui",
       "title": "Heat Mirage Paragraph Demo",
-      "registryDependencies": ["heat-mirage-reveal"],
+      "registryDependencies": [
+        "heat-mirage-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/heat-mirage-reveal/heat-mirage-paragraph-demo.tsx",
@@ -1041,7 +1081,12 @@
       "type": "registry:ui",
       "title": "Liquid Mercury Reveal",
       "description": "An elastic, metallic text reveal component utilizing SVG matrix filtering.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/liquid-mercury-reveal.tsx",
@@ -1053,7 +1098,9 @@
       "name": "liquid-mercury-headline-demo",
       "type": "registry:ui",
       "title": "Liquid Mercury Headline Demo",
-      "registryDependencies": ["liquid-mercury-reveal"],
+      "registryDependencies": [
+        "liquid-mercury-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/liquid-mercury-reveal/liquid-mercury-headline-demo.tsx",
@@ -1066,7 +1113,12 @@
       "type": "registry:ui",
       "title": "Magnetic Snap Reveal",
       "description": "A kinetic text reveal component. Elements start in chaotic randomized coordinates and magnetically snap into their correct layout positions.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/magnetic-snap-reveal.tsx",
@@ -1078,7 +1130,9 @@
       "name": "magnetic-snap-demo",
       "type": "registry:ui",
       "title": "Magnetic Snap Demo",
-      "registryDependencies": ["magnetic-snap-reveal"],
+      "registryDependencies": [
+        "magnetic-snap-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/magnetic-snap-reveal/magnetic-snap-demo.tsx",
@@ -1091,7 +1145,12 @@
       "type": "registry:ui",
       "title": "Manifesto Text Reveal",
       "description": "A premium scrollytelling text component utilizing momentum scrubbing and DOM pinning.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/manifesto-text-reveal.tsx",
@@ -1103,7 +1162,9 @@
       "name": "manifesto-text-reveal-demo",
       "type": "registry:ui",
       "title": "Manifesto Text Reveal Demo",
-      "registryDependencies": ["manifesto-text-reveal"],
+      "registryDependencies": [
+        "manifesto-text-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/manifesto-text-reveal/manifesto-text-reveal-demo.tsx",
@@ -1116,7 +1177,12 @@
       "type": "registry:ui",
       "title": "Masked Reveal",
       "description": "A sophisticated text reveal that wraps elements in a hidden overflow mask and pushes them up into view.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/masked-reveal.tsx",
@@ -1128,7 +1194,9 @@
       "name": "masked-reveal-headline-demo",
       "type": "registry:ui",
       "title": "Masked Reveal Headline Demo",
-      "registryDependencies": ["masked-reveal"],
+      "registryDependencies": [
+        "masked-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/masked-reveal/masked-reveal-headline-demo.tsx",
@@ -1140,7 +1208,9 @@
       "name": "masked-reveal-paragraph-demo",
       "type": "registry:ui",
       "title": "Masked Reveal Paragraph Demo",
-      "registryDependencies": ["masked-reveal"],
+      "registryDependencies": [
+        "masked-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/masked-reveal/masked-reveal-paragraph-demo.tsx",
@@ -1153,7 +1223,12 @@
       "type": "registry:ui",
       "title": "Fold Reveal",
       "description": "A structural text reveal component. Distinct lines of text hinge downward into view like a cascading staircase or folding paper.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/fold-reveal.tsx",
@@ -1165,7 +1240,9 @@
       "name": "fold-reveal-demo",
       "type": "registry:ui",
       "title": "Fold Reveal Demo",
-      "registryDependencies": ["fold-reveal"],
+      "registryDependencies": [
+        "fold-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/fold-reveal/fold-reveal-demo.tsx",
@@ -1178,7 +1255,12 @@
       "type": "registry:ui",
       "title": "Pendulum Reveal",
       "description": "A kinetic text reveal component. Elements drop down from a top hinge point, utilizing a heavy elastic ease to simulate a swinging pendulum.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/pendulum-reveal.tsx",
@@ -1190,7 +1272,9 @@
       "name": "pendulum-reveal-demo",
       "type": "registry:ui",
       "title": "Pendulum Reveal Demo",
-      "registryDependencies": ["pendulum-reveal"],
+      "registryDependencies": [
+        "pendulum-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/pendulum-reveal/pendulum-reveal-demo.tsx",
@@ -1203,7 +1287,12 @@
       "type": "registry:ui",
       "title": "Piano Typewriter",
       "description": "A tactile, 3D typewriter effect. A cursor glides across the text while individual characters spring up from the Z-axis, mimicking mechanical keystrokes.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/piano-typewriter.tsx",
@@ -1215,7 +1304,9 @@
       "name": "piano-typewriter-demo",
       "type": "registry:ui",
       "title": "Piano Typewriter Demo",
-      "registryDependencies": ["piano-typewriter"],
+      "registryDependencies": [
+        "piano-typewriter"
+      ],
       "files": [
         {
           "path": "registry/demos/components/piano-typewriter/piano-typewriter-demo.tsx",
@@ -1228,7 +1319,12 @@
       "type": "registry:ui",
       "title": "Multi-Color Trail Reveal",
       "description": "A highly advanced scrollytelling component sweeping a cascading wave of colors across characters, words, or lines.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/multi-color-trail-reveal.tsx",
@@ -1240,7 +1336,9 @@
       "name": "multi-color-trail-char-demo",
       "type": "registry:ui",
       "title": "Multi-Color Trail Char Demo",
-      "registryDependencies": ["multi-color-trail-reveal"],
+      "registryDependencies": [
+        "multi-color-trail-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-char-demo.tsx",
@@ -1252,7 +1350,9 @@
       "name": "multi-color-trail-word-demo",
       "type": "registry:ui",
       "title": "Multi-Color Trail Word Demo",
-      "registryDependencies": ["multi-color-trail-reveal"],
+      "registryDependencies": [
+        "multi-color-trail-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-word-demo.tsx",
@@ -1264,7 +1364,9 @@
       "name": "multi-color-trail-line-demo",
       "type": "registry:ui",
       "title": "Multi-Color Trail Line Demo",
-      "registryDependencies": ["multi-color-trail-reveal"],
+      "registryDependencies": [
+        "multi-color-trail-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-line-demo.tsx",
@@ -1277,7 +1379,12 @@
       "type": "registry:ui",
       "title": "Tumbler Roll Reveal",
       "description": "A mechanical 3D text reveal component. Characters or words roll into place along an invisible 3D cylinder, mimicking a vintage split-flap display.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/tumbler-roll-reveal.tsx",
@@ -1289,7 +1396,9 @@
       "name": "tumbler-roll-reveal-demo",
       "type": "registry:ui",
       "title": "Tumbler Roll Reveal Demo",
-      "registryDependencies": ["tumbler-roll-reveal"],
+      "registryDependencies": [
+        "tumbler-roll-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/tumbler-roll-reveal/tumbler-roll-reveal-demo.tsx",
@@ -1302,7 +1411,12 @@
       "type": "registry:ui",
       "title": "Bottom Hinge Text Reveal",
       "description": "A high-impact 3D text reveal component. Elements start deep in the Z-axis and aggressively swing up and slam into place.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/bottom-hinge-text-reveal.tsx",
@@ -1314,7 +1428,9 @@
       "name": "bottom-hinge-text-reveal-demo",
       "type": "registry:ui",
       "title": "Bottom Hinge Text Reveal Demo",
-      "registryDependencies": ["bottom-hinge-text-reveal"],
+      "registryDependencies": [
+        "bottom-hinge-text-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/bottom-hinge-text-reveal/bottom-hinge-text-reveal-demo.tsx",
@@ -1327,7 +1443,12 @@
       "type": "registry:ui",
       "title": "Velocity Brake Reveal",
       "description": "A kinetic text reveal component that simulates high velocity and sudden deceleration using heavy skew and translation overshoots.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/velocity-brake-reveal.tsx",
@@ -1339,7 +1460,9 @@
       "name": "velocity-brake-demo",
       "type": "registry:ui",
       "title": "Velocity Brake Demo",
-      "registryDependencies": ["velocity-brake-reveal"],
+      "registryDependencies": [
+        "velocity-brake-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/velocity-brake-reveal/velocity-brake-demo.tsx",
@@ -1352,7 +1475,12 @@
       "type": "registry:ui",
       "title": "Weightless Float Reveal",
       "description": "An ambient, zero-gravity text reveal component. Elements drift upwards into place from randomized depths and rotations.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/weightless-float-reveal.tsx",
@@ -1364,7 +1492,9 @@
       "name": "weightless-float-headline-demo",
       "type": "registry:ui",
       "title": "Weightless Float Headline Demo",
-      "registryDependencies": ["weightless-float-reveal"],
+      "registryDependencies": [
+        "weightless-float-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/weightless-float-reveal/weightless-float-headline-demo.tsx",
@@ -1376,7 +1506,9 @@
       "name": "weightless-float-paragraph-demo",
       "type": "registry:ui",
       "title": "Weightless Float Paragraph Demo",
-      "registryDependencies": ["weightless-float-reveal"],
+      "registryDependencies": [
+        "weightless-float-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/weightless-float-reveal/weightless-float-paragraph-demo.tsx",
@@ -1389,7 +1521,12 @@
       "type": "registry:ui",
       "title": "Wind Shear Reveal",
       "description": "A high-velocity text reveal component. Elements slide in while leaning heavily against simulated wind resistance, utilizing elastic friction to snap forward.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/wind-shear-reveal.tsx",
@@ -1401,7 +1538,9 @@
       "name": "wind-shear-char-demo",
       "type": "registry:ui",
       "title": "Wind Shear Character Demo",
-      "registryDependencies": ["wind-shear-reveal"],
+      "registryDependencies": [
+        "wind-shear-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/wind-shear-reveal/wind-shear-char-demo.tsx",
@@ -1413,7 +1552,9 @@
       "name": "wind-shear-word-demo",
       "type": "registry:ui",
       "title": "Wind Shear Word Demo",
-      "registryDependencies": ["wind-shear-reveal"],
+      "registryDependencies": [
+        "wind-shear-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/wind-shear-reveal/wind-shear-word-demo.tsx",
@@ -1426,7 +1567,12 @@
       "type": "registry:ui",
       "title": "Z-Axis Reveal",
       "description": "A cinematic deep-space text reveal component. Elements fly in from the Z-axis, scaling down and un-blurring into focus.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/z-axis-reveal.tsx",
@@ -1438,7 +1584,9 @@
       "name": "z-axis-char-demo",
       "type": "registry:ui",
       "title": "Z-Axis Character Demo",
-      "registryDependencies": ["z-axis-reveal"],
+      "registryDependencies": [
+        "z-axis-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/z-axis-reveal/z-axis-char-demo.tsx",
@@ -1450,7 +1598,9 @@
       "name": "z-axis-word-demo",
       "type": "registry:ui",
       "title": "Z-Axis Word Demo",
-      "registryDependencies": ["z-axis-reveal"],
+      "registryDependencies": [
+        "z-axis-reveal"
+      ],
       "files": [
         {
           "path": "registry/demos/components/z-axis-reveal/z-axis-word-demo.tsx",
@@ -1463,7 +1613,12 @@
       "type": "registry:ui",
       "title": "Concave Carousel",
       "description": "A high-performance, physics-based infinite carousel. Items mathematically scale down as they reach the edges, creating a 3D curved visual effect.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/concave-carousel.tsx",
@@ -1475,7 +1630,9 @@
       "name": "concave-carousel-demo",
       "type": "registry:ui",
       "title": "Concave Carousel Demo",
-      "registryDependencies": ["concave-carousel"],
+      "registryDependencies": [
+        "concave-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/concave-carousel/concave-carousel-demo.tsx",
@@ -1488,7 +1645,12 @@
       "type": "registry:ui",
       "title": "Ascent Carousel",
       "description": "A high-performance, exponential 3D-perspective carousel. Items mathematically scale down as they retreat to the right.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/ascent-carousel.tsx",
@@ -1500,7 +1662,9 @@
       "name": "ascent-carousel-demo",
       "type": "registry:ui",
       "title": "Ascent Carousel Demo",
-      "registryDependencies": ["ascent-carousel"],
+      "registryDependencies": [
+        "ascent-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/ascent-carousel/ascent-carousel-demo.tsx",
@@ -1513,7 +1677,12 @@
       "type": "registry:ui",
       "title": "Wave Carousel",
       "description": "A high-performance infinite carousel. Items mathematically scale up and down based on a cosine wave, creating a rolling hills visual effect.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/wave-carousel.tsx",
@@ -1525,7 +1694,9 @@
       "name": "wave-carousel-demo",
       "type": "registry:ui",
       "title": "Wave Carousel Demo",
-      "registryDependencies": ["wave-carousel"],
+      "registryDependencies": [
+        "wave-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/wave-carousel/wave-carousel-demo.tsx",
@@ -1538,7 +1709,12 @@
       "type": "registry:ui",
       "title": "Convex Carousel",
       "description": "A physics-based infinite carousel utilizing an inverted parabola scaling function to create a 3D convex lens bulging effect.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/convex-carousel.tsx",
@@ -1550,7 +1726,9 @@
       "name": "convex-carousel-demo",
       "type": "registry:ui",
       "title": "Convex Carousel Demo",
-      "registryDependencies": ["convex-carousel"],
+      "registryDependencies": [
+        "convex-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/convex-carousel/convex-carousel-demo.tsx",
@@ -1559,26 +1737,32 @@
       ]
     },
     {
-      "name": "exponential-carousel",
+      "name": "3d-drifting-marquee",
       "type": "registry:ui",
-      "title": "Exponential Carousel",
-      "description": "A high-performance, mathematics-driven infinite carousel. Uses integration calculus to mathematically pack items side-by-side along an exponential curve.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "title": "3D Drifting Marquee",
+      "description": "A physics-based 3D infinite scroll component with drag interaction, scroll velocity acceleration, and cinematic entry animations.",
+      "dependencies": [
+        "motion-react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
-          "path": "registry/ui/exponential-carousel.tsx",
-          "type": "registry:ui"
+          "path": "registry/ui/3d-drifting-marquee.tsx",
+          "type": "registry:component"
         }
       ]
     },
     {
-      "name": "exponential-carousel-demo",
+      "name": "3d-drifting-marquee-demo",
       "type": "registry:ui",
-      "title": "Exponential Carousel Demo",
-      "registryDependencies": ["exponential-carousel"],
+      "title": "3D Drifting Marquee Demo",
+      "registryDependencies": [
+        "3d-drifting-marquee"
+      ],
       "files": [
         {
-          "path": "registry/demos/components/exponential-carousel/exponential-carousel-demo.tsx",
+          "path": "registry/demos/components/3d-drifting-marquee/3d-drifting-marquee-demo.tsx",
           "type": "registry:component"
         }
       ]
@@ -1588,7 +1772,12 @@
       "type": "registry:ui",
       "title": "Ember Burn",
       "description": "An interactive image transition simulating a burning ember hole using complex SVG displacement maps and color matrices.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/ember-burn.tsx",
@@ -1600,7 +1789,9 @@
       "name": "ember-burn-demo",
       "type": "registry:ui",
       "title": "Ember Burn Demo",
-      "registryDependencies": ["ember-burn"],
+      "registryDependencies": [
+        "ember-burn"
+      ],
       "files": [
         {
           "path": "registry/demos/components/ember-burn/ember-burn-demo.tsx",
@@ -1613,7 +1804,12 @@
       "type": "registry:ui",
       "title": "Ferrofluid Drag",
       "description": "An interactive image transition. Applies a mathematical SVG Gooey filter to a grid of beads that violently tear outward like magnetic fluid.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/ferrofluid-drag.tsx",
@@ -1625,7 +1821,9 @@
       "name": "ferrofluid-drag-demo",
       "type": "registry:ui",
       "title": "Ferrofluid Drag Demo",
-      "registryDependencies": ["ferrofluid-drag"],
+      "registryDependencies": [
+        "ferrofluid-drag"
+      ],
       "files": [
         {
           "path": "registry/demos/components/ferrofluid-drag/ferrofluid-drag-demo.tsx",
@@ -1638,7 +1836,12 @@
       "type": "registry:ui",
       "title": "Fluid Disintegration",
       "description": "An interactive liquid image transition component. Fragments an image into an SVG grid mapped with a gooey color matrix.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/fluid-disintegration.tsx",
@@ -1650,7 +1853,9 @@
       "name": "fluid-disintegration-demo",
       "type": "registry:ui",
       "title": "Fluid Disintegration Demo",
-      "registryDependencies": ["fluid-disintegration"],
+      "registryDependencies": [
+        "fluid-disintegration"
+      ],
       "files": [
         {
           "path": "registry/demos/components/fluid-disintegration/fluid-disintegration-demo.tsx",
@@ -1663,7 +1868,12 @@
       "type": "registry:ui",
       "title": "Liquid Curtain",
       "description": "An interactive image transition component. Applies a heavily asymmetrical SVG Gooey filter to a grid of vertical strips that drip downward like thick paint on hover.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/liquid-curtain.tsx",
@@ -1675,7 +1885,9 @@
       "name": "liquid-curtain-demo",
       "type": "registry:ui",
       "title": "Liquid Curtain Demo",
-      "registryDependencies": ["liquid-curtain"],
+      "registryDependencies": [
+        "liquid-curtain"
+      ],
       "files": [
         {
           "path": "registry/demos/components/liquid-curtain/liquid-curtain-demo.tsx",
@@ -1688,7 +1900,12 @@
       "type": "registry:ui",
       "title": "Mycelium Network",
       "description": "An interactive image transition. Connects an SVG grid of nodes and edges masked with a mathematical gooey filter that snaps and drifts apart on hover.",
-      "dependencies": ["gsap", "@gsap/react", "clsx", "tailwind-merge"],
+      "dependencies": [
+        "gsap",
+        "@gsap/react",
+        "clsx",
+        "tailwind-merge"
+      ],
       "files": [
         {
           "path": "registry/ui/mycelium-network.tsx",
@@ -1700,7 +1917,9 @@
       "name": "mycelium-network-demo",
       "type": "registry:ui",
       "title": "Mycelium Network Demo",
-      "registryDependencies": ["mycelium-network"],
+      "registryDependencies": [
+        "mycelium-network"
+      ],
       "files": [
         {
           "path": "registry/demos/components/mycelium-network/mycelium-network-demo.tsx",
@@ -1733,7 +1952,9 @@
       "name": "dimensional-deck-demo",
       "type": "registry:ui",
       "title": "Dimensional Deck Demo",
-      "registryDependencies": ["dimensional-deck"],
+      "registryDependencies": [
+        "dimensional-deck"
+      ],
       "files": [
         {
           "path": "registry/demos/components/dimensional-deck/dimensional-deck-demo.tsx",
@@ -1766,7 +1987,9 @@
       "name": "dimensional-carousel-demo",
       "type": "registry:ui",
       "title": "Dimensional Carousel Demo",
-      "registryDependencies": ["dimensional-carousel"],
+      "registryDependencies": [
+        "dimensional-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/dimensional-carousel/dimensional-carousel-demo.tsx",
@@ -1799,7 +2022,9 @@
       "name": "panoramic-carousel-demo",
       "type": "registry:ui",
       "title": "Panoramic Carousel Demo",
-      "registryDependencies": ["panoramic-carousel"],
+      "registryDependencies": [
+        "panoramic-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/panoramic-carousel/panoramic-carousel-demo.tsx",
@@ -1832,7 +2057,9 @@
       "name": "flex-carousel-demo",
       "type": "registry:ui",
       "title": "Flex Carousel Demo",
-      "registryDependencies": ["flex-carousel"],
+      "registryDependencies": [
+        "flex-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/flex-carousel/flex-carousel-demo.tsx",
@@ -1865,7 +2092,9 @@
       "name": "depth-carousel-demo",
       "type": "registry:ui",
       "title": "Depth Carousel Demo",
-      "registryDependencies": ["depth-carousel"],
+      "registryDependencies": [
+        "depth-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/depth-carousel/depth-carousel-demo.tsx",
@@ -1898,7 +2127,9 @@
       "name": "cover-carousel-demo",
       "type": "registry:ui",
       "title": "Cover Carousel Demo",
-      "registryDependencies": ["cover-carousel"],
+      "registryDependencies": [
+        "cover-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/cover-carousel/cover-carousel-demo.tsx",
@@ -1931,7 +2162,9 @@
       "name": "curved-carousel-demo",
       "type": "registry:ui",
       "title": "Curved Carousel Demo",
-      "registryDependencies": ["curved-carousel"],
+      "registryDependencies": [
+        "curved-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/curved-carousel/curved-carousel-demo.tsx",
@@ -1964,7 +2197,9 @@
       "name": "elastic-carousel-demo",
       "type": "registry:ui",
       "title": "Elastic Carousel Demo",
-      "registryDependencies": ["elastic-carousel"],
+      "registryDependencies": [
+        "elastic-carousel"
+      ],
       "files": [
         {
           "path": "registry/demos/components/elastic-carousel/elastic-carousel-demo.tsx",

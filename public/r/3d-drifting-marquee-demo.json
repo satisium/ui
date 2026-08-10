@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "3d-drifting-marquee-demo",
+  "title": "3D Drifting Marquee Demo",
+  "registryDependencies": [
+    "3d-drifting-marquee"
+  ],
+  "files": [
+    {
+      "path": "registry/demos/components/3d-drifting-marquee/3d-drifting-marquee-demo.tsx",
+      "content": "\"use client\"\n\nimport { ThreeDDriftingMarquee } from \"@/registry/ui/3d-drifting-marquee\"\n\nconst IMAGES = [\n  {\n    id: \"1\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1782906341/ui-v3/demos/images/12.jpg\",\n    alt: \"Demo image 1\",\n  },\n  {\n    id: \"2\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1780746659/ui-v3/demos/images/13.jpg\",\n    alt: \"Demo image 2\",\n  },\n  {\n    id: \"3\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1780746659/ui-v3/demos/images/14.jpg\",\n    alt: \"Demo image 3\",\n  },\n  {\n    id: \"4\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1780746659/ui-v3/demos/images/15.jpg\",\n    alt: \"Demo image 4\",\n  },\n  {\n    id: \"5\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1780746659/ui-v3/demos/images/9.jpg\",\n    alt: \"Demo image 5\",\n  },\n  {\n    id: \"6\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1780746659/ui-v3/demos/images/17.jpg\",\n    alt: \"Demo image 6\",\n  },\n  {\n    id: \"7\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1780746659/ui-v3/demos/images/18.jpg\",\n    alt: \"Demo image 7\",\n  },\n  {\n    id: \"8\",\n    src: \"https://res.cloudinary.com/ddon6aux0/image/upload/v1780746659/ui-v3/demos/images/19.jpg\",\n    alt: \"Demo image 8\",\n  },\n]\n\nexport default function ThreeDDriftingMarqueeDemo() {\n  return (\n    <main className=\"flex h-screen w-full flex-col bg-background text-foreground\">\n      <section className=\"flex flex-1 flex-col items-center justify-center px-6 text-center\">\n        <p className=\"max-w-[600px] text-lg text-muted-foreground md:text-xl\">\n          Drag to spin, scroll to accelerate, hover to wave.\n        </p>\n      </section>\n\n      <section className=\"relative h-[60vh] w-full\">\n        <ThreeDDriftingMarquee\n          images={IMAGES}\n          cardWidth={320}\n          cardHeight={240}\n          gap={-140}\n          defaultVelocity={0.8}\n          maxSkew={12}\n          dragFactor={1.0}\n          enableEntry={true}\n          entryAnimationDelay={0.3}\n          entryAnimationDuration={2.0}\n          entryDistance={1500}\n          enableWave={true}\n          waveHeight={35}\n          waveProximity={2}\n        />\n      </section>\n    </main>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ],
+  "type": "registry:ui"
+}

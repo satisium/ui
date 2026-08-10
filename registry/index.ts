@@ -252,111 +252,6 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
-  "halftone-hero-demo": {
-    name: "Halftone Hero Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-hero-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-hero/halftone-hero-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satisium-ui add halftone-hero",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-hero")
-      return {
-        "halftone-hero-demo.tsx": {
-          code: mod.halftoneHeroDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "halftone-horizontal-demo": {
-    name: "Halftone Horizontal Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-horizontal-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-horizontal/halftone-horizontal-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satisium-ui add halftone-horizontal",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-horizontal")
-      return {
-        "halftone-horizontal-demo.tsx": {
-          code: mod.halftoneHorizontalDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "halftone-video-hero-demo": {
-    name: "Halftone Video Hero Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-video-hero-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-video-hero/halftone-video-hero-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satisium-ui add halftone-video-hero",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-video-hero")
-      return {
-        "halftone-video-hero-demo.tsx": {
-          code: mod.halftoneVideoHeroDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "halftone-video-horizontal-demo": {
-    name: "Halftone Video Horizontal Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-video-horizontal-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-video-horizontal/halftone-video-horizontal-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satisium-ui add halftone-video-horizontal",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-video-horizontal")
-      return {
-        "halftone-video-horizontal-demo.tsx": {
-          code: mod.halftoneVideoHorizontalDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "bouquet-trail-demo": {
-    name: "Bouquet Trail Demo",
-    type: "react",
-    renderMode: "iframe", // Use iframe to prevent it leaking out over documentation UI since it tracks window mouse
-    previewUrl: "/preview/bouquet-trail-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/bouquet-trail/bouquet-trail-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satisium-ui add bouquet-trail",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/bouquet-trail")
-      return {
-        "bouquet-trail-demo.tsx": {
-          code: mod.bouquetTrailDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
   "depth-trail-avatars-demo": {
     name: "Depth Trail Avatars Demo",
     type: "react",
@@ -1598,22 +1493,22 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
-  "exponential-carousel-demo": {
-    name: "Exponential Carousel Demo",
+  "3d-drifting-marquee-demo": {
+    name: "3D Drifting Marquee Demo",
     type: "react",
-    renderMode: "iframe", // CRITICAL: Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
-    previewUrl: "/preview/exponential-carousel-demo",
+    renderMode: "iframe",
+    previewUrl: "/preview/3d-drifting-marquee-demo",
     component: dynamic(() =>
-      import("@/registry/demos/components/exponential-carousel/exponential-carousel-demo").then(
+      import("@/registry/demos/components/3d-drifting-marquee/3d-drifting-marquee-demo").then(
         (m) => m.default
       )
     ),
-    installCommand: "npx satisium-ui add exponential-carousel",
+    installCommand: "npx satisium-ui add 3d-drifting-marquee",
     getFiles: async () => {
-      const mod = await import("@/registry/strings/exponential-carousel")
+      const mod = await import("@/registry/strings/3d-drifting-marquee")
       return {
-        "exponential-carousel-demo.tsx": {
-          code: mod.exponentialCarouselDemoString,
+        "3d-drifting-marquee-demo.tsx": {
+          code: mod.threeDDriftingMarqueeDemoString,
           language: "tsx",
         },
       }
