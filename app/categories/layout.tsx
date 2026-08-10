@@ -1,6 +1,5 @@
 // app/categories/layout.tsx
 import { SpatialLayout } from "@/components/layout/spatial-layout"
-import { source } from "@/lib/source"
 import { TAXONOMY } from "@/lib/utils"
 import {
   ArrowLeft01Icon,
@@ -8,7 +7,6 @@ import {
   HotelBellIcon,
   InputShortTextIcon,
   Layers01Icon,
-  Layout01Icon,
   LayoutTable02Icon,
   NavigationIcon,
   RotateLeft03Icon,

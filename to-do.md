@@ -11,7 +11,7 @@
 - [ ] **Proper categories:** Add proper categories to the components.
 - [ ] **Demo videos:** Proper demo videos and hook them properly to the all place they are needed.
 - [x] **Beta** Make the app beta.
-- [ ] **Delete some components:** Remove the suckers.
+- [x] **Delete some components:** Remove the suckers.
 - [ ] **Proper documentation:** Write doc pages, intro and all of these.
 - [ ] **Read me:** Proper read me file.
 - [x] **The search:** Improve the search component by removing noise and adding some about shortcut info.
@@ -21,6 +21,7 @@
 - [ ] **LLM Text:** Check LLM thingy.
 - [ ] **SEO and logo:** Update logos everywhere. SEO and all.
 - [ ] **Github satisium:** Github satis UI to satisium.
+- [ ] **Analytics:** Analytics.
 
 ## 🎨 1. UI, UX & Premium Polish
 
