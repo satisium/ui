@@ -34,7 +34,7 @@ export interface LiquidMercuryRevealProps extends React.HTMLAttributes<HTMLEleme
 /**
  * LiquidMercuryReveal
  *
- * An elastic, metallic text reveal component for Satis UI.
+ * An elastic, metallic text reveal component for Satisium UI.
  * Elements spawn from inside the previous element's mass, stretching a
  * gooey liquid bridge that elastically snaps into sharp, crisp typography.
  *

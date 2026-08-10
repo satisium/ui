@@ -33,7 +33,7 @@ export interface GranularDustRevealProps extends React.HTMLAttributes<HTMLElemen
 /**
  * GranularDustReveal
  *
- * A cinematic text reveal for Satis UI.
+ * A cinematic text reveal for Satisium UI.
  * Uses microscopic SVG fractal noise to shatter typography into granular sand,
  * dynamically coalescing into pristine, anti-aliased text.
  *

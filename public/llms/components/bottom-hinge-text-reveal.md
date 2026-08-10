@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add bottom-hinge-text-reveal
+npx satisium-ui add bottom-hinge-text-reveal
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

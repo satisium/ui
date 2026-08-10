@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add editorial-reveal
+npx satisium-ui add editorial-reveal
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

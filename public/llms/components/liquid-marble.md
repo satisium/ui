@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add liquid-marble
+npx satisium-ui add liquid-marble
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `clsx`, `tailwind-merge`.

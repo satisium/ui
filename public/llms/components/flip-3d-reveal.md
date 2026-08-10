@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add flip-3d-reveal
+npx satisium-ui add flip-3d-reveal
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

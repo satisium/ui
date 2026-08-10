@@ -348,7 +348,7 @@ function ElasticScene({
 /**
  * ElasticCarousel
  *
- * A high-performance WebGL scroll component for Satis UI.
+ * A high-performance WebGL scroll component for Satisium UI.
  * Mathematically interpolates between a flat 2D gallery and an immersive
  * 3D cylindrical carousel depending entirely on the user's swipe velocity.
  */

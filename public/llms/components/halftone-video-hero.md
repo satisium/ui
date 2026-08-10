@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add halftone-video-hero
+npx satisium-ui add halftone-video-hero
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

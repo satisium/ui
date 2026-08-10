@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add heat-mirage-reveal
+npx satisium-ui add heat-mirage-reveal
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

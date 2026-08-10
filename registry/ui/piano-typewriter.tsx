@@ -33,7 +33,7 @@ export interface PianoTypewriterProps
 /**
  * PianoTypewriter
  * 
- * A tactile, 3D typewriter effect for Satis UI.
+ * A tactile, 3D typewriter effect for Satisium UI.
  * A cursor glides across the text while individual characters spring up from the Z-axis, 
  * mimicking the physical, mechanical keystrokes of a typewriter or piano.
  * 

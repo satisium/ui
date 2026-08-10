@@ -294,7 +294,7 @@ function CoverScene({
 /**
  * CoverCarousel
  *
- * A highly sophisticated Cover Flow 3D carousel for Satis UI.
+ * A highly sophisticated Cover Flow 3D carousel for Satisium UI.
  * Renders an immersive, hardware-accelerated stack of images using custom GLSL shaders
  * for dynamic ambient occlusion, internal parallax, and SDF rounded corners.
  */

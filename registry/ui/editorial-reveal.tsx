@@ -58,7 +58,7 @@ export interface EditorialRevealProps extends React.HTMLAttributes<HTMLElement> 
 /**
  * EditorialReveal
  *
- * A premium, Awwwards-level text reveal component for Satis UI.
+ * A premium, Awwwards-level text reveal component for Satisium UI.
  * Uses GSAP and ScrollTrigger to create a sophisticated, staggered redaction-block reveal
  * that triggers exactly when the text enters the viewport.
  *

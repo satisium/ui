@@ -36,7 +36,7 @@ export interface VelocityBrakeRevealProps extends React.HTMLAttributes<HTMLEleme
 /**
  * VelocityBrakeReveal
  *
- * A kinetic text reveal component for Satis UI.
+ * A kinetic text reveal component for Satisium UI.
  * Elements slide in rapidly from an offset and slam on the brakes, whipping forward
  * into a heavy skew overshoot before settling perfectly into place.
  *

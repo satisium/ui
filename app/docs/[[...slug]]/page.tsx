@@ -30,7 +30,7 @@ export async function generateMetadata(props: {
   if (!page) return {}
 
   const slugPath = params.slug ? params.slug.join("/") : ""
-  const canonicalUrl = `https://satisui.xyz/docs/${slugPath}`
+  const canonicalUrl = `https://ui.satisium.com/docs/${slugPath}`
   const description =
     page.data.description ||
     `Explore the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP.`
@@ -42,13 +42,13 @@ export async function generateMetadata(props: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: `${page.data.title} | SATIS UI`,
+      title: `${page.data.title} | Satisium UI`,
       description,
       images: [`/api/og?title=${encodeURIComponent(page.data.title)}`],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${page.data.title} | SATIS UI`,
+      title: `${page.data.title} | Satisium UI`,
       description,
       images: [`/api/og?title=${encodeURIComponent(page.data.title)}`],
     },
@@ -168,7 +168,7 @@ export default async function Page(props: {
 
   const hasCategories = page.data.category && page.data.category.length > 0
 
-  const baseUrl = "https://satisui.xyz/docs"
+  const baseUrl = "https://ui.satisium.com/docs"
   const breadcrumbItems = [
     { "@type": "ListItem", position: 1, name: "Docs", item: baseUrl },
   ]
@@ -200,7 +200,7 @@ export default async function Page(props: {
         description: page.data.description,
         brand: {
           "@type": "Brand",
-          name: "SATIS UI",
+          name: "Satisium UI",
         },
         offers: {
           "@type": "Offer",

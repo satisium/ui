@@ -17,8 +17,8 @@ export function proxy(req: NextRequest, ev: NextFetchEvent) {
       (async () => {
         try {
           const redis = Redis.fromEnv()
-          await redis.incr("satis:metrics:cli_installs")
-          await redis.zincrby("satis:metrics:top_cli", 1, componentName)
+          await redis.incr("satisium:metrics:cli_installs")
+          await redis.zincrby("satisium:metrics:top_cli", 1, componentName)
         } catch (e) {
           // Silent fail - never break the terminal installation
         }

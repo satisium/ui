@@ -42,10 +42,10 @@ const fontCode = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://satisui.xyz"),
+  metadataBase: new URL("https://ui.satisium.com"),
   title: {
-    template: "%s | SATIS UI",
-    default: "SATIS UI | Animated component library for design engineers",
+    template: "%s | Satisium UI",
+    default: "Satisium UI | Animated component library for design engineers",
   },
   description:
     "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
@@ -55,12 +55,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "SATIS UI",
+    siteName: "Satisium UI",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SATIS UI | Animated component library for design engineers",
+    title: "Satisium UI | Animated component library for design engineers",
     creator: "@iamsatish4564",
   },
 }
@@ -83,20 +83,20 @@ export default function RootLayout({
       )}
     >
       <head>
-        <meta name="apple-mobile-web-app-title" content="Satis UI" />
+        <meta name="apple-mobile-web-app-title" content="Satisium UI" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "SATIS UI",
-              alternateName: ["SatisUI", "Satis UI Library"],
-              url: "https://satisui.xyz",
+              name: "Satisium UI",
+              alternateName: ["SatisiumUI", "Satisium UI Library"],
+              url: "https://ui.satisium.com",
               potentialAction: {
                 "@type": "SearchAction",
                 target:
-                  "https://satisui.xyz/docs/search?q={search_term_string}",
+                  "https://ui.satisium.com/docs/search?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),

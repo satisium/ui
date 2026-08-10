@@ -3,7 +3,7 @@ import { source } from "@/lib/source"
 import { CATEGORIES } from "@/lib/utils"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://satisui.xyz"
+  const baseUrl = "https://ui.satisium.com"
 
   const pages = source.getPages()
 

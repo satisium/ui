@@ -8,17 +8,17 @@ export const metadata: Metadata = {
   description:
     "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
   alternates: {
-    canonical: "https://satisui.xyz/categories",
+    canonical: "https://ui.satisium.com/categories",
   },
   openGraph: {
-    title: "Categories | SATIS UI",
+    title: "Categories | Satisium UI",
     description:
       "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
     images: ["/api/og?title=Categories"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Categories | SATIS UI",
+    title: "Categories | Satisium UI",
     images: ["/api/og?title=Categories"],
   },
 }

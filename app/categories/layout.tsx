@@ -13,7 +13,7 @@ import type * as PageTree from "fumadocs-core/page-tree"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Categories | SATIS UI",
+  title: "Categories | Satisium UI",
 }
 
 const CATEGORY_ICONS: Record<keyof typeof TAXONOMY, React.ReactNode> = {

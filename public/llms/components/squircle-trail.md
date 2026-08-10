@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add squircle-trail
+npx satisium-ui add squircle-trail
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

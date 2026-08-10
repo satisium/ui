@@ -65,7 +65,7 @@ export interface FlipVerticalRevealProps extends React.HTMLAttributes<HTMLElemen
 /**
  * FlipVerticalReveal
  *
- * A 3D mechanical text reveal component for Satis UI.
+ * A 3D mechanical text reveal component for Satisium UI.
  * Simulates a split-flap display or falling dominoes by hinging characters
  * or words down from a 90-degree 3D perspective.
  *

@@ -32,7 +32,7 @@ jobs:
       - name: Commit version bump
         run: |
           git config user.name "changeset-bot"
-          git config user.email "changeset@satisstoodio.com"
+          git config user.email "changeset@satisium.com"
           git add .
           git diff --cached --quiet || git commit -m "chore(release): version packages"
           git push

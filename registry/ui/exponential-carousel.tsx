@@ -58,7 +58,7 @@ export interface ExponentialCarouselProps {
 /**
  * ExponentialCarousel
  *
- * A high-performance, mathematics-driven infinite carousel for Satis UI.
+ * A high-performance, mathematics-driven infinite carousel for Satisium UI.
  * Uses integration calculus to perfectly pack items side-by-side along an
  * exponential curve, creating a dramatic "hockey stick" perspective.
  */

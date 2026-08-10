@@ -302,7 +302,7 @@ function FlexScene({
 /**
  * FlexCarousel
  *
- * A high-performance WebGL horizontal carousel for Satis UI.
+ * A high-performance WebGL horizontal carousel for Satisium UI.
  * Integrates aerodynamic bending, kinetic RGB splitting, dynamic shadowing,
  * and SDF corner radiuses calculated entirely on the GPU.
  */

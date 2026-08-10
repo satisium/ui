@@ -28,16 +28,16 @@ export async function generateMetadata(props: {
     title,
     description,
     alternates: {
-      canonical: `https://satisui.xyz/categories/${params.category}`,
+      canonical: `https://ui.satisium.com/categories/${params.category}`,
     },
     openGraph: {
-      title: `${title} | SATIS UI`,
+      title: `${title} | Satisium UI`,
       description,
       images: [`/api/og?title=${encodeURIComponent(title)}`],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | SATIS UI`,
+      title: `${title} | Satisium UI`,
       description,
       images: [`/api/og?title=${encodeURIComponent(title)}`],
     },

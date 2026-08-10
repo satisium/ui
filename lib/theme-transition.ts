@@ -48,7 +48,7 @@ export function switchThemeWithTransition(
     return
   }
 
-  document.documentElement.classList.add("satis-theme-transition")
+  document.documentElement.classList.add("satisium-theme-transition")
 
   const transition = document.startViewTransition(() => {
     setTheme(newTheme)
@@ -328,6 +328,6 @@ export function switchThemeWithTransition(
   })
 
   transition.finished.finally(() => {
-    document.documentElement.classList.remove("satis-theme-transition")
+    document.documentElement.classList.remove("satisium-theme-transition")
   })
 }

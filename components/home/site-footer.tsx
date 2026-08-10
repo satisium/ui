@@ -9,7 +9,7 @@ export function SiteFooter() {
             href="/"
             className="flex items-center gap-2 font-bold tracking-tight"
           >
-            <span>SATIS UI</span>
+            <span>Satisium UI</span>
           </Link>
           <p className="text-sm text-muted-foreground">
             Animated component library for design engineers. Built with Tailwind
@@ -99,7 +99,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                  href="https://github.com/your-username/satis-ui"
+                   href="https://github.com/satisium-ui/ui"
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-foreground"

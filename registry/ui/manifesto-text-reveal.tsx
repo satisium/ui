@@ -36,7 +36,7 @@ export interface ManifestoTextRevealProps extends React.HTMLAttributes<HTMLEleme
 /**
  * ManifestoTextReveal
  *
- * A premium scrollytelling text reveal component for Satis UI.
+ * A premium scrollytelling text reveal component for Satisium UI.
  * Fades text in word-by-word or character-by-character, utilizing scroll momentum
  * and optional DOM pinning to create a cinematic reading experience.
  *

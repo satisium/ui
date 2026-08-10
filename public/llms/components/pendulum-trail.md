@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add pendulum-trail
+npx satisium-ui add pendulum-trail
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

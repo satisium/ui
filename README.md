@@ -1,6 +1,6 @@
-# SATIS UI
+# Satisium UI
 
-[![CI](https://github.com/satis-ui/ui/actions/workflows/ci.yml/badge.svg)](https://github.com/satis-ui/ui/actions/workflows/ci.yml)
+[![CI](https://github.com/satisium-ui/ui/actions/workflows/ci.yml/badge.svg)](https://github.com/satisium-ui/ui/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/ui.svg)](https://www.npmjs.com/package/ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
@@ -8,18 +8,18 @@ A high-end animated component library for React and Next.js. Built with Tailwind
 
 ## ✨ Components
 
-Browse components at [UI](https://ui.satisstoodio.com).
+Browse components at [UI](https://ui.satisium.com).
 
 ### Install a component
 
 ```bash
-npx shadcn@latest add https://ui.satisstoodio.com/r/<component-name>.json
+npx shadcn@latest add https://ui.satisium.com/r/<component-name>.json
 ```
 
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/satis-ui/ui.git
+git clone https://github.com/satisium-ui/ui.git
 cd ui
 pnpm install
 pnpm dev

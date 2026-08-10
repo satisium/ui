@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add kaleidoscope-trail
+npx satisium-ui add kaleidoscope-trail
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

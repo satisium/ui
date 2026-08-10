@@ -9,12 +9,12 @@ export async function POST(req: Request) {
     const { action, component } = await req.json()
 
     if (action === "web_copy") {
-      await redis.incr("satis:metrics:web_copies")
+      await redis.incr("satisium:metrics:web_copies")
       if (component && component !== "unknown") {
-        await redis.zincrby("satis:metrics:top_components", 1, component)
+        await redis.zincrby("satisium:metrics:top_components", 1, component)
       }
     } else if (action === "page_view") {
-      await redis.incr("satis:metrics:page_views")
+      await redis.incr("satisium:metrics:page_views")
     }
 
     return NextResponse.json({ success: true })

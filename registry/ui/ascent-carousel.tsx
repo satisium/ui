@@ -56,7 +56,7 @@ export interface AscentCarouselProps {
 /**
  * AscentCarousel
  * 
- * A high-performance, exponential 3D-perspective carousel for Satis UI.
+ * A high-performance, exponential 3D-perspective carousel for Satisium UI.
  * Items mathematically scale down as they retreat to the right, creating a 
  * profound sense of spatial depth using strictly 2D DOM manipulation for maximum FPS.
  */

@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "satis-ui",
-  "homepage": "https://satis.ui",
+  "name": "satisium-ui",
+  "homepage": "https://ui.satisium.com",
   "items": [
     {
       "name": "spotlight-card",

@@ -2,7 +2,7 @@
 import posthog from "posthog-js"
 
 /**
- * Universal tracking function for SATIS UI
+ * Universal tracking function for Satisium UI
  *
  * @param eventName - The name of the event (e.g., "code_copied")
  * @param properties - The rich data/context (e.g., { component: "component-name", is_premium: false })
@@ -33,7 +33,7 @@ export const trackEvent = async (
       })
     } catch (e) {
       // We catch and swallow errors here. Analytics should NEVER break the user's UI.
-      console.error("SATIS Telemetry Error:", e)
+      console.error("Satisium Telemetry Error:", e)
     }
   }
 }

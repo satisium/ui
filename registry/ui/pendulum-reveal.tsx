@@ -36,7 +36,7 @@ export interface PendulumRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * PendulumReveal
  *
- * A kinetic text reveal component for Satis UI.
+ * A kinetic text reveal component for Satisium UI.
  * Elements drop down from a top hinge point, utilizing a heavy elastic
  * ease to simulate a swinging pendulum settling into place.
  *

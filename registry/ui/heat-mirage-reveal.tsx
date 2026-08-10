@@ -34,7 +34,7 @@ export interface HeatMirageRevealProps extends React.HTMLAttributes<HTMLElement>
 /**
  * HeatMirageReveal
  *
- * A cinematic atmospheric reveal component for Satis UI.
+ * A cinematic atmospheric reveal component for Satisium UI.
  * Uses an SVG displacement map to simulate atmospheric thermal distortion (heat waves).
  * The text drifts upward and materializes as the heat dissipates into sharp focus.
  *

@@ -321,7 +321,7 @@ function DepthScene({
 /**
  * DepthCarousel
  *
- * A premium WebGL coverflow carousel for Satis UI.
+ * A premium WebGL coverflow carousel for Satisium UI.
  * Unites physics-based GSAP scroll tracking with custom GLSL shaders
  * to provide SDF corner rounding, internal parallax windowing, and kinetic RGB splitting.
  */

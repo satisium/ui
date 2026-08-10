@@ -1,4 +1,4 @@
-# SATIS UI - AI Knowledge Base
+# Satisium UI - AI Knowledge Base
 
 > Premium, animated React component library for Design Engineers. 
 > Built with Next.js, Tailwind CSS v4, Framer Motion, and GSAP.
@@ -18,4 +18,4 @@
 - [E-Commerce Dashboard[PRO]](/llms/blocks/e-commerce-dashboard.md)
 
 ## Full Knowledge Base
--[Full SATIS UI Documentation](/llms-full.txt) - Contains the complete library concatenated into a single file for deep context injection.
+-[Full Satisium UI Documentation](/llms-full.txt) - Contains the complete library concatenated into a single file for deep context injection.

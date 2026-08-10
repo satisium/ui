@@ -25,7 +25,7 @@ export function getCloudinaryUrl(
   path = segments.join("/")
 
   // Select the named profile (Make sure these are created in your Cloudinary Dashboard!)
-  const profile = variant === "preview" ? "t_satis_preview" : "t_satis_demo"
+  const profile = variant === "preview" ? "t_satisium_preview" : "t_satisium_demo"
   const quality = variant === "preview" ? "q_auto:low" : "q_auto:good"
 
   // AI Thumbnail Generator (Extract WebP Image from Video)

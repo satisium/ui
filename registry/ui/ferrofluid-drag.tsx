@@ -26,7 +26,7 @@ export interface FerrofluidDragProps extends React.HTMLAttributes<HTMLDivElement
 /**
  * FerrofluidDrag
  *
- * An interactive image transition component for Satis UI.
+ * An interactive image transition component for Satisium UI.
  * Applies a mathematical SVG Gooey filter to a grid of beads. On hover,
  * the beads calculate their proximity to the cursor and violently tear
  * outward like magnetic fluid, revealing the content underneath.

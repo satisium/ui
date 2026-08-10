@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add scatter-trail
+npx satisium-ui add scatter-trail
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

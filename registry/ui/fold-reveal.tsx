@@ -32,7 +32,7 @@ export interface FoldRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * FoldReveal
  *
- * A structural text reveal component for Satis UI.
+ * A structural text reveal component for Satisium UI.
  * Distinct lines of text hinge downward into view like a cascading staircase
  * or folding paper, providing a rigid, architectural feel.
  */

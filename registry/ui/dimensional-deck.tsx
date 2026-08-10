@@ -326,7 +326,7 @@ function DeckScene({
 /**
  * DimensionalDeck
  *
- * A high-performance WebGL scroll component for Satis UI.
+ * A high-performance WebGL scroll component for Satisium UI.
  * Creates an immersive, 3D stacked deck of images that respond fluidly to scroll
  * and touch momentum anywhere on the screen, utilizing custom GLSL shaders for
  * kinetic RGB splitting and aerodynamic bending.

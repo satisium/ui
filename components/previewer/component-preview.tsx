@@ -103,20 +103,20 @@ export function ComponentPreviewer({
     title?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "default"
 
   const [activeDemoIndex, setActiveDemoIndex] = usePersistentState<number>(
-    `satis-active-demo-${componentKey}`,
+    `satisium-active-demo-${componentKey}`,
     0
   )
 
   const [isCodeOpen, setIsCodeOpen] = usePersistentState<boolean>(
-    "satis-code-open",
+    "satisium-code-open",
     false
   )
   const [previewWidth, setPreviewWidth] = usePersistentState<number | string>(
-    "satis-preview-width",
+    "satisium-preview-width",
     "100%"
   )
   const [viewportMode, setViewportMode] = usePersistentState<ViewportMode>(
-    "satis-viewport-mode",
+    "satisium-viewport-mode",
     "desktop"
   )
   const [reloadKey, setReloadKey] = useState<number>(0)
@@ -138,7 +138,7 @@ export function ComponentPreviewer({
   const handleReload = () => {
     if (activeDemo.renderMode === "iframe") {
       const iframe = document.getElementById(
-        `satis-iframe-${activeDemo.key}`
+        `satisium-iframe-${activeDemo.key}`
       ) as HTMLIFrameElement
 
       if (iframe?.contentWindow) {
@@ -191,7 +191,7 @@ export function ComponentPreviewer({
                   Pro Component
                 </h3>
                 <p className="mb-8 max-w-[280px] text-[15px] leading-relaxed text-muted-foreground">
-                  Unlock this component and the entire SATIS UI library with the
+                  Unlock this component and the entire Satisium UI library with the
                   Pro Pack.
                 </p>
                 <a

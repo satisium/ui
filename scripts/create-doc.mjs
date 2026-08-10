@@ -50,10 +50,10 @@ component: true
 badge: new
 category:
   - ${category}
-author: SATIS UI
+author: Satisium UI
 links:
-  github: https://github.com/your-username/satis-ui/tree/main/registry/ui/${filename}
-  preview: https://satis-ui.com/preview/${filename}
+  github: https://github.com/satisium-ui/ui/blob/main/registry/ui/${filename}
+  preview: https://satisiumui.com/preview/${filename}
 registryKeys:
   - ${filename}-demo
 media:
@@ -66,7 +66,7 @@ media:
 ### CLI
 
 <div className="mt-6">
-    <CommandBlock cli="satis-ui add ${filename}" title="${filename}" />
+    <CommandBlock cli="satisium-ui add ${filename}" title="${filename}" />
 </div>
 
 ### Manual

@@ -19,7 +19,7 @@ function getAllMarkdownFiles(dirPath, arrayOfFiles = []) {
 }
 
 function buildFull() {
-  let fullContent = `# SATIS UI - Complete AI Knowledge Base\n\n`
+  let fullContent = `# Satisium UI - Complete AI Knowledge Base\n\n`
   const files = getAllMarkdownFiles(PUBLIC_LLMS_DIR)
 
   for (const file of files) {

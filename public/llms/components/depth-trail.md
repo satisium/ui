@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add depth-trail
+npx satisium-ui add depth-trail
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

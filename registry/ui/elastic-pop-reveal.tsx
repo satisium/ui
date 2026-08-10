@@ -74,7 +74,7 @@ export interface ElasticPopRevealProps extends React.HTMLAttributes<HTMLElement>
 /**
  * ElasticPopReveal
  *
- * A tactile, physics-based text reveal component for Satis UI.
+ * A tactile, physics-based text reveal component for Satisium UI.
  * Splinters text into words or characters and scales them in with a highly
  * customizable GSAP elastic spring effect, triggered on scroll.
  *

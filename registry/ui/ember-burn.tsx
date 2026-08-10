@@ -22,7 +22,7 @@ export interface EmberBurnProps extends React.HTMLAttributes<HTMLDivElement> {
 /**
  * EmberBurn
  *
- * An interactive image transition component for Satis UI.
+ * An interactive image transition component for Satisium UI.
  * Simulates a burning ember hole using complex SVG displacement maps and
  * color matrices. The burn originates exactly from the mouse entry coordinates.
  */

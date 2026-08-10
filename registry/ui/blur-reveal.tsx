@@ -36,7 +36,7 @@ export interface BlurRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * BlurReveal
  *
- * A cinematic, 3D text reveal component for Satis UI.
+ * A cinematic, 3D text reveal component for Satisium UI.
  * Characters or words sweep in from an angled, blurry 3D perspective,
  * utilizing deep easing to create a heavy, dramatic reveal.
  *

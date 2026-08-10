@@ -38,7 +38,7 @@ export interface MaskedRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * MaskedReveal
  *
- * A sophisticated text reveal component for Satis UI.
+ * A sophisticated text reveal component for Satisium UI.
  * Wraps elements in a hidden overflow mask and pushes them up into view
  * with a slight, elegant rotation, resembling premium agency typography.
  */

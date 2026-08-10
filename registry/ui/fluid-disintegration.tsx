@@ -30,7 +30,7 @@ export interface FluidDisintegrationProps extends React.HTMLAttributes<HTMLDivEl
 /**
  * FluidDisintegration
  *
- * An interactive liquid image transition component for Satis UI.
+ * An interactive liquid image transition component for Satisium UI.
  * Fragments an image into an SVG grid mapped with a gooey color matrix.
  * On hover, the droplets calculate their proximity to the cursor and melt
  * outward, revealing the content underneath.

@@ -6,8 +6,8 @@ export const runtime = "edge"
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
-    // Grab the title from the URL, fallback to SATIS UI
-    const title = searchParams.get("title") || "SATIS UI"
+    // Grab the title from the URL, fallback to Satisium UI
+    const title = searchParams.get("title") || "Satisium UI"
 
     return new ImageResponse(
       <div
@@ -40,7 +40,7 @@ export async function GET(request: Request) {
               marginBottom: 20,
             }}
           >
-            SATIS UI
+             Satisium UI
           </h2>
 
           {/* DYNAMIC TITLE */}

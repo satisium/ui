@@ -56,7 +56,7 @@ export interface ElasticTypewriterProps extends React.HTMLAttributes<HTMLElement
 /**
  * ElasticTypewriter
  *
- * A highly kinetic typewriter effect for Satis UI.
+ * A highly kinetic typewriter effect for Satisium UI.
  * A cursor glides across the text, while individual characters stretch, squeeze,
  * skew, and elastic-snap into place to simulate mechanical physical tension.
  *

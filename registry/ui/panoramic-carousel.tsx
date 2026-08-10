@@ -339,7 +339,7 @@ function PanoramicScene({
 /**
  * PanoramicCarousel
  *
- * A high-performance WebGL spatial carousel for Satis UI.
+ * A high-performance WebGL spatial carousel for Satisium UI.
  * Creates an immersive, 3D panoramic wrap of images that responds fluidly to scroll
  * and touch momentum anywhere on the screen. Features custom GLSL shaders for
  * kinetic RGB splitting, aerodynamic flexing, SDF rounding, and motion blur.

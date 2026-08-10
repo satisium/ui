@@ -319,7 +319,7 @@ function CurvedScene({
 /**
  * CurvedCarousel
  *
- * A high-performance WebGL 3D cylindrical carousel for Satis UI.
+ * A high-performance WebGL 3D cylindrical carousel for Satisium UI.
  * Creates an immersive, spinning gallery of images utilizing custom GLSL shaders
  * for aerodynamic bending, SDF corner rounding, and kinetic chromatic aberration.
  */

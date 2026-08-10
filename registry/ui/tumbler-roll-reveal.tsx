@@ -36,7 +36,7 @@ export interface TumblerRollRevealProps extends React.HTMLAttributes<HTMLElement
 /**
  * TumblerRollReveal
  *
- * A mechanical 3D text reveal component for Satis UI.
+ * A mechanical 3D text reveal component for Satisium UI.
  * Characters or words roll into place along an invisible 3D cylinder,
  * mimicking the tactile snap of a combination lock or vintage split-flap display.
  *

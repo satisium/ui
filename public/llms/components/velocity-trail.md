@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add velocity-trail
+npx satisium-ui add velocity-trail
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

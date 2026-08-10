@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: ["/", "/llms.txt", "/llms-full.txt", "/llms/"],
       disallow: ["/api/", "/test/"],
     },
-    sitemap: "https://satisui.xyz/sitemap.xml",
+    sitemap: "https://ui.satisium.com/sitemap.xml",
   }
 }

@@ -32,7 +32,7 @@ export interface MagneticSnapRevealProps extends React.HTMLAttributes<HTMLElemen
 /**
  * MagneticSnapReveal
  *
- * A kinetic, elastic text reveal component for Satis UI.
+ * A kinetic, elastic text reveal component for Satisium UI.
  * Elements start in randomized, chaotic coordinates (rotated, scaled, translated)
  * and magnetically snap into their correct layout positions using heavy spring physics.
  *

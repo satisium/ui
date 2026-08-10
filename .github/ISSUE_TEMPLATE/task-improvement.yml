@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping improve SATIS UI! Use this for changes to existing components or docs — not new features, not bugs.
+        Thanks for helping improve Satisium UI! Use this for changes to existing components or docs — not new features, not bugs.
   - type: input
     id: scope
     attributes:

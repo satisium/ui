@@ -23,12 +23,12 @@ export function ThemeProvider({
       <style
         dangerouslySetInnerHTML={{
           __html: `
-        .satis-theme-transition::view-transition-old(root),
-        .satis-theme-transition::view-transition-new(root) {
+        .satisium-theme-transition::view-transition-old(root),
+        .satisium-theme-transition::view-transition-new(root) {
           animation: none;
           mix-blend-mode: normal;
         }
-        .satis-theme-transition::view-transition-new(root) {
+        .satisium-theme-transition::view-transition-new(root) {
           z-index: 9999;
         }
       `,

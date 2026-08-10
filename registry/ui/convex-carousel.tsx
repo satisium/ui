@@ -56,7 +56,7 @@ export interface ConvexCarouselProps {
 /**
  * ConvexCarousel
  *
- * A high-performance, physics-based infinite carousel for Satis UI.
+ * A high-performance, physics-based infinite carousel for Satisium UI.
  * Items mathematically scale based on an inverted parabola, creating a 3D "convex"
  * lens bulging visual effect using strictly 2D DOM manipulation for maximum FPS.
  */
