@@ -1737,37 +1737,6 @@
       ]
     },
     {
-      "name": "3d-drifting-marquee",
-      "type": "registry:ui",
-      "title": "3D Drifting Marquee",
-      "description": "A physics-based 3D infinite scroll component with drag interaction, scroll velocity acceleration, and cinematic entry animations.",
-      "dependencies": [
-        "motion-react",
-        "clsx",
-        "tailwind-merge"
-      ],
-      "files": [
-        {
-          "path": "registry/ui/3d-drifting-marquee.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "3d-drifting-marquee-demo",
-      "type": "registry:ui",
-      "title": "3D Drifting Marquee Demo",
-      "registryDependencies": [
-        "3d-drifting-marquee"
-      ],
-      "files": [
-        {
-          "path": "registry/demos/components/3d-drifting-marquee/3d-drifting-marquee-demo.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
       "name": "ember-burn",
       "type": "registry:ui",
       "title": "Ember Burn",

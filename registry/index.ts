@@ -1493,27 +1493,6 @@ export const registry: Record<string, RegistryItem> = {
       }
     },
   },
-  "3d-drifting-marquee-demo": {
-    name: "3D Drifting Marquee Demo",
-    type: "react",
-    renderMode: "iframe",
-    previewUrl: "/preview/3d-drifting-marquee-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/3d-drifting-marquee/3d-drifting-marquee-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satisium-ui add 3d-drifting-marquee",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/3d-drifting-marquee")
-      return {
-        "3d-drifting-marquee-demo.tsx": {
-          code: mod.threeDDriftingMarqueeDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
   "ember-burn-demo": {
     name: "Ember Burn Demo",
     type: "react",
