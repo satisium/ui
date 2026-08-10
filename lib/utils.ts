@@ -7,9 +7,12 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const TAXONOMY = {
+  "text-reveals": [],
+  "image-effects": [],
+  "fluid-effects": [],
   carousels: [],
-  text: [],
   "mouse-trails": [],
+  generative: [],
 } as const
 
 export const CATEGORIES = Object.keys(

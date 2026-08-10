@@ -12,7 +12,6 @@
 ## Documentation Directory
 
 ### Free Components (Code Included)
--[Fluid Switch](/llms/components/fluid-switch.md)
 - [Spotlight Card](/llms/components/spotlight-card.md)
 
 ### Premium Blocks (Instructions Only)

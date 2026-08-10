@@ -297,9 +297,9 @@ chore(deps): upgrade motion to v12.38.0
 Append `!` after the type/scope and add a `BREAKING CHANGE:` footer:
 
 ```
-feat(components)!: change FluidSwitch to use onValueChange
+feat(components)!: change Button to use variant prop
 
-BREAKING CHANGE: onCheckedChange is renamed to onValueChange.
+BREAKING CHANGE: primary is renamed to default.
 ```
 
 ---

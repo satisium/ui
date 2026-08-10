@@ -29,19 +29,6 @@
       ]
     },
     {
-      "name": "fluid-switch",
-      "type": "registry:ui",
-      "title": "Fluid Switch",
-      "description": "A tactile switch with spring physics.",
-      "dependencies": ["motion"],
-      "files": [
-        {
-          "path": "registry/ui/fluid-switch.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "velocity-strips",
       "type": "registry:ui",
       "title": "Velocity Strips",

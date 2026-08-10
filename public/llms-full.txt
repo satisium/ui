@@ -8493,38 +8493,6 @@ export default function ExamplePage() {
 
 ---
 
-# Fluid Switch
-
-The Fluid Switch is a highly animated toggle component using Framer Motion's `layoutId`.
-
-## Dependencies
-
-```bash
-npm install motion clsx tailwind-merge
-```
-
-## Source Code
-
-```tsx
-"use client"
-import { motion } from "motion/react"
-import { useState } from "react"
-import { cn } from "@/lib/utils"
-
-export function FluidSwitch() {
-  const [isOn, setIsOn] = useState(false)
-  return (
-    <button onClick={() => setIsOn(!isOn)} className={cn("relative flex h-8 w-14 rounded-full p-1", isOn ? "bg-primary" : "bg-muted")}>
-      <motion.div layout className="h-6 w-6 rounded-full bg-background shadow-md" animate={{ x: isOn ? 24 : 0 }} transition={{ type: "spring", stiffness: 500, damping: 30 }} />
-    </button>
-  )
-}
-
-```
-
-
----
-
 # Fluid Typewriter Component Context
 
 **Description:** A liquid-smooth typewriter effect for Satis UI. A glowing cursor seamlessly glides across the text, intelligently wrapping to new lines and pausing at punctuation, while characters emerge from a deep blur. Includes robust window resize calculation and clearProps filtering for pristine anti-aliasing.

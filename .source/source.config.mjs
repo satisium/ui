@@ -8,9 +8,12 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import z from "zod";
 var TAXONOMY = {
+  "text-reveals": [],
+  "image-effects": [],
+  "fluid-effects": [],
   carousels: [],
-  text: [],
-  "mouse-trails": []
+  "mouse-trails": [],
+  generative: []
 };
 var CATEGORIES = Object.keys(
   TAXONOMY

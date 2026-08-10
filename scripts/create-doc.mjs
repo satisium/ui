@@ -32,8 +32,17 @@ const title = filename
   .join(" ")
 
 // Map folder to category
-const validCategories = ["carousels", "text", "mouse-trails"]
-const category = validCategories.includes(folderName) ? folderName : "text"
+const validCategories = [
+  "text-reveals",
+  "image-effects",
+  "fluid-effects",
+  "carousels",
+  "mouse-trails",
+  "generative",
+]
+const category = validCategories.includes(folderName)
+  ? folderName
+  : "text-reveals"
 
 // 3. The MDX Template
 const mdxTemplate = `---

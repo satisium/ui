@@ -28,49 +28,6 @@ export interface RegistryItem {
 }
 
 export const registry: Record<string, RegistryItem> = {
-  "fluid-switch-demo": {
-    name: "Demo 1",
-    type: "react",
-    renderMode: "direct", // Simple component, render directly
-    previewUrl: "/preview/fluid-switch-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/fluid-switch-demo").then(
-        (m) => m.FluidSwitchDemo
-      )
-    ),
-    installCommand: "https://satis-ui.com/r/fluid-switch.json",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/fluid-switch")
-      return {
-        "fluid-switch-demo.tsx": {
-          code: mod.fluidSwitchDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-
-  "fluid-switch-labeled": {
-    name: "Demo 2",
-    type: "react",
-    renderMode: "iframe", // ✨ Complex/Responsive layout, forces iframe embedding
-    previewUrl: "/preview/fluid-switch-labeled",
-    component: dynamic(() =>
-      import("@/registry/demos/fluid-switch-labeled").then(
-        (m) => m.FluidSwitchLabeled
-      )
-    ),
-    installCommand: "https://satis-ui.com/r/fluid-switch.json",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/fluid-switch")
-      return {
-        "fluid-switch-labeled.tsx": {
-          code: mod.fluidSwitchLabeledString,
-          language: "tsx",
-        },
-      }
-    },
-  },
   // Keep your existing media items unchanged...
   "dashboard-pro-desktop": {
     name: "Desktop Layout",

@@ -5,7 +5,7 @@ import posthog from "posthog-js"
  * Universal tracking function for SATIS UI
  *
  * @param eventName - The name of the event (e.g., "code_copied")
- * @param properties - The rich data/context (e.g., { component: "fluid-switch", is_premium: false })
+ * @param properties - The rich data/context (e.g., { component: "component-name", is_premium: false })
  * @param incrementPublicCounter - Optional. If provided, also increments our public Redis database for landing page vanity metrics.
  */
 export const trackEvent = async (
