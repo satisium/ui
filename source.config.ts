@@ -1,7 +1,7 @@
 import { pageSchema } from "fumadocs-core/source/schema"
 import { defineConfig, defineDocs } from "fumadocs-mdx/config"
 import { z } from "zod"
-import { CategoryEnum, SubCategoryEnum } from "./lib/utils"
+import { CategoryEnum } from "./lib/utils"
 
 export const docs = defineDocs({
   dir: "content/docs",
@@ -9,7 +9,6 @@ export const docs = defineDocs({
     schema: pageSchema.extend({
       component: z.boolean().default(false),
 
-      // ✨ NEW FLAGS
       hideToc: z.boolean().default(false),
       hideCopy: z.boolean().default(false),
       comingSoon: z.boolean().default(false),
@@ -18,7 +17,6 @@ export const docs = defineDocs({
         .enum(["new", "updated", "beta", "premium", "deprecated"])
         .optional(),
       category: z.array(CategoryEnum).optional(),
-      subcategory: z.array(SubCategoryEnum).optional(),
       author: z.string().optional(),
       date: z.string().optional(),
       gumroad: z.string().url().optional(),

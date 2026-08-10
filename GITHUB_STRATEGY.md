@@ -184,7 +184,7 @@ title: My Component
 description: A tasteful and carefully crafted component.
 badge: new
 category:
-  - interactions
+  - text
 registryKeys:
   - my-component-demo
 ---
@@ -198,7 +198,7 @@ registryKeys:
 
 SATIS UI features a "Copy for AI" button that feeds pure, un-styled markdown directly to LLMs. You **must** create a `.md` file that matches the path of your `.mdx` docs page.
 
-_If your docs are at `content/docs/interactions/my-component.mdx`, create `public/llms/interactions/my-component.md`._
+_If your docs are at `content/docs/text/my-component.mdx`, create `public/llms/text/my-component.md`._
 
 ```markdown
 # My Component

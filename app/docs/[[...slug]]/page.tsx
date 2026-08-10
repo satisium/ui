@@ -167,8 +167,6 @@ export default async function Page(props: {
   }
 
   const hasCategories = page.data.category && page.data.category.length > 0
-  const hasSubcategories =
-    page.data.subcategory && page.data.subcategory.length > 0
 
   const baseUrl = "https://satisui.xyz/docs"
   const breadcrumbItems = [
@@ -257,31 +255,12 @@ export default async function Page(props: {
 
         <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
           <header className="flex flex-col gap-6">
-            {(hasCategories || hasSubcategories) && (
+            {hasCategories && (
               <nav className="flex flex-wrap items-center gap-2">
                 {page.data.category?.map((cat) => (
                   <Link href={`/categories/${cat}`} key={cat}>
                     <span className="inline-flex cursor-pointer items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
                       {cat.replace("-", " ")}
-                    </span>
-                  </Link>
-                ))}
-
-                {hasCategories && hasSubcategories && (
-                  <span className="mx-1 text-muted-foreground/40">|</span>
-                )}
-
-                {page.data.subcategory?.map((sub) => (
-                  <Link
-                    href={
-                      hasCategories
-                        ? `/categories/${page.data.category?.[0]}/${sub}`
-                        : `/categories/${sub}`
-                    }
-                    key={sub}
-                  >
-                    <span className="inline-flex cursor-pointer items-center rounded-md border border-primary/20 bg-primary/5 px-2.5 py-1 text-xs font-medium tracking-wide text-primary capitalize transition-all hover:bg-primary hover:text-primary-foreground">
-                      {sub.replace("-", " ")}
                     </span>
                   </Link>
                 ))}

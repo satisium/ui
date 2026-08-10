@@ -323,7 +323,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
     }
 
     const categoryItems = Object.entries(TAXONOMY).map(
-      ([category, subcategories]) => {
+      ([category]) => {
         const catName = category
           .replace("-", " ")
           .replace(/\b\w/g, (l) => l.toUpperCase())
@@ -331,11 +331,11 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
           id: `/categories/${category}`,
           title: catName,
           searchString: catName,
-          subtitle: `${subcategories.length} sub-categories`,
+          subtitle: "Category",
           group: "Categories",
           url: `/categories/${category}`,
           icon: getContextualIcon("category"),
-          aliases: subcategories.map((s) => s.replace("-", " ")),
+          aliases: [],
         }
       }
     )

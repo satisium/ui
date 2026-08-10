@@ -220,16 +220,11 @@ Frontmatter is validated by `source.config.ts` (Zod). Use an existing component'
 
 **Category taxonomy** (must match `lib/utils.ts`):
 
-| Category | Subcategories |
-|----------|--------------|
-| `marketing` | heroes, pricing, feature-sections, testimonials |
-| `navigation` | sidebars, navbars, breadcrumbs, tabs |
-| `overlays` | modals, dialogs, popovers, tooltips, drawers |
-| `data-display` | tables, lists, stats, avatars, cards |
-| `forms` | inputs, selects, toggles, sliders, multi-step |
-| `feedback` | toasts, alerts, skeletons, progress, empty-states |
-| `interactions` | hover-effects, micro-animations, magnetic-buttons |
-| `layout` | grids, masonry, split-panes |
+| Category | Description |
+|----------|-------------|
+| `carousels` | 3D and WebGL carousel components |
+| `text` | Text reveals, typewriters, image transitions, and visual effects |
+| `mouse-trails` | Interactive mouse-following trail components |
 
 ```mdx
 ---
@@ -238,9 +233,7 @@ description: A tasteful and carefully crafted component.
 component: true
 badge: new            # new | updated | beta | premium | deprecated
 category:
-  - interactions
-subcategory:
-  - hover-effects
+  - text
 author: SATIS UI
 links:
   github: https://github.com/satis-ui/ui/blob/main/registry/ui/my-component.tsx

@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next"
 import { source } from "@/lib/source"
-import { CATEGORIES, TAXONOMY } from "@/lib/utils"
+import { CATEGORIES } from "@/lib/utils"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://satisui.xyz"
@@ -21,16 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  const subCategoryUrls = Object.entries(TAXONOMY).flatMap(
-    ([category, subcategories]) =>
-      subcategories.map((subcategory) => ({
-        url: `${baseUrl}/categories/${category}/${subcategory}`,
-        lastModified: new Date(),
-        changeFrequency: "weekly" as const,
-        priority: 0.6,
-      }))
-  )
-
   return [
     {
       url: baseUrl,
@@ -45,7 +35,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     ...categoryUrls,
-    ...subCategoryUrls,
     ...docUrls,
   ]
 }
