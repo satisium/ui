@@ -5,9 +5,7 @@ import {
   ArrowLeft01Icon,
   Car02Icon,
   Cursor02Icon,
-  DropletIcon,
   Image01Icon,
-  SparklesIcon,
   TextAlignJustifyCenterIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
@@ -26,11 +24,9 @@ const CATEGORY_ICONS: Record<keyof typeof TAXONOMY, React.ReactNode> = {
   "image-effects": (
     <HugeiconsIcon icon={Image01Icon} className="size-5" />
   ),
-  "fluid-effects": <HugeiconsIcon icon={DropletIcon} className="size-5" />,
   "mouse-trails": (
     <HugeiconsIcon icon={Cursor02Icon} className="size-5" />
   ),
-  generative: <HugeiconsIcon icon={SparklesIcon} className="size-5" />,
 }
 
 function generateCategoryTree(): PageTree.Root {

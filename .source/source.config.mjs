@@ -10,10 +10,8 @@ import z from "zod";
 var TAXONOMY = {
   "text-reveals": [],
   "image-effects": [],
-  "fluid-effects": [],
   carousels: [],
-  "mouse-trails": [],
-  generative: []
+  "mouse-trails": []
 };
 var CATEGORIES = Object.keys(
   TAXONOMY

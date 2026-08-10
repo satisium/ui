@@ -35,10 +35,8 @@ const title = filename
 const validCategories = [
   "text-reveals",
   "image-effects",
-  "fluid-effects",
   "carousels",
   "mouse-trails",
-  "generative",
 ]
 const category = validCategories.includes(folderName)
   ? folderName
