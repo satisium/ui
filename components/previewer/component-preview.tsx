@@ -230,7 +230,7 @@ export function ComponentPreviewer({
                     demo to your project.
                   </p>
                 </div>
-                <CommandBlock cli={activeDemo.installCommand || ""} />
+                <CommandBlock command={activeDemo.installCommand || ""} />
                 <CodeBlock
                   files={activeDemo.files || {}}
                   className="min-h-0 flex-1"
