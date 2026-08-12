@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/granular-dust-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/granular-dust-reveal.tsx`
+**File Path:** `registry/ui/granular-dust-reveal.tsx`
 
 ```tsx
 "use client"
@@ -290,7 +290,7 @@ GranularDustReveal.displayName = "GranularDustReveal"
 ```tsx
 "use client"
 
-import { GranularDustReveal } from "@/components/ui/granular-dust-reveal"
+import { GranularDustReveal } from "@/registry/ui/granular-dust-reveal"
 
 export default function ExamplePage() {
   return (

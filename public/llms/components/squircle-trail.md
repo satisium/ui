@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/squircle-trail.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/squircle-trail.tsx`
+**File Path:** `registry/ui/squircle-trail.tsx`
 
 ```tsx
 "use client"
@@ -288,7 +288,7 @@ export default function SquircleTrail({
 ```tsx
 "use client"
 
-import SquircleTrail from "@/components/ui/squircle-trail"
+import SquircleTrail from "@/registry/ui/squircle-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

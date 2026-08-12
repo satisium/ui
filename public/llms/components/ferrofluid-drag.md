@@ -26,7 +26,7 @@ npx shadcn@latest add https://ui.satisium.com/r/ferrofluid-drag.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/ferrofluid-drag.tsx`
+**File Path:** `registry/ui/ferrofluid-drag.tsx`
 
 ```tsx
 "use client"
@@ -234,7 +234,7 @@ export function FerrofluidDrag({
 ```tsx
 "use client"
 
-import { FerrofluidDrag } from "@/components/ui/ferrofluid-drag"
+import { FerrofluidDrag } from "@/registry/ui/ferrofluid-drag"
 
 export default function ExamplePage() {
   return (

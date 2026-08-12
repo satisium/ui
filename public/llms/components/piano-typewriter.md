@@ -27,7 +27,7 @@ npx shadcn@latest add https://ui.satisium.com/r/piano-typewriter.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/piano-typewriter.tsx`
+**File Path:** `registry/ui/piano-typewriter.tsx`
 
 ```tsx
 "use client"
@@ -318,7 +318,7 @@ PianoTypewriter.displayName = "PianoTypewriter"
 ```tsx
 "use client"
 
-import { PianoTypewriter } from "@/components/ui/piano-typewriter"
+import { PianoTypewriter } from "@/registry/ui/piano-typewriter"
 
 export default function ExamplePage() {
   return (

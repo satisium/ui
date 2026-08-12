@@ -27,7 +27,7 @@ npx shadcn@latest add https://ui.satisium.com/r/depth-trail.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/depth-trail.tsx`
+**File Path:** `registry/ui/depth-trail.tsx`
 
 ```tsx
 "use client"
@@ -319,7 +319,7 @@ export default function DepthTrail({
 ```tsx
 "use client"
 
-import DepthTrail from "@/components/ui/depth-trail"
+import DepthTrail from "@/registry/ui/depth-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/16.png",

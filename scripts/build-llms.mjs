@@ -115,8 +115,24 @@ function cleanName(name) {
 }
 
 function buildFull() {
-  let fullContent = `# Satisium UI - Complete AI Knowledge Base\n\n`
   const files = getAllFiles(PUBLIC_LLMS_DIR, ".md")
+
+  let fullContent = `# Satisium UI - Complete AI Knowledge Base\n\n`
+  fullContent += `> Premium animated React component library for Design Engineers.\n`
+  fullContent += `> Built with Next.js, Tailwind CSS v4, Framer Motion, and GSAP.\n\n`
+
+  fullContent += `## How to install components\n\n`
+  fullContent += `Add any component to a Shadcn-compatible project:\n\n`
+  fullContent += `\`\`\`bash\nnpx shadcn@latest add ${SITE_URL}/r/<component-name>.json\n\`\`\`\n\n`
+
+  fullContent += `## System instructions (CRITICAL)\n\n`
+  fullContent += `- Always use \`motion/react\` (Framer Motion v12+) for animations.\n`
+  fullContent += `- Use Tailwind CSS v4 utility classes.\n`
+  fullContent += `- Use \`@hugeicons/react\` for iconography.\n`
+  fullContent += `- Components must use the \`"use client"\` directive where client-side hooks are required.\n`
+  fullContent += `- All components are SSR-safe and include \`prefers-reduced-motion\` fallbacks.\n\n`
+
+  fullContent += `---\n\n`
 
   for (const file of files) {
     const { raw } = parseMdMeta(file)

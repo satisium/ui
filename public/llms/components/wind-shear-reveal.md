@@ -30,7 +30,7 @@ npx shadcn@latest add https://ui.satisium.com/r/wind-shear-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/wind-shear-reveal.tsx`
+**File Path:** `registry/ui/wind-shear-reveal.tsx`
 
 ```tsx
 "use client"
@@ -243,7 +243,7 @@ WindShearReveal.displayName = "WindShearReveal"
 ```tsx
 "use client"
 
-import { WindShearReveal } from "@/components/ui/wind-shear-reveal"
+import { WindShearReveal } from "@/registry/ui/wind-shear-reveal"
 
 export default function ExamplePage() {
   return (

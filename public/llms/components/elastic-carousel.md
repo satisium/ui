@@ -31,7 +31,7 @@ npx shadcn@latest add https://ui.satisium.com/r/elastic-carousel.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/elastic-carousel.tsx`
+**File Path:** `registry/ui/elastic-carousel.tsx`
 
 ```tsx
 "use client"
@@ -434,7 +434,7 @@ ElasticCarousel.displayName = "ElasticCarousel"
 ```tsx
 "use client"
 
-import { ElasticCarousel } from "@/components/ui/elastic-carousel"
+import { ElasticCarousel } from "@/registry/ui/elastic-carousel"
 
 export default function ExamplePage() {
   const images = [

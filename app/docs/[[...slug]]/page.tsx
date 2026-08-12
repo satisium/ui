@@ -169,7 +169,7 @@ export default async function Page(props: {
   if (process.env.NODE_ENV !== "development") {
     try {
       const time = await getGithubLastEdit({
-        owner: "satisium-ui", // Satisium UI GitHub organization
+        owner: "satisium", // Satisium UI GitHub organization
         repo: "ui", // Component library repository
         path: `content/docs/${page.path}`,
         token: process.env.GIT_TOKEN

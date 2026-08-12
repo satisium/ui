@@ -27,7 +27,7 @@ npx shadcn@latest add https://ui.satisium.com/r/editorial-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/editorial-reveal.tsx`
+**File Path:** `registry/ui/editorial-reveal.tsx`
 
 ```tsx
 "use client"
@@ -201,7 +201,7 @@ EditorialReveal.displayName = "EditorialReveal"
 ```tsx
 "use client"
 
-import { EditorialReveal } from "@/components/ui/editorial-reveal"
+import { EditorialReveal } from "@/registry/ui/editorial-reveal"
 
 export default function ExamplePage() {
   return (

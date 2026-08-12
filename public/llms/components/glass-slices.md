@@ -29,7 +29,7 @@ npx shadcn@latest add https://ui.satisium.com/r/glass-slices.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/glass-slices.tsx`
+**File Path:** `registry/ui/glass-slices.tsx`
 
 ```tsx
 "use client"
@@ -269,7 +269,7 @@ export default function GlassSlices({
 ```tsx
 "use client"
 
-import GlassSlices from "@/components/ui/glass-slices"
+import GlassSlices from "@/registry/ui/glass-slices"
 
 export default function ExamplePage() {
   return (

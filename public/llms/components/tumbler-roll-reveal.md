@@ -29,7 +29,7 @@ npx shadcn@latest add https://ui.satisium.com/r/tumbler-roll-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/tumbler-roll-reveal.tsx`
+**File Path:** `registry/ui/tumbler-roll-reveal.tsx`
 
 ```tsx
 "use client"
@@ -235,7 +235,7 @@ TumblerRollReveal.displayName = "TumblerRollReveal"
 ```tsx
 "use client"
 
-import { TumblerRollReveal } from "@/components/ui/tumbler-roll-reveal"
+import { TumblerRollReveal } from "@/registry/ui/tumbler-roll-reveal"
 
 export default function ExamplePage() {
   return (

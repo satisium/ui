@@ -27,7 +27,7 @@ npx shadcn@latest add https://ui.satisium.com/r/magnetic-snap-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/magnetic-snap-reveal.tsx`
+**File Path:** `registry/ui/magnetic-snap-reveal.tsx`
 
 ```tsx
 "use client"
@@ -230,7 +230,7 @@ MagneticSnapReveal.displayName = "MagneticSnapReveal"
 ```tsx
 "use client"
 
-import { MagneticSnapReveal } from "@/components/ui/magnetic-snap-reveal"
+import { MagneticSnapReveal } from "@/registry/ui/magnetic-snap-reveal"
 
 export default function ExamplePage() {
   return (

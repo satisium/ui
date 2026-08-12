@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/fluid-typewriter.tsx`
+**File Path:** `registry/ui/fluid-typewriter.tsx`
 
 ```tsx
 "use client"
@@ -309,7 +309,7 @@ FluidTypewriter.displayName = "FluidTypewriter"
 ```tsx
 "use client"
 
-import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+import { FluidTypewriter } from "@/registry/ui/fluid-typewriter"
 
 export default function ExamplePage() {
   return (

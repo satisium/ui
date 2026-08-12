@@ -35,7 +35,7 @@ npx shadcn@latest add https://ui.satisium.com/r/panoramic-carousel.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/panoramic-carousel.tsx`
+**File Path:** `registry/ui/panoramic-carousel.tsx`
 
 ```tsx
 "use client"
@@ -461,7 +461,7 @@ PanoramicCarousel.displayName = "PanoramicCarousel"
 ```tsx
 "use client"
 
-import { PanoramicCarousel } from "@/components/ui/panoramic-carousel"
+import { PanoramicCarousel } from "@/registry/ui/panoramic-carousel"
 
 export default function ExamplePage() {
   const images = [

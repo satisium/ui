@@ -29,7 +29,7 @@ npx shadcn@latest add https://ui.satisium.com/r/flip-vertical-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/flip-vertical-reveal.tsx`
+**File Path:** `registry/ui/flip-vertical-reveal.tsx`
 
 ```tsx
 "use client"
@@ -232,7 +232,7 @@ FlipVerticalReveal.displayName = "FlipVerticalReveal"
 ```tsx
 "use client"
 
-import { FlipVerticalReveal } from "@/components/ui/flip-vertical-reveal"
+import { FlipVerticalReveal } from "@/registry/ui/flip-vertical-reveal"
 
 export default function ExamplePage() {
   return (

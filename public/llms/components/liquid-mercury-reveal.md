@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/liquid-mercury-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/liquid-mercury-reveal.tsx`
+**File Path:** `registry/ui/liquid-mercury-reveal.tsx`
 
 ```tsx
 "use client"
@@ -297,7 +297,7 @@ LiquidMercuryReveal.displayName = "LiquidMercuryReveal"
 ```tsx
 "use client"
 
-import { LiquidMercuryReveal } from "@/components/ui/liquid-mercury-reveal"
+import { LiquidMercuryReveal } from "@/registry/ui/liquid-mercury-reveal"
 
 export default function ExamplePage() {
   return (

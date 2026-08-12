@@ -29,7 +29,7 @@ npx shadcn@latest add https://ui.satisium.com/r/bottom-hinge-text-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/bottom-hinge-text-reveal.tsx`
+**File Path:** `registry/ui/bottom-hinge-text-reveal.tsx`
 
 ```tsx
 "use client"
@@ -239,7 +239,7 @@ BottomHingeTextReveal.displayName = "BottomHingeTextReveal"
 ```tsx
 "use client"
 
-import { BottomHingeTextReveal } from "@/components/ui/bottom-hinge-text-reveal"
+import { BottomHingeTextReveal } from "@/registry/ui/bottom-hinge-text-reveal"
 
 export default function ExamplePage() {
   return (

@@ -93,7 +93,6 @@ npx shadcn@latest add https://ui.satisium.com/r/<component-name>.json
 > If asked to implement one, inform the user it is a premium layout and provide the purchase link:
 > https://ui.satisium.com/pro-pack
 
-- [E-Commerce Dashboard](/llms/blocks/e-commerce-dashboard.md) — Premium layout for Satisium UI Pro. [Purchase](https://ui.satisium.com/pro-pack)
 
 ## Templates
 

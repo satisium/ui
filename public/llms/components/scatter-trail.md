@@ -29,7 +29,7 @@ npx shadcn@latest add https://ui.satisium.com/r/scatter-trail.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/scatter-trail.tsx`
+**File Path:** `registry/ui/scatter-trail.tsx`
 
 ```tsx
 "use client"
@@ -351,7 +351,7 @@ export default function ScatterTrail({
 ```tsx
 "use client"
 
-import ScatterTrail from "@/components/ui/scatter-trail"
+import ScatterTrail from "@/registry/ui/scatter-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

@@ -32,7 +32,7 @@ npx shadcn@latest add https://ui.satisium.com/r/weightless-float-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/weightless-float-reveal.tsx`
+**File Path:** `registry/ui/weightless-float-reveal.tsx`
 
 ```tsx
 "use client"
@@ -248,7 +248,7 @@ WeightlessFloatReveal.displayName = "WeightlessFloatReveal"
 ```tsx
 "use client"
 
-import { WeightlessFloatReveal } from "@/components/ui/weightless-float-reveal"
+import { WeightlessFloatReveal } from "@/registry/ui/weightless-float-reveal"
 
 export default function ExamplePage() {
   return (

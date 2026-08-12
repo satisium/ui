@@ -33,7 +33,7 @@ npx shadcn@latest add https://ui.satisium.com/r/dimensional-deck.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/dimensional-deck.tsx`
+**File Path:** `registry/ui/dimensional-deck.tsx`
 
 ```tsx
 "use client"
@@ -445,7 +445,7 @@ DimensionalDeck.displayName = "DimensionalDeck"
 ```tsx
 "use client"
 
-import { DimensionalDeck } from "@/components/ui/dimensional-deck"
+import { DimensionalDeck } from "@/registry/ui/dimensional-deck"
 
 export default function ExamplePage() {
   const images = [

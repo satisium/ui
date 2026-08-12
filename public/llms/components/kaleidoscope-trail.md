@@ -27,7 +27,7 @@ npx shadcn@latest add https://ui.satisium.com/r/kaleidoscope-trail.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/kaleidoscope-trail.tsx`
+**File Path:** `registry/ui/kaleidoscope-trail.tsx`
 
 ```tsx
 "use client"
@@ -319,7 +319,7 @@ export default function KaleidoscopeTrail({
 ```tsx
 "use client"
 
-import KaleidoscopeTrail from "@/components/ui/kaleidoscope-trail"
+import KaleidoscopeTrail from "@/registry/ui/kaleidoscope-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/16.png",

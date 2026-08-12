@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/fluid-disintegration.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/fluid-disintegration.tsx`
+**File Path:** `registry/ui/fluid-disintegration.tsx`
 
 ```tsx
 "use client"
@@ -228,7 +228,7 @@ export function FluidDisintegration({
 ```tsx
 "use client"
 
-import { FluidDisintegration } from "@/components/ui/fluid-disintegration"
+import { FluidDisintegration } from "@/registry/ui/fluid-disintegration"
 
 export default function ExamplePage() {
   return (

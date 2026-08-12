@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/velocity-strips.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/velocity-strips.tsx`
+**File Path:** `registry/ui/velocity-strips.tsx`
 
 ```tsx
 "use client"
@@ -225,7 +225,7 @@ export default function VelocityStrips({
 ```tsx
 "use client"
 
-import VelocityStrips from "@/components/ui/velocity-strips"
+import VelocityStrips from "@/registry/ui/velocity-strips"
 
 export default function ExamplePage() {
   return (

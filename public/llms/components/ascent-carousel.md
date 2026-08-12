@@ -31,7 +31,7 @@ npx shadcn@latest add https://ui.satisium.com/r/ascent-carousel.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/ascent-carousel.tsx`
+**File Path:** `registry/ui/ascent-carousel.tsx`
 
 ```tsx
 "use client"
@@ -342,7 +342,7 @@ export function AscentCarousel({
 ```tsx
 "use client"
 
-import { AscentCarousel } from "@/components/ui/ascent-carousel"
+import { AscentCarousel } from "@/registry/ui/ascent-carousel"
 
 export default function ExamplePage() {
   return (

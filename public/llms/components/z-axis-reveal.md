@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/z-axis-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/z-axis-reveal.tsx`
+**File Path:** `registry/ui/z-axis-reveal.tsx`
 
 ```tsx
 "use client"
@@ -260,7 +260,7 @@ ZAxisReveal.displayName = "ZAxisReveal"
 ```tsx
 "use client"
 
-import { ZAxisReveal } from "@/components/ui/z-axis-reveal"
+import { ZAxisReveal } from "@/registry/ui/z-axis-reveal"
 
 export default function ExamplePage() {
   return (

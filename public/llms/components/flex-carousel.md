@@ -31,7 +31,7 @@ npx shadcn@latest add https://ui.satisium.com/r/flex-carousel.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/flex-carousel.tsx`
+**File Path:** `registry/ui/flex-carousel.tsx`
 
 ```tsx
 "use client"
@@ -404,7 +404,7 @@ FlexCarousel.displayName = "FlexCarousel"
 ```tsx
 "use client"
 
-import { FlexCarousel } from "@/components/ui/flex-carousel"
+import { FlexCarousel } from "@/registry/ui/flex-carousel"
 
 export default function ExamplePage() {
   const images = [

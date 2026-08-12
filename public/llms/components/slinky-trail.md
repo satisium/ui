@@ -25,7 +25,7 @@ npx shadcn@latest add https://ui.satisium.com/r/slinky-trail.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/slinky-trail.tsx`
+**File Path:** `registry/ui/slinky-trail.tsx`
 
 ```tsx
 "use client"
@@ -223,7 +223,7 @@ export default function SlinkyTrail({
 ```tsx
 "use client"
 
-import SlinkyTrail from "@/components/ui/slinky-trail"
+import SlinkyTrail from "@/registry/ui/slinky-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

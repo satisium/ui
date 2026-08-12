@@ -28,7 +28,7 @@ npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-reveal.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/heat-mirage-reveal.tsx`
+**File Path:** `registry/ui/heat-mirage-reveal.tsx`
 
 ```tsx
 "use client"
@@ -295,7 +295,7 @@ HeatMirageReveal.displayName = "HeatMirageReveal"
 ```tsx
 "use client"
 
-import { HeatMirageReveal } from "@/components/ui/heat-mirage-reveal"
+import { HeatMirageReveal } from "@/registry/ui/heat-mirage-reveal"
 
 export default function ExamplePage() {
   return (

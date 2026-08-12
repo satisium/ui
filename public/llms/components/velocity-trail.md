@@ -26,7 +26,7 @@ npx shadcn@latest add https://ui.satisium.com/r/velocity-trail.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/velocity-trail.tsx`
+**File Path:** `registry/ui/velocity-trail.tsx`
 
 ```tsx
 "use client"
@@ -333,7 +333,7 @@ export default function VelocityTrail({
 ```tsx
 "use client"
 
-import VelocityTrail from "@/components/ui/velocity-trail"
+import VelocityTrail from "@/registry/ui/velocity-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

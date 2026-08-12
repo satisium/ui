@@ -27,7 +27,7 @@ npx shadcn@latest add https://ui.satisium.com/r/mycelium-network.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/mycelium-network.tsx`
+**File Path:** `registry/ui/mycelium-network.tsx`
 
 ```tsx
 "use client"
@@ -303,7 +303,7 @@ export function MyceliumNetwork({
 ```tsx
 "use client"
 
-import { MyceliumNetwork } from "@/components/ui/mycelium-network"
+import { MyceliumNetwork } from "@/registry/ui/mycelium-network"
 
 export default function ExamplePage() {
   return (

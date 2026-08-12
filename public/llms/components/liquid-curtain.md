@@ -25,7 +25,7 @@ npx shadcn@latest add https://ui.satisium.com/r/liquid-curtain.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/liquid-curtain.tsx`
+**File Path:** `registry/ui/liquid-curtain.tsx`
 
 ```tsx
 "use client"
@@ -209,7 +209,7 @@ export function LiquidCurtain({
 ```tsx
 "use client"
 
-import { LiquidCurtain } from "@/components/ui/liquid-curtain"
+import { LiquidCurtain } from "@/registry/ui/liquid-curtain"
 
 export default function ExamplePage() {
   return (

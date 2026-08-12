@@ -32,7 +32,7 @@ npx shadcn@latest add https://ui.satisium.com/r/wave-carousel.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/wave-carousel.tsx`
+**File Path:** `registry/ui/wave-carousel.tsx`
 
 ```tsx
 "use client"
@@ -388,7 +388,7 @@ export function WaveCarousel({
 ```tsx
 "use client"
 
-import { WaveCarousel } from "@/components/ui/wave-carousel"
+import { WaveCarousel } from "@/registry/ui/wave-carousel"
 
 export default function ExamplePage() {
   return (

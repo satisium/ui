@@ -31,7 +31,7 @@ npx shadcn@latest add https://ui.satisium.com/r/concave-carousel.json
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/concave-carousel.tsx`
+**File Path:** `registry/ui/concave-carousel.tsx`
 
 ```tsx
 "use client"
@@ -377,7 +377,7 @@ export function ConcaveCarousel({
 ```tsx
 "use client"
 
-import { ConcaveCarousel } from "@/components/ui/concave-carousel"
+import { ConcaveCarousel } from "@/registry/ui/concave-carousel"
 
 export default function ExamplePage() {
   return (
