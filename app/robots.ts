@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next"
+import { SITE_URL } from "@/lib/config"
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: ["/", "/llms.txt", "/llms-full.txt", "/llms/"],
       disallow: ["/api/", "/test/"],
     },
-    sitemap: "https://ui.satisium.com/sitemap.xml",
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

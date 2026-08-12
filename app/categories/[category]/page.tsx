@@ -5,6 +5,7 @@ import { CategoryHero } from "@/components/component-card/category-hero"
 import { ComponentCard } from "@/components/component-card/component-card"
 import { CATEGORIES } from "@/lib/utils"
 import { Metadata } from "next"
+import { SITE_URL } from "@/lib/config"
 
 
 export function generateStaticParams() {
@@ -28,7 +29,7 @@ export async function generateMetadata(props: {
     title,
     description,
     alternates: {
-      canonical: `https://ui.satisium.com/categories/${params.category}`,
+      canonical: `${SITE_URL}/categories/${params.category}`,
     },
     openGraph: {
       title: `${title} | Satisium UI`,

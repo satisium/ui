@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next"
 import { source } from "@/lib/source"
 import { CATEGORIES } from "@/lib/utils"
+import { SITE_URL } from "@/lib/config"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://ui.satisium.com"
+  const baseUrl = SITE_URL
 
   const pages = source.getPages()
 

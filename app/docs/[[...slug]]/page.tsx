@@ -14,8 +14,13 @@ import {
 } from "@/components/previewer/component-preview"
 import { registry } from "@/registry/index"
 import { cn } from "@/lib/utils"
+import { SITE_URL } from "@/lib/config"
 import { DocTracker } from "@/components/doc-tracker"
 import { CopyMdxButton } from "@/components/ui/copy-mdx-button"
+
+// ============================================================================
+// ROUTING & STATIC GENERATION
+// ============================================================================
 
 export async function generateStaticParams() {
   return source.generateParams()
@@ -30,7 +35,7 @@ export async function generateMetadata(props: {
   if (!page) return {}
 
   const slugPath = params.slug ? params.slug.join("/") : ""
-  const canonicalUrl = `https://ui.satisium.com/docs/${slugPath}`
+  const canonicalUrl = `${SITE_URL}/docs/${slugPath}`
   const description =
     page.data.description ||
     `Explore the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP.`
@@ -55,6 +60,14 @@ export async function generateMetadata(props: {
   }
 }
 
+// ============================================================================
+// UTILITIES
+// ============================================================================
+
+/**
+ * Maps badge text values to respective UI theme classes.
+ * @param badge - String identifier for the badge type (e.g., 'new', 'beta')
+ */
 function getBadgeStyle(badge: string) {
   switch (badge.toLowerCase()) {
     case "new":
@@ -73,6 +86,10 @@ function getBadgeStyle(badge: string) {
   }
 }
 
+// ============================================================================
+// MAIN LAYOUT COMPONENT
+// ============================================================================
+
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>
 }) {
@@ -81,6 +98,8 @@ export default async function Page(props: {
 
   if (!page) notFound()
 
+  // [DATA LAYER: File System]
+  // Extract raw MDX content payload to feed the AI/Copy context button.
   let copyPayload = ""
   try {
     const relativePath = page.path.replace(/\.mdx?$/, ".md")
@@ -96,16 +115,19 @@ export default async function Page(props: {
     console.error("Failed to read copy payload for:", page.path, error)
   }
 
+  // [DATA LAYER: Page Context]
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
   const pageRegistry = registry ?? {}
 
+  // [DATA LAYER: Monetization]
   const isPaid = !!(page.data as any).gumroad
   const price = (page.data as any).price || "0.00"
   const gumroadLink = (page.data as any).gumroad || ""
 
+  // [DATA LAYER: Component Registry Resolution]
+  // Resolves keys from frontmatter against the global UI registry to instantiate demo elements.
   const resolvedDemos: DemoData[] = []
-
   if (page.data.registryKeys && page.data.registryKeys.length > 0) {
     for (const key of page.data.registryKeys) {
       const item = pageRegistry[key]
@@ -140,13 +162,15 @@ export default async function Page(props: {
       }
     }
   }
-  let lastModifiedTime: string | null = null
 
+  // [DATA LAYER: External APIs (GitHub)]
+  // Retrieves the timestamp of the last git commit for the current MDX document.
+  let lastModifiedTime: string | null = null
   if (process.env.NODE_ENV !== "development") {
     try {
       const time = await getGithubLastEdit({
-        owner: "your-github-username",
-        repo: "your-repo-name",
+        owner: "satisium", // Updated Organization Name
+        repo: "ui", // Target Repository
         path: `content/docs/${page.path}`,
         token: process.env.GIT_TOKEN
           ? `Bearer ${process.env.GIT_TOKEN}`
@@ -163,12 +187,14 @@ export default async function Page(props: {
       console.error("Failed to fetch last edit time:", error)
     }
   } else {
+    // Fallback for local development bypass to prevent API rate limits.
     lastModifiedTime = "May 2, 2026"
   }
 
   const hasCategories = page.data.category && page.data.category.length > 0
 
-  const baseUrl = "https://ui.satisium.com/docs"
+  // [DATA LAYER: SEO Schema Generation]
+  const baseUrl = `${SITE_URL}/docs`
   const breadcrumbItems = [
     { "@type": "ListItem", position: 1, name: "Docs", item: baseUrl },
   ]
@@ -219,8 +245,12 @@ export default async function Page(props: {
         codeSampleType: "UI Component",
       }
 
+  // ============================================================================
+  // RENDER PHASE
+  // ============================================================================
   return (
     <>
+      {/* [UI: Global Overlays] */}
       <DocTracker
         title={page.data.title}
         category={page.data.category?.[0]}
@@ -229,6 +259,7 @@ export default async function Page(props: {
         price={price}
       />
 
+      {/* [UI: SEO Scripts] */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -239,6 +270,7 @@ export default async function Page(props: {
       />
 
       <div className="flex w-full animate-in flex-col duration-700 ease-out-expo fade-in">
+        {/* [UI: Component Playground] - Hero section for interactive demos */}
         {resolvedDemos.length > 0 && (
           <section className="h-screen w-full">
             <ComponentPreviewer
@@ -254,6 +286,7 @@ export default async function Page(props: {
         )}
 
         <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
+          {/* [UI: Document Header] */}
           <header className="flex flex-col gap-6">
             {hasCategories && (
               <nav className="flex flex-wrap items-center gap-2">
@@ -295,7 +328,7 @@ export default async function Page(props: {
               )}
             </div>
 
-            {/* ✨ DYNAMIC COPY BUTTON RENDER */}
+            {/* [UI: Action Area] - Provides code payload via clipboard */}
             {!page.data.hideCopy && (
               <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
                 <CopyMdxButton rawMdx={copyPayload} />
@@ -303,19 +336,21 @@ export default async function Page(props: {
             )}
           </header>
 
+          {/* [UI: Main Content Layout] - dynamically handles TOC sidebar presence */}
           <div
             id="installation"
             className={cn(
               "grid items-start gap-12",
-              // ✨ DYNAMIC LAYOUT: Flushed left (no mx-auto)
               page.data.hideToc
                 ? "w-full max-w-4xl grid-cols-1"
                 : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
             )}
           >
+            {/* [UI: MDX Engine Output] */}
             <div className="w-full min-w-0 pb-32">
               <MDX components={defaultMdxComponents} />
 
+              {/* [UI: Footer Navigation] - Previous / Next Links */}
               <div className="mt-24 flex flex-col gap-8 border-t border-border/50 pt-10">
                 <nav
                   aria-label="Pagination"
@@ -356,7 +391,7 @@ export default async function Page(props: {
               </div>
             </div>
 
-            {/* ✨ DYNAMIC TOC RENDER */}
+            {/* [UI: Table of Contents] - Sidebar sticky tracker */}
             {!page.data.hideToc && (
               <aside className="sticky top-24 no-scrollbar hidden max-h-[calc(100vh-8rem)] overflow-y-auto lg:block">
                 <TableOfContents items={page.data.toc} />

@@ -2,13 +2,14 @@ import { CategoryHero } from "@/components/component-card/category-hero"
 import { TAXONOMY, CATEGORIES } from "@/lib/utils"
 import Link from "next/link"
 import { Metadata } from "next"
+import { SITE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
   title: "Categories",
   description:
     "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
   alternates: {
-    canonical: "https://ui.satisium.com/categories",
+    canonical: `${SITE_URL}/categories`,
   },
   openGraph: {
     title: "Categories | Satisium UI",

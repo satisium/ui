@@ -11,6 +11,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { CSPostHogProvider } from "@/components/analytics-provider"
 import { Suspense } from "react"
+import { SITE_URL } from "@/lib/config"
 import PostHogPageView from "@/components/posthog-pageview"
 import { CommandMenuDialog } from "@/components/layout/command-menu"
 import { source } from "@/lib/source"
@@ -42,7 +43,7 @@ const fontCode = IBM_Plex_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ui.satisium.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     template: "%s | Satisium UI",
     default: "Satisium UI | Animated component library for design engineers",
@@ -92,11 +93,10 @@ export default function RootLayout({
               "@type": "WebSite",
               name: "Satisium UI",
               alternateName: ["SatisiumUI", "Satisium UI Library"],
-              url: "https://ui.satisium.com",
+              url: SITE_URL,
               potentialAction: {
                 "@type": "SearchAction",
-                target:
-                  "https://ui.satisium.com/docs/search?q={search_term_string}",
+                target: `${SITE_URL}/docs/search?q={search_term_string}`,
                 "query-input": "required name=search_term_string",
               },
             }),

@@ -8,7 +8,7 @@
 - [x] **Make the app desktop only:** Add a condition to make the app apart from landing page desktop only.
 - [x] **ui.satisium.com:** VERY IMPORTANT.
 - [ ] **Important index pages:** Index pages for `doc/components` etc .
-- [ ] **Proper categories:** Add proper categories to the components.
+- [x] **Proper categories:** Add proper categories to the components.
 - [ ] **Demo videos:** Proper demo videos and hook them properly to the all place they are needed.
 - [x] **Beta** Make the app beta.
 - [x] **Delete some components:** Remove the suckers.
@@ -22,6 +22,7 @@
 - [x] **SEO and logo:** Update logos everywhere. SEO and all.
 - [x] **Github satisium:** Github satis UI to satisium.
 - [ ] **Analytics:** Analytics.
+- [ ] **Og Images:** Og Images.
 
 ## 🎨 1. UI, UX & Premium Polish
 
@@ -74,9 +75,9 @@
 > **Note:** These are external to the codebase but must be completed for the Satisium UI rebrand to be fully consistent in production.
 
 - [ ] **Domain DNS:** Point `ui.satisium.com` to hosting provider. Set up 301 redirects from old domains (`satisui.xyz`, `ui.satisstoodio.com`) to preserve SEO and user bookmarks.
-- [ ] **GitHub Repository:** Rename repo from `satis-ui/ui` → `satisium-ui/ui` (or transfer to `satisium-ui` org). Update all remote URLs in local clones.
+- [x] **GitHub Repository:** Rename repo from `satis-ui/ui` → `satisium-ui/ui` (or transfer to `satisium-ui` org). Update all remote URLs in local clones.
 - [ ] **Vercel / Deployment:** Update production domain to `ui.satisium.com`. Verify environment variables are set correctly.
-- [ ] **Cloudinary Dashboard:** Create new named transformations `t_satisium_preview` and `t_satisium_demo` (or rename existing `t_satis_preview` / `t_satis_demo`). Without this, image/video optimization will silently fail.
+- [x] **Cloudinary Dashboard:** Create new named transformations `t_satisium_preview` and `t_satisium_demo` (or rename existing `t_satis_preview` / `t_satis_demo`). Without this, image/video optimization will silently fail.
 - [ ] **Upstash Redis:** Historical metrics under old keys (`satis:metrics:*`) will not carry over. This is expected — metrics will start fresh under `satisium:metrics:*`.
 - [ ] **npm Package (if publishing):** Update `package.json` name from `"ui"` → `"satisium-ui"` and publish under new name.
 - [ ] **PostHog:** Update project name if desired. Events themselves don't need changes unless dashboards filter by old project name.
