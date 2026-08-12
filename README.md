@@ -1,6 +1,6 @@
 # Satisium UI
 
-[![CI](https://github.com/satisium-ui/ui/actions/workflows/ci.yml/badge.svg)](https://github.com/satisium-ui/ui/actions/workflows/ci.yml)
+[![CI](https://github.com/satisium/ui/actions/workflows/ci.yml/badge.svg)](https://github.com/satisium/ui/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/ui.svg)](https://www.npmjs.com/package/ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
@@ -19,7 +19,7 @@ npx shadcn@latest add https://ui.satisium.com/r/<component-name>.json
 ## 🚀 Quick Start
 
 ```bash
-git clone https://github.com/satisium-ui/ui.git
+git clone https://github.com/satisium/ui.git
 cd ui
 pnpm install
 pnpm dev

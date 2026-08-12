@@ -131,7 +131,7 @@ export default function RootLayout({
               name: "Satisium UI",
               url: SITE_URL,
               sameAs: [
-                "https://github.com/satisium-ui/ui",
+                "https://github.com/satisium/ui",
                 "https://twitter.com/iamsatish4564",
               ],
               logo: {
@@ -140,6 +140,40 @@ export default function RootLayout({
                 width: 512,
                 height: 512,
               },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "Satisium UI",
+              description:
+                "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+              url: SITE_URL,
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Web",
+              sameAs: [
+                "https://github.com/satisium/ui",
+                "https://twitter.com/iamsatish4564",
+              ],
+              offers: [
+                {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "USD",
+                  description: "Free components",
+                },
+                {
+                  "@type": "Offer",
+                  price: "49.00",
+                  priceCurrency: "USD",
+                  description: "Satisium UI Pro Pack",
+                  url: `${SITE_URL}/pro-pack`,
+                },
+              ],
             }),
           }}
         />

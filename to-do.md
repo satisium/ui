@@ -75,7 +75,7 @@
 > **Note:** These are external to the codebase but must be completed for the Satisium UI rebrand to be fully consistent in production.
 
 - [ ] **Domain DNS:** Point `ui.satisium.com` to hosting provider. Set up 301 redirects from old domains (`satisui.xyz`, `ui.satisstoodio.com`) to preserve SEO and user bookmarks.
-- [x] **GitHub Repository:** Rename repo from `satis-ui/ui` → `satisium-ui/ui` (or transfer to `satisium-ui` org). Update all remote URLs in local clones.
+- [x] **GitHub Repository:** Rename repo from `satis-ui/ui` → `satisium/ui` (or transfer to `satisium-ui` org). Update all remote URLs in local clones.
 - [ ] **Vercel / Deployment:** Update production domain to `ui.satisium.com`. Verify environment variables are set correctly.
 - [x] **Cloudinary Dashboard:** Create new named transformations `t_satisium_preview` and `t_satisium_demo` (or rename existing `t_satis_preview` / `t_satis_demo`). Without this, image/video optimization will silently fail.
 - [ ] **Upstash Redis:** Historical metrics under old keys (`satis:metrics:*`) will not carry over. This is expected — metrics will start fresh under `satisium:metrics:*`.

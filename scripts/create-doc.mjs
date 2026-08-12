@@ -52,7 +52,7 @@ category:
   - ${category}
 author: Satisium UI
 links:
-  github: https://github.com/satisium-ui/ui/blob/main/registry/ui/${filename}
+  github: https://github.com/satisium/ui/blob/main/registry/ui/${filename}
   preview: https://satisiumui.com/preview/${filename}
 registryKeys:
   - ${filename}-demo

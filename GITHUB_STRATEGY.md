@@ -2,7 +2,7 @@
 
 > **Production URL:** [https://ui.satisium.com](https://ui.satisium.com)  
 > **Dev URL:** [http://localhost:3000](http://localhost:3000)  
-> **Repository:** [https://github.com/satisium-ui/ui.git](https://github.com/satisium-ui/ui.git)  
+> **Repository:** [https://github.com/satisium/ui.git](https://github.com/satisium/ui.git)  
 > **Audience:** Core maintainers + open-source contributors  
 > **Status:** Living document — update as the project evolves  
 > **Scope:** Commits, branches, PRs, issues, releases, CI/CD, security, and community health for the open-source launch of Satisium UI.
@@ -327,7 +327,7 @@ Examples: `feat/add-magnetic-snap`, `fix/registry-build-error`
 3. Run `pnpm registry:public` to generate shadcn manifests.
 4. Run `pnpm changeset` to document your change for the release notes.
 5. Run `pnpm lint && pnpm typecheck && pnpm build` locally.
-6. Push to your fork and Open a PR against `satisium-ui/ui main`.
+6. Push to your fork and Open a PR against `satisium/ui main`.
 7. CI runs automatically (lint → typecheck → build).
 8. Maintainer reviews, requests changes, or approves.
 9. Squash-merge to `main`.

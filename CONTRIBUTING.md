@@ -236,7 +236,7 @@ category:
   - text
 author: Satisium UI
 links:
-  github: https://github.com/satisium-ui/ui/blob/main/registry/ui/my-component.tsx
+  github: https://github.com/satisium/ui/blob/main/registry/ui/my-component.tsx
   preview: https://ui.satisium.com/preview/my-component-demo
 registryKeys:
   - my-component-demo
@@ -400,7 +400,7 @@ Examples: `feat/add-magnetic-snap-reveal`, `fix/registry-build-error`, `docs/upd
 3. Run `pnpm registry:public` to generate shadcn manifests.
 4. Run `pnpm changeset` to document your change for the release notes.
 5. Run `pnpm lint && pnpm typecheck && pnpm build` locally.
-6. Push to your fork and open a PR against `satisium-ui/ui main`.
+6. Push to your fork and open a PR against `satisium/ui main`.
 7. CI runs automatically (lint → typecheck → build).
 8. Maintainer reviews, requests changes, or approves.
 9. Squash-merge to `main`.
@@ -589,6 +589,6 @@ Is this only docs, MDX, or LLM context?
 
 ## 13. Need Help?
 
-- **Questions about using components:** [GitHub Discussions](https://github.com/satisium-ui/ui/discussions)
-- **Bug reports and feature requests:** [GitHub Issues](https://github.com/satisium-ui/ui/issues)
+- **Questions about using components:** [GitHub Discussions](https://github.com/satisium/ui/discussions)
+- **Bug reports and feature requests:** [GitHub Issues](https://github.com/satisium/ui/issues)
 - **Security vulnerabilities:** Email **security@satisium.com** (do not open a public issue)

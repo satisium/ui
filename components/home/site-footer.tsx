@@ -99,7 +99,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a
-                   href="https://github.com/satisium-ui/ui"
+                   href="https://github.com/satisium/ui"
                   target="_blank"
                   rel="noreferrer"
                   className="transition-colors hover:text-foreground"
