@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add proximity-grid
+npx shadcn@latest add https://ui.satisium.com/r/proximity-grid.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `clsx`, `tailwind-merge`.

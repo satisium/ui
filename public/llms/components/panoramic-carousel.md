@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add panoramic-carousel
+npx shadcn@latest add https://ui.satisium.com/r/panoramic-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

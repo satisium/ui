@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add multi-color-trail-reveal
+npx shadcn@latest add https://ui.satisium.com/r/multi-color-trail-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add pendulum-reveal
+npx shadcn@latest add https://ui.satisium.com/r/pendulum-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

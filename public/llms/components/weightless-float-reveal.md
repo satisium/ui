@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add weightless-float-reveal
+npx shadcn@latest add https://ui.satisium.com/r/weightless-float-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

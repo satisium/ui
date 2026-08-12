@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add ferrofluid-drag
+npx shadcn@latest add https://ui.satisium.com/r/ferrofluid-drag.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

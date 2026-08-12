@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add bottom-hinge-text-reveal
+npx shadcn@latest add https://ui.satisium.com/r/bottom-hinge-text-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.

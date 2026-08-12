@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satisium-ui add pendulum-trail
+npx shadcn@latest add https://ui.satisium.com/r/pendulum-trail.json
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.

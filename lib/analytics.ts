@@ -14,7 +14,10 @@ export const trackEvent = async (
   incrementPublicCounter?: "web_copy" | "page_view"
 ) => {
   // 1. Send deep product data to PostHog (Only in production/browser)
-  if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+  if (
+    typeof window !== "undefined" &&
+    process.env.NEXT_PUBLIC_POSTHOG_TOKEN
+  ) {
     posthog.capture(eventName, properties)
   }
 
