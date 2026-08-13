@@ -170,7 +170,7 @@ export const ChangelogImage = ({
       className
     )}
   >
-    <img src={src} alt={alt} className="h-auto w-full object-cover" />
+    <img src={src} alt={alt} className="h-auto w-full object-cover" loading="lazy" />
   </div>
 )
 

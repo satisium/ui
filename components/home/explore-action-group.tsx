@@ -87,12 +87,14 @@ export function ExploreActionGroup({
             alt="GitHub"
             fill
             className="block object-contain dark:hidden"
+            loading="lazy"
           />
           <Image
             src="/github-mark-white.svg"
             alt="GitHub"
             fill
             className="hidden object-contain dark:block"
+            loading="lazy"
           />
         </div>
 

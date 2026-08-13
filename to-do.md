@@ -36,11 +36,11 @@
 
 ## 🛠️ 2. Code Quality & Stability (P0–P1)
 
-- [ ] **Fix missing `React` import in `registry/index.ts`:** The file uses `React.ComponentType` on line 19 without importing the `React` namespace. This will fail at runtime or type-checking. Add `import React from "react"` at the top of the file.
-- [ ] **Extract duplicate GitHub metadata fetch in `app/docs/[[...slug]]/page.tsx`:** `getGithubLastEdit` is called independently in both `generateMetadata` and the `Page` component, doubling external API requests per docs page. Extract the fetch into a shared server utility and cache the result within the request lifecycle.
-- [ ] **Replace `(page.data as any)` with typed frontmatter:** Multiple `as any` casts in `page.tsx` bypass TypeScript strict mode. Extend the Fumadocs page schema with a proper frontmatter interface so that `badge`, `category`, `comingSoon`, `gumroad`, `price`, and `media` are type-safe.
-- [ ] **Replace hardcoded stale dates:** The fallback `"May 2, 2026"` in `page.tsx` will become misleading. Replace it with a build-time constant (e.g., from `git log -1 --format=%ci`) or remove the fallback entirely.
-- [ ] **Remove `unoptimized={true}` from `next/image` in `component-card.tsx`:** This flag bypasses Next.js Image Optimization, disabling automatic AVIF/WebP conversion, CDN caching, and responsive `srcset` generation. Remove it to restore optimization.
+- [x] **Fix missing `React` import in `registry/index.ts`:** The file uses `React.ComponentType` on line 19 without importing the `React` namespace. This will fail at runtime or type-checking. Add `import React from "react"` at the top of the file.
+- [x] **Extract duplicate GitHub metadata fetch in `app/docs/[[...slug]]/page.tsx`:** `getGithubLastEdit` is called independently in both `generateMetadata` and the `Page` component, doubling external API requests per docs page. Extract the fetch into a shared server utility and cache the result within the request lifecycle.
+- [x] **Replace `(page.data as any)` with typed frontmatter:** Multiple `as any` casts in `page.tsx` bypass TypeScript strict mode. Extend the Fumadocs page schema with a proper frontmatter interface so that `badge`, `category`, `comingSoon`, `gumroad`, `price`, and `media` are type-safe.
+- [x] **Replace hardcoded stale dates:** The fallback `"May 2, 2026"` in `page.tsx` will become misleading. Replace it with a build-time constant (e.g., from `git log -1 --format=%ci`) or remove the fallback entirely.
+- [x] **Remove `unoptimized={true}` from `next/image` in `component-card.tsx`:** This flag bypasses Next.js Image Optimization, disabling automatic AVIF/WebP conversion, CDN caching, and responsive `srcset` generation. Remove it to restore optimization.
 
 ## ⚡ 3. Performance (P1)
 

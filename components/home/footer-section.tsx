@@ -98,6 +98,7 @@ export function FooterSection() {
                     width={20}
                     height={20}
                     className="object-contain"
+                    loading="lazy"
                   />
                 </a>
               </div>

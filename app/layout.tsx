@@ -150,6 +150,39 @@ export default function RootLayout({
     >
       <head>
         <meta name="apple-mobile-web-app-title" content="Satisium UI" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap"
+        />
+        <link rel="preload" as="image" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
