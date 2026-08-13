@@ -1,19 +1,159 @@
 ---
 title: How to use
-description: How to wire up the spatial layout engine in your Next.js app.
+description: Customize components, preview them before installing, and use the docs site features.
 ---
 
-Getting started is designed to be frictionless. We assume you are running the latest version of Next.js and Tailwind v4.
+## Basic usage
 
-### Prerequisites
+Every Satisium UI component is a standard React component. Import it, pass props, and render it.
 
-You will need the following installed:
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "page.tsx": `import { VelocityStrips } from "@/components/ui/velocity-strips"\n\nexport default function Page() {\n  return (\n    <VelocityStrips\n      mediaUrl="/hero.jpg"\n      mediaType="image"\n      slices={32}\n      hoverRadius={0.35}\n      shiftMultiplier={1.5}\n      className="w-full h-screen"\n    />\n  )\n}`,
+    }}
+  />
+</div>
 
-- `next` (latest)
-- `tailwindcss` (v4)
-- `motion-react` (for our precise spring physics)
-- `zustand` (for decoupled spatial state)
+## Props
 
-```bash
-npm install motion-react zustand
-```
+Each component documents its props in a table on its doc page. Common props across the library:
+
+| Prop            | Type        | Default     | Description                                  |
+| :-------------- | :---------- | :---------- | :------------------------------------------- |
+| **`className`** | `string`    | `undefined` | Standard Tailwind classes for the wrapper.   |
+| **`fallback`**  | `ReactNode` | `null`      | Loading state for WebGL / async components.  |
+| **`children`**  | `ReactNode` | —           | Content slot (if the component supports it). |
+
+See the **[Components](/docs/components)** index for full prop tables.
+
+## Styling & theming
+
+### Override with `className`
+
+All components accept `className`. Use it to adjust sizing, spacing, or colors:
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "page.tsx": `<VelocityStrips\n  mediaUrl="/hero.jpg"\n  className="rounded-2xl border shadow-2xl"\n  // ...\n/>`,
+    }}
+  />
+</div>
+
+### Design tokens
+
+Satisium UI uses **OKLCH-based CSS variables** for perceptual color uniformity. Override them in your `globals.css`:
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "globals.css": `@theme {\n  --color-primary: oklch(0.7 0.2 250);\n  --color-background: oklch(0.98 0 0);\n  /* ... */\n}`,
+    }}
+  />
+</div>
+
+### Dark mode
+
+Dark mode works automatically with the Satisium UI theme system. Press **`D`** from anywhere on the site to toggle between light and dark themes. In your own project, use `next-themes` or wrap your app in the `ThemeProvider` component.
+
+## Preview before installing
+
+You don't have to install a component to see how it works. Every component has a fullscreen preview:
+
+- **`/preview/<registryKey>`** — Fullscreen, isolated render with the playground UI.
+- **`/embed/<registryKey>`** — Iframe-isolated render for responsive testing.
+
+Use these URLs to test components in a clean environment before adding them to your project.
+
+## Docs site features
+
+### Spatial layout sidebar
+
+The docs site uses an animated spatial layout. Press **`M`** to toggle the sidebar open and closed. Click anywhere on the dimmed overlay to close it.
+
+### Live playground
+
+Every component doc page includes a **resizable playground** with a floating toolbox in the bottom-left corner.
+
+**Viewport controls:** The toolbar shows desktop, tablet, and mobile icons. Click them to resize the preview, or use the keyboard shortcuts below.
+
+**Keyboard shortcuts for the previewer:**
+
+| Shortcut | Action                                            |
+| :------- | :------------------------------------------------ |
+| **`1`**  | Set preview to desktop width                      |
+| **`2`**  | Set preview to tablet width (768px)               |
+| **`3`**  | Set preview to mobile width (375px)               |
+| **`C`**  | Toggle the code panel open / closed               |
+| **`R`**  | Reload the animation                              |
+| **`S`**  | Scroll to the source code section on the doc page |
+
+**Resizing:** Drag the vertical divider between the preview and the code panel to adjust the width manually. This switches the viewport mode to "custom."
+
+**Switching demos:** Components with multiple variants (e.g., `velocity-strips-image` and `velocity-strips-video`) include a **demo selector dropdown** in the preview toolbox. Select any variant to instantly switch the live preview and the install command shown in the code panel.
+
+**Code panel:** When the code panel is open, you can browse the component source files in the sidebar tree and copy individual files. The install command at the top updates automatically when you switch demos.
+
+### Code & copy
+
+- **CodeBlock** — Syntax-highlighted source with a file tree sidebar and line highlighting.
+- **Copy MDX** — Button in the top-right of every doc page copies the entire MDX file content to your clipboard. Paste it directly into your project.
+
+### Command menu
+
+Press **`Cmd+K`** (or **`Ctrl+K`**, or **`/`**) to open the global search:
+
+- Search docs, categories, and components.
+- Jump to recently visited pages.
+- **`Shift+Enter`** — Copy the current page URL.
+- **`Cmd+Enter`** (or \*\*`Ctrl+Enter`) — Open the selected result in a new tab.
+- Select **Light Theme** or **Dark Theme** from the Theme section to switch modes.
+
+## Global keyboard shortcuts
+
+These work anywhere on the docs site:
+
+| Shortcut                             | Action                    |
+| :----------------------------------- | :------------------------ |
+| **`M`**                              | Toggle docs sidebar       |
+| **`D`**                              | Toggle light / dark theme |
+| **`Cmd+K`** / **`Ctrl+K`** / **`/`** | Open command menu         |
+
+## Blocks & templates
+
+Beyond individual components, the library will include:
+
+- **Blocks** (`/docs/blocks`) — Reusable patterns built from multiple components.
+- **Templates** (`/docs/templates`) — Complete page layouts you can drop into your Next.js app.
+
+Both sections are marked as coming soon.
+
+## WebGL & performance
+
+Components using Three.js are wrapped in **`Suspense`** boundaries. Always provide a `fallback` prop for the loading state:
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "page.tsx": `<VelocityStrips\n  mediaUrl="/hero.jpg"\n  fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}\n  // ...\n/>`,
+    }}
+  />
+</div>
+
+This prevents layout shift and keeps your Core Web Vitals healthy.
+
+## Removing a component
+
+Since Satisium UI copies source code into your project, uninstalling is simple:
+
+1. Delete the component file(s) from `components/ui/`.
+2. Delete the demo file if you added it.
+3. Remove any registry references if you added them.
+
+There is no runtime package to uninstall and no lock-in.
+
+## Next steps
+
+- Browse **[Components](/docs/components)** and install your first one.
+- Check the **[Changelog](/docs/getting-started/changelog)** for the latest additions.
