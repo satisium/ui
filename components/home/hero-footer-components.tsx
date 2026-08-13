@@ -41,7 +41,7 @@ function useGithubStars(repo: string) {
 // 1. DESKTOP GITHUB BUTTON
 // ==========================================
 export function DesktopGithubButton({
-  repo = "shadcn-ui/ui",
+  repo = "satisium/ui",
 }: {
   repo?: string
 }) {
@@ -150,7 +150,7 @@ export function MobileMediaCard({
   videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4",
   exploreText = "Explore components",
   exploreHref = "/components",
-  repo = "shadcn-ui/ui",
+  repo = "satisium/ui",
   playIcon = (
     <HugeiconsIcon icon={PlayIcon} className="size-4 fill-white text-white" />
   ),

@@ -31,7 +31,7 @@ export function FooterSection() {
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <ExploreActionGroup
               exploreText="Explore components"
-              repo="shadcn-ui/ui"
+              repo="satisium/ui"
             />
           </div>
 

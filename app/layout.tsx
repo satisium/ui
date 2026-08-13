@@ -4,6 +4,7 @@ import {
   Plus_Jakarta_Sans,
   Inter,
   IBM_Plex_Mono,
+  Caveat,
 } from "next/font/google"
 
 import "./globals.css"
@@ -41,6 +42,13 @@ const fontCode = IBM_Plex_Mono({
   subsets: ["latin"],
   variable: "--font-code",
   display: "swap",
+})
+
+const fontCaveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  display: "swap",
+  weight: ["500", "600"],
 })
 
 export const metadata: Metadata = {
@@ -136,7 +144,8 @@ export default function RootLayout({
         fontDisplay.variable,
         fontHeading.variable,
         fontBody.variable,
-        fontCode.variable
+        fontCode.variable,
+        fontCaveat.variable
       )}
     >
       <head>

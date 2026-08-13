@@ -167,6 +167,7 @@
   --font-heading: var(--font-heading), ui-sans-serif, system-ui;
   --font-body: var(--font-body), ui-sans-serif, system-ui;
   --font-code: var(--font-code), ui-monospace, monospace;
+  --font-caveat: var(--font-caveat), 'Caveat', cursive;
 
   --font-sans: var(--font-body);
   --font-mono: var(--font-code);

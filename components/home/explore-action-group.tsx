@@ -50,7 +50,7 @@ export interface ExploreActionGroupProps {
 export function ExploreActionGroup({
   exploreText = "Explore components",
   exploreHref = "/docs/components",
-  repo = "shadcn-ui/ui",
+  repo = "satisium/ui",
   className,
 }: ExploreActionGroupProps) {
   const stars = useGithubStars(repo)

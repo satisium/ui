@@ -169,14 +169,7 @@ export function HeroSection() {
   }, [isTypingComplete, isMorphComplete])
 
   return (
-    <>
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap');`,
-        }}
-      />
-
-      <section
+    <section
         ref={sectionRef}
         className="relative h-screen w-full overflow-hidden bg-muted"
         style={
@@ -317,6 +310,5 @@ export function HeroSection() {
           </div>
         )}
       </section>
-    </>
   )
 }
