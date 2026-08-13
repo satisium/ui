@@ -13,6 +13,7 @@ import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
 import { PreviewToolBox } from "./preview-toolbox"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
+import { logger } from "@/lib/logger"
 import { PreviewBackground } from "./preview-background" // ✨ IMPORTED
 
 export interface DemoData {
@@ -48,7 +49,7 @@ function usePersistentState<T>(key: string, initialValue: T) {
         setState(initialValue)
       }
     } catch (e) {
-      console.error("Failed to read from localStorage", e)
+      logger.error("Failed to read from localStorage", e)
       setState(initialValue)
     }
   }, [key])
@@ -61,7 +62,7 @@ function usePersistentState<T>(key: string, initialValue: T) {
         window.localStorage.setItem(key, JSON.stringify(valueToStore))
       }
     } catch (e) {
-      console.error("Failed to write to localStorage", e)
+      logger.error("Failed to write to localStorage", e)
     }
   }
 

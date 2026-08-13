@@ -1,6 +1,3 @@
-import fs from "fs"
-import path from "path"
-import { source } from "@/lib/source"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Link from "next/link"
@@ -11,16 +8,34 @@ import {
   ComponentPreviewer,
   type DemoData,
 } from "@/components/previewer/component-preview"
-import { registry } from "@/registry/index"
 import { cn } from "@/lib/utils"
 import { SITE_URL } from "@/lib/config"
-import { getLastModifiedTime } from "@/lib/docs-page"
+import { logger } from "@/lib/logger"
+import {
+  getDocCopyPayload,
+  resolveDocDemos,
+  getDocBreadcrumbSchema,
+  getDocEntitySchema,
+  getLastModifiedTime,
+} from "@/lib/docs-page"
 import { DocTracker } from "@/components/doc-tracker"
 import { CopyMdxButton } from "@/components/ui/copy-mdx-button"
+import { source } from "@/lib/source"
 
-// ============================================================================
-// ROUTING & STATIC GENERATION
-// ============================================================================
+function getBadgeStyle(badge: string) {
+  switch (badge.toLowerCase()) {
+    case "new":
+      return "border-emerald-500/20 bg-emerald-500/10 text-emerald-500"
+    case "updated":
+      return "border-blue-500/20 bg-blue-500/10 text-blue-500"
+    case "beta":
+      return "border-amber-500/20 bg-amber-500/10 text-amber-500"
+    case "deprecated":
+      return "border-rose-500/20 bg-rose-500/10 text-rose-500"
+    default:
+      return "border-border bg-muted text-muted-foreground"
+  }
+}
 
 export async function generateStaticParams() {
   return source.generateParams()
@@ -40,8 +55,7 @@ export async function generateMetadata(props: {
     page.data.description ||
     `Explore the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP.`
 
-  let lastModifiedRaw: string | null = null
-  lastModifiedRaw = await getLastModifiedTime(page.path)
+  const lastModifiedRaw = await getLastModifiedTime(page.path)
 
   const tags: string[] = []
   if (page.data.badge) tags.push(page.data.badge)
@@ -95,33 +109,6 @@ export async function generateMetadata(props: {
   }
 }
 
-// ============================================================================
-// UTILITIES
-// ============================================================================
-
-/**
- * Maps badge text values to respective UI theme classes.
- * @param badge - String identifier for the badge type (e.g., 'new', 'beta')
- */
-function getBadgeStyle(badge: string) {
-  switch (badge.toLowerCase()) {
-    case "new":
-      return "border-emerald-500/20 bg-emerald-500/10 text-emerald-500"
-    case "updated":
-      return "border-blue-500/20 bg-blue-500/10 text-blue-500"
-    case "beta":
-      return "border-amber-500/20 bg-amber-500/10 text-amber-500"
-    case "deprecated":
-      return "border-rose-500/20 bg-rose-500/10 text-rose-500"
-    default:
-      return "border-border bg-muted text-muted-foreground"
-  }
-}
-
-// ============================================================================
-// MAIN LAYOUT COMPONENT
-// ============================================================================
-
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>
 }) {
@@ -130,120 +117,26 @@ export default async function Page(props: {
 
   if (!page) notFound()
 
-  // [DATA LAYER: File System]
-  // Extract raw MDX content payload to feed the AI/Copy context button.
-  let copyPayload = ""
-  try {
-    const relativePath = page.path.replace(/\.mdx?$/, ".md")
-    const aiFilePath = path.join(process.cwd(), "public/llms", relativePath)
-    const rawMdxPath = path.join(process.cwd(), "content/docs", page.path)
+  const [copyPayload, resolvedDemos, lastModifiedTime] = await Promise.all([
+    getDocCopyPayload(page.path),
+    resolveDocDemos(page),
+    getLastModifiedTime(page.path),
+  ])
 
-    if (fs.existsSync(aiFilePath)) {
-      copyPayload = fs.readFileSync(aiFilePath, "utf-8")
-    } else if (fs.existsSync(rawMdxPath)) {
-      copyPayload = fs.readFileSync(rawMdxPath, "utf-8")
-    }
-  } catch (error) {
-    console.error("Failed to read copy payload for:", page.path, error)
-  }
-
-  // [DATA LAYER: Page Context]
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
-  const pageRegistry = registry ?? {}
-
-  // [DATA LAYER: Component Registry Resolution]
-  // Resolves keys from frontmatter against the global UI registry to instantiate demo elements.
-  const resolvedDemos: DemoData[] = []
-  if (page.data.registryKeys && page.data.registryKeys.length > 0) {
-    for (const key of page.data.registryKeys) {
-      const item = pageRegistry[key]
-      if (item) {
-        const itemType = item.type || "react"
-        const renderMode = item.renderMode || "direct"
-
-        if (itemType === "video" || itemType === "image") {
-          resolvedDemos.push({
-            key,
-            type: itemType,
-            name: item.name,
-            mediaUrl: item.mediaUrl,
-            previewUrl: item.previewUrl,
-          })
-        } else {
-          const files = item.getFiles ? await item.getFiles() : {}
-          const Comp = item.component
-
-          resolvedDemos.push({
-            key,
-            type: "react",
-            name: item.name,
-            renderMode,
-            embedUrl: renderMode === "iframe" ? `/embed/${key}` : undefined,
-            component: renderMode === "direct" && Comp ? <Comp /> : null,
-            files,
-            installCommand: item.installCommand || "",
-            previewUrl: item.previewUrl,
-          })
-        }
-      }
-    }
-  }
-
-  // [DATA LAYER: External APIs (GitHub)]
-  // Retrieves the timestamp of the last git commit for the current MDX document.
-  let lastModifiedTime: string | null = null
-  lastModifiedTime = await getLastModifiedTime(page.path)
-
   const hasCategories = page.data.category && page.data.category.length > 0
+  const breadcrumbSchema = getDocBreadcrumbSchema(params.slug)
+  const entitySchema = getDocEntitySchema(page.data.title, page.data.description)
 
-  // [DATA LAYER: SEO Schema Generation]
-  const baseUrl = `${SITE_URL}/docs`
-  const breadcrumbItems = [
-    { "@type": "ListItem", position: 1, name: "Docs", item: baseUrl },
-  ]
-
-  if (params.slug) {
-    let currentPath = baseUrl
-    params.slug.forEach((slugPart, index) => {
-      currentPath += `/${slugPart}`
-      breadcrumbItems.push({
-        "@type": "ListItem",
-        position: index + 2,
-        name: slugPart.replace(/-/g, " "),
-        item: currentPath,
-      })
-    })
-  }
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: breadcrumbItems,
-  }
-
-  const entitySchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareSourceCode",
-    name: `${page.data.title} Component`,
-    description: page.data.description,
-    programmingLanguage: "TypeScript",
-    codeSampleType: "UI Component",
-  }
-
-  // ============================================================================
-  // RENDER PHASE
-  // ============================================================================
   return (
     <>
-      {/* [UI: Global Overlays] */}
       <DocTracker
         title={page.data.title}
         category={page.data.category?.[0]}
         badge={page.data.badge}
       />
 
-      {/* [UI: SEO Scripts] */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -254,7 +147,6 @@ export default async function Page(props: {
       />
 
       <div className="flex w-full animate-in flex-col duration-700 ease-out-expo fade-in">
-        {/* [UI: Component Playground] - Hero section for interactive demos */}
         {resolvedDemos.length > 0 && (
           <section className="h-screen w-full">
             <ComponentPreviewer
@@ -268,7 +160,6 @@ export default async function Page(props: {
         )}
 
         <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
-          {/* [UI: Document Header] */}
           <header className="flex flex-col gap-6">
             {hasCategories && (
               <nav className="flex flex-wrap items-center gap-2">
@@ -310,7 +201,6 @@ export default async function Page(props: {
               )}
             </div>
 
-            {/* [UI: Action Area] - Provides code payload via clipboard */}
             {!page.data.hideCopy && (
               <div className="mt-2 flex flex-col-reverse items-start justify-start gap-4">
                 <CopyMdxButton rawMdx={copyPayload} />
@@ -318,7 +208,6 @@ export default async function Page(props: {
             )}
           </header>
 
-          {/* [UI: Main Content Layout] - dynamically handles TOC sidebar presence */}
           <div
             id="installation"
             className={cn(
@@ -328,11 +217,9 @@ export default async function Page(props: {
                 : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
             )}
           >
-            {/* [UI: MDX Engine Output] */}
             <div className="w-full min-w-0 pb-32">
               <MDX components={defaultMdxComponents} />
 
-              {/* [UI: Footer Navigation] - Previous / Next Links */}
               <div className="mt-24 flex flex-col gap-8 border-t border-border/50 pt-10">
                 <nav
                   aria-label="Pagination"
@@ -373,7 +260,6 @@ export default async function Page(props: {
               </div>
             </div>
 
-            {/* [UI: Table of Contents] - Sidebar sticky tracker */}
             {!page.data.hideToc && (
               <aside className="sticky top-24 no-scrollbar hidden max-h-[calc(100vh-8rem)] overflow-y-auto lg:block">
                 <TableOfContents items={page.data.toc} />

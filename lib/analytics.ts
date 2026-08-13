@@ -1,4 +1,5 @@
 // lib/analytics.ts
+import { logger } from "@/lib/logger"
 import posthog from "posthog-js"
 
 /**
@@ -36,7 +37,7 @@ export const trackEvent = async (
       })
     } catch (e) {
       // We catch and swallow errors here. Analytics should NEVER break the user's UI.
-      console.error("Satisium Telemetry Error:", e)
+      logger.error("Satisium Telemetry Error:", e)
     }
   }
 }

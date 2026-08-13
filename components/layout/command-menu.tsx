@@ -7,6 +7,8 @@ import type * as PageTree from "fumadocs-core/page-tree"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
 import * as React from "react"
+import DOMPurify from "dompurify"
+import { logger } from "@/lib/logger"
 
 import {
   Command,
@@ -63,6 +65,8 @@ type StaticItem = {
   aliases?: string[]
   shortcut?: string
 }
+
+const searchPurify = DOMPurify.sanitize
 
 function getContextualIcon(name: string) {
   const lower = name.toLowerCase()
@@ -245,7 +249,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
           }
         }
       } catch (error) {
-        console.error("Search failed", error)
+        logger.error("Search failed", error)
       } finally {
         setIsLoading(false)
       }
@@ -579,13 +583,13 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                       displayContent = result.content
                     }
 
-                    const safeTitle = displayTitle
-                      .replace(/&lt;mark&gt;/gi, "<mark>")
-                      .replace(/&lt;\/mark&gt;/gi, "</mark>")
+                    const safeTitle = searchPurify(displayTitle, {
+                      ALLOWED_TAGS: ["mark"],
+                    })
 
-                    const safeContent = displayContent
-                      .replace(/&lt;mark&gt;/gi, "<mark>")
-                      .replace(/&lt;\/mark&gt;/gi, "</mark>")
+                    const safeContent = searchPurify(displayContent, {
+                      ALLOWED_TAGS: ["mark"],
+                    })
 
                     return (
                       <CommandItem

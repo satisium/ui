@@ -17,8 +17,8 @@
 - [x] **The search:** Improve the search component by removing noise and adding some about shortcut info.
 - [x] **Sidebar:** The side bar in docs needs proper badging etc.
 - [ ] **Changelog:** Design proper changelog page.
-- [ ] **CLI:** VERY IMPORTANT Make CLI work flawlessly. CLI has errors and inconsistent.
-- [ ] **LLM Text:** Check LLM thingy.
+- [x] **CLI:** VERY IMPORTANT Make CLI work flawlessly. CLI has errors and inconsistent.
+- [x] **LLM Text:** Check LLM thingy.
 - [x] **SEO and logo:** Update logos everywhere. SEO and all.
 - [x] **Github satisium:** Github satis UI to satisium.
 - [ ] **Analytics:** Analytics.
@@ -56,7 +56,7 @@
 
 ## 🏗️ 5. Architecture & Maintainability (P2)
 
-- [ ] **Refactor `app/docs/[[...slug]]/page.tsx` (God Component):** The 462-line file handles routing, filesystem I/O, GitHub API calls, SEO schema generation, and JSX rendering. Extract data fetching into a dedicated server utility (`lib/docs-page.ts`), split SEO metadata into a helper, and keep the page component focused on rendering.
+- [x] **Refactor `app/docs/[[...slug]]/page.tsx` (God Component):** The 462-line file handles routing, filesystem I/O, GitHub API calls, SEO schema generation, and JSX rendering. Extract data fetching into a dedicated server utility (`lib/docs-page.ts`), split SEO metadata into a helper, and keep the page component focused on rendering.
 - [ ] **Refactor `registry/index.ts` into a factory or JSON-driven loader:** The 1571+ line file is a copy-paste monolith with 40+ identical entries. Replace it with a `createRegistryItem()` factory or load from a JSON manifest. This reduces maintenance burden and eliminates copy-paste bugs.
-- [ ] **Sanitize HTML in the command menu search results:** `components/layout/command-menu.tsx` uses manual string replacement for `<mark>` tags instead of a proper sanitizer. Integrate `DOMPurify` to prevent XSS if the search index ever contains user-generated content.
-- [ ] **Replace `console.error` with a structured logger:** 23+ `console.error` statements remain in the codebase. Replace them with a lightweight structured logger (or remove them) before launch to avoid leaking internal error details to the browser console in production.
+- [x] **Sanitize HTML in the command menu search results:** `components/layout/command-menu.tsx` uses manual string replacement for `<mark>` tags instead of a proper sanitizer. Integrate `DOMPurify` to prevent XSS if the search index ever contains user-generated content.
+- [x] **Replace `console.error` with a structured logger:** 23+ `console.error` statements remain in the codebase. Replace them with a lightweight structured logger (or remove them) before launch to avoid leaking internal error details to the browser console in production.

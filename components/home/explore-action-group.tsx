@@ -1,6 +1,7 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { logger } from "@/lib/logger"
 import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
@@ -27,7 +28,7 @@ function useGithubStars(repo: string) {
           setStars(formatted)
         }
       } catch (error) {
-        console.error("Failed to fetch stars", error)
+        logger.error("Failed to fetch stars", error)
         setStars("1k+")
       }
     }
