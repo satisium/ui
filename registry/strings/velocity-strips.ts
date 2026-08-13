@@ -1,6 +1,6 @@
 export const velocityStripsImageDemoString = `"use client"
 
-import VelocityStrips from "@/components/ui/velocity-strips"
+import VelocityStrips from "@/components/satisium-ui/velocity-strips"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
@@ -38,7 +38,7 @@ export default function VelocityStripsImageDemo() {
 
 export const velocityStripsVideoDemoString = `"use client"
 
-import VelocityStrips from "@/components/ui/velocity-strips"
+import VelocityStrips from "@/components/satisium-ui/velocity-strips"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 

@@ -42,7 +42,7 @@ export interface TumblerRollRevealProps extends React.HTMLAttributes<HTMLElement
  *
  * @example
  * ```tsx
- * import { TumblerRollReveal } from "@/components/ui/tumbler-roll-reveal"
+ * import { TumblerRollReveal } from "@/components/satisium-ui/tumbler-roll-reveal"
  *
  * export default function Hero() {
  *   return (

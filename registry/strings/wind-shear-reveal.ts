@@ -1,5 +1,5 @@
 export const windShearCharDemoString = `
-import { WindShearReveal } from "@/components/ui/wind-shear-reveal"
+import { WindShearReveal } from "@/components/satisium-ui/wind-shear-reveal"
 
 export default function WindShearCharDemo() {
   return (
@@ -23,7 +23,7 @@ export default function WindShearCharDemo() {
 `
 
 export const windShearWordDemoString = `
-import { WindShearReveal } from "@/components/ui/wind-shear-reveal"
+import { WindShearReveal } from "@/components/satisium-ui/wind-shear-reveal"
 
 export default function WindShearWordDemo() {
   return (

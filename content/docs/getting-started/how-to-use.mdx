@@ -10,7 +10,7 @@ Every Satisium UI component is a standard React component. Import it, pass props
 <div className="mt-6">
   <CodeBlock
     files={{
-      "page.tsx": `import { VelocityStrips } from "@/components/ui/velocity-strips"\n\nexport default function Page() {\n  return (\n    <VelocityStrips\n      mediaUrl="/hero.jpg"\n      mediaType="image"\n      slices={32}\n      hoverRadius={0.35}\n      shiftMultiplier={1.5}\n      className="w-full h-screen"\n    />\n  )\n}`,
+      "page.tsx": `import { VelocityStrips } from "@/components/satisium-ui/velocity-strips"\n\nexport default function Page() {\n  return (\n    <VelocityStrips\n      mediaUrl="/hero.jpg"\n      mediaType="image"\n      slices={32}\n      hoverRadius={0.35}\n      shiftMultiplier={1.5}\n      className="w-full h-screen"\n    />\n  )\n}`,
     }}
   />
 </div>
@@ -147,7 +147,7 @@ This prevents layout shift and keeps your Core Web Vitals healthy.
 
 Since Satisium UI copies source code into your project, uninstalling is simple:
 
-1. Delete the component file(s) from `components/ui/`.
+1. Delete the component file(s) from `components/satisium-ui/`.
 2. Delete the demo file if you added it.
 3. Remove any registry references if you added them.
 

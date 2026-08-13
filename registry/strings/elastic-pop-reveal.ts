@@ -1,5 +1,5 @@
 export const elasticPopHeadlineDemoString = `
-import { ElasticPopReveal } from "@/components/ui/elastic-pop-reveal"
+import { ElasticPopReveal } from "@/components/satisium-ui/elastic-pop-reveal"
 
 export default function ElasticPopHeadlineDemo() {
   return (
@@ -24,7 +24,7 @@ export default function ElasticPopHeadlineDemo() {
 `
 
 export const elasticPopParagraphDemoString = `
-import { ElasticPopReveal } from "@/components/ui/elastic-pop-reveal"
+import { ElasticPopReveal } from "@/components/satisium-ui/elastic-pop-reveal"
 
 export default function ElasticPopParagraphDemo() {
   return (

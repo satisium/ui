@@ -48,7 +48,7 @@ export interface WeightlessFloatRevealProps extends React.HTMLAttributes<HTMLEle
  *
  * @example
  * ```tsx
- * import { WeightlessFloatReveal } from "@/components/ui/weightless-float-reveal"
+ * import { WeightlessFloatReveal } from "@/components/satisium-ui/weightless-float-reveal"
  *
  * export default function Hero() {
  *   return (

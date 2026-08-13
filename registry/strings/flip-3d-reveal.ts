@@ -1,5 +1,5 @@
 export const flip3DHeadlineDemoString = `
-import { Flip3DReveal } from "@/components/ui/flip-3d-reveal"
+import { Flip3DReveal } from "@/components/satisium-ui/flip-3d-reveal"
 
 export default function Flip3DHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function Flip3DHeadlineDemo() {
 `
 
 export const flip3DParagraphDemoString = `
-import { Flip3DReveal } from "@/components/ui/flip-3d-reveal"
+import { Flip3DReveal } from "@/components/satisium-ui/flip-3d-reveal"
 
 export default function Flip3DParagraphDemo() {
   return (

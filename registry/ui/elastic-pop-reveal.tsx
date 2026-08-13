@@ -80,7 +80,7 @@ export interface ElasticPopRevealProps extends React.HTMLAttributes<HTMLElement>
  *
  * @example
  * ```tsx
- * import { ElasticPopReveal } from "@/components/ui/elastic-pop-reveal"
+ * import { ElasticPopReveal } from "@/components/satisium-ui/elastic-pop-reveal"
  *
  * export default function Hero() {
  *   return (

@@ -71,7 +71,7 @@ export interface FlipVerticalRevealProps extends React.HTMLAttributes<HTMLElemen
  *
  * @example
  * ```tsx
- * import { FlipVerticalReveal } from "@/components/ui/flip-vertical-reveal"
+ * import { FlipVerticalReveal } from "@/components/satisium-ui/flip-vertical-reveal"
  *
  * export default function Hero() {
  *   return (

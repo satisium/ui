@@ -1,5 +1,5 @@
 export const waveCarouselDemoString = `
-import { WaveCarousel } from "@/components/ui/wave-carousel"
+import { WaveCarousel } from "@/components/satisium-ui/wave-carousel"
 
 const IMAGES = [
   {

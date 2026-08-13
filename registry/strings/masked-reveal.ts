@@ -1,5 +1,5 @@
 export const maskedRevealHeadlineDemoString = `
-import { MaskedReveal } from "@/components/ui/masked-reveal"
+import { MaskedReveal } from "@/components/satisium-ui/masked-reveal"
 
 export default function MaskedRevealHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function MaskedRevealHeadlineDemo() {
 `
 
 export const maskedRevealParagraphDemoString = `
-import { MaskedReveal } from "@/components/ui/masked-reveal"
+import { MaskedReveal } from "@/components/satisium-ui/masked-reveal"
 
 
 export default function MaskedRevealParagraphDemo() {

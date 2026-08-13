@@ -62,7 +62,7 @@ export interface ConcaveCarouselProps {
  *
  * @example
  * ```tsx
- * import { ConcaveCarousel } from "@/components/ui/concave-carousel"
+ * import { ConcaveCarousel } from "@/components/satisium-ui/concave-carousel"
  *
  * export default function Hero() {
  *   return (

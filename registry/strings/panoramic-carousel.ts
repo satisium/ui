@@ -1,7 +1,7 @@
 export const panoramicCarouselDemoString = `
 "use client"
 
-import { PanoramicCarousel } from "@/components/ui/panoramic-carousel"
+import { PanoramicCarousel } from "@/components/satisium-ui/panoramic-carousel"
 
 export default function PanoramicCarouselDemo() {
   const images = Array.from({ length: 18 }).map(

@@ -42,7 +42,7 @@ export interface BottomHingeTextRevealProps extends React.HTMLAttributes<HTMLEle
  *
  * @example
  * ```tsx
- * import { BottomHingeTextReveal } from "@/components/ui/bottom-hinge-text-reveal"
+ * import { BottomHingeTextReveal } from "@/components/satisium-ui/bottom-hinge-text-reveal"
  *
  * export default function Hero() {
  *   return (

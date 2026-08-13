@@ -39,7 +39,7 @@ export interface PianoTypewriterProps
  * 
  * @example
  * ```tsx
- * import { PianoTypewriter } from "@/components/ui/piano-typewriter"
+ * import { PianoTypewriter } from "@/components/satisium-ui/piano-typewriter"
  * 
  * export default function Hero() {
  *   return (

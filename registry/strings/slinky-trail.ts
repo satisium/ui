@@ -1,6 +1,6 @@
 export const slinkyTrailAvatarsDemoString = `
 
-import SlinkyTrail from "@/components/ui/slinky-trail"
+import SlinkyTrail from "@/components/satisium-ui/slinky-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/16.png",
@@ -36,7 +36,7 @@ export default function SlinkyTrailAvatarsDemo() {
 }`
 
 export const slinkyTrailImagesDemoString = `
-import SlinkyTrail from "@/components/ui/slinky-trail"
+import SlinkyTrail from "@/components/satisium-ui/slinky-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

@@ -1,5 +1,5 @@
 export const multiColorTrailCharDemoString = `
-import { MultiColorTrailReveal } from "@/components/ui/multi-color-trail-reveal"
+import { MultiColorTrailReveal } from "@/components/satisium-ui/multi-color-trail-reveal"
 
 const text1 = "“Can a man still be brave if he's afraid?” Asked Bran.\\n“That is the only time a man can be brave,” says Ned."
 const text2 = "“What is honor compared to a woman's love? What is duty against the feel of a newborn son in your arms . . . or the memory of a brother's smile? Wind and words. Wind and words. We are only human, and the gods have fashioned us for love. That is our great glory, and our great tragedy.”"
@@ -66,7 +66,7 @@ export default function MultiColorTrailCharDemo() {
 `
 
 export const multiColorTrailWordDemoString = `
-import { MultiColorTrailReveal } from "@/components/ui/multi-color-trail-reveal"
+import { MultiColorTrailReveal } from "@/components/satisium-ui/multi-color-trail-reveal"
 
 const text1 = "“Can a man still be brave if he's afraid?” Asked Bran.\\n“That is the only time a man can be brave,” says Ned."
 const text2 = "“What is honor compared to a woman's love? What is duty against the feel of a newborn son in your arms . . . or the memory of a brother's smile? Wind and words. Wind and words. We are only human, and the gods have fashioned us for love. That is our great glory, and our great tragedy.”"
@@ -133,7 +133,7 @@ export default function MultiColorTrailWordDemo() {
 `
 
 export const multiColorTrailLineDemoString = `
-import { MultiColorTrailReveal } from "@/components/ui/multi-color-trail-reveal"
+import { MultiColorTrailReveal } from "@/components/satisium-ui/multi-color-trail-reveal"
 
 const text1 = "“Can a man still be brave if he's afraid?” Asked Bran.\\n“That is the only time a man can be brave,” says Ned."
 const text2 = "“What is honor compared to a woman's love?\\nWhat is duty against the feel of a newborn son in your arms . . .\\nor the memory of a brother's smile? Wind and words. Wind and words.\\nWe are only human, and the gods have fashioned us for love.\\nThat is our great glory, and our great tragedy.”"

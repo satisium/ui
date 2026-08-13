@@ -1,7 +1,7 @@
 export const curvedCarouselDemoString = `
 "use client"
 
-import { CurvedCarousel } from "@/components/ui/curved-carousel"
+import { CurvedCarousel } from "@/components/satisium-ui/curved-carousel"
 
 export default function CurvedCarouselDemo() {
   const images = Array.from({ length: 18 }).map(

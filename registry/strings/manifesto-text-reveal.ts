@@ -1,5 +1,5 @@
 export const manifestoTextRevealDemoString = `
-import { ManifestoTextReveal } from "@/components/ui/manifesto-text-reveal"
+import { ManifestoTextReveal } from "@/components/satisium-ui/manifesto-text-reveal"
 
 export default function ManifestoTextRevealDemo() {
   return (

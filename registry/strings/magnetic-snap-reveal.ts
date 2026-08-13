@@ -1,5 +1,5 @@
 export const magneticSnapDemoString = `
-import { MagneticSnapReveal } from "@/components/ui/magnetic-snap-reveal"
+import { MagneticSnapReveal } from "@/components/satisium-ui/magnetic-snap-reveal"
 
 export default function MagneticSnapDemo() {
   return (

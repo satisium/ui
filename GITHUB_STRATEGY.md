@@ -120,7 +120,7 @@ MyComponent.displayName = "MyComponent"
 #### Step 2 — Demo(s) (`registry/demos/`)
 
 - Each demo must be a **named export** matching the registry key.
-- Demos import from `@/registry/ui/<slug>` — never from `@/components/ui/`.
+- Demos import from `@/registry/ui/<slug>` — never from `@/components/satisium-ui/`.
 
 ```tsx
 // registry/demos/my-component-demo.tsx

@@ -1,7 +1,7 @@
 export const dimensionalDeckDemoString = `
 "use client"
 
-import { DimensionalDeck } from "@/components/ui/dimensional-deck"
+import { DimensionalDeck } from "@/components/satisium-ui/dimensional-deck"
 
 export default function DimensionalDeckDemo() {
   const images = Array.from({ length: 18 }).map(

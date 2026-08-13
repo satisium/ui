@@ -1,5 +1,5 @@
 export const bottomHingeTextRevealDemoString = `
-import { BottomHingeTextReveal } from "@/components/ui/bottom-hinge-text-reveal"
+import { BottomHingeTextReveal } from "@/components/satisium-ui/bottom-hinge-text-reveal"
 
 export default function BottomHingeTextRevealDemo() {
   return (

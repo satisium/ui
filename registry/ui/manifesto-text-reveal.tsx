@@ -42,7 +42,7 @@ export interface ManifestoTextRevealProps extends React.HTMLAttributes<HTMLEleme
  *
  * @example
  * ```tsx
- * import { ManifestoTextReveal } from "@/components/ui/manifesto-text-reveal"
+ * import { ManifestoTextReveal } from "@/components/satisium-ui/manifesto-text-reveal"
  *
  * export default function Hero() {
  *   return (

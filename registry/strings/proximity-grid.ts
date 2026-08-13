@@ -1,6 +1,6 @@
 export const proximityGridImageDemoString = `"use client"
 
-import ProximityGrid from "@/components/ui/proximity-grid"
+import ProximityGrid from "@/components/satisium-ui/proximity-grid"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
@@ -38,7 +38,7 @@ export default function ProximityGridImageDemo() {
 
 export const proximityGridVideoDemoString = `"use client"
 
-import ProximityGrid from "@/components/ui/proximity-grid"
+import ProximityGrid from "@/components/satisium-ui/proximity-grid"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 

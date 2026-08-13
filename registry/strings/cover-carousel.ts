@@ -1,7 +1,7 @@
 export const coverCarouselDemoString = `
 "use client"
 
-import { CoverCarousel } from "@/components/ui/cover-carousel"
+import { CoverCarousel } from "@/components/satisium-ui/cover-carousel"
 
 export default function CoverCarouselDemo() {
   const images = Array.from({ length: 18 }).map(

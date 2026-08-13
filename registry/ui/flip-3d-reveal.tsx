@@ -72,7 +72,7 @@ export interface Flip3DRevealProps extends React.HTMLAttributes<HTMLElement> {
  *
  * @example
  * ```tsx
- * import { Flip3DReveal } from "@/components/ui/flip-3d-reveal"
+ * import { Flip3DReveal } from "@/components/satisium-ui/flip-3d-reveal"
  *
  * export default function Hero() {
  *   return (

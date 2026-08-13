@@ -1,5 +1,5 @@
 export const flipVerticalHeadlineDemoString = `
-import { FlipVerticalReveal } from "@/components/ui/flip-vertical-reveal"
+import { FlipVerticalReveal } from "@/components/satisium-ui/flip-vertical-reveal"
 
 export default function FlipVerticalHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function FlipVerticalHeadlineDemo() {
 `
 
 export const flipVerticalParagraphDemoString = `
-import { FlipVerticalReveal } from "@/components/ui/flip-vertical-reveal"
+import { FlipVerticalReveal } from "@/components/satisium-ui/flip-vertical-reveal"
 
 export default function FlipVerticalParagraphDemo() {
   return (

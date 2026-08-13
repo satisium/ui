@@ -62,7 +62,7 @@ export interface ElasticTypewriterProps extends React.HTMLAttributes<HTMLElement
  *
  * @example
  * ```tsx
- * import { ElasticTypewriter } from "@/components/ui/elastic-typewriter"
+ * import { ElasticTypewriter } from "@/components/satisium-ui/elastic-typewriter"
  *
  * export default function Hero() {
  *   return (

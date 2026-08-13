@@ -40,7 +40,7 @@ export interface FluidTypewriterProps extends React.HTMLAttributes<HTMLElement> 
  *
  * @example
  * ```tsx
- * import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+ * import { FluidTypewriter } from "@/components/satisium-ui/fluid-typewriter"
  *
  * export default function Hero() {
  *   return (

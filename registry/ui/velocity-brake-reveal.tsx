@@ -42,7 +42,7 @@ export interface VelocityBrakeRevealProps extends React.HTMLAttributes<HTMLEleme
  *
  * @example
  * ```tsx
- * import { VelocityBrakeReveal } from "@/components/ui/velocity-brake-reveal"
+ * import { VelocityBrakeReveal } from "@/components/satisium-ui/velocity-brake-reveal"
  *
  * export default function Hero() {
  *   return (

@@ -40,7 +40,7 @@ export interface HeatMirageRevealProps extends React.HTMLAttributes<HTMLElement>
  *
  * @example
  * ```tsx
- * import { HeatMirageReveal } from "@/components/ui/heat-mirage-reveal"
+ * import { HeatMirageReveal } from "@/components/satisium-ui/heat-mirage-reveal"
  *
  * export default function Hero() {
  *   return (

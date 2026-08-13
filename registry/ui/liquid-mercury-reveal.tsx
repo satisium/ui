@@ -40,7 +40,7 @@ export interface LiquidMercuryRevealProps extends React.HTMLAttributes<HTMLEleme
  *
  * @example
  * ```tsx
- * import { LiquidMercuryReveal } from "@/components/ui/liquid-mercury-reveal"
+ * import { LiquidMercuryReveal } from "@/components/satisium-ui/liquid-mercury-reveal"
  *
  * export default function Hero() {
  *   return (

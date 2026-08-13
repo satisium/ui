@@ -1,7 +1,7 @@
 export const depthCarouselDemoString = `
 "use client"
 
-import { DepthCarousel } from "@/components/ui/depth-carousel"
+import { DepthCarousel } from "@/components/satisium-ui/depth-carousel"
 
 export default function DepthCarouselDemo() {
   const images = Array.from({ length: 18 }).map(

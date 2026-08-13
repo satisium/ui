@@ -64,7 +64,7 @@ export interface EditorialRevealProps extends React.HTMLAttributes<HTMLElement> 
  *
  * @example
  * ```tsx
- * import { EditorialReveal } from "@/components/ui/editorial-reveal"
+ * import { EditorialReveal } from "@/components/satisium-ui/editorial-reveal"
  *
  * export default function Hero() {
  *   return (

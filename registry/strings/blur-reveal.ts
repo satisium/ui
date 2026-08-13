@@ -1,5 +1,5 @@
 export const blurRevealHeadlineDemoString = `
-import { BlurReveal } from "@/components/ui/blur-reveal"
+import { BlurReveal } from "@/components/satisium-ui/blur-reveal"
 
 export default function BlurRevealHeadlineDemo() {
   return (
@@ -23,7 +23,7 @@ export default function BlurRevealHeadlineDemo() {
 `
 
 export const blurRevealParagraphDemoString = `
-import { BlurReveal } from "@/components/ui/blur-reveal"
+import { BlurReveal } from "@/components/satisium-ui/blur-reveal"
 
 export default function BlurRevealParagraphDemo() {
   return (

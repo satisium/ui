@@ -1,5 +1,5 @@
 export const windTrailAvatarsDemoString = `
-import WindTrail from "@/components/ui/wind-trail"
+import WindTrail from "@/components/satisium-ui/wind-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/16.png",
@@ -38,7 +38,7 @@ export default function WindTrailAvatarsDemo() {
 }`
 
 export const windTrailImagesDemoString = `
-import WindTrail from "@/components/ui/wind-trail"
+import WindTrail from "@/components/satisium-ui/wind-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

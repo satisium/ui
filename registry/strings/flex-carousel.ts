@@ -1,7 +1,7 @@
 export const flexCarouselDemoString = `
 "use client"
 
-import { FlexCarousel } from "@/components/ui/flex-carousel"
+import { FlexCarousel } from "@/components/satisium-ui/flex-carousel"
 
 export default function FlexCarouselDemo() {
   const images = Array.from({ length: 18 }).map(

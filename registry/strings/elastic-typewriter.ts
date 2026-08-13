@@ -1,5 +1,5 @@
 export const elasticTypewriterHeadlineDemoString = `
-import { ElasticTypewriter } from "@/components/ui/elastic-typewriter"
+import { ElasticTypewriter } from "@/components/satisium-ui/elastic-typewriter"
 
 export default function ElasticTypewriterHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function ElasticTypewriterHeadlineDemo() {
 `
 
 export const elasticTypewriterParagraphDemoString = `
-import { ElasticTypewriter } from "@/components/ui/elastic-typewriter"
+import { ElasticTypewriter } from "@/components/satisium-ui/elastic-typewriter"
 
 export default function ElasticTypewriterParagraphDemo() {
   return (

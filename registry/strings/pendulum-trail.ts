@@ -1,5 +1,5 @@
 export const pendulumTrailAvatarsDemoString = `
-import PendulumTrail from "@/components/ui/pendulum-trail"
+import PendulumTrail from "@/components/satisium-ui/pendulum-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/16.png",
@@ -39,7 +39,7 @@ export default function PendulumTrailAvatarsDemo() {
 }`
 
 export const pendulumTrailImagesDemoString = `
-import PendulumTrail from "@/components/ui/pendulum-trail"
+import PendulumTrail from "@/components/satisium-ui/pendulum-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

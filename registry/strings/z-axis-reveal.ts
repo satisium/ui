@@ -1,5 +1,5 @@
 export const zAxisCharDemoString = `
-import { ZAxisReveal } from "@/components/ui/z-axis-reveal"
+import { ZAxisReveal } from "@/components/satisium-ui/z-axis-reveal"
 
 export default function ZAxisCharDemo() {
   return (
@@ -31,7 +31,7 @@ export default function ZAxisCharDemo() {
 `
 
 export const zAxisWordDemoString = `
-import { ZAxisReveal } from "@/components/ui/z-axis-reveal"
+import { ZAxisReveal } from "@/components/satisium-ui/z-axis-reveal"
 
 export default function ZAxisWordDemo() {
   return (

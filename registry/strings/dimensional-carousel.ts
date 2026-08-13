@@ -1,7 +1,7 @@
 export const dimensionalCarouselDemoString = `
 "use client"
 
-import { DimensionalCarousel } from "@/components/ui/dimensional-carousel"
+import { DimensionalCarousel } from "@/components/satisium-ui/dimensional-carousel"
 
 export default function DimensionalCarouselDemo() {
   const images = Array.from({ length: 18 }).map(

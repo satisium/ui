@@ -1,5 +1,5 @@
 export const foldRevealDemoString = `
-import { FoldReveal } from "@/components/ui/fold-reveal"
+import { FoldReveal } from "@/components/satisium-ui/fold-reveal"
 
 export default function FoldRevealDemo() {
   return (

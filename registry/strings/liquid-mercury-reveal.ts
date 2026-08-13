@@ -1,5 +1,5 @@
 export const liquidMercuryHeadlineDemoString = `
-import { LiquidMercuryReveal } from "@/components/ui/liquid-mercury-reveal"
+import { LiquidMercuryReveal } from "@/components/satisium-ui/liquid-mercury-reveal"
 
 export default function LiquidMercuryHeadlineDemo() {
   return (

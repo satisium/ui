@@ -1,5 +1,5 @@
 export const velocityBrakeDemoString = `
-import { VelocityBrakeReveal } from "@/components/ui/velocity-brake-reveal"
+import { VelocityBrakeReveal } from "@/components/satisium-ui/velocity-brake-reveal"
 
 export default function VelocityBrakeDemo() {
   return (

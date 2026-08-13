@@ -1,5 +1,5 @@
 export const ferrofluidDragDemoString = `
-import { FerrofluidDrag } from "@/components/ui/ferrofluid-drag"
+import { FerrofluidDrag } from "@/components/satisium-ui/ferrofluid-drag"
 
 export default function FerrofluidDragDemo() {
   return (

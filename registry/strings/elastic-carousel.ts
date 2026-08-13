@@ -1,7 +1,7 @@
 export const elasticCarouselDemoString = `
 "use client"
 
-import { ElasticCarousel } from "@/components/ui/elastic-carousel"
+import { ElasticCarousel } from "@/components/satisium-ui/elastic-carousel"
 
 export default function ElasticCarouselDemo() {
   const images = Array.from({ length: 18 }).map(

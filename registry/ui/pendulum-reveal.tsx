@@ -42,7 +42,7 @@ export interface PendulumRevealProps extends React.HTMLAttributes<HTMLElement> {
  *
  * @example
  * ```tsx
- * import { PendulumReveal } from "@/components/ui/pendulum-reveal"
+ * import { PendulumReveal } from "@/components/satisium-ui/pendulum-reveal"
  *
  * export default function Hero() {
  *   return (

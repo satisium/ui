@@ -42,7 +42,7 @@ export interface BlurRevealProps extends React.HTMLAttributes<HTMLElement> {
  *
  * @example
  * ```tsx
- * import { BlurReveal } from "@/components/ui/blur-reveal"
+ * import { BlurReveal } from "@/components/satisium-ui/blur-reveal"
  *
  * export default function Hero() {
  *   return (

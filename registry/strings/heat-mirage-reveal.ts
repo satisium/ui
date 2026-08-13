@@ -1,5 +1,5 @@
 export const heatMirageHeadlineDemoString = `
-import { HeatMirageReveal } from "@/components/ui/heat-mirage-reveal"
+import { HeatMirageReveal } from "@/components/satisium-ui/heat-mirage-reveal"
 
 export default function HeatMirageHeadlineDemo() {
   return (
@@ -23,7 +23,7 @@ export default function HeatMirageHeadlineDemo() {
 `
 
 export const heatMirageParagraphDemoString = `
-import { HeatMirageReveal } from "@/components/ui/heat-mirage-reveal"
+import { HeatMirageReveal } from "@/components/satisium-ui/heat-mirage-reveal"
 
 export default function HeatMirageParagraphDemo() {
   return (

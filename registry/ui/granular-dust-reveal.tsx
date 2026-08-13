@@ -39,7 +39,7 @@ export interface GranularDustRevealProps extends React.HTMLAttributes<HTMLElemen
  *
  * @example
  * ```tsx
- * import { GranularDustReveal } from "@/components/ui/granular-dust-reveal"
+ * import { GranularDustReveal } from "@/components/satisium-ui/granular-dust-reveal"
  *
  * export default function Hero() {
  *   return (

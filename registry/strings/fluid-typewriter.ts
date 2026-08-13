@@ -1,5 +1,5 @@
 export const fluidTypewriterHeadlineDemoString = `
-import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+import { FluidTypewriter } from "@/components/satisium-ui/fluid-typewriter"
 
 export default function FluidTypewriterHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function FluidTypewriterHeadlineDemo() {
 `
 
 export const fluidTypewriterParagraphDemoString = `
-import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+import { FluidTypewriter } from "@/components/satisium-ui/fluid-typewriter"
 
 export default function FluidTypewriterParagraphDemo() {
   return (

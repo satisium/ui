@@ -1,5 +1,5 @@
 export const tumblerRollRevealDemoString = `
-import { TumblerRollReveal } from "@/components/ui/tumbler-roll-reveal"
+import { TumblerRollReveal } from "@/components/satisium-ui/tumbler-roll-reveal"
 
 export default function TumblerRollRevealDemo() {
   return (

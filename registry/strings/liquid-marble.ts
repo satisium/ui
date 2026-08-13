@@ -1,5 +1,5 @@
 export const liquidMarbleImageDemoString = `
-import LiquidMarble from "@/components/ui/liquid-marble"
+import LiquidMarble from "@/components/satisium-ui/liquid-marble"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
@@ -36,7 +36,7 @@ export default function LiquidMarbleImageDemo() {
 }`
 
 export const liquidMarbleVideoDemoString = `
-import LiquidMarble from "@/components/ui/liquid-marble"
+import LiquidMarble from "@/components/satisium-ui/liquid-marble"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 

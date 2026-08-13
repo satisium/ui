@@ -1,5 +1,5 @@
 export const fluidDisintegrationDemoString = `
-import { FluidDisintegration } from "@/components/ui/fluid-disintegration"
+import { FluidDisintegration } from "@/components/satisium-ui/fluid-disintegration"
 
 export default function FluidDisintegrationDemo() {
   return (

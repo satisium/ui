@@ -1,5 +1,5 @@
 export const fluidInkHeadlineDemoString = `
-import { FluidInkReveal } from "@/components/ui/fluid-ink-reveal"
+import { FluidInkReveal } from "@/components/satisium-ui/fluid-ink-reveal"
 
 export default function FluidInkHeadlineDemo() {
   return (
@@ -23,7 +23,7 @@ export default function FluidInkHeadlineDemo() {
 `
 
 export const fluidInkParagraphDemoString = `
-import { FluidInkReveal } from "@/components/ui/fluid-ink-reveal"
+import { FluidInkReveal } from "@/components/satisium-ui/fluid-ink-reveal"
 
 export default function FluidInkParagraphDemo() {
   return (

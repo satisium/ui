@@ -1,5 +1,5 @@
 export const pianoTypewriterDemoString = `
-import { PianoTypewriter } from "@/components/ui/piano-typewriter"
+import { PianoTypewriter } from "@/components/satisium-ui/piano-typewriter"
 
 export default function PianoTypewriterDemo() {
   return (

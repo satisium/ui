@@ -1,5 +1,5 @@
 export const editorialRevealDemoString = `
-import { EditorialReveal } from "@/components/ui/editorial-reveal"
+import { EditorialReveal } from "@/components/satisium-ui/editorial-reveal"
 
 export default function EditorialRevealDemo() {
   return (

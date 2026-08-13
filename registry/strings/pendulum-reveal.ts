@@ -1,5 +1,5 @@
 export const pendulumRevealDemoString = `
-import { PendulumReveal } from "@/components/ui/pendulum-reveal"
+import { PendulumReveal } from "@/components/satisium-ui/pendulum-reveal"
 
 export default function PendulumRevealDemo() {
   return (

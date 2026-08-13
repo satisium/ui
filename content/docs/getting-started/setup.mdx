@@ -21,12 +21,16 @@ If you haven't set up shadcn/ui yet, run:
 Use the shadcn CLI to install any Satisium UI component:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/dimensional-carousel.json" title="dimensional-carousel" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/dimensional-carousel.json"
+    title="dimensional-carousel"
+  />
 </div>
 
 The CLI will:
+
 1. Prompt you to confirm the component.
-2. Copy the component source into `components/ui/`.
+2. Copy the component source into `components/satisium-ui/`.
 3. Copy any required demo or utility files into your project.
 4. Auto-detect and install missing dependencies.
 
@@ -35,7 +39,10 @@ The CLI will:
 Some components have multiple variants (e.g., `velocity-strips-image`, `velocity-strips-video`). Install them individually:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json" title="velocity-strips-image" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json"
+    title="velocity-strips-image"
+  />
 </div>
 
 ## Dependencies by component type
@@ -58,7 +65,7 @@ Components using GSAP ScrollTrigger require:
   <CommandBlock pkg="gsap @gsap/react clsx tailwind-merge" />
 </div>
 
-### Mouse trail components
+### Components with no extra dependencies
 
 Components like Wind Trail and Pendulum Trail require no extra dependencies beyond React.
 
@@ -66,18 +73,22 @@ Components like Wind Trail and Pendulum Trail require no extra dependencies beyo
 
 After installation, your project will have:
 
-| Path | Contents |
-| :--- | :--- |
-| `components/ui/<component>.tsx` | The component source code |
-| `components/ui/<component>-demo.tsx` | Demo implementation (optional) |
-| `lib/utils.ts` | Shared utilities (`cn()` helper) — added if missing |
+| Path                                          | Contents                                            |
+| :-------------------------------------------- | :-------------------------------------------------- |
+| `components/satisium-ui/<component>.tsx`      | The component source code                           |
+| `components/satisium-ui/<component>-demo.tsx` | Demo implementation (optional)                      |
+| `lib/utils.ts`                                | Shared utilities (`cn()` helper) — added if missing |
 
 ## Verify the installation
 
 Import the component in any page or component and render it:
 
 <div className="mt-6">
-  <CodeBlock files={{ "page.tsx": `import { VelocityStrips } from "@/components/ui/velocity-strips"\n\nexport default function Page() {\n  return (\n    <VelocityStrips\n      mediaUrl="/your-image.jpg"\n      mediaType="image"\n      slices={32}\n    />\n  )\n}` }} height="300px" />
+  <CodeBlock
+    files={{
+      "page.tsx": `import { VelocityStrips } from "@/components/satisium-ui/velocity-strips"\n\nexport default function Page() {\n  return (\n    <VelocityStrips\n      mediaUrl="/your-image.jpg"\n      mediaType="image"\n      slices={32}\n    />\n  )\n}`,
+    }}
+  />
 </div>
 
 If you see the component render with its default animation, you're ready.

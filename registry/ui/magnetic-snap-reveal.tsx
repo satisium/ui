@@ -38,7 +38,7 @@ export interface MagneticSnapRevealProps extends React.HTMLAttributes<HTMLElemen
  *
  * @example
  * ```tsx
- * import { MagneticSnapReveal } from "@/components/ui/magnetic-snap-reveal"
+ * import { MagneticSnapReveal } from "@/components/satisium-ui/magnetic-snap-reveal"
  *
  * export default function Hero() {
  *   return (
