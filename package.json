@@ -2,7 +2,7 @@
   "name": "satisium-ui",
   "version": "3.0.0-beta.61",
   "type": "module",
-  "private": false,
+  "private": true,
   "scripts": {
     "dev": "next dev --turbo",
     "build": "node scripts/build-llms.mjs && next build",

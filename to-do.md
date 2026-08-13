@@ -28,11 +28,11 @@
 
 ## 🔒 1. Security & Secrets (P0 — Launch Blockers)
 
-- [ ] **Rotate exposed GitHub Personal Access Token:** A live `GIT_TOKEN` is present in `.env.local`. Rotate it immediately on GitHub and remove any trace from git history using `git filter-repo` or `BFG Repo-Cleaner` if it was ever committed. A leaked PAT grants repository access and must be treated as a critical incident.
-- [ ] **Add security headers to `next.config.mjs`:** Implement `X-Frame-Options`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Strict-Transport-Security`, and a restrictive `Content-Security-Policy`. Without these, the app is exposed to clickjacking, MIME-type sniffing, and code injection attacks.
-- [ ] **Set `private: true` in `package.json`:** Prevent accidental public publication to npm. A component library in development should never be publishable by a stray `npm publish` command.
-- [ ] **Add rate limiting and input validation to `/api/telemetry`:** The telemetry endpoint is unauthenticated and accepts arbitrary POST bodies. Add a lightweight rate limiter (e.g., `@upstash/ratelimit` or simple IP-based throttle) and validate `action` / `component` fields to prevent Redis spam and abuse.
-- [ ] **Add rate limiting to `/api/search`:** The search API exposes the full page index without authentication or throttling. Implement rate limiting to prevent scraping and denial-of-service.
+- [x] **Rotate exposed GitHub Personal Access Token:** A live `GIT_TOKEN` is present in `.env.local`. Rotate it immediately on GitHub and remove any trace from git history using `git filter-repo` or `BFG Repo-Cleaner` if it was ever committed. A leaked PAT grants repository access and must be treated as a critical incident.
+- [x] **Add security headers to `next.config.mjs`:** Implement `X-Frame-Options`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Strict-Transport-Security`, and a restrictive `Content-Security-Policy`. Without these, the app is exposed to clickjacking, MIME-type sniffing, and code injection attacks.
+- [x] **Set `private: true` in `package.json`:** Prevent accidental public publication to npm. A component library in development should never be publishable by a stray `npm publish` command.
+- [x] **Add rate limiting and input validation to `/api/telemetry`:** The telemetry endpoint is unauthenticated and accepts arbitrary POST bodies. Add a lightweight rate limiter (e.g., `@upstash/ratelimit` or simple IP-based throttle) and validate `action` / `component` fields to prevent Redis spam and abuse.
+- [x] **Add rate limiting to `/api/search`:** The search API exposes the full page index without authentication or throttling. Implement rate limiting to prevent scraping and denial-of-service.
 
 ## 🛠️ 2. Code Quality & Stability (P0–P1)
 
