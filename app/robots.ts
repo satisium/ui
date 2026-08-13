@@ -9,6 +9,5 @@ export default function robots(): MetadataRoute.Robots {
       disallow: ["/api/", "/test/", "/embed/", "/preview/"],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
-    host: "ui.satisium.com",
   }
 }

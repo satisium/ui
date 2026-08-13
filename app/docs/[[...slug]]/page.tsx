@@ -40,22 +40,79 @@ export async function generateMetadata(props: {
     page.data.description ||
     `Explore the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP.`
 
+  let lastModifiedRaw: string | null = null
+  if (process.env.NODE_ENV !== "development") {
+    try {
+      const time = await getGithubLastEdit({
+        owner: "satisium",
+        repo: "ui",
+        path: `content/docs/${page.path}`,
+        token: process.env.GIT_TOKEN
+          ? `Bearer ${process.env.GIT_TOKEN}`
+          : undefined,
+      })
+      if (time) {
+        lastModifiedRaw = new Date(time).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+          year: "numeric",
+        })
+      }
+    } catch {
+      // silently skip metadata timestamp on failure
+    }
+  } else {
+    lastModifiedRaw = "May 2, 2026"
+  }
+
+  const tags: string[] = []
+  if (page.data.badge) tags.push(page.data.badge)
+  if (page.data.category && Array.isArray(page.data.category)) {
+    tags.push(...page.data.category)
+  }
+
   return {
     title: page.data.title,
     description,
     alternates: {
       canonical: canonicalUrl,
     },
+    other: {
+      ...(lastModifiedRaw && {
+        "article:published_time": lastModifiedRaw,
+        "article:modified_time": lastModifiedRaw,
+      }),
+      ...(page.data.category?.[0] && {
+        "article:section": page.data.category[0],
+      }),
+      ...(tags.length > 0 && {
+        "article:tag": tags.join(", "),
+      }),
+    },
     openGraph: {
       title: `${page.data.title} | Satisium UI`,
       description,
-      images: [`/api/og?title=${encodeURIComponent(page.data.title)}`],
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(page.data.title)}`,
+          width: 1200,
+          height: 630,
+          alt: page.data.title,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${page.data.title} | Satisium UI`,
       description,
-      images: [`/api/og?title=${encodeURIComponent(page.data.title)}`],
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(page.data.title)}`,
+          width: 1200,
+          height: 630,
+          alt: page.data.title,
+        },
+      ],
     },
   }
 }

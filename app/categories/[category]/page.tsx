@@ -34,13 +34,27 @@ export async function generateMetadata(props: {
     openGraph: {
       title: `${title} | Satisium UI`,
       description,
-      images: [`/api/og?title=${encodeURIComponent(title)}`],
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(title)}`,
+          width: 1200,
+          height: 630,
+          alt: `${formattedCategory} Components | Satisium UI`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | Satisium UI`,
       description,
-      images: [`/api/og?title=${encodeURIComponent(title)}`],
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(title)}`,
+          width: 1200,
+          height: 630,
+          alt: `${formattedCategory} Components | Satisium UI`,
+        },
+      ],
     },
   }
 }

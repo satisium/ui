@@ -13,7 +13,29 @@ export const metadata: Metadata = {
     title: "Docs | Satisium UI",
     description:
       "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
-    images: [{ url: "/api/og?title=Documentation" }],
+    images: [
+      {
+        url: "/api/og?title=Documentation",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI Documentation",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Docs | Satisium UI",
+    description:
+      "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+    creator: "@iamsatish4564",
+    images: [
+      {
+        url: "/api/og?title=Documentation",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI Documentation",
+      },
+    ],
   },
 }
 

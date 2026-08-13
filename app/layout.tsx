@@ -16,6 +16,7 @@ import PostHogPageView from "@/components/posthog-pageview"
 import { CommandMenuDialog } from "@/components/layout/command-menu"
 import { source } from "@/lib/source"
 import { ViewportBlocker } from "@/components/viewport-blocker"
+import WebVitals from "@/components/web-vitals"
 
 const fontDisplay = Antonio({
   subsets: ["latin"],
@@ -52,13 +53,41 @@ export const metadata: Metadata = {
     "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
   alternates: {
     canonical: "/",
-    types: { "text/markdown": "/llms.txt" },
+    languages: { "en-US": "/" },
+    types: {
+      "application/llms+txt": "/llms.txt",
+      "text/markdown": "/llms-full.txt",
+    },
+  },
+  keywords: [
+    "animated components",
+    "shadcn ui",
+    "tailwind v4",
+    "framer motion",
+    "gsap",
+    "react components",
+    "design engineers",
+    "ui library",
+    "satisium ui",
+  ],
+  verification: {
+    google: "your-google-verification-code",
+    other: {
+      "msvalidate.01": "your-bing-verification-code",
+    },
   },
   openGraph: {
     type: "website",
     siteName: "Satisium UI",
     locale: "en_US",
-    images: [{ url: "/api/og?title=Satisium UI" }],
+    images: [
+      {
+        url: "/api/og?title=Satisium UI",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -66,7 +95,14 @@ export const metadata: Metadata = {
     description:
       "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
     creator: "@iamsatish4564",
-    images: [{ url: "/api/og?title=Satisium UI" }],
+    images: [
+      {
+        url: "/api/og?title=Satisium UI",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.ico",
@@ -159,21 +195,26 @@ export default function RootLayout({
                 "https://github.com/satisium/ui",
                 "https://twitter.com/iamsatish4564",
               ],
-              offers: [
-                {
-                  "@type": "Offer",
-                  price: "0",
-                  priceCurrency: "USD",
-                  description: "Free components",
-                },
-                {
-                  "@type": "Offer",
-                  price: "49.00",
-                  priceCurrency: "USD",
-                  description: "Satisium UI Pro Pack",
-                  url: `${SITE_URL}/pro-pack`,
-                },
-              ],
+              offers: {
+                "@type": "Offer",
+                price: "0.00",
+                priceCurrency: "USD",
+                description: "Free components",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Satisium UI",
+              description:
+                "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+              url: SITE_URL,
+              inLanguage: "en-US",
             }),
           }}
         />
@@ -183,6 +224,7 @@ export default function RootLayout({
         <CSPostHogProvider>
           <Suspense fallback={null}>
             <PostHogPageView />
+            <WebVitals />
           </Suspense>
           <ThemeProvider>
             <ViewportBlocker />

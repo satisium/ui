@@ -11,9 +11,29 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react"
 import type * as PageTree from "fumadocs-core/page-tree"
 import type { Metadata } from "next"
+import { SITE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
   title: "Categories | Satisium UI",
+  description:
+    "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+  alternates: {
+    canonical: `${SITE_URL}/categories`,
+  },
+  openGraph: {
+    title: "Categories | Satisium UI",
+    description:
+      "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+    images: [{ url: "/api/og?title=Categories", width: 1200, height: 630, alt: "Satisium UI Categories" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Categories | Satisium UI",
+    description:
+      "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+    creator: "@iamsatish4564",
+    images: [{ url: "/api/og?title=Categories", width: 1200, height: 630, alt: "Satisium UI Categories" }],
+  },
 }
 
 const CATEGORY_ICONS: Record<keyof typeof TAXONOMY, React.ReactNode> = {
