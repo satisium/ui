@@ -1,3 +1,4 @@
+import React from "react"
 import { CodeFile } from "@/components/code-block/types"
 import dynamic from "next/dynamic"
 

@@ -5,7 +5,6 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import Link from "next/link"
 import { findNeighbour } from "fumadocs-core/page-tree"
-import { getGithubLastEdit } from "fumadocs-core/content/github"
 import { defaultMdxComponents } from "@/components/mdx-components"
 import { TableOfContents } from "@/components/layout/toc"
 import {
@@ -15,6 +14,7 @@ import {
 import { registry } from "@/registry/index"
 import { cn } from "@/lib/utils"
 import { SITE_URL } from "@/lib/config"
+import { getLastModifiedTime } from "@/lib/docs-page"
 import { DocTracker } from "@/components/doc-tracker"
 import { CopyMdxButton } from "@/components/ui/copy-mdx-button"
 
@@ -41,29 +41,7 @@ export async function generateMetadata(props: {
     `Explore the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP.`
 
   let lastModifiedRaw: string | null = null
-  if (process.env.NODE_ENV !== "development") {
-    try {
-      const time = await getGithubLastEdit({
-        owner: "satisium",
-        repo: "ui",
-        path: `content/docs/${page.path}`,
-        token: process.env.GIT_TOKEN
-          ? `Bearer ${process.env.GIT_TOKEN}`
-          : undefined,
-      })
-      if (time) {
-        lastModifiedRaw = new Date(time).toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        })
-      }
-    } catch {
-      // silently skip metadata timestamp on failure
-    }
-  } else {
-    lastModifiedRaw = "May 2, 2026"
-  }
+  lastModifiedRaw = await getLastModifiedTime(page.path)
 
   const tags: string[] = []
   if (page.data.badge) tags.push(page.data.badge)
@@ -215,30 +193,7 @@ export default async function Page(props: {
   // [DATA LAYER: External APIs (GitHub)]
   // Retrieves the timestamp of the last git commit for the current MDX document.
   let lastModifiedTime: string | null = null
-  if (process.env.NODE_ENV !== "development") {
-    try {
-      const time = await getGithubLastEdit({
-        owner: "satisium", // Satisium UI GitHub organization
-        repo: "ui", // Component library repository
-        path: `content/docs/${page.path}`,
-        token: process.env.GIT_TOKEN
-          ? `Bearer ${process.env.GIT_TOKEN}`
-          : undefined,
-      })
-      if (time) {
-        lastModifiedTime = new Date(time).toLocaleDateString("en-US", {
-          month: "short",
-          day: "numeric",
-          year: "numeric",
-        })
-      }
-    } catch (error) {
-      console.error("Failed to fetch last edit time:", error)
-    }
-  } else {
-    // Fallback for local development bypass to prevent API rate limits.
-    lastModifiedTime = "May 2, 2026"
-  }
+  lastModifiedTime = await getLastModifiedTime(page.path)
 
   const hasCategories = page.data.category && page.data.category.length > 0
 
