@@ -24,69 +24,39 @@
 - [ ] **Analytics:** Analytics.
 - [ ] **Og Images:** Og Images.
 
-## 🎨 1. UI, UX & Premium Polish
+---
 
-- [ ] **Cross-Browser Check:** Tested on Chrome, Safari, Firefox, and Edge.
-- [ ] **Mobile Responsiveness:** Layout holds up on small screens (iPhone SE) and ultra-wide displays.
-- [ ] **Theme Switching:** Dark mode and Light mode toggle smoothly without flickering.
-- [ ] **Interactive States:** All buttons/links have `hover`, `focus`, and `active` (scale down) states.
-- [ ] **Touch Targets:** Minimum 44x44px clickable areas on mobile devices.
-- [ ] **Tap Highlights:** Disabled default blue tap highlights on mobile Safari (`-webkit-tap-highlight-color: transparent`).
-- [ ] **Scroll Lock:** Modals, sheets, and mobile menus properly lock the body scroll when open.
-- [ ] **Smooth Scrolling:** Smooth scroll enabled for anchor links.
+## 🔒 1. Security & Secrets (P0 — Launch Blockers)
 
-## ⚡️ 2. Performance & Animations
+- [ ] **Rotate exposed GitHub Personal Access Token:** A live `GIT_TOKEN` is present in `.env.local`. Rotate it immediately on GitHub and remove any trace from git history using `git filter-repo` or `BFG Repo-Cleaner` if it was ever committed. A leaked PAT grants repository access and must be treated as a critical incident.
+- [ ] **Add security headers to `next.config.mjs`:** Implement `X-Frame-Options`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Strict-Transport-Security`, and a restrictive `Content-Security-Policy`. Without these, the app is exposed to clickjacking, MIME-type sniffing, and code injection attacks.
+- [ ] **Set `private: true` in `package.json`:** Prevent accidental public publication to npm. A component library in development should never be publishable by a stray `npm publish` command.
+- [ ] **Add rate limiting and input validation to `/api/telemetry`:** The telemetry endpoint is unauthenticated and accepts arbitrary POST bodies. Add a lightweight rate limiter (e.g., `@upstash/ratelimit` or simple IP-based throttle) and validate `action` / `component` fields to prevent Redis spam and abuse.
+- [ ] **Add rate limiting to `/api/search`:** The search API exposes the full page index without authentication or throttling. Implement rate limiting to prevent scraping and denial-of-service.
 
-- [ ] **Lighthouse Check:** Score of 90+ on Desktop and Mobile.
-- [ ] **Image Optimization:** All images use `next/image` (or WebP/AVIF formats) with proper `width`, `height`, and `alt` tags.
-- [ ] **Web Fonts:** Fonts are preloaded and use `font-display: swap` to prevent FOUT/FOIT.
-- [ ] **Animation Performance:** GPU-accelerated CSS (`transform`, `opacity`, `clip-path`) used instead of layout-triggering properties (`padding`, `margin`).
-- [ ] **Memory Leaks:** All GSAP timelines, WebGL contexts (Three.js), and event listeners are properly killed/disposed on component unmount.
-- [ ] **Mobile GPU:** Heavy WebGL or complex GSAP animations are disabled or simplified on mobile to save battery and prevent lag.
+## 🛠️ 2. Code Quality & Stability (P0–P1)
 
-## 🔍 3. SEO & Meta (Social Sharing)
+- [ ] **Fix missing `React` import in `registry/index.ts`:** The file uses `React.ComponentType` on line 19 without importing the `React` namespace. This will fail at runtime or type-checking. Add `import React from "react"` at the top of the file.
+- [ ] **Extract duplicate GitHub metadata fetch in `app/docs/[[...slug]]/page.tsx`:** `getGithubLastEdit` is called independently in both `generateMetadata` and the `Page` component, doubling external API requests per docs page. Extract the fetch into a shared server utility and cache the result within the request lifecycle.
+- [ ] **Replace `(page.data as any)` with typed frontmatter:** Multiple `as any` casts in `page.tsx` bypass TypeScript strict mode. Extend the Fumadocs page schema with a proper frontmatter interface so that `badge`, `category`, `comingSoon`, `gumroad`, `price`, and `media` are type-safe.
+- [ ] **Replace hardcoded stale dates:** The fallback `"May 2, 2026"` in `page.tsx` will become misleading. Replace it with a build-time constant (e.g., from `git log -1 --format=%ci`) or remove the fallback entirely.
+- [ ] **Remove `unoptimized={true}` from `next/image` in `component-card.tsx`:** This flag bypasses Next.js Image Optimization, disabling automatic AVIF/WebP conversion, CDN caching, and responsive `srcset` generation. Remove it to restore optimization.
 
-- [ ] **Dynamic Titles:** Every page has a unique `<title>` (e.g., `Page Name | Satisium UI`).
-- [ ] **Meta Descriptions:** Every page has a descriptive `<meta name="description">` (150-160 chars).
-- [ ] **Open Graph (OG) Images:** High-quality `og:image` (1200x630px) added for Twitter/X, LinkedIn, and Discord previews.
-- [ ] **Favicon:** Added proper favicon suite (`favicon.ico`, `icon.svg`, `apple-touch-icon.png`).
-- [ ] **Manifest & Theme Color:** `theme-color` meta tag is set for mobile browser headers.
-- [ ] **Sitemap & Robots:** `sitemap.xml` and `robots.txt` are generated and correctly configured.
+## ⚡ 3. Performance (P1)
 
-## ♿️ 4. Accessibility (a11y)
+- [ ] **Install and configure `@next/bundle-analyzer`:** The app uses heavy libraries (Three.js, GSAP, Motion, 60+ animated components). Without bundle analysis, it is impossible to track bloat or identify optimization opportunities. Add the analyzer to `next.config.mjs` and review the report before launch.
+- [ ] **Audit lazy loading strategy:** Only one instance of `loading="lazy"` was found. Audit all below-the-fold images and add lazy loading where appropriate to reduce initial payload.
+- [ ] **Add preload hints for critical assets:** Add `<link rel="preload">` for critical fonts (Antonio, Plus Jakarta Sans, Inter) and hero images in `app/layout.tsx` to improve Largest Contentful Paint (LCP).
 
-- [ ] **Keyboard Navigation:** Site is fully navigable using only the `Tab` key.
-- [ ] **Focus Rings:** Custom `focus-visible` outlines are styled and clear (not completely hidden).
-- [ ] **ARIA Labels:** Icon-only buttons (like GitHub or Theme toggles) have `aria-label` or `.sr-only` text.
-- [ ] **Contrast Ratio:** Text meets WCAG AA contrast standards against its background.
-- [ ] **Semantic HTML:** Correct use of `<header>`, `<main>`, `<section>`, `<nav>`, and heading hierarchy (`h1` -> `h2` -> `h3`).
+## 🧪 4. Testing & CI/CD (P1–P2)
 
-## 🛡 5. Code Quality & Security
+- [ ] **Add a CI/CD pipeline:** No automated build, lint, or deployment pipeline exists. Set up GitHub Actions (or Vercel preview deployments) to run `pnpm lint`, `pnpm build`, and type checks on every PR. This prevents broken code from reaching production.
+- [ ] **Write smoke tests for the registry and API routes:** As a component library, the registry entries and API routes (`/api/telemetry`, `/api/search`) are core functionality. Add at minimum smoke tests to verify that registry items resolve correctly and API routes return expected status codes.
+- [ ] **Add visual regression tests for animated components:** GSAP and Three.js demos are prone to silent breakage. Integrate Playwright or Chromatic to catch visual regressions in the previewer and landing page animations.
 
-- [ ] **No Console Logs:** Removed all `console.log`, `console.warn`, and `debugger` statements.
-- [ ] **TypeScript / Linting:** `npm run build` and `npm run lint` pass with zero warnings/errors.
-- [ ] **Environment Variables:** Production `.env` variables are correctly added to the hosting provider (Vercel/Netlify).
-- [ ] **API Security:** Private API keys are strictly accessed server-side, never exposed in `NEXT_PUBLIC_` variables.
-- [ ] **CORS / Rate Limiting:** API routes have basic rate limiting and proper CORS headers if accessed externally.
-- [ ] **404 / 500 Pages:** Custom Not Found (`404`) and Error (`500`) pages are designed and functional.
+## 🏗️ 5. Architecture & Maintainability (P2)
 
-## 🌐 External Infrastructure Changes (Required for Full Consistency)
-
-> **Note:** These are external to the codebase but must be completed for the Satisium UI rebrand to be fully consistent in production.
-
-- [ ] **Domain DNS:** Point `ui.satisium.com` to hosting provider. Set up 301 redirects from old domains (`satisui.xyz`, `ui.satisstoodio.com`) to preserve SEO and user bookmarks.
-- [x] **GitHub Repository:** Rename repo from `satis-ui/ui` → `satisium/ui` (or transfer to `satisium-ui` org). Update all remote URLs in local clones.
-- [ ] **Vercel / Deployment:** Update production domain to `ui.satisium.com`. Verify environment variables are set correctly.
-- [x] **Cloudinary Dashboard:** Create new named transformations `t_satisium_preview` and `t_satisium_demo` (or rename existing `t_satis_preview` / `t_satis_demo`). Without this, image/video optimization will silently fail.
-- [ ] **Upstash Redis:** Historical metrics under old keys (`satis:metrics:*`) will not carry over. This is expected — metrics will start fresh under `satisium:metrics:*`.
-- [ ] **npm Package (if publishing):** Update `package.json` name from `"ui"` → `"satisium-ui"` and publish under new name.
-- [ ] **PostHog:** Update project name if desired. Events themselves don't need changes unless dashboards filter by old project name.
-- [ ] **Social Links:** Update any social media bios, link-in-bio pages, and marketing materials to reference `ui.satisium.com`.
-- [ ] **Email Domain:** Update any email templates or autoresponders to use `@satisium.com` instead of `@satisstoodio.com`.
-
-## 🚢 6. Final Deployment
-
-- [ ] **Analytics Setup:** Plausible, Vercel Analytics, or Google Analytics installed and firing correctly.
-- [ ] **Domain & SSL:** Custom domain is connected, and SSL certificate is active.
-- [ ] **Cold Start Test:** Opened the production URL in an Incognito window to verify the first-load experience.
-- [ ] **Forms / Webhooks:** Tested live contact forms, newsletter signups, or database writes.
+- [ ] **Refactor `app/docs/[[...slug]]/page.tsx` (God Component):** The 462-line file handles routing, filesystem I/O, GitHub API calls, SEO schema generation, and JSX rendering. Extract data fetching into a dedicated server utility (`lib/docs-page.ts`), split SEO metadata into a helper, and keep the page component focused on rendering.
+- [ ] **Refactor `registry/index.ts` into a factory or JSON-driven loader:** The 1571+ line file is a copy-paste monolith with 40+ identical entries. Replace it with a `createRegistryItem()` factory or load from a JSON manifest. This reduces maintenance burden and eliminates copy-paste bugs.
+- [ ] **Sanitize HTML in the command menu search results:** `components/layout/command-menu.tsx` uses manual string replacement for `<mark>` tags instead of a proper sanitizer. Integrate `DOMPurify` to prevent XSS if the search index ever contains user-generated content.
+- [ ] **Replace `console.error` with a structured logger:** 23+ `console.error` statements remain in the codebase. Replace them with a lightweight structured logger (or remove them) before launch to avoid leaking internal error details to the browser console in production.

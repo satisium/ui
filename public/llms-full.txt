@@ -1,6 +1,6 @@
 # Satisium UI - Complete AI Knowledge Base
 
-> Premium animated React component library for Design Engineers.
+> Free, open-source animated React component library for Design Engineers.
 > Built with Next.js, Tailwind CSS v4, Framer Motion, and GSAP.
 
 ## How to install components

@@ -14,13 +14,11 @@ export const docs = defineDocs({
       comingSoon: z.boolean().default(false),
 
       badge: z
-        .enum(["new", "updated", "beta", "premium", "deprecated"])
+        .enum(["new", "updated", "beta", "deprecated"])
         .optional(),
       category: z.array(CategoryEnum).optional(),
       author: z.string().optional(),
       date: z.string().optional(),
-      gumroad: z.string().url().optional(),
-      price: z.string().optional(),
       links: z
         .object({
           preview: z.string().url().optional(),

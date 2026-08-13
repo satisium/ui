@@ -231,7 +231,7 @@ Frontmatter is validated by `source.config.ts` (Zod). Use an existing component'
 title: My Component
 description: A tasteful and carefully crafted component.
 component: true
-badge: new            # new | updated | beta | premium | deprecated
+badge: new            # new | updated | beta | deprecated
 category:
   - text
 author: Satisium UI

@@ -29,12 +29,10 @@ var docs = defineDocs({
       hideToc: z2.boolean().default(false),
       hideCopy: z2.boolean().default(false),
       comingSoon: z2.boolean().default(false),
-      badge: z2.enum(["new", "updated", "beta", "premium", "deprecated"]).optional(),
+      badge: z2.enum(["new", "updated", "beta", "deprecated"]).optional(),
       category: z2.array(CategoryEnum).optional(),
       author: z2.string().optional(),
       date: z2.string().optional(),
-      gumroad: z2.string().url().optional(),
-      price: z2.string().optional(),
       links: z2.object({
         preview: z2.string().url().optional(),
         github: z2.string().url().optional()

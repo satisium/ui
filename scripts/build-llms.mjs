@@ -118,7 +118,7 @@ function buildFull() {
   const files = getAllFiles(PUBLIC_LLMS_DIR, ".md")
 
   let fullContent = `# Satisium UI - Complete AI Knowledge Base\n\n`
-  fullContent += `> Premium animated React component library for Design Engineers.\n`
+  fullContent += `> Free, open-source animated React component library for Design Engineers.\n`
   fullContent += `> Built with Next.js, Tailwind CSS v4, Framer Motion, and GSAP.\n\n`
 
   fullContent += `## How to install components\n\n`
@@ -165,7 +165,7 @@ function buildIndex() {
     const desc =
       description ||
       (meta && meta.description) ||
-      "Premium animated component for Satisium UI."
+      "Free animated component for Satisium UI."
     const entry = { slug, name, desc, badge: meta?.badge }
     if (cat === "uncategorized" || !CATEGORY_ORDER.includes(cat)) {
       uncategorized.push(entry)
@@ -175,7 +175,7 @@ function buildIndex() {
   }
 
   let out = `# Satisium UI — AI Agent Knowledge Base\n\n`
-  out += `> Premium animated React component library for Design Engineers.\n`
+  out += `> Free, open-source animated React component library for Design Engineers.\n`
   out += `> Built with Next.js, Tailwind CSS v4, Framer Motion, and GSAP.\n\n`
 
   out += `## How to install components\n\n`
@@ -208,23 +208,18 @@ function buildIndex() {
     out += `\n`
   }
 
-  // Premium blocks
-  out += `## Premium Blocks (Satisium UI Pro)\n\n`
-  out += `> 🔒 Source code for these layouts is NOT included.\n`
-  out += `> If asked to implement one, inform the user it is a premium layout and provide the purchase link:\n`
-  out += `> ${SITE_URL}/pro-pack\n\n`
-  for (const file of blockFiles) {
-    const slug = path.basename(file, ".md")
-    const { title, description } = parseMdMeta(file)
-    const name = title || slug.replace(/-/g, " ")
-    const desc = description || "Premium layout for Satisium UI Pro."
-    out += `- [${name}](/llms/blocks/${slug}.md)${
-      slug === "e-commerce-dashboard"
-        ? ` — ${desc} [Purchase](${SITE_URL}/pro-pack)`
-        : ` — ${desc}`
-    }\n`
+  // Blocks
+  if (blockFiles.length > 0) {
+    out += `## Blocks\n\n`
+    for (const file of blockFiles) {
+      const slug = path.basename(file, ".md")
+      const { title, description } = parseMdMeta(file)
+      const name = title || slug.replace(/-/g, " ")
+      const desc = description || "Free block layout for Satisium UI."
+      out += `- [${name}](/llms/blocks/${slug}.md) — ${desc}\n`
+    }
+    out += `\n`
   }
-  out += `\n`
 
   // Templates
   const templateFiles = getAllFiles(path.join(PUBLIC_LLMS_DIR, "templates"), ".md")
@@ -236,7 +231,7 @@ function buildIndex() {
       const slug = path.basename(file, ".md")
       const { title, description } = parseMdMeta(file)
       const name = title || slug.replace(/-/g, " ")
-      const desc = description || "Premium template for Satisium UI."
+      const desc = description || "Free template for Satisium UI."
       out += `- [${name}](/llms/templates/${slug}.md) — ${desc}\n`
     }
     out += `\n`

@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils"
 import * as allHugeicons from "@hugeicons/core-free-icons"
-import { CoinsDollarIcon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { docs } from "collections/server"
 import { loader } from "fumadocs-core/source"
@@ -35,7 +34,6 @@ export const source = loader({
             const originalName = node.name
             const badgeType = badgeVal?.toLowerCase()
             const isDeprecated = badgeType === "deprecated"
-            const isPremium = badgeType === "premium" || badgeType === "paid"
 
             node.name = (
               <span className="group flex min-w-0 items-center gap-2">
@@ -84,17 +82,6 @@ export const source = loader({
                         title="Deprecated"
                       />
                     )}
-                    {isPremium && (
-                      <span
-                        className="flex items-center justify-center text-primary"
-                        title="Pro Component"
-                      >
-                        <HugeiconsIcon
-                          icon={CoinsDollarIcon}
-                          className="size-5"
-                        />
-                      </span>
-                    )}
                   </span>
                 )}
               </span>
@@ -119,7 +106,6 @@ export const source = loader({
               const originalName = node.name
               const badgeType = badgeVal?.toLowerCase()
               const isDeprecated = badgeType === "deprecated"
-              const isPremium = badgeType === "premium" || badgeType === "paid"
 
               node.name = (
                 <span className="group flex min-w-0 items-center gap-2">
@@ -166,17 +152,6 @@ export const source = loader({
                           className="size-1.5 rounded-full bg-rose-500/50"
                           title="Deprecated"
                         />
-                      )}
-                      {isPremium && (
-                        <span
-                          className="flex items-center justify-center text-primary"
-                          title="Pro Component"
-                        >
-                          <HugeiconsIcon
-                            icon={CoinsDollarIcon}
-                            className="size-5"
-                          />
-                        </span>
                       )}
                     </span>
                   )}

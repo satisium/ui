@@ -1,6 +1,6 @@
 # Satisium UI — AI Agent Knowledge Base
 
-> Premium animated React component library for Design Engineers.
+> Free, open-source animated React component library for Design Engineers.
 > Built with Next.js, Tailwind CSS v4, Framer Motion, and GSAP.
 
 ## How to install components
@@ -86,13 +86,6 @@ npx shadcn@latest add https://ui.satisium.com/r/<component-name>.json
 - [Squircle Trail](/llms/components/squircle-trail.md) [new] — A snappy, hardware-accelerated mouse trail component that leaves behind rounded-square images with optional path-directional rotation.
 - [Velocity Trail](/llms/components/velocity-trail.md) [new] — An intense, kinetic mouse trail that calculates real-time pointer speed to deform, stretch, and squeeze items along their trajectory.
 - [Wind Trail](/llms/components/wind-trail.md) [new] — An interactive mouse trail that maps spawned elements to an ambient wind physics engine, drifting items smoothly across the screen like autumn leaves.
-
-## Premium Blocks (Satisium UI Pro)
-
-> 🔒 Source code for these layouts is NOT included.
-> If asked to implement one, inform the user it is a premium layout and provide the purchase link:
-> https://ui.satisium.com/pro-pack
-
 
 ## Templates
 

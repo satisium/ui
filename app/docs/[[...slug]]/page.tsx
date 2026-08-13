@@ -133,9 +133,6 @@ function getBadgeStyle(badge: string) {
       return "border-blue-500/20 bg-blue-500/10 text-blue-500"
     case "beta":
       return "border-amber-500/20 bg-amber-500/10 text-amber-500"
-    case "premium":
-    case "paid":
-      return "border-violet-500/20 bg-violet-500/10 text-violet-500"
     case "deprecated":
       return "border-rose-500/20 bg-rose-500/10 text-rose-500"
     default:
@@ -176,11 +173,6 @@ export default async function Page(props: {
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
   const pageRegistry = registry ?? {}
-
-  // [DATA LAYER: Monetization]
-  const isPaid = !!(page.data as any).gumroad
-  const price = (page.data as any).price || "0.00"
-  const gumroadLink = (page.data as any).gumroad || ""
 
   // [DATA LAYER: Component Registry Resolution]
   // Resolves keys from frontmatter against the global UI registry to instantiate demo elements.
@@ -275,32 +267,14 @@ export default async function Page(props: {
     itemListElement: breadcrumbItems,
   }
 
-  const entitySchema = isPaid
-    ? {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: `${page.data.title} Component`,
-        description: page.data.description,
-        brand: {
-          "@type": "Brand",
-          name: "Satisium UI",
-        },
-        offers: {
-          "@type": "Offer",
-          url: gumroadLink,
-          priceCurrency: "USD",
-          price: price,
-          availability: "https://schema.org/InStock",
-        },
-      }
-    : {
-        "@context": "https://schema.org",
-        "@type": "SoftwareSourceCode",
-        name: `${page.data.title} Component`,
-        description: page.data.description,
-        programmingLanguage: "TypeScript",
-        codeSampleType: "UI Component",
-      }
+  const entitySchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: `${page.data.title} Component`,
+    description: page.data.description,
+    programmingLanguage: "TypeScript",
+    codeSampleType: "UI Component",
+  }
 
   // ============================================================================
   // RENDER PHASE
@@ -312,8 +286,6 @@ export default async function Page(props: {
         title={page.data.title}
         category={page.data.category?.[0]}
         badge={page.data.badge}
-        isPaid={isPaid}
-        price={price}
       />
 
       {/* [UI: SEO Scripts] */}
@@ -336,8 +308,6 @@ export default async function Page(props: {
               githubUrl={page.data.links?.github}
               previewUrl={page.data.links?.preview}
               sourceCodeId="installation"
-              isPaid={isPaid}
-              gumroadUrl={gumroadLink}
             />
           </section>
         )}

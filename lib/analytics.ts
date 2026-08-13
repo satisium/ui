@@ -5,7 +5,7 @@ import posthog from "posthog-js"
  * Universal tracking function for Satisium UI
  *
  * @param eventName - The name of the event (e.g., "code_copied")
- * @param properties - The rich data/context (e.g., { component: "component-name", is_premium: false })
+ * @param properties - The rich data/context (e.g., { component: "component-name", category: "text-reveals" })
  * @param incrementPublicCounter - Optional. If provided, also increments our public Redis database for landing page vanity metrics.
  */
 export const trackEvent = async (

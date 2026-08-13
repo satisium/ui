@@ -8,7 +8,7 @@ import { useEffect } from "react"
 /**
  * Wraps the application to provide PostHog tracking context.
  * We disable auto page-view capture because we want to manually send rich
- * MDX Schema data (like price, premium badge, category) on our docs pages.
+ * MDX Schema data (like badge, category) on our docs pages.
  */
 export function CSPostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
