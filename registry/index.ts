@@ -29,20 +29,6 @@ export interface RegistryItem {
 }
 
 export const registry: Record<string, RegistryItem> = {
-  // Keep your existing media items unchanged...
-  "dashboard-pro-desktop": {
-    name: "Desktop Layout",
-    type: "video",
-    mediaUrl: "/videos/dashboard-desktop-preview.mp4",
-    previewUrl: "/preview/dashboard-pro/desktop",
-  },
-  "dashboard-pro-mobile": {
-    name: "Mobile Layout",
-    type: "image",
-    mediaUrl: "/images/dashboard-mobile-preview.webp",
-    previewUrl: "/preview/dashboard-pro/mobile",
-  },
-
   "velocity-strips-image": {
     name: "Velocity Strips Image",
     type: "react",

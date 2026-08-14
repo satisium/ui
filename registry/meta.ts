@@ -17,20 +17,6 @@ export interface RegistryMetaItem {
 }
 
 export const registryMeta: Record<string, RegistryMetaItem> = {
-  "dashboard-pro-desktop": {
-    name: "Desktop Layout",
-    type: "video",
-    previewUrl: "/preview/dashboard-pro/desktop",
-    mediaUrl: "/videos/dashboard-desktop-preview.mp4",
-  },
-
-  "dashboard-pro-mobile": {
-    name: "Mobile Layout",
-    type: "image",
-    previewUrl: "/preview/dashboard-pro/mobile",
-    mediaUrl: "/images/dashboard-mobile-preview.webp",
-  },
-
   "velocity-strips-image": {
     name: "Velocity Strips Image",
     type: "react",
