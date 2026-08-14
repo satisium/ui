@@ -7,20 +7,20 @@
 - [x] **Landing page links and buttons:** Check all the links.
 - [x] **Make the app desktop only:** Add a condition to make the app apart from landing page desktop only.
 - [x] **ui.satisium.com:** VERY IMPORTANT.
-- [ ] **Important index pages:** Index pages for `doc/components` etc .
+- [x] **Important index pages:** Index pages for `doc/components` etc .
 - [x] **Proper categories:** Add proper categories to the components.
-- [ ] **Demo videos:** Proper demo videos and hook them properly to the all place they are needed.
 - [x] **Beta** Make the app beta.
 - [x] **Delete some components:** Remove the suckers.
-- [ ] **Proper documentation:** Write doc pages, intro and all of these.
-- [ ] **Read me:** Proper read me file.
+- [x] **Proper documentation:** Write doc pages, intro and all of these.
 - [x] **The search:** Improve the search component by removing noise and adding some about shortcut info.
 - [x] **Sidebar:** The side bar in docs needs proper badging etc.
-- [ ] **Changelog:** Design proper changelog page.
 - [x] **CLI:** VERY IMPORTANT Make CLI work flawlessly. CLI has errors and inconsistent.
 - [x] **LLM Text:** Check LLM thingy.
 - [x] **SEO and logo:** Update logos everywhere. SEO and all.
 - [x] **Github satisium:** Github satis UI to satisium.
+- [ ] **Changelog:** Design proper changelog page.
+- [ ] **Demo videos:** Proper demo videos and hook them properly to the all place they are needed.
+- [x] **Read me:** Proper read me file.
 - [ ] **Analytics:** Analytics.
 - [ ] **Og Images:** Og Images.
 

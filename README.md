@@ -1,22 +1,20 @@
 # Satisium UI
 
-[![CI](https://github.com/satisium/ui/actions/workflows/ci.yml/badge.svg)](https://github.com/satisium/ui/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/ui.svg)](https://www.npmjs.com/package/ui)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+A high-end animated component library for React and Next.js. Built with Tailwind CSS v4, GSAP, Motion, Three.js, and Radix UI. Components are distributed via the shadcn CLI — install exactly what you need with zero runtime lock-in.
 
-A high-end animated component library for React and Next.js. Built with Tailwind CSS v4, GSAP, Framer Motion, Three.js, and Radix UI.
+Current status: Beta (`3.0.0-beta.61`). APIs may change before stable release.
 
-## ✨ Components
-
-Browse components at [UI](https://ui.satisium.com).
-
-### Install a component
+## Install a component
 
 ```bash
 npx shadcn@latest add https://ui.satisium.com/r/<component-name>.json
 ```
 
-## 🚀 Quick Start
+The CLI copies the component source into your project, auto-installs missing dependencies, and leaves you in full control of the code.
+
+Browse and preview all components at [ui.satisium.com](https://ui.satisium.com).
+
+## Quick start
 
 ```bash
 git clone https://github.com/satisium/ui.git
@@ -25,21 +23,47 @@ pnpm install
 pnpm dev
 ```
 
-## 📦 Tech Stack
+Open [http://localhost:3000](http://localhost:3000) to explore the docs site.
 
-- **Next.js 16** — React framework with App Router
-- **Tailwind CSS v4** — Utility-first styling
-- **GSAP + Motion** — Animation engines
-- **Three.js / R3F** — WebGL components
-- **Radix UI** — Accessible unstyled primitives
-- **shadcn/ui** — Registry-based component distribution
-- **Changesets** — Versioning & changelogs
-- **Fumadocs** — Documentation
+## Tech stack
 
-## 🤝 Contributing
+- Next.js 16 with App Router
+- React 19
+- Tailwind CSS v4
+- GSAP and @gsap/react
+- Motion
+- Three.js and React Three Fiber
+- Radix UI
+- shadcn/ui
+- Fumadocs
+- Changesets
+- pnpm
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions and [GITHUB_STRATEGY.md](./GITHUB_STRATEGY.md) for our complete open-source workflow.
+## Prerequisites
 
-## 📄 License
+To use Satisium UI components in your project:
+
+- Node.js 20 or higher
+- Next.js 16 or later with App Router
+- Tailwind CSS v4 configured
+- shadcn/ui initialized (`npx shadcn@latest init`)
+
+## Contributing
+
+Contributions are welcome. Before opening a PR, please read the following:
+
+- [CONTRIBUTING.md](./CONTRIBUTING.md) — setup instructions, the component pipeline, and PR checklist
+- [GITHUB_STRATEGY.md](./GITHUB_STRATEGY.md) — branching model, releases, CI/CD, and open-source workflow
+
+### Contributor setup
+
+```bash
+git clone https://github.com/satisium/ui.git
+cd ui
+pnpm install
+pnpm dev
+```
+
+## License
 
 MIT — see [LICENSE](./LICENSE) for details.
