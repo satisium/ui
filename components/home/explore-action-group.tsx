@@ -67,7 +67,11 @@ export function ExploreActionGroup({
       {/* 1. PRIMARY CTA */}
       <Link
         href={exploreHref}
-        className="inline-flex h-11 items-center justify-center rounded-xl bg-foreground px-4 font-heading text-xs font-semibold whitespace-nowrap text-background shadow-sm transition-transform duration-300 hover:scale-[1.02] focus:outline-none active:scale-[0.98] sm:h-14 sm:rounded-[1.25rem] sm:px-7 sm:text-sm"
+        /* 
+          REMOVED: `shadow-sm`, `sm:rounded-[1.25rem]`
+          LOCKED TO: `rounded-xl` (12px) 
+        */
+        className="inline-flex h-11 items-center justify-center rounded-[16px] bg-foreground px-4 font-heading text-xs font-semibold whitespace-nowrap text-background transition-transform duration-300 hover:scale-[1.02] focus:outline-none active:scale-[0.98] sm:h-14 sm:px-7 sm:text-sm"
       >
         {exploreText}
       </Link>
@@ -79,40 +83,42 @@ export function ExploreActionGroup({
         rel="noopener noreferrer"
         onMouseEnter={() => setIsGithubHovered(true)}
         onMouseLeave={() => setIsGithubHovered(false)}
-        className="group inline-flex h-11 items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-3 whitespace-nowrap backdrop-blur-md transition-all duration-300 hover:border-border hover:bg-muted/80 active:scale-[0.98] sm:h-14 sm:gap-3 sm:rounded-[1.25rem] sm:px-5 dark:bg-secondary/40 dark:hover:bg-secondary"
+        /* 
+          REMOVED: All border classes, `sm:rounded-[1.25rem]`
+          LOCKED TO: `rounded-xl` (12px)
+        */
+        className="group relative inline-flex h-11 flex-col items-center justify-start overflow-hidden rounded-[16px] bg-transparent transition-all duration-300 hover:bg-card/50 hover:backdrop-blur-sm active:scale-[0.98] sm:h-14 dark:hover:bg-secondary/40"
       >
-        {/* OFFICIAL GITHUB ICON */}
-        <div className="relative size-4 shrink-0 opacity-80 transition-opacity duration-300 group-hover:opacity-100 sm:size-5">
-          <Image
-            src="/github-mark.svg"
-            alt="GitHub"
-            fill
-            className="block object-contain dark:hidden"
-            loading="lazy"
-          />
-          <Image
-            src="/github-mark-white.svg"
-            alt="GitHub"
-            fill
-            className="hidden object-contain dark:block"
-            loading="lazy"
-          />
-        </div>
+        <motion.div
+          className="flex w-full flex-col"
+          initial={false}
+          animate={{ y: isGithubHovered ? "-50%" : "0%" }}
+          transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+        >
+          {/* STATE 1: DEFAULT (GitHub Icon + Stars) */}
+          <div className="flex h-11 w-full items-center justify-center gap-2 px-4 whitespace-nowrap sm:h-14 sm:gap-2.5 sm:px-5">
+            {/* OFFICIAL GITHUB ICON */}
+            <div className="relative size-4 shrink-0 opacity-70 transition-opacity duration-300 group-hover:opacity-100 sm:size-5">
+              <Image
+                src="/github-mark.svg"
+                alt="GitHub"
+                fill
+                className="block object-contain dark:hidden"
+                loading="lazy"
+              />
+              <Image
+                src="/github-mark-white.svg"
+                alt="GitHub"
+                fill
+                className="hidden object-contain dark:block"
+                loading="lazy"
+              />
+            </div>
 
-        {/* ANIMATED TEXT WRAPPER */}
-        <div className="relative h-[18px] overflow-hidden sm:h-[20px]">
-          <motion.div
-            className="flex flex-col"
-            initial={false}
-            animate={{ y: isGithubHovered ? -18 : 0 }}
-            transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-          >
-            {/* DEFAULT STATE: Numbers + Star */}
-            <span className="flex h-[18px] items-center gap-1 text-muted-foreground transition-colors group-hover:text-foreground sm:h-[20px] sm:gap-1.5">
+            <span className="flex items-center gap-1 text-muted-foreground transition-colors group-hover:text-foreground sm:gap-1.5">
               <span className="font-sans text-xs leading-none font-semibold tracking-wide sm:text-sm">
                 {stars}
               </span>
-
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -126,17 +132,19 @@ export function ExploreActionGroup({
                 />
               </svg>
             </span>
+          </div>
 
-            {/* HOVER STATE: Text & Arrow */}
-            <span className="flex h-[18px] items-center gap-1 font-heading text-xs font-bold tracking-wide text-foreground sm:h-[20px] sm:text-sm">
-              <span className="leading-none">Star on GitHub</span>
-              <HugeiconsIcon
-                icon={ArrowUpRight01Icon}
-                className="size-3 -translate-y-[0.5px] sm:size-3.5"
-              />
+          {/* STATE 2: HOVERED (Text + Arrow ONLY, No GitHub Icon) */}
+          <div className="flex h-11 w-full items-center justify-center gap-1.5 px-4 whitespace-nowrap sm:h-14 sm:gap-2 sm:px-5">
+            <span className="font-heading text-xs font-bold tracking-wide text-foreground sm:text-sm">
+              Star on GitHub
             </span>
-          </motion.div>
-        </div>
+            <HugeiconsIcon
+              icon={ArrowUpRight01Icon}
+              className="size-3.5 -translate-y-[0.5px] text-foreground sm:size-4"
+            />
+          </div>
+        </motion.div>
       </a>
     </div>
   )
