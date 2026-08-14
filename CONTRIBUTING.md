@@ -61,7 +61,7 @@ ui/
 │   ├── components/          # Component docs
 │   ├── blocks/              # Block-level patterns
 │   ├── templates/           # Full page templates
-│   └── getting-started/     # Intro, setup, changelog
+│   └── getting-started/     # Intro, setup
 ├── hooks/                   # Shared React hooks
 ├── lib/                     # Utilities, source config, content queries
 ├── public/
@@ -72,7 +72,7 @@ ui/
 │   ├── demos/               # Demo implementations
 │   ├── strings/             # Code-string exports for docs "Copy Code" feature
 │   └── index.ts             # Runtime registry: maps keys → dynamic imports
-├── scripts/                 # Build scripts (build-llms.mjs, create-doc.mjs, sync-changelog.mjs)
+├── scripts/                 # Build scripts (registry meta, LLM docs, changelog generator)
 ├── store/                   # Zustand state stores
 ├── CONTRIBUTING.md          # ← you are here
 ├── GITHUB_STRATEGY.md       # Maintainer-level strategy document
@@ -383,7 +383,7 @@ BREAKING CHANGE: primary is renamed to default.
 <type>/<short-description>
 ```
 
-Examples: `feat/add-magnetic-snap-reveal`, `fix/registry-build-error`, `docs/update-changelog-mdx`
+Examples: `feat/add-magnetic-snap-reveal`, `fix/registry-build-error`, `docs/update-changelog-data`
 
 ### Protected branches
 
@@ -547,6 +547,8 @@ Every component must pass these checks before merge:
 | **Changeset required** | Run `pnpm changeset` before pushing. Commit the generated `.changeset/*.md` file. |
 
 ---
+
+
 
 ## 11. Quick Decision Tree
 

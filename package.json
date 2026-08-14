@@ -15,6 +15,7 @@
     "changeset": "npx changeset",
     "make:doc": "node scripts/create-doc.mjs",
     "llm": "node scripts/build-llms.mjs",
+    "build:registry:meta": "node scripts/build-registry-meta.mjs",
     "release": "changeset version",
     "beta:enter": "changeset pre enter beta",
     "beta:exit": "changeset pre exit"

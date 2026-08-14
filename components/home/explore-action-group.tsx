@@ -60,14 +60,14 @@ export function ExploreActionGroup({
   return (
     <div
       className={cn(
-        "pointer-events-auto flex flex-wrap items-center gap-3 sm:gap-4",
+        "pointer-events-auto flex w-full max-w-sm items-center justify-center gap-2 sm:max-w-none sm:gap-3.5",
         className
       )}
     >
       {/* 1. PRIMARY CTA */}
       <Link
         href={exploreHref}
-        className="inline-flex h-12 items-center justify-center rounded-[1rem] bg-foreground px-6 font-heading text-sm font-medium text-background transition-transform duration-300 hover:scale-[1.02] focus:outline-none active:scale-[0.98] sm:h-14 sm:rounded-[1.25rem] sm:px-8"
+        className="inline-flex h-11 items-center justify-center rounded-xl bg-foreground px-4 font-heading text-xs font-semibold whitespace-nowrap text-background shadow-sm transition-transform duration-300 hover:scale-[1.02] focus:outline-none active:scale-[0.98] sm:h-14 sm:rounded-[1.25rem] sm:px-7 sm:text-sm"
       >
         {exploreText}
       </Link>
@@ -79,10 +79,10 @@ export function ExploreActionGroup({
         rel="noopener noreferrer"
         onMouseEnter={() => setIsGithubHovered(true)}
         onMouseLeave={() => setIsGithubHovered(false)}
-        className="group flex h-12 items-center gap-3 rounded-[1rem] bg-transparent px-4 transition-colors duration-300 hover:bg-foreground/5 focus:outline-none sm:h-14 sm:gap-4 sm:rounded-[1.25rem]"
+        className="group inline-flex h-11 items-center gap-2 rounded-xl border border-border/70 bg-card/60 px-3 whitespace-nowrap backdrop-blur-md transition-all duration-300 hover:border-border hover:bg-muted/80 active:scale-[0.98] sm:h-14 sm:gap-3 sm:rounded-[1.25rem] sm:px-5 dark:bg-secondary/40 dark:hover:bg-secondary"
       >
         {/* OFFICIAL GITHUB ICON */}
-        <div className="relative size-5 shrink-0 opacity-70 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="relative size-4 shrink-0 opacity-80 transition-opacity duration-300 group-hover:opacity-100 sm:size-5">
           <Image
             src="/github-mark.svg"
             alt="GitHub"
@@ -100,29 +100,24 @@ export function ExploreActionGroup({
         </div>
 
         {/* ANIMATED TEXT WRAPPER */}
-        <div className="relative h-[20px] overflow-hidden">
+        <div className="relative h-[18px] overflow-hidden sm:h-[20px]">
           <motion.div
             className="flex flex-col"
             initial={false}
-            animate={{ y: isGithubHovered ? -20 : 0 }}
+            animate={{ y: isGithubHovered ? -18 : 0 }}
             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
           >
-            {/* DEFAULT STATE: Numbers + Star (PERFECTLY ALIGNED) */}
-            <span className="flex h-[20px] items-center gap-1.5 text-muted-foreground transition-colors group-hover:text-foreground">
-              {/* `leading-none` strips font padding for true centering */}
-              <span className="font-sans text-sm leading-none font-semibold tracking-wide">
+            {/* DEFAULT STATE: Numbers + Star */}
+            <span className="flex h-[18px] items-center gap-1 text-muted-foreground transition-colors group-hover:text-foreground sm:h-[20px] sm:gap-1.5">
+              <span className="font-sans text-xs leading-none font-semibold tracking-wide sm:text-sm">
                 {stars}
               </span>
 
-              {/* 
-                -translate-y-[1px] perfectly nudges the star up optically
-                size-3.5 matches the 14px text-sm exactly 
-              */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="size-3.5 -translate-y-[1px] text-yellow-500 drop-shadow-sm"
+                className="size-3 -translate-y-[1px] text-yellow-500 drop-shadow-sm sm:size-3.5"
               >
                 <path
                   fillRule="evenodd"
@@ -133,11 +128,11 @@ export function ExploreActionGroup({
             </span>
 
             {/* HOVER STATE: Text & Arrow */}
-            <span className="flex h-[20px] items-center gap-1 font-heading text-sm font-bold tracking-wide text-foreground">
+            <span className="flex h-[18px] items-center gap-1 font-heading text-xs font-bold tracking-wide text-foreground sm:h-[20px] sm:text-sm">
               <span className="leading-none">Star on GitHub</span>
               <HugeiconsIcon
                 icon={ArrowUpRight01Icon}
-                className="size-3.5 -translate-y-[0.5px]"
+                className="size-3 -translate-y-[0.5px] sm:size-3.5"
               />
             </span>
           </motion.div>

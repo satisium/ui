@@ -1,0 +1,517 @@
+{
+  "releases": [
+    {
+      "version": "3.0.0",
+      "date": "2026-08-15",
+      "prerelease": false,
+      "summary": "A landmark release introducing 30+ new components across carousels, text reveals, mouse trails, and image effects. The library now exceeds 80 production-ready components with full documentation, CLI support, and isolated previews.",
+      "sections": [
+        {
+          "title": "Carousels",
+          "items": [
+            {
+              "type": "feature",
+              "component": "dimensional-carousel",
+              "title": "Dimensional Carousel",
+              "description": "Added parallax depth for an immersive 3D scrolling experience. Later refined with improved parallax behavior.",
+              "href": "/docs/carousels/dimensional-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/dimensional-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "dimensional-deck",
+              "title": "Dimensional Deck",
+              "description": "A stacked card deck with depth-aware transitions and spatial layout.",
+              "href": "/docs/components/dimensional-deck",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/dimensional-deck-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "elastic-carousel",
+              "title": "Elastic Carousel",
+              "description": "A bouncy carousel variant with spring-physics transitions between slides.",
+              "href": "/docs/carousels/elastic-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/elastic-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "curved-carousel",
+              "title": "Curved Carousel",
+              "description": "A carousel that follows a curved path, breaking away from traditional linear slides.",
+              "href": "/docs/carousels/curved-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/curved-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "cover-carousel",
+              "title": "Cover Carousel",
+              "description": "A full-coverage carousel with cinematic transitions and overlay effects.",
+              "href": "/docs/carousels/cover-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/cover-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "depth-carousel",
+              "title": "Depth Carousel",
+              "description": "Carousel with z-axis depth layering for a tangible 3D feel.",
+              "href": "/docs/carousels/depth-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/depth-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "flex-carousel",
+              "title": "Flex Carousel",
+              "description": "A flexible carousel that adapts to variable item widths and responsive layouts.",
+              "href": "/docs/carousels/flex-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/flex-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "panoramic-carousel",
+              "title": "Panoramic Carousel",
+              "description": "A wide-format carousel designed for panoramic imagery and immersive storytelling.",
+              "href": "/docs/carousels/panoramic-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/panoramic-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "concave-carousel",
+              "title": "Concave Carousel",
+              "description": "A carousel with a concave curve, drawing focus toward the center.",
+              "href": "/docs/carousels/concave-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/concave-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "convex-carousel",
+              "title": "Convex Carousel",
+              "description": "A carousel with a convex curve, pushing items toward the viewer.",
+              "href": "/docs/carousels/convex-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/convex-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "exponential-carousel",
+              "title": "Exponential Carousel",
+              "description": "A carousel with exponentially spaced items for dramatic emphasis on the active slide.",
+              "href": "/docs/carousels/exponential-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/exponential-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "wave-carousel",
+              "title": "Wave Carousel",
+              "description": "A carousel with a sine-wave motion path for fluid, organic transitions.",
+              "href": "/docs/carousels/wave-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/wave-carousel-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "ascent-carousel",
+              "title": "Ascent Carousel",
+              "description": "A vertical-ascent carousel that lifts items upward with staggered motion.",
+              "href": "/docs/carousels/ascent-carousel",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/ascent-carousel-demo.json"
+            }
+          ]
+        },
+        {
+          "title": "Text Reveals",
+          "items": [
+            {
+              "type": "feature",
+              "component": "elastic-pop-reveal",
+              "title": "Elastic Pop Reveal",
+              "description": "Text that pops in with elastic spring physics, available in headline and paragraph variants.",
+              "href": "/docs/text-reveals/elastic-pop-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/elastic-pop-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "elastic-typewriter",
+              "title": "Elastic Typewriter",
+              "description": "Typewriter effect with elastic character motion for a playful, tactile feel.",
+              "href": "/docs/text-reveals/elastic-typewriter",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/elastic-typewriter-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "flip-3d-reveal",
+              "title": "Flip 3D Reveal",
+              "description": "Text that flips in 3D space with realistic rotation and lighting.",
+              "href": "/docs/text-reveals/flip-3d-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/flip-3d-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "flip-vertical-reveal",
+              "title": "Flip Vertical Reveal",
+              "description": "A clean vertical flip animation for text reveals.",
+              "href": "/docs/text-reveals/flip-vertical-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/flip-vertical-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "bottom-hinge-text-reveal",
+              "title": "Bottom Hinge Reveal",
+              "description": "Text that opens like a door from the bottom hinge.",
+              "href": "/docs/text-reveals/bottom-hinge-text-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/bottom-hinge-text-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "manifesto-text-reveal",
+              "title": "Manifesto Reveal",
+              "description": "Bold, declarative text reveal designed for hero statements and manifestos.",
+              "href": "/docs/text-reveals/manifesto-text-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/manifesto-text-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "granular-dust-reveal",
+              "title": "Granular Dust Reveal",
+              "description": "Text dissolves into granular dust particles before reforming.",
+              "href": "/docs/text-reveals/granular-dust-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/granular-dust-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "magnetic-snap-reveal",
+              "title": "Magnetic Snap Reveal",
+              "description": "Text that snaps into place with a magnetic, attracted motion.",
+              "href": "/docs/text-reveals/magnetic-snap-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/magnetic-snap-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "masked-reveal",
+              "title": "Masked Reveal",
+              "description": "Text revealed through a mask or clip-path animation.",
+              "href": "/docs/text-reveals/masked-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/masked-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "multi-color-trail-reveal",
+              "title": "Multi-Color Trail Reveal",
+              "description": "Text reveal with a trailing multi-color light effect.",
+              "href": "/docs/text-reveals/multi-color-trail-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/multi-color-trail-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "tumbler-roll-reveal",
+              "title": "Tumbler Roll Reveal",
+              "description": "Text that tumbles and rolls into view with playful physics.",
+              "href": "/docs/text-reveals/tumbler-roll-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/tumbler-roll-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "pendulum-reveal",
+              "title": "Pendulum Reveal",
+              "description": "Text swings into view like a pendulum with realistic decay.",
+              "href": "/docs/text-reveals/pendulum-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/pendulum-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "fold-reveal",
+              "title": "Fold Reveal",
+              "description": "Text unfolds like a sheet being opened.",
+              "href": "/docs/text-reveals/fold-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/fold-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "wind-shear-reveal",
+              "title": "Wind Shear Reveal",
+              "description": "Text appears as if being sculpted by wind shear.",
+              "href": "/docs/text-reveals/wind-shear-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/wind-shear-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "heat-mirage-reveal",
+              "title": "Heat Mirage Reveal",
+              "description": "Text shimmers into view like a heat mirage on asphalt.",
+              "href": "/docs/text-reveals/heat-mirage-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "weightless-float-reveal",
+              "title": "Weightless Float Reveal",
+              "description": "Text floats upward with weightless, zero-gravity motion.",
+              "href": "/docs/text-reveals/weightless-float-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/weightless-float-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "velocity-brake-reveal",
+              "title": "Velocity Brake Reveal",
+              "description": "Text slows to a stop with dramatic velocity braking.",
+              "href": "/docs/text-reveals/velocity-brake-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/velocity-brake-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "z-axis-reveal",
+              "title": "Z-Axis Reveal",
+              "description": "Text emerges from the z-axis with depth and scale.",
+              "href": "/docs/text-reveals/z-axis-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/z-axis-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "blur-reveal",
+              "title": "Blur Reveal",
+              "description": "Text transitions from blur to sharp focus.",
+              "href": "/docs/text-reveals/blur-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/blur-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "fluid-ink-reveal",
+              "title": "Fluid Ink Reveal",
+              "description": "Text bleeds in like ink spreading through water.",
+              "href": "/docs/text-reveals/fluid-ink-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/fluid-ink-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "fluid-typewriter",
+              "title": "Fluid Typewriter",
+              "description": "Typewriter effect with fluid, organic character motion.",
+              "href": "/docs/text-reveals/fluid-typewriter",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "editorial-reveal",
+              "title": "Editorial Reveal",
+              "description": "Sophisticated text reveal inspired by high-end editorial design.",
+              "href": "/docs/text-reveals/editorial-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/editorial-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "piano-typewriter",
+              "title": "Piano Typewriter",
+              "description": "Text types out with piano-key-like precision and rhythm.",
+              "href": "/docs/text-reveals/piano-typewriter",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/piano-typewriter-demo.json"
+            }
+          ]
+        },
+        {
+          "title": "Mouse Trails",
+          "items": [
+            {
+              "type": "feature",
+              "component": "depth-trail",
+              "title": "Depth Trail",
+              "description": "A mouse trail with depth-aware layering for avatars and images.",
+              "href": "/docs/mouse-trails/depth-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/depth-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "velocity-trail",
+              "title": "Velocity Trail",
+              "description": "Trail particles react to cursor velocity for a dynamic, responsive feel.",
+              "href": "/docs/mouse-trails/velocity-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/velocity-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "wind-trail",
+              "title": "Wind Trail",
+              "description": "Particles drift like leaves in the wind behind the cursor.",
+              "href": "/docs/mouse-trails/wind-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/wind-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "pendulum-trail",
+              "title": "Pendulum Trail",
+              "description": "Trail particles swing with pendulum physics for an organic motion.",
+              "href": "/docs/mouse-trails/pendulum-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/pendulum-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "slinky-trail",
+              "title": "Slinky Trail",
+              "description": "A slinky-like trail that coils and uncoils as you move.",
+              "href": "/docs/mouse-trails/slinky-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/slinky-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "scatter-trail",
+              "title": "Scatter Trail",
+              "description": "Particles scatter outward with explosive energy.",
+              "href": "/docs/mouse-trails/scatter-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/scatter-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "squircle-trail",
+              "title": "Squircle Trail",
+              "description": "A trail of squircles that follow the cursor with soft, rounded motion.",
+              "href": "/docs/mouse-trails/squircle-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/squircle-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "kaleidoscope-trail",
+              "title": "Kaleidoscope Trail",
+              "description": "A symmetrical, kaleidoscopic trail of mirrored particles.",
+              "href": "/docs/mouse-trails/kaleidoscope-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/kaleidoscope-trail-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "bouquet-trail",
+              "title": "Bouquet Trail",
+              "description": "A floral-like trail that blooms and fades with natural decay.",
+              "href": "/docs/mouse-trails/bouquet-trail",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/bouquet-trail-demo.json"
+            }
+          ]
+        },
+        {
+          "title": "Image Effects",
+          "items": [
+            {
+              "type": "feature",
+              "component": "velocity-grid",
+              "title": "Velocity Grid",
+              "description": "An image grid that distorts and warps based on cursor velocity.",
+              "href": "/docs/image-effects/velocity-grid",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/velocity-grid-image.json"
+            },
+            {
+              "type": "feature",
+              "component": "velocity-strips",
+              "title": "Velocity Strips",
+              "description": "An image sliced into horizontal strips that react to cursor movement.",
+              "href": "/docs/image-effects/velocity-strips",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json"
+            },
+            {
+              "type": "feature",
+              "component": "liquid-marble",
+              "title": "Liquid Marble",
+              "description": "A marble-like texture with fluid, liquid distortion.",
+              "href": "/docs/image-effects/liquid-marble",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-image.json"
+            },
+            {
+              "type": "feature",
+              "component": "liquid-curtain",
+              "title": "Liquid Curtain",
+              "description": "An image revealed behind a liquid curtain that parts on interaction.",
+              "href": "/docs/image-effects/liquid-curtain",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/liquid-curtain-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "liquid-mercury-reveal",
+              "title": "Liquid Mercury Reveal",
+              "description": "Text or image emerges from a pool of liquid mercury.",
+              "href": "/docs/image-effects/liquid-mercury-reveal",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/liquid-mercury-reveal-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "ferrofluid-drag",
+              "title": "Ferrofluid Drag",
+              "description": "Image reacts to drag with ferrofluid-like spiking and blending.",
+              "href": "/docs/image-effects/ferrofluid-drag",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/ferrofluid-drag-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "fluid-disintegration",
+              "title": "Fluid Disintegration",
+              "description": "Image dissolves into fluid particles that drift away.",
+              "href": "/docs/image-effects/fluid-disintegration",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/fluid-disintegration-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "glass-slices",
+              "title": "Glass Slices",
+              "description": "Image sliced into glass-like panes with refraction and reflectivity.",
+              "href": "/docs/image-effects/glass-slices",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/glass-slices-image.json"
+            },
+            {
+              "type": "feature",
+              "component": "ember-burn",
+              "title": "Ember Burn",
+              "description": "Image burns away like embers with glowing edge effects.",
+              "href": "/docs/image-effects/ember-burn",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/ember-burn-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "mycelium-network",
+              "title": "Mycelium Network",
+              "description": "Image reveal through an organic mycelium network growth pattern.",
+              "href": "/docs/image-effects/mycelium-network",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/mycelium-network-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "proximity-grid",
+              "title": "Proximity Grid",
+              "description": "Image grid that highlights and dims based on cursor proximity.",
+              "href": "/docs/image-effects/proximity-grid",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-demo.json"
+            },
+            {
+              "type": "feature",
+              "component": "halftone",
+              "title": "Halftone Video",
+              "description": "Video rendered as an animated halftone dot pattern.",
+              "href": "/docs/image-effects/halftone-video",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/halftone-video-demo.json"
+            }
+          ]
+        },
+        {
+          "title": "Improvements",
+          "items": [
+            {
+              "type": "improvement",
+              "component": "component-card",
+              "title": "Component Card Optimization",
+              "description": "Optimized component cards with Cloudinary integration to reduce bandwidth and improve load performance.",
+              "href": "/docs/components/component-card",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/component-card.json"
+            },
+            {
+              "type": "improvement",
+              "component": "sidebar",
+              "title": "Sidebar Enhancements",
+              "description": "Added preview videos and a magic hover pill to the documentation sidebar for better navigation.",
+              "href": "/docs/components/sidebar",
+              "installCommand": null
+            },
+            {
+              "type": "improvement",
+              "component": "dimensional-deck",
+              "title": "Dimensional Deck Update",
+              "description": "Refined and improved the Dimensional Deck component with better depth transitions.",
+              "href": "/docs/components/dimensional-deck",
+              "installCommand": "npx shadcn@latest add https://ui.satisium.com/r/dimensional-deck-demo.json"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 ```text
 ui-satisium/
 ├── .changeset/                          # 68 files (pre.json, README.md, *.md changesets)
+├── data/                                 # changelog-data.json (user-facing changelog source)
 ├── .codex
 ├── .env.local
 ├── .github/
@@ -215,7 +216,6 @@ ui-satisium/
 │       │   ├── wind-trail.mdx
 │       │   └── z-axis-reveal.mdx
 │       ├── getting-started/
-│       │   ├── changelog.mdx
 │       │   ├── how-to-use.mdx
 │       │   ├── introduction.mdx
 │       │   ├── meta.json
@@ -503,9 +503,10 @@ ui-satisium/
 │       ├── wind-trail.tsx
 │       └── z-axis-reveal.tsx
 ├── scripts/
+│   ├── build-changelog-data.mjs
 │   ├── build-llms.mjs
-│   ├── create-doc.mjs
-│   └── sync-changelog.mjs
+│   ├── build-registry-meta.mjs
+│   └── create-doc.mjs
 └── store/
     ├── index.ts
     ├── use-command-store.ts

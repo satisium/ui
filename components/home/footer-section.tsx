@@ -4,10 +4,14 @@ import React from "react"
 import Image from "next/image"
 import { SatisiumLogo } from "@/components/satisium-logo"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { NewTwitterIcon, InstagramIcon } from "@hugeicons/core-free-icons"
+import {
+  NewTwitterIcon,
+  InstagramIcon,
+  DiscordIcon,
+} from "@hugeicons/core-free-icons"
 import { InfiniteHaloRing } from "./footer-halo-ring"
 import { ExploreActionGroup } from "./explore-action-group"
-import { Badge } from "@/components/ui/badge" // <-- IMPORTED SHADCN BADGE
+import { Badge } from "@/components/ui/badge"
 
 export function FooterSection() {
   const images = Array.from({ length: 18 }).map(
@@ -15,52 +19,96 @@ export function FooterSection() {
       `https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_800/v1781471531/ui-v3/demos/images/${15 + i}.jpg`
   )
 
-  // Smooth scroll to top function
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
 
   return (
-    // OUTER MOAT: Continues the frame from the rest of the site
+    // OUTER MOAT
     <section className="relative h-screen w-full bg-muted px-3 pt-3 min-[400px]:px-4 min-[400px]:pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6">
-      {/* INNER CANVAS: Zero borders, zero shadows. */}
+      {/* INNER CANVAS */}
       <div className="relative flex h-full w-full flex-col overflow-hidden rounded-t-[2rem] bg-background text-foreground sm:rounded-t-[2.5rem]">
         {/* --- TOP 40%: THE QUIET ZONE --- */}
-        <div className="relative flex w-full flex-[4] flex-col justify-end px-3 pb-4 min-[400px]:px-4 sm:px-5 lg:px-6">
-          {/* Centered CTA */}
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="relative flex w-full flex-[4] flex-col justify-between px-3.5 pt-3 pb-4 sm:px-5 sm:pb-5 lg:px-6">
+          {/* Centered CTA: Dynamic flex-1 prevents collision with the ledge */}
+          <div className="flex flex-1 items-center justify-center py-2 sm:py-0">
             <ExploreActionGroup
               exploreText="Explore components"
               repo="satisium/ui"
             />
           </div>
 
-          {/* THE LEDGE: Branding & Socials */}
-          <div className="relative z-10 flex w-full items-end justify-between">
-            {/* Left: Branding (Clickable Scroll-to-Top Button) */}
-            <button
-              onClick={scrollToTop}
-              className="group flex cursor-pointer items-center gap-3 transition-all duration-300 hover:opacity-80 focus-visible:outline-none active:scale-[0.98] sm:gap-4"
-              aria-label="Scroll to top"
-            >
-              <div className="flex h-8 w-8 items-center justify-center sm:h-10 sm:w-10">
-                <SatisiumLogo size="100%" />
-              </div>
+          {/* THE LEDGE: 2 Balanced Rows on Mobile, 1 Unified Row on Desktop */}
+          <div className="relative z-10 flex w-full flex-col gap-2.5 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
+            {/* ROW 1 (Mobile) / LEFT GROUP (Desktop): Satisium Brand + Project Socials */}
+            <div className="flex items-center justify-between sm:justify-start sm:gap-3.5">
+              {/* Clickable Brand */}
+              <button
+                onClick={scrollToTop}
+                className="group flex cursor-pointer items-center gap-2 transition-opacity hover:opacity-80 focus-visible:outline-none active:scale-[0.98] sm:gap-3"
+                aria-label="Scroll to top"
+              >
+                <div className="flex h-7 w-7 items-center justify-center sm:h-9 sm:w-9">
+                  <SatisiumLogo size="100%" />
+                </div>
 
-              {/* TEXT + SUPERSCRIPT BADGE WRAPPER */}
-              <div className="flex items-start">
-                <span className="font-heading text-lg font-bold tracking-tight text-foreground sm:text-xl">
-                  Satisium UI
-                </span>
-                <Badge className="-mt-1 ml-1.5 h-[18px] rounded-[5px] border-none bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground hover:bg-primary/90">
-                  Beta
-                </Badge>
-              </div>
-            </button>
+                <div className="flex items-start">
+                  <span className="font-heading text-base font-bold tracking-tight text-foreground sm:text-lg lg:text-xl">
+                    Satisium UI
+                  </span>
+                  <Badge className="-mt-0.5 ml-1.5 h-4 rounded-[4px] border-none bg-primary px-1 text-[9px] font-semibold text-primary-foreground sm:h-[18px] sm:px-1.5 sm:text-[10px]">
+                    Beta
+                  </Badge>
+                </div>
+              </button>
 
-            {/* Right: Signature & Social Squircles */}
-            <div className="flex items-center gap-4 sm:gap-6">
-              <span className="hidden font-heading text-xs tracking-wide text-muted-foreground md:inline-block">
+              {/* Vertical Divider (Desktop Only) */}
+              <div className="hidden h-4 w-[1px] bg-border/60 sm:block" />
+
+              {/* Project Social Icons */}
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <a
+                  href="https://x.com/satisiumui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Satisium UI on X"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-all hover:bg-foreground hover:text-background sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground dark:hover:bg-muted"
+                >
+                  <HugeiconsIcon icon={NewTwitterIcon} size={15} />
+                </a>
+
+                <a
+                  href="https://github.com/satisium/ui"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Satisium UI on GitHub"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-all hover:bg-foreground hover:text-background sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground dark:hover:bg-muted"
+                >
+                  <Image
+                    src="/github-mark-white.svg"
+                    alt="GitHub"
+                    width={15}
+                    height={15}
+                    className="object-contain invert dark:invert-0"
+                    loading="lazy"
+                  />
+                </a>
+
+                <a
+                  href="https://discord.gg/satisium"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Satisium Discord"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-all hover:bg-foreground hover:text-background sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground dark:hover:bg-muted"
+                >
+                  <HugeiconsIcon icon={DiscordIcon} size={15} />
+                </a>
+              </div>
+            </div>
+
+            {/* ROW 2 (Mobile) / RIGHT GROUP (Desktop): Attribution + Personal Socials */}
+            <div className="flex items-center justify-between border-t border-border/20 pt-2 sm:justify-end sm:gap-4 sm:border-0 sm:pt-0">
+              <span className="font-heading text-xs tracking-wide text-muted-foreground">
                 Made by{" "}
                 <a
                   href="https://x.com/iamsatish4564"
@@ -72,31 +120,38 @@ export function FooterSection() {
                 </a>
               </span>
 
-              <div className="flex items-center gap-2">
+              {/* Personal Social Icons */}
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <a
-                  href="#"
-                  aria-label="X (Twitter)"
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-11 sm:w-11 dark:bg-secondary dark:text-foreground"
+                  href="https://x.com/iamsatish4564"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Author X"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground"
                 >
-                  <HugeiconsIcon icon={NewTwitterIcon} size={20} />
+                  <HugeiconsIcon icon={NewTwitterIcon} size={16} />
                 </a>
                 <a
-                  href="#"
-                  aria-label="Instagram"
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-11 sm:w-11 dark:bg-secondary dark:text-foreground"
+                  href="https://instagram.com/iamsatish4564"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Author Instagram"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground"
                 >
-                  <HugeiconsIcon icon={InstagramIcon} size={20} />
+                  <HugeiconsIcon icon={InstagramIcon} size={16} />
                 </a>
                 <a
-                  href="#"
-                  aria-label="GitHub"
-                  className="flex h-10 w-10 items-center justify-center rounded-2xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-11 sm:w-11 dark:bg-secondary dark:text-foreground"
+                  href="https://github.com/iamsatish4564"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Author GitHub"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground"
                 >
                   <Image
                     src="/github-mark-white.svg"
                     alt="GitHub"
-                    width={20}
-                    height={20}
+                    width={16}
+                    height={16}
                     className="object-contain"
                     loading="lazy"
                   />
@@ -112,7 +167,6 @@ export function FooterSection() {
             className="relative isolate h-full w-full transform-gpu overflow-hidden rounded-t-[1.5rem] bg-muted sm:rounded-t-[2rem]"
             style={{ WebkitMaskImage: "-webkit-radial-gradient(white, black)" }}
           >
-            {/* The 3D Engine: Pure Viewport */}
             <div className="absolute inset-0 z-0">
               <InfiniteHaloRing
                 images={images}

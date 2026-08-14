@@ -18,7 +18,7 @@
 - [x] **LLM Text:** Check LLM thingy.
 - [x] **SEO and logo:** Update logos everywhere. SEO and all.
 - [x] **Github satisium:** Github satis UI to satisium.
-- [ ] **Changelog:** Design proper changelog page.
+- [x] **Changelog:** Design proper changelog page.
 - [ ] **Demo videos:** Proper demo videos and hook them properly to the all place they are needed.
 - [x] **Read me:** Proper read me file.
 - [x] **Analytics:** Production-ready analytics with consent management, rate limiting, and privacy policy.

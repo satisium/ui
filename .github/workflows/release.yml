@@ -25,6 +25,8 @@ jobs:
           node-version: 20
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
+      - name: Sync registry metadata
+        run: pnpm build:registry:meta
       - name: Version packages with Changesets
         run: pnpm changeset version
       - name: Build (verify)

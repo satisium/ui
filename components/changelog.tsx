@@ -38,10 +38,6 @@ export const ChangelogEntry = ({
     <li
       className={cn("relative grid gap-8 md:grid-cols-[12rem_1fr]", className)}
     >
-      {/* 
-        Removed the vertical line. 
-        Relying purely on the grid layout and whitespace for a cleaner, Apple-like aesthetic. 
-      */}
       {children}
     </li>
   )
@@ -59,15 +55,10 @@ export const ChangelogHeader = ({
   return (
     <div
       className={cn(
-        // Changed to top-[30vh] to stick exactly 30% from the top of the screen
         "flex items-center gap-2 pt-1 md:sticky md:top-[5vh] md:flex-col md:items-end md:gap-1 md:self-start md:pr-8 md:text-right",
         className
       )}
     >
-      {/* 
-        MDX h2 CSS Stripper:
-        Changed !text-foreground to !text-primary for the version numbers.
-      */}
       <div className="[&>h2]:!m-0 [&>h2]:!border-none [&>h2]:!pb-0 [&>h2]:!font-mono [&>h2]:!text-sm [&>h2]:!font-bold [&>h2]:!tracking-tight [&>h2]:!text-primary [&>h2>a]:!hidden">
         {children}
       </div>
@@ -90,8 +81,6 @@ export const ChangelogContent = ({
     <div
       className={cn(
         "space-y-4",
-        // Softened the h3 tags to reduce cognitive load:
-        // Changed to text-base, font-medium, normal tracking, and slightly muted text color.
         "[&>h3]:!mb-3 [&>h3]:!text-base [&>h3]:!font-medium [&>h3]:!tracking-normal [&>h3]:!text-foreground/90 [&>h3:first-child]:!mt-0 [&>h3>a]:!hidden",
         "[&>p]:!mb-4 [&>p]:!text-sm",
         className
@@ -221,6 +210,77 @@ export const ChangelogComponentList = ({
           </div>
         )
       })}
+    </div>
+  )
+}
+
+export const ChangelogInstallCommand = ({
+  command,
+  className,
+}: {
+  command: string
+  className?: string
+}) => {
+  const [copied, setCopied] = React.useState(false)
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(command)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
+  return (
+    <div className={cn("mt-3 flex items-center gap-2", className)}>
+      <code className="flex-1 rounded-md border border-border bg-muted/50 px-3 py-2 text-xs text-muted-foreground">
+        {command}
+      </code>
+      <button
+        onClick={handleCopy}
+        className="flex-shrink-0 rounded-md border border-border bg-muted/50 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-background hover:text-foreground"
+      >
+        {copied ? "Copied" : "Copy"}
+      </button>
+    </div>
+  )
+}
+
+export const ChangelogMedia = ({
+  src,
+  alt,
+  className,
+}: {
+  src: string
+  alt?: string
+  className?: string
+}) => {
+  const isVideo = src.match(/\.(mp4|webm|mov)$/i)
+
+  if (isVideo) {
+    return (
+      <div
+        className={cn(
+          "mt-4 overflow-hidden rounded-lg border border-border bg-muted/50",
+          className
+        )}
+      >
+        <video
+          src={src}
+          className="h-auto w-full"
+          controls
+          preload="metadata"
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className={cn(
+        "mt-4 overflow-hidden rounded-lg border border-border bg-muted/50",
+        className
+      )}
+    >
+      <img src={src} alt={alt || ""} className="h-auto w-full object-cover" loading="lazy" />
     </div>
   )
 }

@@ -36,19 +36,27 @@ const config = {
       },
     ],
   },
-  async rewrites() {
+  async redirects() {
     return [
+      {
+        source: "/docs/getting-started/changelog",
+        destination: "/changelog",
+        permanent: true,
+      },
       {
         source: "/ingest/static/:path*",
         destination: "https://us-assets.i.posthog.com/static/:path*",
+        permanent: false,
       },
       {
         source: "/ingest/:path*",
         destination: "https://us.i.posthog.com/:path*",
+        permanent: false,
       },
       {
         source: "/ingest/decide",
         destination: "https://us.i.posthog.com/decide",
+        permanent: false,
       },
     ]
   },
