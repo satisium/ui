@@ -11,6 +11,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { CSPostHogProvider } from "@/components/analytics-provider"
+import { ConsentProvider } from "@/lib/consent"
+import { ConsentBanner } from "@/components/consent-banner"
 import { Suspense } from "react"
 import { SITE_URL } from "@/lib/config"
 import PostHogPageView from "@/components/posthog-pageview"
@@ -263,18 +265,21 @@ export default function RootLayout({
       </head>
 
       <body>
-        <CSPostHogProvider>
-          <Suspense fallback={null}>
-            <PostHogPageView />
-            <WebVitals />
-          </Suspense>
-          <ThemeProvider>
-            <ViewportBlocker />
+        <ConsentProvider>
+          <CSPostHogProvider>
+            <Suspense fallback={null}>
+              <PostHogPageView />
+              <WebVitals />
+            </Suspense>
+            <ThemeProvider>
+              <ViewportBlocker />
 
-            {children}
-            <CommandMenuDialog docsTree={source.pageTree} />
-          </ThemeProvider>
-        </CSPostHogProvider>
+              {children}
+              <CommandMenuDialog docsTree={source.pageTree} />
+            </ThemeProvider>
+            <ConsentBanner />
+          </CSPostHogProvider>
+        </ConsentProvider>
       </body>
     </html>
   )

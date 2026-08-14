@@ -21,7 +21,7 @@
 - [ ] **Changelog:** Design proper changelog page.
 - [ ] **Demo videos:** Proper demo videos and hook them properly to the all place they are needed.
 - [x] **Read me:** Proper read me file.
-- [ ] **Analytics:** Analytics.
+- [x] **Analytics:** Production-ready analytics with consent management, rate limiting, and privacy policy.
 - [ ] **Og Images:** Og Images.
 
 ---

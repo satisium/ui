@@ -12,12 +12,15 @@ export default function GlobalError({ error, reset }: RootErrorProps) {
   const posthog = usePostHog()
 
   useEffect(() => {
-    if (posthog) {
-      posthog.capture("client_error", {
-        message: error.message,
-        stack: error.stack,
-        digest: error.digest,
-      })
+    if (posthog && typeof window !== "undefined") {
+      const hasConsent =
+        localStorage.getItem("satisium-analytics-consent") === "accepted"
+      if (hasConsent) {
+        posthog.capture("client_error", {
+          message: error.message,
+          digest: error.digest,
+        })
+      }
     }
   }, [error, posthog])
 

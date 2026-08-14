@@ -2,6 +2,7 @@
 
 import { useEffect } from "react"
 import { usePostHog } from "posthog-js/react"
+import { useConsent } from "@/lib/consent"
 
 interface AppErrorProps {
   error: Error & { digest?: string }
@@ -10,16 +11,16 @@ interface AppErrorProps {
 
 export default function Error({ error, reset }: AppErrorProps) {
   const posthog = usePostHog()
+  const { status } = useConsent()
 
   useEffect(() => {
-    if (posthog) {
+    if (posthog && status === "accepted") {
       posthog.capture("client_error", {
         message: error.message,
-        stack: error.stack,
         digest: error.digest,
       })
     }
-  }, [error, posthog])
+  }, [error, posthog, status])
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-zinc-50 px-4 text-center dark:bg-zinc-950">

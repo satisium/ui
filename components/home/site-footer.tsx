@@ -84,6 +84,22 @@ export function SiteFooter() {
 
           <div className="flex flex-col gap-4">
             <h3 className="text-sm font-semibold tracking-wider text-foreground uppercase">
+              Legal
+            </h3>
+            <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
+              <li>
+                <Link
+                  href="/privacy"
+                  className="transition-colors hover:text-foreground"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <h3 className="text-sm font-semibold tracking-wider text-foreground uppercase">
               Socials
             </h3>
             <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
