@@ -171,4 +171,5 @@ export const defaultMdxComponents = {
   RegistryGrid,
   CommandBlock,
   Badge,
+  CodeBlock,
 }
