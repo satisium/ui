@@ -6,58 +6,118 @@ description: Latest updates, new components, and improvements in Satisium UI.
 # Changelog
 
 ## v3.0.0
+
 **August 15, 2026** <Badge className="bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 transition-colors border-none -translate-y-[2px] ml-2 font-bold tracking-wider uppercase text-[10px] px-2 py-0.5">Beta</Badge>
 
-A landmark release introducing 54 new core components and dozens of pre-built demo variants across carousels, text reveals, mouse trails, and image effects. The library now exceeds 80 production-ready components.
+**Welcome to Satisium UI.**
+Version 3 represents a complete rebranding and ground-up rewrite of our legacy library, _Satis UI_.
+
+**A Completely New UI Collection**
+The old v2 component collection has been officially deprecated and replaced. Satisium UI features an entirely new, vastly superior collection of components built with advanced physics and rendering techniques.
+
+**Still Native to Shadcn**
+While the components are completely different, the developer experience you love hasn't changed. Satisium UI is still built natively for the `shadcn` ecosystem, allowing you to install components and their dependencies seamlessly via the CLI.
+
+**What does Beta mean?**
+The core physics engines and components are highly stable (currently on `v3.0.0-beta.61`). However, as we gather feedback, some component APIs may undergo minor refinements before the final stable release.
+
+### The Mega Release
+
+This landmark release introduces **54 new core components** and dozens of pre-built demo variants.
 
 <div className="mt-8 mb-12">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/registry.json" title="Install All (Global Registry)" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/registry.json"
+    title="Install All (Global Registry)"
+  />
 </div>
 
 ### Added (Carousels)
-<RegistryGrid slugs={[
-  "dimensional-carousel",
-  "elastic-carousel",
-  "curved-carousel",
-  "cover-carousel",
-  "depth-carousel",
-  "flex-carousel"
-]} />
+
+<RegistryGrid
+  slugs={[
+    "ascent-carousel",
+    "concave-carousel",
+    "convex-carousel",
+    "cover-carousel",
+    "curved-carousel",
+    "depth-carousel",
+    "dimensional-carousel",
+    "dimensional-deck",
+    "elastic-carousel",
+    "flex-carousel",
+    "panoramic-carousel",
+    "wave-carousel",
+  ]}
+/>
 
 ### Added (Text Reveals)
-<RegistryGrid slugs={[
-  "blur-reveal",
-  "elastic-pop-reveal",
-  "elastic-typewriter",
-  "flip-3d-reveal",
-  "manifesto-text-reveal"
-]} />
+
+<RegistryGrid
+  slugs={[
+    "blur-reveal",
+    "bottom-hinge-text-reveal",
+    "editorial-reveal",
+    "elastic-pop-reveal",
+    "elastic-typewriter",
+    "flip-3d-reveal",
+    "flip-vertical-reveal",
+    "fluid-ink-reveal",
+    "fluid-typewriter",
+    "fold-reveal",
+    "granular-dust-reveal",
+    "heat-mirage-reveal",
+    "liquid-mercury-reveal",
+    "magnetic-snap-reveal",
+    "manifesto-text-reveal",
+    "masked-reveal",
+    "multi-color-trail-reveal",
+    "pendulum-reveal",
+    "piano-typewriter",
+    "tumbler-roll-reveal",
+    "velocity-brake-reveal",
+    "weightless-float-reveal",
+    "wind-shear-reveal",
+    "z-axis-reveal",
+  ]}
+/>
 
 ### Added (Mouse Trails)
-<RegistryGrid slugs={[
-  "depth-trail",
-  "velocity-trail",
-  "pendulum-trail"
-]} />
 
-### Added (Image Effects)
-<RegistryGrid slugs={[
-  "velocity-grid",
-  "velocity-strips",
-  "liquid-marble"
-]} />
+<RegistryGrid
+  slugs={[
+    "depth-trail",
+    "kaleidoscope-trail",
+    "pendulum-trail",
+    "scatter-trail",
+    "slinky-trail",
+    "squircle-trail",
+    "velocity-trail",
+    "wind-trail",
+  ]}
+/>
+
+### Added (Image & Visual Effects)
+
+<RegistryGrid
+  slugs={[
+    "ember-burn",
+    "ferrofluid-drag",
+    "fluid-disintegration",
+    "glass-slices",
+    "liquid-curtain",
+    "liquid-marble",
+    "mycelium-network",
+    "proximity-grid",
+    "velocity-grid",
+    "velocity-strips",
+  ]}
+/>
 
 ---
 
-## v2.1.0
+## Satis UI v2.1.0 (Legacy)
+
 **August 1, 2026**
 
-A focused release improving performance and documentation infrastructure.
-
-### Improved
-- **ComponentCard:** Rebuilt media engine to support automatic Cloudinary video/image resolution.
-- **Sidebar:** Added magic hover pills and nested active states.
-
-### Fixed
-- Fixed an overflow issue on mobile viewports for the `CodeBlock` component.
-- Resolved hydration mismatch on the theme toggler.
+> **Sunset Notice:** All releases from v2.1.0 and below belong to the legacy _Satis UI_ architecture. These components are officially deprecated and will no longer receive updates.
