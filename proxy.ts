@@ -1,33 +1,19 @@
 // proxy.ts
 import { NextResponse, userAgent } from "next/server"
-import type { NextRequest, NextFetchEvent } from "next/server"
-import { Redis } from "@upstash/redis"
+import type { NextRequest } from "next/server"
 
-export function proxy(req: NextRequest, ev: NextFetchEvent) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
+
+  if (pathname.startsWith("/r/") && pathname.endsWith(".json")) {
+    return NextResponse.next()
+  }
 
   // ==========================================
   // 1. SHADCN REGISTRY TRACKING
   // ==========================================
-  // Intercept ONLY requests heading to your shadcn registry JSON files
-  if (pathname.startsWith("/r/") && pathname.endsWith(".json")) {
-    const componentName = pathname.replace("/r/", "").replace(".json", "")
-
-    ev.waitUntil(
-      (async () => {
-        try {
-          const redis = Redis.fromEnv()
-          await redis.incr("satisium:metrics:cli_installs")
-          await redis.zincrby("satisium:metrics:top_cli", 1, componentName)
-        } catch (e) {
-          // Silent fail - never break the terminal installation
-        }
-      })()
-    )
-
-    // Let CLI requests through immediately, ignoring the mobile check below
-    return NextResponse.next()
-  }
+  // Removed: registry JSON tracking to prevent unnecessary Redis
+  // operations and proxy compute on static CDN assets.
 
   // ==========================================
   // 2. MOBILE VIEWPORT RESTRICTION
@@ -53,9 +39,7 @@ export function proxy(req: NextRequest, ev: NextFetchEvent) {
 // CONFIGURATION
 // ==========================================
 export const config = {
-  // Run on all routes EXCEPT Next.js internals, APIs, and static assets.
-  // This ensures it catches both the /r/ registry paths AND normal app pages.
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    "/((?!api|_next/static|_next/image|_next/data|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|map)$).*)",
   ],
 }

@@ -1,3 +1,4 @@
+import { cache } from "react"
 import fs from "fs"
 import path from "path"
 import { getGithubLastEdit } from "fumadocs-core/content/github"
@@ -8,11 +9,11 @@ import { SITE_URL } from "@/lib/config"
 const LAST_EDIT_CACHE = new Map<string, { timestamp: number; value: string | null }>()
 const CACHE_TTL = 5 * 60 * 1000
 
-export async function getLastModifiedTime(
+export const getLastModifiedTime = cache(async (
   pagePath: string,
   owner = "satisium",
   repo = "ui"
-): Promise<string | null> {
+): Promise<string | null> => {
   const cacheKey = `${owner}/${repo}/${pagePath}`
   const cached = LAST_EDIT_CACHE.get(cacheKey)
 
@@ -45,7 +46,7 @@ export async function getLastModifiedTime(
   } catch {
     return null
   }
-}
+})
 
 export async function getDocCopyPayload(pagePath: string): Promise<string> {
   try {
