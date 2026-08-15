@@ -1,0 +1,63 @@
+---
+title: Changelog
+description: Latest updates, new components, and improvements in Satisium UI.
+---
+
+# Changelog
+
+## v3.0.0
+**August 15, 2026** <Badge className="bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 transition-colors border-none -translate-y-[2px] ml-2 font-bold tracking-wider uppercase text-[10px] px-2 py-0.5">Beta</Badge>
+
+A landmark release introducing 54 new core components and dozens of pre-built demo variants across carousels, text reveals, mouse trails, and image effects. The library now exceeds 80 production-ready components.
+
+<div className="mt-8 mb-12">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/registry.json" title="Install All (Global Registry)" />
+</div>
+
+### Added (Carousels)
+<RegistryGrid slugs={[
+  "dimensional-carousel",
+  "elastic-carousel",
+  "curved-carousel",
+  "cover-carousel",
+  "depth-carousel",
+  "flex-carousel"
+]} />
+
+### Added (Text Reveals)
+<RegistryGrid slugs={[
+  "blur-reveal",
+  "elastic-pop-reveal",
+  "elastic-typewriter",
+  "flip-3d-reveal",
+  "manifesto-text-reveal"
+]} />
+
+### Added (Mouse Trails)
+<RegistryGrid slugs={[
+  "depth-trail",
+  "velocity-trail",
+  "pendulum-trail"
+]} />
+
+### Added (Image Effects)
+<RegistryGrid slugs={[
+  "velocity-grid",
+  "velocity-strips",
+  "liquid-marble"
+]} />
+
+---
+
+## v2.1.0
+**August 1, 2026**
+
+A focused release improving performance and documentation infrastructure.
+
+### Improved
+- **ComponentCard:** Rebuilt media engine to support automatic Cloudinary video/image resolution.
+- **Sidebar:** Added magic hover pills and nested active states.
+
+### Fixed
+- Fixed an overflow issue on mobile viewports for the `CodeBlock` component.
+- Resolved hydration mismatch on the theme toggler.

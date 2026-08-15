@@ -39,8 +39,8 @@ const config = {
   async redirects() {
     return [
       {
-        source: "/docs/getting-started/changelog",
-        destination: "/changelog",
+        source: "/changelog",
+        destination: "/docs/getting-started/changelog",
         permanent: true,
       },
       {

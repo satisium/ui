@@ -2,18 +2,11 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import * as React from "react"
 import { CodeBlock } from "./code-block/code-block"
-import { CommandBlock } from "./command-block"
 
 // 1. Import your new Changelog Components
-import {
-  Changelog,
-  ChangelogEntry,
-  ChangelogHeader,
-  ChangelogContent,
-  ChangelogItem,
-  ChangelogImage,
-  ChangelogComponentList,
-} from "@/components/changelog"
+import { RegistryGrid } from "@/components/changelog/registry-grid"
+import { CommandBlock } from "@/components/command-block"
+import { Badge } from "@/components/ui/badge"
 
 export const defaultMdxComponents = {
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -175,13 +168,7 @@ export const defaultMdxComponents = {
   ),
 
   // 2. Export them so Fumadocs can use them globally
-  CodeBlock,
+  RegistryGrid,
   CommandBlock,
-  Changelog,
-  ChangelogEntry,
-  ChangelogHeader,
-  ChangelogContent,
-  ChangelogItem,
-  ChangelogImage,
-  ChangelogComponentList,
+  Badge,
 }
