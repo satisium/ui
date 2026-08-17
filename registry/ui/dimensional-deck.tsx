@@ -152,18 +152,18 @@ function DeckScene({
   images,
   scrollState,
   onReady,
-  cardWidthRatio,
-  cardAspectRatio,
-  lerpFactor,
-  gapMultiplier,
-  stackGapMultiplier,
-  depthMultiplier,
-  flexMultiplier,
-  rotationMultiplier,
-  parallaxIntensity,
-  chromaticAberrationIntensity,
-  dimmingMultiplier,
-  cornerRadius,
+  cardWidthRatio = 0.35,
+  cardAspectRatio = 1.4,
+  lerpFactor = 0.08,
+  gapMultiplier = 1.2,
+  stackGapMultiplier = 0.1,
+  depthMultiplier = 0.8,
+  flexMultiplier = 0.15,
+  rotationMultiplier = 0.08,
+  parallaxIntensity = 0.1,
+  chromaticAberrationIntensity = 0.005,
+  dimmingMultiplier = 0.6,
+  cornerRadius = 0.04,
   isReducedMotion,
 }: DimensionalDeckProps & {
   scrollState: React.MutableRefObject<ScrollState>
@@ -177,18 +177,18 @@ function DeckScene({
   const isMobile = viewport.width < 5
   let itemWidth = isMobile
     ? viewport.width * 0.6
-    : viewport.width * cardWidthRatio!
-  let itemHeight = itemWidth * cardAspectRatio!
+    : viewport.width * cardWidthRatio
+  let itemHeight = itemWidth * cardAspectRatio
 
   // --- THE SIZE CLAMPING FIX ---
   // Guarantees cards never clip vertically out of the camera bounds
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.5)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio!
+    itemWidth = itemHeight / cardAspectRatio
   }
 
-  const spacing = viewport.height * gapMultiplier!
+  const spacing = viewport.height * gapMultiplier
 
   const geometry = useMemo(
     () => new THREE.PlaneGeometry(itemWidth, itemHeight, 32, 32),
@@ -264,7 +264,7 @@ function DeckScene({
     state.currentY = THREE.MathUtils.damp(
       state.currentY,
       state.targetY,
-      lerpFactor! * 100,
+      lerpFactor * 100,
       dt
     )
 
@@ -292,9 +292,9 @@ function DeckScene({
           rotX = 0
         } else {
           // PHASE 2: Friction Zone - Stacking tightly at the top
-          y = relativeY * stackGapMultiplier!
-          z = relativeY * depthMultiplier!
-          rotX = relativeY * rotationMultiplier!
+          y = relativeY * stackGapMultiplier
+          z = relativeY * depthMultiplier
+          rotX = relativeY * rotationMultiplier
           stackDepth = Math.abs(relativeY)
         }
 

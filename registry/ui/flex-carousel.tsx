@@ -150,16 +150,16 @@ function FlexScene({
   images,
   scrollState,
   onReady,
-  cardWidthRatio,
-  cardAspectRatio,
-  lerpFactor,
-  gapMultiplier,
-  flexMultiplier,
-  rotationMultiplier,
-  parallaxIntensity,
-  chromaticAberrationIntensity,
-  dimmingMultiplier,
-  cornerRadius,
+  cardWidthRatio = 0.35,
+  cardAspectRatio = 1.4,
+  lerpFactor = 0.08,
+  gapMultiplier = 0.36,
+  flexMultiplier = 0.25,
+  rotationMultiplier = 0.02,
+  parallaxIntensity = 0.05,
+  chromaticAberrationIntensity = 0.005,
+  dimmingMultiplier = 0.015,
+  cornerRadius = 0.04,
 }: FlexCarouselProps & {
   scrollState: React.MutableRefObject<ScrollState>
   onReady: () => void
@@ -172,16 +172,16 @@ function FlexScene({
   const isMobile = viewport.width < 5
   let itemWidth = isMobile
     ? viewport.width * 0.6
-    : viewport.width * cardWidthRatio!
-  let itemHeight = itemWidth * cardAspectRatio!
+    : viewport.width * cardWidthRatio
+  let itemHeight = itemWidth * cardAspectRatio
 
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.5)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio!
+    itemWidth = itemHeight / cardAspectRatio
   }
 
-  const spacing = viewport.width * gapMultiplier!
+  const spacing = viewport.width * gapMultiplier
 
   const geometry = useMemo(
     () => new THREE.PlaneGeometry(itemWidth, itemHeight, 64, 64),
@@ -255,7 +255,7 @@ function FlexScene({
     state.currentX = THREE.MathUtils.damp(
       state.currentX,
       state.targetX,
-      lerpFactor! * 100,
+      lerpFactor * 100,
       dt
     )
 
@@ -268,14 +268,14 @@ function FlexScene({
     )
 
     if (groupRef.current) {
-      groupRef.current.children.forEach((mesh: any, i) => {
+      groupRef.current.children.forEach((mesh: THREE.Object3D, i) => {
         const material = materials[i]
         if (!material) return
 
         const relativeX = i * spacing - state.currentX
 
         mesh.position.x = relativeX
-        mesh.rotation.y = -rotationMultiplier!
+        mesh.rotation.y = -rotationMultiplier
 
         // Z-Index sorting: Center item stays on top
         mesh.renderOrder = 1000 - Math.abs(relativeX)

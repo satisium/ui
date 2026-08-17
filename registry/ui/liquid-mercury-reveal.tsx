@@ -75,10 +75,10 @@ export const LiquidMercuryReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints safely
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const blurRef = React.useRef<SVGFEGaussianBlurElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     // Unique ID ensures multiple components don't share the same SVG filter
     const uniqueId = React.useId().replace(/:/g, "")

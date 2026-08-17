@@ -254,9 +254,9 @@ export const MultiColorTrailReveal = React.forwardRef<
     ref
   ) => {
     const triggerRef = React.useRef<HTMLDivElement>(null)
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const resolvedTrailLength =
       trailLength !== undefined

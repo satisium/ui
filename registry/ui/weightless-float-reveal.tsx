@@ -88,8 +88,8 @@ export const WeightlessFloatReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to securely bypass React polymorphic type constraints
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

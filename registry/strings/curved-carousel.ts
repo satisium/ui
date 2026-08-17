@@ -147,16 +147,16 @@ function CurvedScene({
   images,
   scrollState,
   onReady,
-  cardWidthRatio,
-  cardAspectRatio,
-  lerpFactor,
-  radiusMultiplier,
-  centrifugalMultiplier,
-  parallaxIntensity,
-  chromaticAberrationIntensity,
-  cornerRadius,
-  fadeMultiplier,
-  dimmingMultiplier,
+  cardWidthRatio = 0.35,
+  cardAspectRatio = 1.4,
+  lerpFactor = 0.08,
+  radiusMultiplier = 1.2,
+  centrifugalMultiplier = 0.4,
+  parallaxIntensity = 0.1,
+  chromaticAberrationIntensity = 0.004,
+  cornerRadius = 0.04,
+  fadeMultiplier = 1.5,
+  dimmingMultiplier = 0.8,
   isReducedMotion,
 }: CurvedCarouselProps & {
   scrollState: React.MutableRefObject<ScrollState>
@@ -168,16 +168,16 @@ function CurvedScene({
   const groupRef = useRef<THREE.Group>(null)
 
   const isMobile = viewport.width < 5
-  let itemWidth = isMobile ? viewport.width * 0.6 : viewport.width * cardWidthRatio!
-  let itemHeight = itemWidth * cardAspectRatio!
+  let itemWidth = isMobile ? viewport.width * 0.6 : viewport.width * cardWidthRatio
+  let itemHeight = itemWidth * cardAspectRatio
 
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.5)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio!
+    itemWidth = itemHeight / cardAspectRatio
   }
 
-  const radius = viewport.width * radiusMultiplier!
+  const radius = viewport.width * radiusMultiplier
   const angleSpacing = (itemWidth / radius) * 1.2
 
   const geometry = useMemo(
@@ -247,7 +247,7 @@ function CurvedScene({
     state.currentAngle = THREE.MathUtils.damp(
       state.currentAngle,
       state.targetAngle,
-      lerpFactor! * 100,
+      lerpFactor * 100,
       dt
     )
 

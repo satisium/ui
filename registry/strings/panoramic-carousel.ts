@@ -166,22 +166,22 @@ function PanoramicScene({
   images,
   scrollState,
   onReady,
-  cardWidthRatio,
-  cardAspectRatio,
-  lerpFactor,
-  radiusMultiplier,
-  gapMultiplier,
-  depthMultiplier,
-  baseFov,
-  maxFovZoom,
-  fovMultiplier,
-  motionBlurIntensity,
-  chromaticAberrationIntensity,
-  flexMultiplier,
-  cornerRadius,
+  cardWidthRatio = 0.4,
+  cardAspectRatio = 1.4,
+  lerpFactor = 0.08,
+  radiusMultiplier = 1.4,
+  gapMultiplier = 1.1,
+  depthMultiplier = 1.0,
+  baseFov = 45,
+  maxFovZoom = 35,
+  fovMultiplier = 1.2,
+  motionBlurIntensity = 0.003,
+  chromaticAberrationIntensity = 0.005,
+  flexMultiplier = 0.15,
+  cornerRadius = 0.04,
   fadeEdge1,
   fadeEdge2,
-  parallaxIntensity,
+  parallaxIntensity = 0.1,
 }: PanoramicCarouselProps & {
   scrollState: React.MutableRefObject<ScrollState>
   onReady: () => void
@@ -193,17 +193,17 @@ function PanoramicScene({
   const isMobile = viewport.width < 5
   let itemWidth = isMobile
     ? viewport.width * 0.7
-    : viewport.width * cardWidthRatio!
-  let itemHeight = itemWidth * cardAspectRatio!
+    : viewport.width * cardWidthRatio
+  let itemHeight = itemWidth * cardAspectRatio
 
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.65)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio!
+    itemWidth = itemHeight / cardAspectRatio
   }
 
-  const radius = viewport.width * radiusMultiplier!
-  const angleSpacing = (itemWidth / radius) * gapMultiplier!
+  const radius = viewport.width * radiusMultiplier
+  const angleSpacing = (itemWidth / radius) * gapMultiplier
 
   const geometry = useMemo(
     () => new THREE.PlaneGeometry(itemWidth, itemHeight, 32, 1),
@@ -282,7 +282,7 @@ function PanoramicScene({
     state.currentAngle = THREE.MathUtils.damp(
       state.currentAngle,
       state.targetAngle,
-      lerpFactor! * 100,
+      lerpFactor * 100,
       dt
     )
 
@@ -291,8 +291,8 @@ function PanoramicScene({
     state.velocity = THREE.MathUtils.damp(state.velocity, trueVelocity, 5, dt)
 
     const targetFov = isReducedMotion
-      ? baseFov!
-      : baseFov! + Math.min(Math.abs(state.velocity) * fovMultiplier!, maxFovZoom!)
+      ? baseFov
+      : baseFov + Math.min(Math.abs(state.velocity) * fovMultiplier, maxFovZoom)
       
     const perspectiveCamera = camera as THREE.PerspectiveCamera
     perspectiveCamera.fov = THREE.MathUtils.damp(
@@ -304,14 +304,14 @@ function PanoramicScene({
     perspectiveCamera.updateProjectionMatrix()
 
     if (groupRef.current) {
-      groupRef.current.children.forEach((mesh: any, i) => {
+      groupRef.current.children.forEach((mesh: THREE.Object3D, i) => {
         const material = materials[i]
         if (!material) return
 
         const angle = i * angleSpacing - state.currentAngle
 
         mesh.position.x = Math.sin(angle) * radius
-        mesh.position.z = (1.0 - Math.cos(angle)) * radius * depthMultiplier!
+        mesh.position.z = (1.0 - Math.cos(angle)) * radius * depthMultiplier
         mesh.rotation.y = -angle
 
         mesh.renderOrder = 1000 + Math.abs(angle) * 100

@@ -53,8 +53,8 @@ export const FoldReveal = React.forwardRef<HTMLElement, FoldRevealProps>(
     ref
   ) => {
     // Typed as 'any' to safely bypass strict polymorphic DOM type constraints
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

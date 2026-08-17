@@ -100,10 +100,10 @@ export const EditorialReveal = React.forwardRef<
   ) => {
     // Typed as 'any' internally to bypass strict polymorphic DOM type constraints
     // without sacrificing outer type safety or cluttering intellisense.
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
 
     // Securely forward the internal ref out to the consumer
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

@@ -99,8 +99,8 @@ export const MaskedReveal = React.forwardRef<HTMLElement, MaskedRevealProps>(
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const resolveOffset =
       typeof startOffset === "number" ? \`\${startOffset}px\` : startOffset

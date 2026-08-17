@@ -147,16 +147,16 @@ function ElasticScene({
   images,
   scrollState,
   onReady,
-  cardWidthRatio,
-  cardAspectRatio,
-  lerpFactor,
-  radiusMultiplier,
-  gapMultiplier,
-  flexMultiplier,
-  parallaxIntensity,
-  chromaticAberrationIntensity,
-  dimmingMultiplier,
-  cornerRadius,
+  cardWidthRatio = 0.35,
+  cardAspectRatio = 1.4,
+  lerpFactor = 0.08,
+  radiusMultiplier = 1.2,
+  gapMultiplier = 1.2,
+  flexMultiplier = 0.5,
+  parallaxIntensity = 0.08,
+  chromaticAberrationIntensity = 0.003,
+  dimmingMultiplier = 0.4,
+  cornerRadius = 0.04,
   isReducedMotion,
 }: ElasticCarouselProps & {
   scrollState: React.MutableRefObject<ScrollState>
@@ -170,8 +170,8 @@ function ElasticScene({
   const isMobile = viewport.width < 5
   let itemWidth = isMobile
     ? viewport.width * 0.6
-    : viewport.width * cardWidthRatio!
-  let itemHeight = itemWidth * cardAspectRatio!
+    : viewport.width * cardWidthRatio
+  let itemHeight = itemWidth * cardAspectRatio
 
   // --- THE SIZE CLAMPING FIX ---
   // Clamps the height so it never exceeds 60% of the screen height (50% on desktop)
@@ -179,11 +179,11 @@ function ElasticScene({
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.5)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio!
+    itemWidth = itemHeight / cardAspectRatio
   }
 
-  const radius = viewport.width * radiusMultiplier!
-  const angleSpacing = (itemWidth / radius) * gapMultiplier!
+  const radius = viewport.width * radiusMultiplier
+  const angleSpacing = (itemWidth / radius) * gapMultiplier
 
   const geometry = useMemo(
     () => new THREE.PlaneGeometry(itemWidth, itemHeight, 32, 32),
@@ -263,7 +263,7 @@ function ElasticScene({
     state.currentAngle = THREE.MathUtils.damp(
       state.currentAngle,
       state.targetAngle,
-      lerpFactor! * 100,
+      lerpFactor * 100,
       dt
     )
 
@@ -277,7 +277,7 @@ function ElasticScene({
     )
 
     // TARGET BEND: Driven by velocity and controlled by the Unified flexMultiplier prop
-    const targetBend = Math.min(Math.abs(trueVelocity) * flexMultiplier!, 1.0)
+    const targetBend = Math.min(Math.abs(trueVelocity) * flexMultiplier, 1.0)
     state.bend = THREE.MathUtils.damp(state.bend, targetBend, 3.5, dt)
 
     if (groupRef.current) {

@@ -73,10 +73,10 @@ export const GranularDustReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints securely
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const mapRef = React.useRef<SVGFEDisplacementMapElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     // Unique ID ensures multiple components don't share the same SVG filter
     const uniqueId = React.useId().replace(/[^a-zA-Z0-9]/g, "")

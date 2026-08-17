@@ -143,19 +143,19 @@ function DepthScene({
   images,
   scrollState,
   onReady,
-  cardWidthRatio,
-  cardAspectRatio,
-  lerpFactor,
-  gapMultiplier,
-  activeGapMultiplier,
-  depthMultiplier,
-  scaleMultiplier,
-  rotationMultiplier,
-  parallaxIntensity,
-  chromaticAberrationIntensity,
-  dimmingMultiplier,
-  cornerRadius,
-  shadowOpacity,
+  cardWidthRatio = 0.35,
+  cardAspectRatio = 1.4,
+  lerpFactor = 0.06,
+  gapMultiplier = 0.7,
+  activeGapMultiplier = 0.25,
+  depthMultiplier = 0.25,
+  scaleMultiplier = 0.15,
+  rotationMultiplier = 0.1,
+  parallaxIntensity = 0.08,
+  chromaticAberrationIntensity = 0.01,
+  dimmingMultiplier = 0.85,
+  cornerRadius = 0.03,
+  shadowOpacity = 0.6,
 }: DepthCarouselProps & {
   scrollState: React.MutableRefObject<ScrollState>
   onReady: () => void
@@ -167,13 +167,13 @@ function DepthScene({
   const isMobile = viewport.width < 5
   let itemWidth = isMobile
     ? viewport.width * 0.65
-    : viewport.width * cardWidthRatio!
-  let itemHeight = itemWidth * cardAspectRatio!
+    : viewport.width * cardWidthRatio
+  let itemHeight = itemWidth * cardAspectRatio
 
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.65)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio!
+    itemWidth = itemHeight / cardAspectRatio
   }
 
   const geometry = useMemo(
@@ -250,7 +250,7 @@ function DepthScene({
     state.current = THREE.MathUtils.damp(
       state.current,
       state.target,
-      lerpFactor! * 100,
+      lerpFactor * 100,
       dt
     )
 
@@ -258,7 +258,7 @@ function DepthScene({
     state.velocity = THREE.MathUtils.damp(state.velocity, rawVelocity, 5, dt)
 
     if (groupRef.current) {
-      groupRef.current.children.forEach((mesh: any, i) => {
+      groupRef.current.children.forEach((mesh: THREE.Object3D, i) => {
         const material = materials[i]
         if (!material) return
 
@@ -266,17 +266,17 @@ function DepthScene({
         const absDfc = Math.abs(dfc)
 
         let xOffset =
-          Math.sign(dfc) * itemWidth * gapMultiplier! * Math.pow(absDfc, 0.8)
+          Math.sign(dfc) * itemWidth * gapMultiplier * Math.pow(absDfc, 0.8)
 
         const activeBuffer =
           Math.sign(dfc) *
           Math.min(absDfc, 1.0) *
-          (itemWidth * activeGapMultiplier!)
+          (itemWidth * activeGapMultiplier)
         xOffset += activeBuffer
 
-        const zOffset = -absDfc * (itemWidth * depthMultiplier!)
-        const scale = Math.max(1.0 - absDfc * scaleMultiplier!, 0.5)
-        const yRot = -dfc * rotationMultiplier!
+        const zOffset = -absDfc * (itemWidth * depthMultiplier)
+        const scale = Math.max(1.0 - absDfc * scaleMultiplier, 0.5)
+        const yRot = -dfc * rotationMultiplier
 
         mesh.position.set(xOffset, 0, zOffset)
         mesh.rotation.set(0, yRot, 0)
@@ -297,7 +297,7 @@ function DepthScene({
         <mesh key={i} geometry={geometry} material={materials[i]} />
       ))}
 
-      {shadowOpacity! > 0 && (
+      {shadowOpacity > 0 && (
         <ContactShadows
           position={[0, -itemHeight / 2 - 0.2, 0]}
           opacity={shadowOpacity}

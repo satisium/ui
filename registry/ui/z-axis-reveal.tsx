@@ -59,8 +59,8 @@ export const ZAxisReveal = React.forwardRef<HTMLElement, ZAxisRevealProps>(
   ) => {
     // Separate trigger ref prevents layout snapping when scaling large text inside a pinned container
     const triggerRef = React.useRef<HTMLDivElement>(null)
-    const containerRef = React.useRef<any>(null) // any bypasses polymorphic TS limits
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null) // any bypasses polymorphic TS limits
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

@@ -67,10 +67,10 @@ export const LiquidMercuryReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const blurRef = React.useRef<SVGFEGaussianBlurElement>(null)
     
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const uniqueId = React.useId().replace(/:/g, "")
     const filterId = \`liquid-mercury-\${uniqueId}\`

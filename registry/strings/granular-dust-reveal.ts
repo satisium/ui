@@ -94,10 +94,10 @@ export const GranularDustReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const mapRef = React.useRef<SVGFEDisplacementMapElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const uniqueId = React.useId().replace(/[^a-zA-Z0-9]/g, "")
     const filterId = \`granular-dust-\${uniqueId}\`

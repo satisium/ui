@@ -77,8 +77,8 @@ export const ManifestoTextReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to securely bypass polymorphic DOM type constraints
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     // Safety fallback: if a user explicitly passes `true`, convert it to `1` for the momentum fix
     const scrubValue = scrub === true ? 1 : scrub

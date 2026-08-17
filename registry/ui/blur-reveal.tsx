@@ -75,8 +75,8 @@ export const BlurReveal = React.forwardRef<HTMLElement, BlurRevealProps>(
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints securely
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {
