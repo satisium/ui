@@ -114,12 +114,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/icon-192.png",
-    apple: "/apple-icon.png",
-    other: [{ rel: "apple-touch-icon", url: "/apple-icon.png" }],
-  },
 }
 
 export const viewport: Viewport = {
@@ -184,7 +178,6 @@ export default function RootLayout({
           crossOrigin=""
           href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap"
         />
-        <link rel="preload" as="image" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -216,7 +209,7 @@ export default function RootLayout({
               ],
               logo: {
                 "@type": "ImageObject",
-                url: `${SITE_URL}/icon-512.png`,
+                url: `${SITE_URL}/android-chrome-512x512.png`,
                 width: 512,
                 height: 512,
               },
