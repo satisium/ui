@@ -2,14 +2,11 @@
 title: Velocity Strips
 description: An interactive WebGL component that displays media (image or video) with a fluid, velocity-based slice distortion effect following the cursor.
 component: true
-badge: new
 category:
-  - marketing
-subcategory:
-  - heroes
-author: SATIS UI
+  - image-effects
+author: Satisium UI
 links:
-  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/velocity-strips.mdx
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/velocity-strips.mdx
 registryKeys:
   - velocity-strips-image
   - velocity-strips-video
@@ -23,7 +20,19 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock cli="velocity-strips" title="velocity-strips" />
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips.json" title="velocity-strips" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json" title="velocity-strips-image" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-video.json" title="velocity-strips-video" />
 </div>
 
 ### Manual
@@ -61,6 +70,4 @@ import { velocityStripsFile } from "@/registry/strings/velocity-strips"
 | **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.    |
 | **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.             |
 
-## Inspiration and Credits
 
-WebGL shader and interaction physics tastefully crafted by the **Satis UI** team.

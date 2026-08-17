@@ -1,3 +1,4 @@
+import React from "react"
 import { CodeFile } from "@/components/code-block/types"
 import dynamic from "next/dynamic"
 
@@ -19,7 +20,7 @@ export interface RegistryItem {
   component?: React.ComponentType
   /** The CLI command used to install this component */
   installCommand?: string
-  /** Function returning the raw source code strings */
+  /** Function returning the raw source code strings ,*/
   getFiles?: () => Promise<Record<string, CodeFile | string>>
   /** URL to the isolated, standalone preview page */
   previewUrl?: string
@@ -28,63 +29,6 @@ export interface RegistryItem {
 }
 
 export const registry: Record<string, RegistryItem> = {
-  "fluid-switch-demo": {
-    name: "Demo 1",
-    type: "react",
-    renderMode: "direct", // Simple component, render directly
-    previewUrl: "/preview/fluid-switch-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/fluid-switch-demo").then(
-        (m) => m.FluidSwitchDemo
-      )
-    ),
-    installCommand: "https://satis-ui.com/r/fluid-switch.json",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/fluid-switch")
-      return {
-        "fluid-switch-demo.tsx": {
-          code: mod.fluidSwitchDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-
-  "fluid-switch-labeled": {
-    name: "Demo 2",
-    type: "react",
-    renderMode: "iframe", // ✨ Complex/Responsive layout, forces iframe embedding
-    previewUrl: "/preview/fluid-switch-labeled",
-    component: dynamic(() =>
-      import("@/registry/demos/fluid-switch-labeled").then(
-        (m) => m.FluidSwitchLabeled
-      )
-    ),
-    installCommand: "https://satis-ui.com/r/fluid-switch.json",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/fluid-switch")
-      return {
-        "fluid-switch-labeled.tsx": {
-          code: mod.fluidSwitchLabeledString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  // Keep your existing media items unchanged...
-  "dashboard-pro-desktop": {
-    name: "Desktop Layout",
-    type: "video",
-    mediaUrl: "/videos/dashboard-desktop-preview.mp4",
-    previewUrl: "https://preview.satisui.xyz/dashboard-pro/desktop",
-  },
-  "dashboard-pro-mobile": {
-    name: "Mobile Layout",
-    type: "image",
-    mediaUrl: "/images/dashboard-mobile-preview.webp",
-    previewUrl: "https://preview.satisui.xyz/dashboard-pro/mobile",
-  },
-
   "velocity-strips-image": {
     name: "Velocity Strips Image",
     type: "react",
@@ -95,7 +39,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add velocity-strips",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/velocity-strips")
       return {
@@ -116,7 +61,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add velocity-strips",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-video.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/velocity-strips")
       return {
@@ -137,7 +83,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add velocity-grid",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/velocity-grid-image.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/velocity-grid")
       return {
@@ -158,7 +105,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add velocity-grid",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/velocity-grid-video.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/velocity-grid")
       return {
@@ -179,7 +127,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add proximity-grid",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-image.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/proximity-grid")
       return {
@@ -200,7 +149,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add proximity-grid",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-video.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/proximity-grid")
       return {
@@ -221,7 +171,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add liquid-marble",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-image.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/liquid-marble")
       return {
@@ -242,7 +193,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add liquid-marble",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-video.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/liquid-marble")
       return {
@@ -263,7 +215,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add glass-slices",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/glass-slices-image.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/glass-slices")
       return {
@@ -284,117 +237,13 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add glass-slices",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/glass-slices-video.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/glass-slices")
       return {
         "glass-slices-video.tsx": {
           code: mod.glassSlicesVideoDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "halftone-hero-demo": {
-    name: "Halftone Hero Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-hero-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-hero/halftone-hero-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satis-ui add halftone-hero",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-hero")
-      return {
-        "halftone-hero-demo.tsx": {
-          code: mod.halftoneHeroDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "halftone-horizontal-demo": {
-    name: "Halftone Horizontal Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-horizontal-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-horizontal/halftone-horizontal-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satis-ui add halftone-horizontal",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-horizontal")
-      return {
-        "halftone-horizontal-demo.tsx": {
-          code: mod.halftoneHorizontalDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "halftone-video-hero-demo": {
-    name: "Halftone Video Hero Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-video-hero-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-video-hero/halftone-video-hero-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satis-ui add halftone-video-hero",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-video-hero")
-      return {
-        "halftone-video-hero-demo.tsx": {
-          code: mod.halftoneVideoHeroDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "halftone-video-horizontal-demo": {
-    name: "Halftone Video Horizontal Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/halftone-video-horizontal-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/halftone-video-horizontal/halftone-video-horizontal-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satis-ui add halftone-video-horizontal",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/halftone-video-horizontal")
-      return {
-        "halftone-video-horizontal-demo.tsx": {
-          code: mod.halftoneVideoHorizontalDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "bouquet-trail-demo": {
-    name: "Bouquet Trail Demo",
-    type: "react",
-    renderMode: "iframe", // Use iframe to prevent it leaking out over documentation UI since it tracks window mouse
-    previewUrl: "/preview/bouquet-trail-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/bouquet-trail/bouquet-trail-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satis-ui add bouquet-trail",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/bouquet-trail")
-      return {
-        "bouquet-trail-demo.tsx": {
-          code: mod.bouquetTrailDemoString,
           language: "tsx",
         },
       }
@@ -410,7 +259,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add depth-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/depth-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/depth-trail")
       return {
@@ -431,7 +281,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add depth-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/depth-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/depth-trail")
       return {
@@ -452,7 +303,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add scatter-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/scatter-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/scatter-trail")
       return {
@@ -473,7 +325,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add scatter-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/scatter-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/scatter-trail")
       return {
@@ -494,7 +347,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add wind-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/wind-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/wind-trail")
       return {
@@ -515,7 +369,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add wind-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/wind-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/wind-trail")
       return {
@@ -536,7 +391,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add kaleidoscope-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/kaleidoscope-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/kaleidoscope-trail")
       return {
@@ -557,7 +413,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add kaleidoscope-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/kaleidoscope-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/kaleidoscope-trail")
       return {
@@ -578,7 +435,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add squircle-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/squircle-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/squircle-trail")
       return {
@@ -599,7 +457,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add squircle-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/squircle-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/squircle-trail")
       return {
@@ -620,7 +479,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add pendulum-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/pendulum-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/pendulum-trail")
       return {
@@ -641,7 +501,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add pendulum-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/pendulum-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/pendulum-trail")
       return {
@@ -662,7 +523,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add slinky-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/slinky-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/slinky-trail")
       return {
@@ -683,7 +545,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add slinky-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/slinky-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/slinky-trail")
       return {
@@ -704,7 +567,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add velocity-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/velocity-trail-avatars-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/velocity-trail")
       return {
@@ -725,7 +589,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add velocity-trail",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/velocity-trail-images-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/velocity-trail")
       return {
@@ -748,7 +613,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add editorial-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/editorial-reveal-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/editorial-reveal")
       return {
@@ -769,7 +635,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add elastic-pop-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/elastic-pop-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/elastic-pop-reveal")
       return {
@@ -790,7 +657,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add elastic-pop-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/elastic-pop-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/elastic-pop-reveal")
       return {
@@ -811,7 +679,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add elastic-typewriter",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/elastic-typewriter-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/elastic-typewriter")
       return {
@@ -832,7 +701,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add elastic-typewriter",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/elastic-typewriter-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/elastic-typewriter")
       return {
@@ -853,7 +723,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add flip-3d-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/flip-3d-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/flip-3d-reveal")
       return {
@@ -874,7 +745,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add flip-3d-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/flip-3d-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/flip-3d-reveal")
       return {
@@ -895,7 +767,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add flip-vertical-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/flip-vertical-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/flip-vertical-reveal")
       return {
@@ -916,7 +789,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add flip-vertical-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/flip-vertical-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/flip-vertical-reveal")
       return {
@@ -937,7 +811,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add fluid-ink-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/fluid-ink-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/fluid-ink-reveal")
       return {
@@ -958,7 +833,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add fluid-ink-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/fluid-ink-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/fluid-ink-reveal")
       return {
@@ -979,7 +855,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add blur-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/blur-reveal-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/blur-reveal")
       return {
@@ -1000,7 +877,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add blur-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/blur-reveal-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/blur-reveal")
       return {
@@ -1021,7 +899,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add fluid-typewriter",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/fluid-typewriter")
       return {
@@ -1042,7 +921,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add fluid-typewriter",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/fluid-typewriter")
       return {
@@ -1063,7 +943,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add granular-dust-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/granular-dust-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/granular-dust-reveal")
       return {
@@ -1084,7 +965,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add granular-dust-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/granular-dust-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/granular-dust-reveal")
       return {
@@ -1105,7 +987,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add heat-mirage-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/heat-mirage-reveal")
       return {
@@ -1126,7 +1009,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add heat-mirage-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/heat-mirage-reveal")
       return {
@@ -1147,7 +1031,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add liquid-mercury-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/liquid-mercury-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/liquid-mercury-reveal")
       return {
@@ -1168,7 +1053,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add magnetic-snap-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/magnetic-snap-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/magnetic-snap-reveal")
       return {
@@ -1189,7 +1075,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add manifesto-text-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/manifesto-text-reveal-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/manifesto-text-reveal")
       return {
@@ -1210,7 +1097,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add masked-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/masked-reveal-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/masked-reveal")
       return {
@@ -1231,7 +1119,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add masked-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/masked-reveal-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/masked-reveal")
       return {
@@ -1252,7 +1141,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add fold-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/fold-reveal-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/fold-reveal")
       return {
@@ -1273,7 +1163,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add pendulum-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/pendulum-reveal-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/pendulum-reveal")
       return {
@@ -1294,7 +1185,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add piano-typewriter",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/piano-typewriter-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/piano-typewriter")
       return {
@@ -1315,7 +1207,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add multi-color-trail-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/multi-color-trail-char-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/multi-color-trail-reveal")
       return {
@@ -1336,7 +1229,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add multi-color-trail-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/multi-color-trail-word-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/multi-color-trail-reveal")
       return {
@@ -1357,7 +1251,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add multi-color-trail-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/multi-color-trail-line-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/multi-color-trail-reveal")
       return {
@@ -1378,7 +1273,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add tumbler-roll-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/tumbler-roll-reveal-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/tumbler-roll-reveal")
       return {
@@ -1399,7 +1295,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add bottom-hinge-text-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/bottom-hinge-text-reveal-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/bottom-hinge-text-reveal")
       return {
@@ -1420,7 +1317,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add velocity-brake-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/velocity-brake-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/velocity-brake-reveal")
       return {
@@ -1441,7 +1339,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add weightless-float-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/weightless-float-headline-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/weightless-float-reveal")
       return {
@@ -1462,7 +1361,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add weightless-float-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/weightless-float-paragraph-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/weightless-float-reveal")
       return {
@@ -1483,7 +1383,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add wind-shear-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/wind-shear-char-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/wind-shear-reveal")
       return {
@@ -1504,7 +1405,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add wind-shear-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/wind-shear-word-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/wind-shear-reveal")
       return {
@@ -1525,7 +1427,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add z-axis-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/z-axis-char-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/z-axis-reveal")
       return {
@@ -1546,7 +1449,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add z-axis-reveal",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/z-axis-word-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/z-axis-reveal")
       return {
@@ -1567,7 +1471,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add concave-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/concave-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/concave-carousel")
       return {
@@ -1588,7 +1493,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add ascent-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/ascent-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/ascent-carousel")
       return {
@@ -1609,7 +1515,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add wave-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/wave-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/wave-carousel")
       return {
@@ -1630,33 +1537,13 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add convex-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/convex-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/convex-carousel")
       return {
         "convex-carousel-demo.tsx": {
           code: mod.convexCarouselDemoString,
-          language: "tsx",
-        },
-      }
-    },
-  },
-  "exponential-carousel-demo": {
-    name: "Exponential Carousel Demo",
-    type: "react",
-    renderMode: "iframe", // CRITICAL: Isolates GSAP Observer so the docs page scrollbar doesn't get trapped
-    previewUrl: "/preview/exponential-carousel-demo",
-    component: dynamic(() =>
-      import("@/registry/demos/components/exponential-carousel/exponential-carousel-demo").then(
-        (m) => m.default
-      )
-    ),
-    installCommand: "npx satis-ui add exponential-carousel",
-    getFiles: async () => {
-      const mod = await import("@/registry/strings/exponential-carousel")
-      return {
-        "exponential-carousel-demo.tsx": {
-          code: mod.exponentialCarouselDemoString,
           language: "tsx",
         },
       }
@@ -1672,7 +1559,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add ember-burn",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/ember-burn-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/ember-burn")
       return {
@@ -1693,7 +1581,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add ferrofluid-drag",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/ferrofluid-drag-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/ferrofluid-drag")
       return {
@@ -1714,7 +1603,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add fluid-disintegration",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/fluid-disintegration-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/fluid-disintegration")
       return {
@@ -1735,7 +1625,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add liquid-curtain",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/liquid-curtain-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/liquid-curtain")
       return {
@@ -1756,7 +1647,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add mycelium-network",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/mycelium-network-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/mycelium-network")
       return {
@@ -1777,7 +1669,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add dimensional-deck",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/dimensional-deck-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/dimensional-deck")
       return {
@@ -1798,7 +1691,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add dimensional-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/dimensional-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/dimensional-carousel")
       return {
@@ -1819,7 +1713,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add panoramic-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/panoramic-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/panoramic-carousel")
       return {
@@ -1840,7 +1735,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add flex-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/flex-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/flex-carousel")
       return {
@@ -1861,7 +1757,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add depth-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/depth-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/depth-carousel")
       return {
@@ -1882,7 +1779,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add cover-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/cover-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/cover-carousel")
       return {
@@ -1903,7 +1801,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add curved-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/curved-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/curved-carousel")
       return {
@@ -1924,7 +1823,8 @@ export const registry: Record<string, RegistryItem> = {
         (m) => m.default
       )
     ),
-    installCommand: "npx satis-ui add elastic-carousel",
+    installCommand:
+      "npx shadcn@latest add https://ui.satisium.com/r/elastic-carousel-demo.json",
     getFiles: async () => {
       const mod = await import("@/registry/strings/elastic-carousel")
       return {

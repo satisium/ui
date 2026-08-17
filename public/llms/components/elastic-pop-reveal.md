@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add elastic-pop-reveal
+npx shadcn@latest add https://ui.satisium.com/r/elastic-pop-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -30,7 +30,7 @@ npx satis-ui add elastic-pop-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/elastic-pop-reveal.tsx`
+**File Path:** `registry/ui/elastic-pop-reveal.tsx`
 
 ```tsx
 "use client"
@@ -231,7 +231,7 @@ ElasticPopReveal.displayName = "ElasticPopReveal"
 ```tsx
 "use client"
 
-import { ElasticPopReveal } from "@/components/ui/elastic-pop-reveal"
+import { ElasticPopReveal } from "@/registry/ui/elastic-pop-reveal"
 
 export default function ExamplePage() {
   return (

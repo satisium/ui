@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add liquid-mercury-reveal
+npx shadcn@latest add https://ui.satisium.com/r/liquid-mercury-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add liquid-mercury-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/liquid-mercury-reveal.tsx`
+**File Path:** `registry/ui/liquid-mercury-reveal.tsx`
 
 ```tsx
 "use client"
@@ -297,7 +297,7 @@ LiquidMercuryReveal.displayName = "LiquidMercuryReveal"
 ```tsx
 "use client"
 
-import { LiquidMercuryReveal } from "@/components/ui/liquid-mercury-reveal"
+import { LiquidMercuryReveal } from "@/registry/ui/liquid-mercury-reveal"
 
 export default function ExamplePage() {
   return (

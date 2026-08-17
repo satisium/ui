@@ -1,5 +1,5 @@
 export const bottomHingeTextRevealDemoString = `
-import { BottomHingeTextReveal } from "@/components/ui/bottom-hinge-text-reveal"
+import { BottomHingeTextReveal } from "@/components/satisium-ui/bottom-hinge-text-reveal"
 
 export default function BottomHingeTextRevealDemo() {
   return (
@@ -67,8 +67,8 @@ export const BottomHingeTextReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const resolveZ = typeof startZ === "number" ? \`\${startZ}px\` : startZ
 

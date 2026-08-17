@@ -42,13 +42,13 @@ export interface WeightlessFloatRevealProps extends React.HTMLAttributes<HTMLEle
 /**
  * WeightlessFloatReveal
  *
- * An ambient, zero-gravity text reveal component for Satis UI.
+ * An ambient, zero-gravity text reveal component for Satisium UI.
  * Elements drift upwards into place from randomized depths and rotations,
  * creating an organic, weightless floating effect.
  *
  * @example
  * ```tsx
- * import { WeightlessFloatReveal } from "@/components/ui/weightless-float-reveal"
+ * import { WeightlessFloatReveal } from "@/components/satisium-ui/weightless-float-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -88,8 +88,8 @@ export const WeightlessFloatReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to securely bypass React polymorphic type constraints
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

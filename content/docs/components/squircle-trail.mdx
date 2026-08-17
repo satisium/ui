@@ -2,14 +2,11 @@
 title: Squircle Trail
 description: A snappy, hardware-accelerated mouse trail component that leaves behind rounded-square images with optional path-directional rotation.
 component: true
-badge: new
 category:
-  - marketing
-subcategory:
-  - heroes
-author: SATIS UI
+  - mouse-trails
+author: Satisium UI
 links:
-  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/squircle-trail.mdx
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/squircle-trail.mdx
 registryKeys:
   - squircle-trail-avatars-demo
   - squircle-trail-images-demo
@@ -23,7 +20,19 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock cli="squircle-trail" title="squircle-trail" />
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/squircle-trail.json" title="squircle-trail" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/squircle-trail-avatars-demo.json" title="squircle-trail-avatars-demo" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/squircle-trail-images-demo.json" title="squircle-trail-images-demo" />
 </div>
 
 ### Manual
@@ -59,7 +68,7 @@ _Note: This component utilizes pure DOM manipulation and RequestAnimationFrame l
 ```tsx
 "use client"
 
-import SquircleTrail from "@/components/ui/squircle-trail"
+import SquircleTrail from "@/components/satisium-ui/squircle-trail"
 
 // Optimized Cloudinary URLs (w_250) for fast sequential loading
 const trailImages = [

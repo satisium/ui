@@ -1,12 +1,14 @@
 "use client"
 
-import { TAXONOMY, cn } from "@/lib/utils" // Ensure you import cn
+import { TAXONOMY, cn } from "@/lib/utils"
 import { trackEvent } from "@/lib/analytics"
 import { useCommandStore } from "@/store/use-command-store"
 import type * as PageTree from "fumadocs-core/page-tree"
 import { useTheme } from "next-themes"
 import { useRouter } from "next/navigation"
 import * as React from "react"
+import DOMPurify from "dompurify"
+import { logger } from "@/lib/logger"
 
 import {
   Command,
@@ -42,7 +44,6 @@ import {
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
-// ... (Keep all your existing type definitions and getContextualIcon here)
 type ApiSearchResult = {
   id: string
   title?: string
@@ -64,6 +65,8 @@ type StaticItem = {
   aliases?: string[]
   shortcut?: string
 }
+
+const searchPurify = DOMPurify.sanitize
 
 function getContextualIcon(name: string) {
   const lower = name.toLowerCase()
@@ -109,7 +112,6 @@ export interface CommandMenuTriggerProps extends React.ButtonHTMLAttributes<HTML
 
 /**
  * 🌟 THE UNIVERSAL TRIGGER BUTTON
- * A beautifully engineered, forward-ref button you can place absolutely anywhere.
  */
 export const CommandMenuTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -117,10 +119,9 @@ export const CommandMenuTrigger = React.forwardRef<
 >(({ className, variant = "default", onClick, ...props }, ref) => {
   const { setIsOpen } = useCommandStore()
 
-  // Safely merge our click handler with any external onClick (like from TooltipTrigger)
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setIsOpen(true)
-    onClick?.(e) // Let Radix UI do its thing too!
+    onClick?.(e)
   }
 
   if (variant === "icon") {
@@ -159,14 +160,14 @@ export const CommandMenuTrigger = React.forwardRef<
   )
 })
 CommandMenuTrigger.displayName = "CommandMenuTrigger"
+
 /**
  * 🌟 THE GLOBAL DIALOG
- * Mount this once in your app/layout.tsx. It silently listens for Cmd+K.
  */
 export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
   const router = useRouter()
   const { setTheme } = useTheme()
-  const { isOpen, setIsOpen } = useCommandStore() // Centralized state
+  const { isOpen, setIsOpen } = useCommandStore()
 
   const [query, setQuery] = React.useState("")
   const [apiResults, setApiResults] = React.useState<ApiSearchResult[]>([])
@@ -202,7 +203,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
         )
           return
         e.preventDefault()
-        setIsOpen(true) // Open from anywhere!
+        setIsOpen(true)
       }
     }
     document.addEventListener("keydown", down)
@@ -248,7 +249,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
           }
         }
       } catch (error) {
-        console.error("Search failed", error)
+        logger.error("Search failed", error)
       } finally {
         setIsLoading(false)
       }
@@ -256,7 +257,6 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
     return () => clearTimeout(timer)
   }, [query])
 
-  // ... (Keep the entire staticItems useMemo exact same as your code)
   const staticItems = React.useMemo<StaticItem[]>(() => {
     const items: StaticItem[] = []
 
@@ -327,7 +327,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
     }
 
     const categoryItems = Object.entries(TAXONOMY).map(
-      ([category, subcategories]) => {
+      ([category]) => {
         const catName = category
           .replace("-", " ")
           .replace(/\b\w/g, (l) => l.toUpperCase())
@@ -335,11 +335,11 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
           id: `/categories/${category}`,
           title: catName,
           searchString: catName,
-          subtitle: `${subcategories.length} sub-categories`,
+          subtitle: "Category",
           group: "Categories",
           url: `/categories/${category}`,
           icon: getContextualIcon("category"),
-          aliases: subcategories.map((s) => s.replace("-", " ")),
+          aliases: [],
         }
       }
     )
@@ -444,17 +444,6 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
     [modifier, router, saveRecent, setIsOpen]
   )
 
-  const activeItemDetails = React.useMemo(() => {
-    const staticMatch = staticItems.find(
-      (i) => i.id.toLowerCase() === activeValue
-    )
-    if (staticMatch)
-      return { label: staticMatch.url || "Execute System Action" }
-    const apiMatch = apiResults.find((i) => i.id.toLowerCase() === activeValue)
-    if (apiMatch) return { label: apiMatch.url }
-    return { label: "Navigate & Discover" }
-  }, [activeValue, staticItems, apiResults])
-
   const getApiIcon = (type: ApiSearchResult["type"]) => {
     if (type === "heading")
       return (
@@ -551,14 +540,10 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                         className="mr-3 size-4 text-muted-foreground"
                       />
                       <div className="flex flex-col items-start gap-0.5">
+                        {/* Subtitles stripped for clean look */}
                         <span className="flex items-center gap-2 font-medium">
                           {item.title}
                         </span>
-                        {item.subtitle && (
-                          <span className="font-mono text-[10px] text-muted-foreground">
-                            {item.subtitle}
-                          </span>
-                        )}
                       </div>
                     </CommandItem>
                   ))}
@@ -566,11 +551,9 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                 </CommandGroup>
               )}
 
-              {/* THE FLAWLESS API RESULT RENDERING ENGINE */}
               {apiResults.length > 0 && (
                 <CommandGroup heading="Deep Search Results (Content)">
                   {apiResults.map((result) => {
-                    // 1. Find the parent page to supply the missing title
                     const baseUrl = result.url.split("#")[0]
                     const parentPage = staticItems.find(
                       (item) => item.url === baseUrl
@@ -600,14 +583,13 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                       displayContent = result.content
                     }
 
-                    // 2. Unescape `<mark>` tags so they render correctly, while keeping everything else safe
-                    const safeTitle = displayTitle
-                      .replace(/&lt;mark&gt;/gi, "<mark>")
-                      .replace(/&lt;\/mark&gt;/gi, "</mark>")
+                    const safeTitle = searchPurify(displayTitle, {
+                      ALLOWED_TAGS: ["mark"],
+                    })
 
-                    const safeContent = displayContent
-                      .replace(/&lt;mark&gt;/gi, "<mark>")
-                      .replace(/&lt;\/mark&gt;/gi, "</mark>")
+                    const safeContent = searchPurify(displayContent, {
+                      ALLOWED_TAGS: ["mark"],
+                    })
 
                     return (
                       <CommandItem
@@ -619,8 +601,6 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                         <div className="flex w-full items-center">
                           {getApiIcon(result.type)}
                           <span
-                            // Removed bg-transparent and fixed spacing.
-                            // Marks will now beautifully glow with --primary color.
                             className="[&_mark]:rounded-[12px][&_mark]:bg-primary/20 font-heading text-sm font-medium [&_mark]:px-1 [&_mark]:text-primary"
                             dangerouslySetInnerHTML={{ __html: safeTitle }}
                           />
@@ -651,14 +631,10 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                     >
                       {item.icon}
                       <div className="flex min-w-0 flex-col items-start gap-0.5">
+                        {/* Subtitles stripped for clean look */}
                         <span className="flex items-center gap-2 truncate font-medium">
                           {item.title}
                         </span>
-                        {item.subtitle && (
-                          <span className="truncate font-mono text-[10px] text-muted-foreground">
-                            {item.subtitle}
-                          </span>
-                        )}
                       </div>
                       {item.shortcut && (
                         <span className="ml-auto font-mono text-[10px] tracking-widest text-muted-foreground">
@@ -672,26 +648,17 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
             </CommandList>
           </div>
 
+          {/* FLIPPED FOOTER LAYOUT */}
           <div className="flex items-center justify-between rounded-2xl bg-muted px-4 py-3 text-xs text-muted-foreground backdrop-blur-xl">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                {modifier === "meta" ? (
-                  <HugeiconsIcon
-                    icon={CommandIcon}
-                    className="size-3.5 text-primary"
-                  />
-                ) : modifier === "shift" ? (
-                  <HugeiconsIcon
-                    icon={ArrowRight01Icon}
-                    className="size-3.5 -rotate-90 text-primary"
-                  />
-                ) : (
-                  <HugeiconsIcon
-                    icon={ArrowMoveDownLeftIcon}
-                    className="size-3.5 text-foreground"
-                  />
-                )}
-              </div>
+            {/* LEFT SIDE: Clean ⌘K Indicator */}
+            <div className="flex items-center">
+              <kbd className="inline-flex h-5 shrink-0 items-center gap-1 rounded border border-border/50 bg-background px-1.5 font-mono text-[10px] font-medium text-muted-foreground shadow-sm">
+                <span className="text-xs">⌘</span>K
+              </kbd>
+            </div>
+
+            {/* RIGHT SIDE: Action State & Icon */}
+            <div className="flex items-center gap-1.5">
               <span className="font-medium text-foreground">
                 {modifier === "meta"
                   ? "Open in New Tab"
@@ -699,10 +666,25 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                     ? "Copy Target URL"
                     : "Select"}
               </span>
+
+              {/* Dynamic Action Icons */}
+              {modifier === "meta" ? (
+                <HugeiconsIcon
+                  icon={CommandIcon}
+                  className="size-3.5 text-primary"
+                />
+              ) : modifier === "shift" ? (
+                <HugeiconsIcon
+                  icon={ArrowRight01Icon}
+                  className="size-3.5 -rotate-90 text-primary"
+                />
+              ) : (
+                <HugeiconsIcon
+                  icon={ArrowMoveDownLeftIcon}
+                  className="size-3.5 text-foreground"
+                />
+              )}
             </div>
-            <span className="max-w-[50%] truncate font-mono text-[10px] tracking-wider text-muted-foreground/70">
-              {activeItemDetails.label}
-            </span>
           </div>
         </Command>
       </DialogContent>

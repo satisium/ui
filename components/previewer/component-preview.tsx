@@ -6,8 +6,6 @@ import React, { useEffect, useRef, useState } from "react"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import {
   ComputerTerminal01Icon,
-  LockPasswordIcon,
-  Share04Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { CodeBlock } from "../code-block/code-block"
@@ -15,6 +13,7 @@ import { CodeFile } from "../code-block/types"
 import { CommandBlock } from "../command-block"
 import { PreviewToolBox } from "./preview-toolbox"
 import { ResizablePlayground, ViewportMode } from "./resizable-playground"
+import { logger } from "@/lib/logger"
 import { PreviewBackground } from "./preview-background" // ✨ IMPORTED
 
 export interface DemoData {
@@ -36,8 +35,6 @@ interface PreviewerProps {
   githubUrl?: string
   previewUrl?: string
   sourceCodeId?: string
-  isPaid?: boolean
-  gumroadUrl?: string
 }
 
 function usePersistentState<T>(key: string, initialValue: T) {
@@ -52,7 +49,7 @@ function usePersistentState<T>(key: string, initialValue: T) {
         setState(initialValue)
       }
     } catch (e) {
-      console.error("Failed to read from localStorage", e)
+      logger.error("Failed to read from localStorage", e)
       setState(initialValue)
     }
   }, [key])
@@ -65,7 +62,7 @@ function usePersistentState<T>(key: string, initialValue: T) {
         window.localStorage.setItem(key, JSON.stringify(valueToStore))
       }
     } catch (e) {
-      console.error("Failed to write to localStorage", e)
+      logger.error("Failed to write to localStorage", e)
     }
   }
 
@@ -92,8 +89,6 @@ export function ComponentPreviewer({
   githubUrl,
   previewUrl,
   sourceCodeId,
-  isPaid = false,
-  gumroadUrl,
 }: PreviewerProps) {
   const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -103,20 +98,20 @@ export function ComponentPreviewer({
     title?.toLowerCase().replace(/[^a-z0-9]+/g, "-") || "default"
 
   const [activeDemoIndex, setActiveDemoIndex] = usePersistentState<number>(
-    `satis-active-demo-${componentKey}`,
+    `satisium-active-demo-${componentKey}`,
     0
   )
 
   const [isCodeOpen, setIsCodeOpen] = usePersistentState<boolean>(
-    "satis-code-open",
+    "satisium-code-open",
     false
   )
   const [previewWidth, setPreviewWidth] = usePersistentState<number | string>(
-    "satis-preview-width",
+    "satisium-preview-width",
     "100%"
   )
   const [viewportMode, setViewportMode] = usePersistentState<ViewportMode>(
-    "satis-viewport-mode",
+    "satisium-viewport-mode",
     "desktop"
   )
   const [reloadKey, setReloadKey] = useState<number>(0)
@@ -138,7 +133,7 @@ export function ComponentPreviewer({
   const handleReload = () => {
     if (activeDemo.renderMode === "iframe") {
       const iframe = document.getElementById(
-        `satis-iframe-${activeDemo.key}`
+        `satisium-iframe-${activeDemo.key}`
       ) as HTMLIFrameElement
 
       if (iframe?.contentWindow) {
@@ -171,75 +166,43 @@ export function ComponentPreviewer({
   const activeType = activeDemo.type || "react"
   const isMediaDemo = activeType === "video" || activeType === "image"
 
-  return (
-    <TooltipProvider delayDuration={150}>
-      <div
-        ref={containerRef}
-        className="relative flex h-full w-full flex-col overflow-hidden rounded-3xl bg-background p-3 text-foreground"
-      >
-        <div className="relative flex h-full w-full overflow-hidden rounded-3xl">
-          <div className="pointer-events-auto absolute top-0 right-0 flex h-full w-full flex-col rounded-2xl rounded-l-3xl lg:w-[600px]">
-            {isPaid || isMediaDemo ? (
-              <div className="flex h-full flex-col items-center justify-center px-8 text-center">
-                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-border/50 bg-background shadow-xl">
-                  <HugeiconsIcon
-                    icon={LockPasswordIcon}
-                    className="h-8 w-8 text-foreground"
-                  />
-                </div>
-                <h3 className="mb-3 font-heading text-2xl font-bold tracking-tight text-foreground">
-                  Pro Component
-                </h3>
-                <p className="mb-8 max-w-[280px] text-[15px] leading-relaxed text-muted-foreground">
-                  Unlock this component and the entire SATIS UI library with the
-                  Pro Pack.
-                </p>
-                <a
-                  href={gumroadUrl || "#"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 font-medium text-primary-foreground shadow-lg transition-all hover:scale-105 hover:shadow-[0_0_40px_8px_rgba(var(--primary),0.3)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-                >
-                  <span className="relative z-10 flex items-center gap-2 font-bold tracking-wide">
-                    Unlock with Pro
-                    <HugeiconsIcon
-                      icon={Share04Icon}
-                      className="h-4 w-4 transition-transform group-hover:translate-x-1"
-                    />
-                  </span>
-                </a>
-              </div>
-            ) : (
-              <div
-                key={activeDemo.key}
-                className="flex h-full flex-col gap-3 overflow-hidden px-3 pt-3"
-              >
-                <div className="mb-1 flex flex-col gap-1.5 px-1 pt-2">
-                  <h2 className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-foreground">
-                    <HugeiconsIcon
-                      icon={ComputerTerminal01Icon}
-                      className="size-4 text-muted-foreground"
-                    />
-                    <span>Installation</span>
-                  </h2>
-                  <p className="text-[13px] leading-relaxed text-muted-foreground">
-                    Run the command below to add the{" "}
-                    <span className="inline-flex items-center rounded-md border border-border/50 bg-muted/50 px-1.5 py-0.5 text-xs font-medium text-foreground">
-                      {activeDemo.name}
-                    </span>{" "}
-                    demo to your project.
-                  </p>
-                </div>
-                <CommandBlock cli={activeDemo.installCommand || ""} />
-                <CodeBlock
-                  files={activeDemo.files || {}}
-                  className="min-h-0 flex-1"
-                />
-              </div>
-            )}
-          </div>
+   return (
+     <TooltipProvider delayDuration={150}>
+       <div
+         ref={containerRef}
+         className="relative flex h-full w-full flex-col overflow-hidden rounded-3xl bg-background p-3 text-foreground"
+       >
+         <div className="relative flex h-full w-full overflow-hidden rounded-3xl">
+           <div className="pointer-events-auto absolute top-0 right-0 flex h-full w-full flex-col rounded-2xl rounded-l-3xl lg:w-[600px]">
+             <div
+               key={activeDemo.key}
+               className="flex h-full flex-col gap-3 overflow-hidden px-3 pt-3"
+             >
+               <div className="mb-1 flex flex-col gap-1.5 px-1 pt-2">
+                 <h2 className="flex items-center gap-2 text-[14px] font-semibold tracking-tight text-foreground">
+                   <HugeiconsIcon
+                     icon={ComputerTerminal01Icon}
+                     className="size-4 text-muted-foreground"
+                   />
+                   <span>Installation</span>
+                 </h2>
+                 <p className="text-[13px] leading-relaxed text-muted-foreground">
+                   Run the command below to add the{" "}
+                   <span className="inline-flex items-center rounded-md border border-border/50 bg-muted/50 px-1.5 py-0.5 text-xs font-medium text-foreground">
+                     {activeDemo.name}
+                   </span>{" "}
+                   demo to your project.
+                 </p>
+               </div>
+               <CommandBlock command={activeDemo.installCommand || ""} />
+               <CodeBlock
+                 files={activeDemo.files || {}}
+                 className="min-h-0 flex-1"
+               />
+             </div>
+           </div>
 
-          <motion.div
+           <motion.div
             className="absolute top-0 left-0 z-10 flex h-full overflow-hidden rounded-xl border-8 border-muted bg-muted shadow-[inset_0_0_60px_rgba(0,0,0,0.1)]"
             initial={false}
             animate={{

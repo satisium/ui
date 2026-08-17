@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add fluid-ink-reveal
+npx shadcn@latest add https://ui.satisium.com/r/fluid-ink-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add fluid-ink-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/fluid-ink-reveal.tsx`
+**File Path:** `registry/ui/fluid-ink-reveal.tsx`
 
 ```tsx
 "use client"
@@ -287,7 +287,7 @@ FluidInkReveal.displayName = "FluidInkReveal"
 ```tsx
 "use client"
 
-import { FluidInkReveal } from "@/components/ui/fluid-ink-reveal"
+import { FluidInkReveal } from "@/registry/ui/fluid-ink-reveal"
 
 export default function ExamplePage() {
   return (

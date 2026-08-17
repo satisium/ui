@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add elastic-carousel
+npx shadcn@latest add https://ui.satisium.com/r/elastic-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -31,7 +31,7 @@ npx satis-ui add elastic-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/elastic-carousel.tsx`
+**File Path:** `registry/ui/elastic-carousel.tsx`
 
 ```tsx
 "use client"
@@ -434,7 +434,7 @@ ElasticCarousel.displayName = "ElasticCarousel"
 ```tsx
 "use client"
 
-import { ElasticCarousel } from "@/components/ui/elastic-carousel"
+import { ElasticCarousel } from "@/registry/ui/elastic-carousel"
 
 export default function ExamplePage() {
   const images = [

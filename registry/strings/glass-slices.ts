@@ -1,5 +1,5 @@
 export const glassSlicesImageDemoString = `
-import GlassSlices from "@/components/ui/glass-slices"
+import GlassSlices from "@/components/satisium-ui/glass-slices"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
@@ -36,7 +36,7 @@ export default function GlassSlicesImageDemo() {
 }`
 
 export const glassSlicesVideoDemoString = `
-import GlassSlices from "@/components/ui/glass-slices"
+import GlassSlices from "@/components/satisium-ui/glass-slices"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 

@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add liquid-marble
+npx shadcn@latest add https://ui.satisium.com/r/liquid-marble.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add liquid-marble
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/liquid-marble.tsx`
+**File Path:** `registry/ui/liquid-marble.tsx`
 
 ```tsx
 "use client"
@@ -314,7 +314,7 @@ export default function LiquidMarble({
 ```tsx
 "use client"
 
-import LiquidMarble from "@/components/ui/liquid-marble"
+import LiquidMarble from "@/registry/ui/liquid-marble"
 
 export default function ExamplePage() {
   return (

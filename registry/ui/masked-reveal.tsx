@@ -38,7 +38,7 @@ export interface MaskedRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * MaskedReveal
  *
- * A sophisticated text reveal component for Satis UI.
+ * A sophisticated text reveal component for Satisium UI.
  * Wraps elements in a hidden overflow mask and pushes them up into view
  * with a slight, elegant rotation, resembling premium agency typography.
  */
@@ -62,8 +62,8 @@ export const MaskedReveal = React.forwardRef<HTMLElement, MaskedRevealProps>(
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints safely
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const resolveOffset =
       typeof startOffset === "number" ? `${startOffset}px` : startOffset

@@ -1,5 +1,5 @@
 export const liquidCurtainDemoString = `
-import { LiquidCurtain } from "@/components/ui/liquid-curtain"
+import { LiquidCurtain } from "@/components/satisium-ui/liquid-curtain"
 
 export default function LiquidCurtainDemo() {
   return (

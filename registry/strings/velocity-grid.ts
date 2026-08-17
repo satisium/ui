@@ -1,6 +1,6 @@
 export const velocityGridImageDemoString = `"use client"
 
-import VelocityGrid from "@/components/ui/velocity-grid"
+import VelocityGrid from "@/components/satisium-ui/velocity-grid"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
@@ -39,7 +39,7 @@ export default function VelocityGridImageDemo() {
 
 export const velocityGridVideoDemoString = `"use client"
 
-import VelocityGrid from "@/components/ui/velocity-grid"
+import VelocityGrid from "@/components/satisium-ui/velocity-grid"
 import { Loading02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 

@@ -1,19 +1,19 @@
-# SATIS UI — GitHub Strategy
+# Satisium UI — GitHub Strategy
 
-> **Production URL:** [https://ui.satisstoodio.com](https://ui.satisstoodio.com)  
+> **Production URL:** [https://ui.satisium.com](https://ui.satisium.com)  
 > **Dev URL:** [http://localhost:3000](http://localhost:3000)  
-> **Repository:** [https://github.com/satis-ui/ui.git](https://github.com/satis-ui/ui.git)  
+> **Repository:** [https://github.com/satisium/ui.git](https://github.com/satisium/ui.git)  
 > **Audience:** Core maintainers + open-source contributors  
 > **Status:** Living document — update as the project evolves  
-> **Scope:** Commits, branches, PRs, issues, releases, CI/CD, security, and community health for the open-source launch of SATIS UI.
+> **Scope:** Commits, branches, PRs, issues, releases, CI/CD, security, and community health for the open-source launch of Satisium UI.
 
 ---
 
 ## 1. Project Snapshot & Open-Source Readiness
 
-### 1.1 What SATIS UI is
+### 1.1 What Satisium UI is
 
-SATIS UI is a **high-end animated component library** built on:
+Satisium UI is a **high-end animated component library** built on:
 
 - **Next.js 16** (App Router, RSC-aware)
 - **Tailwind CSS v4** (CSS-first configuration)
@@ -101,7 +101,7 @@ Step 7: Build & Changeset→ pnpm registry:public && pnpm changeset
 
 - Must be `"use client"` if it uses hooks, event handlers, or browser APIs.
 - Must use **forwardRef** for DOM-forwarding components.
-- **CRITICAL:** Do NOT add hardcoded padding (e.g., `p-8`, `md:p-12`) inside the component wrapper. The SATIS UI previewer dynamically adds padding based on whether the registry layout is `fullscreen` or `centered`.
+- **CRITICAL:** Do NOT add hardcoded padding (e.g., `p-8`, `md:p-12`) inside the component wrapper. The Satisium UI previewer dynamically adds padding based on whether the registry layout is `fullscreen` or `centered`.
 - Must include **ARIA attributes** (`role`, `aria-checked`, `aria-label`, etc.).
 - Dependencies: only `clsx`, `tailwind-merge`, and animation libs already in `package.json`.
 
@@ -120,7 +120,7 @@ MyComponent.displayName = "MyComponent"
 #### Step 2 — Demo(s) (`registry/demos/`)
 
 - Each demo must be a **named export** matching the registry key.
-- Demos import from `@/registry/ui/<slug>` — never from `@/components/ui/`.
+- Demos import from `@/registry/ui/<slug>` — never from `@/components/satisium-ui/`.
 
 ```tsx
 // registry/demos/my-component-demo.tsx
@@ -169,7 +169,7 @@ export const myComponentFile = {
   type: "react",
   renderMode: "direct",   // use "iframe" for responsive/isolated padding
   component: dynamic(() => import("@/registry/demos/my-component-demo").then(m => m.MyComponentDemo)),
-  installCommand: "npx satis-ui add my-component",
+  installCommand: "npx satisium-ui add my-component",
   getFiles: async () => { ... }
 },
 ```
@@ -184,7 +184,7 @@ title: My Component
 description: A tasteful and carefully crafted component.
 badge: new
 category:
-  - interactions
+  - text
 registryKeys:
   - my-component-demo
 ---
@@ -196,9 +196,9 @@ registryKeys:
 
 #### Step 6 — LLM Context Markdown (`public/llms/`)
 
-SATIS UI features a "Copy for AI" button that feeds pure, un-styled markdown directly to LLMs. You **must** create a `.md` file that matches the path of your `.mdx` docs page.
+Satisium UI features a "Copy for AI" button that feeds pure, un-styled markdown directly to LLMs. You **must** create a `.md` file that matches the path of your `.mdx` docs page.
 
-_If your docs are at `content/docs/interactions/my-component.mdx`, create `public/llms/interactions/my-component.md`._
+_If your docs are at `content/docs/text/my-component.mdx`, create `public/llms/text/my-component.md`._
 
 ```markdown
 # My Component
@@ -208,7 +208,7 @@ An animated component using Framer Motion.
 ## Installation
 
 \`\`\`bash
-npx shadcn@latest add https://ui.satisstoodio.com/r/my-component.json
+npx shadcn@latest add https://ui.satisium.com/r/my-component.json
 \`\`\`
 
 ## Source Code
@@ -297,9 +297,9 @@ chore(deps): upgrade motion to v12.38.0
 Append `!` after the type/scope and add a `BREAKING CHANGE:` footer:
 
 ```
-feat(components)!: change FluidSwitch to use onValueChange
+feat(components)!: change Button to use variant prop
 
-BREAKING CHANGE: onCheckedChange is renamed to onValueChange.
+BREAKING CHANGE: primary is renamed to default.
 ```
 
 ---
@@ -327,7 +327,7 @@ Examples: `feat/add-magnetic-snap`, `fix/registry-build-error`
 3. Run `pnpm registry:public` to generate shadcn manifests.
 4. Run `pnpm changeset` to document your change for the release notes.
 5. Run `pnpm lint && pnpm typecheck && pnpm build` locally.
-6. Push to your fork and Open a PR against `satis-ui/ui main`.
+6. Push to your fork and Open a PR against `satisium/ui main`.
 7. CI runs automatically (lint → typecheck → build).
 8. Maintainer reviews, requests changes, or approves.
 9. Squash-merge to `main`.
@@ -483,7 +483,7 @@ jobs:
       - name: Commit version bump
         run: |
           git config user.name "changeset-bot"
-          git config user.email "changeset@satisstoodio.com"
+          git config user.email "changeset@satisium.com"
           git add .
           git diff --cached --quiet || git commit -m "chore(release): version packages"
           git push
@@ -543,7 +543,7 @@ git push
 ```markdown
 ## Security Policy
 
-If you discover a security vulnerability, please email security@satisstoodio.com instead of opening a public issue. We will acknowledge within 48 hours and provide a detailed response within 7 days.
+If you discover a security vulnerability, please email security@satisium.com instead of opening a public issue. We will acknowledge within 48 hours and provide a detailed response within 7 days.
 ```
 
 ### 9.2 Automated security
@@ -588,22 +588,22 @@ All components must pass these checks before merge:
 
 ### 12.1 Current: shadcn CLI registry
 
-SATIS UI is currently distributed purely through the shadcn CLI. There is no npm package yet.
+Satisium UI is currently distributed purely through the shadcn CLI. There is no npm package yet.
 
 Users install components directly from the production registry:
 
 ```bash
-npx shadcn@latest add https://ui.satisstoodio.com/r/<component-name>.json
+npx shadcn@latest add https://ui.satisium.com/r/<component-name>.json
 ```
 
 This is why **Step 7** (`pnpm registry:public`) in the Component Pipeline is non-negotiable. Without it, the component is not available for users to install.
 
 ### 12.2 Future: npm package
 
-An npm package (`@satis-ui/react` or similar) may be introduced in a future major version to enable:
+An npm package (`@satisium-ui/react` or similar) may be introduced in a future major version to enable:
 
 ```bash
-npm install @satis-ui/react
+npm install @satisium-ui/react
 ```
 
 This requires decoupling the registry from the docs site, publishing to npm, and maintaining semver guarantees at the package level. No timeline is set for this transition.

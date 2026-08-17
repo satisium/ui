@@ -1,5 +1,5 @@
 export const myceliumNetworkDemoString = `
-import { MyceliumNetwork } from "@/components/ui/mycelium-network"
+import { MyceliumNetwork } from "@/components/satisium-ui/mycelium-network"
 
 export default function MyceliumNetworkDemo() {
   return (

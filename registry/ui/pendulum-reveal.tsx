@@ -36,13 +36,13 @@ export interface PendulumRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * PendulumReveal
  *
- * A kinetic text reveal component for Satis UI.
+ * A kinetic text reveal component for Satisium UI.
  * Elements drop down from a top hinge point, utilizing a heavy elastic
  * ease to simulate a swinging pendulum settling into place.
  *
  * @example
  * ```tsx
- * import { PendulumReveal } from "@/components/ui/pendulum-reveal"
+ * import { PendulumReveal } from "@/components/satisium-ui/pendulum-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -77,8 +77,8 @@ export const PendulumReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints safely
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

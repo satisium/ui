@@ -1,5 +1,5 @@
 export const emberBurnDemoString = `
-import { EmberBurn } from "@/components/ui/ember-burn"
+import { EmberBurn } from "@/components/satisium-ui/ember-burn"
 
 export default function EmberBurnDemo() {
   return (

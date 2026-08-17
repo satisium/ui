@@ -84,6 +84,7 @@ export function ComponentCard({
               fill
               unoptimized={true}
               className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+              loading="lazy"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center">

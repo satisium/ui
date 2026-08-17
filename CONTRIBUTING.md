@@ -1,14 +1,14 @@
-# Contributing to SATIS UI
+# Contributing to Satisium UI
 
-Thank you for considering contributing to SATIS UI. This guide will give you the complete picture of how the project works, what we expect from contributions, and how to get your work merged.
+Thank you for considering contributing to Satisium UI. This guide will give you the complete picture of how the project works, what we expect from contributions, and how to get your work merged.
 
 ---
 
-## 1. What is SATIS UI?
+## 1. What is Satisium UI?
 
-SATIS UI is a high-end animated component library for React and Next.js. It distributes components through the **shadcn CLI** — users install them directly from a registry URL.
+Satisium UI is a high-end animated component library for React and Next.js. It distributes components through the **shadcn CLI** — users install them directly from a registry URL.
 
-**Production URL:** [https://ui.satisstoodio.com](https://ui.satisstoodio.com)
+**Production URL:** [https://ui.satisium.com](https://ui.satisium.com)
 
 **Tech stack:**
 
@@ -61,7 +61,7 @@ ui/
 │   ├── components/          # Component docs
 │   ├── blocks/              # Block-level patterns
 │   ├── templates/           # Full page templates
-│   └── getting-started/     # Intro, setup, changelog
+│   └── getting-started/     # Intro, setup
 ├── hooks/                   # Shared React hooks
 ├── lib/                     # Utilities, source config, content queries
 ├── public/
@@ -72,7 +72,7 @@ ui/
 │   ├── demos/               # Demo implementations
 │   ├── strings/             # Code-string exports for docs "Copy Code" feature
 │   └── index.ts             # Runtime registry: maps keys → dynamic imports
-├── scripts/                 # Build scripts (build-llms.mjs, create-doc.mjs, sync-changelog.mjs)
+├── scripts/                 # Build scripts (registry meta, LLM docs, changelog generator)
 ├── store/                   # Zustand state stores
 ├── CONTRIBUTING.md          # ← you are here
 ├── GITHUB_STRATEGY.md       # Maintainer-level strategy document
@@ -201,7 +201,7 @@ If you have demo files, add a second entry with `registryDependencies`:
   component: dynamic(() =>
     import("@/registry/demos/my-component-demo").then(m => m.MyComponentDemo)
   ),
-  installCommand: "npx satis-ui add my-component",
+  installCommand: "npx satisium-ui add my-component",
   getFiles: async () => {
     const mod = await import("@/registry/strings/my-component")
     return {
@@ -220,31 +220,24 @@ Frontmatter is validated by `source.config.ts` (Zod). Use an existing component'
 
 **Category taxonomy** (must match `lib/utils.ts`):
 
-| Category | Subcategories |
-|----------|--------------|
-| `marketing` | heroes, pricing, feature-sections, testimonials |
-| `navigation` | sidebars, navbars, breadcrumbs, tabs |
-| `overlays` | modals, dialogs, popovers, tooltips, drawers |
-| `data-display` | tables, lists, stats, avatars, cards |
-| `forms` | inputs, selects, toggles, sliders, multi-step |
-| `feedback` | toasts, alerts, skeletons, progress, empty-states |
-| `interactions` | hover-effects, micro-animations, magnetic-buttons |
-| `layout` | grids, masonry, split-panes |
+| Category | Description |
+|----------|-------------|
+| `carousels` | 3D and WebGL carousel components |
+| `text` | Text reveals, typewriters, image transitions, and visual effects |
+| `mouse-trails` | Interactive mouse-following trail components |
 
 ```mdx
 ---
 title: My Component
 description: A tasteful and carefully crafted component.
 component: true
-badge: new            # new | updated | beta | premium | deprecated
+badge: new            # new | updated | beta | deprecated
 category:
-  - interactions
-subcategory:
-  - hover-effects
-author: SATIS UI
+  - text
+author: Satisium UI
 links:
-  github: https://github.com/satis-ui/ui/blob/main/registry/ui/my-component.tsx
-  preview: https://ui.satisstoodio.com/preview/my-component-demo
+  github: https://github.com/satisium/ui/blob/main/registry/ui/my-component.tsx
+  preview: https://ui.satisium.com/preview/my-component-demo
 registryKeys:
   - my-component-demo
 media:
@@ -285,7 +278,7 @@ import { myComponentFile } from "@/registry/strings/my-component"
 
 ### Step 6 — LLM Context Markdown (`public/llms/`)
 
-SATIS UI has a **"Copy for AI"** button that feeds pure markdown to LLMs. You must create a `.md` file that mirrors your `.mdx` doc path.
+Satisium UI has a **"Copy for AI"** button that feeds pure markdown to LLMs. You must create a `.md` file that mirrors your `.mdx` doc path.
 
 _If your docs are at `content/docs/interactions/my-component.mdx`, create `public/llms/interactions/my-component.md`._
 
@@ -297,7 +290,7 @@ An animated component using Framer Motion.
 ## Installation
 
 ```bash
-npx shadcn@latest add https://ui.satisstoodio.com/r/my-component.json
+npx shadcn@latest add https://ui.satisium.com/r/my-component.json
 ```
 
 ## Source Code
@@ -375,9 +368,9 @@ chore(deps): upgrade motion to v12.38.0
 Append `!` after the type/scope and add a `BREAKING CHANGE:` footer:
 
 ```
-feat(components)!: change FluidSwitch to use onValueChange
+feat(components)!: change Button to use variant prop
 
-BREAKING CHANGE: onCheckedChange is renamed to onValueChange.
+BREAKING CHANGE: primary is renamed to default.
 ```
 
 ---
@@ -390,7 +383,7 @@ BREAKING CHANGE: onCheckedChange is renamed to onValueChange.
 <type>/<short-description>
 ```
 
-Examples: `feat/add-magnetic-snap-reveal`, `fix/registry-build-error`, `docs/update-changelog-mdx`
+Examples: `feat/add-magnetic-snap-reveal`, `fix/registry-build-error`, `docs/update-changelog-data`
 
 ### Protected branches
 
@@ -407,7 +400,7 @@ Examples: `feat/add-magnetic-snap-reveal`, `fix/registry-build-error`, `docs/upd
 3. Run `pnpm registry:public` to generate shadcn manifests.
 4. Run `pnpm changeset` to document your change for the release notes.
 5. Run `pnpm lint && pnpm typecheck && pnpm build` locally.
-6. Push to your fork and open a PR against `satis-ui/ui main`.
+6. Push to your fork and open a PR against `satisium/ui main`.
 7. CI runs automatically (lint → typecheck → build).
 8. Maintainer reviews, requests changes, or approves.
 9. Squash-merge to `main`.
@@ -555,6 +548,8 @@ Every component must pass these checks before merge:
 
 ---
 
+
+
 ## 11. Quick Decision Tree
 
 ```
@@ -596,6 +591,6 @@ Is this only docs, MDX, or LLM context?
 
 ## 13. Need Help?
 
-- **Questions about using components:** [GitHub Discussions](https://github.com/satis-ui/ui/discussions)
-- **Bug reports and feature requests:** [GitHub Issues](https://github.com/satis-ui/ui/issues)
-- **Security vulnerabilities:** Email **security@satisstoodio.com** (do not open a public issue)
+- **Questions about using components:** [GitHub Discussions](https://github.com/satisium/ui/discussions)
+- **Bug reports and feature requests:** [GitHub Issues](https://github.com/satisium/ui/issues)
+- **Security vulnerabilities:** Email **security@satisium.com** (do not open a public issue)

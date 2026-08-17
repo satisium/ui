@@ -36,7 +36,7 @@ export interface ZAxisRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * ZAxisReveal
  *
- * A cinematic deep-space text reveal component for Satis UI.
+ * A cinematic deep-space text reveal component for Satisium UI.
  * Elements fly in from the Z-axis, scaling down and un-blurring into focus.
  * Best used with DOM pinning to create immersive, Apple-style scrollytelling.
  */
@@ -59,8 +59,8 @@ export const ZAxisReveal = React.forwardRef<HTMLElement, ZAxisRevealProps>(
   ) => {
     // Separate trigger ref prevents layout snapping when scaling large text inside a pinned container
     const triggerRef = React.useRef<HTMLDivElement>(null)
-    const containerRef = React.useRef<any>(null) // any bypasses polymorphic TS limits
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null) // any bypasses polymorphic TS limits
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

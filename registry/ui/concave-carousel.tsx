@@ -56,13 +56,13 @@ export interface ConcaveCarouselProps {
 /**
  * ConcaveCarousel
  *
- * A high-performance, physics-based infinite carousel for Satis UI.
+ * A high-performance, physics-based infinite carousel for Satisium UI.
  * Items mathematically scale down as they reach the edges, creating a 3D "concave"
  * curved visual effect using strictly 2D DOM manipulation for maximum FPS.
  *
  * @example
  * ```tsx
- * import { ConcaveCarousel } from "@/components/ui/concave-carousel"
+ * import { ConcaveCarousel } from "@/components/satisium-ui/concave-carousel"
  *
  * export default function Hero() {
  *   return (

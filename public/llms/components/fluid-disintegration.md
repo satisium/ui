@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add fluid-disintegration
+npx shadcn@latest add https://ui.satisium.com/r/fluid-disintegration.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add fluid-disintegration
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/fluid-disintegration.tsx`
+**File Path:** `registry/ui/fluid-disintegration.tsx`
 
 ```tsx
 "use client"
@@ -228,7 +228,7 @@ export function FluidDisintegration({
 ```tsx
 "use client"
 
-import { FluidDisintegration } from "@/components/ui/fluid-disintegration"
+import { FluidDisintegration } from "@/registry/ui/fluid-disintegration"
 
 export default function ExamplePage() {
   return (

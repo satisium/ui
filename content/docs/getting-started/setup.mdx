@@ -1,19 +1,108 @@
 ---
 title: Setup
-description: How to wire up the spatial layout engine in your Next.js app.
+description: Install Satisium UI components in your Next.js project using the shadcn CLI.
 ---
 
-Getting started is designed to be frictionless. We assume you are running the latest version of Next.js and Tailwind v4.
+## Prerequisites
 
-### Prerequisites
+- **Node.js** 18 or higher
+- **Next.js** 13+ (App Router recommended)
+- **Tailwind CSS v4** configured in your project
+- **shadcn/ui** initialized (`npx shadcn@latest init`)
 
-You will need the following installed:
+If you haven't set up shadcn/ui yet, run:
 
-- `next` (latest)
-- `tailwindcss` (v4)
-- `motion-react` (for our precise spring physics)
-- `zustand` (for decoupled spatial state)
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest init" title="Initialize shadcn/ui" />
+</div>
 
-```bash
-npm install motion-react zustand
-```
+For detailed setup instructions, configuration options, and troubleshooting, refer to the [shadcn/ui documentation](https://ui.shadcn.com/docs/installation).
+
+## Install a component
+
+Use the shadcn CLI to install any Satisium UI component:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/dimensional-carousel.json"
+    title="dimensional-carousel"
+  />
+</div>
+
+The CLI will:
+
+1. Prompt you to confirm the component.
+2. Copy the component source into `components/satisium-ui/`.
+3. Copy any required demo or utility files into your project.
+4. Auto-detect and install missing dependencies.
+
+## Install a specific variant
+
+Some components have multiple variants (e.g., `velocity-strips-image`, `velocity-strips-video`). Install them individually:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json"
+    title="velocity-strips-image"
+  />
+</div>
+
+## Dependencies by component type
+
+The CLI handles most dependencies automatically. If you need to install them manually, the requirements depend on the component category:
+
+### WebGL components (Image Effects, some Carousels)
+
+Components built with Three.js require additional packages:
+
+<div className="mt-6">
+  <CommandBlock pkg="three @react-three/fiber @react-three/drei clsx tailwind-merge" />
+</div>
+
+### Scroll-driven components (Text Reveals, most Carousels)
+
+Components using GSAP ScrollTrigger require:
+
+<div className="mt-6">
+  <CommandBlock pkg="gsap @gsap/react clsx tailwind-merge" />
+</div>
+
+### Components with no extra dependencies
+
+Components like Wind Trail and Pendulum Trail require no extra dependencies beyond React.
+
+## Where files go
+
+After installation, your project will have:
+
+| Path                                          | Contents                                            |
+| :-------------------------------------------- | :-------------------------------------------------- |
+| `components/satisium-ui/<component>.tsx`      | The component source code                           |
+| `components/satisium-ui/<component>-demo.tsx` | Demo implementation (optional)                      |
+| `lib/utils.ts`                                | Shared utilities (`cn()` helper) — added if missing |
+
+## Verify the installation
+
+Import the component in any page or component and render it:
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "page.tsx": `import { VelocityStrips } from "@/components/satisium-ui/velocity-strips"\n\nexport default function Page() {\n  return (\n    <VelocityStrips\n      mediaUrl="/your-image.jpg"\n      mediaType="image"\n      slices={32}\n    />\n  )\n}`,
+    }}
+  />
+</div>
+
+If you see the component render with its default animation, you're ready.
+
+## Troubleshooting
+
+- **"Module not found: three"** — Install the Three.js dependencies manually (see above).
+- **"Module not found: gsap"** — Install GSAP for text-reveal and carousel components.
+- **Tailwind classes not applying** — Ensure you're on Tailwind CSS v4 with `@tailwindcss/postcss`.
+- **Fonts or icons missing** — Some demos use `@hugeicons/react` for loading fallbacks. Install it if a demo references it.
+
+## Next steps
+
+- Browse **[Components](/docs/components)** to find what you need.
+- Read **[How to use](/docs/getting-started/how-to-use)** for prop references and styling.

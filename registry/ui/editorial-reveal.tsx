@@ -58,13 +58,13 @@ export interface EditorialRevealProps extends React.HTMLAttributes<HTMLElement> 
 /**
  * EditorialReveal
  *
- * A premium, Awwwards-level text reveal component for Satis UI.
+ * A premium, Awwwards-level text reveal component for Satisium UI.
  * Uses GSAP and ScrollTrigger to create a sophisticated, staggered redaction-block reveal
  * that triggers exactly when the text enters the viewport.
  *
  * @example
  * ```tsx
- * import { EditorialReveal } from "@/components/ui/editorial-reveal"
+ * import { EditorialReveal } from "@/components/satisium-ui/editorial-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -100,10 +100,10 @@ export const EditorialReveal = React.forwardRef<
   ) => {
     // Typed as 'any' internally to bypass strict polymorphic DOM type constraints
     // without sacrificing outer type safety or cluttering intellisense.
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
 
     // Securely forward the internal ref out to the consumer
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

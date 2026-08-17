@@ -5,6 +5,8 @@ import { CategoryHero } from "@/components/component-card/category-hero"
 import { ComponentCard } from "@/components/component-card/component-card"
 import { CATEGORIES } from "@/lib/utils"
 import { Metadata } from "next"
+import { SITE_URL } from "@/lib/config"
+
 
 export function generateStaticParams() {
   return CATEGORIES.map((category) => ({
@@ -27,18 +29,32 @@ export async function generateMetadata(props: {
     title,
     description,
     alternates: {
-      canonical: `https://satisui.xyz/categories/${params.category}`,
+      canonical: `${SITE_URL}/categories/${params.category}`,
     },
     openGraph: {
-      title: `${title} | SATIS UI`,
+      title: `${title} | Satisium UI`,
       description,
-      images: [`/api/og?title=${encodeURIComponent(title)}`],
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(title)}`,
+          width: 1200,
+          height: 630,
+          alt: `${formattedCategory} Components | Satisium UI`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | SATIS UI`,
+      title: `${title} | Satisium UI`,
       description,
-      images: [`/api/og?title=${encodeURIComponent(title)}`],
+      images: [
+        {
+          url: `/api/og?title=${encodeURIComponent(title)}`,
+          width: 1200,
+          height: 630,
+          alt: `${formattedCategory} Components | Satisium UI`,
+        },
+      ],
     },
   }
 }
@@ -51,12 +67,11 @@ export default async function CategoryPage(props: {
 
   if (!CATEGORIES.includes(category as any)) return notFound()
 
-  const { pages, grouped } = queryContent({
+  const { pages } = queryContent({
     category: category,
-    groupBySubcategory: true,
   })
 
-  if (!pages.length || !grouped) {
+  if (!pages.length) {
     return (
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-8 py-24 lg:py-32">
         <CategoryHero title={category} count={pages.length} />
@@ -68,39 +83,19 @@ export default async function CategoryPage(props: {
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-8 py-24 lg:py-32">
       <CategoryHero title={category} count={pages.length} />
 
-      <div className="mx-auto mt-16 flex w-full flex-col gap-24 md:gap-32">
-        {Object.entries(grouped).map(([subcat, items]) => (
-          <section key={subcat} className="flex flex-col gap-10">
-            <header className="flex flex-col gap-3">
-              <div className="flex items-end justify-between">
-                <div className="flex items-baseline gap-3">
-                  <Link
-                    href={`/categories/${category}/${subcat}`}
-                    className="text-foreground transition-colors duration-300 hover:text-primary"
-                  >
-                    <h2 className="capitalize">{subcat.replace("-", " ")}</h2>
-                  </Link>
-                  <p className="font-mono text-[0.7rem] font-bold tracking-widest text-muted-foreground uppercase">
-                    {items.length}
-                  </p>
-                </div>
-              </div>
-            </header>
-
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              {items.map((item) => (
-                <ComponentCard
-                  key={item.url}
-                  url={item.url}
-                  title={item.data.title}
-                  description={item.data.description}
-                  badge={item.data.badge}
-                  media={item.data.media}
-                />
-              ))}
-            </div>
-          </section>
-        ))}
+      <div className="mx-auto mt-16 flex w-full flex-col gap-10">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+          {pages.map((item) => (
+            <ComponentCard
+              key={item.url}
+              url={item.url}
+              title={item.data.title}
+              description={item.data.description}
+              badge={item.data.badge}
+              media={item.data.media}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

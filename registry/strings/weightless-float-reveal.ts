@@ -1,5 +1,5 @@
 export const weightlessFloatHeadlineDemoString = `
-import { WeightlessFloatReveal } from "@/components/ui/weightless-float-reveal"
+import { WeightlessFloatReveal } from "@/components/satisium-ui/weightless-float-reveal"
 
 export default function WeightlessFloatHeadlineDemo() {
   return (
@@ -26,7 +26,7 @@ export default function WeightlessFloatHeadlineDemo() {
 `
 
 export const weightlessFloatParagraphDemoString = `
-import { WeightlessFloatReveal } from "@/components/ui/weightless-float-reveal"
+import { WeightlessFloatReveal } from "@/components/satisium-ui/weightless-float-reveal"
 
 export default function WeightlessFloatParagraphDemo() {
   return (
@@ -106,8 +106,8 @@ export const WeightlessFloatReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add weightless-float-reveal
+npx shadcn@latest add https://ui.satisium.com/r/weightless-float-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -32,7 +32,7 @@ npx satis-ui add weightless-float-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/weightless-float-reveal.tsx`
+**File Path:** `registry/ui/weightless-float-reveal.tsx`
 
 ```tsx
 "use client"
@@ -248,7 +248,7 @@ WeightlessFloatReveal.displayName = "WeightlessFloatReveal"
 ```tsx
 "use client"
 
-import { WeightlessFloatReveal } from "@/components/ui/weightless-float-reveal"
+import { WeightlessFloatReveal } from "@/registry/ui/weightless-float-reveal"
 
 export default function ExamplePage() {
   return (

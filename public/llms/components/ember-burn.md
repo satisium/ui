@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add ember-burn
+npx shadcn@latest add https://ui.satisium.com/r/ember-burn.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -24,7 +24,7 @@ npx satis-ui add ember-burn
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/ember-burn.tsx`
+**File Path:** `registry/ui/ember-burn.tsx`
 
 ```tsx
 "use client"
@@ -234,7 +234,7 @@ export function EmberBurn({
 ```tsx
 "use client"
 
-import { EmberBurn } from "@/components/ui/ember-burn"
+import { EmberBurn } from "@/registry/ui/ember-burn"
 
 export default function ExamplePage() {
   return (

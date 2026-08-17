@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add depth-carousel
+npx shadcn@latest add https://ui.satisium.com/r/depth-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -34,7 +34,7 @@ npx satis-ui add depth-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/depth-carousel.tsx`
+**File Path:** `registry/ui/depth-carousel.tsx`
 
 ```tsx
 "use client"
@@ -448,7 +448,7 @@ DepthCarousel.displayName = "DepthCarousel"
 ```tsx
 "use client"
 
-import { DepthCarousel } from "@/components/ui/depth-carousel"
+import { DepthCarousel } from "@/registry/ui/depth-carousel"
 
 export default function ExamplePage() {
   const images = [

@@ -1,44 +1,57 @@
 // app/categories/layout.tsx
 import { SpatialLayout } from "@/components/layout/spatial-layout"
-import { source } from "@/lib/source"
 import { TAXONOMY } from "@/lib/utils"
 import {
   ArrowLeft01Icon,
-  ChartLineData02Icon,
-  HotelBellIcon,
-  InputShortTextIcon,
-  Layers01Icon,
-  Layout01Icon,
-  LayoutTable02Icon,
-  NavigationIcon,
-  RotateLeft03Icon,
-  Store03Icon,
+  Car02Icon,
+  Cursor02Icon,
+  Image01Icon,
+  TextAlignJustifyCenterIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import type * as PageTree from "fumadocs-core/page-tree"
 import type { Metadata } from "next"
+import { SITE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
-  title: "Categories | SATIS UI",
+  title: "Categories | Satisium UI",
+  description:
+    "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+  alternates: {
+    canonical: `${SITE_URL}/categories`,
+  },
+  openGraph: {
+    title: "Categories | Satisium UI",
+    description:
+      "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+    images: [{ url: "/api/og?title=Categories", width: 1200, height: 630, alt: "Satisium UI Categories" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Categories | Satisium UI",
+    description:
+      "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+    creator: "@iamsatish4564",
+    images: [{ url: "/api/og?title=Categories", width: 1200, height: 630, alt: "Satisium UI Categories" }],
+  },
 }
 
 const CATEGORY_ICONS: Record<keyof typeof TAXONOMY, React.ReactNode> = {
-  marketing: <HugeiconsIcon icon={Store03Icon} className="size-5" />,
-  navigation: <HugeiconsIcon icon={NavigationIcon} className="size-5" />,
-  overlays: <HugeiconsIcon icon={Layers01Icon} className="size-5" />,
-  "data-display": (
-    <HugeiconsIcon icon={ChartLineData02Icon} className="size-5" />
+  carousels: <HugeiconsIcon icon={Car02Icon} className="size-5" />,
+  "text-reveals": (
+    <HugeiconsIcon icon={TextAlignJustifyCenterIcon} className="size-5" />
   ),
-  forms: <HugeiconsIcon icon={InputShortTextIcon} className="size-5" />,
-  feedback: <HugeiconsIcon icon={HotelBellIcon} className="size-5" />,
-  interactions: <HugeiconsIcon icon={RotateLeft03Icon} className="size-5" />,
-  layout: <HugeiconsIcon icon={LayoutTable02Icon} className="size-5" />,
+  "image-effects": (
+    <HugeiconsIcon icon={Image01Icon} className="size-5" />
+  ),
+  "mouse-trails": (
+    <HugeiconsIcon icon={Cursor02Icon} className="size-5" />
+  ),
 }
 
 function generateCategoryTree(): PageTree.Root {
   const categoryNodes: PageTree.Folder[] = Object.entries(TAXONOMY).map(
-    ([category, subcategories]) => {
-      const categoryKey = category as keyof typeof TAXONOMY
+    ([category]) => {
       const formattedCategory = category.replace("-", " ")
 
       return {
@@ -46,20 +59,13 @@ function generateCategoryTree(): PageTree.Root {
         name:
           formattedCategory.charAt(0).toUpperCase() +
           formattedCategory.slice(1),
-        icon: CATEGORY_ICONS[categoryKey],
+        icon: CATEGORY_ICONS[category as keyof typeof TAXONOMY],
         index: {
           type: "page",
           name: "Overview",
           url: `/categories/${category}`,
         },
-        children: subcategories.map((sub) => {
-          const formattedSub = sub.replace("-", " ")
-          return {
-            type: "page",
-            name: formattedSub.charAt(0).toUpperCase() + formattedSub.slice(1),
-            url: `/categories/${category}/${sub}`,
-          }
-        }),
+        children: [],
       }
     }
   )

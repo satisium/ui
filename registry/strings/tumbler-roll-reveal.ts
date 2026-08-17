@@ -1,5 +1,5 @@
 export const tumblerRollRevealDemoString = `
-import { TumblerRollReveal } from "@/components/ui/tumbler-roll-reveal"
+import { TumblerRollReveal } from "@/components/satisium-ui/tumbler-roll-reveal"
 
 export default function TumblerRollRevealDemo() {
   return (
@@ -68,8 +68,8 @@ export const TumblerRollReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

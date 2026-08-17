@@ -1,41 +1,56 @@
 import { CategoryHero } from "@/components/component-card/category-hero"
-import { TAXONOMY } from "@/lib/utils"
+import { TAXONOMY, CATEGORIES } from "@/lib/utils"
 import Link from "next/link"
 import { Metadata } from "next"
+import { SITE_URL } from "@/lib/config"
 
 export const metadata: Metadata = {
   title: "Categories",
   description:
-    "An organized taxonomy of interface elements, structural layouts, and interactive patterns. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+    "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
   alternates: {
-    canonical: "https://satisui.xyz/categories",
+    canonical: `${SITE_URL}/categories`,
   },
   openGraph: {
-    title: "Categories | SATIS UI",
+    title: "Categories | Satisium UI",
     description:
-      "An organized taxonomy of interface elements, structural layouts, and interactive patterns.",
-    images: ["/api/og?title=Categories"],
+      "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+    images: [
+      {
+        url: "/api/og?title=Categories",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI Categories",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Categories | SATIS UI",
-    images: ["/api/og?title=Categories"],
+    title: "Categories | Satisium UI",
+    images: [
+      {
+        url: "/api/og?title=Categories",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI Categories",
+      },
+    ],
   },
 }
 
 export default function AllCategoriesPage() {
-  const totalSubcategories = Object.values(TAXONOMY).flat().length
+  const categoryCount = CATEGORIES.length
 
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 px-8 py-24 lg:py-32">
       <CategoryHero
         title="Categories"
-        count={totalSubcategories}
-        description="An organized taxonomy of interface elements, structural layouts, and interactive patterns."
+        count={categoryCount}
+        description="Browse our collection of animated UI components organized by type."
       />
 
       <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {Object.entries(TAXONOMY).map(([category, subcategories]) => (
+        {Object.entries(TAXONOMY).map(([category]) => (
           <Link
             key={category}
             href={`/categories/${category}`}
@@ -46,25 +61,7 @@ export default function AllCategoriesPage() {
                 <h3 className="text-xl text-foreground capitalize transition-colors group-hover:text-primary">
                   {category.replace("-", " ")}
                 </h3>
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-muted/50 font-mono text-[0.65rem] font-bold text-muted-foreground transition-colors group-hover:bg-primary/10 group-hover:text-primary">
-                  {subcategories.length}
-                </span>
               </div>
-            </div>
-
-            <div className="px-6 py-4">
-              <p className="line-clamp-2 text-sm text-muted-foreground/70 transition-colors group-hover:text-muted-foreground">
-                {subcategories
-                  .map((sub) =>
-                    sub
-                      .split("-")
-                      .map(
-                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                      )
-                      .join(" ")
-                  )
-                  .join(", ")}
-              </p>
             </div>
           </Link>
         ))}

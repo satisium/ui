@@ -1,5 +1,75 @@
 # ui
 
+## 3.0.0
+
+### Minor Changes
+
+- 18be44f: add velocity strip and velocity grid
+- d8a2e20: added slinky trail along with demos code strings, docs etc
+- e4677cd: added liquid curtain
+- 76aae06: added dimensional carousel
+- b60930d: added depth trail component along with demos, strings docs etc. Succesfully added to the library
+- c00064f: added convex carousel
+- d261b73: added ferrofluid drag component
+- 131f74b: add liquid mercury reveal
+- 28a64a4: add cloudinary and optimised component-card to save bandwidth and improve performance
+- 6a89df2: Added wind shear reveal
+- 5f70cac: added manifesto text reveal
+- 643c4eb: add elastic pop reveal along with demos, strings docs etc
+- 77d892b: added bottom hinge text reveal component
+- 75d9c6a: added liquid marble succesfully
+- 4e2ca94: added granular dust reveal
+- 54bd910: added flip vertical along with all the things needed
+- cf5f689: added curved carousel
+- 22d35ec: added elastic typewriter component along with demos strings and docs
+- f7d0cf0: added cover carousel
+- d300676: added halftone video horizontal with demos and strings and docs
+- ffc522b: added magnetic-snap-reveal
+- 3c04638: added flip 3d reveal text component along with demos code strings and docs
+- 74578f2: added mycelium network Image reveal component.
+- 68848be: added pendulum reveal
+- 4e1e6d1: added tumbler roll reveal
+- d05e301: added multi color trail reveal
+- 69042ba: refined and modified the sidebar to include preview videos, and magic hover pill.
+- 76521e4: added wind trail core component along with demos, code strings and documentation
+- f08d6f9: added heat mirage reveal component
+- 7e9f47a: add proximity grid
+- e5d0e4d: added depth-carousel
+- add4e54: added panoramic-carousel
+- 69c0822: added concave carousel
+- 3870488: added dimensional deck component
+- 890359c: toc ui updated to handle truncated text. Minor height change for clean UI.
+- 733fe09: added ember burn image reveal component
+- ff51778: added velocity trail along with demos and strings and docs
+- e5a0697: added piano typewriter along with demos and code strings and the complete ecosystem
+- b940d71: added exponential carousel
+- 4beb55c: added pendulum trail along with the complete docs, demos etc
+- c68864b: added new fold reveal component
+- 4108a2f: updated/improved dimensional deck.
+- 8d4063d: Add clean changelog page which is manual and separate from changeset one. Add clean changeset strategy to track changes.
+- d306847: added wave carousel
+- 6158dfb: added weightless float reveal
+- 8c20a4e: added bouquet trail with demos and code strings
+- 25c7f8a: add halftone horizontal to the library
+- a03030e: added blur-reveal
+- 534b3ab: added fluid disintegration
+- f6de88e: added scatter trail along with demos, strings and clean documentation
+- 87da0d1: added masked reveal
+- c46bac2: added flex carousel
+- 3522943: added z axis reveal component
+- 76470ea: added halftone horizontal component with demos etc. Complete
+- 9587625: added elastic carousel
+- 838c62b: added fluid ink reveal
+- 9e902cd: added squircle trail along with demos and code strings, also with proper docs registry
+- 6c5a731: added editorial reveal component along with demos, strings , CLI and docs
+- 97cd61d: added ascent carousel
+- 7b9e6c8: improved dimensional carousel. added parallax.
+- 60eed8d: added glass slices component
+- 0ec3a87: added fluid typewriter
+- e23fb44: add halftone hero with demos and doc
+- 21c68b2: added velocity break reveal component
+- 704de2d: added kaleidoscope trail core component along with demos, code strings, documentation etc
+
 ## 3.0.0-beta.61
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 export const coverCarouselDemoString = `
 "use client"
 
-import { CoverCarousel } from "@/components/ui/cover-carousel"
+import { CoverCarousel } from "@/components/satisium-ui/cover-carousel"
 
 export default function CoverCarouselDemo() {
   const images = Array.from({ length: 18 }).map(
@@ -133,19 +133,19 @@ function CoverScene({
   images,
   scrollState,
   onReady,
-  cardWidthRatio,
-  cardAspectRatio,
-  lerpFactor,
+  cardWidthRatio = 0.35,
+  cardAspectRatio = 1.4,
+  lerpFactor = 0.06,
   parallaxIntensity,
-  activeGapMultiplier,
-  stackGapMultiplier,
-  maxZOffsetMultiplier,
-  stackZOffsetMultiplier,
-  rotationMultiplier,
-  scaleMultiplier,
-  dimmingFactor,
-  cornerRadius,
-  shadowOpacity,
+  activeGapMultiplier = 0.55,
+  stackGapMultiplier = 0.15,
+  maxZOffsetMultiplier = 0.4,
+  stackZOffsetMultiplier = 0.02,
+  rotationMultiplier = 0.8,
+  scaleMultiplier = 0.15,
+  dimmingFactor = 0.85,
+  cornerRadius = 0.04,
+  shadowOpacity = 0.6,
 }: CoverCarouselProps & {
   scrollState: React.MutableRefObject<ScrollState>
   onReady: () => void
@@ -157,13 +157,13 @@ function CoverScene({
   const isMobile = viewport.width < 5
   let itemWidth = isMobile
     ? viewport.width * 0.65
-    : viewport.width * cardWidthRatio!
-  let itemHeight = itemWidth * cardAspectRatio!
+    : viewport.width * cardWidthRatio
+  let itemHeight = itemWidth * cardAspectRatio
 
   const maxHeight = viewport.height * (isMobile ? 0.6 : 0.65)
   if (itemHeight > maxHeight) {
     itemHeight = maxHeight
-    itemWidth = itemHeight / cardAspectRatio!
+    itemWidth = itemHeight / cardAspectRatio
   }
 
   const geometry = useMemo(
@@ -233,12 +233,12 @@ function CoverScene({
     state.current = THREE.MathUtils.damp(
       state.current,
       state.target,
-      lerpFactor! * 100,
+      lerpFactor * 100,
       dt
     )
 
     if (groupRef.current) {
-      groupRef.current.children.forEach((mesh: any, i) => {
+      groupRef.current.children.forEach((mesh: THREE.Object3D, i) => {
         const material = materials[i]
         if (!material) return
 
@@ -248,16 +248,16 @@ function CoverScene({
         const t = Math.min(absDfc, 1.0)
         const easeOut = 1.0 - Math.pow(1.0 - t, 3.0)
 
-        const activeGap = itemWidth * activeGapMultiplier!
-        const stackSpacing = itemWidth * stackGapMultiplier!
+        const activeGap = itemWidth * activeGapMultiplier
+        const stackSpacing = itemWidth * stackGapMultiplier
 
         const xOffset = Math.sign(dfc) * (absDfc * stackSpacing + easeOut * activeGap)
         const zOffset =
-          -easeOut * (itemWidth * maxZOffsetMultiplier!) -
-          absDfc * (itemWidth * stackZOffsetMultiplier!)
+          -easeOut * (itemWidth * maxZOffsetMultiplier) -
+          absDfc * (itemWidth * stackZOffsetMultiplier)
 
-        const yRot = Math.sign(dfc) * easeOut * -rotationMultiplier!
-        const scale = 1.0 - easeOut * scaleMultiplier!
+        const yRot = Math.sign(dfc) * easeOut * -rotationMultiplier
+        const scale = 1.0 - easeOut * scaleMultiplier
 
         mesh.position.set(xOffset, 0, zOffset)
         mesh.rotation.set(0, yRot, 0)
@@ -277,7 +277,7 @@ function CoverScene({
         <mesh key={i} geometry={geometry} material={materials[i]} />
       ))}
 
-      {shadowOpacity! > 0 && (
+      {shadowOpacity > 0 && (
         <ContactShadows
           position={[0, -itemHeight / 2 - 0.2, 0]}
           opacity={shadowOpacity}

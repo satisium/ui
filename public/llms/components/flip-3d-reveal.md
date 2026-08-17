@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add flip-3d-reveal
+npx shadcn@latest add https://ui.satisium.com/r/flip-3d-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add flip-3d-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/flip-3d-reveal.tsx`
+**File Path:** `registry/ui/flip-3d-reveal.tsx`
 
 ```tsx
 "use client"
@@ -230,7 +230,7 @@ Flip3DReveal.displayName = "Flip3DReveal"
 ```tsx
 "use client"
 
-import { Flip3DReveal } from "@/components/ui/flip-3d-reveal"
+import { Flip3DReveal } from "@/registry/ui/flip-3d-reveal"
 
 export default function ExamplePage() {
   return (

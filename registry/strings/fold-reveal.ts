@@ -1,5 +1,5 @@
 export const foldRevealDemoString = `
-import { FoldReveal } from "@/components/ui/fold-reveal"
+import { FoldReveal } from "@/components/satisium-ui/fold-reveal"
 
 export default function FoldRevealDemo() {
   return (
@@ -62,8 +62,8 @@ export const FoldReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

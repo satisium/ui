@@ -19,7 +19,7 @@ export function IframeBridgeProvider({
       // Security Check: Ensure message comes from our own origin
       // if (event.origin !== window.location.origin) return
 
-      if (event.data?.type === "SATIS_RELOAD_ANIMATION") {
+      if (event.data?.type === "SATISIUM_RELOAD_ANIMATION") {
         setReloadKey((prev) => prev + 1)
       }
     }

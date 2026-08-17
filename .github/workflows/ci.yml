@@ -63,3 +63,18 @@ jobs:
         run: test -d public/r && echo "Registry built successfully" || (echo "Registry missing!" && exit 1)
       - name: Verify LLM output exists
         run: test -f public/llms-full.txt && echo "LLM docs built" || (echo "LLM docs missing!" && exit 1)
+
+  validate-changesets:
+    name: Validate Changesets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 10
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: node scripts/validate-changesets.mjs

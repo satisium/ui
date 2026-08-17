@@ -1,5 +1,5 @@
 export const depthTrailAvatarsDemoString = `
-import DepthTrail from "@/components/ui/depth-trail"
+import DepthTrail from "@/components/satisium-ui/depth-trail"
 
 // Optimized Cloudinary URLs (w_250) for ultra-fast, lightweight trail rendering
 const trailImages = [
@@ -38,7 +38,7 @@ export default function DepthTrailAvatarsDemo() {
 }`
 
 export const depthTrailImagesDemoString = `
-import DepthTrail from "@/components/ui/depth-trail"
+import DepthTrail from "@/components/satisium-ui/depth-trail"
 
 // Optimized Cloudinary URLs (w_250) for fast sequential loading
 const trailImages = [

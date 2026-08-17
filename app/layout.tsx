@@ -1,19 +1,25 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import {
   Antonio,
   Plus_Jakarta_Sans,
   Inter,
   IBM_Plex_Mono,
+  Caveat,
 } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import { CSPostHogProvider } from "@/components/analytics-provider"
+import { ConsentProvider } from "@/lib/consent"
+import { ConsentBanner } from "@/components/consent-banner"
 import { Suspense } from "react"
+import { SITE_URL } from "@/lib/config"
 import PostHogPageView from "@/components/posthog-pageview"
 import { CommandMenuDialog } from "@/components/layout/command-menu"
 import { source } from "@/lib/source"
+import { ViewportBlocker } from "@/components/viewport-blocker"
+import WebVitals from "@/components/web-vitals"
 
 const fontDisplay = Antonio({
   subsets: ["latin"],
@@ -40,28 +46,90 @@ const fontCode = IBM_Plex_Mono({
   display: "swap",
 })
 
+const fontCaveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
+  display: "swap",
+  weight: ["500", "600"],
+})
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://satisui.xyz"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    template: "%s | SATIS UI",
-    default: "SATIS UI | Animated component library for design engineers",
+    template: "%s | Satisium UI",
+    default: "Satisium UI | Animated component library for design engineers",
   },
   description:
     "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
   alternates: {
     canonical: "/",
-    types: { "text/markdown": "/llms.txt" },
+    languages: { "en-US": "/" },
+    types: {
+      "application/llms+txt": "/llms.txt",
+      "text/markdown": "/llms-full.txt",
+    },
+  },
+  keywords: [
+    "animated components",
+    "shadcn ui",
+    "tailwind v4",
+    "framer motion",
+    "gsap",
+    "react components",
+    "design engineers",
+    "ui library",
+    "satisium ui",
+  ],
+  verification: {
+    google: "your-google-verification-code",
+    other: {
+      "msvalidate.01": "your-bing-verification-code",
+    },
   },
   openGraph: {
     type: "website",
-    siteName: "SATIS UI",
+    siteName: "Satisium UI",
     locale: "en_US",
+    images: [
+      {
+        url: "/api/og?title=Satisium UI",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SATIS UI | Animated component library for design engineers",
+    title: "Satisium UI | Animated component library for design engineers",
+    description:
+      "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
     creator: "@iamsatish4564",
+    images: [
+      {
+        url: "/api/og?title=Satisium UI",
+        width: 1200,
+        height: 630,
+        alt: "Satisium UI",
+      },
+    ],
   },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/icon-192.png",
+    apple: "/apple-icon.png",
+    other: [{ rel: "apple-touch-icon", url: "/apple-icon.png" }],
+  },
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+  ],
+  colorScheme: "light dark",
 }
 
 export default function RootLayout({
@@ -78,41 +146,140 @@ export default function RootLayout({
         fontDisplay.variable,
         fontHeading.variable,
         fontBody.variable,
-        fontCode.variable
+        fontCode.variable,
+        fontCaveat.variable
       )}
     >
       <head>
-        <meta name="apple-mobile-web-app-title" content="Satis UI" />
+        <meta name="apple-mobile-web-app-title" content="Satisium UI" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin=""
+          href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap"
+        />
+        <link rel="preload" as="image" href="/favicon.ico" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "SATIS UI",
-              alternateName: ["SatisUI", "Satis UI Library"],
-              url: "https://satisui.xyz",
+              name: "Satisium UI",
+              alternateName: ["SatisiumUI", "Satisium UI Library"],
+              url: SITE_URL,
               potentialAction: {
                 "@type": "SearchAction",
-                target:
-                  "https://satisui.xyz/docs/search?q={search_term_string}",
+                target: `${SITE_URL}/docs/search?q={search_term_string}`,
                 "query-input": "required name=search_term_string",
               },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Satisium UI",
+              url: SITE_URL,
+              sameAs: [
+                "https://github.com/satisium/ui",
+                "https://twitter.com/iamsatish4564",
+              ],
+              logo: {
+                "@type": "ImageObject",
+                url: `${SITE_URL}/icon-512.png`,
+                width: 512,
+                height: 512,
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: "Satisium UI",
+              description:
+                "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+              url: SITE_URL,
+              applicationCategory: "DeveloperApplication",
+              operatingSystem: "Web",
+              sameAs: [
+                "https://github.com/satisium/ui",
+                "https://twitter.com/iamsatish4564",
+              ],
+              offers: {
+                "@type": "Offer",
+                price: "0.00",
+                priceCurrency: "USD",
+                description: "Free components",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Satisium UI",
+              description:
+                "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
+              url: SITE_URL,
+              inLanguage: "en-US",
             }),
           }}
         />
       </head>
 
       <body>
-        <CSPostHogProvider>
-          <Suspense fallback={null}>
-            <PostHogPageView />
-          </Suspense>
-          <ThemeProvider>
-            {children}
-            <CommandMenuDialog docsTree={source.pageTree} />
-          </ThemeProvider>
-        </CSPostHogProvider>
+        <ConsentProvider>
+          <CSPostHogProvider>
+            <Suspense fallback={null}>
+              <PostHogPageView />
+              <WebVitals />
+            </Suspense>
+            <ThemeProvider>
+              <ViewportBlocker />
+
+              {children}
+              <CommandMenuDialog docsTree={source.pageTree} />
+            </ThemeProvider>
+            <ConsentBanner />
+          </CSPostHogProvider>
+        </ConsentProvider>
       </body>
     </html>
   )

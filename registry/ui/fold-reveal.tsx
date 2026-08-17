@@ -32,7 +32,7 @@ export interface FoldRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * FoldReveal
  *
- * A structural text reveal component for Satis UI.
+ * A structural text reveal component for Satisium UI.
  * Distinct lines of text hinge downward into view like a cascading staircase
  * or folding paper, providing a rigid, architectural feel.
  */
@@ -53,8 +53,8 @@ export const FoldReveal = React.forwardRef<HTMLElement, FoldRevealProps>(
     ref
   ) => {
     // Typed as 'any' to safely bypass strict polymorphic DOM type constraints
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

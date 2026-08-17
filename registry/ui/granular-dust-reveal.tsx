@@ -33,13 +33,13 @@ export interface GranularDustRevealProps extends React.HTMLAttributes<HTMLElemen
 /**
  * GranularDustReveal
  *
- * A cinematic text reveal for Satis UI.
+ * A cinematic text reveal for Satisium UI.
  * Uses microscopic SVG fractal noise to shatter typography into granular sand,
  * dynamically coalescing into pristine, anti-aliased text.
  *
  * @example
  * ```tsx
- * import { GranularDustReveal } from "@/components/ui/granular-dust-reveal"
+ * import { GranularDustReveal } from "@/components/satisium-ui/granular-dust-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -73,10 +73,10 @@ export const GranularDustReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints securely
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const mapRef = React.useRef<SVGFEDisplacementMapElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     // Unique ID ensures multiple components don't share the same SVG filter
     const uniqueId = React.useId().replace(/[^a-zA-Z0-9]/g, "")

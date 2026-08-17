@@ -6,7 +6,7 @@ export default function MyceliumNetworkDemo() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center bg-background text-foreground">
       <MyceliumNetwork
-        imageUrl="https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/0.jpg"
+        imageUrl="https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/25.jpg"
         columns={16} // 16:9 ratio matches the landscape bounding box flawlessly
         rows={9}
         duration={1.2}

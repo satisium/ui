@@ -34,13 +34,13 @@ export interface FluidTypewriterProps extends React.HTMLAttributes<HTMLElement> 
 /**
  * FluidTypewriter
  *
- * A liquid-smooth typewriter effect for Satis UI.
+ * A liquid-smooth typewriter effect for Satisium UI.
  * A glowing cursor seamlessly glides across the text, intelligently wrapping
  * to new lines and pausing at punctuation, while characters emerge from a deep blur.
  *
  * @example
  * ```tsx
- * import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+ * import { FluidTypewriter } from "@/components/satisium-ui/fluid-typewriter"
  *
  * export default function Hero() {
  *   return (
@@ -75,10 +75,10 @@ export const FluidTypewriter = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to securely bypass React polymorphic type constraints
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const cursorRef = React.useRef<HTMLSpanElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

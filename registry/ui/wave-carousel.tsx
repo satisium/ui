@@ -58,7 +58,7 @@ export interface WaveCarouselProps {
 /**
  * WaveCarousel
  *
- * A high-performance, sine-wave driven infinite carousel for Satis UI.
+ * A high-performance, sine-wave driven infinite carousel for Satisium UI.
  * Items mathematically scale up and down based on a cosine wave, creating a
  * "rolling hills" visual effect using strictly 2D DOM manipulation for maximum FPS.
  */

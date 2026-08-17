@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add multi-color-trail-reveal
+npx shadcn@latest add https://ui.satisium.com/r/multi-color-trail-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -27,7 +27,7 @@ npx satis-ui add multi-color-trail-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/multi-color-trail-reveal.tsx`
+**File Path:** `registry/ui/multi-color-trail-reveal.tsx`
 
 ```tsx
 "use client"
@@ -359,7 +359,7 @@ MultiColorTrailReveal.displayName = "MultiColorTrailReveal"
 ```tsx
 "use client"
 
-import { MultiColorTrailReveal } from "@/components/ui/multi-color-trail-reveal"
+import { MultiColorTrailReveal } from "@/registry/ui/multi-color-trail-reveal"
 
 export default function ExamplePage() {
   return (

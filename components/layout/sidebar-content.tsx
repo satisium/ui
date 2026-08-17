@@ -18,7 +18,11 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { SidebarFooter } from "./sidebar-footer"
 import { CommandMenuTrigger } from "./command-menu"
 import { source } from "@/lib/source"
-import { getCloudinaryUrl } from "@/lib/cloudinary" // ✨ Import the utility
+import { getCloudinaryUrl } from "@/lib/cloudinary"
+
+// --- NEW IMPORTS ---
+import { SatisiumLogo } from "@/components/satisium-logo"
+import { Badge } from "@/components/ui/badge"
 
 type CustomPageNode = PageTree.Item & {
   badge?: string
@@ -29,7 +33,6 @@ type CustomPageNode = PageTree.Item & {
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
 function VideoLayer({ url }: { url: string }) {
-  // ✨ Instantly generate both thumbnail and video using the new global utility
   const poster = getCloudinaryUrl(url, "preview", "image")
   const video = getCloudinaryUrl(url, "preview", "video")
 
@@ -102,7 +105,6 @@ function MediaPreviewCard({
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 origin-center overflow-hidden rounded-[14px]"
             >
-              {/* Render the VideoLayer */}
               <VideoLayer url={node.media.video} />
             </motion.div>
           </AnimatePresence>
@@ -245,17 +247,26 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
         targetY={targetY}
       />
 
-      <div className="mb-6 flex-none items-center px-4 pt-2">
+      {/* --- SIDEBAR BRANDING (Replaced) --- */}
+      <div className="mb-6 flex-none items-center px-4 pt-4">
         <Link
           href="/"
-          className="group flex w-full items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+          className="group flex w-full items-center gap-2.5 rounded-md transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
         >
-          <div className="flex size-7 shrink-0 items-center justify-center rounded-md border border-border bg-background transition-colors group-hover:border-primary/50">
-            <span className="text-sm text-foreground">☺</span>
+          {/* Logo with hover lift */}
+          <div className="flex size-7 shrink-0 items-center justify-center">
+            <SatisiumLogo size="100%" />
           </div>
-          <span className="truncate text-[13px] font-semibold tracking-tight text-foreground">
-            SATIS UI
-          </span>
+
+          {/* Text + Superscript Badge */}
+          <div className="flex items-start">
+            <span className="font-heading text-base font-bold tracking-tight text-foreground">
+              Satisium UI
+            </span>
+            <Badge className="-mt-1 ml-1.5 h-[18px] rounded-[5px] border-none bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground hover:bg-primary/90">
+              Beta
+            </Badge>
+          </div>
         </Link>
       </div>
 
@@ -271,10 +282,9 @@ export function SidebarContent({ tree }: { tree: PageTree.Root }) {
           ref={scrollRef}
           onScroll={checkScroll}
           onKeyDown={handleKeyDown}
-          className="pb-4[-ms-overflow-style:none] flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="pb-4[-ms-overflow-style:none] flex-1 [scrollbar-width:none] overflow-y-auto [&::-webkit-scrollbar]:hidden"
         >
           <LayoutGroup>
-            {/* The global nav wrapper detects when the mouse completely leaves the menu to fade out the hover pill */}
             <nav
               className="flex flex-col gap-1 px-2"
               onMouseLeave={() => setHoveredUrl(null)}

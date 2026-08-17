@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add ascent-carousel
+npx shadcn@latest add https://ui.satisium.com/r/ascent-carousel.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -31,7 +31,7 @@ npx satis-ui add ascent-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/ascent-carousel.tsx`
+**File Path:** `registry/ui/ascent-carousel.tsx`
 
 ```tsx
 "use client"
@@ -342,7 +342,7 @@ export function AscentCarousel({
 ```tsx
 "use client"
 
-import { AscentCarousel } from "@/components/ui/ascent-carousel"
+import { AscentCarousel } from "@/registry/ui/ascent-carousel"
 
 export default function ExamplePage() {
   return (

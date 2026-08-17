@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add mycelium-network
+npx shadcn@latest add https://ui.satisium.com/r/mycelium-network.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -27,7 +27,7 @@ npx satis-ui add mycelium-network
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/mycelium-network.tsx`
+**File Path:** `registry/ui/mycelium-network.tsx`
 
 ```tsx
 "use client"
@@ -303,7 +303,7 @@ export function MyceliumNetwork({
 ```tsx
 "use client"
 
-import { MyceliumNetwork } from "@/components/ui/mycelium-network"
+import { MyceliumNetwork } from "@/registry/ui/mycelium-network"
 
 export default function ExamplePage() {
   return (

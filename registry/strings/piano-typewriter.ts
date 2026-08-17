@@ -1,5 +1,5 @@
 export const pianoTypewriterDemoString = `
-import { PianoTypewriter } from "@/components/ui/piano-typewriter"
+import { PianoTypewriter } from "@/components/satisium-ui/piano-typewriter"
 
 export default function PianoTypewriterDemo() {
   return (
@@ -63,10 +63,10 @@ export const PianoTypewriter = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const cursorRef = React.useRef<HTMLSpanElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

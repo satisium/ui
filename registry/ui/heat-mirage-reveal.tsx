@@ -34,13 +34,13 @@ export interface HeatMirageRevealProps extends React.HTMLAttributes<HTMLElement>
 /**
  * HeatMirageReveal
  *
- * A cinematic atmospheric reveal component for Satis UI.
+ * A cinematic atmospheric reveal component for Satisium UI.
  * Uses an SVG displacement map to simulate atmospheric thermal distortion (heat waves).
  * The text drifts upward and materializes as the heat dissipates into sharp focus.
  *
  * @example
  * ```tsx
- * import { HeatMirageReveal } from "@/components/ui/heat-mirage-reveal"
+ * import { HeatMirageReveal } from "@/components/satisium-ui/heat-mirage-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -75,10 +75,10 @@ export const HeatMirageReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const mapRef = React.useRef<SVGFEDisplacementMapElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     // Unique ID ensures multiple components don't share the same SVG filter
     const uniqueId = React.useId().replace(/:/g, "")

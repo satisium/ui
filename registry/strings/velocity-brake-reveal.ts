@@ -1,5 +1,5 @@
 export const velocityBrakeDemoString = `
-import { VelocityBrakeReveal } from "@/components/ui/velocity-brake-reveal"
+import { VelocityBrakeReveal } from "@/components/satisium-ui/velocity-brake-reveal"
 
 export default function VelocityBrakeDemo() {
   return (
@@ -70,8 +70,8 @@ export const VelocityBrakeReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

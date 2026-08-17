@@ -66,13 +66,13 @@ export interface Flip3DRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * Flip3DReveal
  *
- * A premium, mechanical text reveal component for Satis UI.
+ * A premium, mechanical text reveal component for Satisium UI.
  * Characters or words rotate into view along the Y-axis, creating a
  * Rolodex or split-flap display effect with a microscopic physics bounce.
  *
  * @example
  * ```tsx
- * import { Flip3DReveal } from "@/components/ui/flip-3d-reveal"
+ * import { Flip3DReveal } from "@/components/satisium-ui/flip-3d-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -105,8 +105,8 @@ export const Flip3DReveal = React.forwardRef<HTMLElement, Flip3DRevealProps>(
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints safely
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

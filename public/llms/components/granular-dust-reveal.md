@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add granular-dust-reveal
+npx shadcn@latest add https://ui.satisium.com/r/granular-dust-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add granular-dust-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/granular-dust-reveal.tsx`
+**File Path:** `registry/ui/granular-dust-reveal.tsx`
 
 ```tsx
 "use client"
@@ -290,7 +290,7 @@ GranularDustReveal.displayName = "GranularDustReveal"
 ```tsx
 "use client"
 
-import { GranularDustReveal } from "@/components/ui/granular-dust-reveal"
+import { GranularDustReveal } from "@/registry/ui/granular-dust-reveal"
 
 export default function ExamplePage() {
   return (

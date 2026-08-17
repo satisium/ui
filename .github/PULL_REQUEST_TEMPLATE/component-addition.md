@@ -4,7 +4,7 @@
 
 ---
 
-## 🛑 The Satis UI Registry Checklist
+## 🛑 The Satisium UI Registry Checklist
 
 <!-- This is the master checklist. Missing a step will break the CLI or Docs. -->
 

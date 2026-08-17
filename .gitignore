@@ -21,6 +21,7 @@
 # misc
 .DS_Store
 *.pem
+.source
 
 # debug
 npm-debug.log*
@@ -34,3 +35,5 @@ pnpm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.source/browser.ts
+.source/server.ts

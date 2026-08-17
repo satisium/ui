@@ -1,19 +1,55 @@
 ---
 title: Introduction
-description: How to wire up the spatial layout engine in your Next.js app.
+description: What Satisium UI is, who it's for, and what you can build with it.
 ---
 
-Getting started is designed to be frictionless. We assume you are running the latest version of Next.js and Tailwind v4.
+## What is Satisium UI?
 
-### Prerequisites
+Satisium UI is a high-end animated component library for **React and Next.js**. It builds production-ready animated components designed to run inside the **shadcn/ui** environment — sharing the same Radix UI primitives, Tailwind v4 theme tokens, and CLI tooling you already use.
 
-You will need the following installed:
+## Who is this for?
 
-- `next` (latest)
-- `tailwindcss` (v4)
-- `motion-react` (for our precise spring physics)
-- `zustand` (for decoupled spatial state)
+- **Design engineers** who want premium motion design without hand-rolling WebGL or GSAP timelines.
+- **Frontend developers** who need drop-in components that feel custom-built but install in seconds.
+- **Creative technologists** building portfolios, agencies, and interactive experiences.
 
-```bash
-npm install motion-react zustand
-```
+And for anyone who needs production ready cool UIs straight out of the box.
+
+## What you get
+
+54 animated components across four categories:
+
+| Category          | Count | Examples                                                                                           |
+| :---------------- | :---- | :------------------------------------------------------------------------------------------------- |
+| **Text Reveals**  | 24    | Manifesto Text Reveal, Multi-Color Trail Reveal, Fluid Typewriter, Blur Reveal, Elastic Pop Reveal |
+| **Carousels**     | 12    | Dimensional Carousel, Elastic Carousel, Panoramic Strip, Flex Carousel, Depth Carousel             |
+| **Image Effects** | 10    | Velocity Strips, Liquid Marble, Ember Burn, Ferrofluid Drag, Glass Slices                          |
+| **Mouse Trails**  | 8     | Wind Trail, Pendulum Trail, Squircle Trail, Scatter Trail, Kaleidoscope Trail                      |
+
+## How it works
+
+Every component is distributed via the **shadcn CLI registry**. You install exactly what you need — no bulk dependency, no runtime lock-in. The source code is copied into your project, so you own it and can modify it freely.
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/dimensional-carousel.json"
+    title="dimensional-carousel"
+  />
+</div>
+
+## Tech stack
+
+- **Next.js 16+** with App Router
+- **Tailwind CSS v4** for styling
+- **GSAP** for timeline and scroll animations
+- **Motion** for layout animations
+- **Three.js / React Three Fiber** for WebGL effects
+- **Radix UI** for accessible primitives
+- **Zustand** for lightweight state
+- **MIT License**
+
+## Next steps
+
+1. **[Setup](/docs/getting-started/setup)** — Install your first component in 60 seconds.
+2. **[Components](/docs/components)** — Browse the full library.
+3. **[Changelog](/changelog)** — See what's new.

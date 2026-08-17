@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add fold-reveal
+npx shadcn@latest add https://ui.satisium.com/r/fold-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -27,7 +27,7 @@ npx satis-ui add fold-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/fold-reveal.tsx`
+**File Path:** `registry/ui/fold-reveal.tsx`
 
 ```tsx
 "use client"
@@ -202,7 +202,7 @@ FoldReveal.displayName = "FoldReveal"
 ```tsx
 "use client"
 
-import { FoldReveal } from "@/components/ui/fold-reveal"
+import { FoldReveal } from "@/registry/ui/fold-reveal"
 
 export default function ExamplePage() {
   return (

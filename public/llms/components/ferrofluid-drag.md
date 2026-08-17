@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add ferrofluid-drag
+npx shadcn@latest add https://ui.satisium.com/r/ferrofluid-drag.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -26,7 +26,7 @@ npx satis-ui add ferrofluid-drag
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/ferrofluid-drag.tsx`
+**File Path:** `registry/ui/ferrofluid-drag.tsx`
 
 ```tsx
 "use client"
@@ -234,7 +234,7 @@ export function FerrofluidDrag({
 ```tsx
 "use client"
 
-import { FerrofluidDrag } from "@/components/ui/ferrofluid-drag"
+import { FerrofluidDrag } from "@/registry/ui/ferrofluid-drag"
 
 export default function ExamplePage() {
   return (

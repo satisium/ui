@@ -1,42 +1,45 @@
 // proxy.ts
-import { NextResponse } from "next/server"
-import type { NextRequest, NextFetchEvent } from "next/server"
-import { Redis } from "@upstash/redis"
+import { NextResponse, userAgent } from "next/server"
+import type { NextRequest } from "next/server"
 
-/**
- * Edge Proxy to intercept shadcn registry installations.
- * This tracks actual CLI usage (terminal installations) completely invisibly.
- */
-export function proxy(req: NextRequest, ev: NextFetchEvent) {
+export function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
 
-  // Intercept ONLY requests heading to your shadcn registry JSON files
   if (pathname.startsWith("/r/") && pathname.endsWith(".json")) {
-    // Extract the component name (e.g., "/r/fluid-switch.json" -> "fluid-switch")
-    const componentName = pathname.replace("/r/", "").replace(".json", "")
-
-    // ev.waitUntil allows the user's terminal to download the JSON instantly,
-    // while the server updates the Upstash Redis database in the background.
-    ev.waitUntil(
-      (async () => {
-        try {
-          const redis = Redis.fromEnv()
-          // 1. Increment total CLI downloads
-          await redis.incr("satis:metrics:cli_installs")
-          // 2. Increment specific component leaderboard
-          await redis.zincrby("satis:metrics:top_cli", 1, componentName)
-        } catch (e) {
-          // Silent fail - never break the terminal installation
-        }
-      })()
-    )
+    return NextResponse.next()
   }
 
-  // Continue processing the request normally
+  // ==========================================
+  // 1. SHADCN REGISTRY TRACKING
+  // ==========================================
+  // Removed: registry JSON tracking to prevent unnecessary Redis
+  // operations and proxy compute on static CDN assets.
+
+  // ==========================================
+  // 2. MOBILE VIEWPORT RESTRICTION
+  // ==========================================
+  const { device } = userAgent(req)
+  const isMobile = device.type === "mobile" || device.type === "tablet"
+
+  // If they are on a mobile device AND trying to access anything other than the landing page
+  if (isMobile && pathname !== "/") {
+    const url = req.nextUrl.clone()
+    url.pathname = "/"
+    url.searchParams.set("device", "mobile-restricted")
+
+    // Kick them back to the landing page instantly
+    return NextResponse.redirect(url)
+  }
+
+  // Continue processing normal desktop requests
   return NextResponse.next()
 }
 
-// Config ensures this proxy ONLY runs on /r/ registry routes to save server compute
+// ==========================================
+// CONFIGURATION
+// ==========================================
 export const config = {
-  matcher: ["/r/:path*"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|_next/data|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|css|js|map)$).*)",
+  ],
 }

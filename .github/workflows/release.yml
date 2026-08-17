@@ -25,6 +25,8 @@ jobs:
           node-version: 20
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile
+      - name: Sync registry metadata
+        run: pnpm build:registry:meta
       - name: Version packages with Changesets
         run: pnpm changeset version
       - name: Build (verify)
@@ -32,7 +34,7 @@ jobs:
       - name: Commit version bump
         run: |
           git config user.name "changeset-bot"
-          git config user.email "changeset@satisstoodio.com"
+          git config user.email "changeset@satisium.com"
           git add .
           git diff --cached --quiet || git commit -m "chore(release): version packages"
           git push

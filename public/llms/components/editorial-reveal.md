@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add editorial-reveal
+npx shadcn@latest add https://ui.satisium.com/r/editorial-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -27,7 +27,7 @@ npx satis-ui add editorial-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/editorial-reveal.tsx`
+**File Path:** `registry/ui/editorial-reveal.tsx`
 
 ```tsx
 "use client"
@@ -201,7 +201,7 @@ EditorialReveal.displayName = "EditorialReveal"
 ```tsx
 "use client"
 
-import { EditorialReveal } from "@/components/ui/editorial-reveal"
+import { EditorialReveal } from "@/registry/ui/editorial-reveal"
 
 export default function ExamplePage() {
   return (

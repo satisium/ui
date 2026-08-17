@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add masked-reveal
+npx shadcn@latest add https://ui.satisium.com/r/masked-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -30,7 +30,7 @@ npx satis-ui add masked-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/masked-reveal.tsx`
+**File Path:** `registry/ui/masked-reveal.tsx`
 
 ```tsx
 "use client"
@@ -253,7 +253,7 @@ MaskedReveal.displayName = "MaskedReveal"
 ```tsx
 "use client"
 
-import { MaskedReveal } from "@/components/ui/masked-reveal"
+import { MaskedReveal } from "@/registry/ui/masked-reveal"
 
 export default function ExamplePage() {
   return (

@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add pendulum-trail
+npx shadcn@latest add https://ui.satisium.com/r/pendulum-trail.json
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add pendulum-trail
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/pendulum-trail.tsx`
+**File Path:** `registry/ui/pendulum-trail.tsx`
 
 ```tsx
 "use client"
@@ -363,7 +363,7 @@ export default function PendulumTrail({
 ```tsx
 "use client"
 
-import PendulumTrail from "@/components/ui/pendulum-trail"
+import PendulumTrail from "@/registry/ui/pendulum-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

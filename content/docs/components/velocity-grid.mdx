@@ -2,14 +2,11 @@
 title: Velocity Grid
 description: An interactive WebGL component that displays media (image or video) with a fluid, 2D grid-based velocity distortion effect following the cursor.
 component: true
-badge: new
 category:
-  - marketing
-subcategory:
-  - heroes
-author: SATIS UI
+  - image-effects
+author: Satisium UI
 links:
-  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/velocity-grid.mdx
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/velocity-grid.mdx
 registryKeys:
   - velocity-grid-image
   - velocity-grid-video
@@ -23,7 +20,19 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock cli="velocity-grid" title="velocity-grid" />
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-grid.json" title="velocity-grid" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-grid-image.json" title="velocity-grid-image" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-grid-video.json" title="velocity-grid-video" />
 </div>
 
 ### Manual
@@ -62,6 +71,4 @@ import { velocityGridFile } from "@/registry/strings/velocity-grid"
 | **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.    |
 | **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.             |
 
-## Inspiration and Credits
 
-WebGL shader and interaction physics tastefully crafted by the **Satis UI** team.

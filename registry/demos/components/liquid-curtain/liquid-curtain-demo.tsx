@@ -6,7 +6,7 @@ export default function LiquidCurtainDemo() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center bg-background text-foreground antialiased">
       <LiquidCurtain
-        imageUrl="https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/0.jpg"
+        imageUrl="https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/26.jpg"
         columns={24} // More columns for finer, stringier slats on landscape
         duration={1.2}
         staggerAmount={0.6}

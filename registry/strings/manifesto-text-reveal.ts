@@ -1,5 +1,5 @@
 export const manifestoTextRevealDemoString = `
-import { ManifestoTextReveal } from "@/components/ui/manifesto-text-reveal"
+import { ManifestoTextReveal } from "@/components/satisium-ui/manifesto-text-reveal"
 
 export default function ManifestoTextRevealDemo() {
   return (
@@ -76,8 +76,8 @@ export const ManifestoTextReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const scrubValue = scrub === true ? 1 : scrub
     const isScrubbing = scrub !== false

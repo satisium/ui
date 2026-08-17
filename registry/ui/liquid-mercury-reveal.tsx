@@ -34,13 +34,13 @@ export interface LiquidMercuryRevealProps extends React.HTMLAttributes<HTMLEleme
 /**
  * LiquidMercuryReveal
  *
- * An elastic, metallic text reveal component for Satis UI.
+ * An elastic, metallic text reveal component for Satisium UI.
  * Elements spawn from inside the previous element's mass, stretching a
  * gooey liquid bridge that elastically snaps into sharp, crisp typography.
  *
  * @example
  * ```tsx
- * import { LiquidMercuryReveal } from "@/components/ui/liquid-mercury-reveal"
+ * import { LiquidMercuryReveal } from "@/components/satisium-ui/liquid-mercury-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -75,10 +75,10 @@ export const LiquidMercuryReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints safely
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const blurRef = React.useRef<SVGFEGaussianBlurElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     // Unique ID ensures multiple components don't share the same SVG filter
     const uniqueId = React.useId().replace(/:/g, "")

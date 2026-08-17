@@ -51,11 +51,11 @@ export const FluidInkReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const matrixRef = React.useRef<SVGFEColorMatrixElement>(null)
     const filterId = React.useId()
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

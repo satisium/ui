@@ -1,15 +1,16 @@
 // app/api/og/route.tsx
 import { ImageResponse } from "next/og"
+import { NextResponse } from "next/server"
 
 export const runtime = "edge"
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
-    // Grab the title from the URL, fallback to SATIS UI
-    const title = searchParams.get("title") || "SATIS UI"
+    // Grab the title from the URL, fallback to Satisium UI
+    const title = searchParams.get("title") || "Satisium UI"
 
-    return new ImageResponse(
+    const image = new ImageResponse(
       <div
         style={{
           height: "100%",
@@ -40,7 +41,7 @@ export async function GET(request: Request) {
               marginBottom: 20,
             }}
           >
-            SATIS UI
+             Satisium UI
           </h2>
 
           {/* DYNAMIC TITLE */}
@@ -74,7 +75,15 @@ export async function GET(request: Request) {
         height: 630,
       }
     )
+
+    return new NextResponse(image.body, {
+      status: image.status,
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=86400, s-maxage=86400, stale-while-revalidate=3600",
+      },
+    })
   } catch (e: any) {
-    return new Response(`Failed to generate image`, { status: 500 })
+    return new NextResponse(`Failed to generate image`, { status: 500 })
   }
 }

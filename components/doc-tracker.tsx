@@ -8,16 +8,12 @@ interface DocTrackerProps {
   title: string
   category?: string
   badge?: string
-  isPaid: boolean
-  price?: string
 }
 
 export function DocTracker({
   title,
   category,
   badge,
-  isPaid,
-  price,
 }: DocTrackerProps) {
   useEffect(() => {
     // ✨ ANALYTICS: Track rich page views
@@ -28,12 +24,10 @@ export function DocTracker({
         component_name: title,
         category: category || "uncategorized",
         badge: badge || "none",
-        is_premium: isPaid,
-        price: price || "0.00",
       },
       "page_view"
     )
-  }, [title, category, badge, isPaid, price])
+  }, [title, category, badge])
 
   return null // This component is completely invisible
 }

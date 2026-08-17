@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add curved-carousel
+npx shadcn@latest add https://ui.satisium.com/r/curved-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -31,7 +31,7 @@ npx satis-ui add curved-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/curved-carousel.tsx`
+**File Path:** `registry/ui/curved-carousel.tsx`
 
 ```tsx
 "use client"
@@ -416,7 +416,7 @@ CurvedCarousel.displayName = "CurvedCarousel"
 ```tsx
 "use client"
 
-import { CurvedCarousel } from "@/components/ui/curved-carousel"
+import { CurvedCarousel } from "@/registry/ui/curved-carousel"
 
 export default function ExamplePage() {
   const images = [

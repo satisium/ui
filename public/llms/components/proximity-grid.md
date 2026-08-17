@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add proximity-grid
+npx shadcn@latest add https://ui.satisium.com/r/proximity-grid.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add proximity-grid
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/proximity-grid.tsx`
+**File Path:** `registry/ui/proximity-grid.tsx`
 
 ```tsx
 "use client"
@@ -266,7 +266,7 @@ export default function ProximityGrid({
 ```tsx
 "use client"
 
-import ProximityGrid from "@/components/ui/proximity-grid"
+import ProximityGrid from "@/registry/ui/proximity-grid"
 
 export default function ExamplePage() {
   return (

@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add z-axis-reveal
+npx shadcn@latest add https://ui.satisium.com/r/z-axis-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add z-axis-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/z-axis-reveal.tsx`
+**File Path:** `registry/ui/z-axis-reveal.tsx`
 
 ```tsx
 "use client"
@@ -260,7 +260,7 @@ ZAxisReveal.displayName = "ZAxisReveal"
 ```tsx
 "use client"
 
-import { ZAxisReveal } from "@/components/ui/z-axis-reveal"
+import { ZAxisReveal } from "@/registry/ui/z-axis-reveal"
 
 export default function ExamplePage() {
   return (

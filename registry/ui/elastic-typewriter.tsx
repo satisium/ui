@@ -56,13 +56,13 @@ export interface ElasticTypewriterProps extends React.HTMLAttributes<HTMLElement
 /**
  * ElasticTypewriter
  *
- * A highly kinetic typewriter effect for Satis UI.
+ * A highly kinetic typewriter effect for Satisium UI.
  * A cursor glides across the text, while individual characters stretch, squeeze,
  * skew, and elastic-snap into place to simulate mechanical physical tension.
  *
  * @example
  * ```tsx
- * import { ElasticTypewriter } from "@/components/ui/elastic-typewriter"
+ * import { ElasticTypewriter } from "@/components/satisium-ui/elastic-typewriter"
  *
  * export default function Hero() {
  *   return (
@@ -96,10 +96,10 @@ export const ElasticTypewriter = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' internally to safely bypass polymorphic React constraint errors
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const cursorRef = React.useRef<HTMLSpanElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

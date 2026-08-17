@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add elastic-typewriter
+npx shadcn@latest add https://ui.satisium.com/r/elastic-typewriter.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -27,7 +27,7 @@ npx satis-ui add elastic-typewriter
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/elastic-typewriter.tsx`
+**File Path:** `registry/ui/elastic-typewriter.tsx`
 
 ```tsx
 "use client"
@@ -321,7 +321,7 @@ ElasticTypewriter.displayName = "ElasticTypewriter"
 ```tsx
 "use client"
 
-import { ElasticTypewriter } from "@/components/ui/elastic-typewriter"
+import { ElasticTypewriter } from "@/registry/ui/elastic-typewriter"
 
 export default function ExamplePage() {
   return (

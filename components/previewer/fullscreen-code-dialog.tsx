@@ -44,7 +44,7 @@ export function FullscreenCodeDialog({
         {/* Command Block & Code Block Wrapper */}
         <div className="flex min-h-0 w-full flex-1 flex-col gap-4 rounded-3xl bg-background p-2">
           <div className="shrink-0">
-            <CommandBlock cli={installCommand || ""} className="max-w-none" />
+            <CommandBlock command={installCommand || ""} className="max-w-none" />
           </div>
 
           <div className="relative flex min-h-0 flex-1 overflow-hidden">

@@ -2,14 +2,11 @@
 title: Proximity Grid
 description: An interactive WebGL grid that zooms and rounds media cells dynamically based on cursor proximity.
 component: true
-badge: new
 category:
-  - marketing
-subcategory:
-  - heroes
-author: SATIS UI
+  - image-effects
+author: Satisium UI
 links:
-  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/proximity-grid.mdx
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/proximity-grid.mdx
 registryKeys:
   - proximity-grid-image
   - proximity-grid-video
@@ -23,7 +20,19 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock cli="proximity-grid" title="proximity-grid" />
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid.json" title="proximity-grid" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-image.json" title="proximity-grid-image" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-video.json" title="proximity-grid-video" />
 </div>
 
 ### Manual
@@ -62,6 +71,4 @@ import { proximityGridFile } from "@/registry/strings/proximity-grid"
 | **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.                |
 | **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.                         |
 
-## Inspiration and Credits
 
-WebGL shader and interaction physics tastefully crafted by the **Satis UI** team.

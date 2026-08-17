@@ -32,7 +32,7 @@ Community leaders are responsible for clarifying and enforcing our standards.
 ### Reporting
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported by contacting the community team at **conduct@satis-ui.com**.
+reported by contacting the community team at **conduct@satisium-ui.com**.
 
 All complaints will be reviewed and investigated promptly and fairly.
 

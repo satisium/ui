@@ -28,7 +28,7 @@ export interface MyceliumNetworkProps extends React.HTMLAttributes<HTMLDivElemen
 /**
  * MyceliumNetwork
  *
- * An interactive image transition component for Satis UI.
+ * An interactive image transition component for Satisium UI.
  * Connects an SVG grid of nodes and edges masked with a mathematical gooey filter.
  * On hover, it calculates the cursor's origin and triggers a radiating physics
  * simulation where edges snap and nodes organically drift outward.

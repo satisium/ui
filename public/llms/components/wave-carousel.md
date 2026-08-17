@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add wave-carousel
+npx shadcn@latest add https://ui.satisium.com/r/wave-carousel.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -32,7 +32,7 @@ npx satis-ui add wave-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/wave-carousel.tsx`
+**File Path:** `registry/ui/wave-carousel.tsx`
 
 ```tsx
 "use client"
@@ -388,7 +388,7 @@ export function WaveCarousel({
 ```tsx
 "use client"
 
-import { WaveCarousel } from "@/components/ui/wave-carousel"
+import { WaveCarousel } from "@/registry/ui/wave-carousel"
 
 export default function ExamplePage() {
   return (

@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add concave-carousel
+npx shadcn@latest add https://ui.satisium.com/r/concave-carousel.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -31,7 +31,7 @@ npx satis-ui add concave-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/concave-carousel.tsx`
+**File Path:** `registry/ui/concave-carousel.tsx`
 
 ```tsx
 "use client"
@@ -377,7 +377,7 @@ export function ConcaveCarousel({
 ```tsx
 "use client"
 
-import { ConcaveCarousel } from "@/components/ui/concave-carousel"
+import { ConcaveCarousel } from "@/registry/ui/concave-carousel"
 
 export default function ExamplePage() {
   return (

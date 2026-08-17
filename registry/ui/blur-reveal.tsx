@@ -36,13 +36,13 @@ export interface BlurRevealProps extends React.HTMLAttributes<HTMLElement> {
 /**
  * BlurReveal
  *
- * A cinematic, 3D text reveal component for Satis UI.
+ * A cinematic, 3D text reveal component for Satisium UI.
  * Characters or words sweep in from an angled, blurry 3D perspective,
  * utilizing deep easing to create a heavy, dramatic reveal.
  *
  * @example
  * ```tsx
- * import { BlurReveal } from "@/components/ui/blur-reveal"
+ * import { BlurReveal } from "@/components/satisium-ui/blur-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -75,8 +75,8 @@ export const BlurReveal = React.forwardRef<HTMLElement, BlurRevealProps>(
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints securely
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

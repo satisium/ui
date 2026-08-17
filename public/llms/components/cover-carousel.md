@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add cover-carousel
+npx shadcn@latest add https://ui.satisium.com/r/cover-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -33,7 +33,7 @@ npx satis-ui add cover-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/cover-carousel.tsx`
+**File Path:** `registry/ui/cover-carousel.tsx`
 
 ```tsx
 "use client"
@@ -433,7 +433,7 @@ CoverCarousel.displayName = "CoverCarousel"
 ```tsx
 "use client"
 
-import { CoverCarousel } from "@/components/ui/cover-carousel"
+import { CoverCarousel } from "@/registry/ui/cover-carousel"
 
 export default function ExamplePage() {
   const images = [

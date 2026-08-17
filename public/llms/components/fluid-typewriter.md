@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add fluid-typewriter
+npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add fluid-typewriter
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/fluid-typewriter.tsx`
+**File Path:** `registry/ui/fluid-typewriter.tsx`
 
 ```tsx
 "use client"
@@ -309,7 +309,7 @@ FluidTypewriter.displayName = "FluidTypewriter"
 ```tsx
 "use client"
 
-import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+import { FluidTypewriter } from "@/registry/ui/fluid-typewriter"
 
 export default function ExamplePage() {
   return (

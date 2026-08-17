@@ -1,24 +1,25 @@
-// lib/analytics.ts
+import { logger } from "@/lib/logger"
 import posthog from "posthog-js"
 
-/**
- * Universal tracking function for SATIS UI
- *
- * @param eventName - The name of the event (e.g., "code_copied")
- * @param properties - The rich data/context (e.g., { component: "fluid-switch", is_premium: false })
- * @param incrementPublicCounter - Optional. If provided, also increments our public Redis database for landing page vanity metrics.
- */
-export const trackEvent = async (
+function hasConsent(): boolean {
+  if (typeof window === "undefined") return false
+  return localStorage.getItem("satisium-analytics-consent") === "accepted"
+}
+
+export async function trackEvent(
   eventName: string,
   properties?: Record<string, any>,
   incrementPublicCounter?: "web_copy" | "page_view"
-) => {
-  // 1. Send deep product data to PostHog (Only in production/browser)
-  if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+) {
+  if (!hasConsent()) return
+
+  if (
+    typeof window !== "undefined" &&
+    process.env.NEXT_PUBLIC_POSTHOG_TOKEN
+  ) {
     posthog.capture(eventName, properties)
   }
 
-  // 2. Ping our Next.js API to increment the Upstash Redis counters for the landing page
   if (incrementPublicCounter) {
     try {
       await fetch("/api/telemetry", {
@@ -28,12 +29,10 @@ export const trackEvent = async (
           action: incrementPublicCounter,
           component: properties?.component || properties?.file || "unknown",
         }),
-        // keepalive ensures the fetch finishes even if the user navigates away immediately
         keepalive: true,
       })
     } catch (e) {
-      // We catch and swallow errors here. Analytics should NEVER break the user's UI.
-      console.error("SATIS Telemetry Error:", e)
+      logger.error("Satisium Telemetry Error:", e)
     }
   }
 }

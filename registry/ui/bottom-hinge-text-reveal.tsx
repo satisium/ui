@@ -36,13 +36,13 @@ export interface BottomHingeTextRevealProps extends React.HTMLAttributes<HTMLEle
 /**
  * BottomHingeTextReveal
  *
- * A high-impact 3D text reveal component for Satis UI.
+ * A high-impact 3D text reveal component for Satisium UI.
  * Elements start deep in the Z-axis, leaning backward, and aggressively
  * swing up and slam into place using a tight perspective and heavy overshoot.
  *
  * @example
  * ```tsx
- * import { BottomHingeTextReveal } from "@/components/ui/bottom-hinge-text-reveal"
+ * import { BottomHingeTextReveal } from "@/components/satisium-ui/bottom-hinge-text-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -77,8 +77,8 @@ export const BottomHingeTextReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to safely bypass strict polymorphic DOM type constraints
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const resolveZ = typeof startZ === "number" ? `${startZ}px` : startZ
 

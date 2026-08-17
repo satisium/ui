@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add pendulum-reveal
+npx shadcn@latest add https://ui.satisium.com/r/pendulum-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add pendulum-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/pendulum-reveal.tsx`
+**File Path:** `registry/ui/pendulum-reveal.tsx`
 
 ```tsx
 "use client"
@@ -238,7 +238,7 @@ PendulumReveal.displayName = "PendulumReveal"
 ```tsx
 "use client"
 
-import { PendulumReveal } from "@/components/ui/pendulum-reveal"
+import { PendulumReveal } from "@/registry/ui/pendulum-reveal"
 
 export default function ExamplePage() {
   return (

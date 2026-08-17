@@ -1,5 +1,5 @@
 export const fluidTypewriterHeadlineDemoString = `
-import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+import { FluidTypewriter } from "@/components/satisium-ui/fluid-typewriter"
 
 export default function FluidTypewriterHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function FluidTypewriterHeadlineDemo() {
 `
 
 export const fluidTypewriterParagraphDemoString = `
-import { FluidTypewriter } from "@/components/ui/fluid-typewriter"
+import { FluidTypewriter } from "@/components/satisium-ui/fluid-typewriter"
 
 export default function FluidTypewriterParagraphDemo() {
   return (
@@ -95,10 +95,10 @@ export const FluidTypewriter = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const cursorRef = React.useRef<HTMLSpanElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

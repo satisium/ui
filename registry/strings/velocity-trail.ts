@@ -1,5 +1,5 @@
 export const velocityTrailAvatarsDemoString = `
-import VelocityTrail from "@/components/ui/velocity-trail"
+import VelocityTrail from "@/components/satisium-ui/velocity-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1780746659/ui-v3/avatars/color/16.png",
@@ -37,7 +37,7 @@ export default function VelocityTrailAvatarsDemo() {
 
 export const velocityTrailImagesDemoString = `
 
-import VelocityTrail from "@/components/ui/velocity-trail"
+import VelocityTrail from "@/components/satisium-ui/velocity-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

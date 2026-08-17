@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add heat-mirage-reveal
+npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add heat-mirage-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/heat-mirage-reveal.tsx`
+**File Path:** `registry/ui/heat-mirage-reveal.tsx`
 
 ```tsx
 "use client"
@@ -295,7 +295,7 @@ HeatMirageReveal.displayName = "HeatMirageReveal"
 ```tsx
 "use client"
 
-import { HeatMirageReveal } from "@/components/ui/heat-mirage-reveal"
+import { HeatMirageReveal } from "@/registry/ui/heat-mirage-reveal"
 
 export default function ExamplePage() {
   return (

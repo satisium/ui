@@ -33,13 +33,13 @@ export interface PianoTypewriterProps
 /**
  * PianoTypewriter
  * 
- * A tactile, 3D typewriter effect for Satis UI.
+ * A tactile, 3D typewriter effect for Satisium UI.
  * A cursor glides across the text while individual characters spring up from the Z-axis, 
  * mimicking the physical, mechanical keystrokes of a typewriter or piano.
  * 
  * @example
  * ```tsx
- * import { PianoTypewriter } from "@/components/ui/piano-typewriter"
+ * import { PianoTypewriter } from "@/components/satisium-ui/piano-typewriter"
  * 
  * export default function Hero() {
  *   return (
@@ -72,10 +72,10 @@ export const PianoTypewriter = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' internally to safely bypass polymorphic React constraint errors
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const cursorRef = React.useRef<HTMLSpanElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

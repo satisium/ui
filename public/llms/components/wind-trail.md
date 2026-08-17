@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add wind-trail
+npx shadcn@latest add https://ui.satisium.com/r/wind-trail.json
 ```
 
 **Dependencies installed:** `clsx`, `tailwind-merge`.
@@ -28,7 +28,7 @@ npx satis-ui add wind-trail
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/wind-trail.tsx`
+**File Path:** `registry/ui/wind-trail.tsx`
 
 ```tsx
 "use client"
@@ -319,7 +319,7 @@ export default function WindTrail({
 ```tsx
 "use client"
 
-import WindTrail from "@/components/ui/wind-trail"
+import WindTrail from "@/registry/ui/wind-trail"
 
 const trailImages = [
   "https://res.cloudinary.com/ddon6aux0/image/upload/w_250,f_auto,q_auto/v1781471531/ui-v3/demos/images/14.jpg",

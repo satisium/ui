@@ -1,5 +1,5 @@
 export const fluidInkHeadlineDemoString = `
-import { FluidInkReveal } from "@/components/ui/fluid-ink-reveal"
+import { FluidInkReveal } from "@/components/satisium-ui/fluid-ink-reveal"
 
 export default function FluidInkHeadlineDemo() {
   return (
@@ -23,7 +23,7 @@ export default function FluidInkHeadlineDemo() {
 `
 
 export const fluidInkParagraphDemoString = `
-import { FluidInkReveal } from "@/components/ui/fluid-ink-reveal"
+import { FluidInkReveal } from "@/components/satisium-ui/fluid-ink-reveal"
 
 export default function FluidInkParagraphDemo() {
   return (
@@ -97,11 +97,11 @@ export const FluidInkReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const matrixRef = React.useRef<SVGFEColorMatrixElement>(null)
     const filterId = React.useId()
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

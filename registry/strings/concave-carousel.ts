@@ -1,5 +1,5 @@
 export const concaveCarouselDemoString = `
-import { ConcaveCarousel } from "@/components/ui/concave-carousel"
+import { ConcaveCarousel } from "@/components/satisium-ui/concave-carousel"
 
 const IMAGES = [
   {

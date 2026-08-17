@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add panoramic-carousel
+npx shadcn@latest add https://ui.satisium.com/r/panoramic-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -35,7 +35,7 @@ npx satis-ui add panoramic-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/panoramic-carousel.tsx`
+**File Path:** `registry/ui/panoramic-carousel.tsx`
 
 ```tsx
 "use client"
@@ -461,7 +461,7 @@ PanoramicCarousel.displayName = "PanoramicCarousel"
 ```tsx
 "use client"
 
-import { PanoramicCarousel } from "@/components/ui/panoramic-carousel"
+import { PanoramicCarousel } from "@/registry/ui/panoramic-carousel"
 
 export default function ExamplePage() {
   const images = [

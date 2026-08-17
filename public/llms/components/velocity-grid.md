@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add velocity-grid
+npx shadcn@latest add https://ui.satisium.com/r/velocity-grid.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add velocity-grid
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/velocity-grid.tsx`
+**File Path:** `registry/ui/velocity-grid.tsx`
 
 ```tsx
 "use client"
@@ -248,7 +248,7 @@ export default function VelocityGrid({
 ```tsx
 "use client"
 
-import VelocityGrid from "@/components/ui/velocity-grid"
+import VelocityGrid from "@/registry/ui/velocity-grid"
 
 export default function ExamplePage() {
   return (

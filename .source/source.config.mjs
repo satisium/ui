@@ -8,24 +8,16 @@ import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import z from "zod";
 var TAXONOMY = {
-  marketing: ["heroes", "pricing", "feature-sections", "testimonials"],
-  navigation: ["sidebars", "navbars", "breadcrumbs", "tabs"],
-  overlays: ["modals", "dialogs", "popovers", "tooltips", "drawers"],
-  "data-display": ["tables", "lists", "stats", "avatars", "cards"],
-  forms: ["inputs", "selects", "toggles", "sliders", "multi-step"],
-  feedback: ["toasts", "alerts", "skeletons", "progress", "empty-states"],
-  interactions: ["hover-effects", "micro-animations", "magnetic-buttons"],
-  layout: ["grids", "masonry", "split-panes"]
+  "text-reveals": [],
+  "image-effects": [],
+  carousels: [],
+  "mouse-trails": []
 };
 var CATEGORIES = Object.keys(
   TAXONOMY
 );
-var SUBCATEGORIES = Object.values(TAXONOMY).flat();
 var CategoryEnum = z.enum(
   CATEGORIES
-);
-var SubCategoryEnum = z.enum(
-  SUBCATEGORIES
 );
 
 // source.config.ts
@@ -34,13 +26,13 @@ var docs = defineDocs({
   docs: {
     schema: pageSchema.extend({
       component: z2.boolean().default(false),
-      badge: z2.enum(["new", "updated", "beta", "premium", "deprecated"]).optional(),
+      hideToc: z2.boolean().default(false),
+      hideCopy: z2.boolean().default(false),
+      comingSoon: z2.boolean().default(false),
+      badge: z2.enum(["new", "updated", "beta", "deprecated"]).optional(),
       category: z2.array(CategoryEnum).optional(),
-      subcategory: z2.array(SubCategoryEnum).optional(),
       author: z2.string().optional(),
       date: z2.string().optional(),
-      gumroad: z2.string().url().optional(),
-      price: z2.string().optional(),
       links: z2.object({
         preview: z2.string().url().optional(),
         github: z2.string().url().optional()

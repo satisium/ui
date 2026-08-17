@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add manifesto-text-reveal
+npx shadcn@latest add https://ui.satisium.com/r/manifesto-text-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -27,7 +27,7 @@ npx satis-ui add manifesto-text-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/manifesto-text-reveal.tsx`
+**File Path:** `registry/ui/manifesto-text-reveal.tsx`
 
 ```tsx
 "use client"
@@ -240,7 +240,7 @@ ManifestoTextReveal.displayName = "ManifestoTextReveal"
 ```tsx
 "use client"
 
-import { ManifestoTextReveal } from "@/components/ui/manifesto-text-reveal"
+import { ManifestoTextReveal } from "@/registry/ui/manifesto-text-reveal"
 
 export default function ExamplePage() {
   return (

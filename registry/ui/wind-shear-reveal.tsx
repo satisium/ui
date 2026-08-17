@@ -42,7 +42,7 @@ export interface WindShearRevealProps extends React.HTMLAttributes<HTMLElement> 
 /**
  * WindShearReveal
  *
- * A high-velocity text reveal component for Satis UI.
+ * A high-velocity text reveal component for Satisium UI.
  * Elements slide in while leaning heavily against simulated wind resistance,
  * utilizing elastic friction to snap forward into their resting positions.
  */
@@ -69,8 +69,8 @@ export const WindShearReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to safely bypass strict polymorphic DOM type constraints
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

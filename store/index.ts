@@ -15,7 +15,7 @@ export const usePackageManager = create<PackageManagerStore>()(
       setManager: (manager) => set({ manager }),
     }),
     {
-      name: "satis-ui-pm-preference", // Stored securely in localStorage
+      name: "satisium-ui-pm-preference", // Stored securely in localStorage
     }
   )
 )

@@ -2,14 +2,11 @@
 title: Liquid Marble
 description: An interactive WebGL component applying a fluid chromatic distortion that clears into a crystal lens around the cursor.
 component: true
-badge: new
 category:
-  - marketing
-subcategory:
-  - heroes
-author: SATIS UI
+  - image-effects
+author: Satisium UI
 links:
-  github: https://github.com/satis-ui/ui/blob/master/content/docs/components/liquid-marble.mdx
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/liquid-marble.mdx
 registryKeys:
   - liquid-marble-image
   - liquid-marble-video
@@ -23,7 +20,19 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock cli="liquid-marble" title="liquid-marble" />
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble.json" title="liquid-marble" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-image.json" title="liquid-marble-image" />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-video.json" title="liquid-marble-video" />
 </div>
 
 ### Manual
@@ -62,6 +71,4 @@ import { liquidMarbleFile } from "@/registry/strings/liquid-marble"
 | **`fallback`**           | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.                 |
 | **`className`**          | `string`             | `undefined` | Standard React classNames for the container wrapper.                          |
 
-## Inspiration and Credits
 
-WebGL shader and interaction physics tastefully crafted by the **Satis UI** team.

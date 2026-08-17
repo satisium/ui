@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add blur-reveal
+npx shadcn@latest add https://ui.satisium.com/r/blur-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add blur-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/blur-reveal.tsx`
+**File Path:** `registry/ui/blur-reveal.tsx`
 
 ```tsx
 "use client"
@@ -234,7 +234,7 @@ BlurReveal.displayName = "BlurReveal"
 ```tsx
 "use client"
 
-import { BlurReveal } from "@/components/ui/blur-reveal"
+import { BlurReveal } from "@/registry/ui/blur-reveal"
 
 export default function ExamplePage() {
   return (

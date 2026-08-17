@@ -1,5 +1,5 @@
 export const zAxisCharDemoString = `
-import { ZAxisReveal } from "@/components/ui/z-axis-reveal"
+import { ZAxisReveal } from "@/components/satisium-ui/z-axis-reveal"
 
 export default function ZAxisCharDemo() {
   return (
@@ -31,7 +31,7 @@ export default function ZAxisCharDemo() {
 `
 
 export const zAxisWordDemoString = `
-import { ZAxisReveal } from "@/components/ui/z-axis-reveal"
+import { ZAxisReveal } from "@/components/satisium-ui/z-axis-reveal"
 
 export default function ZAxisWordDemo() {
   return (
@@ -106,8 +106,8 @@ export const ZAxisReveal = React.forwardRef<HTMLElement, ZAxisRevealProps>(
     ref
   ) => {
     const triggerRef = React.useRef<HTMLDivElement>(null)
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

@@ -1,5 +1,5 @@
 export const elasticTypewriterHeadlineDemoString = `
-import { ElasticTypewriter } from "@/components/ui/elastic-typewriter"
+import { ElasticTypewriter } from "@/components/satisium-ui/elastic-typewriter"
 
 export default function ElasticTypewriterHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function ElasticTypewriterHeadlineDemo() {
 `
 
 export const elasticTypewriterParagraphDemoString = `
-import { ElasticTypewriter } from "@/components/ui/elastic-typewriter"
+import { ElasticTypewriter } from "@/components/satisium-ui/elastic-typewriter"
 
 export default function ElasticTypewriterParagraphDemo() {
   return (
@@ -93,10 +93,10 @@ export const ElasticTypewriter = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const cursorRef = React.useRef<HTMLSpanElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

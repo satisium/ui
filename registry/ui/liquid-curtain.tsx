@@ -24,7 +24,7 @@ export interface LiquidCurtainProps extends React.HTMLAttributes<HTMLDivElement>
 /**
  * LiquidCurtain
  *
- * An interactive image transition component for Satis UI.
+ * An interactive image transition component for Satisium UI.
  * Applies a heavily asymmetrical SVG Gooey filter to a grid of vertical strips.
  * On hover, the strips calculate their proximity to the cursor and drip downward
  * like thick paint or liquid, revealing the content underneath.

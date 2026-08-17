@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add dimensional-carousel
+npx shadcn@latest add https://ui.satisium.com/r/dimensional-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -33,7 +33,7 @@ npx satis-ui add dimensional-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/dimensional-carousel.tsx`
+**File Path:** `registry/ui/dimensional-carousel.tsx`
 
 ```tsx
 "use client"
@@ -449,7 +449,7 @@ DimensionalCarousel.displayName = "DimensionalCarousel"
 ```tsx
 "use client"
 
-import { DimensionalCarousel } from "@/components/ui/dimensional-carousel"
+import { DimensionalCarousel } from "@/registry/ui/dimensional-carousel"
 
 export default function ExamplePage() {
   const images = [

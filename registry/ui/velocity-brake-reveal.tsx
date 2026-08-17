@@ -36,13 +36,13 @@ export interface VelocityBrakeRevealProps extends React.HTMLAttributes<HTMLEleme
 /**
  * VelocityBrakeReveal
  *
- * A kinetic text reveal component for Satis UI.
+ * A kinetic text reveal component for Satisium UI.
  * Elements slide in rapidly from an offset and slam on the brakes, whipping forward
  * into a heavy skew overshoot before settling perfectly into place.
  *
  * @example
  * ```tsx
- * import { VelocityBrakeReveal } from "@/components/ui/velocity-brake-reveal"
+ * import { VelocityBrakeReveal } from "@/components/satisium-ui/velocity-brake-reveal"
  *
  * export default function Hero() {
  *   return (
@@ -78,8 +78,8 @@ export const VelocityBrakeReveal = React.forwardRef<
     ref
   ) => {
     // Typed as 'any' to bypass strict polymorphic DOM type constraints safely
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

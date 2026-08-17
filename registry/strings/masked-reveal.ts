@@ -1,5 +1,5 @@
 export const maskedRevealHeadlineDemoString = `
-import { MaskedReveal } from "@/components/ui/masked-reveal"
+import { MaskedReveal } from "@/components/satisium-ui/masked-reveal"
 
 export default function MaskedRevealHeadlineDemo() {
   return (
@@ -21,7 +21,7 @@ export default function MaskedRevealHeadlineDemo() {
 `
 
 export const maskedRevealParagraphDemoString = `
-import { MaskedReveal } from "@/components/ui/masked-reveal"
+import { MaskedReveal } from "@/components/satisium-ui/masked-reveal"
 
 
 export default function MaskedRevealParagraphDemo() {
@@ -99,8 +99,8 @@ export const MaskedReveal = React.forwardRef<HTMLElement, MaskedRevealProps>(
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const resolveOffset =
       typeof startOffset === "number" ? \`\${startOffset}px\` : startOffset

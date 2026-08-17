@@ -1,5 +1,5 @@
 export const magneticSnapDemoString = `
-import { MagneticSnapReveal } from "@/components/ui/magnetic-snap-reveal"
+import { MagneticSnapReveal } from "@/components/satisium-ui/magnetic-snap-reveal"
 
 export default function MagneticSnapDemo() {
   return (
@@ -64,8 +64,8 @@ export const MagneticSnapReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
-    React.useImperativeHandle(ref, () => containerRef.current)
+    const containerRef = React.useRef<HTMLElement | null>(null)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     useGSAP(
       () => {

@@ -1,5 +1,5 @@
 export const ascentCarouselDemoString = `
-import { AscentCarousel } from "@/components/ui/ascent-carousel"
+import { AscentCarousel } from "@/components/satisium-ui/ascent-carousel"
 
 const IMAGES = [
   {

@@ -1,5 +1,5 @@
 export const granularDustHeadlineDemoString = `
-import { GranularDustReveal } from "@/components/ui/granular-dust-reveal"
+import { GranularDustReveal } from "@/components/satisium-ui/granular-dust-reveal"
 
 export default function GranularDustHeadlineDemo() {
   return (
@@ -23,7 +23,7 @@ export default function GranularDustHeadlineDemo() {
 `
 
 export const granularDustParagraphDemoString = `
-import { GranularDustReveal } from "@/components/ui/granular-dust-reveal"
+import { GranularDustReveal } from "@/components/satisium-ui/granular-dust-reveal"
 
 export default function GranularDustParagraphDemo() {
   return (
@@ -94,10 +94,10 @@ export const GranularDustReveal = React.forwardRef<
     },
     ref
   ) => {
-    const containerRef = React.useRef<any>(null)
+    const containerRef = React.useRef<HTMLElement | null>(null)
     const mapRef = React.useRef<SVGFEDisplacementMapElement>(null)
 
-    React.useImperativeHandle(ref, () => containerRef.current)
+    React.useImperativeHandle(ref, () => containerRef.current!)
 
     const uniqueId = React.useId().replace(/[^a-zA-Z0-9]/g, "")
     const filterId = \`granular-dust-\${uniqueId}\`

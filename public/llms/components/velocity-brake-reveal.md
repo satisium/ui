@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add velocity-brake-reveal
+npx shadcn@latest add https://ui.satisium.com/r/velocity-brake-reveal.json
 ```
 
 **Dependencies installed:** `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -29,7 +29,7 @@ npx satis-ui add velocity-brake-reveal
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/velocity-brake-reveal.tsx`
+**File Path:** `registry/ui/velocity-brake-reveal.tsx`
 
 ```tsx
 "use client"
@@ -238,7 +238,7 @@ VelocityBrakeReveal.displayName = "VelocityBrakeReveal"
 ```tsx
 "use client"
 
-import { VelocityBrakeReveal } from "@/components/ui/velocity-brake-reveal"
+import { VelocityBrakeReveal } from "@/registry/ui/velocity-brake-reveal"
 
 export default function ExamplePage() {
   return (

@@ -1,12 +1,13 @@
 import { MetadataRoute } from "next"
+import { SITE_URL } from "@/lib/config"
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: ["/", "/llms.txt", "/llms-full.txt", "/llms/"],
-      disallow: ["/api/", "/test/"],
+      disallow: ["/api/", "/test/", "/embed/", "/preview/"],
     },
-    sitemap: "https://satisui.xyz/sitemap.xml",
+    sitemap: `${SITE_URL}/sitemap.xml`,
   }
 }

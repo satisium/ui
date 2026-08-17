@@ -10,39 +10,37 @@ const rootDir = path.join(__dirname, "..")
 const args = process.argv.slice(2)
 if (args.length === 0) {
   console.error("❌ Error: Please provide a relative file path.")
-  console.info("💡 Example: npm run make:doc overlays/magic-modal")
+  console.info("💡 Example: npm run make:doc carousels/my-carousel")
   process.exit(1)
 }
 
 const inputPath = args[0]
 
 // 2. Parse paths and names
-// e.g., "overlays/magic-modal" -> dir: "overlays", name: "magic-modal"
+// e.g., "carousels/my-carousel" -> dir: "carousels", name: "my-carousel"
 const isMdx = inputPath.endsWith(".mdx")
 const cleanPath = isMdx ? inputPath : `${inputPath}.mdx`
 const fullPath = path.join(rootDir, "content/docs", cleanPath)
 
-const filename = path.basename(cleanPath, ".mdx") // "magic-modal"
-const folderName = path.dirname(cleanPath) // "overlays"
+const filename = path.basename(cleanPath, ".mdx") // "my-carousel"
+const folderName = path.dirname(cleanPath) // "carousels"
 
-// Convert "magic-modal" to "Magic Modal"
+// Convert "my-carousel" to "My Carousel"
 const title = filename
   .split("-")
   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(" ")
 
-// Try to map the folder to your schema categories (fallback to 'application')
+// Map folder to category
 const validCategories = [
-  "marketing",
-  "navigation",
-  "overlays",
-  "data-display",
-  "forms",
-  "feedback",
-  "interactions",
-  "layout",
+  "text-reveals",
+  "image-effects",
+  "carousels",
+  "mouse-trails",
 ]
-const category = validCategories.includes(folderName) ? folderName : "marketing"
+const category = validCategories.includes(folderName)
+  ? folderName
+  : "text-reveals"
 
 // 3. The MDX Template
 const mdxTemplate = `---
@@ -50,16 +48,17 @@ title: ${title}
 description: A tasteful and carefully crafted ${title.toLowerCase()} component.
 component: true
 badge: new
-category: 
+category:
   - ${category}
-subcategory: 
-  - heroes
-author: SATIS UI
+author: Satisium UI
 links:
-  github: https://github.com/your-username/satis-ui/tree/main/components/${filename}
-  preview: https://satis-ui.com/preview/${filename}
+  github: https://github.com/satisium/ui/blob/main/registry/ui/${filename}
+  preview: https://satisiumui.com/preview/${filename}
 registryKeys:
-  - fluid-switch-demo
+  - ${filename}-demo
+media:
+  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v.../image.jpg"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v.../video.mp4"
 ---
 
 ## Install
@@ -67,7 +66,7 @@ registryKeys:
 ### CLI
 
 <div className="mt-6">
-    <CommandBlock cli="satis-ui add button" title="fluid-switch" />
+    <CommandBlock cli="satisium-ui add ${filename}" title="${filename}" />
 </div>
 
 ### Manual
@@ -80,10 +79,10 @@ registryKeys:
 
 **2. Add Source Code**
 
-import { fluidSwitchFile } from "@/registry/strings/fluid-switch"
+import { ${filename}File } from "@/registry/strings/${filename}"
 
 <div className="mt-6">
-  <CodeBlock files={fluidSwitchFile} height="600px" />
+  <CodeBlock files={${filename}File} height="600px" />
 </div>
 
 ## Props

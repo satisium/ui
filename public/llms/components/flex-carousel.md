@@ -7,7 +7,7 @@
 To add this component to a project, run:
 
 ```bash
-npx satis-ui add flex-carousel
+npx shadcn@latest add https://ui.satisium.com/r/flex-carousel.json
 ```
 
 **Dependencies installed:** `three`, `@react-three/fiber`, `@react-three/drei`, `gsap`, `@gsap/react`, `clsx`, `tailwind-merge`.
@@ -31,7 +31,7 @@ npx satis-ui add flex-carousel
 
 ## 3. Core Component Source
 
-**File Path:** `components/ui/flex-carousel.tsx`
+**File Path:** `registry/ui/flex-carousel.tsx`
 
 ```tsx
 "use client"
@@ -404,7 +404,7 @@ FlexCarousel.displayName = "FlexCarousel"
 ```tsx
 "use client"
 
-import { FlexCarousel } from "@/components/ui/flex-carousel"
+import { FlexCarousel } from "@/registry/ui/flex-carousel"
 
 export default function ExamplePage() {
   const images = [
