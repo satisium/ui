@@ -126,6 +126,7 @@ export default async function Page(props: {
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
   const hasCategories = page.data.category && page.data.category.length > 0
+  const isWide = page.data.wide
   const breadcrumbSchema = getDocBreadcrumbSchema(params.slug)
   const entitySchema = getDocEntitySchema(page.data.title, page.data.description)
 
@@ -213,7 +214,9 @@ export default async function Page(props: {
             className={cn(
               "grid items-start gap-12",
               page.data.hideToc
-                ? "w-full max-w-4xl grid-cols-1"
+                ? isWide
+                  ? "w-full max-w-7xl grid-cols-1"
+                  : "w-full max-w-4xl grid-cols-1"
                 : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
             )}
           >
