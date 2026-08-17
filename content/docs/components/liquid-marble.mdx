@@ -12,7 +12,7 @@ registryKeys:
   - liquid-marble-video
 media:
   image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
-  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1786981243/ui-v3/previews/liquid-marble.mp4"
 ---
 
 ## Install
@@ -20,19 +20,28 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble.json" title="liquid-marble" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble.json"
+    title="liquid-marble"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-image.json" title="liquid-marble-image" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-image.json"
+    title="liquid-marble-image"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-video.json" title="liquid-marble-video" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-video.json"
+    title="liquid-marble-video"
+  />
 </div>
 
 ### Manual
@@ -70,5 +79,3 @@ import { liquidMarbleFile } from "@/registry/strings/liquid-marble"
 | **`enterLeaveSpeed`**    | `number`             | `1.5`       | Speed at which the clarity lens fades in/out.                                 |
 | **`fallback`**           | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.                 |
 | **`className`**          | `string`             | `undefined` | Standard React classNames for the container wrapper.                          |
-
-

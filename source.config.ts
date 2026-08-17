@@ -12,6 +12,7 @@ export const docs = defineDocs({
       hideToc: z.boolean().default(false),
       hideCopy: z.boolean().default(false),
       comingSoon: z.boolean().default(false),
+      wide: z.boolean().default(false),
 
       badge: z
         .enum(["new", "updated", "beta", "deprecated"])

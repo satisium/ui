@@ -12,7 +12,7 @@ registryKeys:
   - velocity-strips-video
 media:
   image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
-  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1786981243/ui-v3/previews/velocity-strips.mp4"
 ---
 
 ## Install
@@ -20,19 +20,28 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips.json" title="velocity-strips" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips.json"
+    title="velocity-strips"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json" title="velocity-strips-image" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json"
+    title="velocity-strips-image"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-video.json" title="velocity-strips-video" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-video.json"
+    title="velocity-strips-video"
+  />
 </div>
 
 ### Manual
@@ -69,5 +78,3 @@ import { velocityStripsFile } from "@/registry/strings/velocity-strips"
 | **`enterLeaveSpeed`** | `number`             | `1.5`       | Interpolation speed for the enter/leave animation states.        |
 | **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.    |
 | **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.             |
-
-

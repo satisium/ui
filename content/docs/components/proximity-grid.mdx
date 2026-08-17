@@ -12,7 +12,7 @@ registryKeys:
   - proximity-grid-video
 media:
   image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
-  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1786981243/ui-v3/previews/proximity-grid.mp4"
 ---
 
 ## Install
@@ -20,19 +20,28 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid.json" title="proximity-grid" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid.json"
+    title="proximity-grid"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-image.json" title="proximity-grid-image" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-image.json"
+    title="proximity-grid-image"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-video.json" title="proximity-grid-video" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/proximity-grid-video.json"
+    title="proximity-grid-video"
+  />
 </div>
 
 ### Manual
@@ -70,5 +79,3 @@ import { proximityGridFile } from "@/registry/strings/proximity-grid"
 | **`enterLeaveSpeed`** | `number`             | `1.5`       | Speed at which the effect fades in/out when entering/leaving the canvas.     |
 | **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.                |
 | **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.                         |
-
-

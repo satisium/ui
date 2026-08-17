@@ -12,7 +12,7 @@ registryKeys:
   - glass-slices-video
 media:
   image: "https://res.cloudinary.com/ddon6aux0/image/upload/v1782017463/ui-v3/demos/images/2.jpg"
-  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4"
+  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v1786981243/ui-v3/previews/glass-slices.mp4"
 ---
 
 ## Install
@@ -20,19 +20,28 @@ media:
 ### CLI
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/glass-slices.json" title="glass-slices" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/glass-slices.json"
+    title="glass-slices"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/glass-slices-image.json" title="glass-slices-image" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/glass-slices-image.json"
+    title="glass-slices-image"
+  />
 </div>
 
 Or install a specific demo variant:
 
 <div className="mt-6">
-  <CommandBlock command="npx shadcn@latest add https://ui.satisium.com/r/glass-slices-video.json" title="glass-slices-video" />
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/glass-slices-video.json"
+    title="glass-slices-video"
+  />
 </div>
 
 ### Manual
@@ -70,5 +79,3 @@ import { glassSlicesFile } from "@/registry/strings/glass-slices"
 | **`enterLeaveSpeed`** | `number`             | `2.0`       | Speed at which the effect fades in/out when entering/leaving.                    |
 | **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.                    |
 | **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.                             |
-
-

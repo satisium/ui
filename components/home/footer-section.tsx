@@ -72,9 +72,9 @@ export function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Satisium UI on X"
-                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-all hover:bg-foreground hover:text-background sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground dark:hover:bg-muted"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
                 >
-                  <HugeiconsIcon icon={NewTwitterIcon} size={15} />
+                  <HugeiconsIcon icon={NewTwitterIcon} size={16} />
                 </a>
 
                 <a
@@ -82,14 +82,14 @@ export function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Satisium UI on GitHub"
-                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-all hover:bg-foreground hover:text-background sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground dark:hover:bg-muted"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
                 >
                   <Image
                     src="/github-mark-white.svg"
                     alt="GitHub"
-                    width={15}
-                    height={15}
-                    className="object-contain invert dark:invert-0"
+                    width={16}
+                    height={16}
+                    className="object-contain"
                     loading="lazy"
                   />
                 </a>
@@ -99,9 +99,9 @@ export function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Satisium Discord"
-                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground transition-all hover:bg-foreground hover:text-background sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground dark:hover:bg-muted"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
                 >
-                  <HugeiconsIcon icon={DiscordIcon} size={15} />
+                  <HugeiconsIcon icon={DiscordIcon} size={16} />
                 </a>
               </div>
             </div>
@@ -127,7 +127,7 @@ export function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Author X"
-                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
                 >
                   <HugeiconsIcon icon={NewTwitterIcon} size={16} />
                 </a>
@@ -136,7 +136,7 @@ export function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Author Instagram"
-                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
                 >
                   <HugeiconsIcon icon={InstagramIcon} size={16} />
                 </a>
@@ -145,7 +145,7 @@ export function FooterSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Author GitHub"
-                  className="flex h-8 w-8 items-center justify-center rounded-xl bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 dark:bg-secondary dark:text-foreground"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
                 >
                   <Image
                     src="/github-mark-white.svg"
