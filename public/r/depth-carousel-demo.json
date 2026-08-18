@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/depth-carousel/depth-carousel-demo.tsx",
       "content": "\"use client\"\n\nimport { DepthCarousel } from \"@/registry/ui/depth-carousel\"\n\nexport default function DepthCarouselDemo() {\n  const images = Array.from({ length: 18 }).map(\n    (_, i) =>\n      `https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/${15 + i}.jpg`\n  )\n\n  return (\n    <main className=\"relative flex h-screen w-full items-center justify-center overflow-hidden bg-background\">\n      {/* \n        The component is absolutely positioned inside a full-screen wrapper, \n        making the entire screen interactive while cards stay centered.\n      */}\n      <div className=\"absolute inset-0 z-0\">\n        <DepthCarousel\n          images={images}\n          cardWidthRatio={0.35}\n          gapMultiplier={0.7}\n          activeGapMultiplier={0.25}\n          depthMultiplier={0.25}\n          scaleMultiplier={0.15}\n          rotationMultiplier={0.1}\n          parallaxIntensity={0.5}\n          dimmingMultiplier={0.85}\n          cornerRadius={0.03}\n          shadowOpacity={0.6}\n          chromaticAberrationIntensity={0.002}\n        />\n      </div>\n\n      <div className=\"pointer-events-none absolute bottom-8 z-10 text-center select-none\">\n        <p className=\"text-xs font-semibold tracking-widest text-muted-foreground uppercase\">\n          Drag / Scroll\n        </p>\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/depth-carousel-demo.tsx"
     }
   ],
   "type": "registry:ui"

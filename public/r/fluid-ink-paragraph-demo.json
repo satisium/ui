@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-paragraph-demo.tsx",
       "content": "import { FluidInkReveal } from \"@/registry/ui/fluid-ink-reveal\" // Update path as needed\n\nexport default function FluidInkParagraphDemo() {\n  return (\n    <main className=\"relative min-h-[150vh] w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* Scroll indicator */}\n      <div className=\"absolute top-[25vh] flex w-full flex-col items-center gap-4 text-sm font-medium tracking-wide text-muted-foreground\">\n        <span className=\"tracking-widest uppercase\">Scroll to explore</span>\n        <div className=\"h-16 w-[1px] bg-border\" />\n      </div>\n\n      {/* The Reveal Container */}\n      <div className=\"flex w-full items-center justify-center px-6 pt-[90vh]\">\n        <div className=\"max-w-5xl text-left md:text-justify\">\n          <FluidInkReveal\n            as=\"h2\"\n            text=\"Don't let yourself get attached to anything you are not willing to walk out on in 30 seconds flat if you feel the heat around the corner.\"\n            className=\"text-3xl leading-[1.4] font-medium tracking-tight md:text-5xl lg:text-6xl\"\n            splitBy=\"char\"\n            triggerStart=\"top 85%\"\n            startBlur=\"16px\"\n            duration={1.2}\n            stagger={0.06}\n            viewportOnce={false}\n          />\n        </div>\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/fluid-ink-paragraph-demo.tsx"
     }
   ],
   "type": "registry:ui"

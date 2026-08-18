@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/masked-reveal/masked-reveal-paragraph-demo.tsx",
       "content": "import { MaskedReveal } from \"@/registry/ui/masked-reveal\"\n\nexport default function MaskedRevealParagraphDemo() {\n  return (\n    <main className=\"relative w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* Scroll indicator / Spacer to push the reveal down */}\n      <section className=\"flex h-screen w-full flex-col items-center justify-center gap-4 text-sm font-medium tracking-wide text-muted-foreground\">\n        <span className=\"tracking-widest uppercase\">Scroll to reveal</span>\n        <div className=\"h-16 w-[1px] bg-border\" />\n      </section>\n\n      {/* The Multiline Reveal Section */}\n      <section className=\"flex w-full items-center justify-center px-6 pb-32\">\n        <div className=\"max-w-4xl text-left md:text-justify\">\n          <MaskedReveal\n            as=\"h2\"\n            text=\"Many that live deserve death. And some that die deserve life. Can you give it to them? Then do not be too eager to deal out death in judgement. For even the very wise cannot see all ends.\"\n            className=\"text-3xl leading-[1.4] font-medium tracking-tight md:text-5xl md:leading-[1.3]\"\n            splitBy=\"word\" // 'word' is best for large blocks of text\n            delay={0.1}\n            stagger={0.02} // Faster stagger for multiline so the user isn't waiting forever\n            startOffset=\"100%\"\n            startRotation={8}\n            viewportOnce={false}\n          />\n        </div>\n      </section>\n\n      {/* Bottom spacer to allow natural scrolling past the component */}\n      <section className=\"h-[50vh] w-full\" />\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/masked-reveal-paragraph-demo.tsx"
     }
   ],
   "type": "registry:ui"

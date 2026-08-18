@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/flip-3d-reveal/flip-3d-paragraph-demo.tsx",
       "content": "import { Flip3DReveal } from \"@/registry/ui/flip-3d-reveal\"\n\nexport default function Flip3DParagraphDemo() {\n  return (\n    <main className=\"relative min-h-[250vh] w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* Scroll indicator */}\n      <div className=\"absolute top-[25vh] flex w-full flex-col items-center gap-4 text-sm font-medium tracking-wide text-muted-foreground\">\n        <span className=\"tracking-widest uppercase\">Scroll to explore</span>\n        <div className=\"h-16 w-[1px] bg-border\" />\n      </div>\n\n      {/* The Reveal Container */}\n      <div className=\"flex w-full items-center justify-center px-6 pt-[90vh]\">\n        <div className=\"max-w-5xl text-left md:text-justify\">\n          <Flip3DReveal\n            as=\"h2\"\n            text=\"Meticulously crafted components for modern web applications. Elevate your interface with uncompromising performance, accessibility, and refined design.\"\n            className=\"text-3xl leading-[1.4] font-medium tracking-tight md:text-5xl lg:text-6xl\"\n            splitBy=\"word\" // Split by word ensures DOM performance on long text blocks\n            triggerStart=\"top 85%\"\n            startAngle={80} // Slightly less extreme angle for body text\n            startX=\"0em\" // Removed horizontal slide for cleaner paragraph reading\n            duration={0.7}\n            stagger={0.03}\n            viewportOnce={false} // Will seamlessly reverse and replay on scroll\n          />\n        </div>\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/flip-3d-paragraph-demo.tsx"
     }
   ],
   "type": "registry:ui"

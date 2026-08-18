@@ -18,7 +18,8 @@
       "files": [
         {
           "path": "registry/ui/velocity-strips.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/velocity-strips.tsx"
         }
       ]
     },
@@ -36,7 +37,8 @@
       "files": [
         {
           "path": "registry/demos/components/velocity-strips/velocity-strips-image.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/velocity-strips-image.tsx"
         }
       ]
     },
@@ -54,7 +56,8 @@
       "files": [
         {
           "path": "registry/demos/components/velocity-strips/velocity-strips-video.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/velocity-strips-video.tsx"
         }
       ]
     },
@@ -73,7 +76,8 @@
       "files": [
         {
           "path": "registry/ui/velocity-grid.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/velocity-grid.tsx"
         }
       ]
     },
@@ -91,7 +95,8 @@
       "files": [
         {
           "path": "registry/demos/components/velocity-grid/velocity-grid-image.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/velocity-grid-image.tsx"
         }
       ]
     },
@@ -109,7 +114,8 @@
       "files": [
         {
           "path": "registry/demos/components/velocity-grid/velocity-grid-video.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/velocity-grid-video.tsx"
         }
       ]
     },
@@ -128,7 +134,8 @@
       "files": [
         {
           "path": "registry/ui/proximity-grid.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/proximity-grid.tsx"
         }
       ]
     },
@@ -146,7 +153,8 @@
       "files": [
         {
           "path": "registry/demos/components/proximity-grid/proximity-grid-image.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/proximity-grid-image.tsx"
         }
       ]
     },
@@ -164,7 +172,8 @@
       "files": [
         {
           "path": "registry/demos/components/proximity-grid/proximity-grid-video.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/proximity-grid-video.tsx"
         }
       ]
     },
@@ -183,7 +192,8 @@
       "files": [
         {
           "path": "registry/ui/liquid-marble.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/liquid-marble.tsx"
         }
       ]
     },
@@ -201,7 +211,8 @@
       "files": [
         {
           "path": "registry/demos/components/liquid-marble/liquid-marble-image.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/liquid-marble-image.tsx"
         }
       ]
     },
@@ -219,7 +230,8 @@
       "files": [
         {
           "path": "registry/demos/components/liquid-marble/liquid-marble-video.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/liquid-marble-video.tsx"
         }
       ]
     },
@@ -238,7 +250,8 @@
       "files": [
         {
           "path": "registry/ui/glass-slices.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/glass-slices.tsx"
         }
       ]
     },
@@ -256,7 +269,8 @@
       "files": [
         {
           "path": "registry/demos/components/glass-slices/glass-slices-image.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/glass-slices-image.tsx"
         }
       ]
     },
@@ -274,7 +288,8 @@
       "files": [
         {
           "path": "registry/demos/components/glass-slices/glass-slices-video.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/glass-slices-video.tsx"
         }
       ]
     },
@@ -290,7 +305,8 @@
       "files": [
         {
           "path": "registry/ui/depth-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/depth-trail.tsx"
         }
       ]
     },
@@ -304,7 +320,8 @@
       "files": [
         {
           "path": "registry/demos/components/depth-trail/depth-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/depth-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -318,7 +335,8 @@
       "files": [
         {
           "path": "registry/demos/components/depth-trail/depth-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/depth-trail-images-demo.tsx"
         }
       ]
     },
@@ -334,7 +352,8 @@
       "files": [
         {
           "path": "registry/ui/scatter-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/scatter-trail.tsx"
         }
       ]
     },
@@ -348,7 +367,8 @@
       "files": [
         {
           "path": "registry/demos/components/scatter-trail/scatter-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/scatter-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -362,7 +382,8 @@
       "files": [
         {
           "path": "registry/demos/components/scatter-trail/scatter-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/scatter-trail-images-demo.tsx"
         }
       ]
     },
@@ -378,7 +399,8 @@
       "files": [
         {
           "path": "registry/ui/wind-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/wind-trail.tsx"
         }
       ]
     },
@@ -392,7 +414,8 @@
       "files": [
         {
           "path": "registry/demos/components/wind-trail/wind-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/wind-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -406,7 +429,8 @@
       "files": [
         {
           "path": "registry/demos/components/wind-trail/wind-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/wind-trail-images-demo.tsx"
         }
       ]
     },
@@ -422,7 +446,8 @@
       "files": [
         {
           "path": "registry/ui/kaleidoscope-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/kaleidoscope-trail.tsx"
         }
       ]
     },
@@ -436,7 +461,8 @@
       "files": [
         {
           "path": "registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/kaleidoscope-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -450,7 +476,8 @@
       "files": [
         {
           "path": "registry/demos/components/kaleidoscope-trail/kaleidoscope-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/kaleidoscope-trail-images-demo.tsx"
         }
       ]
     },
@@ -466,7 +493,8 @@
       "files": [
         {
           "path": "registry/ui/squircle-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/squircle-trail.tsx"
         }
       ]
     },
@@ -480,7 +508,8 @@
       "files": [
         {
           "path": "registry/demos/components/squircle-trail/squircle-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/squircle-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -494,7 +523,8 @@
       "files": [
         {
           "path": "registry/demos/components/squircle-trail/squircle-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/squircle-trail-images-demo.tsx"
         }
       ]
     },
@@ -510,7 +540,8 @@
       "files": [
         {
           "path": "registry/ui/pendulum-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/pendulum-trail.tsx"
         }
       ]
     },
@@ -524,7 +555,8 @@
       "files": [
         {
           "path": "registry/demos/components/pendulum-trail/pendulum-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/pendulum-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -538,7 +570,8 @@
       "files": [
         {
           "path": "registry/demos/components/pendulum-trail/pendulum-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/pendulum-trail-images-demo.tsx"
         }
       ]
     },
@@ -554,7 +587,8 @@
       "files": [
         {
           "path": "registry/ui/slinky-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/slinky-trail.tsx"
         }
       ]
     },
@@ -568,7 +602,8 @@
       "files": [
         {
           "path": "registry/demos/components/slinky-trail/slinky-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/slinky-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -582,7 +617,8 @@
       "files": [
         {
           "path": "registry/demos/components/slinky-trail/slinky-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/slinky-trail-images-demo.tsx"
         }
       ]
     },
@@ -598,7 +634,8 @@
       "files": [
         {
           "path": "registry/ui/velocity-trail.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/velocity-trail.tsx"
         }
       ]
     },
@@ -612,7 +649,8 @@
       "files": [
         {
           "path": "registry/demos/components/velocity-trail/velocity-trail-avatars-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/velocity-trail-avatars-demo.tsx"
         }
       ]
     },
@@ -626,7 +664,8 @@
       "files": [
         {
           "path": "registry/demos/components/velocity-trail/velocity-trail-images-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/velocity-trail-images-demo.tsx"
         }
       ]
     },
@@ -644,7 +683,8 @@
       "files": [
         {
           "path": "registry/ui/editorial-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/editorial-reveal.tsx"
         }
       ]
     },
@@ -658,7 +698,8 @@
       "files": [
         {
           "path": "registry/demos/components/editorial-reveal/editorial-reveal-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/editorial-reveal-demo.tsx"
         }
       ]
     },
@@ -676,7 +717,8 @@
       "files": [
         {
           "path": "registry/ui/elastic-pop-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/elastic-pop-reveal.tsx"
         }
       ]
     },
@@ -690,7 +732,8 @@
       "files": [
         {
           "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/elastic-pop-headline-demo.tsx"
         }
       ]
     },
@@ -704,7 +747,8 @@
       "files": [
         {
           "path": "registry/demos/components/elastic-pop-reveal/elastic-pop-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/elastic-pop-paragraph-demo.tsx"
         }
       ]
     },
@@ -722,7 +766,8 @@
       "files": [
         {
           "path": "registry/ui/elastic-typewriter.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/elastic-typewriter.tsx"
         }
       ]
     },
@@ -736,7 +781,8 @@
       "files": [
         {
           "path": "registry/demos/components/elastic-typewriter/elastic-typewriter-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/elastic-typewriter-headline-demo.tsx"
         }
       ]
     },
@@ -750,7 +796,8 @@
       "files": [
         {
           "path": "registry/demos/components/elastic-typewriter/elastic-typewriter-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/elastic-typewriter-paragraph-demo.tsx"
         }
       ]
     },
@@ -768,7 +815,8 @@
       "files": [
         {
           "path": "registry/ui/flip-3d-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/flip-3d-reveal.tsx"
         }
       ]
     },
@@ -782,7 +830,8 @@
       "files": [
         {
           "path": "registry/demos/components/flip-3d-reveal/flip-3d-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/flip-3d-headline-demo.tsx"
         }
       ]
     },
@@ -796,7 +845,8 @@
       "files": [
         {
           "path": "registry/demos/components/flip-3d-reveal/flip-3d-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/flip-3d-paragraph-demo.tsx"
         }
       ]
     },
@@ -814,7 +864,8 @@
       "files": [
         {
           "path": "registry/ui/flip-vertical-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/flip-vertical-reveal.tsx"
         }
       ]
     },
@@ -828,7 +879,8 @@
       "files": [
         {
           "path": "registry/demos/components/flip-vertical-reveal/flip-vertical-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/flip-vertical-headline-demo.tsx"
         }
       ]
     },
@@ -842,7 +894,8 @@
       "files": [
         {
           "path": "registry/demos/components/flip-vertical-reveal/flip-vertical-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/flip-vertical-paragraph-demo.tsx"
         }
       ]
     },
@@ -860,7 +913,8 @@
       "files": [
         {
           "path": "registry/ui/fluid-ink-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/fluid-ink-reveal.tsx"
         }
       ]
     },
@@ -874,7 +928,8 @@
       "files": [
         {
           "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/fluid-ink-headline-demo.tsx"
         }
       ]
     },
@@ -888,7 +943,8 @@
       "files": [
         {
           "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/fluid-ink-paragraph-demo.tsx"
         }
       ]
     },
@@ -906,7 +962,8 @@
       "files": [
         {
           "path": "registry/ui/blur-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/blur-reveal.tsx"
         }
       ]
     },
@@ -920,7 +977,8 @@
       "files": [
         {
           "path": "registry/demos/components/blur-reveal/blur-reveal-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/blur-reveal-headline-demo.tsx"
         }
       ]
     },
@@ -934,7 +992,8 @@
       "files": [
         {
           "path": "registry/demos/components/blur-reveal/blur-reveal-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/blur-reveal-paragraph-demo.tsx"
         }
       ]
     },
@@ -952,7 +1011,8 @@
       "files": [
         {
           "path": "registry/ui/fluid-typewriter.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/fluid-typewriter.tsx"
         }
       ]
     },
@@ -966,7 +1026,8 @@
       "files": [
         {
           "path": "registry/demos/components/fluid-typewriter/fluid-typewriter-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/fluid-typewriter-headline-demo.tsx"
         }
       ]
     },
@@ -980,7 +1041,8 @@
       "files": [
         {
           "path": "registry/demos/components/fluid-typewriter/fluid-typewriter-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/fluid-typewriter-paragraph-demo.tsx"
         }
       ]
     },
@@ -998,7 +1060,8 @@
       "files": [
         {
           "path": "registry/ui/granular-dust-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/granular-dust-reveal.tsx"
         }
       ]
     },
@@ -1012,7 +1075,8 @@
       "files": [
         {
           "path": "registry/demos/components/granular-dust-reveal/granular-dust-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/granular-dust-headline-demo.tsx"
         }
       ]
     },
@@ -1026,7 +1090,8 @@
       "files": [
         {
           "path": "registry/demos/components/granular-dust-reveal/granular-dust-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/granular-dust-paragraph-demo.tsx"
         }
       ]
     },
@@ -1044,7 +1109,8 @@
       "files": [
         {
           "path": "registry/ui/heat-mirage-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/heat-mirage-reveal.tsx"
         }
       ]
     },
@@ -1058,7 +1124,8 @@
       "files": [
         {
           "path": "registry/demos/components/heat-mirage-reveal/heat-mirage-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/heat-mirage-headline-demo.tsx"
         }
       ]
     },
@@ -1072,7 +1139,8 @@
       "files": [
         {
           "path": "registry/demos/components/heat-mirage-reveal/heat-mirage-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/heat-mirage-paragraph-demo.tsx"
         }
       ]
     },
@@ -1090,7 +1158,8 @@
       "files": [
         {
           "path": "registry/ui/liquid-mercury-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/liquid-mercury-reveal.tsx"
         }
       ]
     },
@@ -1104,7 +1173,8 @@
       "files": [
         {
           "path": "registry/demos/components/liquid-mercury-reveal/liquid-mercury-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/liquid-mercury-headline-demo.tsx"
         }
       ]
     },
@@ -1122,7 +1192,8 @@
       "files": [
         {
           "path": "registry/ui/magnetic-snap-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/magnetic-snap-reveal.tsx"
         }
       ]
     },
@@ -1136,7 +1207,8 @@
       "files": [
         {
           "path": "registry/demos/components/magnetic-snap-reveal/magnetic-snap-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/magnetic-snap-demo.tsx"
         }
       ]
     },
@@ -1154,7 +1226,8 @@
       "files": [
         {
           "path": "registry/ui/manifesto-text-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/manifesto-text-reveal.tsx"
         }
       ]
     },
@@ -1168,7 +1241,8 @@
       "files": [
         {
           "path": "registry/demos/components/manifesto-text-reveal/manifesto-text-reveal-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/manifesto-text-reveal-demo.tsx"
         }
       ]
     },
@@ -1186,7 +1260,8 @@
       "files": [
         {
           "path": "registry/ui/masked-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/masked-reveal.tsx"
         }
       ]
     },
@@ -1200,7 +1275,8 @@
       "files": [
         {
           "path": "registry/demos/components/masked-reveal/masked-reveal-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/masked-reveal-headline-demo.tsx"
         }
       ]
     },
@@ -1214,7 +1290,8 @@
       "files": [
         {
           "path": "registry/demos/components/masked-reveal/masked-reveal-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/masked-reveal-paragraph-demo.tsx"
         }
       ]
     },
@@ -1232,7 +1309,8 @@
       "files": [
         {
           "path": "registry/ui/fold-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/fold-reveal.tsx"
         }
       ]
     },
@@ -1246,7 +1324,8 @@
       "files": [
         {
           "path": "registry/demos/components/fold-reveal/fold-reveal-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/fold-reveal-demo.tsx"
         }
       ]
     },
@@ -1264,7 +1343,8 @@
       "files": [
         {
           "path": "registry/ui/pendulum-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/pendulum-reveal.tsx"
         }
       ]
     },
@@ -1278,7 +1358,8 @@
       "files": [
         {
           "path": "registry/demos/components/pendulum-reveal/pendulum-reveal-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/pendulum-reveal-demo.tsx"
         }
       ]
     },
@@ -1296,7 +1377,8 @@
       "files": [
         {
           "path": "registry/ui/piano-typewriter.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/piano-typewriter.tsx"
         }
       ]
     },
@@ -1310,7 +1392,8 @@
       "files": [
         {
           "path": "registry/demos/components/piano-typewriter/piano-typewriter-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/piano-typewriter-demo.tsx"
         }
       ]
     },
@@ -1328,7 +1411,8 @@
       "files": [
         {
           "path": "registry/ui/multi-color-trail-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/multi-color-trail-reveal.tsx"
         }
       ]
     },
@@ -1342,7 +1426,8 @@
       "files": [
         {
           "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-char-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/multi-color-trail-char-demo.tsx"
         }
       ]
     },
@@ -1356,7 +1441,8 @@
       "files": [
         {
           "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-word-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/multi-color-trail-word-demo.tsx"
         }
       ]
     },
@@ -1370,7 +1456,8 @@
       "files": [
         {
           "path": "registry/demos/components/multi-color-trail-reveal/multi-color-trail-line-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/multi-color-trail-line-demo.tsx"
         }
       ]
     },
@@ -1388,7 +1475,8 @@
       "files": [
         {
           "path": "registry/ui/tumbler-roll-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/tumbler-roll-reveal.tsx"
         }
       ]
     },
@@ -1402,7 +1490,8 @@
       "files": [
         {
           "path": "registry/demos/components/tumbler-roll-reveal/tumbler-roll-reveal-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/tumbler-roll-reveal-demo.tsx"
         }
       ]
     },
@@ -1420,7 +1509,8 @@
       "files": [
         {
           "path": "registry/ui/bottom-hinge-text-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/bottom-hinge-text-reveal.tsx"
         }
       ]
     },
@@ -1434,7 +1524,8 @@
       "files": [
         {
           "path": "registry/demos/components/bottom-hinge-text-reveal/bottom-hinge-text-reveal-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/bottom-hinge-text-reveal-demo.tsx"
         }
       ]
     },
@@ -1452,7 +1543,8 @@
       "files": [
         {
           "path": "registry/ui/velocity-brake-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/velocity-brake-reveal.tsx"
         }
       ]
     },
@@ -1466,7 +1558,8 @@
       "files": [
         {
           "path": "registry/demos/components/velocity-brake-reveal/velocity-brake-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/velocity-brake-demo.tsx"
         }
       ]
     },
@@ -1484,7 +1577,8 @@
       "files": [
         {
           "path": "registry/ui/weightless-float-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/weightless-float-reveal.tsx"
         }
       ]
     },
@@ -1498,7 +1592,8 @@
       "files": [
         {
           "path": "registry/demos/components/weightless-float-reveal/weightless-float-headline-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/weightless-float-headline-demo.tsx"
         }
       ]
     },
@@ -1512,7 +1607,8 @@
       "files": [
         {
           "path": "registry/demos/components/weightless-float-reveal/weightless-float-paragraph-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/weightless-float-paragraph-demo.tsx"
         }
       ]
     },
@@ -1530,7 +1626,8 @@
       "files": [
         {
           "path": "registry/ui/wind-shear-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/wind-shear-reveal.tsx"
         }
       ]
     },
@@ -1544,7 +1641,8 @@
       "files": [
         {
           "path": "registry/demos/components/wind-shear-reveal/wind-shear-char-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/wind-shear-char-demo.tsx"
         }
       ]
     },
@@ -1558,7 +1656,8 @@
       "files": [
         {
           "path": "registry/demos/components/wind-shear-reveal/wind-shear-word-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/wind-shear-word-demo.tsx"
         }
       ]
     },
@@ -1576,7 +1675,8 @@
       "files": [
         {
           "path": "registry/ui/z-axis-reveal.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/z-axis-reveal.tsx"
         }
       ]
     },
@@ -1590,7 +1690,8 @@
       "files": [
         {
           "path": "registry/demos/components/z-axis-reveal/z-axis-char-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/z-axis-char-demo.tsx"
         }
       ]
     },
@@ -1604,7 +1705,8 @@
       "files": [
         {
           "path": "registry/demos/components/z-axis-reveal/z-axis-word-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/z-axis-word-demo.tsx"
         }
       ]
     },
@@ -1622,7 +1724,8 @@
       "files": [
         {
           "path": "registry/ui/concave-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/concave-carousel.tsx"
         }
       ]
     },
@@ -1636,7 +1739,8 @@
       "files": [
         {
           "path": "registry/demos/components/concave-carousel/concave-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/concave-carousel-demo.tsx"
         }
       ]
     },
@@ -1654,7 +1758,8 @@
       "files": [
         {
           "path": "registry/ui/ascent-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/ascent-carousel.tsx"
         }
       ]
     },
@@ -1668,7 +1773,8 @@
       "files": [
         {
           "path": "registry/demos/components/ascent-carousel/ascent-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/ascent-carousel-demo.tsx"
         }
       ]
     },
@@ -1686,7 +1792,8 @@
       "files": [
         {
           "path": "registry/ui/wave-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/wave-carousel.tsx"
         }
       ]
     },
@@ -1700,7 +1807,8 @@
       "files": [
         {
           "path": "registry/demos/components/wave-carousel/wave-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/wave-carousel-demo.tsx"
         }
       ]
     },
@@ -1718,7 +1826,8 @@
       "files": [
         {
           "path": "registry/ui/convex-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/convex-carousel.tsx"
         }
       ]
     },
@@ -1732,7 +1841,8 @@
       "files": [
         {
           "path": "registry/demos/components/convex-carousel/convex-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/convex-carousel-demo.tsx"
         }
       ]
     },
@@ -1750,7 +1860,8 @@
       "files": [
         {
           "path": "registry/ui/ember-burn.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/ember-burn.tsx"
         }
       ]
     },
@@ -1764,7 +1875,8 @@
       "files": [
         {
           "path": "registry/demos/components/ember-burn/ember-burn-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/ember-burn-demo.tsx"
         }
       ]
     },
@@ -1782,7 +1894,8 @@
       "files": [
         {
           "path": "registry/ui/ferrofluid-drag.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/ferrofluid-drag.tsx"
         }
       ]
     },
@@ -1796,7 +1909,8 @@
       "files": [
         {
           "path": "registry/demos/components/ferrofluid-drag/ferrofluid-drag-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/ferrofluid-drag-demo.tsx"
         }
       ]
     },
@@ -1814,7 +1928,8 @@
       "files": [
         {
           "path": "registry/ui/fluid-disintegration.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/fluid-disintegration.tsx"
         }
       ]
     },
@@ -1828,7 +1943,8 @@
       "files": [
         {
           "path": "registry/demos/components/fluid-disintegration/fluid-disintegration-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/fluid-disintegration-demo.tsx"
         }
       ]
     },
@@ -1846,7 +1962,8 @@
       "files": [
         {
           "path": "registry/ui/liquid-curtain.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/liquid-curtain.tsx"
         }
       ]
     },
@@ -1860,7 +1977,8 @@
       "files": [
         {
           "path": "registry/demos/components/liquid-curtain/liquid-curtain-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/liquid-curtain-demo.tsx"
         }
       ]
     },
@@ -1878,7 +1996,8 @@
       "files": [
         {
           "path": "registry/ui/mycelium-network.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/mycelium-network.tsx"
         }
       ]
     },
@@ -1892,7 +2011,8 @@
       "files": [
         {
           "path": "registry/demos/components/mycelium-network/mycelium-network-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/mycelium-network-demo.tsx"
         }
       ]
     },
@@ -1913,7 +2033,8 @@
       "files": [
         {
           "path": "registry/ui/dimensional-deck.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/dimensional-deck.tsx"
         }
       ]
     },
@@ -1927,7 +2048,8 @@
       "files": [
         {
           "path": "registry/demos/components/dimensional-deck/dimensional-deck-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/dimensional-deck-demo.tsx"
         }
       ]
     },
@@ -1948,7 +2070,8 @@
       "files": [
         {
           "path": "registry/ui/dimensional-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/dimensional-carousel.tsx"
         }
       ]
     },
@@ -1962,7 +2085,8 @@
       "files": [
         {
           "path": "registry/demos/components/dimensional-carousel/dimensional-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/dimensional-carousel-demo.tsx"
         }
       ]
     },
@@ -1983,7 +2107,8 @@
       "files": [
         {
           "path": "registry/ui/panoramic-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/panoramic-carousel.tsx"
         }
       ]
     },
@@ -1997,7 +2122,8 @@
       "files": [
         {
           "path": "registry/demos/components/panoramic-carousel/panoramic-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/panoramic-carousel-demo.tsx"
         }
       ]
     },
@@ -2018,7 +2144,8 @@
       "files": [
         {
           "path": "registry/ui/flex-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/flex-carousel.tsx"
         }
       ]
     },
@@ -2032,7 +2159,8 @@
       "files": [
         {
           "path": "registry/demos/components/flex-carousel/flex-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/flex-carousel-demo.tsx"
         }
       ]
     },
@@ -2053,7 +2181,8 @@
       "files": [
         {
           "path": "registry/ui/depth-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/depth-carousel.tsx"
         }
       ]
     },
@@ -2067,7 +2196,8 @@
       "files": [
         {
           "path": "registry/demos/components/depth-carousel/depth-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/depth-carousel-demo.tsx"
         }
       ]
     },
@@ -2088,7 +2218,8 @@
       "files": [
         {
           "path": "registry/ui/cover-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/cover-carousel.tsx"
         }
       ]
     },
@@ -2102,7 +2233,8 @@
       "files": [
         {
           "path": "registry/demos/components/cover-carousel/cover-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/cover-carousel-demo.tsx"
         }
       ]
     },
@@ -2123,7 +2255,8 @@
       "files": [
         {
           "path": "registry/ui/curved-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/curved-carousel.tsx"
         }
       ]
     },
@@ -2137,7 +2270,8 @@
       "files": [
         {
           "path": "registry/demos/components/curved-carousel/curved-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/curved-carousel-demo.tsx"
         }
       ]
     },
@@ -2158,7 +2292,8 @@
       "files": [
         {
           "path": "registry/ui/elastic-carousel.tsx",
-          "type": "registry:ui"
+          "type": "registry:ui",
+          "target": "components/satisium-ui/elastic-carousel.tsx"
         }
       ]
     },
@@ -2172,9 +2307,15 @@
       "files": [
         {
           "path": "registry/demos/components/elastic-carousel/elastic-carousel-demo.tsx",
-          "type": "registry:component"
+          "type": "registry:component",
+          "target": "components/satisium-ui/elastic-carousel-demo.tsx"
         }
       ]
     }
-  ]
+  ],
+  "tailwind": {
+    "config": {
+      "plugins": []
+    }
+  }
 }

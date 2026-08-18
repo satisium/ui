@@ -13,7 +13,8 @@
     {
       "path": "registry/demos/components/proximity-grid/proximity-grid-video.tsx",
       "content": "import ProximityGrid from \"@/registry/ui/proximity-grid\"\nimport { Loading02Icon } from \"@hugeicons/core-free-icons\"\nimport { HugeiconsIcon } from \"@hugeicons/react\"\n\nexport default function ProximityGridVideoDemo() {\n  const videoUrl =\n    \"https://res.cloudinary.com/ddon6aux0/video/upload/f_auto,q_auto/v1782129926/ui-v3/demos/videos/1.mp4\"\n\n  return (\n    <main className=\"flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8\">\n      <div className=\"relative aspect-[4/3] w-full max-w-5xl overflow-hidden sm:aspect-[16/9]\">\n        <ProximityGrid\n          mediaUrl={videoUrl}\n          mediaType=\"video\"\n          columns={10}\n          rows={5}\n          hoverRadius={4.5}\n          imageZoom={2}\n          cellRadius={0.2}\n          fallback={\n            <div className=\"flex flex-col items-center justify-center gap-2 text-muted-foreground\">\n              <HugeiconsIcon\n                icon={Loading02Icon}\n                className=\"h-6 w-6 animate-spin\"\n              />\n              <span className=\"text-sm font-medium tracking-wide\">\n                Loading media...\n              </span>\n            </div>\n          }\n        />\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/proximity-grid-video.tsx"
     }
   ],
   "type": "registry:ui"

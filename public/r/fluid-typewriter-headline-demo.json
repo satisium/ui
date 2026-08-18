@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/fluid-typewriter/fluid-typewriter-headline-demo.tsx",
       "content": "import { FluidTypewriter } from \"@/registry/ui/fluid-typewriter\"\n\nexport default function FluidTypewriterHeadlineDemo() {\n  return (\n    <main className=\"flex min-h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground antialiased selection:bg-primary/20\">\n      <div className=\"max-w-4xl px-6 text-center\">\n        <FluidTypewriter\n          as=\"h1\"\n          text=\"Seamless fluidity.\"\n          className=\"text-6xl leading-[1.1] font-bold tracking-tighter md:text-8xl\"\n          baseSpeed={0.05} // Slightly slower for headlines\n          variance={0.03}\n          delay={0.3}\n          cursorClassName=\"bg-primary shadow-[0_0_20px_var(--primary)]\"\n        />\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/fluid-typewriter-headline-demo.tsx"
     }
   ],
   "type": "registry:ui"

@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/heat-mirage-reveal/heat-mirage-paragraph-demo.tsx",
       "content": "import { HeatMirageReveal } from \"@/registry/ui/heat-mirage-reveal\"\n\nexport default function HeatMirageParagraphDemo() {\n  return (\n    <main className=\"h-screen w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* The Reveal Container */}\n      <div className=\"flex h-full w-full items-center justify-center\">\n        <div className=\"max-w-5xl text-left md:text-justify\">\n          <HeatMirageReveal\n            as=\"h2\"\n            text=\"It starts as a haze, a distortion in the atmosphere. Slowly, the heat dissipates, the air cools, and the interface settles into perfect, crystalline focus.\"\n            className=\"text-3xl leading-[1.4] font-medium tracking-tight md:text-5xl lg:text-6xl\"\n            splitBy=\"word\" // Split by word prevents the paragraph from becoming an unreadable noisy mess\n            triggerStart=\"top 85%\"\n            startingDisplacement={25} // Subtler distortion for body text\n            duration={2.5}\n            stagger={0.04} // A slightly faster cascade for narrative flow\n            viewportOnce={false} // Effortlessly reverses when scrolling away\n          />\n        </div>\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/heat-mirage-paragraph-demo.tsx"
     }
   ],
   "type": "registry:ui"

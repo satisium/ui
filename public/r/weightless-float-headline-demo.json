@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/weightless-float-reveal/weightless-float-headline-demo.tsx",
       "content": "import { WeightlessFloatReveal } from \"@/registry/ui/weightless-float-reveal\" // Update path as needed\n\nexport default function WeightlessFloatDemo() {\n  return (\n    <main className=\"flex h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground antialiased selection:bg-primary/20\">\n      <div className=\"px-6 text-center\">\n        <WeightlessFloatReveal\n          as=\"h1\"\n          text=\"Defying gravity.\"\n          className=\"text-5xl leading-[0.9] font-bold tracking-tighter sm:text-7xl md:text-8xl lg:text-[8rem]\"\n          splitBy=\"char\"\n          startYMin={40}\n          startYMax={80}\n          startRotationMin={-8}\n          startRotationMax={8}\n          delay={0.2}\n          duration={2.5}\n          stagger={0.06}\n          viewportOnce={true}\n        />\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/weightless-float-headline-demo.tsx"
     }
   ],
   "type": "registry:ui"

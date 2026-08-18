@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/fluid-ink-reveal/fluid-ink-headline-demo.tsx",
       "content": "import { FluidInkReveal } from \"@/registry/ui/fluid-ink-reveal\" // Update path as needed\n\nexport default function FluidInkHeadlineDemo() {\n  return (\n    <main className=\"flex min-h-screen w-full items-center justify-center overflow-hidden bg-background text-foreground antialiased selection:bg-primary/20\">\n      <div className=\"max-w-4xl px-6 text-center\">\n        <FluidInkReveal\n          as=\"h1\"\n          text=\"Surface tension.\"\n          className=\"text-6xl leading-[1.1] font-bold tracking-tighter md:text-8xl\"\n          splitBy=\"char\"\n          startBlur=\"32px\"\n          delay={0.2}\n          duration={1.5}\n          stagger={0.08}\n          viewportOnce={true}\n        />\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/fluid-ink-headline-demo.tsx"
     }
   ],
   "type": "registry:ui"
