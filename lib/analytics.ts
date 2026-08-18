@@ -1,10 +1,6 @@
 import { logger } from "@/lib/logger"
 import posthog from "posthog-js"
-
-function hasConsent(): boolean {
-  if (typeof window === "undefined") return false
-  return localStorage.getItem("satisium-analytics-consent") === "accepted"
-}
+import { hasConsent } from "@/lib/consent-utils"
 
 export async function trackEvent(
   eventName: string,

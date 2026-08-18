@@ -12,14 +12,12 @@ interface ConsentContextValue {
 
 const ConsentContext = createContext<ConsentContextValue | null>(null)
 
-const CONSENT_KEY = "satisium-analytics-consent"
+export const CONSENT_KEY = "satisium-analytics-consent"
 
 export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<ConsentStatus>("pending")
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     const stored = localStorage.getItem(CONSENT_KEY)
     if (stored === "accepted") setStatus("accepted")
     else if (stored === "declined") setStatus("declined")
@@ -34,8 +32,6 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem(CONSENT_KEY, "declined")
     setStatus("declined")
   }
-
-  if (!mounted) return null
 
   return (
     <ConsentContext.Provider value={{ status, accept, decline }}>

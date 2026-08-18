@@ -4,8 +4,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useRef, useState } from "react"
 
 import { cn } from "@/lib/utils"
-// ✨ ANALYTICS IMPORT
-import { trackEvent } from "@/lib/analytics"
+import { useTrackEvent } from "@/hooks/use-track-event"
 import { PackageManager, usePackageManager } from "@/store"
 import {
   ArrowDown01Icon,
@@ -91,6 +90,7 @@ export function CommandBlock({
   const [copied, setCopied] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const trackCopy = useTrackEvent()
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -158,7 +158,7 @@ export function CommandBlock({
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
 
-    trackEvent("cli_command_copied", {
+    trackCopy("cli_command_copied", {
       command: commandString,
       manager: isPMCommand ? manager : "none",
       package: pkg || cli || "custom",

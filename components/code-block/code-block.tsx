@@ -6,8 +6,7 @@ import React, { useEffect, useId, useMemo, useRef, useState } from "react"
 import { createHighlighter, Highlighter } from "shiki"
 
 import { cn } from "@/lib/utils"
-// ✨ ANALYTICS IMPORT
-import { trackEvent } from "@/lib/analytics"
+import { useTrackEvent } from "@/hooks/use-track-event"
 import {
   ArrowDown01Icon,
   ArrowRight01Icon,
@@ -58,6 +57,7 @@ export function CodeBlock({
     Record<string, string>
   >({})
   const layoutIdPrefix = useId()
+  const trackCopy = useTrackEvent()
 
   useEffect(() => setMounted(true), [])
 
@@ -185,14 +185,10 @@ export function CodeBlock({
         ? activeExt
         : activeFileObj.language || activeExt
 
-    trackEvent(
-      "code_copied",
-      {
-        file: activeFile,
-        language: activeLang,
-      },
-      "web_copy"
-    )
+    trackCopy("code_copied", {
+      file: activeFile,
+      language: activeLang,
+    })
   }
 
   if (!mounted) {
