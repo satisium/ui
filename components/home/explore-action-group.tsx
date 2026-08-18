@@ -79,6 +79,7 @@ export function ExploreActionGroup({
       {/* 2. SECONDARY GITHUB CTA */}
       <a
         href={`https://github.com/${repo}`}
+        aria-label={`Star ${repo} on GitHub`}
         target="_blank"
         rel="noopener noreferrer"
         onMouseEnter={() => setIsGithubHovered(true)}

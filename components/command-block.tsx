@@ -227,6 +227,7 @@ export function CommandBlock({
                     "h-3.5 w-3.5 text-muted-foreground transition-transform duration-200",
                     isDropdownOpen && "rotate-180"
                   )}
+                  aria-hidden="true"
                 />
               </button>
 
@@ -258,10 +259,11 @@ export function CommandBlock({
                           <Icon className="h-4 w-4 shrink-0" />
                           <span className="capitalize">{pm}</span>
                           {manager === pm && (
-                            <HugeiconsIcon
-                              icon={CheckmarkBadge03Icon}
-                              className="ml-auto h-3 w-3 shrink-0"
-                            />
+                              <HugeiconsIcon
+                                icon={CheckmarkBadge03Icon}
+                                className="ml-auto h-3 w-3 shrink-0"
+                                aria-hidden="true"
+                              />
                           )}
                         </button>
                       )
@@ -298,6 +300,7 @@ export function CommandBlock({
                   <HugeiconsIcon
                     icon={CheckmarkBadge03Icon}
                     className="h-3.5 w-3.5 text-green-500"
+                    aria-hidden="true"
                   />
                 </motion.div>
               ) : (
@@ -307,7 +310,7 @@ export function CommandBlock({
                   animate={{ scale: 1 }}
                   exit={{ scale: 0 }}
                 >
-                  <HugeiconsIcon icon={Copy01Icon} className="size-3.5" />
+                  <HugeiconsIcon icon={Copy01Icon} className="size-3.5" aria-hidden="true" />
                 </motion.div>
               )}
             </AnimatePresence>
