@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next"
 import {
-  Antonio,
   Plus_Jakarta_Sans,
   Inter,
   IBM_Plex_Mono,
@@ -20,12 +19,6 @@ import { CommandMenuDialog } from "@/components/layout/command-menu"
 import { source } from "@/lib/source"
 import { ViewportBlocker } from "@/components/viewport-blocker"
 import WebVitals from "@/components/web-vitals"
-
-const fontDisplay = Antonio({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-})
 
 const fontHeading = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -137,7 +130,6 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(
         "antialiased",
-        fontDisplay.variable,
         fontHeading.variable,
         fontBody.variable,
         fontCode.variable,
@@ -148,12 +140,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Satisium UI" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="preload"
-          as="style"
-          crossOrigin=""
-          href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&display=swap"
-        />
         <link
           rel="preload"
           as="style"
