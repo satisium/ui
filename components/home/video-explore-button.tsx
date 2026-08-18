@@ -174,7 +174,7 @@ export function VideoExploreButton({
           muted
           playsInline
           loop
-          preload="auto"
+          preload="none"
         />
         <motion.div
           className="absolute right-2 bottom-2 z-20 flex items-center justify-center rounded-full bg-black/40 p-1.5 backdrop-blur-md"
