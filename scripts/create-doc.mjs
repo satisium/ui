@@ -96,6 +96,29 @@ import { ${filename}File } from "@/registry/strings/${filename}"
 Tastefully crafted with inspiration from [Creator Name](https://twitter.com/creator).
 `
 
+// 3b. Append registry entry to registry.json
+const registryPath = path.join(rootDir, "registry.json")
+const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"))
+
+const newRegistryEntry = {
+  name: filename,
+  type: "registry:ui",
+  title: title,
+  description: `A tasteful and carefully crafted ${title.toLowerCase()} component.`,
+  dependencies: [],
+  files: [
+    {
+      path: `registry/ui/${filename}.tsx`,
+      type: "registry:ui",
+      target: `components/satisium-ui/${filename}.tsx`
+    }
+  ]
+}
+
+registry.items.push(newRegistryEntry)
+fs.writeFileSync(registryPath, JSON.stringify(registry, null, 2) + "\n", "utf8")
+console.log(`✅ Appended registry entry for "${filename}" with target property`)
+
 // 4. Create directories if they don't exist
 const targetDir = path.dirname(fullPath)
 if (!fs.existsSync(targetDir)) {

@@ -9,7 +9,8 @@
     {
       "path": "registry/demos/components/z-axis-reveal/z-axis-char-demo.tsx",
       "content": "import { ZAxisReveal } from \"@/registry/ui/z-axis-reveal\"\n\nexport default function ZAxisCharDemo() {\n  return (\n    <main className=\"relative w-full bg-background text-foreground antialiased selection:bg-primary/20\">\n      {/* Scroll indicator */}\n      <section className=\"flex h-screen w-full flex-col items-center justify-center gap-4 text-sm font-medium tracking-wide text-muted-foreground\">\n        <span className=\"tracking-widest uppercase\">Scroll to explore</span>\n        <div className=\"h-16 w-[1px] bg-border\" />\n      </section>\n\n      <section className=\"flex w-full items-center justify-center px-6\">\n        <div className=\"max-w-6xl\">\n          <ZAxisReveal\n            as=\"h2\"\n            splitBy=\"char\"\n            pin={true}\n            startScale={4} // Extreme depth\n            blur={true}\n            momentum={1.5}\n            text=\"People work together, when it suits them. They're loyal, when it suits them. They love each other, when it suits them. And they kill each other, when it suits them.\"\n            className=\"text-4xl leading-[1.3] font-medium tracking-tight md:text-6xl\"\n          />\n        </div>\n      </section>\n\n      {/* Spacer to allow scrolling past the pinned section */}\n      <section className=\"h-screen w-full\" />\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/z-axis-char-demo.tsx"
     }
   ],
   "type": "registry:ui"

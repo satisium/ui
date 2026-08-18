@@ -13,7 +13,8 @@
     {
       "path": "registry/demos/components/velocity-grid/velocity-grid-image.tsx",
       "content": "import VelocityGrid from \"@/registry/ui/velocity-grid\"\nimport { Loading02Icon } from \"@hugeicons/core-free-icons\"\nimport { HugeiconsIcon } from \"@hugeicons/react\"\n\nexport default function VelocityGridImageDemo() {\n  const imageUrl =\n    \"https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/24.jpg\"\n\n  return (\n    <main className=\"flex h-screen w-full items-center justify-center bg-background\">\n      <div className=\"relative aspect-[4/3] w-full max-w-5xl overflow-hidden sm:aspect-[16/9]\">\n        <VelocityGrid\n          mediaUrl={imageUrl}\n          mediaType=\"image\"\n          columns={20} // Dense column array\n          rows={15} // Dense row array for a beautiful mosaic scale\n          hoverRadius={0.8} // Circular wave covering 40% of the screen height\n          shiftMultiplier={1.2} // Force multiplier for the UV shift\n          trackingSpeed={2.0} // Heavy fluid tracking speed\n          imageZoom={1} // Enough edge-bleed margin to prevent tearing\n          fallback={\n            <div className=\"flex flex-col items-center justify-center gap-2 text-muted-foreground\">\n              <HugeiconsIcon\n                icon={Loading02Icon}\n                className=\"h-6 w-6 animate-spin\"\n              />\n              <span className=\"text-sm font-medium tracking-wide\">\n                Loading media...\n              </span>\n            </div>\n          }\n        />\n      </div>\n    </main>\n  )\n}\n",
-      "type": "registry:component"
+      "type": "registry:component",
+      "target": "components/satisium-ui/velocity-grid-image.tsx"
     }
   ],
   "type": "registry:ui"
