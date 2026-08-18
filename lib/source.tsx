@@ -57,7 +57,22 @@ export const source = loader({
 
                 {/* Suffix Badges */}
                 {hasBadge && (
-                  <span className="relative flex shrink-0 items-center justify-center">
+                    <span
+                      className="relative flex shrink-0 items-center justify-center"
+                      aria-label={
+                        badgeType === "new"
+                          ? "Status: New"
+                          : badgeType === "updated"
+                            ? "Status: Updated"
+                            : badgeType === "beta"
+                              ? "Status: Beta"
+                              : badgeType === "deprecated"
+                                ? "Status: Deprecated"
+                                : badgeType
+                                  ? `Status: ${badgeType}`
+                                  : undefined
+                      }
+                    >
                     {badgeType === "new" && (
                       <>
                         <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-500 opacity-60"></span>
@@ -128,7 +143,22 @@ export const source = loader({
                   )}
 
                   {hasBadge && (
-                    <span className="relative flex shrink-0 items-center justify-center">
+                  <span
+                    className="relative flex shrink-0 items-center justify-center"
+                    aria-label={
+                      badgeType === "new"
+                        ? "Status: New"
+                        : badgeType === "updated"
+                          ? "Status: Updated"
+                          : badgeType === "beta"
+                            ? "Status: Beta"
+                            : badgeType === "deprecated"
+                              ? "Status: Deprecated"
+                              : badgeType
+                                ? `Status: ${badgeType}`
+                                : undefined
+                    }
+                  >
                       {badgeType === "new" && (
                         <>
                           <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-500 opacity-60"></span>

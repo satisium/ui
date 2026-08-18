@@ -67,9 +67,12 @@ export function ComponentCard({
     : null
 
   return (
-    <Link href={url} className="block w-full ring-0 outline-none">
+    <Link
+      href={url}
+      className="block w-full focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    >
       <div
-        className="group flex h-full flex-col gap-2 overflow-hidden rounded-3xl bg-muted p-2 transition-transform duration-(--duration-normal) ease-out-expo focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 focus-within:ring-offset-background active:scale-[0.98]"
+        className="group flex h-full flex-col gap-2 overflow-hidden rounded-3xl bg-muted p-2 transition-transform duration-(--duration-normal) ease-out-expo active:scale-[0.98]"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onFocus={handleMouseEnter}
@@ -122,7 +125,22 @@ export function ComponentCard({
             </h3>
 
             {badgeType && (
-              <span className="relative flex shrink-0 items-center justify-center">
+              <span
+                className="relative flex shrink-0 items-center justify-center"
+                aria-label={
+                  badgeType === "new"
+                    ? "Status: New"
+                    : badgeType === "updated"
+                      ? "Status: Updated"
+                      : badgeType === "beta"
+                        ? "Status: Beta"
+                        : badgeType === "deprecated"
+                          ? "Status: Deprecated"
+                          : badgeType
+                            ? `Status: ${badgeType}`
+                            : undefined
+                }
+              >
                 {badgeType === "new" && (
                   <>
                     <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-emerald-500 opacity-60" />
