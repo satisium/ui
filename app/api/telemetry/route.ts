@@ -32,6 +32,7 @@ export async function POST(req: Request) {
       await redis.incr(`satisium:metrics:${action}`)
       if (safeComponent !== "unknown") {
         await redis.zincrby("satisium:metrics:top_actions", 1, safeComponent)
+        await redis.zremrangebyrank("satisium:metrics:top_actions", 0, -501)
       }
     } catch {
       return NextResponse.json({ success: false, error: "Storage unavailable" }, { status: 503 })
