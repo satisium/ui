@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/api/og?title=Satisium UI",
+        url: "/api/og?title=Animated component library for design engineers",
         width: 1200,
         height: 630,
         alt: "Satisium UI",
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     creator: "@iamsatish4564",
     images: [
       {
-        url: "/api/og?title=Satisium UI",
+        url: "/api/og?title=Animated component library for design engineers",
         width: 1200,
         height: 630,
         alt: "Satisium UI",
@@ -139,7 +139,11 @@ export default function RootLayout({
       <head>
         <meta name="apple-mobile-web-app-title" content="Satisium UI" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin=""
+        />
         <link
           rel="preload"
           as="style"

@@ -17,7 +17,8 @@ export const metadata: Metadata = {
       "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
     images: [
       {
-        url: "/api/og?title=Categories",
+        // Added the label parameter!
+        url: "/api/og?title=Categories&label=EXPLORE",
         width: 1200,
         height: 630,
         alt: "Satisium UI Categories",
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     title: "Categories | Satisium UI",
     images: [
       {
-        url: "/api/og?title=Categories",
+        url: "/api/og?title=Categories&label=EXPLORE",
         width: 1200,
         height: 630,
         alt: "Satisium UI Categories",
@@ -37,7 +38,6 @@ export const metadata: Metadata = {
     ],
   },
 }
-
 export default function AllCategoriesPage() {
   const categoryCount = CATEGORIES.length
 
