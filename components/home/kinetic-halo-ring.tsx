@@ -17,11 +17,6 @@ if (typeof window !== "undefined") {
 // 1. UTILITIES & CUSTOM HOOKS
 // ============================================================================
 
-/**
- * useThemeColor
- * Helper hook to resolve CSS variables (like --primary) or standard colors
- * into actual hex/rgb values for Three.js, responding dynamically to theme changes.
- */
 function useThemeColor(cssVar: string, fallbackColor: string) {
   const [color, setColor] = useState<string>(fallbackColor)
   useEffect(() => {
@@ -43,7 +38,6 @@ function useThemeColor(cssVar: string, fallbackColor: string) {
     }
     getComputedColor()
 
-    // Watch for class changes on HTML to detect light/dark mode toggles
     const observer = new MutationObserver((m) => {
       m.forEach((mut) => {
         if (mut.attributeName === "class") getComputedColor()
@@ -55,11 +49,6 @@ function useThemeColor(cssVar: string, fallbackColor: string) {
   return color
 }
 
-/**
- * wrap
- * Mathematical modulo function to wrap values infinitely.
- * Crucial for the "endless scrolling" cylinder effect.
- */
 const wrap = (val: number, min: number, max: number) => {
   const range = max - min
   if (range === 0) return min
@@ -88,31 +77,24 @@ void main() {
   vUv = uv;
   vec3 pos = position;
 
-  // Stretch geometry based on scroll velocity (motion blur illusion)
   pos.y *= 1.0 + (abs(uVelocity.y) * uStretchMultiplier);
   pos.x *= 1.0 + (abs(uVelocity.x) * uStretchMultiplier);
 
-  // Position on the infinite 2D grid
   vec2 gridPos = uItemOffset + pos.xy;
   
-  // Cylinder Math: Convert Y position to an angle (theta)
   float theta = gridPos.y / uRadius;
   
   vec3 ringPos;
   ringPos.x = gridPos.x;
   
-  // Ripple effect expands the radius dynamically
   float effectiveRadius = uRadius - uZBump;
   
-  // Wrap around the Z and Y axis to form a ring/cylinder
   ringPos.z = uCameraZ - sin(theta) * effectiveRadius;
   ringPos.y = (uRadius + uFloorY) - cos(theta) * effectiveRadius;
 
-  // Bowl effect: Push edges up based on X distance
   float xDist = abs(ringPos.x);
   ringPos.y += xDist * xDist * uBowlStrength;
 
-  // Slight tilt based on X velocity
   ringPos.x += position.y * uVelocity.x * 0.05;
 
   vec4 worldPos = modelMatrix * vec4(ringPos, 1.0);
@@ -142,13 +124,8 @@ varying vec3 vWorldPos;
 void main() {
   float speed = clamp(length(uVelocity), 0.0, 15.0);
 
-  // Calculate drag/velocity RGB split
   vec2 velSplit = uVelocity * uChromaticAberration; 
-  
-  // Calculate wave-based RGB split applied diagonally
   vec2 waveSplit = vec2(uFlashIntensity * uWaveAberration, uFlashIntensity * uWaveAberration);
-  
-  // Combine both splits for maximum visual impact
   vec2 splitOffset = velSplit + waveSplit;
   
   float rAlpha = texture2D(uTexture, vUv + splitOffset).a;
@@ -165,7 +142,6 @@ void main() {
   float grayMix = min(speed * uGrayscaleOnDrag, 1.0);
   vec3 texColor = mix(splitColor, gray, grayMix);
 
-  // Depth fading (shadows + clipping)
   float distToCam = length(vWorldPos - vec3(0.0, 0.0, uCameraZ));
   float normalizedDepth = clamp(distToCam / uFadeFar, 0.0, 1.0);
   texColor *= mix(1.0, 1.0 - uShadowIntensity, normalizedDepth);
@@ -197,7 +173,6 @@ export interface Ripple {
   lifespan: number
 }
 
-// Scene Props - strictly typed to avoid 'any'
 interface HaloRingSceneProps {
   character: string
   fontFamily: string
@@ -293,18 +268,36 @@ function HaloRingScene({
   const ripplesRef = useRef<Ripple[]>([])
   const autoRippleTimer = useRef<number>(0)
 
-  // --------------------------------------------------------
-  // FIX: Event Listener Stacking / Memory Leak Solution
-  // --------------------------------------------------------
-  // By tracking dynamic properties in a ref, we allow the GSAP Observer
-  // to be created ONLY ONCE on mount (empty dependency array).
-  // It reads the latest state without being constantly destroyed/recreated
-  // whenever a parent component re-renders.
-  const latestDeps = useRef({ enableRipple, scrollSensitivity, viewport })
+  // Track all physics variables so they can be accessed inside the interaction listener
+  const latestDeps = useRef({
+    enableRipple,
+    scrollSensitivity,
+    viewport,
+    rows,
+    spacing,
+    floorY,
+    bowlStrength,
+  })
 
   useEffect(() => {
-    latestDeps.current = { enableRipple, scrollSensitivity, viewport }
-  }, [enableRipple, scrollSensitivity, viewport])
+    latestDeps.current = {
+      enableRipple,
+      scrollSensitivity,
+      viewport,
+      rows,
+      spacing,
+      floorY,
+      bowlStrength,
+    }
+  }, [
+    enableRipple,
+    scrollSensitivity,
+    viewport,
+    rows,
+    spacing,
+    floorY,
+    bowlStrength,
+  ])
 
   useGSAP(() => {
     const observer = Observer.create({
@@ -316,29 +309,70 @@ function HaloRingScene({
         scrollState.current.targetY -= e.deltaY * scrollSensitivity
       },
       onPress: (e) => {
-        const { enableRipple, viewport } = latestDeps.current
+        const { enableRipple, viewport, rows, spacing, floorY, bowlStrength } =
+          latestDeps.current
         if (!enableRipple) return
 
         const eventX = e.x ?? 0
         const eventY = e.y ?? 0
         const rect = gl.domElement.getBoundingClientRect()
+
+        // 1. Get Normalized Device Coordinates (-1 to +1)
         const px = ((eventX - rect.left) / rect.width) * 2 - 1
         const py = -((eventY - rect.top) / rect.height) * 2 + 1
+
+        // 2. Convert to world units at the focal plane (Z=0)
         const vx = px * (viewport.width / 2)
         const vy = py * (viewport.height / 2)
 
-        ripplesRef.current.push({
-          gridX: vx - scrollState.current.currentX,
-          gridY: vy - scrollState.current.currentY,
-          birthTime: clock.elapsedTime,
-          lifespan: 2.5,
-        })
+        // 3. 3D RAYCAST MATH
+        // Because the grid is warped into a cylinder, we can't map Y linearly.
+        // We cast a ray from the camera at (0,0,5) to find where it intersects the cylinder formula.
+        const radius = (rows * spacing) / (Math.PI * 2)
+        const cyCenter = radius + floorY
+
+        // Quadratic equation for ray-cylinder intersection
+        const A_quad = vy * vy + 25
+        const B_quad = -2 * vy * cyCenter
+        const C_quad = cyCenter * cyCenter - radius * radius
+
+        const disc = B_quad * B_quad - 4 * A_quad * C_quad
+
+        if (disc >= 0) {
+          const t1 = (-B_quad - Math.sqrt(disc)) / (2 * A_quad)
+          const t2 = (-B_quad + Math.sqrt(disc)) / (2 * A_quad)
+          const t = t1 > 0 ? t1 : t2 // Ensure intersection is in front of camera
+
+          if (t > 0) {
+            const rawX = t * vx
+            const y_int = t * vy
+            const z_int = 5 - 5 * t
+
+            // Compensate for the Shader's "bowlStrength" which pushes edges up
+            const effectiveY = y_int - rawX * rawX * bowlStrength
+
+            // Convert the 3D intersection back into cylinder angle (theta)
+            const sin_theta = (5 - z_int) / radius
+            const cos_theta = (cyCenter - effectiveY) / radius
+            const theta = Math.atan2(sin_theta, cos_theta)
+
+            // Perfect Unrolled Coordinates!
+            const clickWrapY = theta * radius
+            const clickWrapX = rawX
+
+            ripplesRef.current.push({
+              gridX: clickWrapX - scrollState.current.currentX,
+              gridY: clickWrapY - scrollState.current.currentY,
+              birthTime: clock.elapsedTime,
+              lifespan: 2.5,
+            })
+          }
+        }
       },
     })
     return () => observer.kill()
-  }, []) // <-- Empty dependency array ensures one-time binding!
+  }, []) // Empty dependency array ensures one-time binding!
 
-  // Create texture for the character (ASCII art)
   const charTexture = useMemo(() => {
     const canvas = document.createElement("canvas")
     canvas.width = canvasResolution
@@ -379,7 +413,6 @@ function HaloRingScene({
     [size]
   )
 
-  // Generate grid items
   const items = useMemo(() => {
     const ring = []
     let idx = 0
@@ -397,7 +430,6 @@ function HaloRingScene({
     return ring
   }, [columns, rows, cellWidth, cellHeight, staggerMultiplier])
 
-  // Create individual materials for each item to allow independent ripples/uniforms
   const materials = useMemo(() => {
     return items.map(
       () =>
@@ -451,12 +483,9 @@ function HaloRingScene({
     }
   }, [geometry, materials])
 
-  // --------------------------------------------------------
-  // ANIMATION LOOP
-  // --------------------------------------------------------
   useFrame((_, dt) => {
     const state = scrollState.current
-    const delta = Math.max(0.001, Math.min(dt, 0.1)) // Clamp delta to prevent huge jumps
+    const delta = Math.max(0.001, Math.min(dt, 0.1))
     const currentTime = clock.elapsedTime
 
     if (autoRotate) {
@@ -506,7 +535,6 @@ function HaloRingScene({
 
     if (enableRipple && autoRipple) {
       if (currentTime > autoRippleTimer.current) {
-        // Only utilize viewport limits if available
         const vWidth = latestDeps.current.viewport?.width || 10
         const vHeight = latestDeps.current.viewport?.height || 10
 
@@ -525,7 +553,6 @@ function HaloRingScene({
       }
     }
 
-    // Cleanup dead ripples
     ripplesRef.current = ripplesRef.current.filter(
       (r) => currentTime - r.birthTime < r.lifespan
     )
@@ -550,7 +577,6 @@ function HaloRingScene({
         mesh.position.set(0, 0, 0)
         mesh.frustumCulled = false
 
-        // Manual depth sorting to prevent alpha clipping issues in WebGL
         const theta = wrapY / radius
         const zPos = 5.0 - Math.sin(theta) * radius
         const yPos = radius + floorY - Math.cos(theta) * radius
@@ -599,7 +625,6 @@ function HaloRingScene({
             const distToClick = Math.sqrt(dx * dx + dy * dy)
             const distToRing = distToClick - currentRippleRadius
 
-            // Gaussian bell curve for soft ripple edge
             let intensity =
               Math.exp(-(distToRing * distToRing) / rippleThickness) * envelope
 
