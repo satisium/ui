@@ -6,6 +6,7 @@ type ConsentStatus = "pending" | "accepted" | "declined"
 
 interface ConsentContextValue {
   status: ConsentStatus
+  isInitialized: boolean // <-- NEW: Tracks if we have checked localStorage
   accept: () => void
   decline: () => void
 }
@@ -16,11 +17,16 @@ export const CONSENT_KEY = "satisium-analytics-consent"
 
 export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const [status, setStatus] = useState<ConsentStatus>("pending")
+  const [isInitialized, setIsInitialized] = useState(false) // <-- NEW
 
   useEffect(() => {
+    // This runs only on the client, after the initial render
     const stored = localStorage.getItem(CONSENT_KEY)
     if (stored === "accepted") setStatus("accepted")
     else if (stored === "declined") setStatus("declined")
+
+    // We have checked storage, safe to render the banner now!
+    setIsInitialized(true)
   }, [])
 
   const accept = () => {
@@ -34,7 +40,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ConsentContext.Provider value={{ status, accept, decline }}>
+    <ConsentContext.Provider value={{ status, isInitialized, accept, decline }}>
       {children}
     </ConsentContext.Provider>
   )
