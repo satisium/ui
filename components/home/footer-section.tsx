@@ -1,17 +1,16 @@
 "use client"
 
-import React from "react"
-import Image from "next/image"
 import { SatisiumLogo } from "@/components/satisium-logo"
-import { HugeiconsIcon } from "@hugeicons/react"
-import {
-  NewTwitterIcon,
-  InstagramIcon,
-  DiscordIcon,
-} from "@hugeicons/core-free-icons"
-import { InfiniteHaloRing } from "./footer-halo-ring"
-import { ExploreActionGroup } from "./explore-action-group"
 import { Badge } from "@/components/ui/badge"
+import {
+  DiscordIcon,
+  InstagramIcon,
+  NewTwitterIcon,
+} from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
+import Image from "next/image"
+import { ExploreActionGroup } from "./explore-action-group"
+import { KineticHaloRing } from "./kinetic-halo-ring"
 
 export function FooterSection() {
   const images = Array.from({ length: 18 }).map(
@@ -27,7 +26,7 @@ export function FooterSection() {
     // OUTER MOAT
     <section className="relative h-screen w-full bg-muted px-3 pt-3 min-[400px]:px-4 min-[400px]:pt-4 sm:px-5 sm:pt-5 lg:px-6 lg:pt-6">
       {/* INNER CANVAS */}
-      <div className="relative flex h-full w-full flex-col overflow-hidden rounded-t-[2rem] bg-background text-foreground sm:rounded-t-[2.5rem]">
+      <div className="relative flex h-full w-full flex-col overflow-hidden rounded-t-[2rem] bg-none text-foreground sm:rounded-t-[2.5rem]">
         {/* --- TOP 40%: THE QUIET ZONE --- */}
         <div className="relative flex w-full flex-[4] flex-col justify-between px-3.5 pt-3 pb-4 sm:px-5 sm:pb-5 lg:px-6">
           {/* Centered CTA: Dynamic flex-1 prevents collision with the ledge */}
@@ -162,37 +161,44 @@ export function FooterSection() {
         </div>
 
         {/* --- BOTTOM 60%: THE KINETIC CAGE --- */}
-        <div className="relative w-full flex-[6] shrink-0 px-3 min-[400px]:px-4 sm:px-5 lg:px-6">
+        <div className="relative w-full flex-[6] shrink-0 p-3 min-[400px]:p-4 sm:p-5 lg:p-6">
           <div
-            className="relative isolate h-full w-full transform-gpu overflow-hidden rounded-t-[1.5rem] bg-muted sm:rounded-t-[2rem]"
+            className="relative isolate h-full w-full transform-gpu overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]"
             style={{ WebkitMaskImage: "-webkit-radial-gradient(white, black)" }}
           >
             <div className="absolute inset-0 z-0">
-              <InfiniteHaloRing
-                images={images}
-                cardWidthRatio={0.3}
-                cardAspectRatio={1}
-                gapMultiplier={0.025}
-                columns={20}
-                rows={20}
-                staggerMultiplier={0.5}
-                floorY={-5.5}
-                bowlStrength={0.03}
+              <KineticHaloRing
+                character="O" // The character to tile
+                size={0.03} // 3D scale of each character
+                spacing={0.02} // Distance between characters
+                columns={40} // Number of columns wide
+                rows={120} // Number of rows (circumference of cylinder)
+                staggerMultiplier={0}
+                floorY={-0.4}
+                tiltZ={2}
+                bowlStrength={0}
                 autoRotate={true}
-                autoRotateSpeedY={2.0}
-                scrollSensitivity={0.025}
-                damping={0.03}
+                autoRotateSpeedY={0.06}
+                autoRotateSpeedX={0.04}
+                scrollSensitivity={0.0001}
+                damping={0.01}
                 maxSpeed={25.0}
-                stretchMultiplier={-0.1}
-                fovWarp={50.5}
-                parallaxMultiplier={0}
-                chromaticAberration={0.015}
-                grayscaleOnDrag={0.08}
-                shadowIntensity={0.5}
-                fadeFar={80.0}
-                squirclePower={4.0}
-                cornerRadius={0.2}
-                borderWidth={0}
+                stretchMultiplier={2}
+                fovWarp={1200}
+                chromaticAberration={0}
+                grayscaleOnDrag={0}
+                shadowIntensity={0}
+                fadeFar={800.0}
+                waveAberration={0.1}
+                color="#717171" // Dark grey resting state
+                accentColor="#fff" // Bright Cyan neon flash
+                enableRipple={true}
+                rippleSpeed={0.3} // Adjust wave propagation speed
+                rippleThickness={0.008} // Fatness of the wave
+                rippleZBump={0.15} // Z-Axis 3D mountain height
+                autoRipple={true} // Watch the magic happen
+                autoRippleDelay={1} // Triggers a new wave roughly every 1.5 seconds
+                className="bg-foreground dark:bg-background"
               />
             </div>
           </div>
