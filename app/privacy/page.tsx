@@ -8,11 +8,38 @@ export async function generateMetadata(): Promise<Metadata> {
   const page = source.getPage(["getting-started", "privacy"])
   if (!page) return {}
 
+  const ogUrl = `/api/og?title=${encodeURIComponent("Privacy Policy")}&label=LEGAL`
+
   return {
     title: page.data.title,
     description: page.data.description,
     alternates: {
       canonical: "/privacy",
+    },
+    openGraph: {
+      title: `${page.data.title} | Satisium UI`,
+      description: page.data.description,
+      images: [
+        {
+          url: ogUrl,
+          width: 1200,
+          height: 630,
+          alt: "Privacy Policy",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${page.data.title} | Satisium UI`,
+      description: page.data.description,
+      images: [
+        {
+          url: ogUrl,
+          width: 1200,
+          height: 630,
+          alt: "Privacy Policy",
+        },
+      ],
     },
   }
 }

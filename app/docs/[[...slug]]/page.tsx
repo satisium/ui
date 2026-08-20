@@ -1,26 +1,22 @@
-import { notFound } from "next/navigation"
-import { Metadata } from "next"
-import Link from "next/link"
-import { findNeighbour } from "fumadocs-core/page-tree"
-import { defaultMdxComponents } from "@/components/mdx-components"
+import { DocTracker } from "@/components/doc-tracker"
 import { TableOfContents } from "@/components/layout/toc"
-import {
-  ComponentPreviewer,
-  type DemoData,
-} from "@/components/previewer/component-preview"
-import { cn } from "@/lib/utils"
+import { defaultMdxComponents } from "@/components/mdx-components"
+import { ComponentPreviewer } from "@/components/previewer/component-preview"
+import { CopyMdxButton } from "@/components/ui/copy-mdx-button"
 import { SITE_URL } from "@/lib/config"
-import { logger } from "@/lib/logger"
 import {
-  getDocCopyPayload,
-  resolveDocDemos,
   getDocBreadcrumbSchema,
+  getDocCopyPayload,
   getDocEntitySchema,
   getLastModifiedTime,
+  resolveDocDemos,
 } from "@/lib/docs-page"
-import { DocTracker } from "@/components/doc-tracker"
-import { CopyMdxButton } from "@/components/ui/copy-mdx-button"
 import { source } from "@/lib/source"
+import { cn } from "@/lib/utils"
+import { findNeighbour } from "fumadocs-core/page-tree"
+import { Metadata } from "next"
+import Link from "next/link"
+import { notFound } from "next/navigation"
 
 function getBadgeStyle(badge: string) {
   switch (badge.toLowerCase()) {
@@ -63,6 +59,14 @@ export async function generateMetadata(props: {
     tags.push(...page.data.category)
   }
 
+  // Determine the dynamic label based on the component's category (e.g., TEXT EFFECTS)
+  // Fallback to "DOCUMENTATION" if no category exists.
+  const dynamicLabel = page.data.category?.[0]
+    ? page.data.category[0].replace(/-/g, " ").toUpperCase()
+    : "DOCUMENTATION"
+
+  const ogUrl = `/api/og?title=${encodeURIComponent(page.data.title)}&label=${encodeURIComponent(dynamicLabel)}`
+
   return {
     title: page.data.title,
     description,
@@ -86,7 +90,7 @@ export async function generateMetadata(props: {
       description,
       images: [
         {
-          url: `/api/og?title=${encodeURIComponent(page.data.title)}`,
+          url: ogUrl,
           width: 1200,
           height: 630,
           alt: page.data.title,
@@ -99,7 +103,7 @@ export async function generateMetadata(props: {
       description,
       images: [
         {
-          url: `/api/og?title=${encodeURIComponent(page.data.title)}`,
+          url: ogUrl,
           width: 1200,
           height: 630,
           alt: page.data.title,
@@ -128,7 +132,10 @@ export default async function Page(props: {
   const hasCategories = page.data.category && page.data.category.length > 0
   const isWide = page.data.wide
   const breadcrumbSchema = getDocBreadcrumbSchema(params.slug)
-  const entitySchema = getDocEntitySchema(page.data.title, page.data.description)
+  const entitySchema = getDocEntitySchema(
+    page.data.title,
+    page.data.description
+  )
 
   return (
     <>

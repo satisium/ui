@@ -7,7 +7,6 @@ import { CATEGORIES } from "@/lib/utils"
 import { Metadata } from "next"
 import { SITE_URL } from "@/lib/config"
 
-
 export function generateStaticParams() {
   return CATEGORIES.map((category) => ({
     category,
@@ -23,7 +22,10 @@ export async function generateMetadata(props: {
     .replace(/\b\w/g, (c) => c.toUpperCase())
 
   const title = `${formattedCategory} Components`
-  const description = `Browse beautifully crafted ${formattedCategory.toLowerCase()} components. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.`
+  const description = `Browse beautifully crafted ${formattedCategory.toLowerCase()} components. Animated component library for design engineers.`
+
+  // Clean URL string for the OG Image
+  const ogUrl = `/api/og?title=${encodeURIComponent(formattedCategory)}&label=COMPONENTS`
 
   return {
     title,
@@ -36,7 +38,7 @@ export async function generateMetadata(props: {
       description,
       images: [
         {
-          url: `/api/og?title=${encodeURIComponent(title)}`,
+          url: ogUrl,
           width: 1200,
           height: 630,
           alt: `${formattedCategory} Components | Satisium UI`,
@@ -49,7 +51,7 @@ export async function generateMetadata(props: {
       description,
       images: [
         {
-          url: `/api/og?title=${encodeURIComponent(title)}`,
+          url: ogUrl,
           width: 1200,
           height: 630,
           alt: `${formattedCategory} Components | Satisium UI`,
