@@ -13,11 +13,6 @@ import { ExploreActionGroup } from "./explore-action-group"
 import { KineticHaloRing } from "./kinetic-halo-ring"
 
 export function FooterSection() {
-  const images = Array.from({ length: 18 }).map(
-    (_, i) =>
-      `https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_800/v1781471531/ui-v3/demos/images/${15 + i}.jpg`
-  )
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
@@ -180,16 +175,16 @@ export function FooterSection() {
                 autoRotate={true}
                 autoRotateSpeedY={0.06}
                 autoRotateSpeedX={0.04}
-                scrollSensitivity={0.0001}
+                scrollSensitivity={0.0002}
                 damping={0.01}
                 maxSpeed={25.0}
-                stretchMultiplier={2}
-                fovWarp={1200}
+                stretchMultiplier={4}
+                fovWarp={1000}
                 chromaticAberration={0}
                 grayscaleOnDrag={0}
                 shadowIntensity={0}
                 fadeFar={800.0}
-                waveAberration={0.1}
+                waveAberration={0.15}
                 color="#717171" // Dark grey resting state
                 accentColor="#fff" // Bright Cyan neon flash
                 enableRipple={true}
