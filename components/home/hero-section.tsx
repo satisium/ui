@@ -243,7 +243,7 @@ export function HeroSection() {
           className="relative z-10 flex w-full shrink-0 flex-col p-4 opacity-0 sm:p-6 md:p-10"
         >
           <div className="flex w-full md:hidden">
-            <MobileMediaCard />
+            <MobileMediaCard isRevealed={isVideoRevealed} />
           </div>
           <div className="hidden w-full items-end justify-between md:flex">
             <DesktopGithubButton />
