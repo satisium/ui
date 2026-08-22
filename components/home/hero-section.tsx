@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 
@@ -26,6 +26,19 @@ export function HeroSection() {
 
   const [isTypingComplete, setIsTypingComplete] = useState(false)
   const [isMorphComplete, setIsMorphComplete] = useState(false)
+
+  // NEW: State to trigger the cinematic reveal of the Video Explore Button
+  const [isVideoRevealed, setIsVideoRevealed] = useState(false)
+
+  // NEW: Sync the video reveal with the exact delay of the first Annotation (800ms)
+  useEffect(() => {
+    if (isTypingComplete && isMorphComplete) {
+      const timer = setTimeout(() => {
+        setIsVideoRevealed(true)
+      }, 800)
+      return () => clearTimeout(timer)
+    }
+  }, [isTypingComplete, isMorphComplete])
 
   const calculateMetrics = () => {
     if (!textWrapperRef.current || !squircleRef.current) return null
@@ -71,7 +84,6 @@ export function HeroSection() {
       onComplete: () => setIsMorphComplete(true),
     })
 
-    // 1. Morph background immediately using exact original math
     tl.to(morphProxy, {
       progress: 1,
       duration: 1.6,
@@ -84,7 +96,6 @@ export function HeroSection() {
       },
     })
 
-    // 2. Glide in Header and Footer concurrently
     tl.fromTo(
       headerRef.current,
       { opacity: 0, y: -20 },
@@ -121,7 +132,6 @@ export function HeroSection() {
       opacity: 0,
     })
 
-    // Initial state for the badge (hidden and scaled down)
     gsap.set(badgeRef.current, {
       scale: 0.5,
       opacity: 0,
@@ -129,7 +139,6 @@ export function HeroSection() {
 
     const tl = gsap.timeline()
 
-    // 1. Slide the text right AND slide the badge simultaneously
     tl.to([...metrics.rightSideChars, badgeRef.current], {
       x: metrics.slideAmount,
       duration: 0.8,
@@ -137,14 +146,12 @@ export function HeroSection() {
       force3D: true,
     })
 
-    // 2. Pop the squircle AND the badge at the exact same millisecond
     tl.to(
       [squircleRef.current, badgeRef.current],
       { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" },
       "-=0.4"
     )
 
-    // 3. Highlight the "ui" text
     tl.to(
       [metrics.uChar, metrics.iChar],
       {
@@ -219,16 +226,10 @@ export function HeroSection() {
               onComplete={() => setIsTypingComplete(true)}
             />
 
-            {/* --- SUPERSCRIPT BETA BADGE --- */}
             <div
               ref={badgeRef}
               className="absolute top-0 left-full z-10 flex items-start opacity-0 will-change-transform"
             >
-              {/* 
-                  PERFECT ALIGNMENT:
-                  - -ml-3 (mobile) and md:-ml-4 (desktop) pulls it tight against the "m".
-                  - mt-1.5 pushes it down slightly to align perfectly with the cap height. 
-                */}
               <Badge className="mt-1.5 h-[18px] rounded-[5px] border-none bg-primary px-1.5 text-[10px] font-semibold text-primary-foreground hover:bg-primary/90 md:mt-2">
                 Beta
               </Badge>
@@ -246,7 +247,11 @@ export function HeroSection() {
           </div>
           <div className="hidden w-full items-end justify-between md:flex">
             <DesktopGithubButton />
-            <VideoExploreButton href="/docs/components" />
+            {/* The synchronized component injected here */}
+            <VideoExploreButton
+              href="/docs/components"
+              isRevealed={isVideoRevealed}
+            />
           </div>
         </footer>
       </div>
