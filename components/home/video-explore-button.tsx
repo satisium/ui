@@ -58,13 +58,13 @@ export function VideoExploreButton({
   // Sequence 1: Canvas fades in and wraps the button
   const canvasBaseTransition = {
     duration: 0.6,
-    ease: "easeOut",
+    ease: "easeOut" as const,
     delay: isRevealed ? 0 : 0.45,
   }
 
   // Sequence 2: Canvas grows upward & Video slides into place
   const growthTransition = {
-    type: "spring",
+    type: "spring" as const,
     bounce: 0,
     duration: 1.2,
     delay: isRevealed ? 0.9 : 0.15,
@@ -73,7 +73,7 @@ export function VideoExploreButton({
   // Sequence 3: The solid Primary curtain dissolves to reveal the video
   const curtainTransition = {
     duration: 0.15,
-    ease: "linear",
+    ease: "linear" as const,
     delay: isRevealed ? 0.5 : 0,
   }
 
