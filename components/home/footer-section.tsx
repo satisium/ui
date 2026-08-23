@@ -24,7 +24,7 @@ export function FooterSection() {
       <div className="relative flex h-full w-full flex-col overflow-hidden rounded-t-[2rem] bg-none text-foreground sm:rounded-t-[2.5rem]">
         {/* --- TOP 40%: THE QUIET ZONE --- */}
         <div className="relative flex w-full flex-[4] flex-col justify-between px-3.5 pt-3 pb-4 sm:px-5 sm:pb-5 lg:px-6">
-          {/* Centered CTA: Dynamic flex-1 prevents collision with the ledge */}
+          {/* Centered CTA */}
           <div className="flex flex-1 items-center justify-center py-2 sm:py-0">
             <ExploreActionGroup
               exploreText="Explore components"
@@ -32,10 +32,14 @@ export function FooterSection() {
             />
           </div>
 
-          {/* THE LEDGE: 2 Balanced Rows on Mobile, 1 Unified Row on Desktop */}
-          <div className="relative z-10 flex w-full flex-col gap-2.5 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
-            {/* ROW 1 (Mobile) / LEFT GROUP (Desktop): Satisium Brand + Project Socials */}
-            <div className="flex items-center justify-between sm:justify-start sm:gap-3.5">
+          {/* THE LEDGE */}
+          <div className="relative z-10 flex w-full items-end justify-between">
+            {/* 
+              LEFT GROUP (Always Top): 
+              On Mobile: Spreads across the full width (Brand left, Icons right).
+              On Desktop: Packs tightly to the left.
+            */}
+            <div className="flex w-full items-center justify-between sm:w-auto sm:justify-start sm:gap-3.5">
               {/* Clickable Brand */}
               <button
                 onClick={scrollToTop}
@@ -70,7 +74,15 @@ export function FooterSection() {
                 >
                   <HugeiconsIcon icon={NewTwitterIcon} size={16} />
                 </a>
-
+                <a
+                  href="https://instagram.com/iamsatish4564"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Author Instagram"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
+                >
+                  <HugeiconsIcon icon={InstagramIcon} size={16} />
+                </a>
                 <a
                   href="https://github.com/satisium/ui"
                   target="_blank"
@@ -100,74 +112,24 @@ export function FooterSection() {
               </div>
             </div>
 
-            {/* ROW 2 (Mobile) / RIGHT GROUP (Desktop): Attribution + Personal Socials */}
-            <div className="flex items-center justify-between border-t border-border/20 pt-2 sm:justify-end sm:gap-4 sm:border-0 sm:pt-0">
-              <span className="font-heading text-xs tracking-wide text-muted-foreground">
-                Made by{" "}
-                <a
-                  href="https://x.com/iamsatish4564"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-foreground transition-opacity hover:opacity-70"
-                >
-                  Satishkumar
-                </a>
-              </span>
-
-              {/* Personal Social Icons */}
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <a
-                  href="https://x.com/iamsatish4564"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Author X"
-                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-                >
-                  <HugeiconsIcon icon={NewTwitterIcon} size={16} />
-                </a>
-                <a
-                  href="https://instagram.com/iamsatish4564"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Author Instagram"
-                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-                >
-                  <HugeiconsIcon icon={InstagramIcon} size={16} />
-                </a>
-                <a
-                  href="https://github.com/iamsatish4564"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Author GitHub"
-                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-                >
-                  <Image
-                    src="/github-mark-white.svg"
-                    alt="GitHub"
-                    width={16}
-                    height={16}
-                    className="object-contain"
-                    loading="lazy"
-                  />
-                </a>
-              </div>
-            </div>
+            {/* RIGHT GROUP (Desktop Only): Rendered on the Ledge */}
+            <AttributionBlock className="hidden sm:flex" />
           </div>
         </div>
 
-        {/* --- BOTTOM 60%: THE KINETIC CAGE --- */}
-        <div className="relative w-full flex-[6] shrink-0 p-3 min-[400px]:p-4 sm:p-5 lg:p-6">
+        {/* --- BOTTOM 60%: THE KINETIC CAGE & MOBILE FOOTER --- */}
+        <div className="relative flex w-full flex-[6] shrink-0 flex-col p-3 min-[400px]:p-4 sm:p-5 lg:p-6">
           <div
-            className="relative isolate h-full w-full transform-gpu overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]"
+            className="relative isolate w-full flex-1 transform-gpu overflow-hidden rounded-[1.5rem] sm:rounded-[2rem]"
             style={{ WebkitMaskImage: "-webkit-radial-gradient(white, black)" }}
           >
             <div className="absolute inset-0 z-0">
               <KineticHaloRing
-                character="O" // The character to tile
-                size={0.03} // 3D scale of each character
-                spacing={0.02} // Distance between characters
-                columns={40} // Number of columns wide
-                rows={120} // Number of rows (circumference of cylinder)
+                character="O"
+                size={0.03}
+                spacing={0.02}
+                columns={40}
+                rows={120}
                 staggerMultiplier={0}
                 floorY={-0.4}
                 tiltZ={2}
@@ -185,20 +147,76 @@ export function FooterSection() {
                 shadowIntensity={0}
                 fadeFar={800.0}
                 waveAberration={0.15}
-                color="#717171" // Dark grey resting state
-                accentColor="#fff" // Bright Cyan neon flash
+                color="#717171"
+                accentColor="#fff"
                 enableRipple={true}
-                rippleSpeed={0.3} // Adjust wave propagation speed
-                rippleThickness={0.008} // Fatness of the wave
-                rippleZBump={0.15} // Z-Axis 3D mountain height
-                autoRipple={true} // Watch the magic happen
-                autoRippleDelay={1} // Triggers a new wave roughly every 1.5 seconds
+                rippleSpeed={0.3}
+                rippleThickness={0.008}
+                rippleZBump={0.15}
+                autoRipple={true}
+                autoRippleDelay={1}
                 className="bg-foreground dark:bg-background"
               />
             </div>
           </div>
+
+          {/* RIGHT GROUP (Mobile Only): Rendered beautifully below the ring */}
+          <AttributionBlock className="mt-3 flex min-[400px]:mt-4 sm:hidden" />
         </div>
       </div>
     </section>
+  )
+}
+
+// ==========================================
+// REUSABLE ATTRIBUTION BLOCK
+// ==========================================
+function AttributionBlock({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`flex w-full items-center justify-between sm:w-auto sm:justify-end sm:gap-4 ${className}`}
+    >
+      <span className="font-heading text-xs tracking-wide text-muted-foreground">
+        Made by{" "}
+        <a
+          href="https://x.com/iamsatish4564"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-foreground transition-opacity hover:opacity-70"
+        >
+          Satishkumar
+        </a>
+      </span>
+
+      {/* Personal Social Icons */}
+      <div className="flex items-center gap-1.5 sm:gap-2">
+        <a
+          href="https://x.com/iamsatish4564"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Author X"
+          className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
+        >
+          <HugeiconsIcon icon={NewTwitterIcon} size={16} />
+        </a>
+
+        <a
+          href="https://github.com/satishkumarsajjan"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Author GitHub"
+          className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
+        >
+          <Image
+            src="/github-mark-white.svg"
+            alt="GitHub"
+            width={16}
+            height={16}
+            className="object-contain"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
   )
 }
