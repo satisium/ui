@@ -74,7 +74,15 @@ export function FooterSection() {
                 >
                   <HugeiconsIcon icon={NewTwitterIcon} size={16} />
                 </a>
-
+                <a
+                  href="https://instagram.com/iamsatish4564"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Author Instagram"
+                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
+                >
+                  <HugeiconsIcon icon={InstagramIcon} size={16} />
+                </a>
                 <a
                   href="https://github.com/satisium/ui"
                   target="_blank"
@@ -191,17 +199,9 @@ function AttributionBlock({ className = "" }: { className?: string }) {
         >
           <HugeiconsIcon icon={NewTwitterIcon} size={16} />
         </a>
+
         <a
-          href="https://instagram.com/iamsatish4564"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Author Instagram"
-          className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-        >
-          <HugeiconsIcon icon={InstagramIcon} size={16} />
-        </a>
-        <a
-          href="https://github.com/iamsatish4564"
+          href="https://github.com/satishkumarsajjan"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Author GitHub"
