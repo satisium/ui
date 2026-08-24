@@ -7,15 +7,6 @@ export async function trackEvent(
   properties?: Record<string, any>,
   incrementPublicCounter?: "web_copy" | "page_view"
 ) {
-  if (!hasConsent()) return
-
-  if (
-    typeof window !== "undefined" &&
-    process.env.NEXT_PUBLIC_POSTHOG_TOKEN
-  ) {
-    posthog.capture(eventName, properties)
-  }
-
   if (incrementPublicCounter) {
     try {
       await fetch("/api/telemetry", {
@@ -30,5 +21,14 @@ export async function trackEvent(
     } catch (e) {
       logger.error("Satisium Telemetry Error:", e)
     }
+  }
+
+  if (!hasConsent()) return
+
+  if (
+    typeof window !== "undefined" &&
+    process.env.NEXT_PUBLIC_POSTHOG_TOKEN
+  ) {
+    posthog.capture(eventName, properties)
   }
 }
