@@ -34,7 +34,7 @@ export function VideoExploreButton({
   canvasRadius = 24,
   videoRadius = 16,
   buttonRadius = 16,
-  videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4",
+  videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1787564837/ui-v3/previews/teaser.mp4",
   buttonText = "Explore components",
   href = "/components",
   buttonClassName,

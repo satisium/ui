@@ -1,8 +1,8 @@
 "use client"
 
-import { cn } from "@/lib/utils"
 import { logger } from "@/lib/logger"
-import { ArrowUpRight01Icon, PlayIcon } from "@hugeicons/core-free-icons"
+import { cn } from "@/lib/utils"
+import { ArrowUpRight01Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { motion } from "motion/react"
 import Image from "next/image"
@@ -122,7 +122,6 @@ export interface MobileMediaCardProps {
   exploreText?: ReactNode
   exploreHref?: string
   repo?: string
-  playIcon?: ReactNode
   containerClassName?: string
   videoContainerClassName?: string
   actionRowClassName?: string
@@ -139,13 +138,10 @@ export function MobileMediaCard({
   canvasRadius = 24,
   videoRadius = 16,
   buttonRadius = 16,
-  videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1782129926/ui-v3/demos/videos/1.mp4",
+  videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1787564837/ui-v3/previews/teaser.mp4",
   exploreText = "Explore components",
   exploreHref = "/components",
   repo = "satisium/ui",
-  playIcon = (
-    <HugeiconsIcon icon={PlayIcon} className="size-4 fill-white text-white" />
-  ),
   containerClassName,
   videoContainerClassName,
   actionRowClassName,
@@ -259,18 +255,6 @@ export function MobileMediaCard({
                 loop
                 preload="auto"
               />
-
-              <motion.div
-                className="absolute right-2 bottom-2 z-40 flex size-7 items-center justify-center rounded-[10px] bg-black/40 backdrop-blur-md"
-                initial={false}
-                animate={{
-                  opacity: isRevealed ? 1 : 0,
-                  scale: isRevealed ? 1 : 0.8,
-                }}
-                transition={{ duration: 0.3, delay: isRevealed ? 1.2 : 0 }}
-              >
-                {playIcon}
-              </motion.div>
 
               {/* THE PRIMARY THEATER CURTAIN */}
               <motion.div
