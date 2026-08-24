@@ -29,7 +29,8 @@ export function HeroSection() {
 
   // NEW: State to trigger the cinematic reveal of the Video Explore Button
   const [isVideoRevealed, setIsVideoRevealed] = useState(false)
-
+  const VidSrc =
+    "https://res.cloudinary.com/ddon6aux0/video/upload/v1787564837/ui-v3/previews/teaser.mp4"
   // NEW: Sync the video reveal with the exact delay of the first Annotation (800ms)
   useEffect(() => {
     if (isTypingComplete && isMorphComplete) {
@@ -243,7 +244,7 @@ export function HeroSection() {
           className="relative z-10 flex w-full shrink-0 flex-col p-4 opacity-0 sm:p-6 md:p-10"
         >
           <div className="flex w-full md:hidden">
-            <MobileMediaCard isRevealed={isVideoRevealed} />
+            <MobileMediaCard isRevealed={isVideoRevealed} videoSrc={VidSrc} />
           </div>
           <div className="hidden w-full items-end justify-between md:flex">
             <DesktopGithubButton />
@@ -251,6 +252,7 @@ export function HeroSection() {
             <VideoExploreButton
               href="/docs/components"
               isRevealed={isVideoRevealed}
+              videoSrc={VidSrc}
             />
           </div>
         </footer>
