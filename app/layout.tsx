@@ -75,10 +75,11 @@ export const metadata: Metadata = {
     "satisium ui",
   ],
   verification: {
-    google: "your-google-verification-code",
-    other: {
-      "msvalidate.01": "your-bing-verification-code",
-    },
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    // We use a conditional check here so TypeScript doesn't complain about undefined values
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
   },
   openGraph: {
     type: "website",
@@ -107,6 +108,9 @@ export const metadata: Metadata = {
         alt: "Satisium UI",
       },
     ],
+  },
+  other: {
+    "og:logo": `${SITE_URL}/android-chrome-512x512.png`,
   },
 }
 
