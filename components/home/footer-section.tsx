@@ -11,6 +11,12 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import Image from "next/image"
 import { ExploreActionGroup } from "./explore-action-group"
 import { KineticHaloRing } from "./kinetic-halo-ring"
+import {
+  FOOTER_SOCIALS,
+  AUTHOR_SOCIALS,
+  AUTHOR,
+  type SocialPlatform,
+} from "@/lib/social-links"
 
 export function FooterSection() {
   const scrollToTop = () => {
@@ -65,50 +71,18 @@ export function FooterSection() {
 
               {/* Project Social Icons */}
               <div className="flex items-center gap-1.5 sm:gap-2">
-                <a
-                  href="https://x.com/satisiumui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Satisium UI on X"
-                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-                >
-                  <HugeiconsIcon icon={NewTwitterIcon} size={16} />
-                </a>
-                <a
-                  href="https://instagram.com/iamsatish4564"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Author Instagram"
-                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-                >
-                  <HugeiconsIcon icon={InstagramIcon} size={16} />
-                </a>
-                <a
-                  href="https://github.com/satisium/ui"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Satisium UI on GitHub"
-                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-                >
-                  <Image
-                    src="/github-mark-white.svg"
-                    alt="GitHub"
-                    width={16}
-                    height={16}
-                    className="object-contain"
-                    loading="lazy"
-                  />
-                </a>
-
-                <a
-                  href="https://discord.gg/satisium"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Satisium Discord"
-                  className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-                >
-                  <HugeiconsIcon icon={DiscordIcon} size={16} />
-                </a>
+                {FOOTER_SOCIALS.map((link) => (
+                  <a
+                    key={link.platform}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.ariaLabel}
+                    className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
+                  >
+                    <SocialIcon platform={link.platform} />
+                  </a>
+                ))}
               </div>
             </div>
 
@@ -171,6 +145,33 @@ export function FooterSection() {
 // ==========================================
 // REUSABLE ATTRIBUTION BLOCK
 // ==========================================
+
+function SocialIcon({ platform }: { platform: SocialPlatform }) {
+  if (platform === "github") {
+    return (
+      <Image
+        src="/github-mark-white.svg"
+        alt="GitHub"
+        width={16}
+        height={16}
+        className="object-contain"
+        loading="lazy"
+      />
+    )
+  }
+
+  const iconMap = {
+    x: NewTwitterIcon,
+    instagram: InstagramIcon,
+    discord: DiscordIcon,
+  } as const
+
+  const Icon = iconMap[platform as keyof typeof iconMap]
+  if (!Icon) return null
+
+  return <HugeiconsIcon icon={Icon} size={16} />
+}
+
 function AttributionBlock({ className = "" }: { className?: string }) {
   return (
     <div
@@ -179,7 +180,7 @@ function AttributionBlock({ className = "" }: { className?: string }) {
       <span className="font-heading text-xs tracking-wide text-muted-foreground">
         Made by{" "}
         <a
-          href="https://x.com/iamsatish4564"
+          href={AUTHOR.x}
           target="_blank"
           rel="noopener noreferrer"
           className="font-medium text-foreground transition-opacity hover:opacity-70"
@@ -190,32 +191,18 @@ function AttributionBlock({ className = "" }: { className?: string }) {
 
       {/* Personal Social Icons */}
       <div className="flex items-center gap-1.5 sm:gap-2">
-        <a
-          href="https://x.com/iamsatish4564"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Author X"
-          className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-        >
-          <HugeiconsIcon icon={NewTwitterIcon} size={16} />
-        </a>
-
-        <a
-          href="https://github.com/satishkumarsajjan"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Author GitHub"
-          className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
-        >
-          <Image
-            src="/github-mark-white.svg"
-            alt="GitHub"
-            width={16}
-            height={16}
-            className="object-contain"
-            loading="lazy"
-          />
-        </a>
+        {AUTHOR_SOCIALS.map((link) => (
+          <a
+            key={link.platform}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={link.ariaLabel}
+            className="flex h-8 w-8 items-center justify-center rounded-[12px] bg-foreground text-background transition-opacity hover:opacity-90 sm:h-9 sm:w-9 sm:rounded-[14px] dark:bg-secondary dark:text-foreground"
+          >
+            <SocialIcon platform={link.platform} />
+          </a>
+        ))}
       </div>
     </div>
   )

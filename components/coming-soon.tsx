@@ -1,6 +1,6 @@
-import React from "react"
-import { HugeiconsIcon } from "@hugeicons/react"
+import { PROJECT } from "@/lib/social-links"
 import { NewTwitterIcon } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 
 export function ComingSoon({ type }: { type: "Blocks" | "Templates" }) {
   return (
@@ -10,7 +10,7 @@ export function ComingSoon({ type }: { type: "Blocks" | "Templates" }) {
       </p>
 
       <a
-        href="https://x.com/iamsatish4564"
+        href={PROJECT.x}
         target="_blank"
         rel="noopener noreferrer"
         className="group flex w-fit items-center gap-2 text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none"

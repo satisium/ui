@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { source } from "@/lib/source"
 import { SITE_URL } from "@/lib/config"
+import { TWITTER_CREATOR } from "@/lib/social-links"
 
 import { SpatialLayout } from "@/components/layout/spatial-layout"
 
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     title: "Docs | Satisium UI",
     description:
       "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
-    creator: "@iamsatish4564",
+    creator: TWITTER_CREATOR,
     images: [
       {
         url: "/api/og?title=Documentation",
