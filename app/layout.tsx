@@ -19,6 +19,8 @@ import PostHogPageView from "@/components/posthog-pageview"
 import { CommandMenuDialog } from "@/components/layout/command-menu"
 import { source } from "@/lib/source"
 import { ViewportBlocker } from "@/components/viewport-blocker"
+
+import { Analytics } from "@vercel/analytics/next"
 import WebVitals from "@/components/web-vitals"
 
 const fontHeading = Plus_Jakarta_Sans({
@@ -252,6 +254,7 @@ export default function RootLayout({
             <Suspense fallback={null}>
               <PostHogPageView />
               <WebVitals />
+              <Analytics />
             </Suspense>
             <ThemeProvider>
               <ViewportBlocker />

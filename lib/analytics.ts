@@ -27,7 +27,7 @@ export async function trackEvent(
 
   if (
     typeof window !== "undefined" &&
-    process.env.NEXT_PUBLIC_POSTHOG_TOKEN
+      process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN
   ) {
     posthog.capture(eventName, properties)
   }
