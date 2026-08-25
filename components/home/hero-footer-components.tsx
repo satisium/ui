@@ -8,6 +8,7 @@ import { motion } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
 import { ReactNode, useEffect, useRef, useState } from "react"
+import { REPO } from "@/lib/social-links"
 
 // ==========================================
 // DATA HOOK: Live GitHub Stars
@@ -42,7 +43,7 @@ function useGithubStars(repo: string) {
 // 1. DESKTOP GITHUB BUTTON (Unchanged)
 // ==========================================
 export function DesktopGithubButton({
-  repo = "satisium/ui",
+  repo = REPO,
 }: {
   repo?: string
 }) {
@@ -141,7 +142,7 @@ export function MobileMediaCard({
   videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1787564837/ui-v3/previews/teaser.mp4",
   exploreText = "Explore components",
   exploreHref = "/components",
-  repo = "satisium/ui",
+  repo = REPO,
   containerClassName,
   videoContainerClassName,
   actionRowClassName,

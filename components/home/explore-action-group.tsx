@@ -8,6 +8,7 @@ import { motion } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { REPO } from "@/lib/social-links"
 
 // ==========================================
 // DATA HOOK: Live GitHub Stars
@@ -51,7 +52,7 @@ export interface ExploreActionGroupProps {
 export function ExploreActionGroup({
   exploreText = "Explore components",
   exploreHref = "/docs/components",
-  repo = "satisium/ui",
+  repo = REPO,
   className,
 }: ExploreActionGroupProps) {
   const stars = useGithubStars(repo)

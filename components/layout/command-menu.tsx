@@ -43,6 +43,7 @@ import {
   TextAlignLeftIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
+import { PROJECT } from "@/lib/social-links"
 
 type ApiSearchResult = {
   id: string
@@ -365,7 +366,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
         title: "GitHub Repository",
         searchString: "GitHub Repository",
         group: "Actions",
-        url: "https://github.com/your-repo",
+        url: PROJECT.github,
         subtitle: "External Link",
         icon: (
           <HugeiconsIcon

@@ -18,6 +18,7 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip"
 import { switchThemeWithTransition } from "@/lib/theme-transition"
+import { AUTHOR } from "@/lib/social-links"
 
 export const SidebarFooter = () => {
   return (
@@ -29,12 +30,12 @@ export const SidebarFooter = () => {
       <TooltipProvider delayDuration={100}>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Link
-              href="https://x.com/iamsatish4564"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex size-10 flex-shrink-0 items-center justify-center rounded-[12px] bg-background text-muted-foreground backdrop-blur-md transition-all hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
-            >
+          <Link
+            href={AUTHOR.x}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex size-10 flex-shrink-0 items-center justify-center rounded-[12px] bg-background text-muted-foreground backdrop-blur-md transition-all hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:outline-none"
+          >
               <HugeiconsIcon
                 icon={NewTwitterIcon}
                 className="size-3.5 fill-current transition-transform duration-300 group-hover:scale-110"

@@ -14,6 +14,7 @@ import { ConsentProvider } from "@/lib/consent"
 import { ConsentBanner } from "@/components/consent-banner"
 import { Suspense } from "react"
 import { SITE_URL } from "@/lib/config"
+import { ORGANIZATION_SAME_AS, TWITTER_CREATOR } from "@/lib/social-links"
 import PostHogPageView from "@/components/posthog-pageview"
 import { CommandMenuDialog } from "@/components/layout/command-menu"
 import { source } from "@/lib/source"
@@ -97,7 +98,7 @@ export const metadata: Metadata = {
     title: "Satisium UI | Animated component library for design engineers",
     description:
       "Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
-    creator: "@iamsatish4564",
+    creator: TWITTER_CREATOR,
     images: [
       {
         url: "/api/og?title=Animated component library for design engineers",
@@ -193,10 +194,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Satisium UI",
               url: SITE_URL,
-              sameAs: [
-                "https://github.com/satisium/ui",
-                "https://twitter.com/iamsatish4564",
-              ],
+              sameAs: ORGANIZATION_SAME_AS,
               logo: {
                 "@type": "ImageObject",
                 url: `${SITE_URL}/android-chrome-512x512.png`,
@@ -218,10 +216,7 @@ export default function RootLayout({
               url: SITE_URL,
               applicationCategory: "DeveloperApplication",
               operatingSystem: "Web",
-              sameAs: [
-                "https://github.com/satisium/ui",
-                "https://twitter.com/iamsatish4564",
-              ],
+              sameAs: ORGANIZATION_SAME_AS,
               offers: {
                 "@type": "Offer",
                 price: "0.00",

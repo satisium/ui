@@ -12,6 +12,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import type * as PageTree from "fumadocs-core/page-tree"
 import type { Metadata } from "next"
 import { SITE_URL } from "@/lib/config"
+import { TWITTER_CREATOR } from "@/lib/social-links"
 
 export const metadata: Metadata = {
   title: "Categories | Satisium UI",
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     title: "Categories | Satisium UI",
     description:
       "Browse our collection of animated UI components. Built with Tailwind v4, Framer Motion and GSAP for Shadcn UI.",
-    creator: "@iamsatish4564",
+    creator: TWITTER_CREATOR,
     images: [{ url: "/api/og?title=Categories", width: 1200, height: 630, alt: "Satisium UI Categories" }],
   },
 }

@@ -1,4 +1,10 @@
 import Link from "next/link"
+import { AUTHOR, PROJECT } from "@/lib/social-links"
+
+const SOCIAL_LINKS = [
+  { href: AUTHOR.x, label: "Twitter / X" },
+  { href: PROJECT.github, label: "GitHub" },
+]
 
 export function SiteFooter() {
   return (
@@ -103,26 +109,18 @@ export function SiteFooter() {
               Socials
             </h3>
             <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
-              <li>
-                <a
-                  href="https://x.com/iamsatish4564"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-foreground"
-                >
-                  Twitter / X
-                </a>
-              </li>
-              <li>
-                <a
-                   href="https://github.com/satisium/ui"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="transition-colors hover:text-foreground"
-                >
-                  GitHub
-                </a>
-              </li>
+              {SOCIAL_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
