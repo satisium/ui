@@ -22,6 +22,7 @@ import { ViewportBlocker } from "@/components/viewport-blocker"
 
 import { Analytics } from "@vercel/analytics/next"
 import WebVitals from "@/components/web-vitals"
+import { GoogleAnalytics } from "@/components/google-analytics"
 
 const fontHeading = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -254,8 +255,9 @@ export default function RootLayout({
             <Suspense fallback={null}>
               <PostHogPageView />
               <WebVitals />
-              <Analytics />
             </Suspense>
+            <Analytics />
+            <GoogleAnalytics />
             <ThemeProvider>
               <ViewportBlocker />
 
