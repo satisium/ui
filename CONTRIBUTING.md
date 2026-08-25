@@ -185,7 +185,10 @@ If you have demo files, add a second entry with `registryDependencies`:
   "title": "My Component Demo",
   "registryDependencies": ["my-component"],
   "files": [
-    { "path": "registry/demos/my-component-demo.tsx", "type": "registry:component" }
+    {
+      "path": "registry/demos/my-component-demo.tsx",
+      "type": "registry:component"
+    }
   ]
 }
 ```
@@ -220,18 +223,18 @@ Frontmatter is validated by `source.config.ts` (Zod). Use an existing component'
 
 **Category taxonomy** (must match `lib/utils.ts`):
 
-| Category | Description |
-|----------|-------------|
-| `carousels` | 3D and WebGL carousel components |
-| `text` | Text reveals, typewriters, image transitions, and visual effects |
-| `mouse-trails` | Interactive mouse-following trail components |
+| Category       | Description                                                      |
+| -------------- | ---------------------------------------------------------------- |
+| `carousels`    | 3D and WebGL carousel components                                 |
+| `text`         | Text reveals, typewriters, image transitions, and visual effects |
+| `mouse-trails` | Interactive mouse-following trail components                     |
 
-```mdx
+````mdx
 ---
 title: My Component
 description: A tasteful and carefully crafted component.
 component: true
-badge: new            # new | updated | beta | deprecated
+badge: new # new | updated | beta | deprecated
 category:
   - text
 author: Satisium UI
@@ -260,6 +263,7 @@ media:
 ```bash
 npm install motion clsx tailwind-merge
 ```
+````
 
 **2. Add Source Code**
 
@@ -271,10 +275,11 @@ import { myComponentFile } from "@/registry/strings/my-component"
 
 ## Props
 
-| Prop | Type | Default | Description |
-| :--- | :--- | :------ | :---------- |
+| Prop       | Type   | Default   | Description  |
+| :--------- | :----- | :-------- | :----------- |
 | `propName` | `type` | `default` | Description. |
-```
+
+````
 
 ### Step 6 — LLM Context Markdown (`public/llms/`)
 
@@ -291,14 +296,15 @@ An animated component using Framer Motion.
 
 ```bash
 npx shadcn@latest add https://ui.satisium.com/r/my-component.json
-```
+````
 
 ## Source Code
 
 ```tsx
 // Paste the raw component code here so the AI can read it perfectly
 ```
-```
+
+````
 
 ### Step 7 — Build, Changeset, and Verify
 
@@ -313,7 +319,7 @@ pnpm changeset
 
 # 3. Verify everything passes
 pnpm build
-```
+````
 
 **Local verification checklist:**
 
@@ -335,24 +341,24 @@ We follow **[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0
 
 ### Types
 
-| Type | Use For | Changelog |
-|------|---------|-----------|
-| `feat` | New component, demo, or feature | Minor bump |
-| `fix` | Bug fix in existing code | Patch bump |
-| `docs` | Documentation-only changes | Patch bump |
+| Type       | Use For                                                 | Changelog  |
+| ---------- | ------------------------------------------------------- | ---------- |
+| `feat`     | New component, demo, or feature                         | Minor bump |
+| `fix`      | Bug fix in existing code                                | Patch bump |
+| `docs`     | Documentation-only changes                              | Patch bump |
 | `refactor` | Code change that neither fixes a bug nor adds a feature | Patch bump |
-| `perf` | Performance improvement | Patch bump |
-| `chore` | Tooling, deps, CI, config | Patch bump |
+| `perf`     | Performance improvement                                 | Patch bump |
+| `chore`    | Tooling, deps, CI, config                               | Patch bump |
 
 ### Scopes
 
-| Scope | Examples |
-|-------|---------|
-| `components` | New component PRs |
-| `registry` | Registry JSON, index, strings |
-| `docs` | MDX documentation and AI md files |
-| `demos` | Demo files |
-| `core` | Next.js config, layout, site infra |
+| Scope        | Examples                           |
+| ------------ | ---------------------------------- |
+| `components` | New component PRs                  |
+| `registry`   | Registry JSON, index, strings      |
+| `docs`       | MDX documentation and AI md files  |
+| `demos`      | Demo files                         |
+| `core`       | Next.js config, layout, site infra |
 
 ### Examples
 
@@ -387,11 +393,11 @@ Examples: `feat/add-magnetic-snap-reveal`, `fix/registry-build-error`, `docs/upd
 
 ### Protected branches
 
-| Branch | Protection |
-|--------|-----------|
-| `main` | Fully protected — no direct pushes, PRs only, required CI |
-| `beta` | Semi-protected — PRs only, required CI |
-| `canary` | Semi-protected — PRs only, required CI |
+| Branch   | Protection                                                |
+| -------- | --------------------------------------------------------- |
+| `main`   | Fully protected — no direct pushes, PRs only, required CI |
+| `beta`   | Semi-protected — PRs only, required CI                    |
+| `canary` | Semi-protected — PRs only, required CI                    |
 
 ### PR lifecycle
 
@@ -418,14 +424,15 @@ Select a template when creating a new issue.
 
 **When to use:** A component renders incorrectly, an animation breaks, or the docs site has an error.
 
-| Field | What to put |
-|-------|-------------|
-| **Title** | Auto-filled as `fix([scope]): brief description` — change `[scope]` to the affected area, e.g., `fix(components): fluid switch thumb stuck` |
-| **Bug Description** | Current behavior vs expected behavior. Be specific. |
-| **Reproduction Link** | CodeSandbox, StackBlitz, or GitHub repo link. **Required for fast fixes.** |
-| **Environment** | OS, browser, Next.js version, e.g., `macOS, Chrome 126, Next.js 16.1.7` |
+| Field                 | What to put                                                                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Title**             | Auto-filled as `fix([scope]): brief description` — change `[scope]` to the affected area, e.g., `fix(components): fluid switch thumb stuck` |
+| **Bug Description**   | Current behavior vs expected behavior. Be specific.                                                                                         |
+| **Reproduction Link** | CodeSandbox, StackBlitz, or GitHub repo link. **Required for fast fixes.**                                                                  |
+| **Environment**       | OS, browser, Next.js version, e.g., `macOS, Chrome 126, Next.js 16.1.7`                                                                     |
 
 **What happens after you submit:**
+
 - GitHub auto-applies the `bug` label.
 - A maintainer triages within 48 hours.
 - If the reproduction link is missing, you get a `status: needs repro` label and a comment asking for one.
@@ -434,13 +441,14 @@ Select a template when creating a new issue.
 
 **When to use:** Proposing a new component, animation, or site feature.
 
-| Field | What to put |
-|-------|-------------|
-| **Title** | Auto-filled as `feat([scope]): component name` — change `[scope]` and name, e.g., `feat(components): magnetic snap button` |
-| **Describe the Component** | What should it look/feel like? What animations are involved? |
-| **References / Inspiration** | Dribbble shots, Twitter videos, live sites. **Required.** |
+| Field                        | What to put                                                                                                                |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **Title**                    | Auto-filled as `feat([scope]): component name` — change `[scope]` and name, e.g., `feat(components): magnetic snap button` |
+| **Describe the Component**   | What should it look/feel like? What animations are involved?                                                               |
+| **References / Inspiration** | Dribbble shots, Twitter videos, live sites. **Required.**                                                                  |
 
 **What happens after you submit:**
+
 - GitHub auto-applies `type: feature` and `enhancement` labels.
 - Maintainer evaluates against the roadmap.
 - If accepted → `status: in-progress` when someone opens a PR.
@@ -450,16 +458,17 @@ Select a template when creating a new issue.
 
 **When to use:** Requesting a change to **existing** code or docs — e.g., "update this UI to that", "make these tweaks", restyle a component, or adjust behavior that isn't broken and isn't a new feature.
 
-| Field | What to put |
-|-------|-------------|
-| **Title** | Auto-filled as `chore([scope]): brief description` — change `[scope]` to the affected area, e.g., `chore(components): tighten ascent-carousel spacing` |
-| **Affected Component / Area** | Which component, page, or file should change. |
-| **Current State** | What it looks/behaves like now. **Required.** |
-| **Desired State** | What it should look/behave like after the change. **Required.** |
-| **References / Mockups** | Screenshots, links, or media showing the target. |
-| **Additional Context** | Constraints, related issues, etc. |
+| Field                         | What to put                                                                                                                                            |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Title**                     | Auto-filled as `chore([scope]): brief description` — change `[scope]` to the affected area, e.g., `chore(components): tighten ascent-carousel spacing` |
+| **Affected Component / Area** | Which component, page, or file should change.                                                                                                          |
+| **Current State**             | What it looks/behaves like now. **Required.**                                                                                                          |
+| **Desired State**             | What it should look/behave like after the change. **Required.**                                                                                        |
+| **References / Mockups**      | Screenshots, links, or media showing the target.                                                                                                       |
+| **Additional Context**        | Constraints, related issues, etc.                                                                                                                      |
 
 **What happens after you submit:**
+
 - GitHub auto-applies `type: improvement` and `enhancement` labels.
 - Maintainer triages and may convert to a `bug-fix` or `component-addition` PR if the scope grows.
 
@@ -469,18 +478,19 @@ Select a template when creating a new issue.
 
 Choose the template that matches your work when opening a PR. Using the wrong template will result in a review comment asking you to restart with the correct one.
 
-| Template | Use When |
-|----------|----------|
-| `component-addition.md` | New component + demo + docs (full 7-Step Pipeline) |
-| `bug-fix.md` | Fixing an existing component or site bug |
+| Template                 | Use When                                               |
+| ------------------------ | ------------------------------------------------------ |
+| `component-addition.md`  | New component + demo + docs (full 7-Step Pipeline)     |
+| `bug-fix.md`             | Fixing an existing component or site bug               |
 | `core-infrastructure.md` | Next.js, Tailwind, registry engine, CI, or site layout |
-| `docs-and-llm.md` | Documentation, MDX, or LLM context updates only |
+| `docs-and-llm.md`        | Documentation, MDX, or LLM context updates only        |
 
 ### component-addition.md
 
 Use when you added a new component and completed all 7 steps.
 
 **Fill in:**
+
 - Brief description of the component and its use case.
 - **Media & Previews:** Confirm thumbnail image and video preview are uploaded to Cloudinary and linked in MDX frontmatter.
 - **Documentation:** Confirm MDX file exists, CLI command works, manual install steps are complete, props table is written, credits are given.
@@ -493,6 +503,7 @@ Use when you added a new component and completed all 7 steps.
 Use when fixing an existing component or site bug.
 
 **Fill in:**
+
 - Describe what was broken and how you fixed it.
 - **Issue Link:** `Fixes #12` or `Noticed during local testing`.
 - **Fix Checklist:** Tested in Light/Dark mode, CLI registry paths intact, keyboard accessibility intact, MDX updated if API changed, ran `pnpm registry:public`.
@@ -503,6 +514,7 @@ Use when fixing an existing component or site bug.
 Use when changing Next.js config, Tailwind, registry build scripts, CI/CD, site layout, or tooling.
 
 **Fill in:**
+
 - Explain the architecture change.
 - **Safety Checklist:** Updated `package.json` if deps changed, local build succeeds, iframe previewer works, Vercel preview built without OOM, registry JSON format still correct.
 
@@ -511,6 +523,7 @@ Use when changing Next.js config, Tailwind, registry build scripts, CI/CD, site 
 Use when updating MDX docs, fixing typos, adding prop tables, updating LLM context files, or changing the docs site.
 
 **Fill in:**
+
 - Describe what was updated.
 - **Content Checklist:** Spelling/grammar checked, MDX frontmatter correct, internal links work, code blocks use correct syntax highlighting, ran `pnpm llm` if APIs changed.
 - **Preview URL Check:** Reviewed Vercel preview deployment.
@@ -521,34 +534,32 @@ Use when updating MDX docs, fixing typos, adding prop tables, updating LLM conte
 
 Every component must pass these checks before merge:
 
-| Check | Requirement |
-|-------|-------------|
-| **Semantic HTML** | Use native elements (`<button>`, `<nav>`, `<dialog>`) over `<div>` |
-| **ARIA roles** | `role="switch"`, `role="tab"`, `aria-checked`, `aria-label`, etc. |
-| **Keyboard navigation** | All interactive elements must work with Tab, Enter, Escape |
-| **Focus management** | `focus-visible` rings are visible; modals/dialogs trap focus |
-| **Screen reader** | Meaningful text content or `aria-label` for icon-only buttons |
-| **Reduced motion** | Respect `prefers-reduced-motion` via CSS media query or JS check |
-| **Color contrast** | Text meets WCAG AA (4.5:1 for normal text) |
-| **Touch targets** | Minimum 44×44px for interactive elements |
-| **Forward refs** | DOM components expose `ref` for testing and composition |
+| Check                   | Requirement                                                        |
+| ----------------------- | ------------------------------------------------------------------ |
+| **Semantic HTML**       | Use native elements (`<button>`, `<nav>`, `<dialog>`) over `<div>` |
+| **ARIA roles**          | `role="switch"`, `role="tab"`, `aria-checked`, `aria-label`, etc.  |
+| **Keyboard navigation** | All interactive elements must work with Tab, Enter, Escape         |
+| **Focus management**    | `focus-visible` rings are visible; modals/dialogs trap focus       |
+| **Screen reader**       | Meaningful text content or `aria-label` for icon-only buttons      |
+| **Reduced motion**      | Respect `prefers-reduced-motion` via CSS media query or JS check   |
+| **Color contrast**      | Text meets WCAG AA (4.5:1 for normal text)                         |
+| **Touch targets**       | Minimum 44×44px for interactive elements                           |
+| **Forward refs**        | DOM components expose `ref` for testing and composition            |
 
 ---
 
 ## 10. General PR Rules
 
-| Rule | Detail |
-|------|--------|
-| **One scope per PR** | Don't combine a component addition with a docs typo fix. |
-| **Branch from `main`** | Always create your branch from the latest `main`. |
-| **Squash merge** | Maintainers squash-merge. One logical commit per PR is ideal. |
-| **Link issues** | Use `Fixes #123` or `Closes #123` in the PR description to auto-close the linked issue on merge. |
-| **CI must pass** | Lint → typecheck → build. If CI fails, the PR cannot be merged. |
-| **Changeset required** | Run `pnpm changeset` before pushing. Commit the generated `.changeset/*.md` file. |
+| Rule                   | Detail                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------ |
+| **One scope per PR**   | Don't combine a component addition with a docs typo fix.                                         |
+| **Branch from `main`** | Always create your branch from the latest `main`.                                                |
+| **Squash merge**       | Maintainers squash-merge. One logical commit per PR is ideal.                                    |
+| **Link issues**        | Use `Fixes #123` or `Closes #123` in the PR description to auto-close the linked issue on merge. |
+| **CI must pass**       | Lint → typecheck → build. If CI fails, the PR cannot be merged.                                  |
+| **Changeset required** | Run `pnpm changeset` before pushing. Commit the generated `.changeset/*.md` file.                |
 
 ---
-
-
 
 ## 11. Quick Decision Tree
 
@@ -591,6 +602,6 @@ Is this only docs, MDX, or LLM context?
 
 ## 13. Need Help?
 
-- **Questions about using components:** [GitHub Discussions](https://github.com/satisium/ui/discussions)
+- **Questions about using components:** [Satisium HQ Discord](https://discord.gg/xQ5cPHmT7)
 - **Bug reports and feature requests:** [GitHub Issues](https://github.com/satisium/ui/issues)
-- **Security vulnerabilities:** Email **security@satisium.com** (do not open a public issue)
+- **Security vulnerabilities:** **Direct Message the Founder on Discord** or email **satisiumhq@gmail.com** (do not open a public issue).

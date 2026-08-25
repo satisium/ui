@@ -48,6 +48,14 @@ To use Satisium UI components in your project:
 - Tailwind CSS v4 configured
 - shadcn/ui initialized (`npx shadcn@latest init`)
 
+## Community & Support
+
+Join the Satisium HQ Discord to get help, showcase your projects, and talk design engineering with the founder and the community.
+
+[💬 Join the Satisium Discord](https://discord.gg/xQ5cPHmT7)
+
+For bug reports and feature requests, please use [GitHub Issues](https://github.com/satisium/ui/issues). For security vulnerabilities, **Direct Message the Founder on Discord** or email **satisiumhq@gmail.com** (do not open a public issue).
+
 ## Contributing
 
 Contributions are welcome. Before opening a PR, please read the following:
