@@ -3,7 +3,7 @@
   "name": "panoramic-carousel-demo",
   "title": "Panoramic Carousel Demo",
   "registryDependencies": [
-    "panoramic-carousel"
+    "https://ui.satisium.com/r/panoramic-carousel.json"
   ],
   "files": [
     {

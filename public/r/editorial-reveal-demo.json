@@ -3,7 +3,7 @@
   "name": "editorial-reveal-demo",
   "title": "Editorial Reveal Demo",
   "registryDependencies": [
-    "editorial-reveal"
+    "https://ui.satisium.com/r/editorial-reveal.json"
   ],
   "files": [
     {

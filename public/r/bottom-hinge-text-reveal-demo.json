@@ -3,7 +3,7 @@
   "name": "bottom-hinge-text-reveal-demo",
   "title": "Bottom Hinge Text Reveal Demo",
   "registryDependencies": [
-    "bottom-hinge-text-reveal"
+    "https://ui.satisium.com/r/bottom-hinge-text-reveal.json"
   ],
   "files": [
     {

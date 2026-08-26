@@ -3,7 +3,7 @@
   "name": "wind-trail-images-demo",
   "title": "Wind Trail Images Demo",
   "registryDependencies": [
-    "wind-trail"
+    "https://ui.satisium.com/r/wind-trail.json"
   ],
   "files": [
     {

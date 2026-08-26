@@ -3,7 +3,7 @@
   "name": "pendulum-trail-images-demo",
   "title": "Pendulum Trail Images Demo",
   "registryDependencies": [
-    "pendulum-trail"
+    "https://ui.satisium.com/r/pendulum-trail.json"
   ],
   "files": [
     {

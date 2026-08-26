@@ -3,7 +3,7 @@
   "name": "multi-color-trail-line-demo",
   "title": "Multi-Color Trail Line Demo",
   "registryDependencies": [
-    "multi-color-trail-reveal"
+    "https://ui.satisium.com/r/multi-color-trail-reveal.json"
   ],
   "files": [
     {

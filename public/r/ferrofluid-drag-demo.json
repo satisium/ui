@@ -3,7 +3,7 @@
   "name": "ferrofluid-drag-demo",
   "title": "Ferrofluid Drag Demo",
   "registryDependencies": [
-    "ferrofluid-drag"
+    "https://ui.satisium.com/r/ferrofluid-drag.json"
   ],
   "files": [
     {

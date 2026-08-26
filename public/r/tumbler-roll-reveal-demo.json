@@ -3,7 +3,7 @@
   "name": "tumbler-roll-reveal-demo",
   "title": "Tumbler Roll Reveal Demo",
   "registryDependencies": [
-    "tumbler-roll-reveal"
+    "https://ui.satisium.com/r/tumbler-roll-reveal.json"
   ],
   "files": [
     {

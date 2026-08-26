@@ -3,7 +3,7 @@
   "name": "fluid-ink-headline-demo",
   "title": "Fluid Ink Headline Demo",
   "registryDependencies": [
-    "fluid-ink-reveal"
+    "https://ui.satisium.com/r/fluid-ink-reveal.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "liquid-mercury-headline-demo",
   "title": "Liquid Mercury Headline Demo",
   "registryDependencies": [
-    "liquid-mercury-reveal"
+    "https://ui.satisium.com/r/liquid-mercury-reveal.json"
   ],
   "files": [
     {

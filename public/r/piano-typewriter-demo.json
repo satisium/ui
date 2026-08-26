@@ -3,7 +3,7 @@
   "name": "piano-typewriter-demo",
   "title": "Piano Typewriter Demo",
   "registryDependencies": [
-    "piano-typewriter"
+    "https://ui.satisium.com/r/piano-typewriter.json"
   ],
   "files": [
     {

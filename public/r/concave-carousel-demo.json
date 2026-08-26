@@ -3,7 +3,7 @@
   "name": "concave-carousel-demo",
   "title": "Concave Carousel Demo",
   "registryDependencies": [
-    "concave-carousel"
+    "https://ui.satisium.com/r/concave-carousel.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "fluid-disintegration-demo",
   "title": "Fluid Disintegration Demo",
   "registryDependencies": [
-    "fluid-disintegration"
+    "https://ui.satisium.com/r/fluid-disintegration.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "depth-trail-avatars-demo",
   "title": "Depth Trail Avatars Demo",
   "registryDependencies": [
-    "depth-trail"
+    "https://ui.satisium.com/r/depth-trail.json"
   ],
   "files": [
     {

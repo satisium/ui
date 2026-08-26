@@ -3,7 +3,7 @@
   "name": "fold-reveal-demo",
   "title": "Fold Reveal Demo",
   "registryDependencies": [
-    "fold-reveal"
+    "https://ui.satisium.com/r/fold-reveal.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "manifesto-text-reveal-demo",
   "title": "Manifesto Text Reveal Demo",
   "registryDependencies": [
-    "manifesto-text-reveal"
+    "https://ui.satisium.com/r/manifesto-text-reveal.json"
   ],
   "files": [
     {

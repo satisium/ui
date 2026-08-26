@@ -3,7 +3,7 @@
   "name": "wind-shear-word-demo",
   "title": "Wind Shear Word Demo",
   "registryDependencies": [
-    "wind-shear-reveal"
+    "https://ui.satisium.com/r/wind-shear-reveal.json"
   ],
   "files": [
     {

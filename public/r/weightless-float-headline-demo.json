@@ -3,7 +3,7 @@
   "name": "weightless-float-headline-demo",
   "title": "Weightless Float Headline Demo",
   "registryDependencies": [
-    "weightless-float-reveal"
+    "https://ui.satisium.com/r/weightless-float-reveal.json"
   ],
   "files": [
     {

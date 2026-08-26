@@ -3,7 +3,7 @@
   "name": "mycelium-network-demo",
   "title": "Mycelium Network Demo",
   "registryDependencies": [
-    "mycelium-network"
+    "https://ui.satisium.com/r/mycelium-network.json"
   ],
   "files": [
     {

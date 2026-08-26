@@ -3,7 +3,7 @@
   "name": "wind-shear-char-demo",
   "title": "Wind Shear Character Demo",
   "registryDependencies": [
-    "wind-shear-reveal"
+    "https://ui.satisium.com/r/wind-shear-reveal.json"
   ],
   "files": [
     {

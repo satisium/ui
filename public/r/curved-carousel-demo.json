@@ -3,7 +3,7 @@
   "name": "curved-carousel-demo",
   "title": "Curved Carousel Demo",
   "registryDependencies": [
-    "curved-carousel"
+    "https://ui.satisium.com/r/curved-carousel.json"
   ],
   "files": [
     {

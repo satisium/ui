@@ -3,7 +3,7 @@
   "name": "weightless-float-paragraph-demo",
   "title": "Weightless Float Paragraph Demo",
   "registryDependencies": [
-    "weightless-float-reveal"
+    "https://ui.satisium.com/r/weightless-float-reveal.json"
   ],
   "files": [
     {

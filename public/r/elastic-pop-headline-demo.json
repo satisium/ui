@@ -3,7 +3,7 @@
   "name": "elastic-pop-headline-demo",
   "title": "Elastic Pop Headline Demo",
   "registryDependencies": [
-    "elastic-pop-reveal"
+    "https://ui.satisium.com/r/elastic-pop-reveal.json"
   ],
   "files": [
     {

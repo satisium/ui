@@ -3,7 +3,7 @@
   "name": "depth-trail-images-demo",
   "title": "Depth Trail Images Demo",
   "registryDependencies": [
-    "depth-trail"
+    "https://ui.satisium.com/r/depth-trail.json"
   ],
   "files": [
     {

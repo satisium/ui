@@ -3,7 +3,7 @@
   "name": "fluid-typewriter-headline-demo",
   "title": "Fluid Typewriter Headline Demo",
   "registryDependencies": [
-    "fluid-typewriter"
+    "https://ui.satisium.com/r/fluid-typewriter.json"
   ],
   "files": [
     {

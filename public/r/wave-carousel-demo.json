@@ -3,7 +3,7 @@
   "name": "wave-carousel-demo",
   "title": "Wave Carousel Demo",
   "registryDependencies": [
-    "wave-carousel"
+    "https://ui.satisium.com/r/wave-carousel.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "pendulum-reveal-demo",
   "title": "Pendulum Reveal Demo",
   "registryDependencies": [
-    "pendulum-reveal"
+    "https://ui.satisium.com/r/pendulum-reveal.json"
   ],
   "files": [
     {

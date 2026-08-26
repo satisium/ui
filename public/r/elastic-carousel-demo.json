@@ -3,7 +3,7 @@
   "name": "elastic-carousel-demo",
   "title": "Elastic Carousel Demo",
   "registryDependencies": [
-    "elastic-carousel"
+    "https://ui.satisium.com/r/elastic-carousel.json"
   ],
   "files": [
     {

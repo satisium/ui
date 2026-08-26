@@ -3,7 +3,7 @@
   "name": "liquid-curtain-demo",
   "title": "Liquid Curtain Demo",
   "registryDependencies": [
-    "liquid-curtain"
+    "https://ui.satisium.com/r/liquid-curtain.json"
   ],
   "files": [
     {
