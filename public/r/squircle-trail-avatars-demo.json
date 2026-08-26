@@ -3,7 +3,7 @@
   "name": "squircle-trail-avatars-demo",
   "title": "Squircle Trail Avatars Demo",
   "registryDependencies": [
-    "squircle-trail"
+    "https://ui.satisium.com/r/squircle-trail.json"
   ],
   "files": [
     {

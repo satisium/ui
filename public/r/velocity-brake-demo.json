@@ -3,7 +3,7 @@
   "name": "velocity-brake-demo",
   "title": "Velocity Brake Demo",
   "registryDependencies": [
-    "velocity-brake-reveal"
+    "https://ui.satisium.com/r/velocity-brake-reveal.json"
   ],
   "files": [
     {

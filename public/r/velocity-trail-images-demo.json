@@ -3,7 +3,7 @@
   "name": "velocity-trail-images-demo",
   "title": "Velocity Trail Images Demo",
   "registryDependencies": [
-    "velocity-trail"
+    "https://ui.satisium.com/r/velocity-trail.json"
   ],
   "files": [
     {

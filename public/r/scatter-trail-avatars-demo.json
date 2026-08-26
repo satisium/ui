@@ -3,7 +3,7 @@
   "name": "scatter-trail-avatars-demo",
   "title": "Scatter Trail Avatars Demo",
   "registryDependencies": [
-    "scatter-trail"
+    "https://ui.satisium.com/r/scatter-trail.json"
   ],
   "files": [
     {

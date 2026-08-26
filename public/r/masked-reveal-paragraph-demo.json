@@ -3,7 +3,7 @@
   "name": "masked-reveal-paragraph-demo",
   "title": "Masked Reveal Paragraph Demo",
   "registryDependencies": [
-    "masked-reveal"
+    "https://ui.satisium.com/r/masked-reveal.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "z-axis-word-demo",
   "title": "Z-Axis Word Demo",
   "registryDependencies": [
-    "z-axis-reveal"
+    "https://ui.satisium.com/r/z-axis-reveal.json"
   ],
   "files": [
     {

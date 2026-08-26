@@ -3,7 +3,7 @@
   "name": "flip-vertical-headline-demo",
   "title": "Flip Vertical Headline Demo",
   "registryDependencies": [
-    "flip-vertical-reveal"
+    "https://ui.satisium.com/r/flip-vertical-reveal.json"
   ],
   "files": [
     {

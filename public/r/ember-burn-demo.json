@@ -3,7 +3,7 @@
   "name": "ember-burn-demo",
   "title": "Ember Burn Demo",
   "registryDependencies": [
-    "ember-burn"
+    "https://ui.satisium.com/r/ember-burn.json"
   ],
   "files": [
     {

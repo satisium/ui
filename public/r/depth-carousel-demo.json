@@ -3,7 +3,7 @@
   "name": "depth-carousel-demo",
   "title": "Depth Carousel Demo",
   "registryDependencies": [
-    "depth-carousel"
+    "https://ui.satisium.com/r/depth-carousel.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "masked-reveal-headline-demo",
   "title": "Masked Reveal Headline Demo",
   "registryDependencies": [
-    "masked-reveal"
+    "https://ui.satisium.com/r/masked-reveal.json"
   ],
   "files": [
     {

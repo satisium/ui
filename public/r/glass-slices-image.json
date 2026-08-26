@@ -7,7 +7,7 @@
     "@hugeicons/core-free-icons"
   ],
   "registryDependencies": [
-    "glass-slices"
+    "https://ui.satisium.com/r/glass-slices.json"
   ],
   "files": [
     {

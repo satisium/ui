@@ -7,7 +7,7 @@
     "@hugeicons/core-free-icons"
   ],
   "registryDependencies": [
-    "liquid-marble"
+    "https://ui.satisium.com/r/liquid-marble.json"
   ],
   "files": [
     {

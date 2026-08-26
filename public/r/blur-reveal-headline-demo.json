@@ -3,7 +3,7 @@
   "name": "blur-reveal-headline-demo",
   "title": "Blur Reveal Headline Demo",
   "registryDependencies": [
-    "blur-reveal"
+    "https://ui.satisium.com/r/blur-reveal.json"
   ],
   "files": [
     {

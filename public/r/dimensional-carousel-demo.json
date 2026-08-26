@@ -3,7 +3,7 @@
   "name": "dimensional-carousel-demo",
   "title": "Dimensional Carousel Demo",
   "registryDependencies": [
-    "dimensional-carousel"
+    "https://ui.satisium.com/r/dimensional-carousel.json"
   ],
   "files": [
     {

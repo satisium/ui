@@ -3,7 +3,7 @@
   "name": "flip-3d-headline-demo",
   "title": "Flip 3D Headline Demo",
   "registryDependencies": [
-    "flip-3d-reveal"
+    "https://ui.satisium.com/r/flip-3d-reveal.json"
   ],
   "files": [
     {

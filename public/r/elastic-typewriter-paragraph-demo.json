@@ -3,7 +3,7 @@
   "name": "elastic-typewriter-paragraph-demo",
   "title": "Elastic Typewriter Paragraph Demo",
   "registryDependencies": [
-    "elastic-typewriter"
+    "https://ui.satisium.com/r/elastic-typewriter.json"
   ],
   "files": [
     {

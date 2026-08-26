@@ -3,7 +3,7 @@
   "name": "flex-carousel-demo",
   "title": "Flex Carousel Demo",
   "registryDependencies": [
-    "flex-carousel"
+    "https://ui.satisium.com/r/flex-carousel.json"
   ],
   "files": [
     {

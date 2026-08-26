@@ -3,7 +3,7 @@
   "name": "ascent-carousel-demo",
   "title": "Ascent Carousel Demo",
   "registryDependencies": [
-    "ascent-carousel"
+    "https://ui.satisium.com/r/ascent-carousel.json"
   ],
   "files": [
     {

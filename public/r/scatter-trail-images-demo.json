@@ -3,7 +3,7 @@
   "name": "scatter-trail-images-demo",
   "title": "Scatter Trail Images Demo",
   "registryDependencies": [
-    "scatter-trail"
+    "https://ui.satisium.com/r/scatter-trail.json"
   ],
   "files": [
     {

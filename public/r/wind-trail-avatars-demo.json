@@ -3,7 +3,7 @@
   "name": "wind-trail-avatars-demo",
   "title": "Wind Trail Avatars Demo",
   "registryDependencies": [
-    "wind-trail"
+    "https://ui.satisium.com/r/wind-trail.json"
   ],
   "files": [
     {

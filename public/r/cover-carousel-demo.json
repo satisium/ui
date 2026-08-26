@@ -3,7 +3,7 @@
   "name": "cover-carousel-demo",
   "title": "Cover Carousel Demo",
   "registryDependencies": [
-    "cover-carousel"
+    "https://ui.satisium.com/r/cover-carousel.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "heat-mirage-headline-demo",
   "title": "Heat Mirage Headline Demo",
   "registryDependencies": [
-    "heat-mirage-reveal"
+    "https://ui.satisium.com/r/heat-mirage-reveal.json"
   ],
   "files": [
     {

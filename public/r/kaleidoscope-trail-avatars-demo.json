@@ -3,7 +3,7 @@
   "name": "kaleidoscope-trail-avatars-demo",
   "title": "Kaleidoscope Trail Avatars Demo",
   "registryDependencies": [
-    "kaleidoscope-trail"
+    "https://ui.satisium.com/r/kaleidoscope-trail.json"
   ],
   "files": [
     {

@@ -3,7 +3,7 @@
   "name": "granular-dust-paragraph-demo",
   "title": "Granular Dust Paragraph Demo",
   "registryDependencies": [
-    "granular-dust-reveal"
+    "https://ui.satisium.com/r/granular-dust-reveal.json"
   ],
   "files": [
     {

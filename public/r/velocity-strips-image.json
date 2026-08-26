@@ -7,7 +7,7 @@
     "@hugeicons/core-free-icons"
   ],
   "registryDependencies": [
-    "velocity-strips"
+    "https://ui.satisium.com/r/velocity-strips.json"
   ],
   "files": [
     {

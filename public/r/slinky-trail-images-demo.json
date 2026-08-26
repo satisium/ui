@@ -3,7 +3,7 @@
   "name": "slinky-trail-images-demo",
   "title": "Slinky Trail Images Demo",
   "registryDependencies": [
-    "slinky-trail"
+    "https://ui.satisium.com/r/slinky-trail.json"
   ],
   "files": [
     {

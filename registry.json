@@ -28,7 +28,7 @@
       "type": "registry:ui",
       "title": "Velocity Strips Image Demo",
       "registryDependencies": [
-        "velocity-strips"
+        "https://ui.satisium.com/r/velocity-strips.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -47,7 +47,7 @@
       "type": "registry:ui",
       "title": "Velocity Strips Video Demo",
       "registryDependencies": [
-        "velocity-strips"
+        "https://ui.satisium.com/r/velocity-strips.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -86,7 +86,7 @@
       "type": "registry:ui",
       "title": "Velocity Grid Image Demo",
       "registryDependencies": [
-        "velocity-grid"
+        "https://ui.satisium.com/r/velocity-grid.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -105,7 +105,7 @@
       "type": "registry:ui",
       "title": "Velocity Grid Video Demo",
       "registryDependencies": [
-        "velocity-grid"
+        "https://ui.satisium.com/r/velocity-grid.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -144,7 +144,7 @@
       "type": "registry:ui",
       "title": "Proximity Grid Image Demo",
       "registryDependencies": [
-        "proximity-grid"
+        "https://ui.satisium.com/r/proximity-grid.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -163,7 +163,7 @@
       "type": "registry:ui",
       "title": "Proximity Grid Video Demo",
       "registryDependencies": [
-        "proximity-grid"
+        "https://ui.satisium.com/r/proximity-grid.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -202,7 +202,7 @@
       "type": "registry:ui",
       "title": "Liquid Marble Image Demo",
       "registryDependencies": [
-        "liquid-marble"
+        "https://ui.satisium.com/r/liquid-marble.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -221,7 +221,7 @@
       "type": "registry:ui",
       "title": "Liquid Marble Video Demo",
       "registryDependencies": [
-        "liquid-marble"
+        "https://ui.satisium.com/r/liquid-marble.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -260,7 +260,7 @@
       "type": "registry:ui",
       "title": "Glass Slices Image Demo",
       "registryDependencies": [
-        "glass-slices"
+        "https://ui.satisium.com/r/glass-slices.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -279,7 +279,7 @@
       "type": "registry:ui",
       "title": "Glass Slices Video Demo",
       "registryDependencies": [
-        "glass-slices"
+        "https://ui.satisium.com/r/glass-slices.json"
       ],
       "dependencies": [
         "@hugeicons/react",
@@ -315,7 +315,7 @@
       "type": "registry:ui",
       "title": "Depth Trail Avatars Demo",
       "registryDependencies": [
-        "depth-trail"
+        "https://ui.satisium.com/r/depth-trail.json"
       ],
       "files": [
         {
@@ -330,7 +330,7 @@
       "type": "registry:ui",
       "title": "Depth Trail Images Demo",
       "registryDependencies": [
-        "depth-trail"
+        "https://ui.satisium.com/r/depth-trail.json"
       ],
       "files": [
         {
@@ -362,7 +362,7 @@
       "type": "registry:ui",
       "title": "Scatter Trail Avatars Demo",
       "registryDependencies": [
-        "scatter-trail"
+        "https://ui.satisium.com/r/scatter-trail.json"
       ],
       "files": [
         {
@@ -377,7 +377,7 @@
       "type": "registry:ui",
       "title": "Scatter Trail Images Demo",
       "registryDependencies": [
-        "scatter-trail"
+        "https://ui.satisium.com/r/scatter-trail.json"
       ],
       "files": [
         {
@@ -409,7 +409,7 @@
       "type": "registry:ui",
       "title": "Wind Trail Avatars Demo",
       "registryDependencies": [
-        "wind-trail"
+        "https://ui.satisium.com/r/wind-trail.json"
       ],
       "files": [
         {
@@ -424,7 +424,7 @@
       "type": "registry:ui",
       "title": "Wind Trail Images Demo",
       "registryDependencies": [
-        "wind-trail"
+        "https://ui.satisium.com/r/wind-trail.json"
       ],
       "files": [
         {
@@ -456,7 +456,7 @@
       "type": "registry:ui",
       "title": "Kaleidoscope Trail Avatars Demo",
       "registryDependencies": [
-        "kaleidoscope-trail"
+        "https://ui.satisium.com/r/kaleidoscope-trail.json"
       ],
       "files": [
         {
@@ -471,7 +471,7 @@
       "type": "registry:ui",
       "title": "Kaleidoscope Trail Images Demo",
       "registryDependencies": [
-        "kaleidoscope-trail"
+        "https://ui.satisium.com/r/kaleidoscope-trail.json"
       ],
       "files": [
         {
@@ -503,7 +503,7 @@
       "type": "registry:ui",
       "title": "Squircle Trail Avatars Demo",
       "registryDependencies": [
-        "squircle-trail"
+        "https://ui.satisium.com/r/squircle-trail.json"
       ],
       "files": [
         {
@@ -518,7 +518,7 @@
       "type": "registry:ui",
       "title": "Squircle Trail Images Demo",
       "registryDependencies": [
-        "squircle-trail"
+        "https://ui.satisium.com/r/squircle-trail.json"
       ],
       "files": [
         {
@@ -550,7 +550,7 @@
       "type": "registry:ui",
       "title": "Pendulum Trail Avatars Demo",
       "registryDependencies": [
-        "pendulum-trail"
+        "https://ui.satisium.com/r/pendulum-trail.json"
       ],
       "files": [
         {
@@ -565,7 +565,7 @@
       "type": "registry:ui",
       "title": "Pendulum Trail Images Demo",
       "registryDependencies": [
-        "pendulum-trail"
+        "https://ui.satisium.com/r/pendulum-trail.json"
       ],
       "files": [
         {
@@ -597,7 +597,7 @@
       "type": "registry:ui",
       "title": "Slinky Trail Avatars Demo",
       "registryDependencies": [
-        "slinky-trail"
+        "https://ui.satisium.com/r/slinky-trail.json"
       ],
       "files": [
         {
@@ -612,7 +612,7 @@
       "type": "registry:ui",
       "title": "Slinky Trail Images Demo",
       "registryDependencies": [
-        "slinky-trail"
+        "https://ui.satisium.com/r/slinky-trail.json"
       ],
       "files": [
         {
@@ -644,7 +644,7 @@
       "type": "registry:ui",
       "title": "Velocity Trail Avatars Demo",
       "registryDependencies": [
-        "velocity-trail"
+        "https://ui.satisium.com/r/velocity-trail.json"
       ],
       "files": [
         {
@@ -659,7 +659,7 @@
       "type": "registry:ui",
       "title": "Velocity Trail Images Demo",
       "registryDependencies": [
-        "velocity-trail"
+        "https://ui.satisium.com/r/velocity-trail.json"
       ],
       "files": [
         {
@@ -693,7 +693,7 @@
       "type": "registry:ui",
       "title": "Editorial Reveal Demo",
       "registryDependencies": [
-        "editorial-reveal"
+        "https://ui.satisium.com/r/editorial-reveal.json"
       ],
       "files": [
         {
@@ -727,7 +727,7 @@
       "type": "registry:ui",
       "title": "Elastic Pop Headline Demo",
       "registryDependencies": [
-        "elastic-pop-reveal"
+        "https://ui.satisium.com/r/elastic-pop-reveal.json"
       ],
       "files": [
         {
@@ -742,7 +742,7 @@
       "type": "registry:ui",
       "title": "Elastic Pop Paragraph Demo",
       "registryDependencies": [
-        "elastic-pop-reveal"
+        "https://ui.satisium.com/r/elastic-pop-reveal.json"
       ],
       "files": [
         {
@@ -776,7 +776,7 @@
       "type": "registry:ui",
       "title": "Elastic Typewriter Headline Demo",
       "registryDependencies": [
-        "elastic-typewriter"
+        "https://ui.satisium.com/r/elastic-typewriter.json"
       ],
       "files": [
         {
@@ -791,7 +791,7 @@
       "type": "registry:ui",
       "title": "Elastic Typewriter Paragraph Demo",
       "registryDependencies": [
-        "elastic-typewriter"
+        "https://ui.satisium.com/r/elastic-typewriter.json"
       ],
       "files": [
         {
@@ -825,7 +825,7 @@
       "type": "registry:ui",
       "title": "Flip 3D Headline Demo",
       "registryDependencies": [
-        "flip-3d-reveal"
+        "https://ui.satisium.com/r/flip-3d-reveal.json"
       ],
       "files": [
         {
@@ -840,7 +840,7 @@
       "type": "registry:ui",
       "title": "Flip 3D Paragraph Demo",
       "registryDependencies": [
-        "flip-3d-reveal"
+        "https://ui.satisium.com/r/flip-3d-reveal.json"
       ],
       "files": [
         {
@@ -874,7 +874,7 @@
       "type": "registry:ui",
       "title": "Flip Vertical Headline Demo",
       "registryDependencies": [
-        "flip-vertical-reveal"
+        "https://ui.satisium.com/r/flip-vertical-reveal.json"
       ],
       "files": [
         {
@@ -889,7 +889,7 @@
       "type": "registry:ui",
       "title": "Flip Vertical Paragraph Demo",
       "registryDependencies": [
-        "flip-vertical-reveal"
+        "https://ui.satisium.com/r/flip-vertical-reveal.json"
       ],
       "files": [
         {
@@ -923,7 +923,7 @@
       "type": "registry:ui",
       "title": "Fluid Ink Headline Demo",
       "registryDependencies": [
-        "fluid-ink-reveal"
+        "https://ui.satisium.com/r/fluid-ink-reveal.json"
       ],
       "files": [
         {
@@ -938,7 +938,7 @@
       "type": "registry:ui",
       "title": "Fluid Ink Paragraph Demo",
       "registryDependencies": [
-        "fluid-ink-reveal"
+        "https://ui.satisium.com/r/fluid-ink-reveal.json"
       ],
       "files": [
         {
@@ -972,7 +972,7 @@
       "type": "registry:ui",
       "title": "Blur Reveal Headline Demo",
       "registryDependencies": [
-        "blur-reveal"
+        "https://ui.satisium.com/r/blur-reveal.json"
       ],
       "files": [
         {
@@ -987,7 +987,7 @@
       "type": "registry:ui",
       "title": "Blur Reveal Paragraph Demo",
       "registryDependencies": [
-        "blur-reveal"
+        "https://ui.satisium.com/r/blur-reveal.json"
       ],
       "files": [
         {
@@ -1021,7 +1021,7 @@
       "type": "registry:ui",
       "title": "Fluid Typewriter Headline Demo",
       "registryDependencies": [
-        "fluid-typewriter"
+        "https://ui.satisium.com/r/fluid-typewriter.json"
       ],
       "files": [
         {
@@ -1036,7 +1036,7 @@
       "type": "registry:ui",
       "title": "Fluid Typewriter Paragraph Demo",
       "registryDependencies": [
-        "fluid-typewriter"
+        "https://ui.satisium.com/r/fluid-typewriter.json"
       ],
       "files": [
         {
@@ -1070,7 +1070,7 @@
       "type": "registry:ui",
       "title": "Granular Dust Headline Demo",
       "registryDependencies": [
-        "granular-dust-reveal"
+        "https://ui.satisium.com/r/granular-dust-reveal.json"
       ],
       "files": [
         {
@@ -1085,7 +1085,7 @@
       "type": "registry:ui",
       "title": "Granular Dust Paragraph Demo",
       "registryDependencies": [
-        "granular-dust-reveal"
+        "https://ui.satisium.com/r/granular-dust-reveal.json"
       ],
       "files": [
         {
@@ -1119,7 +1119,7 @@
       "type": "registry:ui",
       "title": "Heat Mirage Headline Demo",
       "registryDependencies": [
-        "heat-mirage-reveal"
+        "https://ui.satisium.com/r/heat-mirage-reveal.json"
       ],
       "files": [
         {
@@ -1134,7 +1134,7 @@
       "type": "registry:ui",
       "title": "Heat Mirage Paragraph Demo",
       "registryDependencies": [
-        "heat-mirage-reveal"
+        "https://ui.satisium.com/r/heat-mirage-reveal.json"
       ],
       "files": [
         {
@@ -1168,7 +1168,7 @@
       "type": "registry:ui",
       "title": "Liquid Mercury Headline Demo",
       "registryDependencies": [
-        "liquid-mercury-reveal"
+        "https://ui.satisium.com/r/liquid-mercury-reveal.json"
       ],
       "files": [
         {
@@ -1202,7 +1202,7 @@
       "type": "registry:ui",
       "title": "Magnetic Snap Demo",
       "registryDependencies": [
-        "magnetic-snap-reveal"
+        "https://ui.satisium.com/r/magnetic-snap-reveal.json"
       ],
       "files": [
         {
@@ -1236,7 +1236,7 @@
       "type": "registry:ui",
       "title": "Manifesto Text Reveal Demo",
       "registryDependencies": [
-        "manifesto-text-reveal"
+        "https://ui.satisium.com/r/manifesto-text-reveal.json"
       ],
       "files": [
         {
@@ -1270,7 +1270,7 @@
       "type": "registry:ui",
       "title": "Masked Reveal Headline Demo",
       "registryDependencies": [
-        "masked-reveal"
+        "https://ui.satisium.com/r/masked-reveal.json"
       ],
       "files": [
         {
@@ -1285,7 +1285,7 @@
       "type": "registry:ui",
       "title": "Masked Reveal Paragraph Demo",
       "registryDependencies": [
-        "masked-reveal"
+        "https://ui.satisium.com/r/masked-reveal.json"
       ],
       "files": [
         {
@@ -1319,7 +1319,7 @@
       "type": "registry:ui",
       "title": "Fold Reveal Demo",
       "registryDependencies": [
-        "fold-reveal"
+        "https://ui.satisium.com/r/fold-reveal.json"
       ],
       "files": [
         {
@@ -1353,7 +1353,7 @@
       "type": "registry:ui",
       "title": "Pendulum Reveal Demo",
       "registryDependencies": [
-        "pendulum-reveal"
+        "https://ui.satisium.com/r/pendulum-reveal.json"
       ],
       "files": [
         {
@@ -1387,7 +1387,7 @@
       "type": "registry:ui",
       "title": "Piano Typewriter Demo",
       "registryDependencies": [
-        "piano-typewriter"
+        "https://ui.satisium.com/r/piano-typewriter.json"
       ],
       "files": [
         {
@@ -1421,7 +1421,7 @@
       "type": "registry:ui",
       "title": "Multi-Color Trail Char Demo",
       "registryDependencies": [
-        "multi-color-trail-reveal"
+        "https://ui.satisium.com/r/multi-color-trail-reveal.json"
       ],
       "files": [
         {
@@ -1436,7 +1436,7 @@
       "type": "registry:ui",
       "title": "Multi-Color Trail Word Demo",
       "registryDependencies": [
-        "multi-color-trail-reveal"
+        "https://ui.satisium.com/r/multi-color-trail-reveal.json"
       ],
       "files": [
         {
@@ -1451,7 +1451,7 @@
       "type": "registry:ui",
       "title": "Multi-Color Trail Line Demo",
       "registryDependencies": [
-        "multi-color-trail-reveal"
+        "https://ui.satisium.com/r/multi-color-trail-reveal.json"
       ],
       "files": [
         {
@@ -1485,7 +1485,7 @@
       "type": "registry:ui",
       "title": "Tumbler Roll Reveal Demo",
       "registryDependencies": [
-        "tumbler-roll-reveal"
+        "https://ui.satisium.com/r/tumbler-roll-reveal.json"
       ],
       "files": [
         {
@@ -1519,7 +1519,7 @@
       "type": "registry:ui",
       "title": "Bottom Hinge Text Reveal Demo",
       "registryDependencies": [
-        "bottom-hinge-text-reveal"
+        "https://ui.satisium.com/r/bottom-hinge-text-reveal.json"
       ],
       "files": [
         {
@@ -1553,7 +1553,7 @@
       "type": "registry:ui",
       "title": "Velocity Brake Demo",
       "registryDependencies": [
-        "velocity-brake-reveal"
+        "https://ui.satisium.com/r/velocity-brake-reveal.json"
       ],
       "files": [
         {
@@ -1587,7 +1587,7 @@
       "type": "registry:ui",
       "title": "Weightless Float Headline Demo",
       "registryDependencies": [
-        "weightless-float-reveal"
+        "https://ui.satisium.com/r/weightless-float-reveal.json"
       ],
       "files": [
         {
@@ -1602,7 +1602,7 @@
       "type": "registry:ui",
       "title": "Weightless Float Paragraph Demo",
       "registryDependencies": [
-        "weightless-float-reveal"
+        "https://ui.satisium.com/r/weightless-float-reveal.json"
       ],
       "files": [
         {
@@ -1636,7 +1636,7 @@
       "type": "registry:ui",
       "title": "Wind Shear Character Demo",
       "registryDependencies": [
-        "wind-shear-reveal"
+        "https://ui.satisium.com/r/wind-shear-reveal.json"
       ],
       "files": [
         {
@@ -1651,7 +1651,7 @@
       "type": "registry:ui",
       "title": "Wind Shear Word Demo",
       "registryDependencies": [
-        "wind-shear-reveal"
+        "https://ui.satisium.com/r/wind-shear-reveal.json"
       ],
       "files": [
         {
@@ -1685,7 +1685,7 @@
       "type": "registry:ui",
       "title": "Z-Axis Character Demo",
       "registryDependencies": [
-        "z-axis-reveal"
+        "https://ui.satisium.com/r/z-axis-reveal.json"
       ],
       "files": [
         {
@@ -1700,7 +1700,7 @@
       "type": "registry:ui",
       "title": "Z-Axis Word Demo",
       "registryDependencies": [
-        "z-axis-reveal"
+        "https://ui.satisium.com/r/z-axis-reveal.json"
       ],
       "files": [
         {
@@ -1734,7 +1734,7 @@
       "type": "registry:ui",
       "title": "Concave Carousel Demo",
       "registryDependencies": [
-        "concave-carousel"
+        "https://ui.satisium.com/r/concave-carousel.json"
       ],
       "files": [
         {
@@ -1768,7 +1768,7 @@
       "type": "registry:ui",
       "title": "Ascent Carousel Demo",
       "registryDependencies": [
-        "ascent-carousel"
+        "https://ui.satisium.com/r/ascent-carousel.json"
       ],
       "files": [
         {
@@ -1802,7 +1802,7 @@
       "type": "registry:ui",
       "title": "Wave Carousel Demo",
       "registryDependencies": [
-        "wave-carousel"
+        "https://ui.satisium.com/r/wave-carousel.json"
       ],
       "files": [
         {
@@ -1836,7 +1836,7 @@
       "type": "registry:ui",
       "title": "Convex Carousel Demo",
       "registryDependencies": [
-        "convex-carousel"
+        "https://ui.satisium.com/r/convex-carousel.json"
       ],
       "files": [
         {
@@ -1870,7 +1870,7 @@
       "type": "registry:ui",
       "title": "Ember Burn Demo",
       "registryDependencies": [
-        "ember-burn"
+        "https://ui.satisium.com/r/ember-burn.json"
       ],
       "files": [
         {
@@ -1904,7 +1904,7 @@
       "type": "registry:ui",
       "title": "Ferrofluid Drag Demo",
       "registryDependencies": [
-        "ferrofluid-drag"
+        "https://ui.satisium.com/r/ferrofluid-drag.json"
       ],
       "files": [
         {
@@ -1938,7 +1938,7 @@
       "type": "registry:ui",
       "title": "Fluid Disintegration Demo",
       "registryDependencies": [
-        "fluid-disintegration"
+        "https://ui.satisium.com/r/fluid-disintegration.json"
       ],
       "files": [
         {
@@ -1972,7 +1972,7 @@
       "type": "registry:ui",
       "title": "Liquid Curtain Demo",
       "registryDependencies": [
-        "liquid-curtain"
+        "https://ui.satisium.com/r/liquid-curtain.json"
       ],
       "files": [
         {
@@ -2006,7 +2006,7 @@
       "type": "registry:ui",
       "title": "Mycelium Network Demo",
       "registryDependencies": [
-        "mycelium-network"
+        "https://ui.satisium.com/r/mycelium-network.json"
       ],
       "files": [
         {
@@ -2043,7 +2043,7 @@
       "type": "registry:ui",
       "title": "Dimensional Deck Demo",
       "registryDependencies": [
-        "dimensional-deck"
+        "https://ui.satisium.com/r/dimensional-deck.json"
       ],
       "files": [
         {
@@ -2080,7 +2080,7 @@
       "type": "registry:ui",
       "title": "Dimensional Carousel Demo",
       "registryDependencies": [
-        "dimensional-carousel"
+        "https://ui.satisium.com/r/dimensional-carousel.json"
       ],
       "files": [
         {
@@ -2117,7 +2117,7 @@
       "type": "registry:ui",
       "title": "Panoramic Carousel Demo",
       "registryDependencies": [
-        "panoramic-carousel"
+        "https://ui.satisium.com/r/panoramic-carousel.json"
       ],
       "files": [
         {
@@ -2154,7 +2154,7 @@
       "type": "registry:ui",
       "title": "Flex Carousel Demo",
       "registryDependencies": [
-        "flex-carousel"
+        "https://ui.satisium.com/r/flex-carousel.json"
       ],
       "files": [
         {
@@ -2191,7 +2191,7 @@
       "type": "registry:ui",
       "title": "Depth Carousel Demo",
       "registryDependencies": [
-        "depth-carousel"
+        "https://ui.satisium.com/r/depth-carousel.json"
       ],
       "files": [
         {
@@ -2228,7 +2228,7 @@
       "type": "registry:ui",
       "title": "Cover Carousel Demo",
       "registryDependencies": [
-        "cover-carousel"
+        "https://ui.satisium.com/r/cover-carousel.json"
       ],
       "files": [
         {
@@ -2265,7 +2265,7 @@
       "type": "registry:ui",
       "title": "Curved Carousel Demo",
       "registryDependencies": [
-        "curved-carousel"
+        "https://ui.satisium.com/r/curved-carousel.json"
       ],
       "files": [
         {
@@ -2302,7 +2302,7 @@
       "type": "registry:ui",
       "title": "Elastic Carousel Demo",
       "registryDependencies": [
-        "elastic-carousel"
+        "https://ui.satisium.com/r/elastic-carousel.json"
       ],
       "files": [
         {

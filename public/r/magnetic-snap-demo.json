@@ -3,7 +3,7 @@
   "name": "magnetic-snap-demo",
   "title": "Magnetic Snap Demo",
   "registryDependencies": [
-    "magnetic-snap-reveal"
+    "https://ui.satisium.com/r/magnetic-snap-reveal.json"
   ],
   "files": [
     {
