@@ -1,0 +1,71 @@
+{
+  "kit": "LumenHousePlan",
+  "version": "2.4.0",
+  "product": "Lumen House Photography Studio",
+  "canonicalRoutes": ["/", "/showcase", "/services", "/journal", "/contact"],
+  "compatibilityRoutes": { "/work": "/showcase" },
+  "designTokens": {
+    "radius": "1.4rem",
+    "background": "oklch(1 0 0)",
+    "foreground": "oklch(0.14 0 0)",
+    "primary": "oklch(0.6404 0.2153 35.9003)",
+    "muted": "oklch(0.96 0 0)",
+    "mutedForeground": "oklch(0.55 0 0)",
+    "border": "oklch(0.92 0 0)"
+  },
+  "fonts": {
+    "displayAndInterface": "Plus Jakarta Sans",
+    "metadata": "IBM Plex Mono"
+  },
+  "registryItems": [
+    "editorial-reveal",
+    "blur-reveal",
+    "ascent-carousel",
+    "glass-slices",
+    "manifesto-text-reveal"
+  ],
+  "requiredPublicNavigation": ["Showcase", "Services", "Journal", "Contact"],
+  "publicTechnicalLanguageAllowed": false,
+  "siteTour": {
+    "compositionId": "LumenHouseSiteTour",
+    "title": "Make room for the frame.",
+    "durationSeconds": 45,
+    "dimensions": "1920x1080",
+    "fps": 30,
+    "audio": false,
+    "src": "/examples/lumen-house/media/lumen-house-site-tour-v2.mp4",
+    "poster": "/examples/lumen-house/media/lumen-house-site-tour-poster.jpg",
+    "homePlacement": "after-hero-before-selected-stories",
+    "autoplay": true,
+    "muted": true,
+    "loop": false,
+    "nativeControls": false,
+    "visibleControls": ["play-pause"]
+  },
+  "downloadBundle": {
+    "rootDirectory": "lumen-house-studio-example-2.4.0",
+    "includesPlanFolder": true,
+    "includesSourceProject": true,
+    "includesMedia": [
+      "client/public/media/lumen-house-site-tour-v2.mp4",
+      "client/public/media/lumen-house-site-tour-poster.jpg"
+    ],
+    "excludes": ["node_modules", "dist", ".git", ".manus-logs"]
+  },
+  "planDownload": {
+    "fileName": "lumen-house-studio-example-2.4.0.zip",
+    "runtimePath": "/examples/lumen-house/downloads/lumen-house-studio-example-2.4.0.zip",
+    "contents": "Complete source project, LumenHousePlan directory with README, 00-brief through 07-download-bundle and manifest.json, plus the approved MP4 and poster under client/public/media/."
+  },
+  "sourceOfTruth": [
+    "README.md",
+    "00-brief.md",
+    "01-visual-system.md",
+    "02-content-data.md",
+    "03-route-blueprints.md",
+    "04-registry-contract.md",
+    "05-interaction-qa.md",
+    "06-site-tour.md",
+    "07-download-bundle.md"
+  ]
+}

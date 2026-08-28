@@ -1,0 +1,168 @@
+// Design system reminder: Shared Satisium UI grammar — photography content sits inside neutral rounded surfaces with primary-orange intent.
+
+export type Project = {
+  id: string;
+  title: string;
+  category: "Portrait" | "Campaign" | "Event";
+  year: string;
+  place: string;
+  image: string;
+  alt: string;
+  aspect: "portrait" | "landscape" | "square";
+};
+
+export const projects: Project[] = [
+  {
+    id: "01",
+    title: "Mara, in still light",
+    category: "Portrait",
+    year: "2025",
+    place: "Amsterdam",
+    image:
+      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=85",
+    alt: "Fashion portrait of a woman in a vivid red dress outdoors",
+    aspect: "portrait",
+  },
+  {
+    id: "02",
+    title: "Worn with intention",
+    category: "Campaign",
+    year: "2025",
+    place: "London",
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85",
+    alt: "Quiet studio portrait in warm window light",
+    aspect: "landscape",
+  },
+  {
+    id: "03",
+    title: "The morning call",
+    category: "Event",
+    year: "2024",
+    place: "Copenhagen",
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=1400&q=85",
+    alt: "Editorial portrait of a man in natural light",
+    aspect: "portrait",
+  },
+  {
+    id: "04",
+    title: "A soft departure",
+    category: "Campaign",
+    year: "2024",
+    place: "Lisbon",
+    image:
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=85",
+    alt: "Portrait of a woman in a quiet studio setting",
+    aspect: "square",
+  },
+  {
+    id: "05",
+    title: "A study in red",
+    category: "Portrait",
+    year: "2024",
+    place: "Berlin",
+    image:
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1400&q=85",
+    alt: "Warm editorial portrait with a considered crop",
+    aspect: "portrait",
+  },
+  {
+    id: "06",
+    title: "Night, held still",
+    category: "Event",
+    year: "2023",
+    place: "Paris",
+    image:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1400&q=85",
+    alt: "Close editorial portrait in soft studio light",
+    aspect: "landscape",
+  },
+];
+
+export const services = [
+  {
+    index: "01",
+    title: "Portrait sittings",
+    copy: "Unrushed sessions for founders, artists, and people who prefer a considered frame to a loud one.",
+    detail: "Half day · Studio or on location",
+  },
+  {
+    index: "02",
+    title: "Brand campaigns",
+    copy: "A visual language built from casting, set, still life, movement and the small decisions that make an image feel owned.",
+    detail: "Concept through delivery",
+  },
+  {
+    index: "03",
+    title: "Intimate events",
+    copy: "A quiet documentary eye for gatherings where the atmosphere is as important as the schedule.",
+    detail: "Editorial event coverage",
+  },
+];
+
+const hostedExampleMedia = `${import.meta.env.BASE_URL}media`;
+
+export const siteTour = {
+  eyebrow: "A SHORT FILM",
+  title: "Make room for the frame.",
+  copy: "A quiet passage through the people, pauses and small decisions that give a photograph room to stay with you.",
+  caption: "Lumen House / a moving selection",
+  duration: "00:45",
+  durationLabel: "45 seconds / a moving selection",
+  src: `${hostedExampleMedia}/lumen-house-site-tour-v2.mp4`,
+  poster: `${hostedExampleMedia}/lumen-house-site-tour-poster.jpg`,
+} as const;
+
+export const journalEntries = [
+  {
+    date: "14.03.25",
+    category: "Field note",
+    title: "What the window held",
+    copy: "A one-room portrait session shaped by a north-facing window and one unhurried hour.",
+    image:
+      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=85",
+    alt: "Portrait in soft studio light",
+  },
+  {
+    date: "02.02.25",
+    category: "Process",
+    title: "Before the edit",
+    copy: "The short pause between the last shutter and the first decisive selection.",
+    image:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=85",
+    alt: "Warm editorial portrait near a studio window",
+  },
+  {
+    date: "18.11.24",
+    category: "Dispatch",
+    title: "After the blue hour",
+    copy: "Thirty minutes after rain, when the available light finally said enough.",
+    image:
+      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=1200&q=85",
+    alt: "Warm close portrait with a soft color palette",
+  },
+];
+
+export const processSteps = [
+  [
+    "01",
+    "Listen",
+    "We start with intention, references, audience and the frame your work needs to hold.",
+  ],
+  [
+    "02",
+    "Shape",
+    "We translate that into casting, location, light, a visual pacing and a production rhythm.",
+  ],
+  [
+    "03",
+    "Make",
+    "On set, we keep the room focused and leave enough air for something unplanned to happen.",
+  ],
+  [
+    "04",
+    "Edit",
+    "A tight proof sheet leads to a purposeful final edit, prepared for the places it will be seen.",
+  ],
+] as const;

@@ -1,0 +1,44 @@
+name: Skills Freshness
+
+on:
+  pull_request:
+    branches: [main, beta, canary]
+    paths:
+      - ".agents/**"
+      - "registry/**"
+      - "content/docs/components/**"
+      - "public/llms/components/**"
+      - "public/r/**"
+      - "scripts/build-llms.mjs"
+      - "scripts/build-registry-meta.mjs"
+      - "source.config.ts"
+      - "lib/utils.ts"
+      - "package.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: skills-freshness-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  freshness:
+    name: Skills and component pipeline freshness
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Collect changed paths for pull requests
+        if: github.event_name == 'pull_request'
+        run: git diff --name-only "${{ github.event.pull_request.base.sha }}" "${{ github.event.pull_request.head.sha }}" > "$RUNNER_TEMP/changed-files.txt"
+      - name: Create an empty changed-path list for manual runs
+        if: github.event_name != 'pull_request'
+        run: touch "$RUNNER_TEMP/changed-files.txt"
+      - name: Check skills and component pipeline freshness
+        run: python .agents/skills/satisium-contribution-validate/scripts/check_freshness.py --repo . --changed-files "$RUNNER_TEMP/changed-files.txt"

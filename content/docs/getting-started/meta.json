@@ -1,1 +1,13 @@
-{"title":"Getting Started","pages":["introduction","setup","how-to-use","theming","changelog"],"icon":"LoveKoreanFingerIcon"}
+{
+  "title": "Getting Started",
+  "pages": [
+    "introduction",
+    "setup",
+    "how-to-use",
+    "skills",
+    "lumen-house-example",
+    "theming",
+    "changelog"
+  ],
+  "icon": "LoveKoreanFingerIcon"
+}

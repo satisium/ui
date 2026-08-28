@@ -1,0 +1,334 @@
+---
+title: Skills
+description: Give your coding agent Satisium UI workflows for discovering, building, reviewing, and contributing animated components.
+---
+
+## What are Satisium UI Skills?
+
+Satisium UI Skills are focused instructions for coding agents. They help an agent work from the real component source, registry, demos, documentation, and AI context instead of relying on a stale component list or generic animation advice.
+
+Use them when you want an agent to install an existing effect, change a component safely, review motion and accessibility, or prepare a contribution without skipping the source → registry → docs pipeline.
+
+## Quick start
+
+After the Satisium UI Skills bundle is published and discoverable through Skills CLI, install it from your project root. The CLI detects available coding agents and prompts you to choose a destination.
+
+<div className="mt-6 mb-12">
+  <CommandBlock
+    command="npx skills add satisium/ui"
+    title="Satisium UI Skills"
+  />
+</div>
+
+The command installs agent instructions only. It does not add Satisium UI components or a runtime dependency to your application.
+
+## Quick start with AI
+
+This is a **design-system setup prompt**, not a request to generate a finished screen. Paste it into your coding agent at the beginning of a new project. It gives the agent a safe sequence for preparing Satisium UI, its agent instructions, design tokens, and verified component workflow before application UI is built.
+
+### Set up Satisium UI
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "satisium-ui-setup-prompt.yaml": `task: Set up Satisium UI as the design system for this new software project.
+
+instructions:
+
+- Inspect the current repository first. Identify the framework, React version, Tailwind configuration, existing components.json, design tokens, and any UI conventions that must be preserved.
+- If this project has no components.json, run npx shadcn@latest init. Do not overwrite an existing shadcn/ui configuration.
+- Install the published Satisium UI Skills from the project root with npx skills add satisium/ui, then read the installed Skills before making UI decisions.
+- Start with Satisium Component Discovery. Read the relevant component docs and registry manifest, and use verified props and dependency requirements. Do not copy component code from the Satisium website or repository source.
+- Establish a small semantic design-system layer for this project: color roles, typography roles, spacing/radius rules, focus states, motion duration/easing, reduced-motion behavior, and media contrast rules. Preserve established project tokens where they already exist.
+- Record the setup decision in a short design-system note. Do not build application screens, install visual effects, push, publish, or modify the upstream Satisium registry until I approve the visual direction.
+
+deliverable:
+
+- A project initialized for Satisium UI with the agent Skills available.
+- A documented semantic token and motion foundation that respects the existing codebase.
+- A verified component-discovery path ready for the first approved screen.`,
+  }}
+  />
+  </div>
+
+### Give the system a direction
+
+After setup, use this second prompt. It ensures the agent asks for a visual decision before it chooses effects or starts composing pages.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "satisium-ui-direction-prompt.yaml": `Ask me what look and feel this product should have before creating screens. Offer three genuinely distinct directions in ideas.md, each with a name and a concise rationale. After I choose one, define the specific color roles, typography hierarchy, layout principles, interaction behavior, reduced-motion treatment, and image/video contrast rules that support it.
+
+Use the Satisium UI Skills to select components only after this direction is approved. Prefer the smallest set of verified registry components that supports the intended experience. Show me the design-system foundation and the first component choice before building the first product page.`,
+}}
+/>
+
+</div>
+
+For a full real-world reference, open the [Lumen House photography studio example](/docs/getting-started/lumen-house-example). It applies the same setup-first sequence before composing `EditorialReveal`, `BlurReveal`, `AscentCarousel`, and `GlassSlices` installed from the public registry; its **View build plan** modal contains the longer plan used to construct and test the example.
+
+## Install for a specific agent
+
+Use a documented `--agent` identifier when you want to choose the destination explicitly. Install the full bundle for one agent, then restart that agent session so it can discover the new Skills.
+
+<div className="not-prose mt-8 flex items-center gap-2 text-lg font-medium text-foreground">
+  <img
+    src="https://cdn.simpleicons.org/anthropic/737373"
+    alt=""
+    width="20"
+    height="20"
+  />
+  <span>Claude Code</span>
+</div>
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "claude-code.sh": `npx skills add satisium/ui --agent claude-code`,
+    }}
+  />
+</div>
+
+Claude Code reads project Skills from `.claude/skills`. Start a new Claude Code session and confirm the installed Skills are available. If the top-level directory was created after the session started, restarting Claude Code is required for it to begin watching that directory.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "claude-code-check.sh": `claude
+
+# In Claude Code, open the Skills menu
+
+/skills`,
+}}
+/>
+
+</div>
+
+<div className="not-prose mt-8 flex items-center gap-2 text-lg font-medium text-foreground">
+  <span className="flex size-5 items-center justify-center rounded-full bg-foreground p-1">
+    <img
+      src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg"
+      alt=""
+      className="size-full invert dark:invert-0"
+      width="20"
+      height="20"
+    />
+  </span>
+  <span>Codex</span>
+</div>
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "codex.sh": `npx skills add satisium/ui --agent codex`,
+    }}
+  />
+</div>
+
+Codex reads project Skills from `.agents/skills` between your working directory and repository root. It detects changes automatically; restart Codex only if the new Skills do not appear.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "codex-check.sh": `codex
+
+# In Codex, inspect the available Skills
+
+/skills`,
+}}
+/>
+
+</div>
+
+<div className="not-prose mt-8 flex items-center gap-2 text-lg font-medium text-foreground">
+  <img
+    src="https://cdn.simpleicons.org/cursor/737373"
+    alt=""
+    width="20"
+    height="20"
+  />
+  <span>Cursor</span>
+</div>
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "cursor.sh": `npx skills add satisium/ui --agent cursor`,
+    }}
+  />
+</div>
+
+Cursor auto-discovers project Skills from `.agents/skills` and `.cursor/skills`; no configuration file is needed. Open **Customize → Skills** to inspect them. For a Cursor Cloud Agent or remote SSH session, use project-scoped Skills rather than user-level Skills because user-level folders are not transferred to those environments.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "cursor-check.sh": `# List Skills installed for Cursor
+npx skills ls -a cursor`,
+    }}
+  />
+</div>
+
+<div className="not-prose mt-8 flex items-center gap-2 text-lg font-medium text-foreground">
+  <img
+    src="https://cdn.simpleicons.org/githubcopilot/737373"
+    alt=""
+    width="20"
+    height="20"
+  />
+  <span>GitHub Copilot</span>
+</div>
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "github-copilot.sh": `npx skills add satisium/ui --agent github-copilot`,
+    }}
+  />
+</div>
+
+GitHub Copilot supports project Skills from `.github/skills`, `.claude/skills`, or `.agents/skills`. In an existing Copilot CLI session, reload Skills after installation and inspect a named Skill. Starting a new Copilot CLI session also reloads them.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "github-copilot-check.sh": `copilot
+
+# In Copilot CLI
+
+/skills reload
+/skills info satisium-component-discovery`,
+}}
+/>
+
+</div>
+
+<div className="not-prose mt-8 flex items-center gap-2 text-lg font-medium text-foreground">
+  <img
+    src="https://cdn.simpleicons.org/googlegemini/737373"
+    alt=""
+    width="20"
+    height="20"
+  />
+  <span>Google Antigravity</span>
+</div>
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "antigravity.sh": `npx skills add satisium/ui --agent antigravity`,
+    }}
+  />
+</div>
+
+Antigravity uses `.agents/skills` for workspace Skills and discovers them when a conversation begins. Start a new conversation after installing. For a manually managed personal collection, its documented global location is `~/.gemini/config/skills`; use workspace scope for project-specific workflows.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "antigravity-check.sh": `# List Skills installed for Antigravity
+npx skills ls -a antigravity`,
+    }}
+  />
+</div>
+
+## Other supported agents
+
+Skills CLI supports additional agent hosts and can auto-detect compatible agents when no `--agent` flag is supplied. Use the exact agent identifier from the [Skills CLI supported-agent list](https://github.com/vercel-labs/skills#supported-agents), then verify the installed destination before opening a new agent session.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "other-agent.sh": `# Replace <agent-id> with a documented Skills CLI agent identifier
+npx skills add satisium/ui --agent <agent-id>
+npx skills ls -a <agent-id>`,
+    }}
+  />
+</div>
+
+## Install a focused skill
+
+Install the full bundle by default. If you only need one workflow, select it with its exact name. Use the list command first to inspect the published package.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "focused-skill.sh": `# List the skills available in the package
+npx skills add satisium/ui --list
+
+# Install one workflow
+
+npx skills add satisium/ui --skill satisium-component-discovery`,
+}}
+/>
+
+</div>
+
+## Update Skills
+
+Run the update command from the root of the project where you installed the Skills. It updates the project-scoped Satisium UI Skills that are already installed; it does not modify your components or application dependencies.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "update-project.sh": `npx skills update --project --yes`,
+    }}
+  />
+</div>
+
+If you installed Skills globally, update the global copies instead.
+
+<div className="mt-6">
+  <CodeBlock
+    files={{
+      "update-global.sh": `npx skills update --global --yes`,
+    }}
+  />
+</div>
+
+## What you get
+
+Five Skills cover the normal lifecycle of a Satisium UI component:
+
+| Skill                            | Use it when                                                                     | Outcome                                                                           |
+| :------------------------------- | :------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------- |
+| `satisium-component-discovery`   | You need to find, install, import, or compose an existing component.            | A source-backed component choice and registry install path.                       |
+| `satisium-component-authoring`   | You are changing source, props, animation behavior, or previews.                | A change aligned with SSR, motion, accessibility, and reduced-motion conventions. |
+| `satisium-registry-docs`         | A component, demo, registry key, MDX page, or AI context changed.               | A synchronized source → registry → preview → docs handoff.                        |
+| `satisium-quality-review`        | You are reviewing hydration, focus, contrast, pointer behavior, or performance. | A risk-ordered review with the smallest compliant fix.                            |
+| `satisium-contribution-validate` | You need contribution evidence or registry parity validation.                   | Structural audit, source parity checks, and a non-destructive summary.            |
+
+## How it works
+
+Each Skill is activated by a specific task. The active Skill reads the repository source it needs, then loads shared contracts or validation scripts only when the task requires them. This keeps an agent's working context focused while preserving the details needed to work safely with animated components.
+
+For component installation and dependencies, see [Setup](/docs/getting-started/setup). To browse the visual component catalog, see [Components](/docs/components).
+
+## Next steps
+
+1. **[Setup](/docs/getting-started/setup)** — Install a Satisium UI component in your project.
+2. **[Components](/docs/components)** — Browse the animated component catalog.
+3. **[Contributing](https://github.com/satisium/ui/blob/main/CONTRIBUTING.md)** — Add or update a component with the repository workflow.
+4. **[Lumen House example](/docs/getting-started/lumen-house-example)** — See a multi-page photography studio composed through the Skills, registry installs, a reproducible build package, and motion-safe fallbacks.
+
+---
+
+<div className="not-prose mt-10 flex items-center gap-3 border-t border-border pt-6">
+  <img
+    src="https://avatars.githubusercontent.com/u/101329958?v=4"
+    alt="TranQui004 GitHub avatar"
+    width="40"
+    height="40"
+    className="size-10 rounded-full"
+  />
+  <div className="min-w-0">
+    <p className="text-sm font-medium text-foreground">Contributed by</p>
+    <a
+      href="https://github.com/TranQui004"
+      className="text-sm font-medium text-primary underline underline-offset-4"
+    >
+      TranQui004
+    </a>
+  </div>
+</div>

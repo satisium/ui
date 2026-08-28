@@ -1,0 +1,3 @@
+# Treat Vite bundle output as generated; don't apply whitespace checks or diffs
+public/examples/lumen-house/assets/*.js -diff -whitespace
+public/examples/lumen-house/assets/*.css -diff

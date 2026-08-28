@@ -6,6 +6,7 @@ import { CodeBlock } from "./code-block/code-block"
 // 1. Import your new Changelog Components
 import { RegistryGrid } from "@/components/changelog/registry-grid"
 import { CommandBlock } from "@/components/command-block"
+import { LumenHouseExamplePreview } from "@/components/examples/lumen-house-preview"
 import { Badge } from "@/components/ui/badge"
 
 export const defaultMdxComponents = {
@@ -169,6 +170,7 @@ export const defaultMdxComponents = {
 
   // 2. Export them so Fumadocs can use them globally
   RegistryGrid,
+  LumenHouseExamplePreview,
   CommandBlock,
   Badge,
   CodeBlock,
