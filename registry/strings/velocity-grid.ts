@@ -6,7 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 export default function VelocityGridImageDemo() {
   const imageUrl =
-    "https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/2.jpg"
+    "https://res.cloudinary.com/ddon6aux0/image/upload/w_1200,f_auto,q_auto/v1782017462/ui-v3/demos/images/2.jpg"
 
   return (
     <main className="flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8">
@@ -45,7 +45,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 export default function VelocityGridVideoDemo() {
   const videoUrl =
-    "https://res.cloudinary.com/ddon6aux0/video/upload/f_auto,q_auto/v1782129926/ui-v3/demos/videos/2.mp4"
+    "https://res.cloudinary.com/ddon6aux0/video/upload/w_1200,f_auto,q_auto,ac_none/v1782129926/ui-v3/demos/videos/2.mp4"
 
   return (
     <main className="flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8">

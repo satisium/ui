@@ -9,6 +9,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { REPO } from "@/lib/social-links"
+import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
+
+const TEASER_PUBLIC_ID = "ui-v3/previews/teaser"
+const TEASER_TRANSFORMS = "f_auto,q_auto:good,w_1600,c_limit,ac_none"
 
 // ==========================================
 // DATA HOOK: Live GitHub Stars
@@ -119,7 +123,12 @@ export interface MobileMediaCardProps {
   canvasRadius?: number
   videoRadius?: number
   buttonRadius?: number
+  /** Signed Cloudinary URL for the video (fetched by parent via useSignedCloudinaryUrl) */
   videoSrc?: string
+  /** Signed Cloudinary URL for the video poster/thumbnail */
+  videoPoster?: string
+  /** Whether the signed URL is still loading */
+  videoLoading?: boolean
   exploreText?: ReactNode
   exploreHref?: string
   repo?: string
@@ -139,7 +148,9 @@ export function MobileMediaCard({
   canvasRadius = 24,
   videoRadius = 16,
   buttonRadius = 16,
-  videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1787564837/ui-v3/previews/teaser.mp4",
+  videoSrc: propVideoSrc,
+  videoPoster: propVideoPoster,
+  videoLoading: propVideoLoading,
   exploreText = "Explore components",
   exploreHref = "/components",
   repo = REPO,
@@ -152,13 +163,23 @@ export function MobileMediaCard({
   const videoRef = useRef<HTMLVideoElement>(null)
   const stars = useGithubStars(repo)
 
+  const {
+    url: fetchedVideoSrc,
+    poster: fetchedPoster,
+    loading: fetchedLoading,
+  } = useSignedCloudinaryUrl(TEASER_PUBLIC_ID, "video", TEASER_TRANSFORMS)
+
+  const effectiveVideoSrc = propVideoSrc || fetchedVideoSrc || ""
+  const effectivePoster = propVideoPoster || fetchedPoster || ""
+  const isLoading = propVideoLoading ?? fetchedLoading
+
   // Start playing the video the instant the reveal triggers,
   // pre-rolling it behind the dissolving mask.
   useEffect(() => {
-    if (isRevealed && videoRef.current) {
+    if (isRevealed && !isLoading && videoRef.current) {
       videoRef.current.play().catch(() => {})
     }
-  }, [isRevealed])
+  }, [isRevealed, isLoading])
 
   // --- THE MATH & TIMING (Exactly synced to the Desktop code) ---
 
@@ -249,12 +270,13 @@ export function MobileMediaCard({
 
               <video
                 ref={videoRef}
-                src={videoSrc}
+                src={effectiveVideoSrc}
+                poster={effectivePoster || undefined}
                 className="h-full w-full object-cover"
                 muted
                 playsInline
                 loop
-                preload="auto"
+                preload="metadata"
               />
 
               {/* THE PRIMARY THEATER CURTAIN */}

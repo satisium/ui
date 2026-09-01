@@ -16,6 +16,7 @@
     "make:doc": "node scripts/create-doc.mjs",
     "llm": "node scripts/build-llms.mjs",
     "build:registry:meta": "node scripts/build-registry-meta.mjs",
+    "cloudinary:lockdown": "node scripts/mark-assets-authenticated.mjs",
     "release": "changeset version",
     "beta:enter": "changeset pre enter beta",
     "beta:exit": "changeset pre exit"
@@ -32,6 +33,7 @@
     "@upstash/redis": "^1.37.0",
     "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.11.0",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "dompurify": "^3.4.13",

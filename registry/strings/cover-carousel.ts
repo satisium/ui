@@ -6,7 +6,7 @@ import { CoverCarousel } from "@/components/satisium-ui/cover-carousel"
 export default function CoverCarouselDemo() {
   const images = Array.from({ length: 18 }).map(
     (_, i) =>
-      \`https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/\${15 + i}.jpg\`
+      \`https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1781471531/ui-v3/demos/images/\${15 + i}.jpg\`
   )
 
   return (

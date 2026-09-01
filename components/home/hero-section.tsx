@@ -15,6 +15,10 @@ import {
   MobileMediaCard,
 } from "@/components/home/hero-footer-components"
 import { Badge } from "@/components/ui/badge"
+import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
+
+const TEASER_PUBLIC_ID = "ui-v3/previews/teaser"
+const TEASER_TRANSFORMS = "f_auto,q_auto:good,w_1600,c_limit,ac_none"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -29,8 +33,18 @@ export function HeroSection() {
 
   // NEW: State to trigger the cinematic reveal of the Video Explore Button
   const [isVideoRevealed, setIsVideoRevealed] = useState(false)
-  const VidSrc =
-    "https://res.cloudinary.com/ddon6aux0/video/upload/v1787564837/ui-v3/previews/teaser.mp4"
+
+  const {
+    url: signedVidSrc,
+    poster: signedPoster,
+    loading: videoLoading,
+  } = useSignedCloudinaryUrl(
+    TEASER_PUBLIC_ID,
+    "video",
+    TEASER_TRANSFORMS
+  )
+
+  const VidSrc = signedVidSrc || ""
   // NEW: Sync the video reveal with the exact delay of the first Annotation (800ms)
   useEffect(() => {
     if (isTypingComplete && isMorphComplete) {
@@ -239,23 +253,30 @@ export function HeroSection() {
         </div>
 
         {/* --- RESPONSIVE FOOTER --- */}
-        <footer
-          ref={footerRef}
-          className="relative z-10 flex w-full shrink-0 flex-col p-4 opacity-0 sm:p-6 md:p-10"
-        >
-          <div className="flex w-full md:hidden">
-            <MobileMediaCard isRevealed={isVideoRevealed} videoSrc={VidSrc} />
-          </div>
-          <div className="hidden w-full items-end justify-between md:flex">
-            <DesktopGithubButton />
-            {/* The synchronized component injected here */}
-            <VideoExploreButton
-              href="/docs/components"
-              isRevealed={isVideoRevealed}
-              videoSrc={VidSrc}
-            />
-          </div>
-        </footer>
+          <footer
+            ref={footerRef}
+            className="relative z-10 flex w-full shrink-0 flex-col p-4 opacity-0 sm:p-6 md:p-10"
+          >
+            <div className="flex w-full md:hidden">
+              <MobileMediaCard
+                isRevealed={isVideoRevealed}
+                videoSrc={VidSrc}
+                videoPoster={signedPoster || undefined}
+                videoLoading={videoLoading}
+              />
+            </div>
+            <div className="hidden w-full items-end justify-between md:flex">
+              <DesktopGithubButton />
+              {/* The synchronized component injected here */}
+              <VideoExploreButton
+                href="/docs/components"
+                isRevealed={isVideoRevealed}
+                videoSrc={VidSrc}
+                videoPoster={signedPoster || undefined}
+                videoLoading={videoLoading}
+              />
+            </div>
+          </footer>
       </div>
 
       {/* --- HAND-DRAWN ANNOTATIONS --- */}

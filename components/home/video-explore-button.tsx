@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
 import Link from "next/link"
 import { ReactNode, useEffect, useRef } from "react"
+import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
 
 export interface VideoExploreButtonProps {
   /** The trigger that dictates when the sequence begins */
@@ -16,7 +17,12 @@ export interface VideoExploreButtonProps {
   canvasRadius?: number
   videoRadius?: number
   buttonRadius?: number
+  /** Signed Cloudinary URL for the video (fetched by parent via useSignedCloudinaryUrl) */
   videoSrc?: string
+  /** Signed Cloudinary URL for the video poster/thumbnail */
+  videoPoster?: string
+  /** Whether the signed URL is still loading */
+  videoLoading?: boolean
   buttonText?: ReactNode
   href?: string
   buttonClassName?: string
@@ -34,7 +40,9 @@ export function VideoExploreButton({
   canvasRadius = 24,
   videoRadius = 16,
   buttonRadius = 16,
-  videoSrc = "https://res.cloudinary.com/ddon6aux0/video/upload/v1787564837/ui-v3/previews/teaser.mp4",
+  videoSrc: propVideoSrc,
+  videoPoster: propVideoPoster,
+  videoLoading: propVideoLoading,
   buttonText = "Explore components",
   href = "/components",
   buttonClassName,
@@ -43,13 +51,27 @@ export function VideoExploreButton({
 }: VideoExploreButtonProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  // Start playing the video precisely when the reveal animation starts
-  // so it's already rolling smoothly behind the mask before it dissolves.
+  // If the parent didn't pass signed URLs, fetch them independently.
+  // The public_id is extracted from the raw Cloudinary URL or uses a known default.
+  const TEASER_PUBLIC_ID = "ui-v3/previews/teaser"
+  const TEASER_TRANSFORMS = "f_auto,q_auto:good,w_1600,c_limit,ac_none"
+
+  const {
+    url: fetchedVideoSrc,
+    poster: fetchedPoster,
+    loading: fetchedLoading,
+  } = useSignedCloudinaryUrl(TEASER_PUBLIC_ID, "video", TEASER_TRANSFORMS)
+
+  // Use prop values if provided, otherwise fall back to independently fetched signed URLs.
+  const effectiveVideoSrc = propVideoSrc || fetchedVideoSrc || ""
+  const effectivePoster = propVideoPoster || fetchedPoster || ""
+  const isLoading = propVideoLoading ?? fetchedLoading
+
   useEffect(() => {
-    if (isRevealed && videoRef.current) {
+    if (isRevealed && !isLoading && videoRef.current) {
       videoRef.current.play().catch(() => {})
     }
-  }, [isRevealed])
+  }, [isRevealed, isLoading])
 
   // --- THE MATH & TIMING ---
   const canvasRestWidth = buttonWidth
@@ -142,12 +164,13 @@ export function VideoExploreButton({
           <div className="pointer-events-none absolute inset-0 z-10 bg-black/5 mix-blend-overlay" />
           <video
             ref={videoRef}
-            src={videoSrc}
+            src={effectiveVideoSrc}
+            poster={effectivePoster || undefined}
             className="h-full w-full object-cover"
             muted
             playsInline
             loop
-            preload="auto"
+            preload="metadata"
           />
 
           {/* LAYER 2.5: THE PRIMARY THEATER CURTAIN */}
