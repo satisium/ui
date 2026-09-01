@@ -4,7 +4,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
-import { getCloudinaryUrl } from "@/lib/cloudinary" // ✨ Import the utility
+import { getCloudinaryUrl } from "@/lib/cloudinary"
+import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
+import { extractPublicId } from "@/lib/media-config"
 
 export interface CardProps {
   url: string
@@ -58,13 +60,46 @@ export function ComponentCard({
   const badgeType = badge?.toLowerCase()
   const isDeprecated = badgeType === "deprecated"
 
-  // ✨ UNIVERSAL MEDIA RESOLUTION
-  // Use video to generate the image thumbnail if it exists, otherwise use image
+  // ✨ SIGNED CLOUDINARY URL RESOLUTION
+  // Fetch time-limited signed URLs from our server-side API route.
+  // Falls back to getCloudinaryUrl (unsigned, named-transformation URLs)
+  // while assets are still public, providing a graceful migration path.
   const targetMedia = media?.video || media?.image
-  const optimizedImage = getCloudinaryUrl(targetMedia, "preview", "image")
-  const optimizedVideo = media?.video
-    ? getCloudinaryUrl(media.video, "preview", "video")
-    : null
+  const videoPublicId = media?.video ? extractPublicId(media.video) : null
+  const imagePublicId = media?.image ? extractPublicId(media?.image) : null
+
+  const {
+    url: signedVideoUrl,
+    poster: signedVideoPoster,
+    loading: videoMediaLoading,
+  } = useSignedCloudinaryUrl(
+    videoPublicId,
+    "video",
+    "t_satisium_preview,f_auto,q_auto:low,ac_none"
+  )
+
+  const {
+    url: signedImageUrl,
+    loading: imageMediaLoading,
+  } = useSignedCloudinaryUrl(
+    imagePublicId,
+    "image",
+    "t_satisium_preview,f_auto,q_auto:low"
+  )
+
+  // Effective URLs: prefer signed URLs, fall back to getCloudinaryUrl while migrating
+  const optimizedImage =
+    signedVideoPoster ||
+    signedImageUrl ||
+    getCloudinaryUrl(targetMedia, "preview", "image")
+
+  const optimizedVideo =
+    signedVideoUrl ||
+    (media?.video
+      ? getCloudinaryUrl(media.video, "preview", "video")
+      : null)
+
+  const mediaLoading = videoMediaLoading || imageMediaLoading
 
   return (
     <Link
@@ -80,7 +115,9 @@ export function ComponentCard({
       >
         {/* Media Frame */}
         <div className="relative h-60 w-full shrink-0 overflow-hidden rounded-2xl border border-border/50 bg-background">
-          {optimizedImage ? (
+          {mediaLoading ? (
+            <div className="absolute inset-0 animate-pulse bg-muted-foreground/20" />
+          ) : optimizedImage ? (
             <Image
               src={optimizedImage as string}
               alt={title}
