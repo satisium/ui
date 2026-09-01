@@ -9,6 +9,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { REPO } from "@/lib/social-links"
+import { getCloudinaryUrl } from "@/lib/cloudinary"
 
 // ==========================================
 // DATA HOOK: Live GitHub Stars
@@ -152,6 +153,9 @@ export function MobileMediaCard({
   const videoRef = useRef<HTMLVideoElement>(null)
   const stars = useGithubStars(repo)
 
+  // Generate optimized poster image URL for video thumbnail
+  const videoPoster = getCloudinaryUrl(videoSrc, "preview", "image")
+
   // Start playing the video the instant the reveal triggers,
   // pre-rolling it behind the dissolving mask.
   useEffect(() => {
@@ -250,11 +254,12 @@ export function MobileMediaCard({
               <video
                 ref={videoRef}
                 src={videoSrc}
+                poster={videoPoster as string}
                 className="h-full w-full object-cover"
                 muted
                 playsInline
                 loop
-                preload="auto"
+                preload="metadata"
               />
 
               {/* THE PRIMARY THEATER CURTAIN */}

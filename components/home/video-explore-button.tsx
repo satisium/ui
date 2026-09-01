@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
 import Link from "next/link"
 import { ReactNode, useEffect, useRef } from "react"
+import { getCloudinaryUrl } from "@/lib/cloudinary"
 
 export interface VideoExploreButtonProps {
   /** The trigger that dictates when the sequence begins */
@@ -42,6 +43,9 @@ export function VideoExploreButton({
   videoContainerClassName,
 }: VideoExploreButtonProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Generate optimized poster image URL for video thumbnail
+  const videoPoster = getCloudinaryUrl(videoSrc, "preview", "image")
 
   // Start playing the video precisely when the reveal animation starts
   // so it's already rolling smoothly behind the mask before it dissolves.
@@ -143,11 +147,12 @@ export function VideoExploreButton({
           <video
             ref={videoRef}
             src={videoSrc}
+            poster={videoPoster as string}
             className="h-full w-full object-cover"
             muted
             playsInline
             loop
-            preload="auto"
+            preload="metadata"
           />
 
           {/* LAYER 2.5: THE PRIMARY THEATER CURTAIN */}
