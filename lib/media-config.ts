@@ -78,8 +78,40 @@ export function getResponsiveSrcSet(
  * Extract public ID from a Cloudinary URL
  */
 export function extractPublicId(url: string): string | null {
-  const match = url.match(/\/upload\/(?:[^\/]+\/)?(?:v\d+\/)?(.+?)(?:\.[a-z]+)?$/i)
-  return match ? match[1] : null
+  const match = url.match(/\/upload\/(.+)$/i)
+  if (!match) return null
+
+  let path = match[1]
+  const parts = path.split("/")
+
+  // Remove version segment (starts with v followed by digits)
+  if (parts[0] && /^v\d+$/.test(parts[0])) {
+    parts.shift()
+  }
+
+  // Remove transformation segments (segments containing commas, like f_auto,q_auto:low)
+  if (parts[0] && parts[0].includes(",")) {
+    parts.shift()
+  }
+
+  let publicId = parts.join("/")
+
+  // Strip file extension from the last segment
+  const lastSlash = publicId.lastIndexOf("/")
+  if (lastSlash === -1) {
+    const dotIdx = publicId.lastIndexOf(".")
+    if (dotIdx > 0) {
+      publicId = publicId.substring(0, dotIdx)
+    }
+  } else {
+    const filename = publicId.substring(lastSlash + 1)
+    const dotIdx = filename.lastIndexOf(".")
+    if (dotIdx > 0) {
+      publicId = publicId.substring(0, lastSlash + 1) + filename.substring(0, dotIdx)
+    }
+  }
+
+  return publicId || null
 }
 
 /**
