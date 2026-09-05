@@ -5,7 +5,7 @@ export default function FerrofluidDragDemo() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-center bg-background text-foreground antialiased">
       <FerrofluidDrag
-        imageUrl="https://res.cloudinary.com/ddon6aux0/image/upload/q_auto,f_auto,w_1200/v1781471531/ui-v3/demos/images/0.jpg"
+        imageUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/in-demo-assets/components/images/stock/0.jpg"
         columns={16}
         rows={10}
         className="h-[27rem] w-[48rem]"

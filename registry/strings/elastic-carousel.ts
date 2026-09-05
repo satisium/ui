@@ -6,7 +6,7 @@ import { ElasticCarousel } from "@/components/satisium-ui/elastic-carousel"
 export default function ElasticCarouselDemo() {
   const images = Array.from({ length: 18 }).map(
     (_, i) =>
-      \`https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1781471531/ui-v3/demos/images/\${15 + i}.jpg\`
+      \`https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/in-demo-assets/components/images/stock/\${15 + i}.jpg\`
   )
 
   return (
