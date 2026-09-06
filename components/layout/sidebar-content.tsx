@@ -18,9 +18,6 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { SidebarFooter } from "./sidebar-footer"
 import { CommandMenuTrigger } from "./command-menu"
 import { source } from "@/lib/source"
-import { getCloudinaryUrl } from "@/lib/cloudinary"
-import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
-import { extractPublicId } from "@/lib/media-config"
 
 // --- NEW IMPORTS ---
 import { SatisiumLogo } from "@/components/satisium-logo"
@@ -35,40 +32,16 @@ type CustomPageNode = PageTree.Item & {
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
 function VideoLayer({ url }: { url: string }) {
-  const publicId = extractPublicId(url)
-  const {
-    url: signedVideo,
-    poster: signedPoster,
-    loading,
-  } = useSignedCloudinaryUrl(
-    publicId,
-    "video",
-    "t_satisium_preview,f_auto,q_auto:low,ac_none"
-  )
-
-  // Prefer signed URLs; fall back to getCloudinaryUrl while migrating
-  const poster = signedPoster || getCloudinaryUrl(url, "preview", "image")
-  const video = signedVideo || getCloudinaryUrl(url, "preview", "video")
-
   return (
     <div className="relative h-full w-full">
-      {poster && !loading && (
-        <img
-          src={poster}
-          alt="Component Preview Poster"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      )}
-      {video && !loading && (
-        <video
-          src={video}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      )}
+      <video
+        src={url}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      />
     </div>
   )
 }

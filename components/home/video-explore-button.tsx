@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 import { motion } from "motion/react"
 import Link from "next/link"
 import { ReactNode, useEffect, useRef } from "react"
-import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
 
 export interface VideoExploreButtonProps {
   /** The trigger that dictates when the sequence begins */
@@ -17,12 +16,10 @@ export interface VideoExploreButtonProps {
   canvasRadius?: number
   videoRadius?: number
   buttonRadius?: number
-  /** Signed Cloudinary URL for the video (fetched by parent via useSignedCloudinaryUrl) */
+  /** Direct URL for the video */
   videoSrc?: string
-  /** Signed Cloudinary URL for the video poster/thumbnail */
+  /** Direct URL for the video poster/thumbnail */
   videoPoster?: string
-  /** Whether the signed URL is still loading */
-  videoLoading?: boolean
   buttonText?: ReactNode
   href?: string
   buttonClassName?: string
@@ -42,7 +39,6 @@ export function VideoExploreButton({
   buttonRadius = 16,
   videoSrc: propVideoSrc,
   videoPoster: propVideoPoster,
-  videoLoading: propVideoLoading,
   buttonText = "Explore components",
   href = "/components",
   buttonClassName,
@@ -51,27 +47,14 @@ export function VideoExploreButton({
 }: VideoExploreButtonProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  // If the parent didn't pass signed URLs, fetch them independently.
-  // The public_id is extracted from the raw Cloudinary URL or uses a known default.
-  const TEASER_PUBLIC_ID = "ui-v3/previews/teaser"
-  const TEASER_TRANSFORMS = "f_auto,q_auto:good,w_1600,c_limit,ac_none"
-
-  const {
-    url: fetchedVideoSrc,
-    poster: fetchedPoster,
-    loading: fetchedLoading,
-  } = useSignedCloudinaryUrl(TEASER_PUBLIC_ID, "video", TEASER_TRANSFORMS)
-
-  // Use prop values if provided, otherwise fall back to independently fetched signed URLs.
-  const effectiveVideoSrc = propVideoSrc || fetchedVideoSrc || ""
-  const effectivePoster = propVideoPoster || fetchedPoster || ""
-  const isLoading = propVideoLoading ?? fetchedLoading
+  const effectiveVideoSrc = propVideoSrc || ""
+  const effectivePoster = propVideoPoster || ""
 
   useEffect(() => {
-    if (isRevealed && !isLoading && videoRef.current) {
+    if (isRevealed && videoRef.current) {
       videoRef.current.play().catch(() => {})
     }
-  }, [isRevealed, isLoading])
+  }, [isRevealed])
 
   // --- THE MATH & TIMING ---
   const canvasRestWidth = buttonWidth
