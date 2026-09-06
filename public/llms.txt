@@ -82,14 +82,6 @@ npx shadcn@latest add https://ui.satisium.com/r/<component-name>.json
 - [Velocity Trail](/llms/components/velocity-trail.md) — An intense, kinetic mouse trail that calculates real-time pointer speed to deform, stretch, and squeeze items along their trajectory.
 - [Wind Trail](/llms/components/wind-trail.md) — An interactive mouse trail that maps spawned elements to an ambient wind physics engine, drifting items smoothly across the screen like autumn leaves.
 
-### Other
-
-- [Ember Burn](/llms/components/ember-burn.md) — An interactive image transition component for Satis UI. Simulates a burning ember hole using complex SVG displacement maps and color matrices. The burn originates exactly from the mouse entry coordinates. Uses GSAP `contextSafe` for flawless garbage collection and ARIA attributes to prevent screen-reader noise from the massive SVG block.
-- [Ferrofluid Drag](/llms/components/ferrofluid-drag.md) — An interactive image transition component for Satis UI. Applies a mathematical SVG Gooey filter to a grid of beads. On hover, the beads calculate their proximity to the cursor and violently tear outward like magnetic fluid, revealing the content underneath. Utilizes GSAP `contextSafe` for strict memory management and ARIA presentation standards for screen readers.
-- [Fluid Disintegration](/llms/components/fluid-disintegration.md) — An interactive liquid image transition component for Satis UI. Fragments an image into an SVG grid mapped with a gooey color matrix. On hover, the droplets calculate their proximity to the cursor and melt outward, revealing the content underneath. Utilizes GSAP `contextSafe` for strict memory management and ARIA presentation standards for screen readers.
-- [Liquid Curtain](/llms/components/liquid-curtain.md) — An interactive image transition component for Satis UI. Applies a heavily asymmetrical SVG Gooey filter to a grid of vertical strips. On hover, the strips calculate their proximity to the cursor and drip downward like thick paint or liquid, revealing the content underneath. Utilizes GSAP `contextSafe` for strict memory management and ARIA presentation standards for screen readers.
-- [Mycelium Network](/llms/components/mycelium-network.md) — An interactive image transition component for Satis UI. Connects an SVG grid of nodes and edges masked with a mathematical gooey filter. On hover, it calculates the cursor's origin and triggers a radiating physics simulation where edges snap and nodes organically drift outward. Utilizes GSAP `contextSafe` for strict memory management and ARIA presentation standards for screen readers.
-
 ## Templates
 
 Templates are coming soon. They will be listed here once available.

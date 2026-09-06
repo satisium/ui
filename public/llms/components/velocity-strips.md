@@ -231,7 +231,7 @@ export default function ExamplePage() {
   return (
     <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-xl border">
       <VelocityStrips
-        mediaUrl="https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/2.jpg"
+        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/velocity-strips.webp"
         mediaType="image"
         slices={20}
         hoverRadius={0.4}

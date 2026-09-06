@@ -4,7 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 export default function LiquidMarbleVideoDemo() {
   const videoUrl =
-    "https://res.cloudinary.com/ddon6aux0/video/upload/f_auto,q_auto/v1782129926/ui-v3/demos/videos/1.mp4"
+    "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/videos/1.mp4"
 
   return (
     <main className="flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8">

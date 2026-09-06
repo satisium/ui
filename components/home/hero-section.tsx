@@ -16,7 +16,7 @@ import {
 } from "@/components/home/hero-footer-components"
 import { Badge } from "@/components/ui/badge"
 
-const TEASER_VIDEO_URL = "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/previews/components/videos/teaser.mp4"
+const TEASER_VIDEO_URL = "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/teaser.mp4"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)

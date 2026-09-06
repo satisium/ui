@@ -244,8 +244,8 @@ links:
 registryKeys:
   - my-component-demo
 media:
-  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/previews/components/images/my-component.jpg"
-  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/previews/components/videos/my-component.mp4"
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/my-component.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/my-component.mp4"
 ---
 
 ## Install

@@ -6,7 +6,7 @@ import { DimensionalCarousel } from "@/components/satisium-ui/dimensional-carous
 export default function DimensionalCarouselDemo() {
   const images = Array.from({ length: 18 }).map(
     (_, i) =>
-      \`https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/in-demo-assets/components/images/stock/\${15 + i}.jpg\`
+      \`https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/\${15 + i}.webp\`
   )
 
   return (

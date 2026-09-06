@@ -57,8 +57,8 @@ links:
 registryKeys:
   - ${filename}-demo
 media:
-  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/previews/components/images/${filename}.jpg"
-  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/previews/components/videos/${filename}.mp4"
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/${filename}.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/${filename}.mp4"
 ---
 
 ## Install

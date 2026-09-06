@@ -4,7 +4,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 
 export default function LiquidMarbleImageDemo() {
   const imageUrl =
-    "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v1/in-demo-assets/components/images/stock/24.jpg"
+    "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/24.webp"
 
   return (
     <main className="flex h-screen w-full items-center justify-center bg-background p-4 sm:p-8">
