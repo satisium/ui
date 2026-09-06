@@ -7791,7 +7791,7 @@ export default function ExamplePage() {
   return (
     <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-xl border">
       <GlassSlices
-        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/placeholder.webp"
+        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/glass-slices.webp"
         mediaType="image"
         slices={24}
         hoverRadius={0.25}
@@ -9119,7 +9119,7 @@ export default function ExamplePage() {
   return (
     <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-xl border">
       <LiquidMarble
-        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/placeholder.webp"
+        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/liquid-marble.webp"
         mediaType="image"
         hoverRadius={0.3}
         distortionStrength={0.15}
@@ -12410,7 +12410,7 @@ export default function ExamplePage() {
   return (
     <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-xl border">
       <ProximityGrid
-        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/placeholder.webp"
+        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/proximity-grid.webp"
         mediaType="image"
         columns={10}
         rows={5}
@@ -14179,7 +14179,7 @@ export default function ExamplePage() {
   return (
     <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-xl border">
       <VelocityGrid
-        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/placeholder.webp"
+        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/velocity-grid.webp"
         mediaType="image"
         columns={20}
         rows={15}
@@ -14430,7 +14430,7 @@ export default function ExamplePage() {
   return (
     <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-xl border">
       <VelocityStrips
-        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/placeholder.webp"
+        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/velocity-strips.webp"
         mediaType="image"
         slices={20}
         hoverRadius={0.4}

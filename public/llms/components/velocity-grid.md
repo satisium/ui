@@ -268,3 +268,8 @@ export default function ExamplePage() {
   )
 }
 ```
+
+
+<!-- Synced URLs from registry/strings -->
+- https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/2.webp
+- https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/videos/2.mp4
