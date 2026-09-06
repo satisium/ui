@@ -569,46 +569,6 @@ export const registryMeta: Record<string, RegistryMetaItem> = {
     installCommand: "npx shadcn@latest add https://ui.satisium.com/r/convex-carousel-demo.json",
   },
 
-  "ember-burn-demo": {
-    name: "Ember Burn Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/ember-burn-demo",
-    installCommand: "npx shadcn@latest add https://ui.satisium.com/r/ember-burn-demo.json",
-  },
-
-  "ferrofluid-drag-demo": {
-    name: "Ferrofluid Drag Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/ferrofluid-drag-demo",
-    installCommand: "npx shadcn@latest add https://ui.satisium.com/r/ferrofluid-drag-demo.json",
-  },
-
-  "fluid-disintegration-demo": {
-    name: "Fluid Disintegration Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/fluid-disintegration-demo",
-    installCommand: "npx shadcn@latest add https://ui.satisium.com/r/fluid-disintegration-demo.json",
-  },
-
-  "liquid-curtain-demo": {
-    name: "Liquid Curtain Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/liquid-curtain-demo",
-    installCommand: "npx shadcn@latest add https://ui.satisium.com/r/liquid-curtain-demo.json",
-  },
-
-  "mycelium-network-demo": {
-    name: "Mycelium Network Demo",
-    type: "react",
-    renderMode: "direct",
-    previewUrl: "/preview/mycelium-network-demo",
-    installCommand: "npx shadcn@latest add https://ui.satisium.com/r/mycelium-network-demo.json",
-  },
-
   "dimensional-deck-demo": {
     name: "Dimensional Deck Demo",
     type: "react",
