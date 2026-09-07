@@ -15,10 +15,8 @@ import {
   MobileMediaCard,
 } from "@/components/home/hero-footer-components"
 import { Badge } from "@/components/ui/badge"
-import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
 
-const TEASER_PUBLIC_ID = "ui-v3/previews/teaser"
-const TEASER_TRANSFORMS = "f_auto,q_auto:good,w_1600,c_limit,ac_none"
+const TEASER_VIDEO_URL = "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/teaser.mp4"
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -34,17 +32,7 @@ export function HeroSection() {
   // NEW: State to trigger the cinematic reveal of the Video Explore Button
   const [isVideoRevealed, setIsVideoRevealed] = useState(false)
 
-  const {
-    url: signedVidSrc,
-    poster: signedPoster,
-    loading: videoLoading,
-  } = useSignedCloudinaryUrl(
-    TEASER_PUBLIC_ID,
-    "video",
-    TEASER_TRANSFORMS
-  )
-
-  const VidSrc = signedVidSrc || ""
+  const VidSrc = TEASER_VIDEO_URL
   // NEW: Sync the video reveal with the exact delay of the first Annotation (800ms)
   useEffect(() => {
     if (isTypingComplete && isMorphComplete) {
@@ -261,8 +249,6 @@ export function HeroSection() {
               <MobileMediaCard
                 isRevealed={isVideoRevealed}
                 videoSrc={VidSrc}
-                videoPoster={signedPoster || undefined}
-                videoLoading={videoLoading}
               />
             </div>
             <div className="hidden w-full items-end justify-between md:flex">
@@ -272,8 +258,6 @@ export function HeroSection() {
                 href="/docs/components"
                 isRevealed={isVideoRevealed}
                 videoSrc={VidSrc}
-                videoPoster={signedPoster || undefined}
-                videoLoading={videoLoading}
               />
             </div>
           </footer>

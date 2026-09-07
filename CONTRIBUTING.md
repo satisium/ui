@@ -244,8 +244,8 @@ links:
 registryKeys:
   - my-component-demo
 media:
-  image: "https://res.cloudinary.com/ddon6aux0/image/upload/v.../image.jpg"
-  video: "https://res.cloudinary.com/ddon6aux0/video/upload/v.../video.mp4"
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/my-component.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/my-component.mp4"
 ---
 
 ## Install
@@ -492,7 +492,7 @@ Use when you added a new component and completed all 7 steps.
 **Fill in:**
 
 - Brief description of the component and its use case.
-- **Media & Previews:** Confirm thumbnail image and video preview are uploaded to Cloudinary and linked in MDX frontmatter.
+- **Media & Previews:** Confirm thumbnail image and video preview are linked in MDX frontmatter.
 - **Documentation:** Confirm MDX file exists, CLI command works, manual install steps are complete, props table is written, credits are given.
 - **Demos & Implementations:** Confirm demo files exist, previews are linked, code strings export correctly, preview toolbar works.
 - **JSON Registry & Engine:** Confirm you ran `pnpm registry:public` and `pnpm llm`, and that `public/r/` and `public/llms/` outputs are correct.

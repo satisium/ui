@@ -441,3 +441,7 @@ export default function ExamplePage() {
   )
 }
 ```
+
+
+<!-- Synced URLs from registry/strings -->
+- https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/\${15

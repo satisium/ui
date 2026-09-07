@@ -49,12 +49,7 @@
     "velocity-brake-reveal",
     "weightless-float-reveal",
     "wind-shear-reveal",
-    "z-axis-reveal",
-    "ember-burn",
-    "ferrofluid-drag",
-    "fluid-disintegration",
-    "liquid-curtain",
-    "mycelium-network"
+    "z-axis-reveal"
   ],
   "icon": "ComponentIcon"
 }

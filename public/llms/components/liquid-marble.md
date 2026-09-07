@@ -320,7 +320,7 @@ export default function ExamplePage() {
   return (
     <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-xl border">
       <LiquidMarble
-        mediaUrl="https://res.cloudinary.com/ddon6aux0/image/upload/f_auto,q_auto/v1782017462/ui-v3/demos/images/2.jpg"
+        mediaUrl="https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/liquid-marble.webp"
         mediaType="image"
         hoverRadius={0.3}
         distortionStrength={0.15}
@@ -333,3 +333,8 @@ export default function ExamplePage() {
   )
 }
 ```
+
+
+<!-- Synced URLs from registry/strings -->
+- https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/2.webp
+- https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/videos/2.mp4

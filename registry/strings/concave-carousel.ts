@@ -4,59 +4,59 @@ import { ConcaveCarousel } from "@/components/satisium-ui/concave-carousel"
 const IMAGES = [
   {
     id: "1",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1782906341/ui-v3/demos/images/12.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/12.webp",
   },
   {
     id: "2",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/13.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/13.webp",
   },
   {
     id: "3",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/14.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/14.webp",
   },
   {
     id: "4",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/15.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/15.webp",
   },
   {
     id: "5",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/9.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/9.webp",
   },
   {
     id: "6",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/17.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/17.webp",
   },
   {
     id: "7",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/18.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/18.webp",
   },
   {
     id: "8",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/19.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/19.webp",
   },
   {
     id: "9",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/20.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/20.webp",
   },
   {
     id: "10",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/21.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/21.webp",
   },
   {
     id: "11",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/22.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/22.webp",
   },
   {
     id: "12",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/24.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/24.webp",
   },
   {
     id: "13",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/25.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/25.webp",
   },
   {
     id: "14",
-    url: "https://res.cloudinary.com/ddon6aux0/image/upload/w_800,f_auto,q_auto/v1780746659/ui-v3/demos/images/26.jpg",
+    url: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/in-demo-assets/components/images/stock/26.webp",
   },
 ]
 

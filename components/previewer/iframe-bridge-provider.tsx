@@ -24,8 +24,28 @@ export function IframeBridgeProvider({
       }
     }
 
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "r" || event.key === "R") {
+        if (
+          event.target instanceof HTMLInputElement ||
+          event.target instanceof HTMLTextAreaElement ||
+          event.target instanceof HTMLSelectElement ||
+          (event.target instanceof HTMLElement &&
+            event.target.isContentEditable)
+        ) {
+          return
+        }
+        event.preventDefault()
+        setReloadKey((prev) => prev + 1)
+      }
+    }
+
     window.addEventListener("message", handleMessage)
-    return () => window.removeEventListener("message", handleMessage)
+    window.addEventListener("keydown", handleKeyDown)
+    return () => {
+      window.removeEventListener("message", handleMessage)
+      window.removeEventListener("keydown", handleKeyDown)
+    }
   }, [])
 
   return (

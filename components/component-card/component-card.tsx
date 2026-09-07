@@ -4,9 +4,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
-import { getCloudinaryUrl } from "@/lib/cloudinary"
-import { useSignedCloudinaryUrl } from "@/lib/use-signed-cloudinary-url"
-import { extractPublicId } from "@/lib/media-config"
 
 export interface CardProps {
   url: string
@@ -60,46 +57,8 @@ export function ComponentCard({
   const badgeType = badge?.toLowerCase()
   const isDeprecated = badgeType === "deprecated"
 
-  // ✨ SIGNED CLOUDINARY URL RESOLUTION
-  // Fetch time-limited signed URLs from our server-side API route.
-  // Falls back to getCloudinaryUrl (unsigned, named-transformation URLs)
-  // while assets are still public, providing a graceful migration path.
-  const targetMedia = media?.video || media?.image
-  const videoPublicId = media?.video ? extractPublicId(media.video) : null
-  const imagePublicId = media?.image ? extractPublicId(media?.image) : null
-
-  const {
-    url: signedVideoUrl,
-    poster: signedVideoPoster,
-    loading: videoMediaLoading,
-  } = useSignedCloudinaryUrl(
-    videoPublicId,
-    "video",
-    "t_satisium_preview,f_auto,q_auto:low,ac_none"
-  )
-
-  const {
-    url: signedImageUrl,
-    loading: imageMediaLoading,
-  } = useSignedCloudinaryUrl(
-    imagePublicId,
-    "image",
-    "t_satisium_preview,f_auto,q_auto:low"
-  )
-
-  // Effective URLs: prefer signed URLs, fall back to getCloudinaryUrl while migrating
-  const optimizedImage =
-    signedVideoPoster ||
-    signedImageUrl ||
-    getCloudinaryUrl(targetMedia, "preview", "image")
-
-  const optimizedVideo =
-    signedVideoUrl ||
-    (media?.video
-      ? getCloudinaryUrl(media.video, "preview", "video")
-      : null)
-
-  const mediaLoading = videoMediaLoading || imageMediaLoading
+  const imageUrl = media?.image || null
+  const videoUrl = media?.video || null
 
   return (
     <Link
@@ -115,11 +74,9 @@ export function ComponentCard({
       >
         {/* Media Frame */}
         <div className="relative h-60 w-full shrink-0 overflow-hidden rounded-2xl border border-border/50 bg-background">
-          {mediaLoading ? (
-            <div className="absolute inset-0 animate-pulse bg-muted-foreground/20" />
-          ) : optimizedImage ? (
+          {imageUrl ? (
             <Image
-              src={optimizedImage as string}
+              src={imageUrl}
               alt={title}
               fill
               unoptimized={true}
@@ -134,15 +91,14 @@ export function ComponentCard({
             </div>
           )}
 
-          {optimizedVideo && (
+          {videoUrl && (
             <video
               ref={videoRef}
-              src={optimizedVideo}
+              src={videoUrl}
               muted
               loop
               playsInline
               preload="none"
-              // ✨ GAP FIX: Synced duration, easing, and scale values perfectly with the Image component
               className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-700 ease-out-expo group-hover:scale-105 group-hover:opacity-100"
             />
           )}
