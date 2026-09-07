@@ -1,0 +1,69 @@
+---
+title: Ascent Carousel
+description: A high-performance, exponential 3D-perspective carousel. Items mathematically scale down as they retreat to the right, creating a profound sense of spatial depth using strictly 2D DOM manipulation for maximum FPS.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/carousels/ascent-carousel.mdx
+registryKeys:
+  - ascent-carousel-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/ascent-carousel.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/ascent-carousel.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/ascent-carousel.json"
+    title="ascent-carousel"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/ascent-carousel-demo.json"
+    title="ascent-carousel-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { ascentCarouselFile } from "@/registry/strings/ascent-carousel"
+
+<div className="mt-6">
+  <CodeBlock files={ascentCarouselFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                   | Type                                 | Default        | Description                                                                                      |
+| :--------------------- | :----------------------------------- | :------------- | :----------------------------------------------------------------------------------------------- |
+| **`items`**            | `AscentCarouselItem[]`               | _Required_     | Array of image objects to display. Automatically duplicated to ensure an infinite loop.          |
+| **`visibleItems`**     | `number`                             | `6`            | Mobile-first default for visible items.                                                          |
+| **`maxHeight`**        | `number`                             | `600`          | Mobile-first default for the foreground item's max height in pixels.                             |
+| **`minHeight`**        | `number`                             | `150`          | Mobile-first default for the background items' min height in pixels.                             |
+| **`breakpoints`**      | `Record<number, CarouselBreakpoint>` | `undefined`    | Tailwind-style min-width breakpoints for responsive sizing. e.g., `{ 640: { visibleItems: 8 } }` |
+| **`autoMove`**         | `boolean`                            | `false`        | Whether the carousel should move automatically.                                                  |
+| **`autoMoveType`**     | `"continuous" \| "step"`             | `"continuous"` | The type of auto-movement.                                                                       |
+| **`autoMoveSpeed`**    | `number`                             | `0.01`         | The velocity of the continuous auto-scroll.                                                      |
+| **`stepInterval`**     | `number`                             | `3000`         | The delay (in ms) between steps if autoMoveType is "step".                                       |
+| **`stepDuration`**     | `number`                             | `1`            | The duration (in seconds) of the snapping animation.                                             |
+| **`scrollMultiplier`** | `number`                             | `0.005`        | How aggressively the carousel responds to drag velocity.                                         |
+| **`friction`**         | `number`                             | `0.95`         | The physics friction applied to drag momentum.                                                   |

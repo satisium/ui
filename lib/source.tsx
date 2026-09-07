@@ -214,7 +214,7 @@ export const source = loader({
 
     if (iconKey in allHugeicons) {
       const iconObj = allHugeicons[iconKey as keyof typeof allHugeicons]
-      return createElement(HugeiconsIcon, { icon: iconObj as any })
+      return createElement(HugeiconsIcon, { icon: iconObj as any, className: "size-5" })
     }
   },
 })

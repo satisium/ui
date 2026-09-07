@@ -1,0 +1,69 @@
+---
+title: Wind Trail
+description: An interactive mouse trail that maps spawned elements to an ambient wind physics engine, drifting items smoothly across the screen like autumn leaves.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/mouse-trails/wind-trail.mdx
+registryKeys:
+  - wind-trail-avatars-demo
+  - wind-trail-images-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/wind-trail.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/wind-trail.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/wind-trail.json"
+    title="wind-trail"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/wind-trail-avatars-demo.json"
+    title="wind-trail-avatars-demo"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/wind-trail-images-demo.json"
+    title="wind-trail-images-demo"
+  />
+</div>
+
+### Manual
+
+**1. Add Source Code**
+
+import { windTrailFile } from "@/registry/strings/wind-trail"
+
+<div className="mt-6">
+  <CodeBlock files={windTrailFile} height="600px" />
+</div>
+
+_Note: This component utilizes pure DOM manipulation and RequestAnimationFrame logic. No external libraries are required._
+
+## Props
+
+| Prop                | Type       | Default     | Description                                                            |
+| :------------------ | :--------- | :---------- | :--------------------------------------------------------------------- |
+| **`imageUrls`**     | `string[]` | `[]`        | Array of image URLs to randomly spawn.                                 |
+| **`distance`**      | `number`   | `200`       | Distance the pointer must move (in pixels) before spawning a new item. |
+| **`duration`**      | `number`   | `2600`      | The total lifespan of a spawned item in milliseconds.                  |
+| **`maxItems`**      | `number`   | `10`        | Maximum items on screen before forcing the oldest to fade out.         |
+| **`itemSize`**      | `number`   | `90`        | The base pixel size of the image cards.                                |
+| **`windX`**         | `number`   | `100`       | Base horizontal wind speed in pixels per second.                       |
+| **`windY`**         | `number`   | `-30`       | Base vertical wind speed in pixels per second.                         |
+| **`className`**     | `string`   | `undefined` | Standard Tailwind classes for the fixed wrapper.                       |
+| **`itemClassName`** | `string`   | `""`        | Standard Tailwind classes applied to the individual image wrappers.    |

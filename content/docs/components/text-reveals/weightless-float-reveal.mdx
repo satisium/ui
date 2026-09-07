@@ -1,0 +1,80 @@
+---
+title: Weightless Float Reveal
+description: An ambient, zero-gravity text reveal component. Elements drift upwards into place from randomized depths and rotations, creating an organic, floating effect.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/text-reveals/weightless-float-reveal.mdx
+registryKeys:
+  - weightless-float-headline-demo
+  - weightless-float-paragraph-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/weightless-float-reveal.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/weightless-float-reveal.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/weightless-float-reveal.json"
+    title="weightless-float-reveal"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/weightless-float-headline-demo.json"
+    title="weightless-float-headline-demo"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/weightless-float-paragraph-demo.json"
+    title="weightless-float-paragraph-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { weightlessFloatRevealFile } from "@/registry/strings/weightless-float-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={weightlessFloatRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                   | Type                | Default        | Description                                                            |
+| :--------------------- | :------------------ | :------------- | :--------------------------------------------------------------------- |
+| **`text`**             | `string`            | _Required_     | The full string of text to reveal.                                     |
+| **`as`**               | `React.ElementType` | `"h1"`         | The HTML tag to render as.                                             |
+| **`splitBy`**          | `"word" \| "char"`  | `"char"`       | Whether to split and animate by word or individual character.          |
+| **`startYMin`**        | `number`            | `40`           | Minimum starting Y offset (pixels).                                    |
+| **`startYMax`**        | `number`            | `80`           | Maximum starting Y offset (pixels).                                    |
+| **`startRotationMin`** | `number`            | `-8`           | Minimum starting rotation (degrees).                                   |
+| **`startRotationMax`** | `number`            | `8`            | Maximum starting rotation (degrees).                                   |
+| **`duration`**         | `number`            | `2.5`          | The duration of the drift. Long durations enhance the floating effect. |
+| **`delay`**            | `number`            | `0`            | Delay before the animation begins (in seconds).                        |
+| **`stagger`**          | `number`            | `0.06`         | Stagger delay between each element revealing.                          |
+| **`ease`**             | `string`            | `"power3.out"` | GSAP easing function for the endless coasting physics.                 |
+| **`viewportOnce`**     | `boolean`           | `true`         | If true, plays once. If false, seamlessly reverses on scroll away.     |
+| **`triggerStart`**     | `string`            | `"top 85%"`    | Viewport threshold for when the animation should start.                |

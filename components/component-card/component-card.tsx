@@ -74,13 +74,27 @@ export function ComponentCard({
       >
         {/* Media Frame */}
         <div className="relative h-60 w-full shrink-0 overflow-hidden rounded-2xl border border-border/50 bg-background">
-          {imageUrl ? (
+          {videoUrl ? (
+            <video
+              ref={videoRef}
+              src={videoUrl}
+              poster={imageUrl || undefined}
+              muted
+              loop
+              playsInline
+              preload="none"
+              className={cn(
+                "absolute inset-0 h-full w-full object-cover",
+                !imageUrl && "opacity-0 transition-all duration-700 ease-out-expo group-hover:opacity-100"
+              )}
+            />
+          ) : imageUrl ? (
             <Image
               src={imageUrl}
               alt={title}
               fill
               unoptimized={true}
-              className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+              className="object-cover transition-transform duration-700 ease-out-expo"
               loading="lazy"
             />
           ) : (
@@ -89,18 +103,6 @@ export function ComponentCard({
                 No Media
               </span>
             </div>
-          )}
-
-          {videoUrl && (
-            <video
-              ref={videoRef}
-              src={videoUrl}
-              muted
-              loop
-              playsInline
-              preload="none"
-              className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-700 ease-out-expo group-hover:scale-105 group-hover:opacity-100"
-            />
           )}
         </div>
 

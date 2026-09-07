@@ -1,7 +1,6 @@
 import { pageSchema } from "fumadocs-core/source/schema"
 import { defineConfig, defineDocs } from "fumadocs-mdx/config"
 import { z } from "zod"
-import { CategoryEnum } from "./lib/utils"
 
 export const docs = defineDocs({
   dir: "content/docs",
@@ -17,7 +16,6 @@ export const docs = defineDocs({
       badge: z
         .enum(["new", "updated", "beta", "deprecated"])
         .optional(),
-      category: z.array(CategoryEnum).optional(),
       author: z.string().optional(),
       date: z.string().optional(),
       links: z

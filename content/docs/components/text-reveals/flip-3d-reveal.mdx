@@ -1,0 +1,77 @@
+---
+title: Flip 3D Reveal
+description: A premium, mechanical text reveal component. Characters or words rotate into view along the Y-axis, creating a Rolodex or split-flap display effect with a microscopic physics bounce.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/text-reveals/flip-3d-reveal.mdx
+registryKeys:
+  - flip-3d-headline-demo
+  - flip-3d-paragraph-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/flip-3d-reveal.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/flip-3d-reveal.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/flip-3d-reveal.json"
+    title="flip-3d-reveal"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/flip-3d-headline-demo.json"
+    title="flip-3d-headline-demo"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/flip-3d-paragraph-demo.json"
+    title="flip-3d-paragraph-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { flip3DRevealFile } from "@/registry/strings/flip-3d-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={flip3DRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop               | Type                | Default     | Description                                                                            |
+| :----------------- | :------------------ | :---------- | :------------------------------------------------------------------------------------- |
+| **`text`**         | `string`            | _Required_  | The full string of text to reveal. Preserves native wrapping.                          |
+| **`as`**           | `React.ElementType` | `"h1"`      | The HTML tag to render as.                                                             |
+| **`splitBy`**      | `"word" \| "char"`  | `"char"`    | Splitting by character is great for headlines. Splitting by word optimizes paragraphs. |
+| **`startAngle`**   | `number`            | `90`        | The starting rotation on the Y-axis in degrees.                                        |
+| **`startX`**       | `string`            | `"-0.2em"`  | Tiny starting horizontal offset to create a sliding flap effect.                       |
+| **`duration`**     | `number`            | `0.8`       | Duration of the flip animation per item.                                               |
+| **`delay`**        | `number`            | `0`         | Delay before the animation starts (in seconds).                                        |
+| **`stagger`**      | `number`            | `0.03`      | Stagger time between each item flipping.                                               |
+| **`viewportOnce`** | `boolean`           | `true`      | If true, animates only once. If false, seamlessly reverses on scroll.                  |
+| **`triggerStart`** | `string`            | `"top 90%"` | Viewport threshold for when the animation should start.                                |

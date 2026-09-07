@@ -1,0 +1,78 @@
+---
+title: Velocity Strips
+description: An interactive WebGL component that displays media (image or video) with a fluid, velocity-based slice distortion effect following the cursor.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/image-effects/velocity-strips.mdx
+registryKeys:
+  - velocity-strips-image
+  - velocity-strips-video
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/velocity-strips.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/velocity-strips.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips.json"
+    title="velocity-strips"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-image.json"
+    title="velocity-strips-image"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/velocity-strips-video.json"
+    title="velocity-strips-video"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+Since this component leverages WebGL, you will need React Three Fiber and Three.js.
+
+<div className="mt-6">
+  <CommandBlock pkg="three @react-three/fiber @react-three/drei clsx tailwind-merge" />
+</div>
+
+_Note: The demos utilize `@hugeicons/react` and `@hugeicons/core-free-icons` for the loading fallback, but they are not strictly required for the core component._
+
+**2. Add Source Code**
+
+import { velocityStripsFile } from "@/registry/strings/velocity-strips"
+
+<div className="mt-6">
+  <CodeBlock files={velocityStripsFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                  | Type                 | Default     | Description                                                      |
+| :-------------------- | :------------------- | :---------- | :--------------------------------------------------------------- |
+| **`mediaUrl`**        | `string`             | —           | The source URL of the media asset.                               |
+| **`mediaType`**       | `"image" \| "video"` | `"image"`   | Defines the media type for correct texture processing.           |
+| **`slices`**          | `number`             | `32`        | Number of vertical displacement slices.                          |
+| **`hoverRadius`**     | `number`             | `0.35`      | Proximity spread multiplier (0.0 to 1.0).                        |
+| **`shiftMultiplier`** | `number`             | `1.5`       | Strength of the displacement shift based on mouse velocity.      |
+| **`trackingSpeed`**   | `number`             | `2.0`       | Interpolation speed for the wave following the cursor.           |
+| **`imageZoom`**       | `number`             | `1.15`      | Base texture scale to prevent edge bleeding during displacement. |
+| **`enterLeaveSpeed`** | `number`             | `1.5`       | Interpolation speed for the enter/leave animation states.        |
+| **`fallback`**        | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.    |
+| **`className`**       | `string`             | `undefined` | Standard React classNames for the container wrapper.             |

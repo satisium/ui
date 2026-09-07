@@ -1,0 +1,65 @@
+---
+title: Magnetic Snap Reveal
+description: A kinetic, elastic text reveal component. Elements start in randomized, chaotic coordinates and magnetically snap into their correct layout positions using heavy spring physics.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/text-reveals/magnetic-snap-reveal.mdx
+registryKeys:
+  - magnetic-snap-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/magnetic-snap-reveal.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/magnetic-snap-reveal.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/magnetic-snap-reveal.json"
+    title="magnetic-snap-reveal"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/magnetic-snap-demo.json"
+    title="magnetic-snap-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { magneticSnapRevealFile } from "@/registry/strings/magnetic-snap-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={magneticSnapRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop               | Type                | Default     | Description                                                        |
+| :----------------- | :------------------ | :---------- | :----------------------------------------------------------------- |
+| **`text`**         | `string`            | _Required_  | The full string of text to reveal.                                 |
+| **`as`**           | `React.ElementType` | `"h1"`      | The HTML tag to render as.                                         |
+| **`splitBy`**      | `"word" \| "char"`  | `"char"`    | Whether to split and animate by word or individual character.      |
+| **`duration`**     | `number`            | `1.2`       | Duration of the elastic snap.                                      |
+| **`delay`**        | `number`            | `0`         | Delay before the animation begins (in seconds).                    |
+| **`stagger`**      | `number`            | `0.02`      | Stagger delay between each element snapping into place.            |
+| **`viewportOnce`** | `boolean`           | `true`      | If true, plays once. If false, seamlessly reverses on scroll away. |
+| **`triggerStart`** | `string`            | `"top 85%"` | Viewport threshold for when the animation should start.            |

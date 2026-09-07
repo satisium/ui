@@ -28,14 +28,23 @@ type CustomPageNode = PageTree.Item & {
   media?: { video?: string; [key: string]: any }
 }
 
+function getComponentCount(node: PageTree.Node): number {
+  if (node.type !== "folder" || !node.index) return 0
+  const prefix = node.index.url + "/"
+  return source
+    .getPages()
+    .filter((p) => p.data.component === true && p.url.startsWith(prefix)).length
+}
+
 /**
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
-function VideoLayer({ url }: { url: string }) {
+function VideoLayer({ url, poster }: { url: string; poster?: string }) {
   return (
     <div className="relative h-full w-full">
       <video
         src={url}
+        poster={poster}
         autoPlay
         loop
         muted
@@ -92,7 +101,7 @@ function MediaPreviewCard({
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 origin-center overflow-hidden rounded-[14px]"
             >
-              <VideoLayer url={node.media.video} />
+              <VideoLayer url={node.media.video} poster={node.media.image} />
             </motion.div>
           </AnimatePresence>
         </motion.div>
@@ -481,7 +490,7 @@ function TreeNode({
             <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2">
               {node.icon && (
                 <span
-                  className={`flex shrink-0 transition-colors [&_svg]:size-5 ${isIndexActive ? "text-background" : "text-muted-foreground group-hover:text-foreground"}`}
+                  className={`flex shrink-0 transition-colors ${isIndexActive ? "text-background" : "text-muted-foreground group-hover:text-foreground"}`}
                 >
                   {node.icon}
                 </span>
@@ -492,18 +501,25 @@ function TreeNode({
                 {node.name}
               </span>
             </div>
-            {indexPage.badge && (
-              <span
-                className={`relative z-10 ml-auto shrink-0 rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${isIndexActive ? "bg-primary text-primary-foreground" : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"}`}
-              >
-                {indexPage.badge}
-              </span>
-            )}
+            <div className="relative z-10 ml-auto flex shrink-0 items-center gap-1.5">
+              {indexPage.badge && (
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[9px] font-bold tracking-wider uppercase transition-colors ${isIndexActive ? "bg-primary text-primary-foreground" : "border border-border bg-transparent text-muted-foreground group-hover:border-foreground/20 group-hover:text-foreground"}`}
+                >
+                  {indexPage.badge}
+                </span>
+              )}
+              {node.children && node.children.length > 0 && (
+                <span className="text-[12px] font-medium text-muted-foreground">
+                  {getComponentCount(node)}
+                </span>
+              )}
+            </div>
           </Link>
         ) : (
           <div className="flex min-w-0 items-center gap-2 px-3 py-1.5">
             {node.icon && (
-              <span className="shrink-0 font-bold text-muted-foreground [&_svg]:size-5">
+              <span className="shrink-0 font-bold text-muted-foreground">
                 {node.icon}
               </span>
             )}

@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next"
 import { source } from "@/lib/source"
-import { CATEGORIES } from "@/lib/utils"
 import { SITE_URL } from "@/lib/config"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -15,13 +14,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }))
 
-  const categoryUrls = CATEGORIES.map((category) => ({
-    url: `${baseUrl}/categories/${category}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }))
-
   return [
     {
       url: baseUrl,
@@ -29,13 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 1.0,
     },
-    {
-      url: `${baseUrl}/categories`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    ...categoryUrls,
     ...docUrls,
   ]
 }

@@ -17,30 +17,22 @@ if (args.length === 0) {
 const inputPath = args[0]
 
 // 2. Parse paths and names
-// e.g., "carousels/my-carousel" -> dir: "carousels", name: "my-carousel"
+// e.g., "text-reveals/my-text-reveal" -> dir: "text-reveals", name: "my-text-reveal"
 const isMdx = inputPath.endsWith(".mdx")
 const cleanPath = isMdx ? inputPath : `${inputPath}.mdx`
 const fullPath = path.join(rootDir, "content/docs", cleanPath)
 
-const filename = path.basename(cleanPath, ".mdx") // "my-carousel"
-const folderName = path.dirname(cleanPath) // "carousels"
+const filename = path.basename(cleanPath, ".mdx") // "my-text-reveal"
+const folderName = path.dirname(cleanPath) // "text-reveals"
 
-// Convert "my-carousel" to "My Carousel"
+// Convert "my-text-reveal" to "My Text Reveal"
 const title = filename
   .split("-")
   .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
   .join(" ")
 
-// Map folder to category
-const validCategories = [
-  "text-reveals",
-  "image-effects",
-  "carousels",
-  "mouse-trails",
-]
-const category = validCategories.includes(folderName)
-  ? folderName
-  : "text-reveals"
+// Category is the folder name
+const category = folderName || "text-reveals"
 
 // 3. The MDX Template
 const mdxTemplate = `---

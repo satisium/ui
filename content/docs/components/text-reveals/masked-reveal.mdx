@@ -1,0 +1,78 @@
+---
+title: Masked Reveal
+description: A sophisticated text reveal component. Wraps elements in a hidden overflow mask and pushes them up into view with a slight, elegant rotation, resembling premium agency typography.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/text-reveals/masked-reveal.mdx
+registryKeys:
+  - masked-reveal-headline-demo
+  - masked-reveal-paragraph-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/masked-reveal.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/masked-reveal.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/masked-reveal.json"
+    title="masked-reveal"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/masked-reveal-headline-demo.json"
+    title="masked-reveal-headline-demo"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/masked-reveal-paragraph-demo.json"
+    title="masked-reveal-paragraph-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { maskedRevealFile } from "@/registry/strings/masked-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={maskedRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                | Type                | Default      | Description                                                        |
+| :------------------ | :------------------ | :----------- | :----------------------------------------------------------------- |
+| **`text`**          | `string`            | _Required_   | The full string of text to reveal.                                 |
+| **`as`**            | `React.ElementType` | `"div"`      | The HTML tag to render as.                                         |
+| **`splitBy`**       | `"word" \| "char"`  | `"word"`     | Whether to split and animate by word or individual character.      |
+| **`startOffset`**   | `string \| number`  | `"100%"`     | The starting vertical offset. Can be percentage or pixel value.    |
+| **`startRotation`** | `number`            | `5`          | The starting rotation on the Z-axis.                               |
+| **`delay`**         | `number`            | `0`          | Delay before the animation begins (in seconds).                    |
+| **`duration`**      | `number`            | `1.2`        | Duration of the reveal for each element.                           |
+| **`stagger`**       | `number`            | `0.04`       | Stagger delay between each element.                                |
+| **`ease`**          | `string`            | `"expo.out"` | GSAP easing string.                                                |
+| **`viewportOnce`**  | `boolean`           | `true`       | If true, plays once. If false, seamlessly reverses on scroll away. |
+| **`triggerStart`**  | `string`            | `"top 90%"`  | Viewport threshold for when the animation should start.            |

@@ -1,6 +1,6 @@
 "use client"
 
-import { TAXONOMY, cn } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { trackEvent } from "@/lib/analytics"
 import { useCommandStore } from "@/store/use-command-store"
 import type * as PageTree from "fumadocs-core/page-tree"
@@ -258,94 +258,76 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
     return () => clearTimeout(timer)
   }, [query])
 
-  const staticItems = React.useMemo<StaticItem[]>(() => {
-    const items: StaticItem[] = []
+    const staticItems = React.useMemo<StaticItem[]>(() => {
+      const items: StaticItem[] = []
 
-    if (docsTree) {
-      function traverseTree(
-        node: PageTree.Node,
-        currentGroup: string,
-        path: string[]
-      ) {
-        if (node.type === "page") {
-          const pageNode = node as PageTree.Item
-          const safeNameStr =
-            typeof pageNode.name === "string"
-              ? pageNode.name
-              : pageNode.url
-                  .split("/")
-                  .filter(Boolean)
-                  .pop()
-                  ?.replace(/-/g, " ") || "Page"
+      if (docsTree) {
+        function traverseTree(
+          node: PageTree.Node,
+          currentGroup: string,
+          path: string[]
+        ) {
+          if (node.type === "page") {
+            const pageNode = node as PageTree.Item
+            const safeNameStr =
+              typeof pageNode.name === "string"
+                ? pageNode.name
+                : pageNode.url
+                    .split("/")
+                    .filter(Boolean)
+                    .pop()
+                    ?.replace(/-/g, " ") || "Page"
 
-          items.push({
-            id: pageNode.url,
-            title: pageNode.name,
-            searchString: safeNameStr,
-            subtitle:
-              path.length > 0 ? `Docs ➔ ${path.join(" ➔ ")}` : "Documentation",
-            group: currentGroup,
-            url: pageNode.url,
-            icon: getContextualIcon(currentGroup),
-            aliases: [currentGroup.toLowerCase()],
-          })
-        } else if (node.type === "folder") {
-          const folderNode = node as PageTree.Folder
-          const safeNameStr =
-            typeof folderNode.name === "string" ? folderNode.name : "Folder"
-          const groupNameStr = safeNameStr
-          const newPath = [...path, groupNameStr]
-
-          if (folderNode.index) {
-            const indexNode = folderNode.index as PageTree.Item
             items.push({
-              id: indexNode.url,
-              title: folderNode.name ? `${safeNameStr} Overview` : "Overview",
-              searchString: `${safeNameStr} Overview`,
+              id: pageNode.url,
+              title: pageNode.name,
+              searchString: safeNameStr,
               subtitle:
-                path.length > 0
-                  ? `Docs ➔ ${path.join(" ➔ ")}`
-                  : "Documentation",
-              group: groupNameStr,
-              url: indexNode.url,
-              icon: (
-                <HugeiconsIcon
-                  icon={LaptopVideoIcon}
-                  className="mr-3 size-4 text-muted-foreground"
-                />
-              ),
-              aliases: ["index", "overview"],
+                path.length > 0 ? `Docs ➔ ${path.join(" ➔ ")}` : "Documentation",
+              group: currentGroup,
+              url: pageNode.url,
+              icon: getContextualIcon(currentGroup),
+              aliases: [currentGroup.toLowerCase()],
             })
+          } else if (node.type === "folder") {
+            const folderNode = node as PageTree.Folder
+            const safeNameStr =
+              typeof folderNode.name === "string" ? folderNode.name : "Folder"
+            const groupNameStr = safeNameStr
+            const newPath = [...path, groupNameStr]
+
+            if (folderNode.index) {
+              const indexNode = folderNode.index as PageTree.Item
+              items.push({
+                id: indexNode.url,
+                title: folderNode.name ? `${safeNameStr} Overview` : "Overview",
+                searchString: `${safeNameStr} Overview`,
+                subtitle:
+                  path.length > 0
+                    ? `Docs ➔ ${path.join(" ➔ ")}`
+                    : "Documentation",
+                group: groupNameStr,
+                url: indexNode.url,
+                icon: (
+                  <HugeiconsIcon
+                    icon={LaptopVideoIcon}
+                    className="mr-3 size-4 text-muted-foreground"
+                  />
+                ),
+                aliases: ["index", "overview"],
+              })
+            }
+            folderNode.children.forEach((child) =>
+              traverseTree(child, groupNameStr, newPath)
+            )
           }
-          folderNode.children.forEach((child) =>
-            traverseTree(child, groupNameStr, newPath)
-          )
         }
+        docsTree.children.forEach((child) =>
+          traverseTree(child, "General Docs", [])
+        )
       }
-      docsTree.children.forEach((child) =>
-        traverseTree(child, "General Docs", [])
-      )
-    }
 
-    const categoryItems = Object.entries(TAXONOMY).map(
-      ([category]) => {
-        const catName = category
-          .replace("-", " ")
-          .replace(/\b\w/g, (l) => l.toUpperCase())
-        return {
-          id: `/categories/${category}`,
-          title: catName,
-          searchString: catName,
-          subtitle: "Category",
-          group: "Categories",
-          url: `/categories/${category}`,
-          icon: getContextualIcon("category"),
-          aliases: [],
-        }
-      }
-    )
-
-    const systemItems: StaticItem[] = [
+      const systemItems: StaticItem[] = [
       {
         id: "action-copy-url",
         title: "Copy Current URL",
@@ -420,7 +402,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
       },
     ]
 
-    return [...items, ...categoryItems, ...systemItems]
+    return [...items, ...systemItems]
   }, [docsTree, setTheme])
 
   const handleSelect = React.useCallback(
