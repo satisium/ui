@@ -39,54 +39,71 @@ export function SpatialLayout({
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-muted">
+      {/* Sidebar background underlayer */}
       <div className="absolute inset-y-0 left-0 z-0 flex w-[320px] flex-col px-6 py-8">
         <SidebarContent tree={tree} />
       </div>
 
+      {/* Main Card Wrapper (Pure GPU transform) */}
       <motion.div
         initial={false}
         animate={{
           x: isOpen ? 320 : 0,
           scale: isOpen ? 0.95 : 1,
-          borderRadius: isOpen ? 32 : 0,
         }}
         transition={{
           type: "spring",
-          bounce: 0.1,
-          duration: 0.6,
+          stiffness: 380,
+          damping: 38,
+          mass: 0.8,
         }}
-        // ✨ ADDED: group/spatial and data-sidebar-open
+        style={{ willChange: "transform" }}
         data-sidebar-open={isOpen}
-        className="group/spatial absolute inset-0 z-10 origin-left overflow-hidden bg-background shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+        className="group/spatial absolute inset-0 z-10 origin-left p-2"
       >
-        <button
-          onClick={toggleSidebar}
-          className="absolute top-20 left-0 z-50 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground text-background shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:w-14 hover:bg-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none dark:hover:text-foreground"
-          aria-label="Toggle Sidebar"
-          title="Toggle Sidebar (M)"
-        >
-          <span className="rotate-180 text-[0.65rem] font-bold tracking-[0.2em] uppercase [writing-mode:vertical-rl]">
-            Menu
-          </span>
-        </button>
-
-        {/* 🌟 IMPROVEMENT: Event Capture + Preserved Scrolling */}
-        <div
-          className={`relative no-scrollbar h-full w-full overflow-y-auto scroll-smooth ${
-            isOpen ? "cursor-pointer" : ""
-          }`}
-          onClickCapture={(e) => {
-            // Safely intercept clicks and prevent children from triggering
-            if (isOpen) {
-              e.preventDefault()
-              e.stopPropagation()
-              toggleSidebar()
-            }
+        {/* ✨ Decoupled Drop Shadow Layer: Appears ONLY when sidebar opens, vanishes immediately on close */}
+        <motion.div
+          initial={false}
+          animate={{
+            opacity: isOpen ? 1 : 0,
           }}
-        >
-          {/* Inner wrapper dynamically disables interaction with standard React elements */}
-          <div className={isOpen ? "pointer-events-none select-none" : ""}>
-            {children}
+          transition={{
+            duration: isOpen ? 0.25 : 0.15,
+            delay: isOpen ? 0.25 : 0, // Waits until the card has nearly settled
+            ease: "easeOut",
+          }}
+          className="pointer-events-none absolute inset-0 rounded-[32px] shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+        />
+
+        {/* Main Card Surface with constant rounded-[32px] and clean clipping */}
+        <div className="relative h-full w-full overflow-hidden rounded-[32px] bg-background">
+          <button
+            onClick={toggleSidebar}
+            className="absolute top-20 left-0 z-50 flex h-24 w-11 items-center justify-center rounded-r-sm bg-foreground text-background shadow-[0_30px_60px_rgba(0,0,0,0.5)] transition-all duration-300 hover:w-14 hover:bg-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:outline-none dark:hover:text-foreground"
+            aria-label="Toggle Sidebar"
+            title="Toggle Sidebar (M)"
+          >
+            <span className="rotate-180 text-[0.65rem] font-bold tracking-[0.2em] uppercase [writing-mode:vertical-rl]">
+              Menu
+            </span>
+          </button>
+
+          {/* Event Capture + Preserved Scrolling */}
+          <div
+            className={`relative no-scrollbar h-full w-full overflow-y-auto scroll-smooth ${
+              isOpen ? "cursor-pointer" : ""
+            }`}
+            onClickCapture={(e) => {
+              if (isOpen) {
+                e.preventDefault()
+                e.stopPropagation()
+                toggleSidebar()
+              }
+            }}
+          >
+            <div className={isOpen ? "pointer-events-none select-none" : ""}>
+              {children}
+            </div>
           </div>
         </div>
       </motion.div>
