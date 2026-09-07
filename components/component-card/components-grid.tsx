@@ -5,35 +5,45 @@ import { ComponentCard } from "@/components/component-card/component-card"
 export function ComponentsGrid() {
   const { pages } = queryContent({})
 
-  const categories = pages.reduce((acc, page) => {
-    const category = page.url.split('/')[3]
-    if (!acc[category]) acc[category] = []
-    acc[category].push(page)
-    return acc
-  }, {} as Record<string, typeof pages>)
+  const categories = pages.reduce(
+    (acc, page) => {
+      const category = page.url.split("/")[3]
+      if (!acc[category]) acc[category] = []
+      acc[category].push(page)
+      return acc
+    },
+    {} as Record<string, typeof pages>
+  )
 
   return (
     <div className="flex w-full flex-col gap-16">
-      {Object.entries(categories).sort(([a], [b]) => a.localeCompare(b)).map(([category, categoryPages]) => (
-        <section key={category} className="flex flex-col gap-6">
-          <CategoryHero title={category} count={categoryPages.length} showCount />
+      {Object.entries(categories)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([category, categoryPages]) => (
+          <section key={category} className="flex flex-col gap-6">
+            <CategoryHero
+              title={category}
+              count={categoryPages.length}
+              showCount
+            />
 
-          <div className="flex w-full flex-col gap-10">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              {categoryPages.map((item) => (
-                <ComponentCard
-                  key={item.url}
-                  url={item.url}
-                  title={item.data.title}
-                  description={item.data.description}
-                  badge={item.data.badge}
-                  media={item.data.media}
-                />
-              ))}
+            <div className="flex w-full flex-col gap-10">
+              {/* Auto-fills columns based on optimal card width (min 340px) */}
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,340px),1fr))] gap-6">
+                {categoryPages.map((item) => (
+                  <ComponentCard
+                    key={item.url}
+                    url={item.url}
+                    title={item.data.title}
+                    description={item.data.description}
+                    badge={item.data.badge}
+                    media={item.data.media}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ))}
     </div>
   )
 }

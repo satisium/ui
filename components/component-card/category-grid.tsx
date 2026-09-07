@@ -21,7 +21,8 @@ export function CategoryGrid({
         showCount={showCount}
       />
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+      {/* Auto-fills columns based on optimal card width (min 340px) */}
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,340px),1fr))] gap-6">
         {pages.map((item) => (
           <ComponentCard
             key={item.url}

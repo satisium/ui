@@ -52,15 +52,12 @@ export async function generateMetadata(props: {
     `Explore the ${page.data.title} component. Animated component library for design engineers. Built with Tailwind v4, Framer Motion and GSAP.`
 
   const lastModifiedRaw = await getLastModifiedTime(page.path)
-
   const urlCategory = page.url.split("/")[3]
 
   const tags: string[] = []
   if (page.data.badge) tags.push(page.data.badge)
   if (urlCategory) tags.push(urlCategory)
 
-  // Determine the dynamic label based on the component's category (e.g., TEXT EFFECTS)
-  // Fallback to "DOCUMENTATION" if no category exists.
   const dynamicLabel = urlCategory
     ? urlCategory.replace(/-/g, " ").toUpperCase()
     : "DOCUMENTATION"
@@ -135,6 +132,8 @@ export default async function Page(props: {
   const isComponentsIndex = page.url === "/docs/components"
   const isCategoryIndex =
     page.url.startsWith("/docs/components/") && page.url.split("/").length === 4
+  const isCatalogPage = isComponentsIndex || isCategoryIndex || isWide
+
   const categoryCount =
     isComponentsIndex || isCategoryIndex
       ? source
@@ -147,6 +146,7 @@ export default async function Page(props: {
                 : p.url.startsWith(`${page.url}/`))
           ).length
       : null
+
   const breadcrumbSchema = getDocBreadcrumbSchema(params.slug)
   const entitySchema = getDocEntitySchema(
     page.data.title,
@@ -183,7 +183,15 @@ export default async function Page(props: {
           </section>
         )}
 
-        <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
+        <article
+          className={cn(
+            "mx-auto flex w-full flex-col gap-12 py-16 lg:py-24",
+            // Catalog pages use spacious bounds instead of xl:px-64 which destroyed card widths
+            isCatalogPage
+              ? "max-w-[1400px] px-6 sm:px-10 lg:px-16"
+              : "max-w-7xl px-8 md:px-16 md:pl-24 lg:py-32 xl:px-64"
+          )}
+        >
           <header className="flex flex-col gap-6">
             {hasCategory && (
               <nav className="flex flex-wrap items-center gap-2">
@@ -243,8 +251,8 @@ export default async function Page(props: {
             className={cn(
               "grid items-start gap-12",
               page.data.hideToc
-                ? isWide
-                  ? "w-full max-w-7xl grid-cols-1"
+                ? isCatalogPage
+                  ? "w-full grid-cols-1"
                   : "w-full max-w-4xl grid-cols-1"
                 : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
             )}
