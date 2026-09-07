@@ -66,7 +66,7 @@ export async function getDocCopyPayload(pagePath: string): Promise<string> {
 }
 
 export async function resolveDocDemos(
-  page: { data: { registryKeys?: string[]; links?: { github?: string; preview?: string } } }
+  page: { data: { registryKeys?: string[]; links?: { github?: string; preview?: string } } & Record<string, any> }
 ): Promise<DemoData[]> {
   const pageRegistry = registry ?? {}
   const resolvedDemos: DemoData[] = []

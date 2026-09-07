@@ -53,17 +53,15 @@ export async function generateMetadata(props: {
 
   const lastModifiedRaw = await getLastModifiedTime(page.path)
 
+  const urlCategory = page.url.split('/')[3]
+
   const tags: string[] = []
   if (page.data.badge) tags.push(page.data.badge)
-  if (page.data.category && Array.isArray(page.data.category)) {
-    tags.push(...page.data.category)
-  }
+  if (urlCategory) tags.push(urlCategory)
 
   // Determine the dynamic label based on the component's category (e.g., TEXT EFFECTS)
   // Fallback to "DOCUMENTATION" if no category exists.
-  const dynamicLabel = page.data.category?.[0]
-    ? page.data.category[0].replace(/-/g, " ").toUpperCase()
-    : "DOCUMENTATION"
+  const dynamicLabel = urlCategory ? urlCategory.replace(/-/g, " ").toUpperCase() : "DOCUMENTATION"
 
   const ogUrl = `/api/og?title=${encodeURIComponent(page.data.title)}&label=${encodeURIComponent(dynamicLabel)}`
 
@@ -78,8 +76,8 @@ export async function generateMetadata(props: {
         "article:published_time": lastModifiedRaw,
         "article:modified_time": lastModifiedRaw,
       }),
-      ...(page.data.category?.[0] && {
-        "article:section": page.data.category[0],
+      ...(urlCategory && {
+        "article:section": urlCategory,
       }),
       ...(tags.length > 0 && {
         "article:tag": tags.join(", "),
@@ -129,7 +127,8 @@ export default async function Page(props: {
 
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
-  const hasCategories = page.data.category && page.data.category.length > 0
+  const urlCategory = page.url.split('/')[3]
+  const hasCategory = !!urlCategory
   const isWide = page.data.wide
   const breadcrumbSchema = getDocBreadcrumbSchema(params.slug)
   const entitySchema = getDocEntitySchema(
@@ -141,7 +140,7 @@ export default async function Page(props: {
     <>
       <DocTracker
         title={page.data.title}
-        category={page.data.category?.[0]}
+        category={urlCategory}
         badge={page.data.badge}
       />
 
@@ -169,15 +168,13 @@ export default async function Page(props: {
 
         <article className="mx-auto flex w-full flex-col gap-12 px-8 py-24 md:px-16 md:pl-24 lg:py-32 xl:px-64">
           <header className="flex flex-col gap-6">
-            {hasCategories && (
+            {hasCategory && (
               <nav className="flex flex-wrap items-center gap-2">
-                {page.data.category?.map((cat) => (
-                  <Link href={`/categories/${cat}`} key={cat}>
-                    <span className="inline-flex cursor-pointer items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
-                      {cat.replace("-", " ")}
-                    </span>
-                  </Link>
-                ))}
+                <Link href={`/docs/components/${urlCategory}`} key={urlCategory}>
+                  <span className="inline-flex cursor-pointer items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
+                    {urlCategory.replace("-", " ")}
+                  </span>
+                </Link>
               </nav>
             )}
 

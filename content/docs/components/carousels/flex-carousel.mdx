@@ -1,0 +1,69 @@
+---
+title: Flex Carousel
+description: A high-performance WebGL horizontal carousel. Integrates aerodynamic bending, kinetic RGB splitting, dynamic shadowing, and smooth SDF corner radiuses calculated entirely on the GPU.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/carousels/flex-carousel.mdx
+registryKeys:
+  - flex-carousel-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/flex-carousel.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/flex-carousel.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/flex-carousel.json"
+    title="flex-carousel"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/flex-carousel-demo.json"
+    title="flex-carousel-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="three @react-three/fiber @react-three/drei gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { flexCarouselFile } from "@/registry/strings/flex-carousel"
+
+<div className="mt-6">
+  <CodeBlock files={flexCarouselFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                               | Type       | Default    | Description                                              |
+| :--------------------------------- | :--------- | :--------- | :------------------------------------------------------- |
+| **`images`**                       | `string[]` | _Required_ | Array of image URLs to load into the deck.               |
+| **`cardWidthRatio`**               | `number`   | `0.35`     | Percentage of screen width the card occupies on desktop. |
+| **`cardAspectRatio`**              | `number`   | `1.4`      | Width-to-height ratio of the cards.                      |
+| **`gapMultiplier`**                | `number`   | `0.36`     | Space between cards relative to viewport width.          |
+| **`scrollSensitivity`**            | `number`   | `0.04`     | How heavily the scroll wheel affects movement.           |
+| **`lerpFactor`**                   | `number`   | `0.08`     | How buttery smooth the momentum is (0.01 to 1).          |
+| **`flexMultiplier`**               | `number`   | `0.25`     | Aerodynamic bending intensity.                           |
+| **`rotationMultiplier`**           | `number`   | `0.02`     | Baseline rotation facing the center.                     |
+| **`parallaxIntensity`**            | `number`   | `0.05`     | Internal parallax sliding intensity.                     |
+| **`chromaticAberrationIntensity`** | `number`   | `0.005`    | The intensity of the kinetic RGB color splitting.        |
+| **`dimmingMultiplier`**            | `number`   | `0.015`    | Edge darkening on movement/curvature.                    |
+| **`cornerRadius`**                 | `number`   | `0.04`     | SDF Corner Radius.                                       |

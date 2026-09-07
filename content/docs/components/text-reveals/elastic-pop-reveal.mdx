@@ -1,0 +1,78 @@
+---
+title: Elastic Pop Reveal
+description: A tactile, physics-based text reveal component. Splinters text into words or characters and scales them in with a highly customizable GSAP elastic spring effect, triggered on scroll.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/text-reveals/elastic-pop-reveal.mdx
+registryKeys:
+  - elastic-pop-headline-demo
+  - elastic-pop-paragraph-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/elastic-pop-reveal.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/elastic-pop-reveal.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/elastic-pop-reveal.json"
+    title="elastic-pop-reveal"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/elastic-pop-headline-demo.json"
+    title="elastic-pop-headline-demo"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/elastic-pop-paragraph-demo.json"
+    title="elastic-pop-paragraph-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { elasticPopRevealFile } from "@/registry/strings/elastic-pop-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={elasticPopRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop               | Type                | Default                 | Description                                                                   |
+| :----------------- | :------------------ | :---------------------- | :---------------------------------------------------------------------------- |
+| **`text`**         | `string`            | _Required_              | The full string of text to reveal. Automatically splits by word or character. |
+| **`as`**           | `React.ElementType` | `"div"`                 | The HTML tag to render as.                                                    |
+| **`splitBy`**      | `"word" \| "char"`  | `"word"`                | Whether to split and animate by word or individual character.                 |
+| **`startScale`**   | `number`            | `0.5`                   | Starting scale of the element before it pops in.                              |
+| **`startOpacity`** | `number`            | `0`                     | Starting opacity of the element.                                              |
+| **`delay`**        | `number`            | `0`                     | Delay before the animation begins (in seconds).                               |
+| **`ease`**         | `string`            | `"elastic.out(1, 0.4)"` | GSAP easing string configuring the spring's amplitude and frequency.          |
+| **`duration`**     | `number`            | `1.5`                   | The duration of the reveal. Elastic eases need extra time to oscillate.       |
+| **`stagger`**      | `number`            | `0.05`                  | The stagger delay between each word/char revealing.                           |
+| **`viewportOnce`** | `boolean`           | `true`                  | If true, plays once. If false, seamlessly reverses on scroll away.            |
+| **`triggerStart`** | `string`            | `"top 90%"`             | Viewport threshold for when the animation should start.                       |

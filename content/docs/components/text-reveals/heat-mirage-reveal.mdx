@@ -1,0 +1,76 @@
+---
+title: Heat Mirage Reveal
+description: A cinematic atmospheric reveal component. Uses an SVG displacement map to simulate atmospheric thermal distortion (heat waves). The text drifts upward and materializes as the heat dissipates into sharp focus.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/text-reveals/heat-mirage-reveal.mdx
+registryKeys:
+  - heat-mirage-headline-demo
+  - heat-mirage-paragraph-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/heat-mirage-reveal.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/heat-mirage-reveal.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-reveal.json"
+    title="heat-mirage-reveal"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-headline-demo.json"
+    title="heat-mirage-headline-demo"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/heat-mirage-paragraph-demo.json"
+    title="heat-mirage-paragraph-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { heatMirageRevealFile } from "@/registry/strings/heat-mirage-reveal"
+
+<div className="mt-6">
+  <CodeBlock files={heatMirageRevealFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                       | Type                | Default     | Description                                                        |
+| :------------------------- | :------------------ | :---------- | :----------------------------------------------------------------- |
+| **`text`**                 | `string`            | _Required_  | The full string of text to reveal.                                 |
+| **`as`**                   | `React.ElementType` | `"h1"`      | The HTML tag to render as.                                         |
+| **`splitBy`**              | `"word" \| "char"`  | `"char"`    | Whether to split and animate by word or individual character.      |
+| **`duration`**             | `number`            | `2.5`       | Base duration for the text reveal.                                 |
+| **`delay`**                | `number`            | `0`         | Delay before the animation begins (in seconds).                    |
+| **`stagger`**              | `number`            | `0.08`      | The stagger delay between each element revealing.                  |
+| **`startingDisplacement`** | `number`            | `35`        | How intense the thermal waving is at the start.                    |
+| **`viewportOnce`**         | `boolean`           | `true`      | If true, plays once. If false, seamlessly reverses on scroll away. |
+| **`triggerStart`**         | `string`            | `"top 85%"` | Viewport threshold for when the animation should start.            |

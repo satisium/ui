@@ -1,23 +1,20 @@
 import { queryContent } from "@/lib/content-query"
-import { CATEGORIES } from "@/lib/utils"
 import { CategoryHero } from "@/components/component-card/category-hero"
 import { ComponentCard } from "@/components/component-card/component-card"
 
 export function ComponentsGrid() {
   const { pages } = queryContent({})
 
-  const categories = CATEGORIES.map((category) => {
-    const categoryPages = pages.filter((page) =>
-      page.data.category
-        ?.map((c) => c.toLowerCase())
-        .includes(category.toLowerCase())
-    )
-    return { category, pages: categoryPages }
-  }).filter((group) => group.pages.length > 0)
+  const categories = pages.reduce((acc, page) => {
+    const category = page.url.split('/')[3]
+    if (!acc[category]) acc[category] = []
+    acc[category].push(page)
+    return acc
+  }, {} as Record<string, typeof pages>)
 
   return (
     <div className="flex w-full flex-col gap-16">
-      {categories.map(({ category, pages: categoryPages }) => (
+      {Object.entries(categories).sort(([a], [b]) => a.localeCompare(b)).map(([category, categoryPages]) => (
         <section key={category} className="flex flex-col gap-6">
           <CategoryHero title={category} count={categoryPages.length} />
 

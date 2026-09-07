@@ -1,0 +1,80 @@
+---
+title: Fluid Typewriter
+description: A liquid-smooth typewriter effect. A glowing cursor seamlessly glides across the text, intelligently wrapping to new lines and pausing at punctuation, while characters emerge from a deep blur.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/text-reveals/fluid-typewriter.mdx
+registryKeys:
+  - fluid-typewriter-headline-demo
+  - fluid-typewriter-paragraph-demo
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/fluid-typewriter.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/fluid-typewriter.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter.json"
+    title="fluid-typewriter"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter-headline-demo.json"
+    title="fluid-typewriter-headline-demo"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/fluid-typewriter-paragraph-demo.json"
+    title="fluid-typewriter-paragraph-demo"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+<div className="mt-6">
+  <CommandBlock
+    pkg="gsap @gsap/react clsx tailwind-merge"
+    title="Dependencies"
+  />
+</div>
+
+**2. Add Source Code**
+
+import { fluidTypewriterFile } from "@/registry/strings/fluid-typewriter"
+
+<div className="mt-6">
+  <CodeBlock files={fluidTypewriterFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                  | Type                | Default        | Description                                               |
+| :-------------------- | :------------------ | :------------- | :-------------------------------------------------------- |
+| **`text`**            | `string`            | _Required_     | The full string of text to type out. Supports wrapping.   |
+| **`as`**              | `React.ElementType` | `"h1"`         | The HTML tag to render as.                                |
+| **`cursorClassName`** | `string`            | `"bg-primary"` | Tailwind class for the blinking cursor.                   |
+| **`cursorYOffset`**   | `string \| number`  | `"0.1em"`      | Push the cursor slightly down to account for descenders.  |
+| **`baseSpeed`**       | `number`            | `0.02`         | Speed of the cursor glide per character in seconds.       |
+| **`variance`**        | `number`            | `0.02`         | Human variance applied to the typing speed for realism.   |
+| **`delay`**           | `number`            | `0`            | Delay before the typewriter begins (in seconds).          |
+| **`viewportOnce`**    | `boolean`           | `true`         | Recommended to keep true to avoid reverse-deletion loops. |
+| **`triggerStart`**    | `string`            | `"top 90%"`    | Viewport threshold for when the animation should start.   |
+
+```
+
+```

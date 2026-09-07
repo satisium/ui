@@ -19,11 +19,10 @@ export function queryContent(options: QueryOptions) {
   }
 
   if (category) {
-    pages = pages.filter((page) =>
-      page.data.category
-        ?.map((c) => c.toLowerCase())
-        .includes(category.toLowerCase())
-    )
+    pages = pages.filter((page) => {
+      const urlCategory = page.url.split('/')[3]
+      return urlCategory === category.toLowerCase()
+    })
   }
 
   pages.sort((a, b) => a.data.title.localeCompare(b.data.title))

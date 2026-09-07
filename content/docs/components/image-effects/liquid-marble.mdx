@@ -1,0 +1,79 @@
+---
+title: Liquid Marble
+description: An interactive WebGL component applying a fluid chromatic distortion that clears into a crystal lens around the cursor.
+component: true
+author: Satisium UI
+links:
+  github: https://github.com/satisium/ui/blob/master/content/docs/components/image-effects/liquid-marble.mdx
+registryKeys:
+  - liquid-marble-image
+  - liquid-marble-video
+media:
+  image: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/images/liquid-marble.webp"
+  video: "https://cdn.jsdelivr.net/gh/satisium/ui-assets@main/v2/previews/components/videos/liquid-marble.mp4"
+---
+
+## Install
+
+### CLI
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble.json"
+    title="liquid-marble"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-image.json"
+    title="liquid-marble-image"
+  />
+</div>
+
+Or install a specific demo variant:
+
+<div className="mt-6">
+  <CommandBlock
+    command="npx shadcn@latest add https://ui.satisium.com/r/liquid-marble-video.json"
+    title="liquid-marble-video"
+  />
+</div>
+
+### Manual
+
+**1. Install Dependencies**
+
+Since this component leverages WebGL, you will need React Three Fiber and Three.js.
+
+<div className="mt-6">
+  <CommandBlock pkg="three @react-three/fiber @react-three/drei clsx tailwind-merge" />
+</div>
+
+_Note: The demos utilize `@hugeicons/react` and `@hugeicons/core-free-icons` for the loading fallback, but they are not strictly required for the core component._
+
+**2. Add Source Code**
+
+import { liquidMarbleFile } from "@/registry/strings/liquid-marble"
+
+<div className="mt-6">
+  <CodeBlock files={liquidMarbleFile} height="600px" />
+</div>
+
+## Props
+
+| Prop                     | Type                 | Default     | Description                                                                   |
+| :----------------------- | :------------------- | :---------- | :---------------------------------------------------------------------------- |
+| **`mediaUrl`**           | `string`             | —           | The source URL of the media asset.                                            |
+| **`mediaType`**          | `"image" \| "video"` | `"image"`   | Defines the media type for correct texture processing.                        |
+| **`hoverRadius`**        | `number`             | `0.35`      | How wide the clarity lens spreads (0.0 to 1.0).                               |
+| **`distortionStrength`** | `number`             | `0.1`       | How violently the liquid swirls outside the cursor.                           |
+| **`noiseScale`**         | `number`             | `3.0`       | Scale of the noise. Lower = larger, sweeping waves. Higher = tighter ripples. |
+| **`speed`**              | `number`             | `0.2`       | How fast the liquid continuously flows over time.                             |
+| **`imageZoom`**          | `number`             | `1.2`       | Internal zoom to prevent revealing image edges during heavy distortion.       |
+| **`mouseLerpSpeed`**     | `number`             | `3.0`       | Fluidity of the mouse tracking. Lower = heavier drag.                         |
+| **`enterLeaveSpeed`**    | `number`             | `1.5`       | Speed at which the clarity lens fades in/out.                                 |
+| **`fallback`**           | `React.ReactNode`    | `null`      | Optional fallback UI rendered via Suspense while media loads.                 |
+| **`className`**          | `string`             | `undefined` | Standard React classNames for the container wrapper.                          |
