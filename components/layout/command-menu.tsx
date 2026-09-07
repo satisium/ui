@@ -173,22 +173,30 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
   const [query, setQuery] = React.useState("")
   const [apiResults, setApiResults] = React.useState<ApiSearchResult[]>([])
   const [isLoading, setIsLoading] = React.useState(false)
-  const [activeValue, setActiveValue] = React.useState("")
+  const [, setActiveValue] = React.useState("")
   const [modifier, setModifier] = React.useState<"none" | "meta" | "shift">(
     "none"
   )
   const [recentIds, setRecentIds] = React.useState<string[]>([])
 
   React.useEffect(() => {
-    const stored = localStorage.getItem("satis-recent-searches")
-    if (stored) setRecentIds(JSON.parse(stored))
+    try {
+      const stored = localStorage.getItem("satis-recent-searches")
+      if (stored) setRecentIds(JSON.parse(stored))
+    } catch (e) {
+      logger.error("Failed to load recent searches", e)
+    }
   }, [])
 
   const saveRecent = React.useCallback((id: string) => {
     if (id.startsWith("action-") || id.startsWith("theme-")) return
     setRecentIds((prev) => {
       const next = [id, ...prev.filter((x) => x !== id)].slice(0, 5)
-      localStorage.setItem("satis-recent-searches", JSON.stringify(next))
+      try {
+        localStorage.setItem("satis-recent-searches", JSON.stringify(next))
+      } catch (e) {
+        logger.error("Failed to save recent search", e)
+      }
       return next
     })
   }, [])
@@ -258,76 +266,76 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
     return () => clearTimeout(timer)
   }, [query])
 
-    const staticItems = React.useMemo<StaticItem[]>(() => {
-      const items: StaticItem[] = []
+  const staticItems = React.useMemo<StaticItem[]>(() => {
+    const items: StaticItem[] = []
 
-      if (docsTree) {
-        function traverseTree(
-          node: PageTree.Node,
-          currentGroup: string,
-          path: string[]
-        ) {
-          if (node.type === "page") {
-            const pageNode = node as PageTree.Item
-            const safeNameStr =
-              typeof pageNode.name === "string"
-                ? pageNode.name
-                : pageNode.url
-                    .split("/")
-                    .filter(Boolean)
-                    .pop()
-                    ?.replace(/-/g, " ") || "Page"
+    if (docsTree) {
+      function traverseTree(
+        node: PageTree.Node,
+        currentGroup: string,
+        path: string[]
+      ) {
+        if (node.type === "page") {
+          const pageNode = node as PageTree.Item
+          const safeNameStr =
+            typeof pageNode.name === "string"
+              ? pageNode.name
+              : pageNode.url
+                  .split("/")
+                  .filter(Boolean)
+                  .pop()
+                  ?.replace(/-/g, " ") || "Page"
 
+          items.push({
+            id: pageNode.url,
+            title: pageNode.name,
+            searchString: safeNameStr,
+            subtitle:
+              path.length > 0 ? `Docs ➔ ${path.join(" ➔ ")}` : "Documentation",
+            group: currentGroup,
+            url: pageNode.url,
+            icon: getContextualIcon(currentGroup),
+            aliases: [currentGroup.toLowerCase()],
+          })
+        } else if (node.type === "folder") {
+          const folderNode = node as PageTree.Folder
+          const safeNameStr =
+            typeof folderNode.name === "string" ? folderNode.name : "Folder"
+          const groupNameStr = safeNameStr
+          const newPath = [...path, groupNameStr]
+
+          if (folderNode.index) {
+            const indexNode = folderNode.index as PageTree.Item
             items.push({
-              id: pageNode.url,
-              title: pageNode.name,
-              searchString: safeNameStr,
+              id: indexNode.url,
+              title: folderNode.name ? `${safeNameStr} Overview` : "Overview",
+              searchString: `${safeNameStr} Overview`,
               subtitle:
-                path.length > 0 ? `Docs ➔ ${path.join(" ➔ ")}` : "Documentation",
-              group: currentGroup,
-              url: pageNode.url,
-              icon: getContextualIcon(currentGroup),
-              aliases: [currentGroup.toLowerCase()],
+                path.length > 0
+                  ? `Docs ➔ ${path.join(" ➔ ")}`
+                  : "Documentation",
+              group: groupNameStr,
+              url: indexNode.url,
+              icon: (
+                <HugeiconsIcon
+                  icon={LaptopVideoIcon}
+                  className="mr-3 size-4 text-muted-foreground"
+                />
+              ),
+              aliases: ["index", "overview"],
             })
-          } else if (node.type === "folder") {
-            const folderNode = node as PageTree.Folder
-            const safeNameStr =
-              typeof folderNode.name === "string" ? folderNode.name : "Folder"
-            const groupNameStr = safeNameStr
-            const newPath = [...path, groupNameStr]
-
-            if (folderNode.index) {
-              const indexNode = folderNode.index as PageTree.Item
-              items.push({
-                id: indexNode.url,
-                title: folderNode.name ? `${safeNameStr} Overview` : "Overview",
-                searchString: `${safeNameStr} Overview`,
-                subtitle:
-                  path.length > 0
-                    ? `Docs ➔ ${path.join(" ➔ ")}`
-                    : "Documentation",
-                group: groupNameStr,
-                url: indexNode.url,
-                icon: (
-                  <HugeiconsIcon
-                    icon={LaptopVideoIcon}
-                    className="mr-3 size-4 text-muted-foreground"
-                  />
-                ),
-                aliases: ["index", "overview"],
-              })
-            }
-            folderNode.children.forEach((child) =>
-              traverseTree(child, groupNameStr, newPath)
-            )
           }
+          folderNode.children.forEach((child) =>
+            traverseTree(child, groupNameStr, newPath)
+          )
         }
-        docsTree.children.forEach((child) =>
-          traverseTree(child, "General Docs", [])
-        )
       }
+      docsTree.children.forEach((child) =>
+        traverseTree(child, "General Docs", [])
+      )
+    }
 
-      const systemItems: StaticItem[] = [
+    const systemItems: StaticItem[] = [
       {
         id: "action-copy-url",
         title: "Copy Current URL",
@@ -447,18 +455,22 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
     )
   }
 
-  const groupedStaticItems = staticItems.reduce(
-    (acc, item) => {
-      if (!acc[item.group]) acc[item.group] = []
-      acc[item.group].push(item)
-      return acc
-    },
-    {} as Record<string, StaticItem[]>
-  )
+  const groupedStaticItems = React.useMemo(() => {
+    return staticItems.reduce(
+      (acc, item) => {
+        if (!acc[item.group]) acc[item.group] = []
+        acc[item.group].push(item)
+        return acc
+      },
+      {} as Record<string, StaticItem[]>
+    )
+  }, [staticItems])
 
-  const recentStaticItems = recentIds
-    .map((id) => staticItems.find((item) => item.id === id))
-    .filter((item): item is StaticItem => item !== undefined)
+  const recentStaticItems = React.useMemo(() => {
+    return recentIds
+      .map((id) => staticItems.find((item) => item.id === id))
+      .filter((item): item is StaticItem => item !== undefined)
+  }, [recentIds, staticItems])
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -468,8 +480,13 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
           className="flex h-full w-full flex-col gap-2 bg-muted"
           onValueChange={setActiveValue}
           filter={(value, search) => {
-            const item = staticItems.find((i) => i.id === value)
+            // Strip any internal prefix before finding the item in static items
+            const cleanId = value.replace(/^(recent-|api-)/, "")
+            const item = staticItems.find((i) => i.id === cleanId)
+
+            // If not found in static items (e.g. backend API search result), don't filter out
             if (!item) return 1
+
             const searchLower = search.toLowerCase()
             if (item.searchString.toLowerCase().includes(searchLower)) return 1
             if (
@@ -507,12 +524,13 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                 )}
               </CommandEmpty>
 
+              {/* 🕒 RECENTLY VISITED: Prefixed value avoids key navigation collision */}
               {!query && recentStaticItems.length > 0 && (
                 <CommandGroup heading="Recently Visited">
                   {recentStaticItems.map((item) => (
                     <CommandItem
                       key={`recent-${item.id}`}
-                      value={item.id}
+                      value={`recent-${item.id}`}
                       onSelect={() =>
                         handleSelect(item.id, item.url, item.action)
                       }
@@ -523,7 +541,6 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                         className="mr-3 size-4 text-muted-foreground"
                       />
                       <div className="flex flex-col items-start gap-0.5">
-                        {/* Subtitles stripped for clean look */}
                         <span className="flex items-center gap-2 font-medium">
                           {item.title}
                         </span>
@@ -534,6 +551,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                 </CommandGroup>
               )}
 
+              {/* 🔍 API RESULTS: Prefixed value ensures unique cmdk identification */}
               {apiResults.length > 0 && (
                 <CommandGroup heading="Deep Search Results (Content)">
                   {apiResults.map((result) => {
@@ -576,21 +594,21 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
 
                     return (
                       <CommandItem
-                        key={result.id}
-                        value={result.id}
+                        key={`api-${result.id}`}
+                        value={`api-${result.id}`}
                         onSelect={() => handleSelect(result.id, result.url)}
                         className="flex flex-col items-start gap-1 px-4 py-3 aria-selected:bg-secondary/40 aria-selected:text-primary"
                       >
                         <div className="flex w-full items-center">
                           {getApiIcon(result.type)}
                           <span
-                            className="[&_mark]:rounded-[12px][&_mark]:bg-primary/20 font-heading text-sm font-medium [&_mark]:px-1 [&_mark]:text-primary"
+                            className="font-heading text-sm font-medium [&_mark]:rounded-[12px] [&_mark]:bg-primary/20 [&_mark]:px-1 [&_mark]:text-primary"
                             dangerouslySetInnerHTML={{ __html: safeTitle }}
                           />
                         </div>
                         {safeContent && (
                           <span
-                            className="text-muted-foreground[&_mark]:rounded-[12px] [&_mark]:px-1[&_mark]:font-semibold ml-7 line-clamp-1 font-body text-xs [&_mark]:bg-primary/20 [&_mark]:text-primary"
+                            className="ml-7 line-clamp-1 font-body text-xs text-muted-foreground [&_mark]:rounded-[12px] [&_mark]:bg-primary/20 [&_mark]:px-1 [&_mark]:font-semibold [&_mark]:text-primary"
                             dangerouslySetInnerHTML={{ __html: safeContent }}
                           />
                         )}
@@ -600,6 +618,7 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                 </CommandGroup>
               )}
 
+              {/* 📚 STATIC CATALOG & ACTIONS */}
               {Object.entries(groupedStaticItems).map(([group, items]) => (
                 <CommandGroup key={group} heading={group}>
                   {items.map((item) => (
@@ -614,7 +633,6 @@ export function CommandMenuDialog({ docsTree }: { docsTree?: PageTree.Root }) {
                     >
                       {item.icon}
                       <div className="flex min-w-0 flex-col items-start gap-0.5">
-                        {/* Subtitles stripped for clean look */}
                         <span className="flex items-center gap-2 truncate font-medium">
                           {item.title}
                         </span>

@@ -186,10 +186,9 @@ export default async function Page(props: {
         <article
           className={cn(
             "mx-auto flex w-full flex-col gap-12 py-16 lg:py-24",
-            // Catalog pages use spacious bounds instead of xl:px-64 which destroyed card widths
-            isCatalogPage
-              ? "max-w-[1400px] px-6 sm:px-10 lg:px-16"
-              : "max-w-7xl px-8 md:px-16 md:pl-24 lg:py-32 xl:px-64"
+            // Standard responsive padding across all pages; no 512px padding trap
+            "px-6 sm:px-8 md:px-12 lg:px-16",
+            isCatalogPage ? "max-w-[1440px]" : "max-w-7xl"
           )}
         >
           <header className="flex flex-col gap-6">
@@ -249,12 +248,12 @@ export default async function Page(props: {
           <div
             id="installation"
             className={cn(
-              "grid items-start gap-12",
+              "grid items-start gap-10 lg:gap-12 xl:gap-14",
               page.data.hideToc
                 ? isCatalogPage
                   ? "w-full grid-cols-1"
                   : "w-full max-w-4xl grid-cols-1"
-                : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] xl:gap-32"
+                : "grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px]"
             )}
           >
             <div className="w-full min-w-0 pb-32">
