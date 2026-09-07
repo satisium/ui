@@ -31,11 +31,12 @@ type CustomPageNode = PageTree.Item & {
 /**
  * COMPONENT: The Pure Video Layer (Solid Physical Geometry)
  */
-function VideoLayer({ url }: { url: string }) {
+function VideoLayer({ url, poster }: { url: string; poster?: string }) {
   return (
     <div className="relative h-full w-full">
       <video
         src={url}
+        poster={poster}
         autoPlay
         loop
         muted
@@ -92,7 +93,7 @@ function MediaPreviewCard({
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 origin-center overflow-hidden rounded-[14px]"
             >
-              <VideoLayer url={node.media.video} />
+              <VideoLayer url={node.media.video} poster={node.media.image} />
             </motion.div>
           </AnimatePresence>
         </motion.div>
