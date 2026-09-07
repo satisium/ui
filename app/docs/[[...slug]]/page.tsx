@@ -1,4 +1,5 @@
 import { DocTracker } from "@/components/doc-tracker"
+import { PageBreadcrumbs } from "@/components/layout/page-breadcrumbs"
 import { TableOfContents } from "@/components/layout/toc"
 import { defaultMdxComponents } from "@/components/mdx-components"
 import { ComponentPreviewer } from "@/components/previewer/component-preview"
@@ -127,7 +128,6 @@ export default async function Page(props: {
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
   const urlCategory = page.url.split("/")[3]
-  const hasCategory = !!urlCategory
   const isWide = page.data.wide
   const isComponentsIndex = page.url === "/docs/components"
   const isCategoryIndex =
@@ -192,18 +192,7 @@ export default async function Page(props: {
           )}
         >
           <header className="flex flex-col gap-6">
-            {hasCategory && (
-              <nav className="flex flex-wrap items-center gap-2">
-                <Link
-                  href={`/docs/components/${urlCategory}`}
-                  key={urlCategory}
-                >
-                  <span className="inline-flex cursor-pointer items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
-                    {urlCategory.replace("-", " ")}
-                  </span>
-                </Link>
-              </nav>
-            )}
+            <PageBreadcrumbs pageUrl={page.url} tree={source.pageTree} />
 
             <div className="flex flex-col gap-4">
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center-safe sm:justify-start">
