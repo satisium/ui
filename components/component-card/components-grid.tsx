@@ -16,7 +16,7 @@ export function ComponentsGrid() {
     <div className="flex w-full flex-col gap-16">
       {Object.entries(categories).sort(([a], [b]) => a.localeCompare(b)).map(([category, categoryPages]) => (
         <section key={category} className="flex flex-col gap-6">
-          <CategoryHero title={category} count={categoryPages.length} />
+          <CategoryHero title={category} count={categoryPages.length} showCount />
 
           <div className="flex w-full flex-col gap-10">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">

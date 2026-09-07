@@ -53,7 +53,7 @@ export async function generateMetadata(props: {
 
   const lastModifiedRaw = await getLastModifiedTime(page.path)
 
-  const urlCategory = page.url.split('/')[3]
+  const urlCategory = page.url.split("/")[3]
 
   const tags: string[] = []
   if (page.data.badge) tags.push(page.data.badge)
@@ -61,7 +61,9 @@ export async function generateMetadata(props: {
 
   // Determine the dynamic label based on the component's category (e.g., TEXT EFFECTS)
   // Fallback to "DOCUMENTATION" if no category exists.
-  const dynamicLabel = urlCategory ? urlCategory.replace(/-/g, " ").toUpperCase() : "DOCUMENTATION"
+  const dynamicLabel = urlCategory
+    ? urlCategory.replace(/-/g, " ").toUpperCase()
+    : "DOCUMENTATION"
 
   const ogUrl = `/api/og?title=${encodeURIComponent(page.data.title)}&label=${encodeURIComponent(dynamicLabel)}`
 
@@ -127,9 +129,24 @@ export default async function Page(props: {
 
   const MDX = page.data.body
   const neighbours = findNeighbour(source.pageTree, page.url)
-  const urlCategory = page.url.split('/')[3]
+  const urlCategory = page.url.split("/")[3]
   const hasCategory = !!urlCategory
   const isWide = page.data.wide
+  const isComponentsIndex = page.url === "/docs/components"
+  const isCategoryIndex =
+    page.url.startsWith("/docs/components/") && page.url.split("/").length === 4
+  const categoryCount =
+    isComponentsIndex || isCategoryIndex
+      ? source
+          .getPages()
+          .filter(
+            (p) =>
+              p.data.component === true &&
+              (isComponentsIndex
+                ? p.url.startsWith("/docs/components/")
+                : p.url.startsWith(`${page.url}/`))
+          ).length
+      : null
   const breadcrumbSchema = getDocBreadcrumbSchema(params.slug)
   const entitySchema = getDocEntitySchema(
     page.data.title,
@@ -170,7 +187,10 @@ export default async function Page(props: {
           <header className="flex flex-col gap-6">
             {hasCategory && (
               <nav className="flex flex-wrap items-center gap-2">
-                <Link href={`/docs/components/${urlCategory}`} key={urlCategory}>
+                <Link
+                  href={`/docs/components/${urlCategory}`}
+                  key={urlCategory}
+                >
                   <span className="inline-flex cursor-pointer items-center rounded-md bg-muted px-2.5 py-1 text-xs font-medium tracking-wide text-muted-foreground capitalize transition-colors hover:bg-muted hover:text-foreground">
                     {urlCategory.replace("-", " ")}
                   </span>
@@ -181,7 +201,7 @@ export default async function Page(props: {
             <div className="flex flex-col gap-4">
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center-safe sm:justify-start">
                 <h1 className="capitalize">{page.data.title}</h1>
-                <div className="flex flex-row flex-wrap gap-4 text-center">
+                <div className="flex flex-row flex-wrap items-center gap-4">
                   {page.data.badge && (
                     <span
                       className={cn(
@@ -190,6 +210,11 @@ export default async function Page(props: {
                       )}
                     >
                       {page.data.badge}
+                    </span>
+                  )}
+                  {categoryCount !== null && (
+                    <span className="-mt-6 text-[12px] font-medium text-muted-foreground">
+                      {categoryCount}
                     </span>
                   )}
                 </div>
