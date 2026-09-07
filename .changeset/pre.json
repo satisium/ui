@@ -4,5 +4,9 @@
   "initialVersions": {
     "satisium-ui": "3.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "better-frogs-roll",
+    "hot-experts-call",
+    "smooth-falcons-tie"
+  ]
 }

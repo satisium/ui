@@ -1,5 +1,13 @@
 # ui
 
+## 3.0.0-beta.62
+
+### Minor Changes
+
+- removed 5 image effect components
+- improved Sidebar file tree for better UX and for least maintainabilty and for easier scaling
+- removed category pages. (redundant)
+
 ## 3.0.0
 
 ### Minor Changes
